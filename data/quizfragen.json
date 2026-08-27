@@ -647,12 +647,12 @@
   },
   {
     "id": "q-039",
-    "frage": "In welcher Phase werden die Einführungsmassnahmen bei klassischer Vorgehensweise durchgeführt?",
+    "frage": "Welche Aussage zu den Einführungsmassnahmen trifft bei klassischer Vorgehensweise zu?",
     "antworten": [
-      "Konzept",
-      "Realisierung",
-      "Abschluss",
-      "Einführung"
+      "Sie werden in der Phase Einführung realisiert und durchgeführt.",
+      "Sie werden in der Phase Konzept realisiert und in der Phase Einführung durchgeführt.",
+      "Sie werden in der Phase Realisierung realisiert und durchgeführt.",
+      "Sie werden in der Phase Realisierung realisiert und in der Phase Einführung durchgeführt."
     ],
     "richtig": 3,
     "erklaerung": "Durchgeführt werden die Einführungsmassnahmen in der Phase Einführung; das Ergebnis heisst «Einführungsmassnahmen durchgeführt». Realisiert werden sie zuvor in der Phase Realisierung.",
@@ -672,7 +672,7 @@
       "Auftraggeber"
     ],
     "richtig": 2,
-    "erklaerung": "Die Qualitätssicherung wird vom Projektleiter im Modul Projektführung geführt; Ergebnis ist das Prüfprotokoll. Der Qualitäts- und Risikomanager beurteilt das Projekt demgegenüber unabhängig zuhanden des Auftraggebers.",
+    "erklaerung": "Die Qualitätssicherung wird vom Projektleiter im Modul Projektführung geführt; Ergebnisse sind der Projektmanagementplan und das Prüfprotokoll. Der Qualitäts- und Risikomanager beurteilt das Projekt demgegenüber unabhängig zuhanden des Auftraggebers.",
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/qualitaetssicherung-fuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Qualitätssicherung führen»"
@@ -853,9 +853,9 @@
     "id": "q-051",
     "frage": "Welche Aussage zum Ergebnis Stakeholderinteressen trifft zu?",
     "antworten": [
-      "Sie werden als Teil der Stakeholderliste geführt.",
+      "Sie werden als Bestandteil der Stakeholderliste geführt und veröffentlicht.",
       "Sie werden erstmals in der Phase Konzept erarbeitet.",
-      "Sie sind eine subjektive, projektinterne Einschätzung und kein öffentliches Ergebnis.",
+      "Sie sind eine subjektive, projektinterne Einschätzung.",
       "Sie werden vom Auftraggeber verantwortet."
     ],
     "richtig": 2,
@@ -1007,9 +1007,9 @@
     "frage": "Welche Aussage zur Besetzung der Rolle Teilprojektleiter trifft zu?",
     "antworten": [
       "Er muss zwingend beim Anwender angesiedelt sein.",
-      "Er wird vom Auftraggeber bestimmt.",
+      "Er wird durch den Auftraggeber bestimmt und geführt.",
       "Er trägt die Gesamtverantwortung für die Projektführung.",
-      "Er sollte beim Anwender angesiedelt sein; eine Bereitstellung durch Ersteller oder Betreiber kann in Betracht gezogen werden."
+      "Er sollte beim Anwender angesiedelt sein."
     ],
     "richtig": 3,
     "erklaerung": "Der Teilprojektleiter «sollte» beim Anwender angesiedelt sein – im Unterschied zum Projektleiter, der dort angesiedelt sein «muss»; eine Bereitstellung durch Ersteller oder Betreiber kann in Betracht gezogen werden. Bestimmt wird er vom Projektleiter.",

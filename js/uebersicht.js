@@ -7,15 +7,14 @@
 
   var h = HT.ui.h;
 
-  var STANDARD_PHASEN = ['Initialisierung', 'Konzept', 'Realisierung', 'Einführung'];
-
   /* --- Phasenmodell ------------------------------------------------------- */
 
-  function phasenKasten(name, nummer, definition, id) {
+  function phasenKasten(name, nummer, definition, id, meilensteine) {
     var kinder = [
       h('span', { class: 'pm-phase__nr', text: 'Phase ' + nummer }),
       h('span', { class: 'pm-phase__name', text: name }),
-      definition ? h('span', { class: 'pm-phase__def', text: HT.ui.kuerzen(definition, 72) }) : null
+      definition ? h('span', { class: 'pm-phase__def', text: HT.ui.kuerzen(definition, 72) }) : null,
+      meilensteinListe(meilensteine)
     ];
     if (id) {
       return h('a', {
@@ -35,54 +34,83 @@
     return String(name || '').replace(/^Meilenstein\s+/i, '');
   }
 
-  function verbinder(meilensteine, mitPfeil) {
-    var kinder = [];
+  /* Meilensteine gehören laut Daten zu einer Phase und schliessen sie ab —
+     darum stehen sie im Kasten und nicht in der Lücke. Die Lücke trägt nur
+     noch den Richtungspfeil; so bleibt für die langen Namen genug Breite. */
+  function meilensteinListe(meilensteine) {
     var liste = meilensteine || [];
-    liste.slice(0, MS_MAX).forEach(function (m) {
-      kinder.push(h('span', { class: 'pm-meilenstein', title: m.name }, [
+    if (!liste.length) { return null; }
+
+    var eintraege = liste.slice(0, MS_MAX).map(function (m) {
+      return h('li', { class: 'pm-meilenstein', title: m.name }, [
         h('span', { class: 'pm-raute', 'aria-hidden': 'true', text: '◆' }),
         h('span', { text: meilensteinKurz(m.name) })
-      ]));
+      ]);
     });
     if (liste.length > MS_MAX) {
-      kinder.push(h('span', {
-        class: 'pm-meilenstein',
+      eintraege.push(h('li', {
+        class: 'pm-meilenstein pm-meilenstein--mehr',
         text: '+ ' + (liste.length - MS_MAX) + ' weitere'
       }));
     }
-    if (mitPfeil) {
-      kinder.push(h('span', { class: 'pm-pfeil pm-pfeil--schmal', 'aria-hidden': 'true', text: '↓' }));
-      kinder.push(h('span', { class: 'pm-pfeil pm-pfeil--breit', 'aria-hidden': 'true', text: '→' }));
-    }
-    if (!kinder.length) { return null; }
-    return h('div', { class: 'pm-verbinder' }, kinder);
+
+    return h('ul', { class: 'pm-ms', 'aria-label': 'Meilensteine dieser Phase' }, eintraege);
   }
 
-  /* Die Grafik zeigt stets die vier Kernphasen; erfasste Daten werden
-     eingesetzt, fehlende Phasen bleiben als leerer Kasten stehen. */
-  function phasenmodell() {
-    var erfasst = HT.daten.kernPhasen();
+  function verbinder(mitPfeil) {
+    if (!mitPfeil) { return null; }
+    return h('div', { class: 'pm-verbinder' }, [
+      h('span', { class: 'pm-pfeil pm-pfeil--schmal', 'aria-hidden': 'true', text: '↓' }),
+      h('span', { class: 'pm-pfeil pm-pfeil--breit', 'aria-hidden': 'true', text: '→' })
+    ]);
+  }
+
+  /* Eine Zeile je Vorgehensweise. Fehlt eine Phase in den Daten, bleibt der
+     Kasten mit dem Namen stehen — die Reihenfolge stimmt in jedem Fall. */
+  function phasenmodell(phasen) {
     var behaelter = h('div', { class: 'phasenmodell' });
 
-    STANDARD_PHASEN.forEach(function (name, i) {
-      var treffer = null;
-      for (var j = 0; j < erfasst.length; j++) {
-        if (HT.daten.normalisieren(erfasst[j].begriff) === HT.daten.normalisieren(name)) {
-          treffer = erfasst[j];
-          break;
-        }
-      }
+    phasen.forEach(function (p, i) {
+      var e = p.eintrag;
       behaelter.appendChild(phasenKasten(
-        treffer ? treffer.begriff : name,
+        e ? e.begriff : p.name,
         i + 1,
-        treffer ? treffer.definition : '',
-        treffer ? treffer.id : null
+        e ? e.definition : '',
+        e ? e.id : null,
+        e ? e.meilensteine : []
       ));
-      var v = verbinder(treffer ? treffer.meilensteine : [], i < STANDARD_PHASEN.length - 1);
+      var v = verbinder(i < phasen.length - 1);
       if (v) { behaelter.appendChild(v); }
     });
 
     return behaelter;
+  }
+
+  function vorgehensweiseBlock(v) {
+    return h('div', { class: 'vorgehen' }, [
+      h('div', { class: 'vorgehen__kopf' }, [
+        h('h3', { class: 'vorgehen__titel', text: v.label }),
+        h('span', { class: 'vorgehen__zahl', text: v.zusatz })
+      ]),
+      phasenmodell(v.phasen)
+    ]);
+  }
+
+  /* Der Prüfungshinweis kommt aus den Daten (Grundbegriff «Phase») und wird
+     nicht im Code wiederholt. */
+  function phasenHinweis() {
+    var e = HT.daten.eintragMitId('grundbegriff-phase')
+      || HT.daten.eintragMitBegriff('Phase', 'grundbegriff');
+    if (!e || !e.pruefungshinweis) { return null; }
+    return h('div', { class: 'hinweisbox' }, [
+      h('span', { class: 'detail__label', text: 'Prüfungshinweis' }),
+      h('p', { class: 'detail__text', text: e.pruefungshinweis }),
+      h('a', {
+        class: 'btn btn--klein',
+        href: '#/lexikon?id=' + encodeURIComponent(e.id),
+        text: 'Grundbegriff «Phase» im Lexikon'
+      })
+    ]);
   }
 
   /* --- Listen ------------------------------------------------------------- */
@@ -119,18 +147,24 @@
     var warnung = HT.app.datenWarnung();
     if (warnung) { behaelter.appendChild(warnung); }
 
-    var weitere = HT.daten.weiterePhasen();
+    var wege = HT.daten.vorgehensweisen();
+    var ohneZuordnung = HT.daten.phasenOhneVorgehensweise();
+    var phasenErfasst = HT.daten.eintraegeDerKategorie('phase').length;
 
     behaelter.appendChild(h('section', { class: 'abschnitt' }, [
-      h('h2', { text: 'Phasenmodell' }),
-      phasenmodell(),
-      HT.daten.kernPhasen().length
+      h('div', { class: 'abschnitt__kopf' }, [
+        h('h2', { text: 'Phasenmodell' }),
+        h('span', { class: 'abschnitt__zahl', text: 'sechs Phasen, zwei Vorgehensweisen' })
+      ]),
+      h('div', {}, wege.map(vorgehensweiseBlock)),
+      phasenErfasst
         ? null
-        : h('p', { class: 'trefferzahl', text: 'Die Phasendaten sind noch nicht erfasst; dargestellt ist das Grundgerüst der vier Phasen.' }),
-      weitere.length
+        : h('p', { class: 'trefferzahl', text: 'Die Phasendaten sind noch nicht erfasst; dargestellt ist das Grundgerüst beider Vorgehensweisen.' }),
+      phasenHinweis(),
+      ohneZuordnung.length
         ? h('div', {}, [
-            h('p', { class: 'feldgruppe__titel', text: 'Weitere Phasen' }),
-            h('ul', { class: 'mini-liste' }, weitere.map(function (p) {
+            h('p', { class: 'feldgruppe__titel', text: 'Weitere erfasste Phaseneinträge' }),
+            h('ul', { class: 'mini-liste' }, ohneZuordnung.map(function (p) {
               return h('li', {}, h('a', {
                 href: '#/lexikon?id=' + encodeURIComponent(p.id),
                 title: p.definition ? HT.ui.kuerzen(p.definition, 120) : p.begriff
@@ -167,9 +201,9 @@
         + 'Massgebend ist ausschliesslich die offizielle Darstellung:' }),
       h('ul', {}, [
         h('li', {}, h('a', {
-          href: 'https://www.hermes.admin.ch/de/projektmanagement.html',
+          href: 'https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html',
           target: '_blank', rel: 'noopener'
-        }, 'Projektmanagement — Übersicht (hermes.admin.ch) ↗')),
+        }, 'Methodenüberblick (hermes.admin.ch) ↗')),
         h('li', {}, h('a', {
           href: 'https://www.hermes.admin.ch/de/projektmanagement/phasen.html',
           target: '_blank', rel: 'noopener'

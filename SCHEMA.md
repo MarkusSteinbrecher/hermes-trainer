@@ -6,7 +6,7 @@ Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSO
 
 | Datei | `kategorie` | Inhalt |
 |---|---|---|
-| `data/phasen.json` | `phase` | Die vier Phasen inkl. Meilensteine und Entscheidungspunkte je Phase |
+| `data/phasen.json` | `phase` | Alle sechs definierten Phasen (fünf klassisch: Initialisierung, Konzept, Realisierung, Einführung, Abschluss; agil: Initialisierung, Umsetzung, Abschluss) inkl. Meilensteine je Phase |
 | `data/szenarien.json` | `szenario` | Standardszenarien (inkl. agile Varianten) |
 | `data/module.json` | `modul` | Alle Module |
 | `data/grundbegriffe.json` | `grundbegriff` | Methodenverständnis: Governance, Tailoring, Ergebnisorientierung, Meilenstein, Entscheidungspunkt, minimale Vorgaben, Anwendungsgebiet, Programm, Vorhaben, Projektsteuerung/-führung/-ausführung usw. |

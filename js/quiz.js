@@ -9,6 +9,7 @@
 
   var h = HT.ui.h;
   var DEF_MAX = 150;               // einheitliche Kürzung, damit Länge nicht verrät
+  var REST_MIN = 45;               // so viel lesbarer Text muss nach dem Maskieren bleiben
   var BUCHSTABEN = ['A', 'B', 'C', 'D', 'E', 'F'];
 
   var konfig = {
@@ -121,19 +122,37 @@
     alleRollen = eindeutig(alleRollen).filter(einzelwert);
     alleModule = eindeutig(alleModule).filter(einzelwert);
 
+    /* Manche Einträge teilen sich einen Formulierungsbaustein — «Checkliste
+       Projektabbruch» und «Checkliste Releasefreigabe» sind nach dem Maskieren
+       wortgleich. Solche Zitate passen auf mehrere Begriffe und taugen nicht
+       als Frage. */
+    var maskenZaehler = {};
+    function maskenSchluessel(e) {
+      return e.kategorie + '|' + HT.daten.normalisieren(HT.ui.ohneBegriff(e.definition, e.begriff));
+    }
+    eintraege.forEach(function (e) {
+      if (!e.definition) { return; }
+      var s = maskenSchluessel(e);
+      maskenZaehler[s] = (maskenZaehler[s] || 0) + 1;
+    });
+
     eintraege.forEach(function (e) {
       var geschwister = nachKategorie[e.kategorie] || [];
       var meta = HT.daten.kategorieMeta(e.kategorie);
       var bezeichnung = meta ? meta.singular : 'Begriff';
 
       /* (1) Definition → Begriff */
-      if (e.definition) {
+      var maskierteDef = HT.ui.ohneBegriff(e.definition, e.begriff);
+      if (e.definition
+          && HT.ui.restlaenge(maskierteDef) >= REST_MIN
+          && !HT.ui.enthaeltBegriff(maskierteDef, e.begriff)
+          && maskenZaehler[maskenSchluessel(e)] === 1) {
         var begriffe = geschwister.map(function (g) { return g.begriff; });
         var f1 = frageBauen({
           id: 'gen-def-begriff-' + e.id,
           kategorie: e.kategorie,
           frage: 'Welcher Begriff ist so definiert?',
-          zitat: HT.ui.ohneBegriff(e.definition, e.begriff),
+          zitat: maskierteDef,
           erklaerung: 'Richtig ist ' + HT.ui.zitat(e.begriff) + '. '
             + (e.pruefungshinweis || e.abgrenzung || ''),
           quelle: e.quelle
@@ -142,13 +161,16 @@
       }
 
       /* (2) Begriff → Definition */
-      if (e.definition) {
+      var richtigeDef = HT.ui.kuerzen(HT.ui.ohneBegriff(e.definition, e.begriff), DEF_MAX);
+      if (e.definition && !HT.ui.enthaeltBegriff(richtigeDef, e.begriff)) {
         /* Jede Option wird um ihren eigenen Begriff bereinigt, damit keine
-           Antwort durch den enthaltenen Suchbegriff auffällt. */
+           Antwort durch den enthaltenen Suchbegriff auffällt. Optionen, in
+           denen der gefragte Begriff noch steckt, fallen ganz weg — sie
+           würden auf die falsche Antwort zeigen. */
         var defs = geschwister
           .filter(function (g) { return g.definition && g.id !== e.id; })
-          .map(function (g) { return HT.ui.kuerzen(HT.ui.ohneBegriff(g.definition, g.begriff), DEF_MAX); });
-        var richtigeDef = HT.ui.kuerzen(HT.ui.ohneBegriff(e.definition, e.begriff), DEF_MAX);
+          .map(function (g) { return HT.ui.kuerzen(HT.ui.ohneBegriff(g.definition, g.begriff), DEF_MAX); })
+          .filter(function (d) { return !HT.ui.enthaeltBegriff(d, e.begriff); });
         var f2 = frageBauen({
           id: 'gen-begriff-def-' + e.id,
           kategorie: e.kategorie,

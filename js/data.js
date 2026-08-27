@@ -23,8 +23,24 @@
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
 
-  /* Kanonische Phasenreihenfolge (HERMES 2022). */
-  var PHASEN_ORDNUNG = ['initialisierung', 'konzept', 'realisierung', 'einführung', 'einfuehrung'];
+  /* HERMES 2022 kennt sechs Phasen, verteilt auf zwei Vorgehensweisen:
+     klassisch fünf, agil drei. Initialisierung und Abschluss sind beiden
+     gemeinsam. Ein Modell «mit vier Phasen» gibt es nicht — genau davor warnt
+     der Prüfungshinweis zum Grundbegriff «Phase». */
+  var VORGEHENSWEISEN = [
+    {
+      key: 'klassisch',
+      label: 'Klassische Vorgehensweise',
+      zusatz: 'fünf Phasen',
+      namen: ['Initialisierung', 'Konzept', 'Realisierung', 'Einführung', 'Abschluss']
+    },
+    {
+      key: 'agil',
+      label: 'Agile Vorgehensweise',
+      zusatz: 'drei Phasen',
+      namen: ['Initialisierung', 'Umsetzung', 'Abschluss']
+    }
+  ];
 
   var zustand = {
     eintraege: [],
@@ -305,35 +321,33 @@
     return 3;
   }
 
-  /** Phasen in kanonischer Reihenfolge. */
-  function phasenGeordnet() {
-    var liste = eintraegeDerKategorie('phase').slice();
-    return liste.sort(function (a, b) {
-      var ia = phasenIndex(a.begriff);
-      var ib = phasenIndex(b.begriff);
-      if (ia !== ib) { return ia - ib; }
-      return a.reihenfolge - b.reihenfolge;
+  /**
+   * Beide Vorgehensweisen mit ihren Phasen in der richtigen Reihenfolge.
+   * Zu jedem Namen wird der erfasste Eintrag gesucht; fehlt er, bleibt
+   * «eintrag» null und die Ansicht stellt den Namen ohne Verlinkung dar.
+   */
+  function vorgehensweisen() {
+    return VORGEHENSWEISEN.map(function (v) {
+      return {
+        key: v.key,
+        label: v.label,
+        zusatz: v.zusatz,
+        phasen: v.namen.map(function (name) {
+          return { name: name, eintrag: eintragMitBegriff(name, 'phase') };
+        })
+      };
     });
   }
 
-  /** Die vier Kernphasen in kanonischer Reihenfolge. */
-  function kernPhasen() {
-    return phasenGeordnet().filter(function (p) { return phasenIndex(p.begriff) < 90; });
-  }
-
-  /** Weitere Phaseneinträge (z. B. agile Varianten), Reihenfolge wie in der Datei. */
-  function weiterePhasen() {
-    return eintraegeDerKategorie('phase').filter(function (p) { return phasenIndex(p.begriff) >= 90; });
-  }
-
-  function phasenIndex(begriff) {
-    var n = normalisieren(begriff);
-    for (var i = 0; i < PHASEN_ORDNUNG.length; i++) {
-      if (n.indexOf(PHASEN_ORDNUNG[i]) !== -1) {
-        return PHASEN_ORDNUNG[i] === 'einfuehrung' ? 3 : i;
-      }
-    }
-    return 99;
+  /** Phaseneinträge, die in keiner der beiden Vorgehensweisen vorkommen. */
+  function phasenOhneVorgehensweise() {
+    var bekannt = {};
+    VORGEHENSWEISEN.forEach(function (v) {
+      v.namen.forEach(function (n) { bekannt[normalisieren(n)] = true; });
+    });
+    return eintraegeDerKategorie('phase').filter(function (p) {
+      return !bekannt[normalisieren(p.begriff)];
+    });
   }
 
   function alphabetisch(liste) {
@@ -363,9 +377,8 @@
     eintragMitBegriff: eintragMitBegriff,
     eintraegeDerKategorie: eintraegeDerKategorie,
     suchen: suchen,
-    phasenGeordnet: phasenGeordnet,
-    kernPhasen: kernPhasen,
-    weiterePhasen: weiterePhasen,
+    vorgehensweisen: vorgehensweisen,
+    phasenOhneVorgehensweise: phasenOhneVorgehensweise,
     alphabetisch: alphabetisch,
     quizfragen: quizfragen,
     fehlerhafteDateien: fehlerhafteDateien,
