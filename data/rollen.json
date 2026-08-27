@@ -1,0 +1,14 @@
+[
+  {
+    "id": "rolle-auftraggeber",
+    "kategorie": "rolle",
+    "begriff": "Auftraggeber",
+    "definition": "Der Auftraggeber steuert das Projekt und trägt die Gesamtverantwortung für das Vorhaben.",
+    "ebene": "Steuerung",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "pruefungshinweis": "Gesamtverantwortung liegt beim Auftraggeber, nicht beim Projektleiter."
+  }
+]
