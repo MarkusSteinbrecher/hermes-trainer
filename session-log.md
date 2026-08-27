@@ -12,4 +12,4 @@ Neueste Einträge zuerst.
 
 **QA-Runde:** Blocker behoben (Übersicht zeigte 4-Phasen-Modell — genau die Prüfungsfalle), Quiz-Antwort-Leaks geschlossen (Wortbestandteil-Maskierung, uneindeutige Fragen verworfen), Antwortlängen-Giveaways ausbalanciert. Bekannte Restpunkte: Zitattreue bei 2 Grundbegriff-Definitionen (Montage/Kürzung, sachlich korrekt), 2 selbst geprägte Grundbegriff-Labels, Präfix-Hinweis bei Komposita im generierten Quiz (bewusst belassen).
 
-**Offen:** GitHub-Repo erstellen + GH Pages aktivieren (wartet auf Freigabe: Name, public).
+**Veröffentlicht:** Repo `MarkusSteinbrecher/hermes-trainer` (public) erstellt, GH Pages ab `main` aktiviert — live unter https://markussteinbrecher.github.io/hermes-trainer/ (verifiziert: Assets und Daten laden, Lexikon rendert 259 Einträge).
