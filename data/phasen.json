@@ -1,1 +1,178 @@
-[]
+[
+  {
+    "id": "phase-initialisierung",
+    "kategorie": "phase",
+    "begriff": "Initialisierung",
+    "definition": "Die Phase Initialisierung wird unabhängig von der späteren Vorgehensweise in jedem Fall durchgeführt. Sie schafft eine definierte Ausgangslage für eine mögliche Lösungsentstehung und den darauffolgenden Projektabschluss. Sie stellt sicher, dass die gesetzten Ziele mit den Vorgaben der Organisation abgestimmt sind; die Projektgrundlagen und der Durchführungsauftrag werden erarbeitet.",
+    "details": "Die Initialisierung ist im Projektlebenszyklus dem Projektbeginn zugeordnet. Sie wird aus Projektmanagementsicht stets klassisch abgewickelt; dennoch können auch agile Werkzeuge zum Einsatz kommen.\n\nWesentliche Inhalte: Auf Grundlage des Projektinitialisierungsauftrags gibt der Auftraggeber die Ressourcen für die Phase frei und beauftragt den Projektleiter. Die Studie wird erarbeitet, beginnend mit einer ersten Standortbestimmung, Zielen und groben Anforderungen. Die Lösungsvarianten werden so detailliert beschrieben, dass sie nachvollziehbar und transparent bewertet werden können. Projekt- und Betriebsrisiken werden ermittelt. Parallel zur Studie werden Rechtsgrundlagenanalyse und Schutzbedarfsanalyse erarbeitet und in die Entscheidung einbezogen; für eine allfällige Beschaffung wird eine Beschaffungsanalyse durchgeführt.\n\nEs wird festgelegt und nachvollziehbar dokumentiert, wie im Rahmen jeder Lösungsvariante weiter vorgegangen wird: entweder klassisch oder agil. Das für die Lösungsentstehung passende Szenario wird ausgewählt und bei Bedarf individualisiert. Projektmanagementplan und Durchführungsauftrag werden erarbeitet und mit den Strategien, Vorgaben und übergeordneten Zielen der Stammorganisation abgeglichen; die Stakeholderinteressen werden analysiert und Zielkonflikte bereinigt. Bei anvisierter agiler Vorgehensweise wird festgelegt, ob der optionale Entscheid Releasefreigabe im Projekt als erforderlich vorgeschrieben ist.\n\nAm Ende der Phase Initialisierung wird geprüft, ob es sinnvoll ist, die Fortsetzung des Projekts freizugeben. Mögliche Gründe für eine Beendigung sind fehlende Wirtschaftlichkeit, zu hohe Risiken, keine Realisierbarkeit, rechtliche oder politische Bedenken, fehlende Übereinstimmung mit den Zielen, Strategien und Prioritäten der Organisation.",
+    "module": ["Projektsteuerung", "Projektführung", "Projektgrundlagen"],
+    "meilensteine": [
+      {
+        "name": "Meilenstein Projektinitialisierungsfreigabe",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Projektinitialisierungsfreigabe getroffen wird. Das Projekt wurde formell ins Leben gerufen. Die Arbeiten starten gemäss dem Projektinitialisierungsauftrag. Entscheidungsaufgabe im Modul Projektsteuerung, Verantwortung Auftraggeber."
+      },
+      {
+        "name": "Meilenstein Weiteres Vorgehen",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Weiteres Vorgehen getroffen wird. Dies bildet die Grundlage für die Erarbeitung des Projektmanagementplans sowie des Durchführungsauftrags. Entscheidungsaufgabe im Modul Projektgrundlagen, Verantwortung Projektleiter."
+      },
+      {
+        "name": "Meilenstein Durchführungsfreigabe",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Durchführungsfreigabe getroffen wird. Die Arbeiten starten gemäss dem Durchführungsauftrag. Entscheidungsaufgabe im Modul Projektsteuerung, Verantwortung Auftraggeber; die Freigabe erfolgt durch die Stammorganisation und den Auftraggeber."
+      }
+    ],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/initialisierung.html",
+      "bezeichnung": "HERMES online · Phase «Initialisierung»"
+    },
+    "abgrenzung": "Die Phasen Initialisierung und Abschluss sind kein Bestandteil eines Szenarios. Ein Szenario beschreibt ausschliesslich die Lösungsentstehung, also die dazwischen eingeschlossenen Phasen.",
+    "pruefungshinweis": "Jedes Projekt beginnt mit der Phase Initialisierung – klassisch wie agil. Der Meilenstein Weiteres Vorgehen ist der einzige Phasenmeilenstein der Initialisierung, der nicht im Modul Projektsteuerung, sondern im Modul Projektgrundlagen liegt und in der Verantwortung des Projektleiters (nicht des Auftraggebers) steht."
+  },
+  {
+    "id": "phase-konzept",
+    "kategorie": "phase",
+    "begriff": "Konzept",
+    "definition": "Die in der Phase Initialisierung gewählte Variante wird konkretisiert. Die Ergebnisse werden so detailliert erarbeitet, dass die Projektbeteiligten die Lösung auf einer verlässlichen Grundlage planen, offerieren und realisieren können.",
+    "details": "Konzept ist die erste der drei Phasen der Lösungsentstehung bei klassischer Vorgehensweise (Konzept, Realisierung, Einführung).\n\nWesentliche Inhalte: Basierend auf der gewählten Variante sowie der ersten Standortbestimmung aus der Studie werden die Situationsanalysen durchgeführt. Gestützt darauf werden die Anforderungen aus der Studie konkretisiert und vervollständigt und neu als Lösungsanforderungen festgelegt. Bei Organisations- und IT-Projekten oder wenn durch die Lösung Geschäftsabläufe oder -strukturen tangiert werden, sind in jedem Fall die Organisationsanforderungen und anschliessend das Organisationskonzept zu erarbeiten. Die Lösung wird konzeptionell erarbeitet, die Machbarkeit z. B. mit Prototypen überprüft. Zur Vorbereitung der Einführung wird das Einführungskonzept erarbeitet; je nach Szenario Testkonzept und Migrationskonzept. In IT-Projekten werden zudem die Lösungsarchitektur und das Betriebskonzept erarbeitet und der Entscheid Lösungsarchitektur getroffen. Ist eine Lösung zu beschaffen, werden die Ausschreibung durchgeführt, die Angebote bewertet sowie das ausgewählte Produkt oder System beschafft. Bei Systemen wird das Integrationskonzept erarbeitet.\n\nVoraussetzungen für die Phasenfreigabe: Die Projekt- und Betriebsrisiken müssen identifiziert, analysiert und bewertet sein. Die Realisierbarkeit der Lösungsentstehung muss weiterhin nachgewiesen bzw. bestätigt sein. Die Ressourcen für die nächste Phase werden aufgrund des konkretisierten Projektmanagementplans und der vorliegenden Angebote freigegeben.\n\nAm Ende der Phase Konzept wird geprüft, ob es sinnvoll ist, das Projekt zu realisieren. Mögliche Gründe für eine Beendigung sind Unwirtschaftlichkeit, zu hohe Risiken, fehlende Realisierbarkeit, fehlende Übereinstimmung mit den Zielen und Strategien der Organisation.",
+    "module": ["Projektsteuerung", "Projektführung", "Beschaffung", "Organisation", "Produkt", "IT-System", "Tests", "Einführungsorganisation", "IT-Migration", "IT-Betrieb", "ISDS"],
+    "meilensteine": [
+      {
+        "name": "Meilenstein Phasenfreigabe",
+        "beschreibung": "Am Ende der Phase Konzept wird der Entscheid über die Freigabe der Realisierung getroffen (Entscheid Phasenfreigabe treffen). Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe getroffen wird; die Arbeiten in der nächsten Phase können gestartet werden."
+      },
+      {
+        "name": "Meilenstein Lösungsarchitektur",
+        "beschreibung": "In IT-Projekten wird in der Phase Konzept der Entscheid Lösungsarchitektur getroffen (Modul IT-System)."
+      },
+      {
+        "name": "Meilenstein Produktkonzept",
+        "beschreibung": "Modulspezifischer Meilenstein des Moduls Produkt, der in der Phase Konzept erreicht werden kann."
+      },
+      {
+        "name": "Meilenstein Ausschreibung",
+        "beschreibung": "Modulspezifischer Meilenstein des Moduls Beschaffung; fällt an, wenn eine Beschaffung mit offenem oder selektivem Verfahren durchgeführt wird."
+      },
+      {
+        "name": "Meilenstein Zuschlag",
+        "beschreibung": "Modulspezifischer Meilenstein des Moduls Beschaffung; fällt an, wenn eine Beschaffung mit offenem oder selektivem Verfahren durchgeführt wird."
+      },
+      {
+        "name": "Meilenstein ISDS-Konzept",
+        "beschreibung": "Modulspezifischer Meilenstein des Moduls ISDS, der in der Phase Konzept erreicht werden kann."
+      }
+    ],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/konzept.html",
+      "bezeichnung": "HERMES online · Phase «Konzept»"
+    },
+    "abgrenzung": "Konzept kommt nur bei klassischer Vorgehensweise vor. Bei agiler Vorgehensweise ersetzt die einzige Phase Umsetzung die drei Phasen Konzept, Realisierung und Einführung.",
+    "pruefungshinweis": "Der Meilenstein am Ende der Phase Konzept heisst «Meilenstein Phasenfreigabe» – nicht «Freigabe Realisierung». «Freigabe der Realisierung» beschreibt lediglich den Inhalt des Entscheids; der Ergebnis- und Meilensteinname ist generisch «Phasenfreigabe» und wird am Ende von Konzept und Realisierung gleich verwendet."
+  },
+  {
+    "id": "phase-realisierung",
+    "kategorie": "phase",
+    "begriff": "Realisierung",
+    "definition": "Das Produkt bzw. das System wird realisiert und getestet. Die nötigen Vorarbeiten werden geleistet, um die Einführungsrisiken zu minimieren.",
+    "details": "Realisierung ist die zweite der drei Phasen der Lösungsentstehung bei klassischer Vorgehensweise.\n\nWesentliche Inhalte: Das Produkt bzw. das System wird entwickelt oder, sofern es beschafft wurde, parametrisiert bzw. angepasst. Die Organisation wird umgesetzt. In IT-Projekten wird das System in die Betriebsinfrastruktur integriert. Die Vorabnahme wird durchgeführt. Die Betriebsorganisation wird realisiert und die Dokumentationen werden erarbeitet. Die Einführung wird auf der Grundlage des Einführungskonzepts vorbereitet. Je nach Szenario werden Tests durchgeführt und die Migration vorbereitet.\n\nDer Entscheid über die Freigabe der Einführung wird getroffen (Entscheid Phasenfreigabe treffen). Er basiert auf dem Entscheid Vorabnahme. Die Ressourcen für die nächste Phase werden aufgrund des konkretisierten Projektmanagementplans freigegeben.\n\nAm Ende der Phase Realisierung müssen die Einführungsrisiken beurteilt werden und vertretbar sein. Andernfalls kann die Einführung nicht erfolgen.",
+    "module": ["Projektsteuerung", "Projektführung", "Organisation", "Produkt", "IT-System", "Tests", "Einführungsorganisation", "IT-Migration", "IT-Betrieb", "ISDS"],
+    "meilensteine": [
+      {
+        "name": "Meilenstein Vorabnahme",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Vorabnahme getroffen wird. Dies bildet die Grundlage für die Durchführung der Einführungsmassnahmen und die Betriebsaufnahme. Modul Einführungsorganisation."
+      },
+      {
+        "name": "Meilenstein Phasenfreigabe",
+        "beschreibung": "Am Ende der Phase Realisierung wird der Entscheid über die Freigabe der Einführung getroffen (Entscheid Phasenfreigabe treffen). Er basiert auf dem Entscheid Vorabnahme."
+      }
+    ],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/realisierung.html",
+      "bezeichnung": "HERMES online · Phase «Realisierung»"
+    },
+    "abgrenzung": "Das Modul Beschaffung kommt in der Phase Realisierung nicht vor; die Beschaffung wird in den Phasen Konzept bzw. Umsetzung abgewickelt.",
+    "pruefungshinweis": "Die Vorabnahme liegt am Ende der Phase Realisierung, die Abnahme am Ende der Phase Einführung. Der Entscheid Phasenfreigabe zur Einführung basiert auf dem Entscheid Vorabnahme – die beiden sind nicht identisch."
+  },
+  {
+    "id": "phase-einfuehrung",
+    "kategorie": "phase",
+    "begriff": "Einführung",
+    "definition": "In der Phase Einführung wird der sichere Übergang zum neuen Zustand gewährleistet. Der Betrieb wird aufgenommen.",
+    "details": "Einführung ist die dritte und letzte Phase der Lösungsentstehung bei klassischer Vorgehensweise.\n\nWesentliche Inhalte: Die Einführungsmassnahmen wie Anwenderschulung usw. werden durchgeführt. Je nach Szenario wird eine Migration durchgeführt. Das Produkt bzw. das System sowie die Organisation werden aktiviert. Der Betrieb wird aktiviert. Das ISDS-Konzept wird überführt. Während der ersten Betriebszeit zwischen der Betriebsaufnahme und der Abnahme des vollständigen Systems oder Produkts unterstützt das Projekt die Problemanalyse und die Problembehebung; danach beginnt die Gewährleistung und damit der reguläre Betrieb.\n\nDer Entscheid Phasenfreigabe Abschluss wird getroffen. Die Ressourcen für die Phase Abschluss werden aufgrund des nachgeführten Projektmanagementplans freigegeben.\n\nAm Ende der Phase Einführung wird nach erfolgreicher Betriebsaufnahme der Entscheid Abnahme getroffen und die Phase wird abgeschlossen.",
+    "module": ["Projektsteuerung", "Projektführung", "Organisation", "Produkt", "IT-System", "Tests", "Einführungsorganisation", "IT-Migration", "IT-Betrieb", "ISDS"],
+    "meilensteine": [
+      {
+        "name": "Meilenstein Betriebsaufnahme",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Betriebsaufnahme getroffen wird. Die Lösung kann in Betrieb genommen werden. Modul Einführungsorganisation."
+      },
+      {
+        "name": "Meilenstein Phasenfreigabe Abschluss",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe Abschluss getroffen wird. Die Leistungserbringung im Rahmen der Lösungsentstehung ist beendet. Die Arbeiten in der Phase Abschluss können gestartet werden."
+      },
+      {
+        "name": "Meilenstein Abnahme",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme getroffen wird. Die Lösung wird definitiv in die Anwendungs- und allenfalls auch in die Betriebsorganisation überführt. Danach beginnt die Gewährleistung und damit der reguläre Betrieb."
+      }
+    ],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/einfuehrung.html",
+      "bezeichnung": "HERMES online · Phase «Einführung»"
+    },
+    "abgrenzung": "Nicht mit der Phase Abschluss verwechseln: Die Einführung beendet die Lösungsentstehung und übergibt in den Betrieb; die Phase Abschluss beendet danach das Projekt organisatorisch und administrativ.",
+    "pruefungshinweis": "Für den Übergang in die Phase Abschluss heisst der Meilenstein «Phasenfreigabe Abschluss» (eigener Ergebnisname), nicht bloss «Phasenfreigabe». Der Entscheid Abnahme markiert den Beginn der Gewährleistung und des regulären Betriebs."
+  },
+  {
+    "id": "phase-umsetzung",
+    "kategorie": "phase",
+    "begriff": "Umsetzung",
+    "definition": "Die in der Phase Initialisierung gewählte Variante wird iterativ-inkrementell umgesetzt. Die Projektorganisation wird inklusive Umsetzungsorganisation etabliert. Die Lösungsanforderungen werden weiter aufgeteilt, verfeinert und konkretisiert; die Anforderungen werden aktualisiert, priorisiert und nach absteigender Priorität abgearbeitet.",
+    "details": "Die Phase Umsetzung umfasst das agile Entwicklungsvorgehen und dient der Einbettung einer beliebigen agilen Entwicklungsmethode in das HERMES-Framework. Sie ist bei agiler Vorgehensweise die einzige Phase der Lösungsentstehung und kann nicht weiter unterteilt werden, da eine Phasenstruktur im iterativ-inkrementellen Vorgehen keinen Sinn macht.\n\nWesentliche Inhalte: Situationsanalysen werden durchgeführt; die Anforderungen aus der Studie werden konkretisiert und vervollständigt und neu als priorisierte initiale Lösungsanforderungen festgelegt. Werden Geschäftsabläufe oder -strukturen tangiert, sind zwingend die Organisationsanforderungen zu erarbeiten. Ist eine Lösung zu beschaffen, werden Ausschreibung, Angebotsbewertung und Beschaffung durchgeführt. Mit jeder Iteration wird ein weiterer Teil der Lösung – das Inkrement – erstellt, das sich mit dem bereits erstellten Umfang der Umsetzungsergebnisse nahtlos verbinden lässt.\n\nIterativ-inkrementell werden unter anderem erarbeitet: Organisationskonzept und Organisation, Risikobeurteilung und Realisierbarkeitsprüfung, Produkt- bzw. Systementwicklung, Betriebsorganisation, Integrationskonzept und Entscheid Lösungsarchitektur, Tests und Migration, Einführungskonzept, Vorabnahme, Einführungsmassnahmen und Betriebsaufnahme sowie die Aktivierung von Organisation, Lösungsteil und Betrieb.\n\nNach abgeschlossener Betriebsaufnahme inklusive der Abnahme des letzten Release werden der agile Teil des Projekts und somit die Phase Umsetzung abgeschlossen und die Umsetzungsorganisation innerhalb der Projektorganisation aufgelöst.",
+    "module": ["Projektsteuerung", "Projektführung", "Beschaffung", "Organisation", "Produkt", "IT-System", "Tests", "Einführungsorganisation", "IT-Migration", "IT-Betrieb", "ISDS"],
+    "meilensteine": [
+      {
+        "name": "Meilenstein Releasefreigabe",
+        "beschreibung": "Optionaler Meilenstein. Der Meilenstein wird erreicht, wenn der Entscheid Releasefreigabe getroffen wird. Im Rahmen der agilen Vorgehensweise können die Arbeiten am nächsten Release starten. Ob dieser Entscheid erforderlich ist, wird in der Phase Initialisierung im Projektmanagementplan festgelegt."
+      },
+      {
+        "name": "Meilenstein Vorabnahme",
+        "beschreibung": "Wird im iterativ-inkrementellen Verlauf erreicht; bildet die Grundlage für die Durchführung der Einführungsmassnahmen und die Betriebsaufnahme."
+      },
+      {
+        "name": "Meilenstein Betriebsaufnahme",
+        "beschreibung": "Wird im iterativ-inkrementellen Verlauf erreicht; die Lösung bzw. das Inkrement kann in Betrieb genommen werden."
+      },
+      {
+        "name": "Meilenstein Abnahme",
+        "beschreibung": "Wird je Lösungsteil bzw. Release erreicht. Die Phase endet nach abgeschlossener Betriebsaufnahme inklusive der Abnahme des letzten Release."
+      },
+      {
+        "name": "Meilenstein Phasenfreigabe Abschluss",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe Abschluss getroffen wird. Die Ressourcen für die Phase Abschluss werden aufgrund des nachgeführten Projektmanagementplans freigegeben."
+      }
+    ],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/umsetzung.html",
+      "bezeichnung": "HERMES online · Phase «Umsetzung»"
+    },
+    "abgrenzung": "Die Phase Umsetzung ersetzt bei agiler Vorgehensweise die drei klassischen Phasen Konzept, Realisierung und Einführung. Sie ist nicht mit der Umsetzungsorganisation gleichzusetzen: Die Umsetzungsorganisation ist nur während der Phase Umsetzung Teil der Projektorganisation.",
+    "pruefungshinweis": "Die Phase Umsetzung kann nicht weiter unterteilt werden. Der Entscheid Releasefreigabe ist optional und muss bereits in der Phase Initialisierung als erforderlich festgelegt werden. In der Phase Umsetzung gibt es keinen Meilenstein «Phasenfreigabe», sondern nur «Phasenfreigabe Abschluss» und optional «Releasefreigabe»."
+  },
+  {
+    "id": "phase-abschluss",
+    "kategorie": "phase",
+    "begriff": "Abschluss",
+    "definition": "Die Phase Abschluss bietet eine Struktur für das systematische Herunterfahren eines Projektes. Die Projektdokumentation wird geprüft und je nach Bedarf ergänzt. Der Projektabschluss wird vorbereitet.",
+    "details": "Im Projektende ist stets die Phase Abschluss angesiedelt. Es ist die letzte Phase jedes Projekts, in der das Projekt endgültig beendet wird. Die Phase Abschluss wird aus Projektmanagementsicht stets klassisch abgewickelt; dennoch können auch agile Werkzeuge zum Einsatz kommen.\n\nWesentliche Inhalte: Die Ergebnisse werden auf Vollständigkeit geprüft und insbesondere aus formeller Sicht ergänzt. Die Projektschlussbeurteilung wird geprüft und ggf. genehmigt. Die Projektorganisation wird aufgelöst; vor der Auflösung kann geprüft werden, ob Teile der Projektorganisation sinngemäss in die Anwendungsorganisation übernommen werden können. Die Ergebnisse und Dokumentationen werden an die Stammorganisation zuhanden der Anwendungs-, Betriebs- und Wartungsorganisation übergeben. Die Dokumentation der Projektabwicklung wird gemäss den Ablagevorschriften der Stammorganisation archiviert. Das Altsystem wird je nach Szenario ausser Betrieb gesetzt und inklusive der alten, nicht mehr benötigten Infrastruktur entfernt; die alten Daten werden archiviert oder vernichtet.\n\nAm Ende der Phase Abschluss wird der Projektabschluss durchgeführt. Die Projektschlussbeurteilung wird erarbeitet. Offene Punkte werden an die Stammorganisation sowie an die Anwendungsorganisation übergeben. Das Projekt wird abgeschlossen und die Projektorganisation aufgelöst.",
+    "module": ["Projektsteuerung", "Projektführung", "Tests", "IT-Migration"],
+    "meilensteine": [
+      {
+        "name": "Meilenstein Projektabschluss",
+        "beschreibung": "Der Meilenstein wird erreicht, wenn der Entscheid Projektabschluss getroffen wird. Das Projekt ist beendet. Entscheidungsaufgabe im Modul Projektsteuerung, Verantwortung Auftraggeber. Die Projektorganisation wird spätestens mit dem Entscheid Projektabschluss aufgelöst."
+      }
+    ],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/abschluss.html",
+      "bezeichnung": "HERMES online · Phase «Abschluss»"
+    },
+    "abgrenzung": "Die Phase Abschluss ist – wie die Initialisierung – kein Bestandteil eines Szenarios. Sie ist zudem vom Entscheid Projektabbruch zu unterscheiden: Für den Abbruch gibt es eine Checkliste Projektabbruch, aber keinen eigenen Meilenstein.",
+    "pruefungshinweis": "Nur vier Module kommen in der Phase Abschluss vor: Projektsteuerung, Projektführung, Tests und IT-Migration. Die Phase Abschluss verfolgt insbesondere den Zweck sicherzustellen, dass die Übergabe- und Übergangsschnittstellen des Projekts unabhängig der gewählten Vorgehensweise identisch bleiben."
+  }
+]

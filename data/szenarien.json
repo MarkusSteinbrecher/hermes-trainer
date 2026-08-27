@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "id": "szenario-dienstleistung-produkt-entwicklung",
+    "kategorie": "szenario",
+    "begriff": "Dienstleistung/Produkt Entwicklung",
+    "definition": "Das Szenario Dienstleistung/Produkt Entwicklung unterstützt die Durchführung jener Projekte, in denen eine Dienstleistung oder ein Produkt entwickelt und bereitgestellt wird.",
+    "details": "Beispiele gemäss HERMES: Entwicklung von Ausbildungsunterlagen und Lehrgängen zu einem bestimmten Thema; Entwickeln eines internen Standards; Aufbau eines Lieferdienstes.\n\nDas Szenario umfasst fünf Module. Es enthält kein Modul Beschaffung – die Lösung wird entwickelt, nicht am Markt beschafft. Ebenso fehlen die IT-Module IT-System, IT-Migration, IT-Betrieb und ISDS sowie das Modul Tests.",
+    "module": ["Projektsteuerung", "Projektführung", "Organisation", "Produkt", "Einführungsorganisation"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/dienstleistung-produkt-entwicklung.html",
+      "bezeichnung": "HERMES online · Szenario «Dienstleistung/Produkt Entwicklung»"
+    },
+    "abgrenzung": "Abzugrenzen von Dienstleistung/Produkt Adaption: Dort wird ein im Markt verfügbares Produkt bzw. eine Dienstleistung beschafft und angepasst; deshalb enthält jenes Szenario zusätzlich das Modul Beschaffung.",
+    "pruefungshinweis": "Entwicklung heisst «selbst entwickeln» – kein Modul Beschaffung. Das kleinste der Produkt-Szenarien mit fünf Modulen."
+  },
+  {
+    "id": "szenario-dienstleistung-produkt-adaption",
+    "kategorie": "szenario",
+    "begriff": "Dienstleistung/Produkt Adaption",
+    "definition": "Das Szenario Dienstleistung/Produkt Adaption unterstützt die Durchführung jener Projekte, in denen ein im Markt verfügbares Produkt oder eine Dienstleistung beschafft, angepasst und in die Organisation integriert wird.",
+    "details": "Das Szenario umfasst sechs Module. Gegenüber dem Szenario Dienstleistung/Produkt Entwicklung kommt das Modul Beschaffung hinzu.\n\nBei Bedarf kann das Modul Tests ebenfalls im Szenario eingebettet werden. Dadurch wird die Organisation und Durchführung des Testens von Lösungen ermöglicht.",
+    "module": ["Projektsteuerung", "Projektführung", "Beschaffung", "Produkt", "Organisation", "Einführungsorganisation"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/dienstleistung-produkt-adaption.html",
+      "bezeichnung": "HERMES online · Szenario «Dienstleistung/Produkt Adaption»"
+    },
+    "abgrenzung": "Abzugrenzen von IT-Adaption: Dort wird eine im Markt verfügbare IT-Lösung beschafft; das Szenario enthält deshalb IT-System, IT-Migration, IT-Betrieb, ISDS und Tests statt des Moduls Produkt.",
+    "pruefungshinweis": "Adaption heisst «beschaffen und anpassen» – das Modul Beschaffung ist Standardbestandteil. Das Modul Tests gehört nicht zum Standardumfang, kann aber bei Bedarf eingebettet werden."
+  },
+  {
+    "id": "szenario-it-entwicklung",
+    "kategorie": "szenario",
+    "begriff": "IT-Entwicklung",
+    "definition": "Das Szenario IT-Entwicklung unterstützt die Durchführung jener Projekte, in denen eine neue IT-Lösung für die spezifischen Bedürfnisse eines oder mehrerer Fachbereiche oder auch organisationsübergreifend (Anwenderbedürfnisse) entwickelt oder eine bestehende IT-Lösung weiterentwickelt und sowohl technisch als auch organisatorisch integriert wird.",
+    "details": "Das Szenario umfasst neun Module. Es enthält kein Modul Beschaffung, da die IT-Lösung entwickelt und nicht am Markt beschafft wird. Ebenso fehlt das Modul Produkt, weil an dessen Stelle das Modul IT-System tritt.",
+    "module": ["Projektsteuerung", "Projektführung", "Organisation", "IT-System", "Tests", "Einführungsorganisation", "IT-Migration", "IT-Betrieb", "ISDS"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/it-entwicklung.html",
+      "bezeichnung": "HERMES online · Szenario «IT-Entwicklung»"
+    },
+    "abgrenzung": "Der einzige Unterschied zum Szenario IT-Adaption ist das Modul Beschaffung: IT-Adaption enthält es, IT-Entwicklung nicht.",
+    "pruefungshinweis": "IT-Szenarien enthalten IT-System statt Produkt sowie zwingend Tests, IT-Migration, IT-Betrieb und ISDS."
+  },
+  {
+    "id": "szenario-it-adaption",
+    "kategorie": "szenario",
+    "begriff": "IT-Adaption",
+    "definition": "Das Szenario IT-Adaption unterstützt die Durchführung jener Projekte, in denen eine im Markt verfügbare IT-Lösung (z. B. Standardsoftware oder IT-Infrastruktur) beschafft, angepasst und sowohl technisch als auch organisatorisch integriert wird.",
+    "details": "Das Szenario umfasst zehn Module und ist damit das umfangreichste Standardszenario. Es entspricht dem Szenario IT-Entwicklung, ergänzt um das Modul Beschaffung.",
+    "module": ["Projektsteuerung", "Projektführung", "Beschaffung", "Organisation", "IT-System", "Tests", "Einführungsorganisation", "IT-Migration", "IT-Betrieb", "ISDS"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/it-adaption.html",
+      "bezeichnung": "HERMES online · Szenario «IT-Adaption»"
+    },
+    "abgrenzung": "Abzugrenzen von Dienstleistung/Produkt Adaption: Beide beschaffen und passen an, aber IT-Adaption betrifft eine IT-Lösung und nutzt IT-System, Tests, IT-Migration, IT-Betrieb und ISDS statt des Moduls Produkt.",
+    "pruefungshinweis": "Umfangreichstes Standardszenario mit zehn Modulen; einziges Standardszenario, das alle Module ausser Produkt und Projektgrundlagen enthält."
+  },
+  {
+    "id": "szenario-organisationsanpassung",
+    "kategorie": "szenario",
+    "begriff": "Organisationsanpassung",
+    "definition": "Das Szenario Organisationsanpassung unterstützt die Durchführung jener Projekte, in denen neue Organisationen aufgebaut oder bestehende durch Restrukturierungen und Innovationen, neue Geschäftsfelder, In- und Outsourcing, Übernahmen, Verschmelzungen und Trennungen, Liquidationen, (internationale) Expansionen usw. angepasst werden.",
+    "details": "Beispiele gemäss HERMES: Umzug, Anpassung oder Schaffung einer Organisation; Fusion von Organisationen; Outsourcing von Dienstleistungen in ein Service-Center.\n\nDas Szenario umfasst nur vier Module und ist damit das kleinste Standardszenario. Es enthält weder Produkt noch IT-System, da keine technische Lösung erstellt wird.",
+    "module": ["Projektsteuerung", "Projektführung", "Organisation", "Einführungsorganisation"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/organisationsanpassung.html",
+      "bezeichnung": "HERMES online · Szenario «Organisationsanpassung»"
+    },
+    "abgrenzung": "Nicht mit dem Modul Organisation verwechseln: Das Modul Organisation kommt in allen fünf Standardszenarien vor, das Szenario Organisationsanpassung ist nur eines davon.",
+    "pruefungshinweis": "Kleinstes Standardszenario mit vier Modulen. Es enthält von den vier für die Projekt-Governance zwingenden Modulen drei (Projektsteuerung, Projektführung, Einführungsorganisation); das vierte, Projektgrundlagen, ist in keinem Szenario enthalten, weil es zur Phase Initialisierung gehört."
+  }
+]

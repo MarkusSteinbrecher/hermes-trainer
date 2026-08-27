@@ -1,1 +1,519 @@
-[]
+[
+  {
+    "id": "grundbegriff-hermes-projektmanagement",
+    "kategorie": "grundbegriff",
+    "begriff": "HERMES-Projektmanagement",
+    "definition": "HERMES-Projektmanagement ist die gesamtheitliche Managementmethode für das Durchführen von Projekten und Programmen verschiedener Art in vielen Tätigkeitsfeldern, wie in der Anpassung der Organisation, der Informatik oder der Entwicklung von Dienstleistungen und Produkten.",
+    "details": "HERMES-Projektmanagement unterstützt die Steuerung, Führung und Ausführung von Vorhaben und begleitet die Weiterentwicklung von organisatorischen Strukturen, Produkten und Dienstleistungen, IT- und Logistiksystemen, Infrastrukturen u. ä. unterschiedlicher Charakteristiken und Komplexitäten.\n\nHERMES-Projektmanagement hat eine klare, einfach verständliche Methodenstruktur mit gemeinsamer Terminologie für alle Beteiligten, ist modular aufgebaut und erweiterbar. Es wird laufend aktualisiert und weiterentwickelt.\n\nEin Projekt kann in Teilprojekte gegliedert werden, die unterschiedliche Aspekte desselben Projekts bearbeiten (z. B. Teilprojekte Anwender, Ersteller, Betreiber für Organisation, IT, Rechtsgrundlagen). Lange dauernde oder komplexe Vorhaben müssen nicht zwangsläufig als Programm strukturiert werden; sie können als Projekte mit Realisierungseinheiten durchgeführt werden.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
+      "bezeichnung": "HERMES online · Methodenüberblick"
+    },
+    "pruefungshinweis": "HERMES deckt Projekte und Programme ab. Der volle Umfang der Methode ist für grosse Projekte mit hoher Komplexität ausgelegt; für kleinere Vorhaben wird über Sizing und Tailoring angepasst."
+  },
+  {
+    "id": "grundbegriff-ergebnisorientierung",
+    "kategorie": "grundbegriff",
+    "begriff": "Ergebnisorientierung",
+    "definition": "HERMES ist eine ergebnisorientierte Vorgehensmethode; die Ergebnisse stehen im Zentrum. Die Ergebnisse sind die wichtigsten Methodenelemente.",
+    "details": "Für jedes Ergebnis gibt es eine Ergebnisbeschreibung. Für alle Dokumente gibt es Dokumentvorlagen, die den in den Ergebnissen aufgeführten Inhalt detaillierter beschreiben. Jedem Ergebnis sind Aufgaben und Rollen zugeordnet. Die Rollen geben einen Hinweis darauf, wie die Verantwortung für Ergebnisse und die Beteiligung bei der Ergebniserstellung geregelt ist.\n\nDie Ergebnisorientierung zeigt sich auch in der Struktur der Module: Thematisch zusammengehörende Ergebnisse und die mit ihnen verknüpften Aufgaben bilden ein Modul.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
+      "bezeichnung": "HERMES online · Methodenüberblick"
+    },
+    "abgrenzung": "Ergebnisorientiert heisst nicht aufgabenorientiert: Die Aufgaben dienen der Erarbeitung von Ergebnissen, nicht umgekehrt.",
+    "pruefungshinweis": "Der exakte Ausdruck ist «ergebnisorientiert» bzw. «die Ergebnisse stehen im Zentrum». HERMES ist eine Vorgehensmethode, keine Entwicklungsmethode."
+  },
+  {
+    "id": "grundbegriff-ergebnis",
+    "kategorie": "grundbegriff",
+    "begriff": "Ergebnis",
+    "definition": "Ein Ergebnis kann ein Dokument sein, das möglichst auf der Basis einer vorhandenen Dokumentvorlage erarbeitet wird, oder ein Zustand, der neu erreicht wird – wie beispielsweise «Betriebsinfrastruktur realisiert» oder auch ein Meilenstein, der die direkte Folge eines Entscheids ist.",
+    "details": "HERMES unterscheidet somit zwei Arten von Ergebnissen: Dokumente (z. B. Durchführungsauftrag, Studie, Checkliste, Prozessbeschreibung) und Zustände (z. B. Altsystem entfernt, Betrieb aktiviert, Organisation aktiviert, Meilensteine).\n\nAbgrenzung gemäss HERMES: Das Ergebnis eines ganzen Projekts, die eigentliche fertige Lösung, oder auch ein Teil davon, das Inkrement, sind keine HERMES-Methodenelemente. Am Ende eines erfolgreichen Projekts resultiert als Ergebnis eine Lösung, ein Gesamtsystem, bestehend aus einem oder mehreren aktivierten Elementen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html",
+      "bezeichnung": "HERMES online · Ergebnisse"
+    },
+    "abgrenzung": "Die Lösung und das Inkrement sind keine HERMES-Ergebnisse und keine Methodenelemente – auch wenn sie umgangssprachlich «Projektergebnis» heissen.",
+    "pruefungshinweis": "Meilensteine sind Ergebnisse, und zwar Ergebnisse der Art «Zustand» – nicht Dokumente. Die zugehörige Checkliste ist dagegen ein Dokument."
+  },
+  {
+    "id": "grundbegriff-aufgabe",
+    "kategorie": "grundbegriff",
+    "begriff": "Aufgabe",
+    "definition": "Die Aufgaben dienen der Erarbeitung von Ergebnissen. Thematisch zusammengehörende Ergebnisse samt zugeordneten Aufgaben bilden Module.",
+    "details": "Für jede Aufgabe gibt es eine Aufgabenbeschreibung. Sie definiert das generelle Vorgehen und die Aktivitäten, die unternommen werden, um die Ergebnisse zu erarbeiten. Die Rollen geben einen Hinweis darauf, welcher Rolle die Verantwortung für eine Aufgabe zugeordnet ist.\n\nEine besondere Gruppe bilden die Entscheidungsaufgaben, z. B. «Entscheid Durchführungsfreigabe treffen» oder «Entscheid Weiteres Vorgehen treffen». Jede Entscheidungsaufgabe endet mit einem Meilenstein.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick/hermes-projektmanagement-methodenelemente.html",
+      "bezeichnung": "HERMES online · HERMES-Projektmanagement-Methodenelemente"
+    },
+    "abgrenzung": "Die Aufgabe ist das Mittel, das Ergebnis der Zweck. Verantwortung für eine Aufgabe und Verantwortung für ein Ergebnis werden in HERMES getrennt ausgewiesen.",
+    "pruefungshinweis": "Der exakte Ausdruck lautet «Die Aufgaben dienen der Erarbeitung von Ergebnissen». Aufgaben werden nicht den Phasen, sondern über die Module zugeordnet."
+  },
+  {
+    "id": "grundbegriff-rolle",
+    "kategorie": "grundbegriff",
+    "begriff": "Rolle",
+    "definition": "HERMES-Projektmanagement unterscheidet zwischen den Rollen der Stammorganisation und Rollen der Projektorganisation, beschreibt jedoch ausschliesslich die HERMES-Rollen der Projektorganisation. Für jede Rolle gibt es eine Rollenbeschreibung mit Verantwortung, den Kompetenzen und den benötigten Fähigkeiten sowie mit ihren Beziehungen.",
+    "details": "Jede Rolle ist einer der Hierarchieebenen Steuerung, Führung oder Ausführung zugeordnet. Zusätzlich ist jede Rolle einer oder mehreren Partnergruppen (Anwender, Ersteller, Betreiber) zugeordnet.\n\nDie Rollen regeln Aufgaben, Kompetenzen und Verantwortung der Projektbeteiligten. Es sind unterschiedliche Rollen definiert, die nach Bedarf verwendet werden können.",
+    "ebene": "Steuerung, Führung oder Ausführung",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "abgrenzung": "Rolle ist nicht gleich Person: Eine Person kann mehrere Rollen wahrnehmen, und Rollen der Stammorganisation (Leitung, Kompetenzzentrum Projektmanagement, Controlling- und Vorgabestellen) sind Rollengruppen, keine HERMES-Projektrollen.",
+    "pruefungshinweis": "HERMES beschreibt ausschliesslich die Rollen der Projektorganisation, obwohl es auch Rollengruppen der Stammorganisation benennt."
+  },
+  {
+    "id": "grundbegriff-phase",
+    "kategorie": "grundbegriff",
+    "begriff": "Phase",
+    "definition": "Das HERMES-Phasenmodell für Projekte bildet das Rückgrat jedes Projekts. Es schafft die Voraussetzung für das gemeinsame Verständnis aller Projektbeteiligten und baut auf dem Lebenszyklus eines Projekts auf. Die Phasen bestimmen die Projektstruktur.",
+    "details": "Die Projekte werden entweder in fünf oder in drei Phasen abgewickelt. Das Projekt beginnt mit der Phase Initialisierung und endet am Schluss der Phase Abschluss – diese beiden Phasen sind beiden Vorgehensweisen gemeinsam.\n\nKlassische Vorgehensweise (fünf Phasen): Initialisierung, Konzept, Realisierung, Einführung, Abschluss.\nAgile Vorgehensweise (drei Phasen): Initialisierung, Umsetzung, Abschluss.\n\nHERMES 2022 kennt somit insgesamt sechs verschiedene Phasen. Die zwischen Initialisierung und Abschluss eingeschlossenen Phasen sind in der klassischen Vorgehensweise die drei Phasen Konzept, Realisierung und Einführung, in der agilen Vorgehensweise hingegen nur die Phase Umsetzung.",
+    "phasen": ["Initialisierung", "Konzept", "Realisierung", "Einführung", "Umsetzung", "Abschluss"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
+      "bezeichnung": "HERMES online · Phasen"
+    },
+    "abgrenzung": "Phase ist nicht Projektlebenszyklus: Der Projektlebenszyklus gliedert sich in Projektbeginn, Lösungsentstehung und Projektende; die Phasen sind diesen drei Abschnitten zugeordnet.",
+    "pruefungshinweis": "Typische Falle: «HERMES hat vier Phasen» ist falsch. Es sind fünf Phasen klassisch oder drei Phasen agil – insgesamt sechs definierte Phasen. Die Phase Umsetzung kann nicht weiter unterteilt werden."
+  },
+  {
+    "id": "grundbegriff-projektlebenszyklus",
+    "kategorie": "grundbegriff",
+    "begriff": "Projektlebenszyklus",
+    "definition": "Der HERMES-Projektlebenszyklus wird unterteilt in Projektbeginn, Lösungsentstehung und Projektende. Das Phasenmodell für Projekte beruht auf dem Lebenszyklus des Projekts.",
+    "details": "Der Projektbeginn gilt der Ausrichtung des anvisierten Vorhabens nach Visionen, Bedürfnissen und Zielvorstellungen. Im Projektbeginn ist stets die Phase Initialisierung angesiedelt.\n\nDie Lösungsentstehung nach klassischer oder agiler Vorgehensweise erfolgt basierend auf der Durchführungsfreigabe – klassisch mit den Phasen Konzept, Realisierung und Einführung, agil mit der Phase Umsetzung.\n\nDas Projektende schliesst das laufende Projekt organisatorisch und formell ab und bereitet den Übergang zur Anwendungsorganisation vor. Im Projektende ist stets die Phase Abschluss angesiedelt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
+      "bezeichnung": "HERMES online · Phasen"
+    },
+    "pruefungshinweis": "Die drei Abschnitte heissen Projektbeginn, Lösungsentstehung und Projektende – nicht «Start, Durchführung, Ende»."
+  },
+  {
+    "id": "grundbegriff-loesungsentstehung",
+    "kategorie": "grundbegriff",
+    "begriff": "Lösungsentstehung",
+    "definition": "Die Lösungsentstehung ist der mittlere Abschnitt des Projektlebenszyklus, der nach klassischer oder agiler Vorgehensweise basierend auf der Durchführungsfreigabe erfolgt.",
+    "details": "Die klassische und die agile Vorgehensweise unterscheiden sich im Bereich der Lösungsentstehung durch das Entwicklungsvorgehen. Die Mehrzahl aller Methodenelemente ist in beiden Vorgehensweisen annähernd identisch; unterschiedlich sind die Projektorganisation sowie die Struktur des Projekts, folglich auch das Entwicklungsvorgehen und letztlich teilweise auch der fachliche und formelle Inhalt der erarbeiteten Ergebnisse.\n\nEin Szenario bildet genau diese Lösungsentstehung ab.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
+      "bezeichnung": "HERMES online · Phasen"
+    },
+    "abgrenzung": "Die Phasen Initialisierung und Abschluss gehören nicht zur Lösungsentstehung und sind deshalb auch kein Bestandteil eines Szenarios.",
+    "pruefungshinweis": "Merksatz: Szenario = Lösungsentstehung. Wer Initialisierung oder Abschluss in ein Szenario einordnet, liegt falsch."
+  },
+  {
+    "id": "grundbegriff-meilenstein",
+    "kategorie": "grundbegriff",
+    "begriff": "Meilenstein",
+    "definition": "Meilensteine sind Ergebnisse, die im Projektverlauf die Entscheidungspunkte markieren. Sie entsprechen Quality Gates, an denen über Ergebnisse und das Vorgehen entschieden wird. Jede Entscheidungsaufgabe endet somit mit einem Meilenstein.",
+    "details": "Am Anfang und am Ende jeder Phase stehen Meilensteine. Bei jeder Freigabe werden die Ressourcen (finanziell, personell, Infrastruktur) für die nächste Phase durch den Auftraggeber freigegeben. Optional können für die agile Phase Umsetzung weitere Meilensteine für die Releasefreigabe festgelegt werden.\n\nBei den Meilensteinen werden die Einhaltung der Vorgaben sowie die Übereinstimmung des Projekts mit den strategischen Zielen der Stammorganisation überprüft. Beim Meilenstein Weiteres Vorgehen, aber auch bei weiteren Meilensteinen, wird die Erreichung der Nachhaltigkeitsziele als Bewertungskriterium mitberücksichtigt.\n\nHERMES kennt 16 Meilensteine: Abnahme, Abnahme Migration, Ausschreibung, Betriebsaufnahme, Durchführungsfreigabe, ISDS-Konzept, Lösungsarchitektur, Phasenfreigabe, Phasenfreigabe Abschluss, Produktkonzept, Projektabschluss, Projektinitialisierungsfreigabe, Releasefreigabe, Vorabnahme, Weiteres Vorgehen und Zuschlag. Je nach Modul gibt es verschiedene Entscheide und folglich auch verschiedene weitere Meilensteine.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilensteine.html",
+      "bezeichnung": "HERMES online · Ergebnisse «Meilensteine»"
+    },
+    "abgrenzung": "Meilenstein und Entscheidungspunkt sind nicht dasselbe: Der Meilenstein ist das Ergebnis, das den Entscheidungspunkt markiert. Der Meilenstein wird erreicht, wenn der zugehörige Entscheid getroffen wird.",
+    "pruefungshinweis": "Klassische Verwechslungsfalle. Exakte Formulierung: «Alle Meilensteine sind Ergebnisse, die im Projektverlauf die Entscheidungspunkte markieren.» Ein Meilenstein ist also ein Ergebnis (Zustand), kein Termin und kein Entscheid."
+  },
+  {
+    "id": "grundbegriff-entscheidungspunkt",
+    "kategorie": "grundbegriff",
+    "begriff": "Entscheidungspunkt",
+    "definition": "Entscheidungspunkte sind die Punkte im Projektverlauf, an denen entschieden wird; sie werden durch Meilensteine markiert. Jede Entscheidungsaufgabe endet mit einem Meilenstein.",
+    "details": "Die Entscheidungsaufgaben der Steuerung und Führung sind in HERMES als eigene Aufgaben definiert, z. B. Entscheid Projektinitialisierungsfreigabe treffen, Entscheid Weiteres Vorgehen treffen, Entscheid Durchführungsfreigabe treffen, Entscheid Phasenfreigabe treffen, Entscheid Releasefreigabe treffen, Entscheid Projektabschluss treffen, Entscheid Lösungsarchitektur treffen und Entscheid ISDS-Konzept treffen.\n\nZu jedem Entscheid gehören in der Regel drei Ergebnisse: eine Checkliste (Prüfpunkte und Kriterien im Entscheidungsprozess), ein Eintrag in der Liste Projektentscheide Steuerung bzw. Führung und der Meilenstein selbst.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick/hermes-projektmanagement-methodenelemente.html",
+      "bezeichnung": "HERMES online · HERMES-Projektmanagement-Methodenelemente"
+    },
+    "abgrenzung": "Abzugrenzen vom Meilenstein: Der Entscheidungspunkt ist die Stelle im Projektverlauf, der Meilenstein das Ergebnis, das diese Stelle markiert und erreicht wird, sobald der Entscheid getroffen ist.",
+    "pruefungshinweis": "Nicht jeder Entscheid liegt beim Auftraggeber: Entscheid Weiteres Vorgehen und Entscheid ISDS-Konzept verantwortet der Projektleiter (Hierarchieebene Führung), die Freigabeentscheide der Auftraggeber (Hierarchieebene Steuerung)."
+  },
+  {
+    "id": "grundbegriff-quality-gate",
+    "kategorie": "grundbegriff",
+    "begriff": "Quality Gate",
+    "definition": "Die projektstrukturbezogenen Meilensteine entsprechen Quality Gates, vor deren Erreichung über Ergebnisse und das Vorgehen entschieden wird. Dabei werden die Einhaltung der Vorgaben sowie die Übereinstimmung des Projekts mit den strategischen Zielen der Stammorganisation überprüft.",
+    "details": "Analog zur Phasenfreigabe kann bei agiler Vorgehensweise optional eine Releasefreigabe als erforderlich verlangt werden, was zu zusätzlichen Quality Gates bzw. Meilensteinen führt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
+      "bezeichnung": "HERMES online · Phasen"
+    },
+    "pruefungshinweis": "Quality Gate ist kein eigenständiges Methodenelement, sondern eine Charakterisierung der Meilensteine."
+  },
+  {
+    "id": "grundbegriff-szenario",
+    "kategorie": "grundbegriff",
+    "begriff": "Szenario",
+    "definition": "Ein Szenario wird im Projekt für das zwischen der Initialisierung und Abschluss eingeschlossene Entwicklungsvorgehen bestimmt. Ein Szenario ist auf die Durchführung von Projekten mit einer spezifischen Charakteristik ausgerichtet und beinhaltet diejenigen Methodenelemente von HERMES, die für die Entwicklung der Lösung von Bedeutung sind.",
+    "details": "Ein Szenario bildet die komplette Lösungsentstehung eines Projekts ab und unterstützt den Projektleiter bei der Durchführungsplanung. Die Erkenntnisse der Studie sind ausschlaggebend für die Auswahl des passenden Standardszenarios. Die Phasen Initialisierung und Abschluss sind kein Bestandteil eines Szenarios.\n\nSzenarien basieren auf Modulen mit thematisch zusammengehörenden Aufgaben und Ergebnissen. Ein Modul kann in mehreren Szenarien verwendet oder, weil ein Modul umfassender sein kann als ein Szenario, in einem Szenario nur zum Teil genutzt werden.\n\nIn der Phase Initialisierung wählt der Projektleiter die geeignete Lösungsvariante und mit ihr auch das für das Entwicklungsvorgehen passende Szenario aus.",
+    "module": ["Projektsteuerung", "Projektführung", "Beschaffung", "Organisation", "Produkt", "IT-System", "Tests", "Einführungsorganisation", "IT-Migration", "IT-Betrieb", "ISDS"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+      "bezeichnung": "HERMES online · Szenarien"
+    },
+    "abgrenzung": "Abzugrenzen vom Modul: Das Modul ist der wiederverwendbare Baustein, das Szenario die daraus zusammengesetzte Vorlage für die Lösungsentstehung eines Projekttyps.",
+    "pruefungshinweis": "Die Szenarien sind vorgehensneutral: HERMES 2022 kennt keine getrennten klassischen und agilen Szenarien. Dasselbe Standardszenario wird klassisch oder agil abgewickelt; die Vorgehensweise steckt in den Phasen, nicht im Szenario. Der Projektleiter wählt das Szenario in der Phase Initialisierung aus."
+  },
+  {
+    "id": "grundbegriff-standardszenario",
+    "kategorie": "grundbegriff",
+    "begriff": "Standardszenario",
+    "definition": "HERMES bietet fünf Standardszenarien für Projekte mit verschiedenen Charakteristiken an: Dienstleistung/Produkt Entwicklung, Dienstleistung/Produkt Adaption, IT-Entwicklung, IT-Adaption und Organisationsanpassung.",
+    "details": "Ein Szenario beinhaltet standardmässig diejenigen Methodenelemente, die üblicherweise für Projekte der jeweiligen Charakteristik von Bedeutung sind. Dadurch ist HERMES rasch und einfach anwendbar.\n\nDas Angebot der Standardszenarien ist nicht abschliessend. Die Nachfrage bezüglich neuer Szenarien wird periodisch überprüft und bei Bedarf werden weitere Standardszenarien bereitgestellt.\n\nDer Projektleiter kann Standardszenarien an die Bedürfnisse der Stammorganisation sowie des konkret vorliegenden Projektes anpassen und weitere benutzerdefinierte Szenarien erstellen.",
+    "szenarien": ["Dienstleistung/Produkt Entwicklung", "Dienstleistung/Produkt Adaption", "IT-Entwicklung", "IT-Adaption", "Organisationsanpassung"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+      "bezeichnung": "HERMES online · Szenarien"
+    },
+    "abgrenzung": "Abzugrenzen vom benutzerdefinierten Szenario, das über die Funktionen Sizing und Tailoring aus einem Standardszenario abgeleitet wird.",
+    "pruefungshinweis": "Genau fünf Standardszenarien. Merkhilfe für die Systematik: je ein Entwicklungs- und ein Adaptions-Szenario für Dienstleistung/Produkt und für IT, dazu Organisationsanpassung."
+  },
+  {
+    "id": "grundbegriff-benutzerdefiniertes-szenario",
+    "kategorie": "grundbegriff",
+    "begriff": "Benutzerdefiniertes Szenario",
+    "definition": "HERMES Online bietet über «Benutzerdefinierte Szenarien» zwei Funktionen, um basierend auf den Standardszenarien eigene Szenarien zu erstellen: Sizing und Tailoring.",
+    "details": "Benutzerdefinierte Szenarien können untereinander mit anderen HERMES-Anwendern ausgetauscht oder für alle Anwender zur Verfügung gestellt werden.\n\nDie Reihenfolge ist festgelegt: Zuerst wird über die Sizing-Funktion die Projektgrösse angepasst; anschliessend kann das resultierende benutzerdefinierte Szenario optional über die Tailoring-Funktion an die jeweiligen Projektbedürfnisse angepasst werden.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+      "bezeichnung": "HERMES online · Szenarien"
+    },
+    "pruefungshinweis": "Sizing kommt vor Tailoring. Beide Funktionen sind in HERMES Online werkzeugunterstützt."
+  },
+  {
+    "id": "grundbegriff-sizing",
+    "kategorie": "grundbegriff",
+    "begriff": "Sizing",
+    "definition": "Der Einsatz der Sizing-Funktion reduziert unter Einhaltung der HERMES Governance die Komplexität des Vorgehens und den Umfang der Dokumentation auf das absolute Minimum. Die Sizing-Funktion ermittelt die tatsächlich benötigte Projektgrösse aus mehreren Parametern, welche durch den Anwender erfasst werden können.",
+    "details": "Da viele Stammorganisationen vorwiegend mittlere und kleine Projekte führen, sollte die Anwendung der Methode mittels Sizing-Funktion an die Grösse des Vorhabens angepasst werden.\n\nBasierend auf der ermittelten Wertigkeit stellt die Sizing-Funktion dem Projektleiter ein individuell auf die Vorhabengrösse zugeschnittenes Szenario mit Durchführungsstrukturplan und den notwendigen Vorlagen zur Verfügung. Diese online-tool-gestützte Anpassung garantiert die Methoden-Kontinuität und -Kohärenz (HERMES Governance) und erlaubt, alle Vorhaben möglichst schlank abzuwickeln.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+      "bezeichnung": "HERMES online · Szenarien"
+    },
+    "abgrenzung": "Sizing passt an die Projektgrösse an, Tailoring an die inhaltlichen Projektbedürfnisse. Sizing ist der erste, Tailoring der optionale zweite Schritt.",
+    "pruefungshinweis": "Sizing = Grösse. Der volle Umfang von HERMES ist für grosse Projekte mit hoher Komplexität ausgelegt; Sizing schneidet ihn zu."
+  },
+  {
+    "id": "grundbegriff-tailoring",
+    "kategorie": "grundbegriff",
+    "begriff": "Tailoring",
+    "definition": "Mit dem Tailoring werden Standardszenarien oder bereits durch die Sizing-Funktion erstellte benutzerdefinierte Szenarien an die jeweiligen Projektbedürfnisse angepasst und weiter individualisiert.",
+    "details": "Es gibt dazu vier grundlegende Möglichkeiten, die kombiniert angewendet werden können:\n\n1. Module aus einem bestehenden Szenario entfernen: Nicht benötigte Module werden entfernt (Beispiel: In einem Vorhaben ohne Migration das Modul IT-Migration aus dem Szenario IT-Entwicklung entfernen).\n\n2. Aufgaben und Ergebnisse entfernen: Der Inhalt eines Moduls kann mit Ausnahme von minimal geforderten Dokumenten um Ergebnisse und dazugehörige Aufgaben wahlweise reduziert werden.\n\n3. Ein zusätzliches, fachspezifisches Modul im bestehenden Szenario integrieren: Es wird ein eigenes Modul mit fachspezifischem Inhalt erstellt und in ein Szenario integriert.\n\n4. Aufgaben und Ergebnisse hinzufügen: Der Inhalt eines Moduls kann erweitert werden; neue individuelle Aufgaben und Ergebnisse können erstellt werden.\n\nEin Tailoring ist auch Voraussetzung dafür, ein Projekt mit einer Kombination aus klassischem und agilem Entwicklungsvorgehen abzuwickeln.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+      "bezeichnung": "HERMES online · Szenarien"
+    },
+    "abgrenzung": "Tailoring ist nicht Sizing: Tailoring individualisiert inhaltlich (Module, Aufgaben, Ergebnisse), Sizing skaliert nach Projektgrösse.",
+    "pruefungshinweis": "Vier Tailoring-Möglichkeiten: Module entfernen, Aufgaben/Ergebnisse entfernen, Modul hinzufügen, Aufgaben/Ergebnisse hinzufügen. Die minimal geforderten Dokumente dürfen durch Tailoring nicht entfernt werden – ausser das ganze Modul ist für das Projekt nicht relevant."
+  },
+  {
+    "id": "grundbegriff-modul",
+    "kategorie": "grundbegriff",
+    "begriff": "Modul",
+    "definition": "Module sind wiederverwendbare, den Phasen zugeordnete Bausteine zur Erstellung von Projekten und Szenarien. Thematisch zusammengehörende Ergebnisse und die mit ihnen verknüpften Aufgaben bilden ein Modul.",
+    "details": "HERMES stellt zwölf Standardmodule bereit: Projektsteuerung, Projektführung, Projektgrundlagen, Beschaffung, Organisation, Produkt, IT-System, Tests, Einführungsorganisation, IT-Migration, IT-Betrieb und ISDS.\n\nErgänzend besteht die Möglichkeit, eigene fach-, organisations- oder vorhabenspezifische Module mit bestehenden oder neuen individuellen Aufgaben und Ergebnissen zu entwickeln und diese in eigene Projekte oder Szenarien zu integrieren. Beispiele für solche individuellen Module sind Marketing, Immobilien, Kommunikation, Personalentwicklung, Rechtsetzung, Ausbildung, Strategieentwicklung oder Einführung einer Geschäftsverwaltung.\n\nFür jedes Modul gibt es eine Modulbeschreibung mit den Abschnitten Zweck, Was ist zu tun sowie Aufgaben und Ergebnisse.",
+    "module": ["Projektsteuerung", "Projektführung", "Projektgrundlagen", "Beschaffung", "Organisation", "Produkt", "IT-System", "Tests", "Einführungsorganisation", "IT-Migration", "IT-Betrieb", "ISDS"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module.html",
+      "bezeichnung": "HERMES online · Module"
+    },
+    "abgrenzung": "Abzugrenzen vom Szenario: Module sind die Bausteine, Szenarien die daraus gebildeten Zusammenstellungen. Module sind den Phasen zugeordnet, Szenarien nur der Lösungsentstehung.",
+    "pruefungshinweis": "Zwölf Standardmodule. Das Modul Projektgrundlagen kommt in keinem Szenario vor, weil es ausschliesslich in der Phase Initialisierung liegt."
+  },
+  {
+    "id": "grundbegriff-zwingende-module",
+    "kategorie": "grundbegriff",
+    "begriff": "Zwingende Module der Projekt-Governance",
+    "definition": "Damit die Projekt-Governance eingehalten werden kann, müssen folgende Module zwingend in jedem Projekt vorkommen: Projektsteuerung, Projektführung, Projektgrundlagen und Einführungsorganisation.",
+    "details": "Projektsteuerung und Projektführung kommen in allen sechs Phasen vor. Projektgrundlagen kommt ausschliesslich in der Phase Initialisierung vor. Einführungsorganisation kommt in den Phasen Konzept, Realisierung, Einführung und Umsetzung vor.\n\nDaraus folgt: Von den vier zwingenden Modulen sind nur drei in den Szenarien enthalten; Projektgrundlagen liegt ausserhalb jedes Szenarios.",
+    "module": ["Projektsteuerung", "Projektführung", "Projektgrundlagen", "Einführungsorganisation"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module.html",
+      "bezeichnung": "HERMES online · Module"
+    },
+    "abgrenzung": "Nicht mit den minimal geforderten Dokumenten verwechseln: Jene betreffen Ergebnisse, diese Module. Beide dienen der Projekt-Governance.",
+    "pruefungshinweis": "Genau vier zwingende Module. Das Modul Organisation gehört nicht dazu, obwohl es in allen fünf Standardszenarien vorkommt."
+  },
+  {
+    "id": "grundbegriff-projekt-governance",
+    "kategorie": "grundbegriff",
+    "begriff": "Projekt-Governance",
+    "definition": "Unter Governance wird allgemein die «verantwortungsvolle Unternehmungsführung und -kontrolle» verstanden. Die Projekt-Governance ist ein Teil der Unternehmens-Governance; ihre Kennzeichen stellen Anforderungen an die Projektsteuerung und Projektführung dar.",
+    "details": "Die Kennzeichen guter Projekt-Governance sind: effektive und funktionsfähige Projektplanung, -steuerung und -führung; konstruktive Zusammenarbeit von Projektorganisation und Stammorganisation; Berücksichtigung der Stakeholderinteressen; Abstimmung der gesetzten Ziele mit Vorgaben der Stammorganisation; solide Basis für richtige, effiziente und transparente Entscheidungen; institutionalisierter und zeitgerechter Informationsfluss, Transparenz in der Projektkommunikation; Nachvollziehbarkeit der Projektdurchführung und etwaiger Zieländerungen; angemessener Umgang mit Risiken; funktionale und adäquate Projektorganisation und Projektinfrastruktur; effizienter und nachhaltiger Ressourceneinsatz.\n\nHERMES-Projektmanagement ist darauf ausgerichtet, eine gute Projekt-Governance zu gewährleisten. Umgesetzt wird sie insbesondere über die Rollen und Hierarchieebenen, die Module Projektsteuerung und Projektführung, die minimal geforderten Dokumente, die Phasen und Meilensteine sowie das Reporting.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/governance.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Governance»"
+    },
+    "abgrenzung": "Governance ist keine Rolle und kein Modul, sondern eine Anforderung an die Projektsteuerung und Projektführung. Sie muss insbesondere durch das Management der Stammorganisation umgesetzt werden.",
+    "pruefungshinweis": "Zehn Kennzeichen guter Projekt-Governance. Der Begriff ist in HERMES 2022 im Kapitel «Hinweise zur Anwendung» verankert, nicht bei den Methodenelementen."
+  },
+  {
+    "id": "grundbegriff-minimal-geforderte-dokumente",
+    "kategorie": "grundbegriff",
+    "begriff": "Minimal geforderte Dokumente",
+    "definition": "HERMES definiert minimal geforderte Dokumente (Ergebnisse), um die Anforderungen an die Projekt-Governance zu erfüllen. Die minimal geforderten Dokumente sind die Leitplanken für die Sicherstellung des Projekterfolges; ihre Erarbeitung ist obligatorisch.",
+    "details": "Dazu gehören u. a. nicht nur diejenigen Ergebnisse, die von den Revisionsstellen überprüft werden müssen, sondern als «Muss» auch all jene, die zwingend in einem Modul zu erstellen sind.\n\nDie minimal geforderten Dokumente widerspiegeln eine allgemeine Projektsituation, ohne auf die Besonderheiten der einzelnen Projekte einzugehen. Ist ein Modul für das Projekt nicht relevant, entfallen auch die darin definierten minimal geforderten Dokumente. Sie entfallen ebenso, wenn unter gewissen Umständen ihre Verwendung im Modul nicht vorgesehen ist (z. B. im Fall klassisch/agil). Die minimal geforderten Dokumente können auch stammorganisationsspezifisch gemäss deren Governance-Bestimmungen angepasst werden.\n\nBeispiele minimal geforderter Dokumente: Durchführungsauftrag, Projektmanagementplan, Studie, Projektstatusbericht, Phasenbericht, Lösungsanforderungen, Checklisten.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html",
+      "bezeichnung": "HERMES online · Ergebnisse"
+    },
+    "abgrenzung": "Nicht mit den minimal zu besetzenden Rollen verwechseln: Jene betreffen die Projektorganisation (Auftraggeber, Projektleiter, Anwendervertreter), diese die Ergebnisse.",
+    "pruefungshinweis": "Der exakte HERMES-Ausdruck lautet «minimal geforderte Dokumente», nicht «minimale Vorgaben» oder «Pflichtdokumente». Sie sind obligatorisch, entfallen aber mit dem Modul, wenn dieses für das Projekt nicht relevant ist."
+  },
+  {
+    "id": "grundbegriff-minimal-zu-besetzende-rollen",
+    "kategorie": "grundbegriff",
+    "begriff": "Minimal zu besetzende Rollen",
+    "definition": "Die minimal zu besetzenden bzw. minimal erforderlichen Rollen der Projektorganisation sind Auftraggeber, Projektleiter und Anwendervertreter.",
+    "details": "Innerhalb der Projektorganisation sind der Auftraggeber, Projektleiter und Anwendervertreter jene Rollen, die für das Funktionieren der Schnittstellen, aber auch für das gesamte Projekt unentbehrlich sind:\n\nDer Auftraggeber steuert das Projekt und hat die Gesamtverantwortung für das Vorhaben sowie für das Erreichen der Ziele.\nDer Projektleiter führt und koordiniert das Projekt und bestimmt dessen Ablauf.\nDer Anwendervertreter verantwortet die fachliche Lösungsentstehung.\n\nDie Stammorganisation bzw. die Partnergruppe Anwender hat das Recht, die minimal zu besetzenden Rollen zwingend mit eigenen oder von ihr engagierten Personen zu besetzen.",
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": ["Projektleiter", "Anwendervertreter"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "abgrenzung": "Der Auftraggeber trägt die Gesamtverantwortung – nicht der Projektleiter. Der Projektleiter führt und koordiniert; der Anwendervertreter verantwortet die fachliche Lösungsentstehung.",
+    "pruefungshinweis": "Genau drei Rollen: Auftraggeber, Projektleiter, Anwendervertreter. Diese Dreiergruppe gilt sowohl für die klassische als auch für die agile Projektorganisation."
+  },
+  {
+    "id": "grundbegriff-hierarchieebenen",
+    "kategorie": "grundbegriff",
+    "begriff": "Hierarchieebenen",
+    "definition": "Jede Rolle ist einer der Hierarchieebenen Steuerung, Führung oder Ausführung zugeordnet. Steuerungsrollen steuern das Projekt gesamthaft und organisationsübergreifend und stellen sicher, dass die gesetzten Ziele erreicht werden; Führungsrollen erarbeiten die Projektgrundlagen und führen Projekt und Mitarbeitende; Ausführungsrollen erarbeiten die Lösung und führen qualitätssichernde Massnahmen durch.",
+    "details": "Die Hierarchieebenen machen die Verantwortlichkeit der Rollen zusätzlich sichtbar. HERMES-Projektmanagement unterstützt entsprechend die Steuerung, Führung und Ausführung von Vorhaben.\n\nDas klassische und das agile Entwicklungsvorgehen haben von der Führung der Rollen der Hierarchieebene Ausführung ein grundsätzlich unterschiedliches Verständnis: Während die klassische Vorgehensweise davon ausgeht, dass der Projektleiter Arbeitsaufträge erteilt, wird bei agiler Vorgehensweise die Arbeit der Umsetzungsorganisation durch den Anwendervertreter über die Lösungsanforderungen gesteuert, und die Teams organisieren ihre Arbeit selbstständig.",
+    "ebene": "Steuerung, Führung, Ausführung",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "abgrenzung": "Die Hierarchieebenen heissen Steuerung, Führung und Ausführung. Projektsteuerung und Projektführung sind dagegen Namen von Modulen. Einen HERMES-Begriff «Projektausführung» gibt es nicht.",
+    "pruefungshinweis": "Häufige Falle: «Projektsteuerung / Projektführung / Projektausführung» als Ebenen zu nennen ist falsch. Die Ebenen heissen Steuerung, Führung, Ausführung; «Projektausführung» kommt in HERMES 2022 nicht vor."
+  },
+  {
+    "id": "grundbegriff-partnergruppen",
+    "kategorie": "grundbegriff",
+    "begriff": "Partnergruppen",
+    "definition": "In der HERMES-Projektorganisation kommen die Partnergruppen Anwender, Ersteller und Betreiber vor. Jede Rolle ist einer oder mehreren Partnergruppen zugeordnet.",
+    "details": "Anwender: Der Anwender ist der Eigner des Projekts sowie der Nutzer der Lösung und wickelt damit seine Geschäftsprozesse ab. Er ist verantwortlich für die Definition seiner Anforderungen an die Lösung, testet und nimmt das Produkt/System bzw. die Lösung ab.\n\nErsteller: Der Ersteller als Dienstleistungserbringer entwickelt oder liefert und integriert die Lösung. Er ist verantwortlich für die Entwicklung bzw. Lieferung und Integration gemäss den Vorgaben bezüglich Qualität, Zeit und Kosten.\n\nBetreiber: Der Betreiber als Dienstleistungserbringer integriert die technische Lösung in die Betriebsumgebung, stellt die Betriebsorganisation sicher und betreibt das System.\n\nDie Rolleninhaber haben stets und ausschliesslich die Rollensicht der Partnergruppe zu vertreten, für welche sie Leistungen erbringen, um jegliche Interessenkonflikte auszuschliessen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "abgrenzung": "Partnergruppen sind nicht Hierarchieebenen: Jede Rolle hat beides – eine Hierarchieebene (Steuerung/Führung/Ausführung) und mindestens eine Partnergruppe (Anwender/Ersteller/Betreiber).",
+    "pruefungshinweis": "Der Anwender ist der Eigner des Projekts. HERMES betont die «Selbstbestimmung der Anwender über das Projekt»: Ersteller oder Betreiber dürfen das Projektgeschehen nicht dominieren."
+  },
+  {
+    "id": "grundbegriff-stammorganisation",
+    "kategorie": "grundbegriff",
+    "begriff": "Stammorganisation",
+    "definition": "Die Stammorganisation ist die Organisation des Auftraggebers, in der das Projekt angesiedelt ist, und des späteren Anwenders, bei dem die Nutzung der Lösung stattfinden wird. Sie ist eine rechtliche Einheit, die Strategien und Vorgaben für Projekte bestimmt und die benötigten Ressourcen wie z. B. Infrastruktur, Finanzen und Personal für das Projekt zur Verfügung stellt.",
+    "details": "Der Begriff der Stammorganisation wird in HERMES weit gefasst. Eine Stammorganisation kann z. B. eine Verwaltung, eine Schule oder ein Institut, ein Verein oder eine Unternehmung sein. Bei staatlichen oder grossen kommunalen Verwaltungen, bei Konzernen, komplexen Firmen usw. können auch einzelne Organisationseinheiten oder sogar einzelne Abteilungen die Rolle einer Stammorganisation bekleiden.\n\nFür alle eigenständigen Projekte sind in der Stammorganisation drei permanente Rollengruppen relevant: Leitung, Kompetenzzentrum Projektmanagement (oft auch als Projektmanagement-Office/PMO bezeichnet) sowie Controlling- und Vorgabestellen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "abgrenzung": "Abzugrenzen von der Projektorganisation (temporär) und der Anwendungsorganisation (nach Projektende). Die Stammorganisation ist permanent.",
+    "pruefungshinweis": "Drei Rollengruppen der Stammorganisation: Leitung, Kompetenzzentrum Projektmanagement, Controlling- und Vorgabestellen. HERMES beschreibt diese als Rollengruppen, nicht als HERMES-Projektrollen."
+  },
+  {
+    "id": "grundbegriff-projektorganisation",
+    "kategorie": "grundbegriff",
+    "begriff": "Projektorganisation",
+    "definition": "Die Projektorganisation ist eine einmalige, temporäre, oft interdisziplinäre Organisation, die in enger Beziehung zur Stammorganisation steht. Sie wird mit dem Projektinitialisierungsauftrag in Kraft gesetzt und spätestens mit dem Entscheid Projektabschluss aufgelöst.",
+    "details": "Im Verlauf der Projektabwicklung, insbesondere mit dem Durchführungsauftrag, wird die Projektorganisation kontinuierlich an die Bedürfnisse des Projekts angepasst. Je nach Projektablauf stossen weitere Projektbeteiligte dazu.\n\nDie agile Umsetzungsorganisation ist nur während der Phase Umsetzung Teil der Projektorganisation. In den Phasen Initialisierung und Abschluss bleibt die Projektorganisation klassisch, was das Projektteam nicht daran hindert, für geeignete Aufgaben agile Techniken einzusetzen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "abgrenzung": "Abzugrenzen von der Stammorganisation (permanent) und der Umsetzungsorganisation (nur während der Phase Umsetzung Teil der Projektorganisation).",
+    "pruefungshinweis": "Merken: in Kraft gesetzt mit dem Projektinitialisierungsauftrag, aufgelöst spätestens mit dem Entscheid Projektabschluss."
+  },
+  {
+    "id": "grundbegriff-umsetzungsorganisation",
+    "kategorie": "grundbegriff",
+    "begriff": "Umsetzungsorganisation",
+    "definition": "Die Umsetzungsorganisation ist die agile Organisation, die während der Phase Umsetzung Teil der Projektorganisation ist und die Lösungsentstehung iterativ-inkrementell erarbeitet. Sie wird nach abgeschlossener Betriebsaufnahme inklusive der Abnahme des letzten Release innerhalb der Projektorganisation aufgelöst.",
+    "details": "Die Projektorganisation arbeitet entsprechend dem klassischen Projektmanagement; die Umsetzungsorganisation entsprechend der gewählten agilen Methode. Der Anwendervertreter nimmt eine Schnittstellenfunktion zwischen der Projekt- und Umsetzungsorganisation ein; er nimmt durch zusätzliche Übernahme einer entsprechenden Rolle in der Umsetzungsorganisation seine fachliche Verantwortung wahr.\n\nDer Projektleiter führt sein Projekt, er darf jedoch nicht in die Selbstorganisation der agilen Umsetzungsorganisation eingreifen. Die Begriffswelt innerhalb der agilen Entwicklung ist nicht vorgeschrieben; sie richtet sich nach der jeweils eingesetzten Entwicklungsmethode.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
+      "bezeichnung": "HERMES online · Methodenüberblick"
+    },
+    "abgrenzung": "Nicht mit der Phase Umsetzung verwechseln: Die Phase ist der Zeitabschnitt, die Umsetzungsorganisation der organisatorische Teil der Projektorganisation.",
+    "pruefungshinweis": "Der Projektleiter darf nicht in die Selbstorganisation der agilen Umsetzungsorganisation eingreifen; der Anwendervertreter ist deren Ansprechpartner für den Projektleiter."
+  },
+  {
+    "id": "grundbegriff-anwendungsorganisation",
+    "kategorie": "grundbegriff",
+    "begriff": "Anwendungsorganisation",
+    "definition": "Die Anwendungsorganisation ist die Organisation, die nach dem Projektende die Lösung nutzt. Das Projektende regelt organisatorisch und administrativ den Übergang von der Projektorganisation zur Anwendungsorganisation.",
+    "details": "Beim Übergang von der Projekt- zur Anwendungsorganisation wird sichergestellt, dass die für die Nutzung benötigten Rollen besetzt sind. Dazu gehören oft die Rollen des Anwendervertreters und des Betriebsverantwortlichen. Das Projekt wandelt sich zur Anwendung.\n\nFührt die Stammorganisation sowohl für Projekte als auch für Anwendungen das gleiche Portfolio, ändert lediglich der Status von Projekt zu Anwendung. Projekt und Anwendung können sich im Portfolio überlappen, insbesondere bei der agilen Lösungsentstehung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/governance.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Governance»"
+    },
+    "abgrenzung": "Abzugrenzen von der Betriebsorganisation: Die Betriebsorganisation betreibt das System (Partnergruppe Betreiber), die Anwendungsorganisation nutzt die Lösung fachlich (Partnergruppe Anwender).",
+    "pruefungshinweis": "Die Erfolgskontrolle, ob die ursprünglich gesetzten Ziele erreicht wurden, geschieht während der Nutzung – also nach dem Projektabschluss, nicht im Projekt."
+  },
+  {
+    "id": "grundbegriff-klassische-vorgehensweise",
+    "kategorie": "grundbegriff",
+    "begriff": "Klassische Vorgehensweise",
+    "definition": "Die klassische Vorgehensweise ist das traditionelle, phasenweise Vorgehen nach Systems Engineering. Die Lösungsentstehung erfolgt in den drei Phasen Konzept, Realisierung und Einführung.",
+    "details": "Bei klassischer Vorgehensweise wird das Projekt in fünf Phasen abgewickelt: Initialisierung, Konzept, Realisierung, Einführung, Abschluss. Das klassische Projektmanagement unterstützt das klassische Entwicklungsmanagement.\n\nDie klassische Vorgehensweise geht davon aus, dass der Projektleiter Arbeitsaufträge erteilt.\n\nWird die klassisch abgewickelte Lösungsentstehung eines IT-Vorhabens so komplex, dass die Realisierung des ganzen Umfangs fraglich erscheint, oder sollen möglichst schnell erste Ergebnisse geliefert werden, können die Phasen Realisierung und Einführung in mehreren Realisierungseinheiten abgewickelt werden.",
+    "phasen": ["Initialisierung", "Konzept", "Realisierung", "Einführung", "Abschluss"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
+      "bezeichnung": "HERMES online · Methodenüberblick"
+    },
+    "abgrenzung": "Abzugrenzen von der agilen Vorgehensweise (iterativ-inkrementell, Phase Umsetzung). Die Entscheidung klassisch oder agil fällt in der Phase Initialisierung mit dem Entscheid Weiteres Vorgehen.",
+    "pruefungshinweis": "Der exakte Ausdruck ist «klassisch», definiert als «phasenweises Vorgehen nach Systems Engineering» – nicht «Wasserfall»."
+  },
+  {
+    "id": "grundbegriff-agile-vorgehensweise",
+    "kategorie": "grundbegriff",
+    "begriff": "Agile Vorgehensweise",
+    "definition": "Die agile Vorgehensweise ist das iterativ-inkrementelle Vorgehen. Die Lösungsentstehung erfolgt in der einzigen Phase Umsetzung, die nicht weiter unterteilt werden kann.",
+    "details": "Bei agiler Vorgehensweise wird das Projekt in drei Phasen abgewickelt: Initialisierung, Umsetzung, Abschluss.\n\nIm agilen Entwicklungsmanagement sind Änderungen ein fundamentaler Teil des Entwicklungsprozesses. Die Umsetzungsorganisation folgt der vorgegebenen und gewünschten Wirkung und reagiert proaktiv auf die sich ändernden Anforderungen, anstatt einen fixen Plan zu verfolgen.\n\nDie HERMES-Projektmanagementmethode ist eine Projektvorgehenshülle, in die eine agile Entwicklungsmethode wie eine Blackbox eingefügt werden kann. Auf das eingekapselte Entwicklungsvorgehen geht HERMES nicht weiter ein, definiert aber aus Steuerungs-, Führungs-, Kommunikations- und Reporting-Gründen entsprechende Schnittstellen. Gemeint sind sowohl einfach agile Methoden (Scrum, Kanban etc.) wie auch skaliert agile Methoden (SAFe bis Stufe «Essential» bzw. «ART Flow»).",
+    "phasen": ["Initialisierung", "Umsetzung", "Abschluss"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
+      "bezeichnung": "HERMES online · Methodenüberblick"
+    },
+    "abgrenzung": "Agile Entwicklungsmethoden gehören nicht zu den Projektmanagementmethoden, sondern zu den Entwicklungsmanagementmethoden. HERMES bettet sie ein, ersetzt sie nicht.",
+    "pruefungshinweis": "Die Phasen Initialisierung und Abschluss werden aus Projektmanagementsicht auch im agilen Projekt stets klassisch abgewickelt; agile Werkzeuge dürfen dabei trotzdem eingesetzt werden."
+  },
+  {
+    "id": "grundbegriff-entwicklungsmanagement-klassisch-agil",
+    "kategorie": "grundbegriff",
+    "begriff": "Entwicklungsmanagement klassisch/agil",
+    "definition": "Die Lösungsentstehung im Projekt kann entweder klassisch oder agil erfolgen. Dennoch gibt es in der Praxis Fälle, in denen ein Projekt mit einer Kombination aus beiden Vorgehensweisen abgewickelt wird.",
+    "details": "Eine solche Kombination setzt ein entsprechendes Tailoring in der Initialisierungsphase voraus, da das gewählte Szenario und der Durchführungsstrukturplan angepasst werden müssen.\n\nDie Entscheidung, ob Projekte klassisch oder agil angegangen werden, muss auf Projektebene erfolgen, da jedes Vorhaben individuelle Charakteristiken aufweist. Dies gilt auch für Projekte in einem Programm: Es ist möglich, dass im Rahmen eines Programms einige Projekte klassisch, andere agil abgewickelt werden. Die Wahl der Vorgehensweise muss nachvollziehbar sein.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/projektmanagement-und-entwicklungsmanagement.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Projektmanagement und Entwicklungsmanagement»"
+    },
+    "abgrenzung": "HERMES 2022 verwendet für die Kombination beider Vorgehensweisen den Ausdruck «Entwicklungsmanagement klassisch/agil» bzw. «klassisch/agil».",
+    "pruefungshinweis": "Achtung: Der Begriff «hybrid» kommt in der HERMES-2022-Projektmanagementdokumentation nicht vor. Die Kombination heisst «klassisch/agil» und erfordert zwingend ein Tailoring in der Phase Initialisierung."
+  },
+  {
+    "id": "grundbegriff-realisierungseinheit",
+    "kategorie": "grundbegriff",
+    "begriff": "Realisierungseinheit",
+    "definition": "Eine Realisierungseinheit umfasst alle technischen und organisatorischen Ergebnisse des Projekts, die für die Einführung des Systems oder eines Teils davon benötigt werden. Am Ende einer Realisierungseinheit wird das Produkt bzw. das System produktiv genutzt.",
+    "details": "Realisierungseinheiten sind ein Anwendungsfall der klassischen Vorgehensweise. Jede Realisierungseinheit erstreckt sich über die beiden Phasen Realisierung und Einführung und durchläuft die Entscheidungsaufgaben der Steuerung und Führung. Die Freigabe der ersten Realisierungseinheit ist die Phasenfreigabe Realisierung, die den regulären Abschluss der Phase Konzept voraussetzt.\n\nDie Phasen Initialisierung und Konzept werden vollständig durchlaufen. Ab dem Start der Realisierungseinheiten spielt sich das Projekt in den Phasen und Meilensteinen der jeweiligen Realisierungseinheit ab; es gibt kein übergeordnetes Phasenmodell. Realisierungseinheiten werden bezüglich Kosten, Terminen und Ergebnissen separat geplant und kontrolliert und bilden eigenständige Kontrolleinheiten.\n\nDie Anzahl der Realisierungseinheiten ist durch HERMES nicht begrenzt; sie werden in der Phase Konzept gesamthaft geplant. Der Start einer Realisierungseinheit muss durch die Projektsteuerung freigegeben werden; dazu muss ein aktualisierter Projektmanagementplan vorliegen.",
+    "phasen": ["Realisierung", "Einführung"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/realisierungseinheiten-bei-klassischer-vorgehensweise.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Realisierungseinheiten bei klassischer Vorgehensweise»"
+    },
+    "abgrenzung": "Abzugrenzen vom Inkrement und vom Release: Realisierungseinheiten gehören zur klassischen Vorgehensweise, Inkremente und Releases zur agilen. Lange dauernde oder komplexe Vorhaben müssen nicht zwangsläufig als Programm strukturiert werden; sie können als Projekte mit Realisierungseinheiten durchgeführt werden.",
+    "pruefungshinweis": "Realisierungseinheiten umfassen genau zwei Phasen: Realisierung und Einführung. Sie sind das klassische Gegenstück zur iterativ-inkrementellen Lieferung – nicht mit Agilität zu verwechseln."
+  },
+  {
+    "id": "grundbegriff-inkrement",
+    "kategorie": "grundbegriff",
+    "begriff": "Inkrement",
+    "definition": "Mit jeder Iteration wird ein weiterer Teil der Lösung – das Inkrement – erstellt, das sich mit dem bereits erstellten Umfang der Umsetzungsergebnisse nahtlos verbinden lässt.",
+    "details": "Das Inkrement entsteht in der agilen Phase Umsetzung. Die Anforderungen werden aktualisiert und priorisiert und nach absteigender Priorität abgearbeitet, wobei die Prioritäten kontinuierlich aktualisiert und den Projekterkenntnissen entsprechend angepasst werden.\n\nGemäss HERMES ist das Inkrement – wie die fertige Lösung selbst – kein HERMES-Methodenelement.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/umsetzung.html",
+      "bezeichnung": "HERMES online · Phase «Umsetzung»"
+    },
+    "abgrenzung": "Das Inkrement ist ein Teil der Lösung und damit kein HERMES-Ergebnis; ein Release fasst dagegen die Auslieferung zusammen und kann mit dem Entscheid Releasefreigabe verbunden sein.",
+    "pruefungshinweis": "Weder die Lösung noch das Inkrement sind HERMES-Methodenelemente – eine beliebte Fangfrage."
+  },
+  {
+    "id": "grundbegriff-release",
+    "kategorie": "grundbegriff",
+    "begriff": "Release",
+    "definition": "Ein Release ist eine Auslieferungseinheit der agilen Phase Umsetzung. Wurde in der Phase Initialisierung festgelegt, dass der Entscheid Releasefreigabe jeweils getroffen werden muss, endet jedes Release mit dem Meilenstein Releasefreigabe.",
+    "details": "Während der Phase Umsetzung werden am Ende jedes Release die Ergebnisse des Release für den Auftraggeber im Releasebericht so aufbereitet, dass er über den Releaseerfolg sowie den Fortschritt und die gesamte Entwicklung informiert ist. Wurde die Releasefreigabe als erforderlich festgelegt, dient der Releasebericht der Entscheidungsfindung.\n\nAnalog zur Phasenfreigabe führt die Releasefreigabe zu zusätzlichen Meilensteinen bzw. Quality Gates. Die Phase Umsetzung endet nach abgeschlossener Betriebsaufnahme inklusive der Abnahme des letzten Release.",
+    "phasen": ["Umsetzung"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/governance.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Governance»"
+    },
+    "abgrenzung": "Der Releasebericht (agil) entspricht funktional dem Phasenbericht (klassisch): Beide bereiten den Freigabeentscheid des Auftraggebers vor.",
+    "pruefungshinweis": "Der Entscheid Releasefreigabe ist optional und muss bereits in der Phase Initialisierung als erforderlich vorgeschrieben werden."
+  },
+  {
+    "id": "grundbegriff-programm",
+    "kategorie": "grundbegriff",
+    "begriff": "Programm",
+    "definition": "In Organisationen mit weitreichenden und umfassenden Veränderungen benötigt man ein gesamtheitliches Managementsystem, um die Zielerreichung mit einer Gruppe von zusammenhängenden Projekten schlank und koordiniert erreichen zu können. Dieses Managementsystem heisst Programmmanagement und ist eine Erweiterung des Projektmanagements. Im Programmmanagement werden die Projekte in einem Programm zusammengefasst.",
+    "details": "Ein Programm enthält mehrere Projekte. Ein Projekt kann eigenständig oder Teil eines Programms sein. Projekte und Programme können in einem Portfolio zusammengefasst werden; in einer Stammorganisation können Projekte und Programme nebeneinander geführt werden.\n\nDie Methodenelemente des Projektmanagements sind auch für das Programm gültig. Programmmanagement erweitert und verwendet die Methodenelemente Phasen, Module, Ergebnisse, Aufgaben und Rollen.\n\nEine Programmorganisation ist dann sinnvoll, wenn sie für die Projekte und den bzw. die Auftraggeber einen Mehrwert gegenüber der Führung von mehreren Projekten innerhalb des Portfolios bietet und das Programmmanagement die Leistungen des Portfoliomanagements übersteigt. Der Mehrwert muss nachvollziehbar ausgewiesen werden können.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/programmmanagement/methodenelemente.html",
+      "bezeichnung": "HERMES online · Programmmanagement «Methodenelemente»"
+    },
+    "abgrenzung": "Abzugrenzen vom Projekt und vom Portfolio: Ein Programm enthält mehrere Projekte; ein Portfolio fasst Projekte und Programme zusammen. Lange dauernde oder komplexe Vorhaben müssen nicht zwangsläufig als Programm strukturiert werden – sie können als Projekte mit Realisierungseinheiten durchgeführt werden.",
+    "pruefungshinweis": "Programmmanagement ist eine Erweiterung des Projektmanagements, kein separates Verfahren. Im Rahmen eines Programms können einige Projekte klassisch, andere agil abgewickelt werden."
+  },
+  {
+    "id": "grundbegriff-portfoliomanagement",
+    "kategorie": "grundbegriff",
+    "begriff": "Projektportfoliomanagement",
+    "definition": "Eine Aufgabe der Stammorganisation ist es, die Gesamtheit der Projekte der Organisation übergeordnet zu steuern und zu kontrollieren. Dies erfolgt mit dem Projektportfoliomanagement. Es umfasst die übergeordnete Priorisierung und Koordination der Projekte, die Ressourcenzuweisung zu Projekten und die Entscheide darüber, welche Projekte initialisiert, umgesetzt, angehalten und beendet werden.",
+    "details": "Das Portfolio ist oft im Kompetenzzentrum Projektmanagement oder bei den Controlling- und Vorgabestellen angesiedelt; die Verantwortung obliegt in der Regel jedoch der Leitung.\n\nHERMES unterstützt die Integration der Projekte – sowie der Anwendungen – in das Portfoliomanagement unter anderem mit dem Phasenmodell (übereinstimmende Projektstruktur), mit den Phasen und den Releases sowie mit Meilensteinen und mit Reporting.\n\nAus Unternehmenssicht werden mit Vorteil Projektportfolio und Anwendungsportfolio in einem übergeordneten Produktportfolio zusammengeführt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/governance.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Governance»"
+    },
+    "abgrenzung": "Portfoliomanagement steuert die Gesamtheit der Vorhaben; Programmmanagement koordiniert eine Gruppe zusammenhängender Projekte; Projektmanagement führt das einzelne Projekt.",
+    "pruefungshinweis": "Die Governance-Anforderung eines effizienten und nachhaltigen Ressourceneinsatzes ist der Grund, weshalb über Start und Durchführungsfreigabe eines Projekts entschieden wird."
+  },
+  {
+    "id": "grundbegriff-reporting",
+    "kategorie": "grundbegriff",
+    "begriff": "Reporting",
+    "definition": "Die Forderung der Projekt-Governance nach einer transparenten Kommunikation bedingt ein Reporting. Mit dem Reporting wird der Informationsfluss in der Projektorganisation und gegenüber der Stammorganisation formell geregelt. Das Reporting erfolgt periodisch entlang den Phasen gemäss den Vorgaben der Stammorganisation.",
+    "details": "Die folgenden Ergebnisse fallen beim Reporting an:\n\nProjektstatusbericht: wird periodisch ab Projektbeginn bis Projektabschluss erstellt und informiert Auftraggeber und Stammorganisation über den Projektstand (Vergleich Plan/Ist) und den voraussichtlichen weiteren Verlauf (Prognose).\n\nPhasenbericht: Am Ende der Phasen Konzept, Realisierung, Einführung und Umsetzung werden die Ergebnisse der Phase und die Planung des weiteren Projektverlaufs für den Auftraggeber so aufbereitet, dass er den Entscheid zum weiteren Projektvorgehen (in der Regel zur Phasenfreigabe) treffen kann.\n\nReleasebericht (agil): am Ende jedes Release während der Phase Umsetzung.\n\nProjektschlussbeurteilung: Am Ende der Phase Abschluss erarbeitet; sie dient der kontinuierlichen Verbesserung in der Stammorganisation aufgrund der gemachten Erfahrungen.\n\nDas Reporting bleibt innerhalb der Projektorganisation und gegenüber der Stammorganisation einheitlich, gleichgültig welches Entwicklungsvorgehen gewählt wird.",
+    "ergebnisse": ["Projektstatusbericht", "Phasenbericht", "Releasebericht", "Projektschlussbeurteilung"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/governance.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Governance»"
+    },
+    "abgrenzung": "Der Phasenbericht wird am Ende der Phasen Konzept, Realisierung, Einführung und Umsetzung erstellt – nicht am Ende der Phasen Initialisierung und Abschluss.",
+    "pruefungshinweis": "Vier Reporting-Ergebnisse. Ergänzend zum Reporting werden definierte fachliche Ergebnisse den Controlling- und Vorgabestellen zur Prüfung zugestellt (Beispiel: Lösungsarchitektur)."
+  },
+  {
+    "id": "grundbegriff-nachhaltigkeit",
+    "kategorie": "grundbegriff",
+    "begriff": "Nachhaltigkeit",
+    "definition": "Das Fundament der Nachhaltigkeit bildet das Nachhaltigkeitsverständnis der Weltkommission für Umwelt und Entwicklung («Brundtland-Kommission»): Die nachhaltige Entwicklung soll die Bedürfnisse der Gegenwart befriedigen, jedoch die Bedürfnisse der künftigen Generationen nicht gefährden. Dabei sollen die wirtschaftlichen, gesellschaftlichen und ökologischen Vorgänge miteinander in Einklang gebracht werden.",
+    "details": "Projekte dürfen sich bei der Definition der zu erreichenden Ziele nicht lediglich auf die Wirtschaftlichkeit beschränken, sondern müssen auch die Gesellschaft und die Umwelt einbeziehen.\n\nVerankerung in HERMES: Nachhaltigkeitsziele fliessen in der Phase Initialisierung als Vorgabe in das Projekt ein. Für den Auftraggeber ist eines der Entscheidungskriterien bei der Durchführungsfreigabe, ob und wie die Vorgaben und Ziele zur Nachhaltigkeit durch das Projekt erfüllt werden. Bei jedem Entscheid zur Phasen- bzw. Releasefreigabe wird nebst der Einhaltung der Vorgaben sowie der Übereinstimmung mit den strategischen Zielen auch die Erreichung der Nachhaltigkeitsziele als Bewertungskriterium mitberücksichtigt.\n\nIm Bereich der Informations- und Kommunikationstechnologien stehen aus Nachhaltigkeitssicht vor allem die Energie- und Ressourceneffizienz sowie die Arbeitsbedingungen in den Produktionsländern im Vordergrund; ein besonderes Augenmerk gilt dem Beschaffungswesen durch das Definieren von ökologischen und sozialen Zuschlagskriterien.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/nachhaltigkeit.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Nachhaltigkeit»"
+    },
+    "abgrenzung": "Nachhaltigkeit ist in HERMES 2022 als Erläuterung in den «Hinweisen zur Anwendung» verankert, nicht als eigenes Methodenelement.",
+    "pruefungshinweis": "Nachhaltigkeit ist Bewertungskriterium bei den Entscheiden Durchführungsfreigabe, Phasenfreigabe, Releasefreigabe und Weiteres Vorgehen. Nicht nachhaltige Projekte werden gar nicht erst zur Fortsetzung freigegeben."
+  },
+  {
+    "id": "grundbegriff-hinweise-zur-anwendung",
+    "kategorie": "grundbegriff",
+    "begriff": "Hinweise zur Anwendung",
+    "definition": "Die Hinweise zur Anwendung beschreiben spezifische Aspekte von HERMES-Projektmanagement. Sie bilden die Basis für ein vertieftes Methodenverständnis, beispielsweise in Bezug auf Governance und Nachhaltigkeit, und zeigen auf, wie HERMES in spezifischen Situationen angewendet werden soll.",
+    "details": "Die Hinweise werden in zwei Kategorien zusammengefasst:\n\nErläuterungen zeigen auf, wie spezifische Themen in HERMES integriert sind; sie vermitteln Zusammenhänge und ermöglichen ein vertieftes Methodenverständnis. Dazu gehören: Governance, Nachhaltigkeit, Projektmanagement und Entwicklungsmanagement, Finanzielle Steuerung und Führung.\n\nAnwendungsfälle zeigen auf, wie HERMES in spezifischen Situationen umgesetzt werden soll; sie schaffen Sicherheit in der Anwendung und helfen, den Interpretationsspielraum zu reduzieren. Dazu gehören: Planung, Realisierungseinheiten bei klassischer Vorgehensweise, Anwendung mit anderen Methoden und Praktiken, Integration von HERMES in die Stammorganisation.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung"
+    },
+    "abgrenzung": "Zwei Kategorien: Erläuterungen (vier) und Anwendungsfälle (vier) – zusammen acht Hinweise.",
+    "pruefungshinweis": "Governance und Nachhaltigkeit sind Erläuterungen, Realisierungseinheiten und Planung sind Anwendungsfälle."
+  },
+  {
+    "id": "grundbegriff-methodenelemente",
+    "kategorie": "grundbegriff",
+    "begriff": "Methodenelemente",
+    "definition": "Die HERMES-Projektmanagement-Methodenelemente sind Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen.",
+    "details": "Die Elemente greifen ineinander: Die Phasen bilden das Rückgrat jedes Projekts. Ein Szenario wird für das zwischen Initialisierung und Abschluss eingeschlossene Entwicklungsvorgehen bestimmt. Module sind wiederverwendbare, den Phasen zugeordnete Bausteine zur Erstellung von Projekten und Szenarien; sie setzen sich aus Ergebnissen und Aufgaben zusammen. Die Ergebnisse stehen im Zentrum; die Aufgaben dienen ihrer Erarbeitung; die Rollen tragen Verantwortung für Aufgaben und Ergebnisse.\n\nDie Methodenelemente des Projektmanagements sind auch für das Programm gültig; das Programmmanagement erweitert und verwendet die Elemente Phasen, Module, Ergebnisse, Aufgaben und Rollen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick/hermes-projektmanagement-methodenelemente.html",
+      "bezeichnung": "HERMES online · HERMES-Projektmanagement-Methodenelemente"
+    },
+    "abgrenzung": "Die Lösung und das Inkrement sind ausdrücklich keine HERMES-Methodenelemente. Der Meilenstein ist kein eigenes Methodenelement, sondern eine Art von Ergebnis.",
+    "pruefungshinweis": "Sechs Methodenelemente im Projektmanagement (mit Szenarien), fünf im Programmmanagement (ohne Szenarien)."
+  }
+]

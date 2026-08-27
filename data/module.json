@@ -1,1 +1,182 @@
-[]
+[
+  {
+    "id": "modul-projektsteuerung",
+    "kategorie": "modul",
+    "begriff": "Projektsteuerung",
+    "definition": "Das Modul Projektsteuerung sorgt für die gesamthafte und organisationsübergreifende Steuerung des Projekts und stellt die Erreichung der gesetzten Ziele sicher.",
+    "details": "Was ist zu tun: Das Projekt initialisieren, kontinuierlich steuern und die Übereinstimmung mit den übergeordneten Zielen und Vorgaben der Stammorganisation sicherstellen. Anliegen der Stakeholder berücksichtigen und integrieren, Entscheide zu Risiken treffen. Entscheide zur Steuerung treffen. Das Projekt abschliessen, eventuell vorzeitig abbrechen.\n\nIm Modul Projektsteuerung liegen die Entscheidungsaufgaben der Steuerung und damit die zugehörigen Meilensteine: Projektinitialisierungsfreigabe, Durchführungsfreigabe, Phasenfreigabe, Phasenfreigabe Abschluss, Releasefreigabe und Projektabschluss. Weitere Ergebnisse sind unter anderem Projektinitialisierungsauftrag, Durchführungsauftrag, Liste Projektentscheide Steuerung, QS- und Risikobericht, Projekterfahrungen und Projektschlussbeurteilung sowie die zugehörigen Checklisten (inkl. Checkliste Projektabbruch).",
+    "phasen": ["Initialisierung", "Konzept", "Realisierung", "Einführung", "Umsetzung", "Abschluss"],
+    "szenarien": ["Dienstleistung/Produkt Entwicklung", "Dienstleistung/Produkt Adaption", "IT-Entwicklung", "IT-Adaption", "Organisationsanpassung"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektsteuerung.html",
+      "bezeichnung": "HERMES online · Modul «Projektsteuerung»"
+    },
+    "abgrenzung": "Nicht mit der Hierarchieebene Steuerung verwechseln: Projektsteuerung ist ein Modul (Bündel von Aufgaben und Ergebnissen), Steuerung ist eine der drei Hierarchieebenen, denen die Rollen zugeordnet sind.",
+    "pruefungshinweis": "Eines der vier Module, die zur Einhaltung der Projekt-Governance zwingend in jedem Projekt vorkommen müssen. Kommt zusammen mit Projektführung als einziges Modul in allen sechs Phasen vor."
+  },
+  {
+    "id": "modul-projektfuehrung",
+    "kategorie": "modul",
+    "begriff": "Projektführung",
+    "definition": "Im Rahmen des Moduls Projektführung erfolgt die Planung, Führung und Koordination des Projekts zur Erreichung der Projektergebnisse und der Vorgehensziele sowie die Durchführung aller notwendigen flankierenden Massnahmen.",
+    "details": "Was ist zu tun: Das Projekt planen, führen und gemäss den definierten Rahmenbedingungen (Termine und Kosten) mit dem geforderten Ergebnis zum Ziel bringen. Stakeholder für das Projekt gewinnen und informieren. Risiken managen, Probleme bewältigen und Erfahrungen berücksichtigen. Leistungen vereinbaren und steuern, das Änderungsmanagement und die Qualitätssicherung führen.\n\nZentrale Ergebnisse sind unter anderem Projektmanagementplan, Durchführungsauftrag, Projektstatusbericht, Phasenbericht, Releasebericht, Stakeholderliste, Stakeholderinteressen, Arbeitsauftrag, Änderungsantrag, Änderungsstatusliste, Offertanfrage, Angebot, Evaluationsbericht und Vereinbarung. Beschaffungen ausserhalb des offenen oder selektiven Verfahrens werden im Modul Projektführung abgewickelt.",
+    "phasen": ["Initialisierung", "Konzept", "Realisierung", "Einführung", "Umsetzung", "Abschluss"],
+    "szenarien": ["Dienstleistung/Produkt Entwicklung", "Dienstleistung/Produkt Adaption", "IT-Entwicklung", "IT-Adaption", "Organisationsanpassung"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektfuehrung.html",
+      "bezeichnung": "HERMES online · Modul «Projektführung»"
+    },
+    "abgrenzung": "Abzugrenzen vom Modul Beschaffung: Nur Beschaffungen mit offenem oder selektivem Verfahren und öffentlicher Publikation laufen über das Modul Beschaffung; alle anderen Fälle von Beschaffungen werden im Modul Projektführung abgewickelt.",
+    "pruefungshinweis": "Eines der vier zwingenden Module. Führung heisst planen, führen und koordinieren – die Entscheide zur Steuerung liegen dagegen im Modul Projektsteuerung."
+  },
+  {
+    "id": "modul-projektgrundlagen",
+    "kategorie": "modul",
+    "begriff": "Projektgrundlagen",
+    "definition": "Das Modul Projektgrundlagen schafft eine konkrete, fundierte Ausgangslage für eine mögliche Lösungsentstehung und den darauffolgenden Projektabschluss.",
+    "details": "Was ist zu tun: Die Studie erarbeiten, damit der Entscheid Weiteres Vorgehen getroffen werden kann. Die Rechtsgrundlagen klären und den Schutzbedarf analysieren. Eine Beschaffungsanalyse durchführen, sofern eine Beschaffung mit anschliessender Adaption geplant ist. Die Voraussetzungen schaffen, um den Projektmanagementplan und den Durchführungsauftrag zu erarbeiten.\n\nErgebnisse sind unter anderem Studie, Rechtsgrundlagenanalyse, Schutzbedarfsanalyse, Beschaffungsanalyse, Stakeholderliste, Prototyp realisiert, Prototypdokumentation, Liste Projektentscheide Führung sowie Checkliste und Meilenstein Weiteres Vorgehen.",
+    "phasen": ["Initialisierung"],
+    "szenarien": [],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektgrundlagen.html",
+      "bezeichnung": "HERMES online · Modul «Projektgrundlagen»"
+    },
+    "abgrenzung": "Abzugrenzen vom Modul Beschaffung: Die Erarbeitung der Beschaffungsgrundlagen wie Bedarfs- und Marktanalyse, Abklärung des korrekten Verfahrens mit Beschaffung/Einkauf, Sicherstellung der rechtlichen Aspekte oder Verfahrenswahl findet bei der Erarbeitung der Beschaffungsanalyse im Modul Projektgrundlagen statt – nicht im Modul Beschaffung.",
+    "pruefungshinweis": "Das einzige Modul, das nur in der Phase Initialisierung vorkommt, und deshalb das einzige der vier zwingenden Module, das in keinem Szenario enthalten ist – denn ein Szenario beschreibt ausschliesslich die Lösungsentstehung. Es enthält als einziges Modul den Meilenstein Weiteres Vorgehen."
+  },
+  {
+    "id": "modul-beschaffung",
+    "kategorie": "modul",
+    "begriff": "Beschaffung",
+    "definition": "Das Modul Beschaffung dient der gezielten Beschaffung eines am Markt verfügbaren Systems, Produkts oder einer Dienstleistung mittels offenem oder selektivem Verfahren.",
+    "details": "Was ist zu tun: Beschaffung mit offenem oder selektivem Verfahren und öffentlicher Publikation; alle anderen Fälle von Beschaffungen werden im Modul Projektführung abgewickelt.\n\nErgebnisse sind unter anderem Ausschreibungsunterlagen, Angebot, Angebotsprotokoll, Evaluationsbericht, Publikation, Vereinbarung, Liste Projektentscheide Steuerung sowie die Checklisten und Meilensteine Ausschreibung und Zuschlag.",
+    "phasen": ["Konzept", "Umsetzung"],
+    "szenarien": ["Dienstleistung/Produkt Adaption", "IT-Adaption"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/beschaffung.html",
+      "bezeichnung": "HERMES online · Modul «Beschaffung»"
+    },
+    "abgrenzung": "Die Beschaffungsanalyse gehört zum Modul Projektgrundlagen (Phase Initialisierung), nicht zum Modul Beschaffung.",
+    "pruefungshinweis": "Das einzige Modul, das nur in den Phasen Konzept und Umsetzung vorkommt – also weder in Realisierung noch in Einführung. Es kommt nur in den beiden Adaptions-Szenarien vor, weil nur dort am Markt beschafft wird."
+  },
+  {
+    "id": "modul-organisation",
+    "kategorie": "modul",
+    "begriff": "Organisation",
+    "definition": "Das Modul Organisation unterstützt den lösungsspezifischen Aufbau oder Anpassung der Organisation und deren Umsetzung oder liefert die organisatorisch-fachlichen Grundlagen für den Aufbau der jeweiligen Lösung.",
+    "details": "Was ist zu tun: Organisation mit Geschäftsmodell, Aufbau- und Ablauforganisation anpassen oder neu konzipieren, umsetzen und aktivieren. Die Interessen der Stakeholder kontinuierlich weiter in Erfahrung bringen und analysieren. Die Stakeholder in die Lösungsentstehung einbeziehen.\n\nErgebnisse sind unter anderem Situationsanalyse, Stakeholderinteressen, Organisationsanforderungen, Organisationskonzept, Organisationsbeschreibung, Geschäftsmodellbeschreibung, Prozessbeschreibung sowie die Zustände Organisation umgesetzt und Organisation aktiviert.",
+    "phasen": ["Konzept", "Realisierung", "Einführung", "Umsetzung"],
+    "szenarien": ["Dienstleistung/Produkt Entwicklung", "Dienstleistung/Produkt Adaption", "IT-Entwicklung", "IT-Adaption", "Organisationsanpassung"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/organisation.html",
+      "bezeichnung": "HERMES online · Modul «Organisation»"
+    },
+    "abgrenzung": "Nicht mit dem Szenario Organisationsanpassung verwechseln: Das Modul Organisation kommt in allen fünf Standardszenarien vor, nicht nur im Szenario Organisationsanpassung.",
+    "pruefungshinweis": "Das einzige nicht zwingende Modul, das trotzdem in allen fünf Standardszenarien vorkommt. Es enthält keine Meilensteine."
+  },
+  {
+    "id": "modul-produkt",
+    "kategorie": "modul",
+    "begriff": "Produkt",
+    "definition": "Das Modul Produkt dient der Entwicklung eines Produkts oder einer Dienstleistung.",
+    "details": "Was ist zu tun: Das Produktkonzept erarbeiten und das Produkt entwickeln oder anpassen. Die Lösungsanforderungen verfeinern. Die Detailspezifikation erarbeiten. Die Interessen der Stakeholder kennen und sie ggf. an der Lösungsentstehung mitwirken lassen.\n\nErgebnisse sind unter anderem Situationsanalyse, Stakeholderinteressen, Lösungsanforderungen, Produktkonzept, Detailspezifikation, Produktdokumentation, Anwendungshandbuch, Prototyp realisiert, Prototypdokumentation, Liste Projektentscheide Führung sowie Checkliste und Meilenstein Produktkonzept und die Zustände Produkt entwickelt oder angepasst und Produkt aktiviert.",
+    "phasen": ["Konzept", "Realisierung", "Einführung", "Umsetzung"],
+    "szenarien": ["Dienstleistung/Produkt Entwicklung", "Dienstleistung/Produkt Adaption"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/produkt.html",
+      "bezeichnung": "HERMES online · Modul «Produkt»"
+    },
+    "abgrenzung": "Abzugrenzen vom Modul IT-System: Produkt dient der Entwicklung eines Produkts oder einer Dienstleistung, IT-System der Entwicklung eines Systems. In den IT-Szenarien tritt IT-System an die Stelle von Produkt; kein Standardszenario enthält beide.",
+    "pruefungshinweis": "Kommt nur in den beiden Dienstleistung/Produkt-Szenarien vor. Zusammen mit IT-System ist es gemäss HERMES der treibende Kern der Iteration während der agilen Entwicklung."
+  },
+  {
+    "id": "modul-it-system",
+    "kategorie": "modul",
+    "begriff": "IT-System",
+    "definition": "Das Modul IT-System dient der Entwicklung eines Systems.",
+    "details": "Was ist zu tun: Die Lösungsanforderungen verfeinern, die Lösungsarchitektur erarbeiten und die Machbarkeit überprüfen (allenfalls mit Prototypen). Das System realisieren bzw. integrieren und dokumentieren. Die Detailspezifikation erarbeiten und das System und die Integration realisieren. Die Interessen der Stakeholder kennen und sie an der Lösungsentstehung mitwirken lassen.\n\nErgebnisse sind unter anderem Situationsanalyse, Stakeholderinteressen, Lösungsanforderungen, Lösungsarchitektur, Systemkonzept, Integrationskonzept, Detailspezifikation, Integrations- und Installationsanleitung, Anwendungshandbuch, Prototyp realisiert, Prototypdokumentation sowie Checkliste und Meilenstein Lösungsarchitektur und die Zustände Schnittstellen realisiert, System entwickelt oder parametrisiert und System aktiviert.",
+    "phasen": ["Konzept", "Realisierung", "Einführung", "Umsetzung"],
+    "szenarien": ["IT-Entwicklung", "IT-Adaption"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-system.html",
+      "bezeichnung": "HERMES online · Modul «IT-System»"
+    },
+    "abgrenzung": "Abzugrenzen vom Modul IT-Betrieb: IT-System entwickelt und integriert das System selbst; IT-Betrieb konzipiert und realisiert die Betriebsorganisation beim Betreiber und aktiviert den Betrieb.",
+    "pruefungshinweis": "Der Meilenstein Lösungsarchitektur gehört zum Modul IT-System – nicht zum Modul Projektsteuerung, obwohl er ein Entscheid ist."
+  },
+  {
+    "id": "modul-tests",
+    "kategorie": "modul",
+    "begriff": "Tests",
+    "definition": "Das Modul Tests dient einer systematischen und effizienten Organisation und Durchführung des Testens von Lösungen.",
+    "details": "Was ist zu tun: Die Testinfrastruktur realisieren und überführen. Die Tests vorbereiten, durchführen und protokollieren.\n\nErgebnisse sind Testkonzept, Testprotokoll, Protokoll sowie die Zustände Testinfrastruktur realisiert und Testinfrastruktur überführt. Das Modul enthält keine Meilensteine.",
+    "phasen": ["Konzept", "Realisierung", "Einführung", "Umsetzung", "Abschluss"],
+    "szenarien": ["IT-Entwicklung", "IT-Adaption"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/tests.html",
+      "bezeichnung": "HERMES online · Modul «Tests»"
+    },
+    "abgrenzung": "Abzugrenzen von der Vorabnahme und der Abnahme: Diese Entscheide gehören zum Modul Einführungsorganisation, nicht zum Modul Tests.",
+    "pruefungshinweis": "Eines von nur vier Modulen, die auch in der Phase Abschluss vorkommen (Testinfrastruktur überführen). Im Szenario Dienstleistung/Produkt Adaption kann Tests bei Bedarf eingebettet werden, gehört dort aber nicht zum Standardumfang."
+  },
+  {
+    "id": "modul-einfuehrungsorganisation",
+    "kategorie": "modul",
+    "begriff": "Einführungsorganisation",
+    "definition": "Das Modul Einführungsorganisation unterstützt die Schulung und Einführung der neuen Lösung bzw. den Übergang zum neuen Zustand.",
+    "details": "Was ist zu tun: Einführungskonzept erarbeiten. Einführungsmassnahmen und die Einführungsorganisation realisieren und durchführen. Vorabnahme und Abnahme durchführen. Organisationschangemanagement durchführen.\n\nErgebnisse sind unter anderem Einführungskonzept, Projektmanagementplan, Abnahmeprotokoll, Liste Projektentscheide Führung, Liste Projektentscheide Steuerung, die Checklisten und Meilensteine Vorabnahme, Betriebsaufnahme und Abnahme sowie die Zustände Einführungsmassnahmen realisiert und Einführungsmassnahmen durchgeführt.",
+    "phasen": ["Konzept", "Realisierung", "Einführung", "Umsetzung"],
+    "szenarien": ["Dienstleistung/Produkt Entwicklung", "Dienstleistung/Produkt Adaption", "IT-Entwicklung", "IT-Adaption", "Organisationsanpassung"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/einfuehrungsorganisation.html",
+      "bezeichnung": "HERMES online · Modul «Einführungsorganisation»"
+    },
+    "abgrenzung": "Nicht mit der Phase Einführung verwechseln: Das Modul Einführungsorganisation kommt bereits in der Phase Konzept vor (Einführungskonzept) und reicht bis in die Phase Einführung bzw. Umsetzung.",
+    "pruefungshinweis": "Eines der vier Module, die zur Einhaltung der Projekt-Governance zwingend in jedem Projekt vorkommen müssen – und das einzige davon, das nicht in der Phase Initialisierung vorkommt. Die Meilensteine Vorabnahme, Betriebsaufnahme und Abnahme liegen hier."
+  },
+  {
+    "id": "modul-it-migration",
+    "kategorie": "modul",
+    "begriff": "IT-Migration",
+    "definition": "Das Modul IT-Migration dient der Überführung der Daten in das neue System sowie der Ausserbetriebssetzung und Entfernung des Altsystems.",
+    "details": "Was ist zu tun: Die Migration konzipieren, planen, vorbereiten und durchführen. Abnahme der Migration durchführen. Das Altsystem ausser Betrieb setzen.\n\nErgebnisse sind unter anderem Migrationskonzept, Detailspezifikation, Abnahmeprotokoll, Liste Projektentscheide Führung, Checkliste und Meilenstein Abnahme Migration sowie die Zustände Migrationsverfahren realisiert, Migration durchgeführt und Altsystem entfernt.",
+    "phasen": ["Konzept", "Realisierung", "Einführung", "Umsetzung", "Abschluss"],
+    "szenarien": ["IT-Entwicklung", "IT-Adaption"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-migration.html",
+      "bezeichnung": "HERMES online · Modul «IT-Migration»"
+    },
+    "abgrenzung": "Der Meilenstein Abnahme Migration ist nicht der Meilenstein Abnahme: Letzterer gehört zum Modul Einführungsorganisation und betrifft die gesamte Lösung.",
+    "pruefungshinweis": "Eines von nur vier Modulen, die auch in der Phase Abschluss vorkommen – dort wird das Altsystem entfernt."
+  },
+  {
+    "id": "modul-it-betrieb",
+    "kategorie": "modul",
+    "begriff": "IT-Betrieb",
+    "definition": "Das Modul IT-Betrieb dient der Konzeption und Realisierung der Betriebsorganisation beim Betreiber sowie der Aktivierung des Betriebs.",
+    "details": "Was ist zu tun: Den Betrieb mit Infrastruktur und Betriebsorganisation konzipieren und realisieren. Das System in den Betrieb integrieren. Den Betrieb aktivieren.\n\nErgebnisse sind Betriebskonzept, Betriebshandbuch, Service Level Agreement sowie die Zustände Betriebsinfrastruktur realisiert, Betriebsorganisation realisiert, System integriert und Betrieb aktiviert. Das Modul enthält keine Meilensteine.",
+    "phasen": ["Konzept", "Realisierung", "Einführung", "Umsetzung"],
+    "szenarien": ["IT-Entwicklung", "IT-Adaption"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-betrieb.html",
+      "bezeichnung": "HERMES online · Modul «IT-Betrieb»"
+    },
+    "abgrenzung": "Der Entscheid Betriebsaufnahme gehört nicht zum Modul IT-Betrieb, sondern zum Modul Einführungsorganisation.",
+    "pruefungshinweis": "IT-Betrieb betrifft die Betreiberseite (Partnergruppe Betreiber): Betriebsinfrastruktur, Betriebsorganisation und Betriebsaktivierung."
+  },
+  {
+    "id": "modul-isds",
+    "kategorie": "modul",
+    "begriff": "ISDS",
+    "definition": "Im Modul ISDS (Informationssicherheit und Datenschutz) werden die erforderlichen Schutzmassnahmen betreffend die Informationssicherheit und den Datenschutz bei der Nutzung und beim Betrieb der IT-Lösung definiert.",
+    "details": "Was ist zu tun: Anforderungen an ISDS ermitteln, Risiken bewerten und Massnahmen zur Erfüllung der Anforderungen konzipieren und umsetzen. Das ISDS-Konzept erarbeiten und die Ergebnisse laufend dokumentieren.\n\nErgebnisse sind ISDS-Konzept, Liste Projektentscheide Führung, Checkliste und Meilenstein ISDS-Konzept sowie die Zustände ISDS-Massnahmen realisiert und ISDS-Konzept überführt.",
+    "phasen": ["Konzept", "Realisierung", "Einführung", "Umsetzung"],
+    "szenarien": ["IT-Entwicklung", "IT-Adaption"],
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/isds.html",
+      "bezeichnung": "HERMES online · Modul «ISDS»"
+    },
+    "abgrenzung": "Abzugrenzen von der Schutzbedarfsanalyse: Diese wird in der Phase Initialisierung im Modul Projektgrundlagen erarbeitet, das ISDS-Konzept dagegen im Modul ISDS ab der Phase Konzept bzw. Umsetzung.",
+    "pruefungshinweis": "ISDS steht für Informationssicherheit und Datenschutz. Der Meilenstein ISDS-Konzept liegt im Modul ISDS; die Verantwortung für die Aufgabe «Entscheid ISDS-Konzept treffen» trägt der Projektleiter (Hierarchieebene Führung), nicht der Auftraggeber."
+  }
+]

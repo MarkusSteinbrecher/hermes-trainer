@@ -1,1 +1,2861 @@
-[]
+[
+  {
+    "id": "ergebnis-abnahmeprotokoll",
+    "kategorie": "ergebnis",
+    "begriff": "Abnahmeprotokoll",
+    "definition": "Das Abnahmeprotokoll wird bei den Entscheiden Vorabnahme, Abnahme und Abnahme Migration erstellt. Es dokumentiert die Erfüllung der Vereinbarung über die Lösungseigenschaften (Produkt/Dienstleistung/System) und bestehende Mängel. Es ist ein rechtlich verbindliches Dokument.",
+    "phasen": [
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation",
+      "IT-Migration"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Betriebsverantwortlicher",
+      "Entwickler",
+      "Qualitäts- und Risikomanager",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Entscheid Abnahme treffen – Projektleiter\n– Einführungsorganisation – Entscheid Vorabnahme treffen – Projektleiter\n– IT-Migration – Entscheid Abnahme Migration treffen – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Abnahmegegenstand\n– Abnahmebeteiligte\n– Grundlagen\n– Abnahmeverfahren\n– Abnahmekriterien mit Mängelklassen\n– Lieferergebnisse und Mängel inkl.: Massnahmen; Verantwortlichkeiten und; Terminen\n– Abnahmeergebnis\n– Unterschriften\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Das Abnahmeprotokoll hält das Ergebnis eines Abnahmeentscheids fest. Das Testprotokoll hält demgegenüber Testergebnisse fest, das Prüfprotokoll die Befunde aus Prüfungen von Ergebnissen.",
+    "pruefungshinweis": "Das Abnahmeprotokoll entsteht bei drei Entscheiden: Vorabnahme, Abnahme und Abnahme Migration. Es ist ein rechtlich verbindliches Dokument; Verantwortung für die Erarbeitung liegt beim Projektleiter.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/abnahmeprotokoll.html",
+      "bezeichnung": "HERMES online · Ergebnis «Abnahmeprotokoll»"
+    }
+  },
+  {
+    "id": "ergebnis-aenderungsantrag",
+    "kategorie": "ergebnis",
+    "begriff": "Änderungsantrag",
+    "definition": "Der Änderungsantrag bei klassisch geführter Lösungsentstehung bildet die Grundlage für eine inhaltliche Änderung. Er umfasst die Änderungsbeschreibung mit dem Antrag, das Vorgehen, um die Änderung durchzuführen, und den Lösungsvorschlag, um die Änderung umzusetzen. Der Änderungsantrag hat Anforderungscharakter und spezifiziert die durchzuführende Änderung im Detail.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Business Analyst",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nBei agil geführter Lösungsentstehung kommt der Änderungsantrag zum Tragen, wenn Änderungen durch die Umsetzungsorganisation erkannt werden, welche die Projektziele, das Budget oder den Zeitrahmen des Gesamtvorhabens tangieren.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Änderungen managen – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Änderungsantrag Nummer\n– Antragsteller\n– Antragsdatum\n– Änderungsgrund\n– Änderungsbeschreibung\n– Angaben zur Ausführung\n– Lösungsvorschlag\n– Beurteilung der Auswirkungen: Aufwand; Kosten; Termin; Risiken\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "pruefungshinweis": "Ausdrücklich für die klassisch geführte Lösungsentstehung. Der Änderungsantrag hat Anforderungscharakter; die Überwachung erfolgt über die Änderungsstatusliste.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/aenderungsantrag.html",
+      "bezeichnung": "HERMES online · Ergebnis «Änderungsantrag»"
+    }
+  },
+  {
+    "id": "ergebnis-aenderungsstatusliste",
+    "kategorie": "ergebnis",
+    "begriff": "Änderungsstatusliste",
+    "definition": "Die Änderungsstatusliste dient zur Aufzählung und Überwachung der Änderungen sowie der Dokumentation aller hinzugefügten, gelöschten oder geänderten Funktionen oder sonstiger durchgeführter Modifikationen. Sie unterstützt die Nachvollziehbarkeit des Projektverlaufs (Governance) und gibt einen Überblick über deren Bearbeitungsstatus und - falls die Änderungen erfolgen - den Status der Änderungen.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nEin aus der agilen Lösungsentstehung hervorgegangener Änderungsantrag, welcher die Ziele, Kosten oder Termine des Gesamtvorhabens tangiert, wird klassisch abgewickelt und in der Tabelle «Änderungsstatusliste» als klassische Änderung erfasst, d. h., es sind alle Angaben gem. Spalte K zu führen.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Änderungen managen – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Änderungsantrag Nummer (K)\n– Antragsteller (K)\n– Antragsdatum (K/A)\n– Änderung/Kurzbeschreibung (A)\n– Entscheidungsverantwortlicher (K)\n– Status (K/A)\n– Änderungsdatum (K/A)\n– Änderungsverantwortlich (K)\n– Aufwand (K)\n– Kosten (K)\n– Auswirkungen (K)\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/aenderungsstatusliste.html",
+      "bezeichnung": "HERMES online · Ergebnis «Änderungsstatusliste»"
+    }
+  },
+  {
+    "id": "ergebnis-altsystem-entfernt",
+    "kategorie": "ergebnis",
+    "begriff": "Altsystem entfernt",
+    "definition": "Die alte Systemversion sowie das Altsystem sind unter Berücksichtigung der Vorgaben abgebaut bzw. entfernt. Die Ausserbetriebssetzung umfasst ebenfalls die Vernichtung oder Archivierung von Daten.",
+    "phasen": [
+      "Abschluss"
+    ],
+    "module": [
+      "IT-Migration"
+    ],
+    "verantwortlich": "IT-Architekt",
+    "beteiligt": [
+      "IT-Architekt",
+      "Projektleiter",
+      "Betriebsverantwortlicher",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Migration – Altsystem ausser Betrieb setzen – IT-Architekt",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/altsystem-entfernt.html",
+      "bezeichnung": "HERMES online · Ergebnis «Altsystem entfernt»"
+    }
+  },
+  {
+    "id": "ergebnis-angebot",
+    "kategorie": "ergebnis",
+    "begriff": "Angebot",
+    "definition": "Das Angebot spezifiziert die vom Ersteller/Betreiber angebotene Leistung oder das Produkt. Weiter umfasst das Angebot alle kommerziellen Elemente wie Aufwand, Kosten, Gewährleistungen, Garantien, Rechte an Ergebnissen usw. Das Angebot beschreibt Vorgehen und Verfahren zur Erbringung der Leistung und/oder zur Installation und Integration von Produkten/Systemen.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung",
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Projektunterstützung",
+      "Anwendervertreter",
+      "Betriebsverantwortlicher",
+      "Entwickler"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Ausschreibung durchführen – Projektleiter\n– Projektführung – Leistungen vereinbaren und steuern – Projektleiter\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Das Angebot ist die Leistungsspezifikation des Anbieters. Das Angebotsprotokoll dokumentiert die Angebotsöffnung, der Evaluationsbericht die Bewertung der Angebote.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/angebot.html",
+      "bezeichnung": "HERMES online · Ergebnis «Angebot»"
+    }
+  },
+  {
+    "id": "ergebnis-angebotsprotokoll",
+    "kategorie": "ergebnis",
+    "begriff": "Angebotsprotokoll",
+    "definition": "Bei öffentlichen Beschaffungen wird nach Ablauf der Eingabefrist ein Protokoll der Angebotsöffnung erstellt. Fallweise werden auch alle beschaffungsrechtlichen und bewertungsrelevanten Punkte protokolliert.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung"
+    ],
+    "verantwortlich": "Anwendervertreter",
+    "beteiligt": [
+      "Anwendervertreter",
+      "Projektleiter"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Angebote bewerten – Anwendervertreter\n\nInhalt gemäss Dokumentvorlage:\n– Beschaffungsgegenstand\n– Datum\n– Anbieter/Angebot\n– Sachverhalt\n– Öffnungsprotokoll\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/angebotsprotokoll.html",
+      "bezeichnung": "HERMES online · Ergebnis «Angebotsprotokoll»"
+    }
+  },
+  {
+    "id": "ergebnis-anwendungshandbuch",
+    "kategorie": "ergebnis",
+    "begriff": "Anwendungshandbuch",
+    "definition": "Das Anwendungshandbuch enthält alle Informationen, die der Anwender eines Produkts/Systems braucht, um es ordnungsgemäss zu bedienen und im Fall von Problemen richtig reagieren zu können.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System",
+      "Produkt"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – System realisieren – Entwickler\n– Produkt – Produkt realisieren – Entwickler\n\nInhalt gemäss Dokumentvorlage:\n– Übersicht\n– Funktionen\n– Detailbeschreibungen zur Anwendung\n– Mängelbehandlung\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Richtet sich an den Anwender. Das Betriebshandbuch richtet sich an den Betreiber, die Produktdokumentation ist die technische Dokumentation des Produkts.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/anwendungshandbuch.html",
+      "bezeichnung": "HERMES online · Ergebnis «Anwendungshandbuch»"
+    }
+  },
+  {
+    "id": "ergebnis-arbeitsauftrag",
+    "kategorie": "ergebnis",
+    "begriff": "Arbeitsauftrag",
+    "definition": "Der Arbeitsauftrag enthält alle relevanten Informationen zur Erledigung einer gestellten Aufgabe. Der Projektleiter verwendet ihn, um den Projektmitarbeitern Aufträge im Rahmen der Projektplanung, -führung, -information und -kontrolle zu erteilen. Arbeitsaufträge können intern oder extern vergeben werden.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nAllfällige lösungsspezifische Aufträge müssen mit dem Anwendervertreter im Voraus abgestimmt sein.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Projekt führen und kontrollieren – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Arbeitsziele\n– Ergebnisse\n– Abgrenzung\n– Voraussetzungen und Abhängigkeiten\n– Liste der Aktivitäten mit: Bezug auf die Ergebnisse; Aktivität; Verantwortlichen/Mitwirkenden; Planstunden; Terminen; Status\n– Ressourcenbedarf\n– Ergebnisdarstellung\n– Qualitätssicherung\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Der Arbeitsauftrag ist ein Führungsinstrument des Projektleiters gegenüber Projektmitarbeitern – nicht zu verwechseln mit dem Projektinitialisierungsauftrag oder dem Durchführungsauftrag, die vom Auftraggeber ausgehen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/arbeitsauftrag.html",
+      "bezeichnung": "HERMES online · Ergebnis «Arbeitsauftrag»"
+    }
+  },
+  {
+    "id": "ergebnis-ausschreibungsunterlagen",
+    "kategorie": "ergebnis",
+    "begriff": "Ausschreibungsunterlagen",
+    "definition": "Die Ausschreibungsunterlagen umfassen alle Informationen, die im Rahmen einer Ausschreibung publiziert werden. Dazu gehört in erster Linie das Lastenheft (in der Schweiz auch Pflichtenheft genannt) samt Kriterienkatalog, das ein unabdingbarer Teil der Ausschreibungsunterlagen ist. Oft bestehen organisationsspezifische Ausschreibungsunterlagen der Beschaffungsstelle, welche prioritär zu verwenden sind.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung"
+    ],
+    "verantwortlich": "Anwendervertreter, Projektleiter",
+    "beteiligt": [
+      "Anwendervertreter",
+      "Projektleiter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nZu den Ausschreibungsunterlagen gehören weiter der Vertragsentwurf, die allgemeinen Geschäftsbedingungen der Stammorganisation, der Ausschreibungstext und weitere Beilagen zum Lastenheft. Werden in einer öffentlichen Ausschreibung Fragen beantwortet, sind die Fragen und Antworten ebenfalls Teil der Ausschreibungsunterlagen, die anschliessend allen Anbietern zugestellt werden.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Ausschreibung durchführen – Projektleiter\n– Beschaffung – Ausschreibung erarbeiten – Anwendervertreter\n\nInhalt gemäss Dokumentvorlage:\n– Lastenheft mit: Ausgangslage mit; Situationsbeschreibung mit; Soll-Zustand mit; Terminen; Aufbau des Angebots; Administrativem; Kriterienkatalog mit\n– Anhänge wie: Allgemeine Geschäftsbedingungen; Vertragsentwurf; Ausschreibungstext; weitere Ausschreibungsunterlagen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Teil der öffentlichen Beschaffung (Modul Beschaffung); die Offertanfrage im Modul Projektführung dient dem einfachen Einholen von Angeboten.",
+    "pruefungshinweis": "Kernbestandteil ist das Lastenheft (in der Schweiz auch Pflichtenheft genannt) samt Kriterienkatalog.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/ausschreibungsunterlagen.html",
+      "bezeichnung": "HERMES online · Ergebnis «Ausschreibungsunterlagen»"
+    }
+  },
+  {
+    "id": "ergebnis-beschaffungsanalyse",
+    "kategorie": "ergebnis",
+    "begriff": "Beschaffungsanalyse",
+    "definition": "Die Beschaffungsanalyse beschreibt u. a. den konkreten Handlungsbedarf, was durch wen und wann beschafft werden soll, wie sich der Markt präsentiert, welche anderen Rahmenbedingungen zu beachten sind und welches Beschaffungsverfahren zum Tragen kommt. Die Analyse wird mit den Controlling- und Vorgabestellen für das Beschaffungswesen abgestimmt.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Anwendervertreter",
+    "beteiligt": [
+      "Anwendervertreter",
+      "Projektleiter"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nDie Beschaffungsanalyse bildet als Ergänzung zur Studie die Grundlage für die Entscheidung, ob die Projektfortsetzung freigegeben wird oder nicht. Ebenso ist sie die Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektgrundlagen – Beschaffungsanalyse erarbeiten – Anwendervertreter\n\nInhalt gemäss Dokumentvorlage:\n– Grund für die Beschaffung, Handlungsbedarf\n– Beschaffungsinhalte mit: Beschaffungsbedarf; Beschaffungsgegenstand mit Art, Zustand und Qualität; Verfügbarkeit auf dem Markt\n– Anbieter und Lieferanten mit: Mögliche Anbieter und Lieferanten; Bestehende Lieferanten; Bestehende Verträge und deren Laufdauer; Anforderungen an die Anbieter; Auswahl potenzieller Anbieter; Gewünschte Vertriebsart\n– Rollen und ihre Verantwortung mit: Aufgaben und Verantwortung Projektleiter; Aufgaben und Verantwortung Projektteam; Aufgaben und Verantwortung Beschaffungsabteilung/Einkauf\n– Terminliche Aspekte\n– Finanzielle Aspekte\n– Approximative Vorkalkulation/Wirtschaftlichkeitsvorschau\n– Beschaffungsrechtliche Aspekte\n– Standards der Beschaffung: Welche Dokumente werden bei der Beschaffung benutzt?; Wie sind die Prozessschritte bei der Beschaffung gestaltet?\n– Vertragsformen: Welche Vertragsformen kommen zur Anwendung?\n– Abstimmung der Prozesse: In welcher Weise werden die wechselseitigen Abhängigkeiten zwischen dem Prozess der Beschaffung und anderen vor- oder nachgelagerten Prozessen gemanagt?; Unterscheidet sich die Beschaffung je nach Lösungsvariante aus der Studie?\n– Beschaffungsplan\n– Ausschreibungsverfahren\n– Vorgehen bei Fragen zur Ausschreibung, zu den Unterlagen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "pruefungshinweis": "Wird in der Phase Initialisierung zwingend parallel zur Studie erstellt, wenn eine Beschaffung vorgesehen ist, und mit den Controlling- und Vorgabestellen für das Beschaffungswesen abgestimmt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/beschaffungsanalyse.html",
+      "bezeichnung": "HERMES online · Ergebnis «Beschaffungsanalyse»"
+    }
+  },
+  {
+    "id": "ergebnis-betrieb-aktiviert",
+    "kategorie": "ergebnis",
+    "begriff": "Betrieb aktiviert",
+    "definition": "Der Betrieb des aktivierten Systems ist aufgenommen und erfolgt mit der im Betriebskonzept definierten Betriebsorganisation. Die im Betriebshandbuch festgelegten Aktivitäten werden ausgeführt. Das Betriebspersonal nimmt die Betriebsaufgaben wahr.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Betrieb"
+    ],
+    "verantwortlich": "Betriebsverantwortlicher",
+    "beteiligt": [
+      "Betriebsverantwortlicher",
+      "Entwickler"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nDie Voraussetzungen für die Messung und Einhaltung des SLAs sind gegeben.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Betrieb – Betrieb aktivieren – Betriebsverantwortlicher",
+    "abgrenzung": "Betrifft die Aufnahme des Betriebs durch den Betreiber (Modul IT-Betrieb) – nicht die Bereitstellung des Systems für die Anwender («System aktiviert»).",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betrieb-aktiviert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Betrieb aktiviert»"
+    }
+  },
+  {
+    "id": "ergebnis-betriebshandbuch",
+    "kategorie": "ergebnis",
+    "begriff": "Betriebshandbuch",
+    "definition": "Das Betriebshandbuch liefert alle Informationen, die der Betreiber benötigt, um das System ordnungsgemäss betreiben und im Fall von Problemen richtig reagieren zu können. Alle für den Betreiber betriebsrelevanten Informationen sind im Betriebshandbuch dokumentiert.",
+    "phasen": [
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Betrieb"
+    ],
+    "verantwortlich": "Betriebsverantwortlicher",
+    "beteiligt": [
+      "Betriebsverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nWährend der agilen Lösungsentstehung wird das Betriebshandbuch mehrmals, pro Iteration/Release, entsprechend der Aktivierung eines vollständigen Teils der Lösung aktualisiert.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Betrieb – Betrieb aktivieren – Betriebsverantwortlicher\n– IT-Betrieb – Betrieb realisieren – Betriebsverantwortlicher\n– IT-Betrieb – System in Betrieb integrieren – Betriebsverantwortlicher\n\nInhalt gemäss Dokumentvorlage:\n– Systemübersicht\n– Aufnahme des Betriebs: Voraussetzungen für die Betriebsaufnahme; Ablauf der Betriebsaufnahme; Qualitätssicherung nach Betriebsaufnahme; Vorgaben zur Abnahme des Systems\n– Durchführung und Überwachung des Betriebs\n– Unterbrechung oder Beendigung des Betriebs\n– Supportorganisation mit: Supportprozessen; Organisation mit Rollen\n– Changemanagement mit: Changemanagement-Prozess; Changemanagement-Organisation mit\n– Sicherheitsbestimmungen\n– Anhänge: Betriebskonzept; Integrationskonzept\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Richtet sich an den Betreiber und beruht auf dem Betriebskonzept. Das Anwendungshandbuch richtet sich an den Anwender.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebshandbuch.html",
+      "bezeichnung": "HERMES online · Ergebnis «Betriebshandbuch»"
+    }
+  },
+  {
+    "id": "ergebnis-betriebsinfrastruktur-realisiert",
+    "kategorie": "ergebnis",
+    "begriff": "Betriebsinfrastruktur realisiert",
+    "definition": "Die Betriebsinfrastruktur umfasst alle für die Erstellung und den Betrieb eines Systems benötigten Infrastrukturen mit den verschiedenen Systemumgebungen (Entwicklung, Test, Produktion usw.) und allen ihren Komponenten. Zur Betriebsinfrastruktur gehören auch die für die Betriebsüberwachung nötigen Komponenten wie Monitoring und Alarmierung, Statistikwerkzeuge usw.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Betrieb"
+    ],
+    "verantwortlich": "Betriebsverantwortlicher",
+    "beteiligt": [
+      "Betriebsverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Betrieb – Betrieb realisieren – Betriebsverantwortlicher",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebsinfrastruktur-realisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Betriebsinfrastruktur realisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-betriebskonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Betriebskonzept",
+    "definition": "Das Betriebskonzept beschreibt die Betriebsorganisation mit der Aufbauorganisation und den Betriebsprozessen des Betreibers. Das Betriebskonzept bildet die Grundlage für die Erarbeitung des Betriebshandbuchs und der Organisation beim Betreiber.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Betrieb"
+    ],
+    "verantwortlich": "Betriebsverantwortlicher",
+    "beteiligt": [
+      "Betriebsverantwortlicher",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Betrieb – Betriebskonzept erarbeiten – Betriebsverantwortlicher\n\nInhalt gemäss Dokumentvorlage:\n– Anforderungen an den Betrieb\n– Systemtechnik: IT-Infrastrukturkonzept; Systeme, eingesetzte Komponenten, Versionen; Netze; Datensicherung; Archivierung\n– Organisation: Aufbauorganisation; Betriebsprozesse\n– Systembetrieb mit: Normalbetrieb; Systemüberwachung; Arbeitsvorbereitung\n– Behandlung von Störungen\n– Beschreibung der Sicherheitsaspekte\n– Anforderungsabdeckung\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Beschreibt die Betriebsorganisation des Betreibers und ist Grundlage für das Betriebshandbuch. Nicht zu verwechseln mit dem Einführungskonzept (Massnahmen der Lösungseinführung) oder dem Integrationskonzept (Integration des Systems im Umfeld).",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebskonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Betriebskonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-betriebsorganisation-realisiert",
+    "kategorie": "ergebnis",
+    "begriff": "Betriebsorganisation realisiert",
+    "definition": "Die im Betriebskonzept definierte Betriebsorganisation mit der Betriebsaufbauorganisation und den Betriebsprozessen des Betreibers sind realisiert. Das Betriebspersonal ist ausgebildet und kann die Betriebsaufgaben wahrnehmen.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Betrieb"
+    ],
+    "verantwortlich": "Betriebsverantwortlicher",
+    "beteiligt": [
+      "Betriebsverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Betrieb – Betrieb realisieren – Betriebsverantwortlicher",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebsorganisation-realisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Betriebsorganisation realisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-abnahme-migration",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Abnahme Migration",
+    "definition": "Die Checkliste Abnahme Migration beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme Migration relevant sind.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Migration"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Qualitäts- und Risikomanager",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Migration – Entscheid Abnahme Migration treffen – Projektleiter\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Abnahme Migration bereitet den Entscheid Abnahme Migration vor (Ergebnistyp Dokument). Der Meilenstein Abnahme Migration ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Abnahme Migration». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-abnahme-migration.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Abnahme Migration»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-abnahme",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Abnahme",
+    "definition": "Die Checkliste Abnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme relevant sind.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Qualitäts- und Risikomanager",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Entscheid Abnahme treffen – Projektleiter\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Bereitet den Entscheid Abnahme vor. Für die vorgelagerte Vorabnahme gilt die Checkliste Vorabnahme, für die Migration die Checkliste Abnahme Migration.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Abnahme». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-abnahme.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Abnahme»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-ausschreibung",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Ausschreibung",
+    "definition": "Die Checkliste Ausschreibung beschreibt Prüfpunkte und Kriterien, die für den Entscheid Ausschreibung relevant sind.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Anwendervertreter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Entscheid Ausschreibung treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Ausschreibung bereitet den Entscheid Ausschreibung vor (Ergebnistyp Dokument). Der Meilenstein Ausschreibung ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Ausschreibung». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-ausschreibung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Ausschreibung»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-betriebsaufnahme",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Betriebsaufnahme",
+    "definition": "Die Checkliste Betriebsaufnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Betriebsaufnahme relevant sind.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Entscheid Betriebsaufnahme treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Betriebsaufnahme bereitet den Entscheid Betriebsaufnahme vor (Ergebnistyp Dokument). Der Meilenstein Betriebsaufnahme ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Betriebsaufnahme». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-betriebsaufnahme.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Betriebsaufnahme»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-durchfuehrungsfreigabe",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Durchführungsfreigabe",
+    "definition": "Die Checkliste Durchführungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Durchführungsfreigabe relevant sind.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Durchführungsfreigabe treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Durchführungsfreigabe bereitet den Entscheid Durchführungsfreigabe vor (Ergebnistyp Dokument). Der Meilenstein Durchführungsfreigabe ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Durchführungsfreigabe». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-durchfuehrungsfreigabe.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Durchführungsfreigabe»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-isds-konzept",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste ISDS-Konzept",
+    "definition": "Die Checkliste ISDS-Konzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid ISDS-Konzept relevant sind.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "ISDS"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Qualitäts- und Risikomanager",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– ISDS – Entscheid ISDS-Konzept treffen – Projektleiter\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste ISDS-Konzept bereitet den Entscheid ISDS-Konzept vor (Ergebnistyp Dokument). Der Meilenstein ISDS-Konzept ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «ISDS-Konzept». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-isds-konzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste ISDS-Konzept»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-loesungsarchitektur",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Lösungsarchitektur",
+    "definition": "Die Checkliste Lösungsarchitektur beschreibt Prüfpunkte und Kriterien, die für den Entscheid Lösungsarchitektur relevant sind.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Qualitäts- und Risikomanager",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Entscheid Lösungsarchitektur treffen – Projektleiter\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Lösungsarchitektur bereitet den Entscheid Lösungsarchitektur vor (Ergebnistyp Dokument). Der Meilenstein Lösungsarchitektur ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Lösungsarchitektur». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-loesungsarchitektur.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Lösungsarchitektur»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-phasenfreigabe-abschluss",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Phasenfreigabe Abschluss",
+    "definition": "Die Checkliste Phasenfreigabe Abschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe Abschluss relevant sind.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Phasenfreigabe Abschluss treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Betrifft ausschliesslich den Entscheid Phasenfreigabe Abschluss (Übergang in die Phase Abschluss), nicht die übrigen Phasenübergänge.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Phasenfreigabe Abschluss». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-phasenfreigabe-abschluss.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Phasenfreigabe Abschluss»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-phasenfreigabe",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Phasenfreigabe",
+    "definition": "Die Checkliste Phasenfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe relevant sind.",
+    "phasen": [
+      "Konzept",
+      "Realisierung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Phasenfreigabe treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Phasenfreigabe bereitet den Entscheid Phasenfreigabe vor (Ergebnistyp Dokument). Der Meilenstein Phasenfreigabe ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Phasenfreigabe». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-phasenfreigabe.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Phasenfreigabe»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-produktkonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Produktkonzept",
+    "definition": "Die Checkliste Produktkonzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid Produktkonzept relevant sind.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Produkt"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Qualitäts- und Risikomanager",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Produkt – Entscheid Produktkonzept treffen – Projektleiter\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Produktkonzept bereitet den Entscheid Produktkonzept vor (Ergebnistyp Dokument). Der Meilenstein Produktkonzept ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Produktkonzept». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-produktkonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Produktkonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-projektabbruch",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Projektabbruch",
+    "definition": "Die Checkliste Projektabbruch beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabbruch relevant sind.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Anwendervertreter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Projektabbruch treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Projektabbruch bereitet den Entscheid Projektabbruch vor (Ergebnistyp Dokument). Anders als bei den übrigen Checklisten folgt auf den Entscheid kein Meilenstein — ein Meilenstein «Projektabbruch» existiert in HERMES 2022 nicht.",
+    "pruefungshinweis": "Einzige Checkliste ohne zugehörigen Meilenstein: einen «Meilenstein Projektabbruch» gibt es in HERMES 2022 nicht.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektabbruch.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Projektabbruch»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-projektabschluss",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Projektabschluss",
+    "definition": "Die Checkliste Projektabschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabschluss relevant sind.",
+    "phasen": [
+      "Abschluss"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Projektabschluss treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Projektabschluss bereitet den Entscheid Projektabschluss vor (Ergebnistyp Dokument). Der Meilenstein Projektabschluss ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Projektabschluss». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektabschluss.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Projektabschluss»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-projektinitialisierungsfreigabe",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Projektinitialisierungsfreigabe",
+    "definition": "Die Checkliste Projektinitialisierungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektinitialisierungsfreigabe relevant sind.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Projektinitialisierungsfreigabe treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Projektinitialisierungsfreigabe bereitet den Entscheid Projektinitialisierungsfreigabe vor (Ergebnistyp Dokument). Der Meilenstein Projektinitialisierungsfreigabe ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Projektinitialisierungsfreigabe». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektinitialisierungsfreigabe.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Projektinitialisierungsfreigabe»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-releasefreigabe",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Releasefreigabe",
+    "definition": "Die Checkliste Releasefreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Releasefreigabe relevant sind.",
+    "phasen": [
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Anwendervertreter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Releasefreigabe treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Releasefreigabe bereitet den Entscheid Releasefreigabe vor (Ergebnistyp Dokument). Der Meilenstein Releasefreigabe ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Nur bei agiler Vorgehensweise (Phase Umsetzung). Der Entscheid Releasefreigabe ist optional; ob er im Projekt vorgeschrieben ist, wird im Projektmanagementplan festgehalten.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-releasefreigabe.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Releasefreigabe»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-vorabnahme",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Vorabnahme",
+    "definition": "Die Checkliste Vorabnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Vorabnahme relevant sind.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Qualitäts- und Risikomanager",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Entscheid Vorabnahme treffen – Projektleiter\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Bereitet den Entscheid Vorabnahme vor (Phase Realisierung bzw. Umsetzung) – nicht den Entscheid Abnahme (Phase Einführung).",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Vorabnahme». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-vorabnahme.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Vorabnahme»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-weiteres-vorgehen",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Weiteres Vorgehen",
+    "definition": "Die Checkliste Weiteres Vorgehen beschreibt Prüfpunkte und Kriterien, die für den Entscheid Weiteres Vorgehen relevant sind.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Qualitäts- und Risikomanager",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektgrundlagen – Entscheid Weiteres Vorgehen treffen – Projektleiter\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Weiteres Vorgehen bereitet den Entscheid Weiteres Vorgehen vor (Ergebnistyp Dokument). Der Meilenstein Weiteres Vorgehen ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Weiteres Vorgehen». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-weiteres-vorgehen.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Weiteres Vorgehen»"
+    }
+  },
+  {
+    "id": "ergebnis-checkliste-zuschlag",
+    "kategorie": "ergebnis",
+    "begriff": "Checkliste Zuschlag",
+    "definition": "Die Checkliste Zuschlag beschreibt Prüfpunkte und Kriterien, die für den Entscheid Zuschlag relevant sind.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Anwendervertreter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Entscheid Zuschlag treffen – Auftraggeber\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Checkliste Zuschlag bereitet den Entscheid Zuschlag vor (Ergebnistyp Dokument). Der Meilenstein Zuschlag ist demgegenüber der Zustand, der erreicht ist, sobald der Entscheid getroffen wurde.",
+    "pruefungshinweis": "Checkliste, Entscheid und Meilenstein tragen denselben Namenszusatz «Zuschlag». Die Checkliste enthält Prüfpunkte und Kriterien, sie ist kein Entscheid.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-zuschlag.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checkliste Zuschlag»"
+    }
+  },
+  {
+    "id": "ergebnis-checklisten",
+    "kategorie": "ergebnis",
+    "begriff": "Checklisten",
+    "definition": "«Checklisten» fasst als Sammeleintrag die HERMES-Checklisten zusammen. Eine Checkliste beschreibt die Prüfpunkte und Kriterien, die für einen bestimmten Entscheid relevant sind, und dient damit der Entscheidungsvorbereitung.",
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nHERMES 2022 kennt 17 Checklisten: Abnahme, Abnahme Migration, Ausschreibung, Betriebsaufnahme, Durchführungsfreigabe, ISDS-Konzept, Lösungsarchitektur, Phasenfreigabe, Phasenfreigabe Abschluss, Produktkonzept, Projektabbruch, Projektabschluss, Projektinitialisierungsfreigabe, Releasefreigabe, Vorabnahme, Weiteres Vorgehen, Zuschlag.",
+    "abgrenzung": "Checklisten sind Ergebnistyp Dokument und bereiten einen Entscheid vor. Meilensteine sind Ergebnistyp Zustand und werden erreicht, wenn der Entscheid getroffen ist.",
+    "pruefungshinweis": "In der Ergebnisübersicht sind die Checklisten als Sammelposition «Checklisten» aufgeführt und dort als minimal gefordertes Dokument markiert. Zur Checkliste Projektabbruch gibt es keinen entsprechenden Meilenstein – deshalb 17 Checklisten, aber nur 16 Meilensteine.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checklisten.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checklisten»"
+    }
+  },
+  {
+    "id": "ergebnis-detailspezifikation",
+    "kategorie": "ergebnis",
+    "begriff": "Detailspezifikation",
+    "definition": "In klassisch geführter Lösungsentstehung beschreibt die Detailspezifikation die funktionalen und qualitativen Lösungseigenschaften. Sie basiert auf den Lösungsanforderungen und auf dem Produktkonzept bzw. bei IT-Projekten auf dem Systemkonzept und der Lösungsarchitektur. Sie wird inhaltlich und planerisch so detailliert erstellt, dass sie eine verlässliche Grundlage für die Realisierung (Entwicklung und Anpassung bzw. Entwicklung und Parametrisierung) der Lösung bildet.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Migration",
+      "IT-System",
+      "Produkt",
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter, Entwickler",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Entwickler",
+      "Business Analyst",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nDie Detailspezifikation bildet die Grundlage für die Erstellung von detaillierten Testfallbeschreibungen. In agil geführter Lösungsentstehung entspricht die Detailspezifikation weitgehend einem «Sprint Backlog», dient jedoch aus Projektmanagementsicht nur der Dokumentation der jeweiligen aktuellen Planung jener Anforderungen, welche die Umsetzungsorganisation ausgewählt hat und die innerhalb der jeweiligen Iteration zu erledigen sind. Sie wird im Rahmen der Aufgabe Projekt führen und kontrollieren iterativ-inkrementell fortgeführt, sodass die bereits im Dokument erledigten Anforderungen vorheriger Iterationen jeweils um ein neues Kapitel ergänzt werden. Alternativ kann lediglich ein Verweis auf die Dokumentation im Entwicklungsframework gesetzt werden.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Migration – Migrationsverfahren realisieren – Entwickler\n– IT-System – System realisieren – Entwickler\n– IT-System – Systemintegration vorbereiten – Entwickler\n– Produkt – Produkt realisieren – Entwickler\n– Projektführung – Projekt führen und kontrollieren – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Detailanforderungen mit: Anforderungen der Organisation; Funktionalen Anforderungen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "pruefungshinweis": "Ergebnis der klassisch geführten Lösungsentstehung. Sie basiert auf den Lösungsanforderungen und auf dem Produktkonzept bzw. bei IT-Projekten auf Systemkonzept und Lösungsarchitektur.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/detailspezifikation.html",
+      "bezeichnung": "HERMES online · Ergebnis «Detailspezifikation»"
+    }
+  },
+  {
+    "id": "ergebnis-durchfuehrungsauftrag",
+    "kategorie": "ergebnis",
+    "begriff": "Durchführungsauftrag",
+    "definition": "Der Durchführungsauftrag bildet den Rahmen und die verbindliche Grundlage für die Lösungsentstehung sowie den darauffolgenden Projektabschluss und autorisiert die Projektfortsetzung. Er beinhaltet alle wesentlichen lösungsspezifischen Angaben sowie Hinweise betreffend das Vorgehen in den nächsten Phasen. Es handelt sich um eine verbindliche Vereinbarung zwischen dem Auftraggeber und dem Projektleiter.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektführung",
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber, Projektleiter",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Durchführungsauftrag erarbeiten – Projektleiter\n– Projektsteuerung – Entscheid Durchführungsfreigabe treffen – Auftraggeber\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage und Handlungsbedarf\n– Ziele: Lösungsziele; Projektvorgehensziele mit; Rahmenbedingungen, Strategiebezug und Abgrenzungen\n– Zusammenfassende Lösungsbeschreibung\n– Rechtliche Grundlagen\n– Investitionsbedarf\n– Ressourcen- und Hilfsmittelbedarf\n– Kosten/Nutzen/Wirtschaftlichkeit (Vorschau)\n– Planung und Organisation\n– Vorgehensweise (Entwicklungsmanagement)\n– Risiken\n– Konsequenzen\n– Verbindlichkeiten\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Nicht zu verwechseln mit dem Projektinitialisierungsauftrag: Dieser gibt nur die Phase Initialisierung frei, der Durchführungsauftrag autorisiert die Projektfortsetzung über die gesamte Lösungsentstehung und den Abschluss. Der Projektmanagementplan ist kein Auftrag, sondern die Planungs- und Regelungsgrundlage.",
+    "pruefungshinweis": "Verbindliche Vereinbarung zwischen Auftraggeber und Projektleiter. Erarbeitet wird er vom Projektleiter (Modul Projektführung), freigegeben mit dem Entscheid Durchführungsfreigabe durch den Auftraggeber (Modul Projektsteuerung) – beides in der Phase Initialisierung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/durchfuehrungsauftrag.html",
+      "bezeichnung": "HERMES online · Ergebnis «Durchführungsauftrag»"
+    }
+  },
+  {
+    "id": "ergebnis-einfuehrungskonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Einführungskonzept",
+    "definition": "Das Einführungskonzept beschreibt die Massnahmen für die Lösungseinführung und die Einführungsorganisation. Dazu gehören u. a. die Massnahmen des Organisationschangemanagements zur Unterstützung des Übergangs zum neuen Zustand, das Ausbildungskonzept, die Planung der Abnahmen samt Abnahmekriterien sowie die Freigabekriterien der Betriebsaufnahme.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Anwendervertreter",
+    "beteiligt": [
+      "Anwendervertreter",
+      "Projektleiter",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Einführungskonzept erarbeiten – Anwendervertreter\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Betroffenheitsanalyse\n– Einführungsvorgehen\n– Einführungsmassnahmen mit: Organisations-, Transitions- und Changemanagement; Notfallmassnahmen und Notfallorganisation\n– Ausbildungskonzept mit: Anforderungen; Ausbildungsvorgehen; Ausbildungsunterlagen; Ausbildungsinfrastruktur\n– Einführungsorganisation\n– Einführungsplanung\n– Planung der Vorabnahme und der Abnahme mit: Abnahmekriterien\n– Freigabekriterien der Betriebsaufnahme\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Beschreibt die Massnahmen der Lösungseinführung und die Einführungsorganisation – im Unterschied zum Integrationskonzept (technische Integration des Systems) und zum Migrationskonzept (Datenmigration).",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungskonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Einführungskonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-einfuehrungsmassnahmen-durchgefuehrt",
+    "kategorie": "ergebnis",
+    "begriff": "Einführungsmassnahmen durchgeführt",
+    "definition": "Die im Einführungskonzept beschriebenen und realisierten Massnahmen sind durchgeführt. Die Umsetzung der Massnahmen ist überprüft und deren Qualitätssicherung durchgeführt. Beispielsweise ist die Anwenderschulung durchgeführt worden und es liegen Kursbeurteilungen der Teilnehmer für die Qualitätssicherung vor.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Anwendervertreter",
+    "beteiligt": [
+      "Anwendervertreter",
+      "Projektleiter",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Einführungsmassnahmen durchführen – Anwendervertreter",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungsmassnahmen-durchgefuehrt.html",
+      "bezeichnung": "HERMES online · Ergebnis «Einführungsmassnahmen durchgeführt»"
+    }
+  },
+  {
+    "id": "ergebnis-einfuehrungsmassnahmen-realisiert",
+    "kategorie": "ergebnis",
+    "begriff": "Einführungsmassnahmen realisiert",
+    "definition": "Die im Einführungskonzept beschriebenen Massnahmen und die für die Einführung nötige Organisation sind realisiert. Beispielsweise sind die Superuser rekrutiert und ausgebildet, die die Anwender bei der Einführung unterstützen, oder die Ausbildungsunterlagen sind realisiert, damit anschliessend Schulungen durchgeführt werden können.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Anwendervertreter",
+    "beteiligt": [
+      "Anwendervertreter",
+      "Projektleiter",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Einführungsmassnahmen realisieren – Anwendervertreter",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungsmassnahmen-realisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Einführungsmassnahmen realisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-evaluationsbericht",
+    "kategorie": "ergebnis",
+    "begriff": "Evaluationsbericht",
+    "definition": "Der Evaluationsbericht fasst die Ergebnisse der Angebotsbewertung zusammen. Er bildet die Grundlage für den Entscheid Zuschlag.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung",
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter, Anwendervertreter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Angebote bewerten – Anwendervertreter\n– Projektführung – Leistungen vereinbaren und steuern – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Vorgehen bei der Evaluation: Mitglieder des Evaluationsteams; Ablauf der Evaluation\n– Ausschreibung, Fragen und Angebotsöffnung\n– Ergebnisse der Evaluation mit: Eignungskriterien; Technischen Spezifikationen; Zuschlagskriterien; Bewertungsverfahren; Beurteilung der Angebote (Leistungswert/Wirtschaftlichkeit); Vergleich der Angebote; Auswahl und Begründung\n– Empfehlung mit: Geeignetstem Angebot (Leistungswert); Wirtschaftlichstem Angebot (Kosten/Nutzen); Bestem Angebot (Leistungswert/Wirtschaftlichkeit)\n– Anträge\n– Unterschriften\n– Anhänge mit: Ausgefülltem Kriterienkatalog; Bewertung; Weiteren Beilagen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Fasst die Angebotsbewertung zusammen und ist Grundlage für den Entscheid Zuschlag – nicht für den Entscheid Ausschreibung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/evaluationsbericht.html",
+      "bezeichnung": "HERMES online · Ergebnis «Evaluationsbericht»"
+    }
+  },
+  {
+    "id": "ergebnis-geschaeftsmodellbeschreibung",
+    "kategorie": "ergebnis",
+    "begriff": "Geschäftsmodellbeschreibung",
+    "definition": "Die Geschäftsmodellbeschreibung beinhaltet alle organisatorischen Aspekte, die für die Lösung relevant sind und die durch die Lösung beeinflusst werden können und gibt den Rahmen für die Ablauf- und Aufbauorganisation vor. Sie orientiert sich an den Elementen des Geschäftsmodells einer Organisation, verstärkt die ganzheitliche Sichtweise auf die Organisation und umfasst eine Auswahl von Komponenten wie z. B. die Kundensegmentierung oder die Kundenbeziehungen.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Organisation"
+    ],
+    "verantwortlich": "Business Analyst",
+    "beteiligt": [
+      "Business Analyst",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Organisation – Organisationskonzept erarbeiten – Business Analyst\n\nInhalt gemäss Dokumentvorlage:\n– Übersicht Geschäftsmodell\n– Kundensegmente\n– Wertangebote\n– Kanäle\n– Kundenbeziehungen\n– Schlüsselaktivitäten\n– Schlüsselressourcen\n– Schlüsselpartnerschaften\n– Einnahmequellen\n– Kostenstruktur\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Gibt den Rahmen für Ablauf- und Aufbauorganisation vor. Die Organisationsbeschreibung detailliert die Aufbauorganisation, die Prozessbeschreibung die Ablauforganisation.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/geschaeftsmodellbeschreibung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Geschäftsmodellbeschreibung»"
+    }
+  },
+  {
+    "id": "ergebnis-integrations-und-installationsanleitung",
+    "kategorie": "ergebnis",
+    "begriff": "Integrations- und Installationsanleitung",
+    "definition": "Die Integrations- und Installationsanleitung beschreibt, wie das System in der Betriebsinfrastruktur integriert und installiert wird.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Betriebsverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Systemintegration vorbereiten – Entwickler\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Voraussetzungen\n– Integrations- und Installationsaktivitäten\n– Fehler- und Mängelbehandlung\n– Support\n– Integrationsorganisation\n– Abnahme\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/integrations-und-installationsanleitung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Integrations- und Installationsanleitung»"
+    }
+  },
+  {
+    "id": "ergebnis-integrationskonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Integrationskonzept",
+    "definition": "Das Integrationskonzept beschreibt, wie das System im Umfeld integriert wird. Es beschreibt ebenfalls, wie der Transport von einer Systemumgebung in eine andere erfolgt und wie das Konfigurationsmanagement und die Qualität sichergestellt werden. Bei einer Einführung mit Realisierungseinheiten (klassisch) oder schrittweiser Integration mit Releases (agil) ist die Planung der Realisierungseinheiten bzw. die Releaseplanung gemäss Projektmanagementplan ein Bestandteil des Integrationskonzepts.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "IT-Architekt",
+    "beteiligt": [
+      "IT-Architekt",
+      "Betriebsverantwortlicher",
+      "Business Analyst",
+      "Entwickler"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Integrationskonzept erarbeiten – IT-Architekt\n\nInhalt gemäss Dokumentvorlage:\n– Systemübersicht\n– Integrationsobjekte und Schnittstellen\n– Integrationsumgebungen\n– Integrationsschritte\n– Transport- und Deployment-Überblick\n– Rahmenbedingungen und Abhängigkeiten\n– Integrationsorganisation\n– Risiken\n– Qualitätssicherung\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Beschreibt die Integration des Systems im Umfeld und den Transport zwischen Systemumgebungen. Die konkrete Anleitung dazu ist die Integrations- und Installationsanleitung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/integrationskonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Integrationskonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-isds-konzept-ueberfuehrt",
+    "kategorie": "ergebnis",
+    "begriff": "ISDS-Konzept überführt",
+    "definition": "Das ISDS-Konzept wurde aktualisiert, durch die Controlling- und Vorgabestelle geprüft und von der Projektorganisation in die Stammorganisation überführt.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "ISDS"
+    ],
+    "verantwortlich": "ISDS-Verantwortlicher",
+    "beteiligt": [
+      "ISDS-Verantwortlicher",
+      "Projektleiter",
+      "Anwendervertreter",
+      "Betriebsverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– ISDS – ISDS-Konzept überführen – ISDS-Verantwortlicher",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-konzept-ueberfuehrt.html",
+      "bezeichnung": "HERMES online · Ergebnis «ISDS-Konzept überführt»"
+    }
+  },
+  {
+    "id": "ergebnis-isds-konzept",
+    "kategorie": "ergebnis",
+    "begriff": "ISDS-Konzept",
+    "definition": "Das ISDS-Konzept bildet die Grundlage für die Festlegung der Massnahmen für Informationssicherheit und Datenschutz (ISDS). Es zeigt die Restrisiken auf, die mit dem Betrieb des Systems und der Organisation verbunden sind.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "ISDS"
+    ],
+    "verantwortlich": "ISDS-Verantwortlicher, Anwendervertreter",
+    "beteiligt": [
+      "ISDS-Verantwortlicher",
+      "Betriebsverantwortlicher",
+      "IT-Architekt",
+      "Auftraggeber",
+      "Projektleiter",
+      "Anwendervertreter",
+      "Entwickler"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– ISDS – ISDS-Konzept erarbeiten – ISDS-Verantwortlicher\n– ISDS – ISDS-Konzept realisieren – Anwendervertreter\n– ISDS – ISDS-Konzept überführen – ISDS-Verantwortlicher\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Das ISDS-Konzept legt die Massnahmen fest und zeigt die Restrisiken auf (Modul ISDS, ab Phase Konzept). Die Schutzbedarfsanalyse dokumentiert vorgelagert die Anforderungen an Informationssicherheit und Datenschutz (Modul Projektgrundlagen, Phase Initialisierung).",
+    "pruefungshinweis": "Zum ISDS-Konzept gehören Entscheid, Checkliste und Meilenstein ISDS-Konzept. Am Projektende wird es als Zustand «ISDS-Konzept überführt» in die Stammorganisation übergeben.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-konzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «ISDS-Konzept»"
+    }
+  },
+  {
+    "id": "ergebnis-isds-massnahmen-realisiert",
+    "kategorie": "ergebnis",
+    "begriff": "ISDS-Massnahmen realisiert",
+    "definition": "Die ISDS-Massnahmen wurden auf der Grundlage des ISDS-Konzepts realisiert. Sie stellen sicher, dass die Anforderungen an den Schutzbedarf gemäss ISDS-Konzept erfüllt werden.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "ISDS"
+    ],
+    "verantwortlich": "Anwendervertreter",
+    "beteiligt": [
+      "Anwendervertreter",
+      "Projektleiter",
+      "Betriebsverantwortlicher",
+      "ISDS-Verantwortlicher",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– ISDS – ISDS-Konzept realisieren – Anwendervertreter",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-massnahmen-realisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «ISDS-Massnahmen realisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-liste-projektentscheide-fuehrung",
+    "kategorie": "ergebnis",
+    "begriff": "Liste Projektentscheide Führung",
+    "definition": "Die Liste Projektentscheide Führung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene Führung. Die Liste wird während der ganzen Dauer eines Projekts verwendet.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation",
+      "ISDS",
+      "IT-Migration",
+      "IT-System",
+      "Produkt",
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Entscheid Abnahme treffen – Projektleiter\n– Einführungsorganisation – Entscheid Vorabnahme treffen – Projektleiter\n– ISDS – Entscheid ISDS-Konzept treffen – Projektleiter\n– IT-Migration – Entscheid Abnahme Migration treffen – Projektleiter\n– IT-System – Entscheid Lösungsarchitektur treffen – Projektleiter\n– Produkt – Entscheid Produktkonzept treffen – Projektleiter\n– Projektgrundlagen – Entscheid Weiteres Vorgehen treffen – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Entscheid\n– Meilenstein erreicht ja/nein\n– Zugrundeliegende Dokumente\n– Entscheidungsträger der Hierarchieebene Führung und/oder Ausführung\n– Datum\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Dokumentiert die Entscheidungsaufgaben der Hierarchieebene Führung. Die Entscheide der Hierarchieebene Steuerung werden in der Liste Projektentscheide Steuerung geführt.",
+    "pruefungshinweis": "Die Zuordnung folgt der Hierarchieebene der entscheidenden Rolle, nicht der Phase. Beide Listen werden während der ganzen Projektdauer verwendet.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/liste-projektentscheide-fuehrung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Liste Projektentscheide Führung»"
+    }
+  },
+  {
+    "id": "ergebnis-liste-projektentscheide-steuerung",
+    "kategorie": "ergebnis",
+    "begriff": "Liste Projektentscheide Steuerung",
+    "definition": "Die Liste Projektentscheide Steuerung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene Steuerung. Die Liste wird während der ganzen Dauer eines Projekts verwendet.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Beschaffung",
+      "Einführungsorganisation",
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Entscheid Ausschreibung treffen – Auftraggeber\n– Beschaffung – Entscheid Zuschlag treffen – Auftraggeber\n– Einführungsorganisation – Entscheid Betriebsaufnahme treffen – Auftraggeber\n– Projektsteuerung – Entscheid Durchführungsfreigabe treffen – Auftraggeber\n– Projektsteuerung – Entscheid Phasenfreigabe Abschluss treffen – Auftraggeber\n– Projektsteuerung – Entscheid Phasenfreigabe treffen – Auftraggeber\n– Projektsteuerung – Entscheid Projektabbruch treffen – Auftraggeber\n– Projektsteuerung – Entscheid Projektabschluss treffen – Auftraggeber\n– Projektsteuerung – Entscheid Projektinitialisierungsfreigabe treffen – Auftraggeber\n– Projektsteuerung – Entscheid Releasefreigabe treffen – Auftraggeber\n– Projektsteuerung – Projekt steuern – Auftraggeber\n\nInhalt gemäss Dokumentvorlage:\n– Entscheid\n– Meilenstein erreicht ja/nein\n– Zugrundeliegende Dokumente\n– Entscheidungsträger der Hierarchieebene Steuerung\n– Datum\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Dokumentiert die Entscheidungsaufgaben der Hierarchieebene Steuerung. Die Entscheide der Hierarchieebene Führung werden in der Liste Projektentscheide Führung geführt.",
+    "pruefungshinweis": "Die Zuordnung folgt der Hierarchieebene der entscheidenden Rolle, nicht der Phase. Beide Listen werden während der ganzen Projektdauer verwendet.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/liste-projektentscheide-steuerung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Liste Projektentscheide Steuerung»"
+    }
+  },
+  {
+    "id": "ergebnis-loesungsanforderungen",
+    "kategorie": "ergebnis",
+    "begriff": "Lösungsanforderungen",
+    "definition": "Die Lösungsanforderungen beinhalten sämtliche Anforderungen, die das künftige System oder Produkt erfüllen soll. Dies beinhaltet die fachlichen und technischen Anforderungen, aber auch erwartete Eigenschaften, Funktionen, rechtliche sowie lösungsrelevante und regulatorische Vorgaben, Betriebs-, Support- und Sicherheitsanforderungen wie auch Anforderungen zur Optimierung und Mängelkorrektur an allenfalls schon bestehenden Produkten oder Systemen.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System",
+      "Produkt",
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter, Anwendervertreter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Business Analyst",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nIn klassisch geführter Lösungsentstehung werden die Lösungsanforderungen auf der Basis der Studie und der Situationsanalyse im endgültigen Detaillierungsgrad erarbeitet und während der Lösungsentstehung bei Bedarf über das Änderungsmanagement sukzessive nachgeführt. In agil geführter Lösungsentstehung werden die Lösungsanforderungen auf der Basis der Studie und der Situationsanalyse in der Phase Umsetzung erstmalig als «Initial Product Backlogs» erarbeitet. Im Rahmen der selbstorganisierten agilen Umsetzung werden Änderungen in der Änderungsstatusliste dokumentiert und in den Lösungsanforderungen nur über einen Änderungsantrag nachgeführt, wenn Sie Projektziele, das Budget oder den Zeitrahmen des Gesamtvorhabens verändern (siehe Aufgabe Änderungen managen).\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Lösungsanforderungen erarbeiten – Anwendervertreter\n– Produkt – Lösungsanforderungen erarbeiten – Anwendervertreter\n– Projektführung – Projekt führen und kontrollieren – Projektleiter\n– Projektführung – Änderungen managen – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Grobanforderungen\n– Anforderungskatalog\n– Detaillierte Lösungsanforderungen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Lösungsanforderungen betreffen das künftige System oder Produkt und werden vom Anwendervertreter verantwortet. Die Organisationsanforderungen betreffen Geschäftsmodell sowie Aufbau- und Ablauforganisation und werden vom Business Analyst verantwortet.",
+    "pruefungshinweis": "Verantwortung Anwendervertreter – eine typische Verwechslung mit dem Business Analyst, der die Organisationsanforderungen verantwortet.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/loesungsanforderungen.html",
+      "bezeichnung": "HERMES online · Ergebnis «Lösungsanforderungen»"
+    }
+  },
+  {
+    "id": "ergebnis-loesungsarchitektur",
+    "kategorie": "ergebnis",
+    "begriff": "Lösungsarchitektur",
+    "definition": "Die Lösungsarchitektur basiert auf dem Systemkonzept und gliedert das System in Subsysteme und ihre Komponenten. Sie beschreibt die Systemstruktur und die Schnittstellen. Die Lösungsarchitektur erlaubt eine umfassende Sicht auf das System.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "Entwickler, IT-Architekt",
+    "beteiligt": [
+      "Entwickler",
+      "Betriebsverantwortlicher",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nJe nach Projektergebnis und Umfang enthält es mehrere Architekturelemente und -modelle, beispielsweise das Geschäftsprozessmodell, das Funktionsmodell (z. B. mit Use Cases/User Stories), die Datenarchitektur/das Datenmodell, die Sicherheitsarchitektur. Sie enthält auch die IT-Dokumentation bzw. verweist auf die Dokumentation des Erstellers. Die Ergebnisse des Systemkonzepts werden in einem Anhang zur Lösungsarchitektur zusammengefasst. Die Lösungsarchitektur berücksichtigt die Vorgaben der Controlling- und Vorgabestellen.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Lösungsarchitektur erarbeiten – IT-Architekt\n– IT-System – System realisieren – Entwickler\n– IT-System – Systemintegration vorbereiten – Entwickler\n\nInhalt gemäss Dokumentvorlage:\n– Systemstruktur: Übersicht über das System; Subsysteme und Komponenten; Lösungsarchitekturen/Modelle\n– Schnittstellen und Abgrenzung: Schnittstellen zu Umsystemen; Hinweis auf Integrationskonzept; Abgrenzung\n– Machbarkeitsbeurteilung\n– Konformität mit Vorgaben\n– Anforderungszuordnung und -abdeckung\n– Ergebnisse des Systemkonzepts\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Lösungsarchitektur baut auf dem Systemkonzept auf und gliedert das System in Subsysteme, Komponenten und Schnittstellen. Die Ergebnisse des Systemkonzepts werden in einem Anhang zur Lösungsarchitektur zusammengefasst.",
+    "pruefungshinweis": "Verantwortung IT-Architekt; zugehörig sind Entscheid, Checkliste und Meilenstein Lösungsarchitektur.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/loesungsarchitektur.html",
+      "bezeichnung": "HERMES online · Ergebnis «Lösungsarchitektur»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-abnahme-migration",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Abnahme Migration",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme Migration getroffen wird. Die Nutzung des neuen Systems kann für die Anwender freigegeben werden (Entscheid Betriebsaufnahme).",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Migration"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Migration – Entscheid Abnahme Migration treffen – Projektleiter",
+    "abgrenzung": "Der Meilenstein Abnahme Migration ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Abnahme Migration getroffen ist. Die Checkliste Abnahme Migration bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Abnahme Migration.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-abnahme-migration.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Abnahme Migration»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-abnahme",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Abnahme",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme getroffen wird. Die Lösung wird definitiv in die Anwendungs- und allenfalls auch in die Betriebsorganisation überführt. Danach beginnt die Gewährleistung und damit der reguläre Betrieb.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Entscheid Abnahme treffen – Projektleiter",
+    "abgrenzung": "Mit der Abnahme wird die Lösung definitiv in die Anwendungs- und allenfalls die Betriebsorganisation überführt; danach beginnt die Gewährleistung. Die Vorabnahme geht voraus und ermöglicht erst die Einführungsmassnahmen.",
+    "pruefungshinweis": "Erst mit dem Entscheid Abnahme beginnen Gewährleistung und regulärer Betrieb.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-abnahme.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Abnahme»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-ausschreibung",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Ausschreibung",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Ausschreibung getroffen wird. Die Ausschreibung kann publiziert werden.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Entscheid Ausschreibung treffen – Auftraggeber",
+    "abgrenzung": "Der Meilenstein Ausschreibung ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Ausschreibung getroffen ist. Die Checkliste Ausschreibung bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Ausschreibung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-ausschreibung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Ausschreibung»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-betriebsaufnahme",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Betriebsaufnahme",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Betriebsaufnahme getroffen wird. Die Lösung kann in Betrieb genommen werden.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Entscheid Betriebsaufnahme treffen – Auftraggeber",
+    "abgrenzung": "Der Meilenstein Betriebsaufnahme ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Betriebsaufnahme getroffen ist. Die Checkliste Betriebsaufnahme bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Betriebsaufnahme.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-betriebsaufnahme.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Betriebsaufnahme»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-durchfuehrungsfreigabe",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Durchführungsfreigabe",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Durchführungsfreigabe getroffen wird. Die Arbeiten starten gemäss dem Durchführungsauftrag.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Durchführungsfreigabe treffen – Auftraggeber",
+    "abgrenzung": "Die Durchführungsfreigabe gibt die Lösungsentstehung frei; die Projektinitialisierungsfreigabe gibt nur die Phase Initialisierung frei.",
+    "pruefungshinweis": "Entscheid der Hierarchieebene Steuerung (Verantwortung Auftraggeber), Abschluss der Phase Initialisierung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-durchfuehrungsfreigabe.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Durchführungsfreigabe»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-isds-konzept",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein ISDS-Konzept",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid ISDS-Konzept getroffen wird. Die Realisierung der ISDS-Massnahmen kann an die Hand genommen werden.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "ISDS"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– ISDS – Entscheid ISDS-Konzept treffen – Projektleiter",
+    "abgrenzung": "Der Meilenstein ISDS-Konzept ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid ISDS-Konzept getroffen ist. Die Checkliste ISDS-Konzept bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids ISDS-Konzept.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-isds-konzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein ISDS-Konzept»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-loesungsarchitektur",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Lösungsarchitektur",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Lösungsarchitektur getroffen wird. Dies bildet die Voraussetzung für die Entwicklung oder Adaption von Systemen.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Entscheid Lösungsarchitektur treffen – Projektleiter",
+    "abgrenzung": "Der Meilenstein Lösungsarchitektur ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Lösungsarchitektur getroffen ist. Die Checkliste Lösungsarchitektur bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Lösungsarchitektur.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-loesungsarchitektur.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Lösungsarchitektur»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-phasenfreigabe-abschluss",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Phasenfreigabe Abschluss",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe Abschluss getroffen wird. Die Leistungserbringung im Rahmen der Lösungsentstehung ist beendet. Die Arbeiten in der in der Phase Abschluss können gestartet werden.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Phasenfreigabe Abschluss treffen – Auftraggeber",
+    "abgrenzung": "Betrifft ausschliesslich den Übergang in die Phase Abschluss; mit ihm ist die Leistungserbringung im Rahmen der Lösungsentstehung beendet. Der Meilenstein Phasenfreigabe betrifft die übrigen Phasenübergänge.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Phasenfreigabe Abschluss.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-phasenfreigabe-abschluss.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Phasenfreigabe Abschluss»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-phasenfreigabe",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Phasenfreigabe",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe getroffen wird. Die Arbeiten in der nächsten Phase können gestartet werden.",
+    "phasen": [
+      "Konzept",
+      "Realisierung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Phasenfreigabe treffen – Auftraggeber",
+    "abgrenzung": "Betrifft die Freigabe der jeweils nächsten Phase der Lösungsentstehung. Für den Übergang in die Phase Abschluss gilt der Meilenstein Phasenfreigabe Abschluss.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Phasenfreigabe.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-phasenfreigabe.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Phasenfreigabe»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-produktkonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Produktkonzept",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Produktkonzept getroffen wird. Das Konzept ist die Voraussetzung für die Entwicklung oder Adaption von Produkten oder Dienstleistungen.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Produkt"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Produkt – Entscheid Produktkonzept treffen – Projektleiter",
+    "abgrenzung": "Der Meilenstein Produktkonzept ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Produktkonzept getroffen ist. Die Checkliste Produktkonzept bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Produktkonzept.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-produktkonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Produktkonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-projektabschluss",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Projektabschluss",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Projektabschluss getroffen wird. Das Projekt ist beendet.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Projektabbruch treffen – Auftraggeber\n– Projektsteuerung – Entscheid Projektabschluss treffen – Auftraggeber",
+    "abgrenzung": "Der Meilenstein Projektabschluss ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Projektabschluss getroffen ist. Die Checkliste Projektabschluss bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Projektabschluss.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-projektabschluss.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Projektabschluss»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-projektinitialisierungsfreigabe",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Projektinitialisierungsfreigabe",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Projektinitialisierungsfreigabe getroffen wird. Das Projekt wurde formell ins Leben gerufen. Die Arbeiten starten gemäss dem Projektinitialisierungsauftrag.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Projektinitialisierungsfreigabe treffen – Auftraggeber",
+    "abgrenzung": "Gibt ausschliesslich die Phase Initialisierung frei; die Freigabe der Lösungsentstehung erfolgt mit dem Meilenstein Durchführungsfreigabe.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Projektinitialisierungsfreigabe.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-projektinitialisierungsfreigabe.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Projektinitialisierungsfreigabe»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-releasefreigabe",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Releasefreigabe",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Releasefreigabe getroffen wird. Im Rahmen der agilen Vorgehensweise können die Arbeiten am nächsten Release starten.",
+    "phasen": [
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Releasefreigabe treffen – Auftraggeber",
+    "abgrenzung": "Der Meilenstein Releasefreigabe ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Releasefreigabe getroffen ist. Die Checkliste Releasefreigabe bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Nur bei agiler Vorgehensweise (Phase Umsetzung); der zugehörige Entscheid ist optional und wird im Projektmanagementplan als erforderlich oder nicht erforderlich festgelegt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-releasefreigabe.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Releasefreigabe»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-vorabnahme",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Vorabnahme",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Vorabnahme getroffen wird. Dies bildet die Grundlage für die Durchführung der Einführungsmassnahmen und die Betriebsaufnahme.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Einführungsorganisation"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Entscheid Vorabnahme treffen – Projektleiter",
+    "abgrenzung": "Die Vorabnahme bildet die Grundlage für die Durchführung der Einführungsmassnahmen und die Betriebsaufnahme. Erst mit der Abnahme wird die Lösung definitiv überführt und die Gewährleistung beginnt.",
+    "pruefungshinweis": "Vorabnahme kommt vor der Abnahme; sie schliesst die Realisierung ab, die Abnahme die Einführung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-vorabnahme.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Vorabnahme»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-weiteres-vorgehen",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Weiteres Vorgehen",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Weiteres Vorgehen getroffen wird. Dies bildet die Grundlage für die Erarbeitung des Projektmanagementplans sowie des Durchführungsauftrags.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektgrundlagen – Entscheid Weiteres Vorgehen treffen – Projektleiter",
+    "abgrenzung": "Der Meilenstein Weiteres Vorgehen ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Weiteres Vorgehen getroffen ist. Die Checkliste Weiteres Vorgehen bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Der Entscheid Weiteres Vorgehen liegt auf der Hierarchieebene Führung (Verantwortung Projektleiter) und wird in der Studie dokumentiert – er ist Grundlage für Projektmanagementplan und Durchführungsauftrag.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-weiteres-vorgehen.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Weiteres Vorgehen»"
+    }
+  },
+  {
+    "id": "ergebnis-meilenstein-zuschlag",
+    "kategorie": "ergebnis",
+    "begriff": "Meilenstein Zuschlag",
+    "definition": "Der Meilenstein wird erreicht, wenn der Entscheid Zuschlag getroffen wird. Der Entscheid kann publiziert und die Vertragsarbeiten mit dem Zuschlagsempfänger gestartet werden.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektausschuss",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Entscheid Zuschlag treffen – Auftraggeber",
+    "abgrenzung": "Der Meilenstein Zuschlag ist ein Ergebnis vom Typ Zustand und wird erreicht, wenn der Entscheid Zuschlag getroffen ist. Die Checkliste Zuschlag bereitet diesen Entscheid vor.",
+    "pruefungshinweis": "Ergebnistyp Zustand, nicht Dokument: Der Meilenstein ist die direkte Folge des Entscheids Zuschlag.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-zuschlag.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilenstein Zuschlag»"
+    }
+  },
+  {
+    "id": "ergebnis-meilensteine",
+    "kategorie": "ergebnis",
+    "begriff": "Meilensteine",
+    "definition": "«Meilensteine» fasst als Sammeleintrag die HERMES-Meilensteine zusammen. Ein Meilenstein ist ein Zustand, der erreicht wird, wenn der zugehörige Entscheid getroffen ist; er ist damit die direkte Folge eines Entscheids.",
+    "details": "Ergebnistyp: Zustand.\n\nHERMES 2022 kennt 16 Meilensteine: Abnahme, Abnahme Migration, Ausschreibung, Betriebsaufnahme, Durchführungsfreigabe, ISDS-Konzept, Lösungsarchitektur, Phasenfreigabe, Phasenfreigabe Abschluss, Produktkonzept, Projektabschluss, Projektinitialisierungsfreigabe, Releasefreigabe, Vorabnahme, Weiteres Vorgehen, Zuschlag.",
+    "abgrenzung": "Der Meilenstein ist ein Zustand, kein Dokument. Die zugehörige Checkliste bereitet den Entscheid vor, der Meilenstein dokumentiert, dass er getroffen ist.",
+    "pruefungshinweis": "Ein Meilenstein ist in HERMES ein Ergebnis vom Typ Zustand – nicht bloss ein Termin im Plan. Zum Entscheid Projektabbruch existiert kein Meilenstein.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilensteine.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilensteine»"
+    }
+  },
+  {
+    "id": "ergebnis-migration-durchgefuehrt",
+    "kategorie": "ergebnis",
+    "begriff": "Migration durchgeführt",
+    "definition": "Die Migration vom alten auf das neue bzw. weiterentwickelte System ist durchgeführt und gemäss den Vorgaben der Controlling- und Koordinationsstellen dokumentiert. Die Nachvollziehbarkeit der Migration wird sichergestellt. Die erfolgreich durchgeführte Migration ist die Voraussetzung für deren Abnahme und den Entscheid Betriebsaufnahme.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Migration"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Betriebsverantwortlicher",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Migration – Migration durchführen – Entwickler",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migration-durchgefuehrt.html",
+      "bezeichnung": "HERMES online · Ergebnis «Migration durchgeführt»"
+    }
+  },
+  {
+    "id": "ergebnis-migrationskonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Migrationskonzept",
+    "definition": "Das Migrationskonzept beschreibt die technischen und organisatorischen Anforderungen an die Migration und enthält das Konzept der Migrationsverfahren. Das Migrationskonzept belegt die Machbarkeit und zeigt die Migrationsplanung auf. Neben den technischen und organisatorischen Anforderungen sind auch die Anforderungen der Revision sowie des ISDS berücksichtigt.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Migration"
+    ],
+    "verantwortlich": "IT-Architekt",
+    "beteiligt": [
+      "IT-Architekt",
+      "Business Analyst",
+      "Entwickler"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Migration – Migrationskonzept erarbeiten – IT-Architekt\n\nInhalt gemäss Dokumentvorlage:\n– Ziele der Migration\n– Anforderungen an die Migration\n– Migrationsobjekte\n– Datenanalyse\n– Migrationsverfahren\n– Migrationsplan\n– Machbarkeit\n– Archivierung und Ausserbetriebssetzung Altsystem\n– Anforderungsabdeckung\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Betrifft die Migration vom alten auf das neue System (Modul IT-Migration) – nicht die Integration im Umfeld (Integrationskonzept, Modul IT-System) oder die Einführung (Einführungskonzept).",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migrationskonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Migrationskonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-migrationsverfahren-realisiert",
+    "kategorie": "ergebnis",
+    "begriff": "Migrationsverfahren realisiert",
+    "definition": "Das realisierte Migrationsverfahren ist durch den Entwickler bzw. den Tester des Erstellers getestet worden. Er erbringt den Nachweis seiner Tests. Sie bilden die Voraussetzung für die Vorabnahme.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Migration"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Betriebsverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Migration – Migrationsverfahren realisieren – Entwickler",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migrationsverfahren-realisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Migrationsverfahren realisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-offertanfrage",
+    "kategorie": "ergebnis",
+    "begriff": "Offertanfrage",
+    "definition": "Mit der Offertanfrage werden Angebote für verschiedene organisationsinterne und -externe Leistungen eingeholt. Die Angebote bilden die Grundlage für die Leistungsvereinbarung, wie in der Aufgabe Leistungen vereinbaren und steuern beschrieben ist. Die Vorgaben an die Offerte erlauben es, die Angebote zu vergleichen und zu bewerten.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Leistungen vereinbaren und steuern – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Auftraggeber\n– Ausgangslage\n– Auftragsgegenstand\n– Termine\n– Bedingungen\n– Vorgaben an die Offerte\n– Administrativer Ablauf der Beschaffung\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Offertanfrage holt Angebote für einzelne Leistungen ein (Modul Projektführung). Die Ausschreibungsunterlagen gehören zur öffentlichen Beschaffung (Modul Beschaffung) und enthalten das Lastenheft samt Kriterienkatalog.",
+    "pruefungshinweis": "Offertanfrage ist Modul Projektführung, Ausschreibungsunterlagen sind Modul Beschaffung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/offertanfrage.html",
+      "bezeichnung": "HERMES online · Ergebnis «Offertanfrage»"
+    }
+  },
+  {
+    "id": "ergebnis-organisation-aktiviert",
+    "kategorie": "ergebnis",
+    "begriff": "Organisation aktiviert",
+    "definition": "Die neue Organisation ist aktiviert. Sie führt ihre Prozesse gemäss den Prozessbeschreibungen durch.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Organisation"
+    ],
+    "verantwortlich": "Business Analyst",
+    "beteiligt": [
+      "Business Analyst",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nWird die neue Organisation im Rahmen einer klassischen Lösungsentstehung aktiviert, ist dies die Voraussetzung für die Aktivierung des Produkts oder des Systems. Bei agiler Lösungsentstehung wird nur der entsprechende Teil der Organisation aktiviert.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Organisation – Organisation aktivieren – Business Analyst",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisation-aktiviert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Organisation aktiviert»"
+    }
+  },
+  {
+    "id": "ergebnis-organisation-umgesetzt",
+    "kategorie": "ergebnis",
+    "begriff": "Organisation umgesetzt",
+    "definition": "Die im Organisationskonzept definierte Organisation ist umgesetzt.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Organisation"
+    ],
+    "verantwortlich": "Business Analyst",
+    "beteiligt": [
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nAuf Grundlage der Prozessbeschreibung und der Organisationsbeschreibung wurden die Massnahmen realisiert, um die Organisation ins Leben zu rufen (Stellenbesetzungen, Personalanstellungen usw.).\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Organisation – Organisation umsetzen – Business Analyst",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisation-umgesetzt.html",
+      "bezeichnung": "HERMES online · Ergebnis «Organisation umgesetzt»"
+    }
+  },
+  {
+    "id": "ergebnis-organisationsanforderungen",
+    "kategorie": "ergebnis",
+    "begriff": "Organisationsanforderungen",
+    "definition": "Die Organisationsanforderungen definieren, ob es ein neues oder aktualisiertes Geschäftsmodell braucht und/oder ob die Aufbau- oder Ablauforganisation ändert. Sie beinhalten jene kontextbezogenen, betriebswirtschaftlichen und organisatorischen Anforderungen, die die interne Organisation im Rahmen der künftigen Lösung stärken und der Lösung selbst einen höheren Wirkungsgrad ermöglichen.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Organisation"
+    ],
+    "verantwortlich": "Business Analyst",
+    "beteiligt": [
+      "Business Analyst",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nSie umfassen neben den klassischen aufbau- und ablauforganisationsspezifischen Aspekten auch die Anforderungen an die Wirtschaftlichkeit, Effektivität und Effizienz sowie die Ziele der Stammorganisation und die aus den Zielen abgeleitete Organisationsstrategie, oftmals manifestiert in einem Geschäftsmodell, das den Rahmen vorgibt, in den die neue Organisation eingepasst werden muss.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Organisation – Organisationsanforderungen erarbeiten – Business Analyst\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Stossrichtung des geplanten/geänderten Geschäftsmodells\n– Stossrichtung der geplanten/geänderten Aufbauorganisation\n– Stossrichtung der geplanten/geänderten Ablauforganisation\n– Anforderungskatalog\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Organisationsanforderungen betreffen Geschäftsmodell sowie Aufbau- und Ablauforganisation und werden vom Business Analyst verantwortet. Die Lösungsanforderungen an System oder Produkt verantwortet der Anwendervertreter.",
+    "pruefungshinweis": "Verantwortung Business Analyst, nicht Anwendervertreter.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationsanforderungen.html",
+      "bezeichnung": "HERMES online · Ergebnis «Organisationsanforderungen»"
+    }
+  },
+  {
+    "id": "ergebnis-organisationsbeschreibung",
+    "kategorie": "ergebnis",
+    "begriff": "Organisationsbeschreibung",
+    "definition": "Die Organisationsbeschreibung beschreibt die Aufbauorganisation mit dem detaillierten Organigramm, den Funktionsbeschreibungen und Personalanforderungen. Sie bildet die Grundlage für Stellenbesetzungen.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Organisation"
+    ],
+    "verantwortlich": "Business Analyst",
+    "beteiligt": [
+      "Business Analyst",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Organisation – Organisation umsetzen – Business Analyst\n– Organisation – Organisationskonzept erarbeiten – Business Analyst\n\nInhalt gemäss Dokumentvorlage:\n– Organigramm\n– Organisatorische Schnittstellen\n– Funktionsbeschreibungen\n– Personalanforderungen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Beschreibt die Aufbauorganisation (Organigramm, Funktionsbeschreibungen, Personalanforderungen). Die Prozessbeschreibung beschreibt demgegenüber die Ablauforganisation.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationsbeschreibung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Organisationsbeschreibung»"
+    }
+  },
+  {
+    "id": "ergebnis-organisationskonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Organisationskonzept",
+    "definition": "Das Organisationskonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante aus organisatorischer Sicht. Es basiert auf den Organisationsanforderungen, ggfs. ergänzt durch die Erkenntnisse aus den Lösungsanforderungen und beschreibt die relevanten Geschäftsmodellaspekte sowie Aufbau- und Ablauforganisation (Geschäftsprozesse) für die Geschäftsabwicklung und den Support. Es zeigt auf, welche neue Organisation erstellt wird und welche Änderungen an Bestehendem vorgenommen werden.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Organisation"
+    ],
+    "verantwortlich": "Business Analyst",
+    "beteiligt": [
+      "Business Analyst",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Organisation – Organisationskonzept erarbeiten – Business Analyst\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Organisationsanforderungen\n– Geschäftsmodell\n– Aufbauorganisation\n– Ablauforganisation\n– Übersicht der Veränderungen\n– Anforderungsabdeckung\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Vertieft die gewählte Lösungsvariante aus organisatorischer Sicht und basiert auf den Organisationsanforderungen – im Unterschied zu System- und Produktkonzept, die auf den Lösungsanforderungen basieren.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationskonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Organisationskonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-phasenbericht",
+    "kategorie": "ergebnis",
+    "begriff": "Phasenbericht",
+    "definition": "Der Phasenbericht bildet die Grundlage für den Entscheid über die Freigabe der nächsten Phase und für die Aktualisierung des Projektstatusberichts. Er fasst die Ergebnisse und Entscheide der aktuellen Phase zusammen und zeigt die Organisation der nächsten Phase auf.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Phasenfreigabe vorbereiten – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Strategiebezug und Umsetzung von Vorgaben\n– Nutzen und Wirtschaftlichkeit\n– Rechtliche Grundlagen\n– Planung und Organisation\n– Prognose der Zielerreichung und Lösungen\n– Probleme und Massnahmen\n– Risiken\n– Anträge\n– Fazit\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Der Phasenbericht ist phasenbezogen und bereitet den Entscheid Phasenfreigabe vor. Der Projektstatusbericht ist die periodische Berichterstattung, der Releasebericht das Pendant zum Phasenbericht bei agiler Vorgehensweise.",
+    "pruefungshinweis": "Grundlage für den Entscheid über die Freigabe der nächsten Phase und für die Aktualisierung des Projektstatusberichts.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/phasenbericht.html",
+      "bezeichnung": "HERMES online · Ergebnis «Phasenbericht»"
+    }
+  },
+  {
+    "id": "ergebnis-produkt-aktiviert",
+    "kategorie": "ergebnis",
+    "begriff": "Produkt aktiviert",
+    "definition": "Das aktivierte Produkt wird den Anwendern für die Nutzung zur Verfügung gestellt.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Produkt"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Anwendervertreter",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Produkt – Produkt aktivieren – Entwickler",
+    "abgrenzung": "Pendant zu «System aktiviert», aber im Modul Produkt. Verantwortung Entwickler.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produkt-aktiviert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Produkt aktiviert»"
+    }
+  },
+  {
+    "id": "ergebnis-produkt-entwickelt-oder-angepasst",
+    "kategorie": "ergebnis",
+    "begriff": "Produkt entwickelt oder angepasst",
+    "definition": "Das entwickelte und/oder angepasste Produkt ist durch den Entwickler bzw. den Tester des Erstellers getestet worden. Es wird für die Tests und die Vorabnahme an den Anwender übergeben.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Produkt"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Anwendervertreter",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Produkt – Produkt realisieren – Entwickler",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produkt-entwickelt-oder-angepasst.html",
+      "bezeichnung": "HERMES online · Ergebnis «Produkt entwickelt oder angepasst»"
+    }
+  },
+  {
+    "id": "ergebnis-produktdokumentation",
+    "kategorie": "ergebnis",
+    "begriff": "Produktdokumentation",
+    "definition": "Die Produktdokumentation ist die technische Dokumentation des Produkts. Alle im Entwicklungsprozess definierten Dokumentationen bilden zusammen die Produktdokumentation. Sie ist eine Voraussetzung für die Wartung und Weiterentwicklung des Produkts.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Produkt"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Produkt – Produkt realisieren – Entwickler\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produktdokumentation.html",
+      "bezeichnung": "HERMES online · Ergebnis «Produktdokumentation»"
+    }
+  },
+  {
+    "id": "ergebnis-produktkonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Produktkonzept",
+    "definition": "Das Produktkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den Lösungsanforderungen, ggfs. ergänzt durch die Erkenntnisse aus den Organisationsanforderungen und beschreibt das zu erstellende Produkt. Je nach Produkt und Komplexität der Lösungsanforderungen variieren die Struktur und der Detaillierungsgrad.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Produkt"
+    ],
+    "verantwortlich": "Anwendervertreter",
+    "beteiligt": [
+      "Anwendervertreter",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Produkt – Produktkonzept erarbeiten – Anwendervertreter\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Anforderungen\n– Abgrenzung\n– Verwendungszweck\n– Produktklassifizierungen\n– Produktbeschreibung\n– Varianten\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Pendant zum Systemkonzept, aber für Produkte und Dienstleistungen (Modul Produkt). Es basiert auf den Lösungsanforderungen, ggf. ergänzt durch die Organisationsanforderungen.",
+    "pruefungshinweis": "Zum Produktkonzept gehören der Entscheid Produktkonzept, die Checkliste Produktkonzept und der Meilenstein Produktkonzept.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produktkonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Produktkonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-projekterfahrungen",
+    "kategorie": "ergebnis",
+    "begriff": "Projekterfahrungen",
+    "definition": "Die Projekterfahrungen werden systematisch gesammelt und als Projekt-Rückblick laufend dokumentiert. Sie unterstützen den kontinuierlichen Verbesserungsprozess im Projekt und in der Stammorganisation. Sie liefern wertvolle Informationen für den weiteren Projektverlauf und mögliche Anhaltspunkte für nachfolgende Projekte, indem positive Aspekte erkannt und übernommen und negative Aspekte möglichst vermieden werden.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektführung",
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber, Projektleiter",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Probleme behandeln und Erfahrungen nutzen – Projektleiter\n– Projektführung – Projektabschluss vorbereiten – Projektleiter\n– Projektsteuerung – Entscheid Projektabbruch treffen – Auftraggeber\n\nInhalt gemäss Dokumentvorlage:\n– Kontakt\n– Themengebiet\n– Datum\n– Erfahrung: positiv/negativ\n– Relevanz: mögliche Bedeutung für das eigene oder für andere Projekte\n– Mögliche Ursachen\n– Empfehlung; Hinweise für die Stammorganisation\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Laufend geführter Projekt-Rückblick (Lessons Learned) – nicht zu verwechseln mit der Projektschlussbeurteilung, die den Entscheid Projektabschluss vorbereitet.",
+    "pruefungshinweis": "Wird während des ganzen Projekts laufend dokumentiert, nicht erst in der Phase Abschluss.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projekterfahrungen.html",
+      "bezeichnung": "HERMES online · Ergebnis «Projekterfahrungen»"
+    }
+  },
+  {
+    "id": "ergebnis-projektinitialisierungsauftrag",
+    "kategorie": "ergebnis",
+    "begriff": "Projektinitialisierungsauftrag",
+    "definition": "Der Projektinitialisierungsauftrag bildet die verbindliche Grundlage für die Freigabe der Phase Initialisierung. Es handelt sich um eine Vereinbarung zwischen dem Auftraggeber und dem Projektleiter für die Phase Initialisierung.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Projektinitialisierungsfreigabe treffen – Auftraggeber\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Ziele: Ziele der Phase Initialisierung; Rahmenbedingungen\n– Ressourcenbedarf mit: Personalaufwand; Sachmittel; Kosten\n– Termine\n– Projektorganisation und Personal\n– Kommunikation\n– Risiken\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Gibt ausschliesslich die Phase Initialisierung frei. Die Freigabe der weiteren Phasen erfolgt über den Durchführungsauftrag (Entscheid Durchführungsfreigabe) bzw. über die Entscheide Phasenfreigabe.",
+    "pruefungshinweis": "Vereinbarung zwischen Auftraggeber und Projektleiter für die Phase Initialisierung. Mit ihm wird die Projektorganisation in Kraft gesetzt; das Projekt ist damit formell ins Leben gerufen (Meilenstein Projektinitialisierungsfreigabe).",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektinitialisierungsauftrag.html",
+      "bezeichnung": "HERMES online · Ergebnis «Projektinitialisierungsauftrag»"
+    }
+  },
+  {
+    "id": "ergebnis-projektmanagementplan",
+    "kategorie": "ergebnis",
+    "begriff": "Projektmanagementplan",
+    "definition": "Der Projektmanagementplan beinhaltet die Gesamtplanung des Projekts und die wesentlichen Regelungen zu Methoden, Techniken, Rollen und Hilfsmitteln, die projektspezifisch festgelegt werden. Er dient als einheitliche Handlungsgrundlage für alle Projektbeteiligten. Er wird im Projektverlauf nach dem Prinzip der rollenden Planung und Steuerung kontinuierlich konkretisiert und nachgeführt.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Einführungsorganisation",
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter, Anwendervertreter",
+    "beteiligt": [
+      "Projektleiter",
+      "Auftraggeber",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nDie erstmalige Ausarbeitung des Projektmanagementplans wird durch den Entscheid «Weiteres Vorgehen» in der Initialisierungsphase geprägt. Insbesondere der Vorgehensentscheid, ob klassisch oder agil, beeinflusst die Ausführung der Aufgaben und die Struktur und Inhalt der Ergebnisse. Der Projektmanagementplan beinhaltet die Gesamtplanung des Projekts und die wesentlichen Regelungen zu Methoden, Techniken, Rollen und Hilfsmitteln, die projektspezifisch festgelegt werden. Der Projektmanagementplan dient als einheitliche Handlungsgrundlage für alle Projektbeteiligten. Im Rahmen der Projektorganisation stellt er sicher, dass die Verantwortlichkeiten und die Aufgabenteilungen zwischen Leistungsbezügern, internen Leistungserbringern und ggf. externen Lieferanten ausreichend klar geregelt und dokumentiert sind. Er wird im Projektverlauf nach dem Prinzip der rollenden Planung und Steuerung kontinuierlich konkretisiert und nachgeführt. Bei agiler Lösungsentstehung wird der Terminplan für die Phase Umsetzung mit dem (agilen) Releaseplan kombiniert. Dieser Releaseplan gibt an, wann der Betrieb pro Release aktiviert wird. Ferner wird festgehalten, ob der (optionale) Entscheid «Releasefreigabe treffen» im Projekt vorgeschrieben ist oder nicht. Bei Phasenabschluss wird der Projektmanagementplan zur Abwicklung der nächsten Phase den veränderten Bedingungen angepasst. Bevor die Phase Abschluss freigegeben wird, wird der Projektmanagementplan für den Projektabschluss zusätzlich entsprechend vorbereitet und angepasst.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Einführungsorganisation – Einführungskonzept erarbeiten – Anwendervertreter\n– Projektführung – Phasenfreigabe vorbereiten – Projektleiter\n– Projektführung – Projekt führen und kontrollieren – Projektleiter\n– Projektführung – Projektmanagementplan erarbeiten – Projektleiter\n– Projektführung – Qualitätssicherung führen – Projektleiter\n– Projektführung – Releaseabschluss vorbereiten – Projektleiter\n– Projektführung – Risiken managen – Projektleiter\n– Projektführung – Stakeholder managen und informieren – Projektleiter\n– Projektführung – Änderungen managen – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Projektbeschreibung: Zusammenfassung; Phasen und Meilensteinen (klassisch) oder Releases (agil); Releasefreigabe ja/nein (agil)\n– Szenario mit Durchführungsstrukturplan\n– Durchführungsorganisation mit: Projektorganigramm; Rollen in der Stamm- und Projektorganisation; Besetzung der Rollen (einschliesslich der Umsetzungsorganisation (agil))\n– Projektergebnisstruktur\n– Qualitätsziele und -vorgaben (für die Durchführung)\n– Prüfplan (QS)\n– Durchführungsplanung mit: Terminplan; Releaseplan (agil) mit\n– Kostenplan/genehmigtes Budget\n– Ressourcenplan\n– Beschaffungsplan\n– Kommunikationsplan\n– Reporting\n– Stakeholdermanagement (projektspezifisch)\n– Vorgaben, Methoden und Werkzeuge\n– Qualitätssicherung\n– Änderungsmanagement\n– Risikomanagement\n– Eskalationsvorgehen\n– Dokumentenmanagement\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Der Projektmanagementplan plant und regelt, der Durchführungsauftrag beauftragt und autorisiert. Die konkrete Projektorganisation und die Rollenbesetzung werden im Projektmanagementplan festgehalten, nicht im Durchführungsauftrag.",
+    "pruefungshinweis": "Bei agiler Lösungsentstehung wird der Terminplan der Phase Umsetzung mit dem Releaseplan kombiniert; im Projektmanagementplan wird festgehalten, ob der optionale Entscheid Releasefreigabe im Projekt vorgeschrieben ist. Auch die für ein Programm angepassten Rollenbeschreibungen werden hier aufgeführt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektmanagementplan.html",
+      "bezeichnung": "HERMES online · Ergebnis «Projektmanagementplan»"
+    }
+  },
+  {
+    "id": "ergebnis-projektschlussbeurteilung",
+    "kategorie": "ergebnis",
+    "begriff": "Projektschlussbeurteilung",
+    "definition": "Die Projektschlussbeurteilung bildet die Grundlage für den Entscheid zum Projektabschluss. Sie informiert den Auftraggeber über den Soll-Ist-Vergleich bezüglich der sachlichen, terminlichen und finanziellen Projekt- und Vorgehensziele. Die Inhalte des Ergebnisses Projekterfahrungen sind zusammenfassend dokumentiert.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektführung",
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber, Projektleiter",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nInhalt und Termine der Projekterfolgskontrolle sind bestimmt.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Projektabschluss vorbereiten – Projektleiter\n– Projektsteuerung – Entscheid Projektabbruch treffen – Auftraggeber\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Beurteilung der Zielerreichung\n– Wirtschaftlichkeit\n– Soll-Ist-Vergleich: Kosten; Aufwand; Termine; Ergebnisse\n– Projekterfahrungen\n– Pendenzen und Massnahmen: Direkt aus dem Projekt mit; Weitere Massnahmen nach Projektabschluss mit\n– Antrag\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Projektschlussbeurteilung bereitet den Entscheid Projektabschluss vor (Soll-Ist-Vergleich). Die Projekterfahrungen werden demgegenüber laufend während des ganzen Projekts gesammelt.",
+    "pruefungshinweis": "Grundlage für den Entscheid Projektabschluss; die Inhalte der Projekterfahrungen sind darin zusammenfassend dokumentiert, und Inhalt sowie Termine der Projekterfolgskontrolle sind bestimmt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektschlussbeurteilung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Projektschlussbeurteilung»"
+    }
+  },
+  {
+    "id": "ergebnis-projektstatusbericht",
+    "kategorie": "ergebnis",
+    "begriff": "Projektstatusbericht",
+    "definition": "Der Projektstatusbericht dient zur periodischen Berichterstattung über den Projektstand, den Projektfortschritt und die Prognosen zum weiteren Projektverlauf. Die Art und Weise der Berichterstattung ist im Projektmanagementplan geregelt. Vorgaben der Stammorganisation bezüglich des Inhalts und der Frequenz des Reportings werden berücksichtigt.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Phasenfreigabe vorbereiten – Projektleiter\n– Projektführung – Projekt führen und kontrollieren – Projektleiter\n– Projektführung – Releaseabschluss vorbereiten – Projektleiter\n– Projektführung – Risiken managen – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Übersicht Projektstand\n– Prognose der Zielerreichung (agil: Burn-Down -Diagramm)\n– Soll-Ist-Vergleich und Prognosen mit: Kosten/Nutzen; Aufwand; Termine; Ergebnisse\n– Probleme und Massnahmen\n– Risiken\n– Ausblick\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Periodische Berichterstattung über den gesamten Projektverlauf – im Unterschied zum ereignisbezogenen Phasenbericht bzw. Releasebericht.",
+    "pruefungshinweis": "Art und Frequenz der Berichterstattung sind im Projektmanagementplan geregelt; Vorgaben der Stammorganisation sind zu berücksichtigen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektstatusbericht.html",
+      "bezeichnung": "HERMES online · Ergebnis «Projektstatusbericht»"
+    }
+  },
+  {
+    "id": "ergebnis-protokoll",
+    "kategorie": "ergebnis",
+    "begriff": "Protokoll",
+    "definition": "Das Protokoll dokumentiert einerseits die Entscheide und Aufträge, die in einer Besprechung getroffen bzw. erteilt werden, anderseits wichtige Führungs- und Ausführungsprozesse, die später bei Bedarf nachvollzogen werden müssen. Wichtige Diskussions- und Handlungspunkte werden festgehalten. Im Protokoll festgehaltene Aufträge werden in einer Pendenzenliste verwaltet.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektführung",
+      "Tests"
+    ],
+    "verantwortlich": "Projektleiter, Testverantwortlicher",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung",
+      "Testverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nGenerell: Die Sammlung aller Protokolle dient der Nachvollziehbarkeit von Entscheiden und Abläufen bzw. Prozessen.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Projekt führen und kontrollieren – Projektleiter\n– Tests – Testinfrastruktur überführen – Testverantwortlicher\n\nInhalt gemäss Dokumentvorlage:\n– Kopfbereich: Sitzungsart/Thema; Datum/Zeit/Ort; Leitung/Protokollführung; Teilnehmende/Abwesende\n– Protokollbereich mit: Begrüssung/Ggf. Genehmigung letztes Protokoll; Einzelne besprochene Traktanden; Beschlussliste; Ggf. Informationen zu nächstem Meeting\n– Pendenzenliste (Anhang)\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/protokoll.html",
+      "bezeichnung": "HERMES online · Ergebnis «Protokoll»"
+    }
+  },
+  {
+    "id": "ergebnis-prototyp-realisiert",
+    "kategorie": "ergebnis",
+    "begriff": "Prototyp realisiert",
+    "definition": "Mit dem Prototyp wird die Machbarkeit oder das Verhalten eines Systems bzw. eines Produkts in einer bestimmten Situation geprüft. Mit Prototypen werden Risiken bewertet und reduziert.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System",
+      "Produkt",
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Anwendervertreter",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nIm Projektverlauf können zwecks Überprüfung der Machbarkeit mehrere, verschiedene Prototypen realisiert werden. Es kann zwischen Wegwerfprototypen und wiederverwendbaren Prototypen unterschieden werden.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Prototyping durchführen – Entwickler\n– Produkt – Prototyping durchführen – Entwickler\n– Projektgrundlagen – Prototyping durchführen – Entwickler",
+    "abgrenzung": "Zustand des realisierten Prototyps; die zugehörige Dokumentation ist die Prototypdokumentation.",
+    "pruefungshinweis": "Prototyping ist in drei Modulen möglich: Projektgrundlagen, Produkt und IT-System.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prototyp-realisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Prototyp realisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-prototypdokumentation",
+    "kategorie": "ergebnis",
+    "begriff": "Prototypdokumentation",
+    "definition": "Die Prototypdokumentation bildet die Grundlage für die Erstellung und Auswertung des Prototyps. Sie hält die Ziele, Anforderungen, Ergebnisse und Schlussfolgerungen des Prototypings fest.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System",
+      "Produkt",
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Prototyping durchführen – Entwickler\n– Produkt – Prototyping durchführen – Entwickler\n– Projektgrundlagen – Prototyping durchführen – Entwickler\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Rahmenbedingungen\n– Anforderungen\n– Konzept: Konzept des Prototyps; Benötigte Infrastruktur\n– Zusammenfassung der Testergebnisse: Hinweis auf Testkonzept; Liste der Testfälle; Zusammenfassung der Testprotokolle, Testbericht\n– Schlussfolgerungen\n– Empfehlungen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Prototypdokumentation ist das Dokument zum Prototyping; «Prototyp realisiert» ist der zugehörige Zustand.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prototypdokumentation.html",
+      "bezeichnung": "HERMES online · Ergebnis «Prototypdokumentation»"
+    }
+  },
+  {
+    "id": "ergebnis-prozessbeschreibung",
+    "kategorie": "ergebnis",
+    "begriff": "Prozessbeschreibung",
+    "definition": "Die Prozessbeschreibung ist eine bis auf Prozessebene ausdetaillierte Ablauforganisation, sie beschreibt die einzelnen Prozesse mit den eingesetzten Hilfsmitteln.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Organisation"
+    ],
+    "verantwortlich": "Business Analyst",
+    "beteiligt": [
+      "Business Analyst",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Organisation – Organisation umsetzen – Business Analyst\n– Organisation – Organisationskonzept erarbeiten – Business Analyst\n\nInhalt gemäss Dokumentvorlage:\n– Übersicht über die Prozesse\n– Pro Prozess: Prozessbeschreibung (gem. eCH-0140); Tabellarischer Prozessablauf; Grafischer Prozessablauf\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Detaillierte Ablauforganisation auf Prozessebene. Die Aufbauorganisation wird in der Organisationsbeschreibung festgehalten.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prozessbeschreibung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Prozessbeschreibung»"
+    }
+  },
+  {
+    "id": "ergebnis-pruefprotokoll",
+    "kategorie": "ergebnis",
+    "begriff": "Prüfprotokoll",
+    "definition": "Das Prüfprotokoll hält die Befunde aus Prüfungen fest und dokumentiert die Umsetzungsentscheide zu den Befunden sowie den Entscheid zum Status des Ergebnisses.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Qualitätssicherung führen – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Zu prüfendes Ergebnis\n– Prüfdatum\n– Prüfer\n– Befund\n– Entscheid zum Ergebnis\n– Entscheid zum Befund\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Das Prüfprotokoll hält Befunde aus Prüfungen von Ergebnissen fest. Das Testprotokoll hält Testergebnisse fest, das Abnahmeprotokoll das Ergebnis eines Abnahmeentscheids.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/pruefprotokoll.html",
+      "bezeichnung": "HERMES online · Ergebnis «Prüfprotokoll»"
+    }
+  },
+  {
+    "id": "ergebnis-publikation",
+    "kategorie": "ergebnis",
+    "begriff": "Publikation",
+    "definition": "Die Publikation informiert über die Zuschlagserteilung in der betreffenden Ausschreibung. Form und Inhalt der Publikation werden durch die Controlling- und Vorgabestellen bzw. die Beschaffungsstelle vorgegeben. In der Schweiz erfolgen Publikationen öffentlicher Ausschreibungen i. d. R. über www.simap.ch.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Projektleiter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Entscheid Zuschlag treffen – Auftraggeber\n\nInhalt gemäss Dokumentvorlage:\n– Betroffene Ausschreibung\n– Beschaffungsstelle\n– Zuschlagsempfänger\n– Rechtsmittel\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Publikation informiert über die Zuschlagserteilung. Die Ausschreibung selbst wird über die Ausschreibungsunterlagen publiziert.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/publikation.html",
+      "bezeichnung": "HERMES online · Ergebnis «Publikation»"
+    }
+  },
+  {
+    "id": "ergebnis-qs-und-risikobericht",
+    "kategorie": "ergebnis",
+    "begriff": "QS- und Risikobericht",
+    "definition": "Der QS (Qualitätssicherungs)- und Risikobericht wird durch den Qualitäts- und Risikomanager (QRM) nach Beauftragung durch den Auftraggeber erstellt. Er informiert aus unabhängiger Sicht über die Qualität und die Risikosituation des Projekts. Der Inhalt des QS- und Risikoberichts ist abhängig von Auftrag und Abgrenzung sowie von den eingesetzten Methoden.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektsteuerung"
+    ],
+    "verantwortlich": "Auftraggeber",
+    "beteiligt": [
+      "Auftraggeber",
+      "Qualitäts- und Risikomanager"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektsteuerung – Entscheid Phasenfreigabe Abschluss treffen – Auftraggeber\n– Projektsteuerung – Entscheid Phasenfreigabe treffen – Auftraggeber\n– Projektsteuerung – Entscheid Projektabschluss treffen – Auftraggeber\n– Projektsteuerung – Entscheid Releasefreigabe treffen – Auftraggeber\n– Projektsteuerung – Projekt steuern – Auftraggeber\n\nInhalt gemäss Dokumentvorlage:\n– Auftrag und Abgrenzung\n– Vorgehensweise\n– Gesamtbeurteilung mit Projektstatus\n– Qualitätsbeurteilung\n– Risikobeurteilung\n– Empfehlungen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "pruefungshinweis": "Wird vom Qualitäts- und Risikomanager nach Beauftragung durch den Auftraggeber erstellt und informiert aus unabhängiger Sicht; er rapportiert direkt an den Auftraggeber.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/qs-und-risikobericht.html",
+      "bezeichnung": "HERMES online · Ergebnis «QS- und Risikobericht»"
+    }
+  },
+  {
+    "id": "ergebnis-rechtsgrundlagenanalyse",
+    "kategorie": "ergebnis",
+    "begriff": "Rechtsgrundlagenanalyse",
+    "definition": "Die Rechtsgrundlagenanalyse beschreibt die für das Projektergebnis bestehende bzw. geltende Rechtsgrundlagen und den allfälligen Bedarf für deren Änderung. Ein besonderes Augenmerk gilt den kommunalen, kantonalen, nationalen und allenfalls auch den internationalen rechtlichen sowie produktrelevanten und regulatorischen Vorgaben, die die anvisierte Lösung samt ihren Auswirkungen auf die Umsysteme, einhalten muss (Product Compliance).",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektgrundlagen – Rechtsgrundlagenanalyse erarbeiten – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Bestehende Rechtsgrundlagen\n– Bevorstehende Änderungen\n– Identifizierte Lücken\n– Vorschläge zur Schliessung von Lücken\n– Hinweise betreffend Product Compliance\n– Beurteilung der Konsequenzen\n– Empfehlungen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "pruefungshinweis": "Wird in der Phase Initialisierung parallel zur Studie erarbeitet und in den Entscheid Weiteres Vorgehen einbezogen (Modul Projektgrundlagen).",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/rechtsgrundlagenanalyse.html",
+      "bezeichnung": "HERMES online · Ergebnis «Rechtsgrundlagenanalyse»"
+    }
+  },
+  {
+    "id": "ergebnis-releasebericht",
+    "kategorie": "ergebnis",
+    "begriff": "Releasebericht",
+    "definition": "Der Releasebericht liefert im Rahmen der agilen Vorgehensweise die Übersicht über den bisherigen Projekterfolg und bildet die Grundlage für die Erstellung des Projektstatusberichts sowie, je nach Bestimmung im Projektmanagementplan, auch für den Entscheid über die etwaige Freigabe des nächsten Release. Er fasst die Ergebnisse und Entscheide des aktuellen Release zusammen und zeigt eine Übersicht über den noch zu leistenden Aufwand im Projekt.",
+    "phasen": [
+      "Umsetzung"
+    ],
+    "module": [
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Releaseabschluss vorbereiten – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Strategiebezug und Umsetzung von Vorgaben\n– Nutzen und Wirtschaftlichkeit\n– Inhalt des Release\n– Bekannte Fehler\n– Burn-Down-Diagramm\n– Risiken\n– Fazit\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Der Releasebericht ist das agile Pendant zum Phasenbericht (klassisch). Er kommt ausschliesslich in der Phase Umsetzung vor.",
+    "pruefungshinweis": "Nur bei agiler Vorgehensweise. Grundlage für den Projektstatusbericht und – je nach Festlegung im Projektmanagementplan – für den optionalen Entscheid Releasefreigabe.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/releasebericht.html",
+      "bezeichnung": "HERMES online · Ergebnis «Releasebericht»"
+    }
+  },
+  {
+    "id": "ergebnis-schnittstellen-realisiert",
+    "kategorie": "ergebnis",
+    "begriff": "Schnittstellen realisiert",
+    "definition": "Die realisierten Schnittstellen stellen den Datenaustausch zwischen dem System und den Umsystemen sicher.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Betriebsverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nDie Schnittstelle ist durch den Entwickler bzw. den Integrator und den Tester des Erstellers getestet worden. Sie wird dem Betreiber für die Integration in die Betriebsinfrastruktur übergeben.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Systemintegration vorbereiten – Entwickler",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/schnittstellen-realisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Schnittstellen realisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-schutzbedarfsanalyse",
+    "kategorie": "ergebnis",
+    "begriff": "Schutzbedarfsanalyse",
+    "definition": "Die Schutzbedarfsanalyse, auch ISDS-Analyse genannt, dokumentiert die Anforderungen an die Informationssicherheit und den Datenschutz. Diese sind im Rahmen der Vorgaben der Stammorganisation bei der Lösungsentstehung zu berücksichtigen.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "ISDS-Verantwortlicher",
+    "beteiligt": [
+      "ISDS-Verantwortlicher",
+      "Projektleiter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektgrundlagen – Schutzbedarfsanalyse erarbeiten – ISDS-Verantwortlicher\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Schutzbedarfsanalyse (auch ISDS-Analyse) erhebt in der Phase Initialisierung die Anforderungen; das ISDS-Konzept legt später die Massnahmen fest und zeigt die Restrisiken auf.",
+    "pruefungshinweis": "Modul Projektgrundlagen, Phase Initialisierung – wird parallel zur Studie erarbeitet und in den Entscheid Weiteres Vorgehen einbezogen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/schutzbedarfsanalyse.html",
+      "bezeichnung": "HERMES online · Ergebnis «Schutzbedarfsanalyse»"
+    }
+  },
+  {
+    "id": "ergebnis-service-level-agreement",
+    "kategorie": "ergebnis",
+    "begriff": "Service Level Agreement",
+    "definition": "Ein Service Level Agreement (SLA) ist eine vertragliche Vereinbarung zwischen dem Betreiber und dem Anwender, vertreten durch den Auftraggeber und den Anwendervertreter. Das SLA nennt die Dienstleistungen, die der Betreiber zu erbringen hat, definiert deren Service Level (Güte der Dienstleistung) und formuliert etwaige Massnahmen und Sanktionen bei Nichteinhaltung. Die vereinbarten Dienstleistungen und deren Service Level sind in der Regel kostenpflichtig.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Betrieb"
+    ],
+    "verantwortlich": "Betriebsverantwortlicher",
+    "beteiligt": [
+      "Betriebsverantwortlicher",
+      "Auftraggeber",
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nWird der Betrieb ausgelagert, können die SLAs ein wichtiger Faktor bei der Evaluation des möglichen Betreibers sein.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Betrieb – Betriebskonzept erarbeiten – Betriebsverantwortlicher\n\nInhalt gemäss Dokumentvorlage:\n– Präambel mit: Gegenstand; Ziele; Partner\n– Geltungsbereich\n– Inkrafttreten, Laufzeit, Kündigung\n– Dienstleistungen\n– Vergütung mit: Verrechnungspreisen; Rechnungsstellung; Zahlungsmodalitäten\n– Berichtswesen mit: Service-Level-Berichte (Standardberichte); Weitere Berichte (ggf.)\n– Konsequenzen bei Abweichung von vereinbarten Service-Levels\n– Regelungen zur Kontrolle des SLAs (SLA-Audits)\n– Regelungen zur Änderung des SLAs\n– Regelung zur Lösung von Konflikten\n– Datenschutz\n– Haftung und Gewährleistung\n– Schadensersatz\n– Anwendbares Recht\n– Gerichtsstand\n– Schiedsgerichtsverfahren\n– Vertraulichkeit, Geheimhaltung und Veröffentlichung\n– Teilnichtigkeit von Regelungen\n– Unterschriften\n– Beilagen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Vertragliche Vereinbarung zwischen Betreiber und Anwender (vertreten durch Auftraggeber und Anwendervertreter) – nicht zu verwechseln mit der Vereinbarung zwischen Anwender und Ersteller.",
+    "pruefungshinweis": "Der Projektleiter überprüft die Einhaltung des SLA durch die Vertragspartner; der Anwendervertreter hat Mitsprache beim Abschluss.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/service-level-agreement.html",
+      "bezeichnung": "HERMES online · Ergebnis «Service Level Agreement»"
+    }
+  },
+  {
+    "id": "ergebnis-situationsanalyse",
+    "kategorie": "ergebnis",
+    "begriff": "Situationsanalyse",
+    "definition": "Die Situationsanalyse beschreibt und analysiert die gegenwärtige Situation und die zukünftigen Entwicklungen, indem sie die grobe Standortbestimmung aus der Studie ergänzt bzw. vertieft.",
+    "phasen": [
+      "Konzept",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System",
+      "Organisation",
+      "Produkt"
+    ],
+    "verantwortlich": "Business Analyst, Anwendervertreter",
+    "beteiligt": [
+      "Business Analyst",
+      "Anwendervertreter",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nZur Bestimmung des Untersuchungsbereichs wird der gesamtheitliche Lösungs- und Einflussbereich der in der Phase Initialisierung gewählten Variante herangezogen. Neben der Zusammenstellung der wesentlichen Mengen und Häufigkeiten geht die Situationsanalyse insbesondere auf die Mängel und Schwachstellen ein, die mit der künftigen Lösung möglichst beseitigt werden sollen, und definiert die vorhandenen Stärken, die erhalten werden sollen. Die Situationsanalyse bildet die fachliche Basis für die Definition der vom Projektergebnis zu erfüllenden Lösungs- und Organisationsanforderungen. Sie ist ziel- und lösungsneutral und umfasst alle für die Lösung relevanten Aspekte.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Lösungsanforderungen erarbeiten – Anwendervertreter\n– Organisation – Organisationsanforderungen erarbeiten – Business Analyst\n– Produkt – Lösungsanforderungen erarbeiten – Anwendervertreter\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Ist-Organisation (falls relevant) mit: Geschäftsmodell/geschäftlicher Sichtweise; Aufbauorganisation/Strukturen; Ablauforganisation/Prozesse\n– Beschreibung, sofern vorhanden, der bestehenden Lösung (Ist-System/Ist-Produkt): Ziel und Anwendungszweck, Funktion; Dokumentationen zur bestehenden Lösung wie; Betriebskosten\n– Mengen und Häufigkeiten\n– Beschreibung des Ist-Gesamtkontexts\n– Stärken- und Schwächenanalyse\n– Fazit und Handlungsbedarf\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Situationsanalyse ergänzt bzw. vertieft in der Phase Konzept die grobe Standortbestimmung aus der Studie; sie ersetzt die Studie nicht.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/situationsanalyse.html",
+      "bezeichnung": "HERMES online · Ergebnis «Situationsanalyse»"
+    }
+  },
+  {
+    "id": "ergebnis-stakeholderinteressen",
+    "kategorie": "ergebnis",
+    "begriff": "Stakeholderinteressen",
+    "definition": "Die Stakeholderinteressen bilden die Grundlage für die Information der Stakeholder und für die direkte Zusammenarbeit mit ihnen. Die Analyse der Stakeholderinteressen wird getrennt von der Stakeholderliste geführt. Diese Analyse ist eine subjektive, projektinterne Einschätzung und kein öffentliches Ergebnis.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "IT-System",
+      "Organisation",
+      "Produkt",
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter, Anwendervertreter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nDie Stakeholderinteressen werden für die Kommunikation und für die Zusammenarbeit mit den Stakeholdern benötigt und werden regelmässig nachgeführt.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Stakeholderinteressen vertreten – Anwendervertreter\n– Organisation – Stakeholderinteressen vertreten – Anwendervertreter\n– Produkt – Stakeholderinteressen vertreten – Anwendervertreter\n– Projektführung – Stakeholder managen und informieren – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Stakeholder-Positionierung\n– Stakeholder-Beschreibung\n– Erkannte Interessen- und Zielkonflikte\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Analyse der Stakeholderinteressen wird bewusst getrennt von der Stakeholderliste geführt.",
+    "pruefungshinweis": "Subjektive, projektinterne Einschätzung und ausdrücklich kein öffentliches Ergebnis.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/stakeholderinteressen.html",
+      "bezeichnung": "HERMES online · Ergebnis «Stakeholderinteressen»"
+    }
+  },
+  {
+    "id": "ergebnis-stakeholderliste",
+    "kategorie": "ergebnis",
+    "begriff": "Stakeholderliste",
+    "definition": "Die Stakeholderliste wird erstmals in der Phase Initialisierung erarbeitet und bildet die Grundlage für das Managen der Stakeholder, für die direkte Zusammenarbeit mit ihnen und für die Kommunikationsplanung. Sie wird im Projektablauf kontinuierlich weitergeführt.",
+    "phasen": [
+      "Initialisierung",
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Projektführung",
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Auftraggeber",
+      "Business Analyst",
+      "Projektunterstützung",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektführung – Stakeholder managen und informieren – Projektleiter\n– Projektgrundlagen – Studie erarbeiten – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Stakeholder\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Stakeholderliste ist die Übersicht der Stakeholder. Die Stakeholderinteressen werden getrennt davon geführt und sind eine subjektive, projektinterne Einschätzung und kein öffentliches Ergebnis.",
+    "pruefungshinweis": "Wird erstmals in der Phase Initialisierung erarbeitet und über den ganzen Projektverlauf weitergeführt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/stakeholderliste.html",
+      "bezeichnung": "HERMES online · Ergebnis «Stakeholderliste»"
+    }
+  },
+  {
+    "id": "ergebnis-studie",
+    "kategorie": "ergebnis",
+    "begriff": "Studie",
+    "definition": "Die Studie beschreibt die angestrebte Lösung, indem sie basierend auf der Standortbestimmung, die die Ziele im Sinne des mit dem Projekt angestrebten Nutzens definiert, mögliche Lösungsvarianten und das vorgeschlagene Vorgehen aufführt und diese anschliessend bewertet. Sie entspricht dem Business-Case und zeigt den Geschäftsnutzen sowie den Bezug zur Strategie und den Zielen der Stammorganisation. Alle Aspekte, die einen Einfluss auf die geplante Lösung haben oder die von der Lösung beeinflusst werden können, werden in der Studie erwähnt.",
+    "phasen": [
+      "Initialisierung"
+    ],
+    "module": [
+      "Projektgrundlagen"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Business Analyst",
+      "IT-Architekt",
+      "Projektunterstützung"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nDarüber hinaus wird das passende Szenario (vgl. Kapitel «Szenarien») ausgewählt, allenfalls ein benutzerdefiniertes Szenario erstellt und es wird geschätzt, welche Wertigkeit das Projekt haben wird. Die Studie wird nur soweit detailliert, dass die Stossrichtung des anvisierten Projekts klar ersichtlich ist und der Entscheid Weiteres Vorgehen getroffen werden kann. Die straffe Vorgehensweise trifft insbesondere auf die Standortbestimmung zu, um die Initialisierungsphase nicht unnötig zu verlängern. Der in der Studie dokumentierte Entscheid über das weitere Vorgehen bildet die Grundlage für die Entscheidungsvorbereitung, ob ein Projekt fortgesetzt wird oder nicht. Die Studie ist die Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Projektgrundlagen – Entscheid Weiteres Vorgehen treffen – Projektleiter\n– Projektgrundlagen – Studie erarbeiten – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Standortbestimmung aus geschäftlicher Sicht mit: Geschäftsorganisation; Produkt oder IT System; Mengen und Häufigkeiten; Informationssicherheit und Datenschutz; Beschreibung des IST-Gesamtkontextes; Stärken- und Schwächenanalyse; Analyse und Bewertung\n– Ziele\n– Rahmenbedingungen, Strategiebezug und Abgrenzungen\n– Grobanforderungen\n– Lösungsvarianten mit: Variantenübersicht; Beschreibung je Variante inkl. vorgeschlagener Vorgehensweise; Analyse und Bewertung mit\n– Vorschlag und Entscheid weiteres Vorgehen: Lösungsvariante; Szenario; Vorgehensweise; Projektwertigkeit\n– Planung und Termine: Szenario und Module; Projekttermine, Meilensteine; Geplanter Nutzungszeitraum\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Studie ist das inhaltliche Grundlagenergebnis der Phase Initialisierung und entspricht dem Business-Case. Sie ist kein Auftrag: Beauftragt wird mit dem Projektinitialisierungsauftrag (Phase Initialisierung) und mit dem Durchführungsauftrag (Lösungsentstehung und Abschluss). Von der Situationsanalyse unterscheidet sie sich dadurch, dass diese die grobe Standortbestimmung der Studie erst in der Phase Konzept ergänzt bzw. vertieft.",
+    "pruefungshinweis": "HERMES 2022 kennt kein Ergebnis «Projektauftrag». In der Studie werden das Szenario ausgewählt, je Variante die Vorgehensweise (klassisch oder agil) festgelegt und die Projektwertigkeit geschätzt. Sie ist Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/studie.html",
+      "bezeichnung": "HERMES online · Ergebnis «Studie»"
+    }
+  },
+  {
+    "id": "ergebnis-system-aktiviert",
+    "kategorie": "ergebnis",
+    "begriff": "System aktiviert",
+    "definition": "Das aktivierte System wird den Anwendern für die Nutzung zur Verfügung gestellt.",
+    "phasen": [
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Betriebsverantwortlicher",
+      "Anwendervertreter",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – System aktivieren – Entwickler",
+    "abgrenzung": "«System aktiviert» betrifft das IT-System (Modul IT-System), «Produkt aktiviert» das Produkt (Modul Produkt), «Organisation aktiviert» die neue Organisation (Modul Organisation) und «Betrieb aktiviert» die Betriebsaufnahme durch den Betreiber (Modul IT-Betrieb).",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-aktiviert.html",
+      "bezeichnung": "HERMES online · Ergebnis «System aktiviert»"
+    }
+  },
+  {
+    "id": "ergebnis-system-entwickelt-oder-parametrisiert",
+    "kategorie": "ergebnis",
+    "begriff": "System entwickelt oder parametrisiert",
+    "definition": "Das entwickelte und/oder parametrisierte System ist durch den Entwickler bzw. den Integrator und den Tester des Erstellers getestet worden. Es wurde dem Betreiber für die Integration in die Betriebsinfrastruktur übergeben. Die Entwicklung und die Integration können in mehreren Schritten bzw. Releases erfolgen.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "Entwickler",
+    "beteiligt": [
+      "Entwickler",
+      "Anwendervertreter",
+      "Business Analyst",
+      "IT-Architekt"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – System realisieren – Entwickler",
+    "abgrenzung": "Zustand nach Entwicklung/Parametrisierung und Tests des Erstellers; die Integration in die Betriebsinfrastruktur führt danach zu «System integriert».",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-entwickelt-oder-parametrisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «System entwickelt oder parametrisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-system-integriert",
+    "kategorie": "ergebnis",
+    "begriff": "System integriert",
+    "definition": "Das integrierte System steht den Testern des Anwenders für die Tests und die Vorabnahme zur Verfügung.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-Betrieb"
+    ],
+    "verantwortlich": "Betriebsverantwortlicher",
+    "beteiligt": [
+      "Betriebsverantwortlicher",
+      "Entwickler"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nNach den Entscheiden Vorabnahme und Betriebsaufnahme wird das System aktiviert.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-Betrieb – System in Betrieb integrieren – Betriebsverantwortlicher",
+    "abgrenzung": "«System integriert» (Modul IT-Betrieb) stellt das System den Testern des Anwenders für Tests und Vorabnahme zur Verfügung. «System entwickelt oder parametrisiert» (Modul IT-System) bezeichnet den vorgelagerten Zustand nach Entwicklung und Erstellertests.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-integriert.html",
+      "bezeichnung": "HERMES online · Ergebnis «System integriert»"
+    }
+  },
+  {
+    "id": "ergebnis-systemkonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Systemkonzept",
+    "definition": "Das Systemkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den Lösungsanforderungen und zeigt auf, wie sie mit der Lösung erfüllt werden. Das Systemkonzept kann mehrere Systemvarianten beschreiben und beurteilen.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "IT-System"
+    ],
+    "verantwortlich": "Entwickler, IT-Architekt",
+    "beteiligt": [
+      "Entwickler",
+      "Betriebsverantwortlicher",
+      "IT-Architekt",
+      "Anwendervertreter",
+      "Business Analyst"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nEs kann mehrere Systemkonzepte zu verschiedenen Themenbereichen geben.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– IT-System – Lösungsarchitektur erarbeiten – IT-Architekt\n– IT-System – System realisieren – Entwickler\n\nInhalt gemäss Dokumentvorlage:\n– Ausgangslage\n– Anforderungen\n– Lösungskonzept mit: Systemvarianten für jede Systemvariante:\n– Variantenvergleich\n– Empfehlung\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Das Systemkonzept vertieft die gewählte Lösungsvariante aus IT-Sicht (Modul IT-System). Das Produktkonzept tut dies für Produkte/Dienstleistungen (Modul Produkt), das Organisationskonzept aus organisatorischer Sicht (Modul Organisation), das Betriebskonzept beschreibt die Betriebsorganisation des Betreibers (Modul IT-Betrieb).",
+    "pruefungshinweis": "Basiert auf den Lösungsanforderungen und kann mehrere Systemvarianten beschreiben und beurteilen. Die Lösungsarchitektur baut darauf auf.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/systemkonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Systemkonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-testinfrastruktur-realisiert",
+    "kategorie": "ergebnis",
+    "begriff": "Testinfrastruktur realisiert",
+    "definition": "Für die Durchführung der Tests wird eine Testinfrastruktur bestehend aus Testsystem (darunter sind alle Systeme zur Testdurchführung zu verstehen), Testdaten und Testhilfsmitteln verwendet. Sie wird gemäss Testkonzept bereitgestellt. Je nach Testmethode werden unterschiedliche Anforderungen an die Testinfrastruktur gestellt.",
+    "phasen": [
+      "Realisierung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Tests"
+    ],
+    "verantwortlich": "Betriebsverantwortlicher",
+    "beteiligt": [
+      "Betriebsverantwortlicher",
+      "Anwendervertreter",
+      "Business Analyst",
+      "Testverantwortlicher"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nFolgend können auch unterschiedliche Testsysteme benötigt werden. Die Testinfrastruktur richtet sich nach der Infrastruktur des Produktionssystems, also nach der realisierten Betriebsinfrastruktur. Das Testsystem muss soweit dem Produktionssystem entsprechen, dass die Testfallbeschreibungen unter realistischen Bedingungen durchgeführt werden können. Werden für die Tests als Testdaten nicht anonymisierte Kopien von produktiven Daten verwendet, müssen die Anforderungen an ISDS erfüllt sein.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Tests – Testinfrastruktur realisieren – Betriebsverantwortlicher",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testinfrastruktur-realisiert.html",
+      "bezeichnung": "HERMES online · Ergebnis «Testinfrastruktur realisiert»"
+    }
+  },
+  {
+    "id": "ergebnis-testinfrastruktur-ueberfuehrt",
+    "kategorie": "ergebnis",
+    "begriff": "Testinfrastruktur überführt",
+    "definition": "Die gesamte Testinfrastruktur inklusive des Testkonzepts wurde in die Stammorganisation überführt.",
+    "phasen": [
+      "Abschluss"
+    ],
+    "module": [
+      "Tests"
+    ],
+    "verantwortlich": "Testverantwortlicher",
+    "beteiligt": [
+      "Testverantwortlicher",
+      "Projektleiter"
+    ],
+    "details": "Ergebnistyp: Zustand.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Tests – Testinfrastruktur überführen – Testverantwortlicher",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testinfrastruktur-ueberfuehrt.html",
+      "bezeichnung": "HERMES online · Ergebnis «Testinfrastruktur überführt»"
+    }
+  },
+  {
+    "id": "ergebnis-testkonzept",
+    "kategorie": "ergebnis",
+    "begriff": "Testkonzept",
+    "definition": "Das Testkonzept beschreibt die Testziele, Testobjekte, Testarten, Testinfrastruktur sowie Testorganisation. Es umfasst ebenfalls die Testplanung und die Testfallbeschreibungen. Für jeden Testfall wird eine detaillierte Testfallbeschreibung erstellt.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung",
+      "Abschluss"
+    ],
+    "module": [
+      "Tests"
+    ],
+    "verantwortlich": "Testverantwortlicher",
+    "beteiligt": [
+      "Testverantwortlicher",
+      "Projektleiter",
+      "Tester",
+      "Anwendervertreter",
+      "Betriebsverantwortlicher",
+      "Business Analyst",
+      "Entwickler"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nDiese stellt die Spezifikation des Tests dar. Die Testplanung legt den logischen und zeitlichen Ablauf der Tests fest. Das Testkonzept bildet die Grundlage, auf der die Testorganisation und die Testinfrastruktur bereitgestellt und die Tests durchgeführt werden. Tauchen neue Erkenntnisse auf, wird das Testkonzept nachgeführt.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Tests – Test durchführen – Testverantwortlicher\n– Tests – Testinfrastruktur überführen – Testverantwortlicher\n– Tests – Testkonzept erarbeiten – Testverantwortlicher\n\nInhalt gemäss Dokumentvorlage:\n– Testziele\n– Teststrategie und Teststufen\n– Testobjekte\n– Testarten\n– Testabdeckung: Übersicht Testfälle; Beurteilung Testziele und Testabdeckung\n– Testrahmen mit: Testvoraussetzungen; Mängelklassifizierung; Start- und Abbruchbedingungen\n– Testumgebung\n– Testfallbeschreibungen\n– Testplan\n– Testorganisation und Zuständigkeiten\n– Testinfrastruktur mit: Testsystem; Testdaten; Testhilfsmittel\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "pruefungshinweis": "Enthält auch Testplanung und Testfallbeschreibungen und ist Grundlage für Testorganisation und Testinfrastruktur. Verantwortung Testverantwortlicher.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testkonzept.html",
+      "bezeichnung": "HERMES online · Ergebnis «Testkonzept»"
+    }
+  },
+  {
+    "id": "ergebnis-testprotokoll",
+    "kategorie": "ergebnis",
+    "begriff": "Testprotokoll",
+    "definition": "Das Testprotokoll hält die Testergebnisse fest. Die Testergebnisse werden gemäss den im Testkonzept definierten Mängelklassen bewertet.",
+    "phasen": [
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Tests"
+    ],
+    "verantwortlich": "Testverantwortlicher",
+    "beteiligt": [
+      "Testverantwortlicher",
+      "Tester"
+    ],
+    "details": "Ergebnistyp: Dokument – minimal gefordertes Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Tests – Test durchführen – Testverantwortlicher\n\nInhalt gemäss Dokumentvorlage:\n– Testfälle aus dem Testkonzept: ID; Bezeichnung; Testdatum; Tester; MK* Mangelbeschreibung/Bemerkungen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Das Testprotokoll hält die Testergebnisse fest (bewertet nach den Mängelklassen des Testkonzepts). Prüfprotokoll und Abnahmeprotokoll dokumentieren dagegen Prüfbefunde bzw. Abnahmeentscheide.",
+    "pruefungshinweis": "Die Bewertung erfolgt gemäss den im Testkonzept definierten Mängelklassen; Verantwortung liegt beim Testverantwortlichen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testprotokoll.html",
+      "bezeichnung": "HERMES online · Ergebnis «Testprotokoll»"
+    }
+  },
+  {
+    "id": "ergebnis-vereinbarung",
+    "kategorie": "ergebnis",
+    "begriff": "Vereinbarung",
+    "definition": "Die Vereinbarung regelt die Zusammenarbeit zwischen den verschiedenen Projektbeteiligten, vorwiegend zwischen Anwender (Auftraggeber) und Ersteller. Die Vereinbarung kann für eine oder mehrere Phasen abgeschlossen werden. Vereinbarungen werden unterschieden nach Projektvereinbarung oder Vertrag.",
+    "phasen": [
+      "Konzept",
+      "Realisierung",
+      "Einführung",
+      "Umsetzung"
+    ],
+    "module": [
+      "Beschaffung",
+      "Projektführung"
+    ],
+    "verantwortlich": "Projektleiter",
+    "beteiligt": [
+      "Projektleiter",
+      "Auftraggeber",
+      "Projektunterstützung",
+      "Anwendervertreter"
+    ],
+    "details": "Ergebnistyp: Dokument.\n\nErzeugende Aufgaben (Modul – Aufgabe – Verantwortung):\n– Beschaffung – Vereinbarung erarbeiten – Projektleiter\n– Projektführung – Leistungen vereinbaren und steuern – Projektleiter\n\nInhalt gemäss Dokumentvorlage:\n– Einführung\n– Vertragsbestandteile\n– Geltungsbereich\n– Leistungsumfang und Ergebnisse\n– Eingesetzte Personen\n– Mitwirkungspflichten\n– Qualitätssicherung und Abnahme\n– Gewährleistung\n– Datenschutz und Datensicherheit\n– Änderungsmanagement\n– Rapportierung\n– Aufwand und Kosten\n– Unterschriften\n– Ergänzende technische Normen\n– Reglemente\n– Weisungen\n\nHERMES stellt für dieses Ergebnis eine Dokumentvorlage bereit.",
+    "abgrenzung": "Die Vereinbarung regelt die Zusammenarbeit zwischen Anwender (Auftraggeber) und Ersteller. Das Service Level Agreement regelt demgegenüber die Betriebsdienstleistungen zwischen Betreiber und Anwender.",
+    "pruefungshinweis": "Vereinbarungen werden unterschieden nach Projektvereinbarung oder Vertrag.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/vereinbarung.html",
+      "bezeichnung": "HERMES online · Ergebnis «Vereinbarung»"
+    }
+  }
+]

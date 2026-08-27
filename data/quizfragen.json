@@ -1,1 +1,1022 @@
-[]
+[
+  {
+    "id": "q-001",
+    "frage": "Welcher Meilenstein steht am Ende der Phase Konzept?",
+    "antworten": [
+      "Meilenstein Durchführungsfreigabe",
+      "Meilenstein Vorabnahme",
+      "Meilenstein Phasenfreigabe",
+      "Meilenstein Phasenfreigabe Abschluss"
+    ],
+    "richtig": 2,
+    "erklaerung": "Am Ende der Phase Konzept wird der Entscheid Phasenfreigabe getroffen; der Ergebnis- und Meilensteinname ist generisch «Phasenfreigabe», «Freigabe der Realisierung» beschreibt nur den Inhalt des Entscheids. Der Meilenstein Durchführungsfreigabe schliesst dagegen die Phase Initialisierung ab.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/konzept.html",
+      "bezeichnung": "HERMES online · Phase «Konzept»"
+    },
+    "kategorie": "phase"
+  },
+  {
+    "id": "q-002",
+    "frage": "Welcher Meilenstein der Phase Initialisierung liegt im Modul Projektgrundlagen und wird vom Projektleiter verantwortet?",
+    "antworten": [
+      "Meilenstein Weiteres Vorgehen",
+      "Meilenstein Projektinitialisierungsfreigabe",
+      "Meilenstein Durchführungsfreigabe",
+      "Meilenstein Phasenfreigabe"
+    ],
+    "richtig": 0,
+    "erklaerung": "Der Meilenstein Weiteres Vorgehen ist der einzige Phasenmeilenstein der Initialisierung, der nicht im Modul Projektsteuerung liegt, und er steht in der Verantwortung des Projektleiters. Der Meilenstein Durchführungsfreigabe gehört demgegenüber zum Modul Projektsteuerung und wird vom Auftraggeber verantwortet.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/initialisierung.html",
+      "bezeichnung": "HERMES online · Phase «Initialisierung»"
+    },
+    "kategorie": "phase"
+  },
+  {
+    "id": "q-003",
+    "frage": "Am Ende welcher Phase wird bei klassischer Vorgehensweise der Entscheid Vorabnahme getroffen?",
+    "antworten": [
+      "Konzept",
+      "Einführung",
+      "Abschluss",
+      "Realisierung"
+    ],
+    "richtig": 3,
+    "erklaerung": "Die Vorabnahme liegt am Ende der Phase Realisierung und bildet die Grundlage für die Einführungsmassnahmen und die Betriebsaufnahme. Die Abnahme folgt erst am Ende der Phase Einführung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/realisierung.html",
+      "bezeichnung": "HERMES online · Phase «Realisierung»"
+    },
+    "kategorie": "phase"
+  },
+  {
+    "id": "q-004",
+    "frage": "Welcher Meilenstein kann in der Phase Umsetzung erreicht werden?",
+    "antworten": [
+      "Meilenstein Phasenfreigabe",
+      "Meilenstein Releasefreigabe",
+      "Meilenstein Durchführungsfreigabe",
+      "Meilenstein Weiteres Vorgehen"
+    ],
+    "richtig": 1,
+    "erklaerung": "In der Phase Umsetzung gibt es keinen Meilenstein Phasenfreigabe, sondern nur Phasenfreigabe Abschluss und optional Releasefreigabe. Der Entscheid Phasenfreigabe kommt ausschliesslich in den klassischen Phasen Konzept und Realisierung vor.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/umsetzung.html",
+      "bezeichnung": "HERMES online · Phase «Umsetzung»"
+    },
+    "kategorie": "phase"
+  },
+  {
+    "id": "q-005",
+    "frage": "Welche Module kommen in der Phase Abschluss vor?",
+    "antworten": [
+      "Projektsteuerung, Projektführung, Projektgrundlagen und Einführungsorganisation",
+      "Projektsteuerung, Projektführung, Tests und IT-Migration",
+      "Projektsteuerung, Projektführung, Organisation und Einführungsorganisation",
+      "Projektsteuerung, Projektführung, IT-System und IT-Betrieb"
+    ],
+    "richtig": 1,
+    "erklaerung": "In der Phase Abschluss kommen nur vier Module vor: Projektsteuerung, Projektführung, Tests und IT-Migration. Projektgrundlagen und Einführungsorganisation zählen zwar zu den zwingenden Modulen, kommen in der Phase Abschluss aber nicht vor.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/abschluss.html",
+      "bezeichnung": "HERMES online · Phase «Abschluss»"
+    },
+    "kategorie": "phase"
+  },
+  {
+    "id": "q-006",
+    "frage": "Was beginnt gemäss HERMES mit dem Entscheid Abnahme?",
+    "antworten": [
+      "Die Phase Einführung",
+      "Die Durchführung der Einführungsmassnahmen",
+      "Die Auflösung der Projektorganisation",
+      "Die Gewährleistung und damit der reguläre Betrieb"
+    ],
+    "richtig": 3,
+    "erklaerung": "Mit dem Entscheid Abnahme wird die Lösung definitiv in die Anwendungs- und allenfalls in die Betriebsorganisation überführt; danach beginnen Gewährleistung und regulärer Betrieb. Die Durchführung der Einführungsmassnahmen beruht demgegenüber auf dem Entscheid Vorabnahme.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/einfuehrung.html",
+      "bezeichnung": "HERMES online · Phase «Einführung»"
+    },
+    "kategorie": "phase"
+  },
+  {
+    "id": "q-007",
+    "frage": "Welche Phasen sind kein Bestandteil eines Szenarios?",
+    "antworten": [
+      "Initialisierung und Abschluss",
+      "Konzept und Realisierung",
+      "Realisierung und Einführung",
+      "Umsetzung und Abschluss"
+    ],
+    "richtig": 0,
+    "erklaerung": "Ein Szenario beschreibt ausschliesslich die Lösungsentstehung; die Phasen Initialisierung und Abschluss sind deshalb kein Bestandteil eines Szenarios. Die Phase Umsetzung gehört dagegen zur Lösungsentstehung und damit zum Szenario.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/initialisierung.html",
+      "bezeichnung": "HERMES online · Phase «Initialisierung»"
+    },
+    "kategorie": "phase"
+  },
+  {
+    "id": "q-008",
+    "frage": "Wie heisst der Meilenstein, der den Übergang in die Phase Abschluss markiert?",
+    "antworten": [
+      "Meilenstein Projektabschluss",
+      "Meilenstein Abnahme",
+      "Meilenstein Phasenfreigabe Abschluss",
+      "Meilenstein Phasenfreigabe"
+    ],
+    "richtig": 2,
+    "erklaerung": "Für den Übergang in die Phase Abschluss gilt der eigene Ergebnisname «Phasenfreigabe Abschluss». Der Meilenstein Projektabschluss wird erst am Ende der Phase Abschluss erreicht und beendet das Projekt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/einfuehrung.html",
+      "bezeichnung": "HERMES online · Phase «Einführung»"
+    },
+    "kategorie": "phase"
+  },
+  {
+    "id": "q-009",
+    "frage": "Welches Modul unterscheidet das Szenario IT-Adaption vom Szenario IT-Entwicklung?",
+    "antworten": [
+      "Beschaffung",
+      "Produkt",
+      "Tests",
+      "ISDS"
+    ],
+    "richtig": 0,
+    "erklaerung": "Der einzige Unterschied zwischen den beiden IT-Szenarien ist das Modul Beschaffung, das nur die IT-Adaption enthält. Das Modul Tests ist in beiden IT-Szenarien enthalten.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/it-entwicklung.html",
+      "bezeichnung": "HERMES online · Szenario «IT-Entwicklung»"
+    },
+    "kategorie": "szenario"
+  },
+  {
+    "id": "q-010",
+    "frage": "Welches Standardszenario ist mit vier Modulen das kleinste?",
+    "antworten": [
+      "Dienstleistung/Produkt Entwicklung",
+      "IT-Entwicklung",
+      "Organisationsanpassung",
+      "Dienstleistung/Produkt Adaption"
+    ],
+    "richtig": 2,
+    "erklaerung": "Das Szenario Organisationsanpassung umfasst nur vier Module und ist damit das kleinste Standardszenario. Dienstleistung/Produkt Entwicklung umfasst fünf Module und ist lediglich das kleinste der Produkt-Szenarien.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/organisationsanpassung.html",
+      "bezeichnung": "HERMES online · Szenario «Organisationsanpassung»"
+    },
+    "kategorie": "szenario"
+  },
+  {
+    "id": "q-011",
+    "frage": "Wodurch unterscheidet sich das Szenario Dienstleistung/Produkt Adaption vom Szenario Dienstleistung/Produkt Entwicklung?",
+    "antworten": [
+      "Es enthält zusätzlich das Modul Tests.",
+      "Es enthält zusätzlich das Modul Beschaffung.",
+      "Es enthält zusätzlich das Modul IT-System.",
+      "Es enthält das Modul Produkt nicht."
+    ],
+    "richtig": 1,
+    "erklaerung": "Adaption heisst «beschaffen und anpassen»; gegenüber der Entwicklung kommt deshalb das Modul Beschaffung hinzu. Das Modul Tests gehört nicht zum Standardumfang, kann aber bei Bedarf eingebettet werden.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/dienstleistung-produkt-adaption.html",
+      "bezeichnung": "HERMES online · Szenario «Dienstleistung/Produkt Adaption»"
+    },
+    "kategorie": "szenario"
+  },
+  {
+    "id": "q-012",
+    "frage": "Welches Standardszenario umfasst zehn Module und ist damit das umfangreichste?",
+    "antworten": [
+      "IT-Entwicklung",
+      "Dienstleistung/Produkt Adaption",
+      "Organisationsanpassung",
+      "IT-Adaption"
+    ],
+    "richtig": 3,
+    "erklaerung": "IT-Adaption ist mit zehn Modulen das umfangreichste Standardszenario; es entspricht IT-Entwicklung, ergänzt um das Modul Beschaffung. IT-Entwicklung selbst umfasst neun Module.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/it-adaption.html",
+      "bezeichnung": "HERMES online · Szenario «IT-Adaption»"
+    },
+    "kategorie": "szenario"
+  },
+  {
+    "id": "q-013",
+    "frage": "Welches Modul fehlt im Szenario Dienstleistung/Produkt Entwicklung, weil die Lösung entwickelt und nicht am Markt beschafft wird?",
+    "antworten": [
+      "Produkt",
+      "Organisation",
+      "Einführungsorganisation",
+      "Beschaffung"
+    ],
+    "richtig": 3,
+    "erklaerung": "Entwicklung heisst «selbst entwickeln»; das Szenario enthält deshalb kein Modul Beschaffung. Das Modul Produkt ist demgegenüber gerade der Kern dieses Szenarios.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/dienstleistung-produkt-entwicklung.html",
+      "bezeichnung": "HERMES online · Szenario «Dienstleistung/Produkt Entwicklung»"
+    },
+    "kategorie": "szenario"
+  },
+  {
+    "id": "q-014",
+    "frage": "Welche Module müssen zur Einhaltung der Projekt-Governance zwingend in jedem Projekt vorkommen?",
+    "antworten": [
+      "Projektsteuerung, Projektführung, Organisation und Einführungsorganisation",
+      "Projektsteuerung, Projektführung, Projektgrundlagen und Einführungsorganisation",
+      "Projektsteuerung, Projektführung und Projektgrundlagen",
+      "Projektsteuerung, Projektführung, Projektgrundlagen und Organisation"
+    ],
+    "richtig": 1,
+    "erklaerung": "Es sind genau vier zwingende Module: Projektsteuerung, Projektführung, Projektgrundlagen und Einführungsorganisation. Das Modul Organisation gehört nicht dazu, obwohl es in allen fünf Standardszenarien vorkommt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module.html",
+      "bezeichnung": "HERMES online · Module"
+    },
+    "kategorie": "modul"
+  },
+  {
+    "id": "q-015",
+    "frage": "Welches Modul ist in keinem der fünf Standardszenarien enthalten?",
+    "antworten": [
+      "Projektsteuerung",
+      "Einführungsorganisation",
+      "Projektgrundlagen",
+      "Beschaffung"
+    ],
+    "richtig": 2,
+    "erklaerung": "Projektgrundlagen kommt ausschliesslich in der Phase Initialisierung vor und liegt damit ausserhalb jedes Szenarios, denn ein Szenario bildet nur die Lösungsentstehung ab. Das Modul Beschaffung ist demgegenüber in den beiden Adaptions-Szenarien enthalten.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektgrundlagen.html",
+      "bezeichnung": "HERMES online · Modul «Projektgrundlagen»"
+    },
+    "kategorie": "modul"
+  },
+  {
+    "id": "q-016",
+    "frage": "Welche Beschaffungen werden im Modul Beschaffung abgewickelt?",
+    "antworten": [
+      "Beschaffungen mit offenem oder selektivem Verfahren und öffentlicher Publikation",
+      "Alle Beschaffungen des Projekts",
+      "Beschaffungen, für die eine Beschaffungsanalyse vorliegt",
+      "Beschaffungen, die der Einkauf der Stammorganisation durchführt"
+    ],
+    "richtig": 0,
+    "erklaerung": "Nur Beschaffungen mit offenem oder selektivem Verfahren und öffentlicher Publikation laufen über das Modul Beschaffung. Alle anderen Fälle von Beschaffungen werden im Modul Projektführung abgewickelt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/beschaffung.html",
+      "bezeichnung": "HERMES online · Modul «Beschaffung»"
+    },
+    "kategorie": "modul"
+  },
+  {
+    "id": "q-017",
+    "frage": "Welche Meilensteine liegen im Modul Einführungsorganisation?",
+    "antworten": [
+      "Vorabnahme, Abnahme und Abnahme Migration",
+      "Vorabnahme, Betriebsaufnahme und Abnahme",
+      "Betriebsaufnahme, Abnahme und Projektabschluss",
+      "Vorabnahme, Betriebsaufnahme und Phasenfreigabe"
+    ],
+    "richtig": 1,
+    "erklaerung": "Die Meilensteine Vorabnahme, Betriebsaufnahme und Abnahme liegen im Modul Einführungsorganisation. Der Meilenstein Abnahme Migration gehört demgegenüber zum Modul IT-Migration.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/einfuehrungsorganisation.html",
+      "bezeichnung": "HERMES online · Modul «Einführungsorganisation»"
+    },
+    "kategorie": "modul"
+  },
+  {
+    "id": "q-018",
+    "frage": "Zu welchem Modul gehört der Meilenstein Lösungsarchitektur?",
+    "antworten": [
+      "IT-System",
+      "Projektsteuerung",
+      "IT-Betrieb",
+      "Projektführung"
+    ],
+    "richtig": 0,
+    "erklaerung": "Der Meilenstein Lösungsarchitektur gehört zum Modul IT-System, obwohl er die Folge eines Entscheids ist. Im Modul Projektsteuerung liegen ausschliesslich die Entscheidungsaufgaben der Steuerung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-system.html",
+      "bezeichnung": "HERMES online · Modul «IT-System»"
+    },
+    "kategorie": "modul"
+  },
+  {
+    "id": "q-019",
+    "frage": "Welches nicht zwingende Modul kommt trotzdem in allen fünf Standardszenarien vor?",
+    "antworten": [
+      "Produkt",
+      "Tests",
+      "Organisation",
+      "IT-Betrieb"
+    ],
+    "richtig": 2,
+    "erklaerung": "Das Modul Organisation ist das einzige nicht zwingende Modul, das in allen fünf Standardszenarien vorkommt. Das Modul Produkt kommt nur in den beiden Dienstleistung/Produkt-Szenarien vor.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/organisation.html",
+      "bezeichnung": "HERMES online · Modul «Organisation»"
+    },
+    "kategorie": "modul"
+  },
+  {
+    "id": "q-020",
+    "frage": "In welchem Modul und in welcher Phase wird die Schutzbedarfsanalyse erarbeitet?",
+    "antworten": [
+      "Modul ISDS, Phase Konzept",
+      "Modul ISDS, Phase Initialisierung",
+      "Modul Projektsteuerung, Phase Initialisierung",
+      "Modul Projektgrundlagen, Phase Initialisierung"
+    ],
+    "richtig": 3,
+    "erklaerung": "Die Schutzbedarfsanalyse wird in der Phase Initialisierung im Modul Projektgrundlagen erarbeitet. Das ISDS-Konzept entsteht erst danach im Modul ISDS ab der Phase Konzept bzw. Umsetzung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/module/isds.html",
+      "bezeichnung": "HERMES online · Modul «ISDS»"
+    },
+    "kategorie": "modul"
+  },
+  {
+    "id": "q-021",
+    "frage": "Wie verhalten sich Meilenstein und Entscheidungspunkt zueinander?",
+    "antworten": [
+      "Der Entscheidungspunkt ist das Ergebnis, das den Meilenstein markiert.",
+      "Meilenstein und Entscheidungspunkt sind zwei Bezeichnungen für dasselbe Methodenelement.",
+      "Der Meilenstein ist das Ergebnis, das den Entscheidungspunkt markiert.",
+      "Der Meilenstein ist der Termin, an dem der Entscheidungspunkt geplant ist."
+    ],
+    "richtig": 2,
+    "erklaerung": "Meilensteine sind Ergebnisse, die im Projektverlauf die Entscheidungspunkte markieren; der Meilenstein wird erreicht, sobald der zugehörige Entscheid getroffen ist. Ein Termin im Plan ist der Meilenstein gerade nicht.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilensteine.html",
+      "bezeichnung": "HERMES online · Ergebnisse «Meilensteine»"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-022",
+    "frage": "Wie viele verschiedene Phasen kennt HERMES 2022 insgesamt?",
+    "antworten": [
+      "Vier",
+      "Fünf",
+      "Drei",
+      "Sechs"
+    ],
+    "richtig": 3,
+    "erklaerung": "HERMES 2022 kennt sechs definierte Phasen; ein Projekt wird entweder in fünf Phasen klassisch oder in drei Phasen agil abgewickelt, wobei Initialisierung und Abschluss beiden Vorgehensweisen gemeinsam sind. Die Zahl fünf beschreibt nur die klassische Abwicklung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
+      "bezeichnung": "HERMES online · Phasen"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-023",
+    "frage": "Wie heissen die drei Hierarchieebenen, denen die HERMES-Rollen zugeordnet sind?",
+    "antworten": [
+      "Projektsteuerung, Projektführung und Projektausführung",
+      "Steuerung, Führung und Ausführung",
+      "Anwender, Ersteller und Betreiber",
+      "Steuerung, Führung und Umsetzung"
+    ],
+    "richtig": 1,
+    "erklaerung": "Die Hierarchieebenen heissen Steuerung, Führung und Ausführung. Projektsteuerung und Projektführung sind demgegenüber Namen von Modulen, und einen Begriff «Projektausführung» kennt HERMES 2022 nicht.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-024",
+    "frage": "Welche Rollen der Projektorganisation sind minimal zu besetzen?",
+    "antworten": [
+      "Auftraggeber, Projektleiter und Anwendervertreter",
+      "Auftraggeber, Projektleiter und Projektausschuss",
+      "Auftraggeber, Projektleiter und Qualitäts- und Risikomanager",
+      "Auftraggeber, Projektleiter und Business Analyst"
+    ],
+    "richtig": 0,
+    "erklaerung": "Minimal zu besetzen sind genau drei Rollen: Auftraggeber, Projektleiter und Anwendervertreter. Der Projektausschuss ist demgegenüber eine Rollengruppe, die den Auftraggeber lediglich berät und unterstützt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-025",
+    "frage": "In welcher Reihenfolge werden Sizing und Tailoring angewendet?",
+    "antworten": [
+      "Zuerst Sizing, anschliessend optional Tailoring",
+      "Zuerst Tailoring, anschliessend optional Sizing",
+      "Sizing und Tailoring werden stets gemeinsam angewendet",
+      "Tailoring ersetzt bei kleinen Projekten das Sizing"
+    ],
+    "richtig": 0,
+    "erklaerung": "Zuerst wird über die Sizing-Funktion die Projektgrösse angepasst; anschliessend kann das resultierende benutzerdefinierte Szenario optional über die Tailoring-Funktion an die Projektbedürfnisse angepasst werden. Tailoring individualisiert also inhaltlich, Sizing skaliert nach Grösse.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+      "bezeichnung": "HERMES online · Szenarien"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-026",
+    "frage": "Wie lautet der exakte HERMES-Ausdruck für jene Ergebnisse, deren Erarbeitung zur Erfüllung der Projekt-Governance obligatorisch ist?",
+    "antworten": [
+      "Minimale Vorgaben",
+      "Pflichtdokumente",
+      "Minimal zu besetzende Rollen",
+      "Minimal geforderte Dokumente"
+    ],
+    "richtig": 3,
+    "erklaerung": "Der exakte Ausdruck lautet «minimal geforderte Dokumente». «Minimal zu besetzende Rollen» bezeichnet demgegenüber die drei unentbehrlichen Rollen der Projektorganisation, nicht Ergebnisse.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html",
+      "bezeichnung": "HERMES online · Ergebnisse"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-027",
+    "frage": "Wie bezeichnet HERMES 2022 die Kombination aus klassischem und agilem Entwicklungsvorgehen?",
+    "antworten": [
+      "Hybrid",
+      "Iterativ-inkrementell",
+      "Klassisch/agil",
+      "Skaliert agil"
+    ],
+    "richtig": 2,
+    "erklaerung": "HERMES 2022 spricht von «Entwicklungsmanagement klassisch/agil»; der Begriff «hybrid» kommt in der Projektmanagementdokumentation nicht vor. «Iterativ-inkrementell» bezeichnet demgegenüber allein die agile Vorgehensweise.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/projektmanagement-und-entwicklungsmanagement.html",
+      "bezeichnung": "HERMES online · Hinweise zur Anwendung «Projektmanagement und Entwicklungsmanagement»"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-028",
+    "frage": "In welche drei Abschnitte wird der HERMES-Projektlebenszyklus unterteilt?",
+    "antworten": [
+      "Initialisierung, Umsetzung und Abschluss",
+      "Projektbeginn, Lösungsentstehung und Projektende",
+      "Start, Durchführung und Ende",
+      "Projektbeginn, Realisierung und Projektabschluss"
+    ],
+    "richtig": 1,
+    "erklaerung": "Der Projektlebenszyklus wird in Projektbeginn, Lösungsentstehung und Projektende unterteilt. Initialisierung, Umsetzung und Abschluss sind demgegenüber die drei Phasen der agilen Vorgehensweise.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
+      "bezeichnung": "HERMES online · Phasen"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-029",
+    "frage": "Welche Methodenelemente kennt das HERMES-Projektmanagement?",
+    "antworten": [
+      "Phasen, Module, Ergebnisse, Aufgaben und Rollen",
+      "Phasen, Szenarien, Module, Meilensteine, Aufgaben und Rollen",
+      "Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen und Lösung",
+      "Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen"
+    ],
+    "richtig": 3,
+    "erklaerung": "Das Projektmanagement kennt sechs Methodenelemente: Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen. Die Aufzählung ohne Szenarien gilt für das Programmmanagement, das fünf Elemente erweitert und verwendet.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick/hermes-projektmanagement-methodenelemente.html",
+      "bezeichnung": "HERMES online · HERMES-Projektmanagement-Methodenelemente"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-030",
+    "frage": "Welche Aussage zur Lösung und zum Inkrement trifft zu?",
+    "antworten": [
+      "Beide sind Ergebnisse vom Typ Zustand.",
+      "Das Inkrement ist ein Ergebnis, die Lösung nicht.",
+      "Beide sind keine HERMES-Methodenelemente.",
+      "Beide sind Meilensteine der Phase Umsetzung."
+    ],
+    "richtig": 2,
+    "erklaerung": "Gemäss HERMES sind weder die fertige Lösung noch das Inkrement Methodenelemente. Ergebnisse vom Typ Zustand sind demgegenüber beispielsweise «Betriebsinfrastruktur realisiert» oder die Meilensteine.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html",
+      "bezeichnung": "HERMES online · Ergebnisse"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-031",
+    "frage": "Was gilt in HERMES 2022 für die Standardszenarien hinsichtlich der Vorgehensweise?",
+    "antworten": [
+      "Dasselbe Standardszenario wird klassisch oder agil abgewickelt.",
+      "Für die agile Vorgehensweise gibt es eigene agile Standardszenarien.",
+      "Die Szenarien IT-Entwicklung und IT-Adaption sind ausschliesslich klassisch.",
+      "Das Szenario legt fest, ob klassisch oder agil vorgegangen wird."
+    ],
+    "richtig": 0,
+    "erklaerung": "Die Szenarien sind vorgehensneutral: Die Vorgehensweise steckt in den Phasen, nicht im Szenario. Getrennte klassische und agile Szenarien kennt HERMES 2022 nicht.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+      "bezeichnung": "HERMES online · Szenarien"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-032",
+    "frage": "Womit wird die Projektorganisation in Kraft gesetzt und womit wird sie aufgelöst?",
+    "antworten": [
+      "In Kraft gesetzt mit dem Durchführungsauftrag, aufgelöst mit dem Entscheid Abnahme",
+      "In Kraft gesetzt mit dem Projektinitialisierungsauftrag, aufgelöst spätestens mit dem Entscheid Projektabschluss",
+      "In Kraft gesetzt mit dem Entscheid Weiteres Vorgehen, aufgelöst mit dem Entscheid Phasenfreigabe Abschluss",
+      "In Kraft gesetzt mit dem Projektmanagementplan, aufgelöst mit dem Entscheid Betriebsaufnahme"
+    ],
+    "richtig": 1,
+    "erklaerung": "Die Projektorganisation wird mit dem Projektinitialisierungsauftrag in Kraft gesetzt und spätestens mit dem Entscheid Projektabschluss aufgelöst. Der Durchführungsauftrag autorisiert demgegenüber nur die Fortsetzung des Projekts mit der Lösungsentstehung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+      "bezeichnung": "HERMES online · Rollen"
+    },
+    "kategorie": "grundbegriff"
+  },
+  {
+    "id": "q-033",
+    "frage": "Wer trägt die Verantwortung für die Aufgabe «Ausschreibung erarbeiten»?",
+    "antworten": [
+      "Projektleiter",
+      "Anwendervertreter",
+      "Auftraggeber",
+      "Business Analyst"
+    ],
+    "richtig": 1,
+    "erklaerung": "Für «Ausschreibung erarbeiten» ist der Anwendervertreter verantwortlich; Ergebnis sind die Ausschreibungsunterlagen. Der Projektleiter verantwortet demgegenüber «Ausschreibung durchführen», also die Publikation und Abwicklung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/ausschreibung-erarbeiten.html",
+      "bezeichnung": "HERMES online · Aufgabe «Ausschreibung erarbeiten»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-034",
+    "frage": "Welches Ergebnis entsteht neu in der Aufgabe «Ausschreibung durchführen»?",
+    "antworten": [
+      "Ausschreibungsunterlagen",
+      "Evaluationsbericht",
+      "Angebot",
+      "Publikation"
+    ],
+    "richtig": 2,
+    "erklaerung": "Ergebnis von «Ausschreibung durchführen» ist das Angebot; die Ausschreibungsunterlagen werden hier nur weitergeführt und stammen aus «Ausschreibung erarbeiten». Der Evaluationsbericht entsteht erst bei «Angebote bewerten».",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/ausschreibung-durchfuehren.html",
+      "bezeichnung": "HERMES online · Aufgabe «Ausschreibung durchführen»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-035",
+    "frage": "Worüber schafft der Entscheid Weiteres Vorgehen Klarheit?",
+    "antworten": [
+      "Über die Freigabe der Ressourcen für die Lösungsentstehung",
+      "Über die Lösungsarchitektur und das Systemkonzept",
+      "Über den Umfang des nächsten Release",
+      "Über Lösungsvariante, Szenario, Vorgehensweise und Projektwertigkeit"
+    ],
+    "richtig": 3,
+    "erklaerung": "Der Entscheid Weiteres Vorgehen schafft Klarheit über die Wahl der Lösungsvariante, des Szenarios, der Vorgehensweise (klassisch oder agil) und der Projektwertigkeit. Die Ressourcen für die Lösungsentstehung gibt demgegenüber der Auftraggeber mit dem Entscheid Durchführungsfreigabe frei.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-weiteres-vorgehen-treffen.html",
+      "bezeichnung": "HERMES online · Aufgabe «Entscheid Weiteres Vorgehen treffen»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-036",
+    "frage": "Wer verantwortet die Aufgabe «Entscheid Vorabnahme treffen»?",
+    "antworten": [
+      "Projektleiter",
+      "Auftraggeber",
+      "Anwendervertreter",
+      "Qualitäts- und Risikomanager"
+    ],
+    "richtig": 0,
+    "erklaerung": "Die Vorabnahme ist ein Führungsentscheid des Projektleiters in der Phase Realisierung bzw. Umsetzung. Der Auftraggeber trifft demgegenüber die Steuerungsentscheide wie den Entscheid Betriebsaufnahme.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-vorabnahme-treffen.html",
+      "bezeichnung": "HERMES online · Aufgabe «Entscheid Vorabnahme treffen»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-037",
+    "frage": "Wer trifft den Entscheid Betriebsaufnahme?",
+    "antworten": [
+      "Der Auftraggeber",
+      "Der Projektleiter",
+      "Der Betriebsverantwortliche",
+      "Der Anwendervertreter"
+    ],
+    "richtig": 0,
+    "erklaerung": "Der Entscheid Betriebsaufnahme ist ein Steuerungsentscheid des Auftraggebers und geht der Aktivierung von Produkt bzw. System und des Betriebs voraus. Der Entscheid Abnahme liegt demgegenüber beim Projektleiter.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-betriebsaufnahme-treffen.html",
+      "bezeichnung": "HERMES online · Aufgabe «Entscheid Betriebsaufnahme treffen»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-038",
+    "frage": "Welche Aufgabe verantwortet der Auftraggeber im Modul Projektsteuerung über die gesamte Projektdauer?",
+    "antworten": [
+      "Projekt führen und kontrollieren",
+      "Projekt steuern",
+      "Qualitätssicherung führen",
+      "Risiken managen"
+    ],
+    "richtig": 1,
+    "erklaerung": "«Projekt steuern» ist die Aufgabe des Auftraggebers im Modul Projektsteuerung und läuft in allen Phasen. «Projekt führen und kontrollieren» liegt demgegenüber beim Projektleiter im Modul Projektführung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projekt-steuern.html",
+      "bezeichnung": "HERMES online · Aufgabe «Projekt steuern»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-039",
+    "frage": "In welcher Phase werden die Einführungsmassnahmen bei klassischer Vorgehensweise durchgeführt?",
+    "antworten": [
+      "Konzept",
+      "Realisierung",
+      "Abschluss",
+      "Einführung"
+    ],
+    "richtig": 3,
+    "erklaerung": "Durchgeführt werden die Einführungsmassnahmen in der Phase Einführung; das Ergebnis heisst «Einführungsmassnahmen durchgeführt». Realisiert werden sie zuvor in der Phase Realisierung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/einfuehrungsmassnahmen-durchfuehren.html",
+      "bezeichnung": "HERMES online · Aufgabe «Einführungsmassnahmen durchführen»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-040",
+    "frage": "Wer verantwortet die Aufgabe «Qualitätssicherung führen»?",
+    "antworten": [
+      "Qualitäts- und Risikomanager",
+      "Testverantwortlicher",
+      "Projektleiter",
+      "Auftraggeber"
+    ],
+    "richtig": 2,
+    "erklaerung": "Die Qualitätssicherung wird vom Projektleiter im Modul Projektführung geführt; Ergebnis ist das Prüfprotokoll. Der Qualitäts- und Risikomanager beurteilt das Projekt demgegenüber unabhängig zuhanden des Auftraggebers.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/qualitaetssicherung-fuehren.html",
+      "bezeichnung": "HERMES online · Aufgabe «Qualitätssicherung führen»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-041",
+    "frage": "Zu welchen Modulen gehört die Aufgabe «Prototyping durchführen»?",
+    "antworten": [
+      "Produkt und IT-System",
+      "Projektgrundlagen und IT-System",
+      "Projektgrundlagen, Produkt und IT-System",
+      "Projektgrundlagen, Produkt, IT-System und Organisation"
+    ],
+    "richtig": 2,
+    "erklaerung": "«Prototyping durchführen» ist die einzige Aufgabe, die zu drei Modulen gehört: Projektgrundlagen, Produkt und IT-System. Das Modul Organisation gehört nicht dazu.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/prototyping-durchfuehren.html",
+      "bezeichnung": "HERMES online · Aufgabe «Prototyping durchführen»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-042",
+    "frage": "Wer verantwortet die Aufgabe «Organisationsanforderungen erarbeiten»?",
+    "antworten": [
+      "Anwendervertreter",
+      "Business Analyst",
+      "Projektleiter",
+      "IT-Architekt"
+    ],
+    "richtig": 1,
+    "erklaerung": "Die Organisationsanforderungen verantwortet der Business Analyst im Modul Organisation. Der Anwendervertreter verantwortet demgegenüber die Lösungsanforderungen in den Modulen IT-System und Produkt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisationsanforderungen-erarbeiten.html",
+      "bezeichnung": "HERMES online · Aufgabe «Organisationsanforderungen erarbeiten»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-043",
+    "frage": "Zu welchem Modul und zu welcher Phase gehört die Aufgabe «Beschaffungsanalyse erarbeiten»?",
+    "antworten": [
+      "Modul Projektgrundlagen, Phase Initialisierung",
+      "Modul Beschaffung, Phase Konzept",
+      "Modul Beschaffung, Phase Initialisierung",
+      "Modul Projektführung, Phase Konzept"
+    ],
+    "richtig": 0,
+    "erklaerung": "Die Beschaffungsanalyse gehört zum Modul Projektgrundlagen in der Phase Initialisierung und legt die Grundlage für die Wahl der Verfahrensart. Erst die Ausschreibungsunterlagen entstehen später im Modul Beschaffung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/beschaffungsanalyse-erarbeiten.html",
+      "bezeichnung": "HERMES online · Aufgabe «Beschaffungsanalyse erarbeiten»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-044",
+    "frage": "Welches Ergebnis entsteht in der Aufgabe «Releaseabschluss vorbereiten»?",
+    "antworten": [
+      "Phasenbericht",
+      "QS- und Risikobericht",
+      "Projektschlussbeurteilung",
+      "Releasebericht"
+    ],
+    "richtig": 3,
+    "erklaerung": "Bei «Releaseabschluss vorbereiten» entsteht der Releasebericht, das agile Pendant zum Phasenbericht. Der Phasenbericht entsteht demgegenüber bei «Phasenfreigabe vorbereiten».",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/releaseabschluss-vorbereiten.html",
+      "bezeichnung": "HERMES online · Aufgabe «Releaseabschluss vorbereiten»"
+    },
+    "kategorie": "aufgabe"
+  },
+  {
+    "id": "q-045",
+    "frage": "Welche Aussage über Meilensteine als Ergebnisse trifft zu?",
+    "antworten": [
+      "Der Meilenstein ist ein Ergebnis vom Typ Dokument.",
+      "Der Meilenstein ist kein Ergebnis, sondern ein eigenes Methodenelement.",
+      "Der Meilenstein ist die Checkliste, die den Entscheid vorbereitet.",
+      "Der Meilenstein ist ein Ergebnis vom Typ Zustand."
+    ],
+    "richtig": 3,
+    "erklaerung": "Meilensteine sind Ergebnisse vom Typ Zustand und die direkte Folge eines Entscheids. Die zugehörige Checkliste ist demgegenüber ein Dokument, das den Entscheid mit Prüfpunkten und Kriterien vorbereitet.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilensteine.html",
+      "bezeichnung": "HERMES online · Ergebnis «Meilensteine»"
+    },
+    "kategorie": "ergebnis"
+  },
+  {
+    "id": "q-046",
+    "frage": "Zu welchem Entscheid gibt es in HERMES 2022 zwar eine Checkliste, aber keinen Meilenstein?",
+    "antworten": [
+      "Projektabbruch",
+      "Projektabschluss",
+      "Weiteres Vorgehen",
+      "Releasefreigabe"
+    ],
+    "richtig": 0,
+    "erklaerung": "Zur Checkliste Projektabbruch existiert kein entsprechender Meilenstein – deshalb stehen 17 Checklisten nur 16 Meilensteinen gegenüber. Zum Entscheid Projektabschluss gibt es demgegenüber den Meilenstein Projektabschluss.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checklisten.html",
+      "bezeichnung": "HERMES online · Ergebnis «Checklisten»"
+    },
+    "kategorie": "ergebnis"
+  },
+  {
+    "id": "q-047",
+    "frage": "Welches Ergebnis ist die verbindliche Grundlage für die Freigabe der Phase Initialisierung?",
+    "antworten": [
+      "Durchführungsauftrag",
+      "Projektinitialisierungsauftrag",
+      "Projektmanagementplan",
+      "Arbeitsauftrag"
+    ],
+    "richtig": 1,
+    "erklaerung": "Der Projektinitialisierungsauftrag ist die Vereinbarung zwischen Auftraggeber und Projektleiter für die Phase Initialisierung und gibt ausschliesslich diese frei. Der Durchführungsauftrag autorisiert demgegenüber die Projektfortsetzung über die gesamte Lösungsentstehung und den Abschluss.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektinitialisierungsauftrag.html",
+      "bezeichnung": "HERMES online · Ergebnis «Projektinitialisierungsauftrag»"
+    },
+    "kategorie": "ergebnis"
+  },
+  {
+    "id": "q-048",
+    "frage": "Am Ende welcher Phasen wird der Phasenbericht erstellt?",
+    "antworten": [
+      "Initialisierung, Konzept, Realisierung und Einführung",
+      "Konzept, Realisierung und Einführung",
+      "Konzept, Realisierung, Einführung und Umsetzung",
+      "Alle sechs Phasen"
+    ],
+    "richtig": 2,
+    "erklaerung": "Der Phasenbericht wird am Ende der Phasen Konzept, Realisierung, Einführung und Umsetzung erstellt und bereitet den Entscheid über die Freigabe der nächsten Phase vor. Am Ende der Phasen Initialisierung und Abschluss fällt er nicht an.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/phasenbericht.html",
+      "bezeichnung": "HERMES online · Ergebnis «Phasenbericht»"
+    },
+    "kategorie": "ergebnis"
+  },
+  {
+    "id": "q-049",
+    "frage": "Welches Ergebnis entspricht dem Business-Case und wird in der Phase Initialisierung erarbeitet?",
+    "antworten": [
+      "Situationsanalyse",
+      "Studie",
+      "Durchführungsauftrag",
+      "Beschaffungsanalyse"
+    ],
+    "richtig": 1,
+    "erklaerung": "Die Studie entspricht dem Business-Case, zeigt den Geschäftsnutzen sowie den Bezug zur Strategie der Stammorganisation und wird im Modul Projektgrundlagen erarbeitet. Die Situationsanalyse vertieft die grobe Standortbestimmung der Studie demgegenüber erst in der Phase Konzept.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/studie.html",
+      "bezeichnung": "HERMES online · Ergebnis «Studie»"
+    },
+    "kategorie": "ergebnis"
+  },
+  {
+    "id": "q-050",
+    "frage": "Wer erstellt den QS- und Risikobericht?",
+    "antworten": [
+      "Der Projektleiter",
+      "Der Projektausschuss",
+      "Die Projektunterstützung",
+      "Der Qualitäts- und Risikomanager"
+    ],
+    "richtig": 3,
+    "erklaerung": "Der QS- und Risikobericht wird vom Qualitäts- und Risikomanager nach Beauftragung durch den Auftraggeber erstellt und informiert aus unabhängiger Sicht über Qualität und Risikosituation. Der Projektleiter führt demgegenüber die Qualitätssicherung im Modul Projektführung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/qs-und-risikobericht.html",
+      "bezeichnung": "HERMES online · Ergebnis «QS- und Risikobericht»"
+    },
+    "kategorie": "ergebnis"
+  },
+  {
+    "id": "q-051",
+    "frage": "Welche Aussage zum Ergebnis Stakeholderinteressen trifft zu?",
+    "antworten": [
+      "Sie werden als Teil der Stakeholderliste geführt.",
+      "Sie werden erstmals in der Phase Konzept erarbeitet.",
+      "Sie sind eine subjektive, projektinterne Einschätzung und kein öffentliches Ergebnis.",
+      "Sie werden vom Auftraggeber verantwortet."
+    ],
+    "richtig": 2,
+    "erklaerung": "Die Analyse der Stakeholderinteressen ist eine subjektive, projektinterne Einschätzung und ausdrücklich kein öffentliches Ergebnis. Sie wird bewusst getrennt von der Stakeholderliste geführt.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/stakeholderinteressen.html",
+      "bezeichnung": "HERMES online · Ergebnis «Stakeholderinteressen»"
+    },
+    "kategorie": "ergebnis"
+  },
+  {
+    "id": "q-052",
+    "frage": "Bei welchen Entscheiden wird das Abnahmeprotokoll erstellt?",
+    "antworten": [
+      "Vorabnahme, Abnahme und Abnahme Migration",
+      "Vorabnahme und Abnahme",
+      "Abnahme und Betriebsaufnahme",
+      "Abnahme, Betriebsaufnahme und Projektabschluss"
+    ],
+    "richtig": 0,
+    "erklaerung": "Das Abnahmeprotokoll entsteht bei den drei Entscheiden Vorabnahme, Abnahme und Abnahme Migration; es ist ein rechtlich verbindliches Dokument. Beim Entscheid Betriebsaufnahme fällt es nicht an.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/abnahmeprotokoll.html",
+      "bezeichnung": "HERMES online · Ergebnis «Abnahmeprotokoll»"
+    },
+    "kategorie": "ergebnis"
+  },
+  {
+    "id": "q-053",
+    "frage": "Welche Rollengruppe unterstützt den Projektleiter bei der Beurteilung fachlicher Fragestellungen und Ergebnisse?",
+    "antworten": [
+      "Fachausschuss",
+      "Projektausschuss",
+      "Umsetzungsorganisation",
+      "Projektunterstützung"
+    ],
+    "richtig": 0,
+    "erklaerung": "Der Fachausschuss ist eine Rollengruppe der Hierarchieebene Führung; der Projektleiter organisiert und leitet dessen Sitzungen. Der Projektausschuss ist demgegenüber eine Rollengruppe der Ebene Steuerung und unterstützt den Auftraggeber.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/fachausschuss.html",
+      "bezeichnung": "HERMES online · Rolle «Fachausschuss»"
+    },
+    "kategorie": "rolle"
+  },
+  {
+    "id": "q-054",
+    "frage": "Welche Kompetenz hat der Projektausschuss?",
+    "antworten": [
+      "Entscheidungskompetenz über die Phasenfreigabe",
+      "Anordnungskompetenz gegenüber dem Projektleiter",
+      "Empfehlungskompetenz zuhanden des Auftraggebers",
+      "Alleinige Projektführungsverantwortung"
+    ],
+    "richtig": 2,
+    "erklaerung": "Der Projektausschuss hat Empfehlungs-, nicht Entscheidungskompetenz und kann zudem einen Projektreview oder ein Projektaudit beantragen. Über Abschluss und Freigabe von Phasen entscheidet der Auftraggeber.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/projektausschuss.html",
+      "bezeichnung": "HERMES online · Rolle «Projektausschuss»"
+    },
+    "kategorie": "rolle"
+  },
+  {
+    "id": "q-055",
+    "frage": "Welche Besetzungsregel gilt für die Rolle des Auftraggebers?",
+    "antworten": [
+      "Er kann durch den Ersteller gestellt werden, sofern der Anwender zustimmt.",
+      "Er kann zugleich die Rolle des Projektleiters wahrnehmen.",
+      "Er wird vom Projektleiter bestimmt.",
+      "Er muss eine einzige natürliche Person aus der Stammorganisation sein und darf nicht zugleich Projektleiter sein."
+    ],
+    "richtig": 3,
+    "erklaerung": "Der Auftraggeber muss beim Anwender angesiedelt und eine einzige natürliche Person aus der Stammorganisation sein; die Rollen Auftraggeber und Projektleiter dürfen nicht durch dieselbe Person besetzt werden. Umgekehrt bestimmt der Auftraggeber den Projektleiter, nicht der Projektleiter den Auftraggeber.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/auftraggeber.html",
+      "bezeichnung": "HERMES online · Rolle «Auftraggeber»"
+    },
+    "kategorie": "rolle"
+  },
+  {
+    "id": "q-056",
+    "frage": "Welche zusätzliche Rolle nimmt der Anwendervertreter bei agiler Vorgehensweise in der Umsetzungsorganisation wahr?",
+    "antworten": [
+      "Teilprojektleiter",
+      "Product Owner",
+      "Business Analyst",
+      "Testverantwortlicher"
+    ],
+    "richtig": 1,
+    "erklaerung": "Bei agiler Vorgehensweise nimmt der Anwendervertreter durch zusätzliche Übernahme der Rolle «Product Owner» seine fachliche Verantwortung in der Umsetzungsorganisation wahr. Der Business Analyst verantwortet demgegenüber die Organisationsanforderungen.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/anwendervertreter.html",
+      "bezeichnung": "HERMES online · Rolle «Anwendervertreter»"
+    },
+    "kategorie": "rolle"
+  },
+  {
+    "id": "q-057",
+    "frage": "Was gilt für den Projektleiter gegenüber der agilen Umsetzungsorganisation?",
+    "antworten": [
+      "Er erteilt der Umsetzungsorganisation Arbeitsaufträge.",
+      "Er gibt die Projektführungsverantwortung an die Umsetzungsorganisation ab.",
+      "Er behält die Projektführungsverantwortung, darf aber nicht in deren Hoheit eingreifen.",
+      "Er übernimmt in der Umsetzungsorganisation zusätzlich eine eigene Rolle."
+    ],
+    "richtig": 2,
+    "erklaerung": "Die Projektführungsverantwortung liegt beim Projektleiter, doch er darf nicht in die Hoheit der sich selbst organisierenden Umsetzungsorganisation eingreifen. Arbeitsaufträge zu erteilen ist ein Merkmal der klassischen Vorgehensweise.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/umsetzungsorganisation.html",
+      "bezeichnung": "HERMES online · Rolle «Umsetzungsorganisation»"
+    },
+    "kategorie": "rolle"
+  },
+  {
+    "id": "q-058",
+    "frage": "Welche Rolle ist ausschliesslich der Partnergruppe Betreiber zugeordnet?",
+    "antworten": [
+      "Betriebsverantwortlicher",
+      "IT-Architekt",
+      "Entwickler",
+      "ISDS-Verantwortlicher"
+    ],
+    "richtig": 0,
+    "erklaerung": "Der Betriebsverantwortliche ist die einzige Rolle, die ausschliesslich der Partnergruppe Betreiber zugeordnet ist. Der Entwickler ist demgegenüber die einzige Rolle, die ausschliesslich der Partnergruppe Ersteller zugeordnet ist.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/betriebsverantwortlicher.html",
+      "bezeichnung": "HERMES online · Rolle «Betriebsverantwortlicher»"
+    },
+    "kategorie": "rolle"
+  },
+  {
+    "id": "q-059",
+    "frage": "Welcher Hierarchieebene ist der Qualitäts- und Risikomanager zugeordnet?",
+    "antworten": [
+      "Führung",
+      "Steuerung",
+      "Ausführung",
+      "Er ist keiner Hierarchieebene zugeordnet."
+    ],
+    "richtig": 1,
+    "erklaerung": "Der Qualitäts- und Risikomanager gehört zur Hierarchieebene Steuerung; er unterstützt den Auftraggeber mit einer unabhängigen Beurteilung und rapportiert direkt an ihn. Der Fachausschuss gehört demgegenüber zur Ebene Führung.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/qualitaets-und-risikomanager.html",
+      "bezeichnung": "HERMES online · Rolle «Qualitäts- und Risikomanager»"
+    },
+    "kategorie": "rolle"
+  },
+  {
+    "id": "q-060",
+    "frage": "Welche Aussage zur Besetzung der Rolle Teilprojektleiter trifft zu?",
+    "antworten": [
+      "Er muss zwingend beim Anwender angesiedelt sein.",
+      "Er wird vom Auftraggeber bestimmt.",
+      "Er trägt die Gesamtverantwortung für die Projektführung.",
+      "Er sollte beim Anwender angesiedelt sein; eine Bereitstellung durch Ersteller oder Betreiber kann in Betracht gezogen werden."
+    ],
+    "richtig": 3,
+    "erklaerung": "Der Teilprojektleiter «sollte» beim Anwender angesiedelt sein – im Unterschied zum Projektleiter, der dort angesiedelt sein «muss»; eine Bereitstellung durch Ersteller oder Betreiber kann in Betracht gezogen werden. Bestimmt wird er vom Projektleiter.",
+    "quelle": {
+      "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/teilprojektleiter.html",
+      "bezeichnung": "HERMES online · Rolle «Teilprojektleiter»"
+    },
+    "kategorie": "rolle"
+  }
+]
