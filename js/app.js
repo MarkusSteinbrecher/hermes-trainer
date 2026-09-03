@@ -10,14 +10,15 @@
   var SVG_NS = 'http://www.w3.org/2000/svg';
 
   var ROUTEN = [
+    { name: 'methode',    label: 'Methode',    kurz: 'Methode',  pfade: ['M4 5h6v6H4Z', 'M14 5h6v6h-6Z', 'M4 15h6v4H4Z', 'M14 15h6v4h-6Z'] },
     { name: 'lexikon',    label: 'Lexikon',    kurz: 'Lexikon',  pfade: ['M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M4 17.5h15'] },
     { name: 'lernkarten', label: 'Lernkarten', kurz: 'Karten',   pfade: ['M8 3h10a2 2 0 0 1 2 2v9', 'M5 7h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z'] },
     { name: 'quiz',       label: 'Quiz',       kurz: 'Quiz',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M9.3 9.4a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 3.9', 'M12 17.4h.01'] },
-    { name: 'uebersicht', label: 'Übersicht',  kurz: 'Übersicht', pfade: ['M4 5h6v6H4Z', 'M14 5h6v6h-6Z', 'M4 15h6v4H4Z', 'M14 15h6v4h-6Z'] },
     { name: 'ueber',      label: 'Über',       kurz: 'Über',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.8h.01'] }
   ];
 
-  var STARTROUTE = 'lexikon';
+  var STARTROUTE = 'methode';
+  var ALIASE = { uebersicht: 'methode' };   // alte Links bleiben gültig
   var ersterAufruf = true;
 
   /* --- Inline-SVG-Symbole (keine externen Abhängigkeiten) ----------------- */
@@ -117,6 +118,7 @@
       });
     }
 
+    if (ALIASE[name]) { name = ALIASE[name]; }
     if (!HT.views[name]) { name = STARTROUTE; }
     return { name: name, params: params };
   }

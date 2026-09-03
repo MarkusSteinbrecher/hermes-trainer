@@ -8,7 +8,7 @@
   HT.views = HT.views || {};
 
   var h = HT.ui.h;
-  var DEF_MAX = 150;               // einheitliche Kürzung, damit Länge nicht verrät
+  var DEF_MAX = 170;               // Obergrenze je Antwortoption (Kürzung an Satz-/Wortgrenze)
   var REST_MIN = 45;               // so viel lesbarer Text muss nach dem Maskieren bleiben
   var BUCHSTABEN = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -62,6 +62,12 @@
   }
 
   /* --- Fragengenerierung -------------------------------------------------- */
+
+  /** Erster Satz einer Definition; bei Überlänge an der Wortgrenze gekürzt. */
+  function definitionKurz(text) {
+    var satz = HT.daten.ersterSatz(text);
+    return satz.length <= DEF_MAX ? satz : HT.ui.kuerzen(satz, DEF_MAX);
+  }
 
   /** Nur einzelne Begriffe, keine Aufzählungen. */
   function einzelwert(text) {
@@ -122,6 +128,11 @@
     alleRollen = eindeutig(alleRollen).filter(einzelwert);
     alleModule = eindeutig(alleModule).filter(einzelwert);
 
+    /* Dokumente, die laut Tabelle 16 nicht minimal gefordert sind — Distraktoren für Typ (7). */
+    var nichtMinimal = HT.daten.eintraegeDerKategorie('ergebnis')
+      .filter(function (x) { return x.typ === 'Dokument' && !x.minimalGefordert; })
+      .map(function (x) { return x.begriff; });
+
     /* Manche Einträge teilen sich einen Formulierungsbaustein — «Checkliste
        Projektabbruch» und «Checkliste Releasefreigabe» sind nach dem Maskieren
        wortgleich. Solche Zitate passen auf mehrere Begriffe und taugen nicht
@@ -161,7 +172,7 @@
       }
 
       /* (2) Begriff → Definition */
-      var richtigeDef = HT.ui.kuerzen(HT.ui.ohneBegriff(e.definition, e.begriff), DEF_MAX);
+      var richtigeDef = definitionKurz(HT.ui.ohneBegriff(e.definition, e.begriff));
       if (e.definition && !HT.ui.enthaeltBegriff(richtigeDef, e.begriff)) {
         /* Jede Option wird um ihren eigenen Begriff bereinigt, damit keine
            Antwort durch den enthaltenen Suchbegriff auffällt. Optionen, in
@@ -169,7 +180,7 @@
            würden auf die falsche Antwort zeigen. */
         var defs = geschwister
           .filter(function (g) { return g.definition && g.id !== e.id; })
-          .map(function (g) { return HT.ui.kuerzen(HT.ui.ohneBegriff(g.definition, g.begriff), DEF_MAX); })
+          .map(function (g) { return definitionKurz(HT.ui.ohneBegriff(g.definition, g.begriff)); })
           .filter(function (d) { return !HT.ui.enthaeltBegriff(d, e.begriff); });
         var f2 = frageBauen({
           id: 'gen-begriff-def-' + e.id,
@@ -194,6 +205,47 @@
           quelle: e.quelle
         }, e.verantwortlich, distraktoren(alleRollen, [e.verantwortlich], 3));
         if (f3) { fragen.push(f3); }
+      }
+
+      /* (5) Ergebnis → verantwortliche Rolle (nur bei genau einer Rolle) */
+      if (e.kategorie === 'ergebnis' && einzelwert(e.verantwortlich)) {
+        var f5 = frageBauen({
+          id: 'gen-erg-rolle-' + e.id,
+          kategorie: 'rolle',
+          frage: 'Welche Rolle verantwortet das Ergebnis ' + HT.ui.zitat(e.begriff) + '?',
+          zitat: '',
+          erklaerung: 'Verantwortlich ist ' + HT.ui.zitat(e.verantwortlich) + '. ' + (e.pruefungshinweis || ''),
+          quelle: e.quelle
+        }, e.verantwortlich, distraktoren(alleRollen, [e.verantwortlich], 3));
+        if (f5) { fragen.push(f5); }
+      }
+
+      /* (6) Aufgabe → Modul (nur bei eindeutiger Zuordnung) */
+      if (e.kategorie === 'aufgabe' && e.module && e.module.length === 1 && einzelwert(e.module[0])) {
+        var f6 = frageBauen({
+          id: 'gen-aufg-modul-' + e.id,
+          kategorie: 'modul',
+          frage: 'Zu welchem Modul gehört die Aufgabe ' + HT.ui.zitat(e.begriff) + '?',
+          zitat: '',
+          erklaerung: 'Die Aufgabe ' + HT.ui.zitat(e.begriff) + ' gehört zum Modul '
+            + HT.ui.zitat(e.module[0]) + '. ' + (e.pruefungshinweis || ''),
+          quelle: e.quelle
+        }, e.module[0], distraktoren(alleModule, e.module, 3));
+        if (f6) { fragen.push(f6); }
+      }
+
+      /* (7) Minimal gefordertes Dokument erkennen (Tabelle 16 des Handbuchs) */
+      if (e.kategorie === 'ergebnis' && e.typ === 'Dokument' && e.minimalGefordert && nichtMinimal.length >= 3) {
+        var f7 = frageBauen({
+          id: 'gen-minimal-' + e.id,
+          kategorie: 'ergebnis',
+          frage: 'Welches dieser Dokumente gehört zu den minimal geforderten Dokumenten?',
+          zitat: '',
+          erklaerung: HT.ui.zitat(e.begriff) + ' ist ein minimal gefordertes Dokument; seine Erarbeitung ist zur Erfüllung der Projekt-Governance obligatorisch. '
+            + 'Die anderen drei Dokumente sind in Tabelle 16 des Referenzhandbuchs nicht als minimal gefordert markiert.',
+          quelle: e.quelle
+        }, e.begriff, distraktoren(nichtMinimal, [e.begriff], 3));
+        if (f7) { fragen.push(f7); }
       }
 
       /* (4) Ergebnis → Modul (nur bei eindeutiger Zuordnung) */
@@ -240,7 +292,7 @@
     var auswahl = [];
 
     if (konfig.herkunft === 'gemischt') {
-      var ausKuratiert = Math.min(kuratiert.length, Math.ceil(ziel / 2));
+      var ausKuratiert = Math.min(kuratiert.length, Math.ceil(ziel * 2 / 3));
       auswahl = kuratiert.slice(0, ausKuratiert);
       auswahl = auswahl.concat(generiert.slice(0, ziel - auswahl.length));
       if (auswahl.length < ziel) {
@@ -268,7 +320,7 @@
     if (!fragen.length) {
       lauf = null;
       hinweis = konfig.herkunft === 'kuratiert'
-        ? 'Für diese Auswahl gibt es noch keine kuratierten Fragen. Quelle auf «Gemischt» oder «Nur generierte» umstellen.'
+        ? 'Für diese Auswahl gibt es keine Prüfungsfragen. Quelle auf «Gemischt» oder «Nur Lexikonfragen» umstellen.'
         : 'Für diese Auswahl lassen sich keine Fragen bilden — eine Kategorie braucht mindestens vier Einträge, '
           + 'damit plausible falsche Antworten entstehen. Bitte weitere Kategorien zulassen.';
       zeichnen();
@@ -382,16 +434,15 @@
 
     behaelter.appendChild(schalterGruppe('Fragenquelle', [
       { wert: 'gemischt', label: 'Gemischt' },
-      { wert: 'kuratiert', label: 'Nur kuratierte' },
-      { wert: 'generiert', label: 'Nur generierte' }
+      { wert: 'kuratiert', label: 'Nur Prüfungsfragen' },
+      { wert: 'generiert', label: 'Nur Lexikonfragen' }
     ], function (w) { return konfig.herkunft === w; },
       function (w) { konfig.herkunft = w; }));
 
     behaelter.appendChild(h('p', {
       class: 'trefferzahl',
-      text: 'Im Bestand: ' + HT.daten.quizfragen().length + ' kuratierte '
-        + (HT.daten.quizfragen().length === 1 ? 'Frage' : 'Fragen')
-        + ' · generierte Fragen entstehen aus ' + HT.daten.alleEintraege().length + ' Lexikoneinträgen.'
+      text: 'Im Bestand: ' + HT.daten.quizfragen().length + ' kuratierte Prüfungsfragen mit Belegstelle im Referenzhandbuch'
+        + ' · Lexikonfragen entstehen automatisch aus ' + HT.daten.alleEintraege().length + ' Einträgen.'
     }));
 
     /* Kategorienfilter */
@@ -464,6 +515,18 @@
     }
   }
 
+  /** Belegzitat aus dem Referenzhandbuch mit Kapitel und Seite. */
+  function belegElement(beleg) {
+    if (!beleg || !beleg.zitat) { return null; }
+    var ort = [];
+    if (beleg.kapitel) { ort.push('Kap. ' + beleg.kapitel); }
+    if (beleg.seite) { ort.push('S. ' + beleg.seite); }
+    return h('div', { class: 'beleg' }, [
+      h('span', { class: 'beleg__kopf', text: 'Beleg im Referenzhandbuch' + (ort.length ? ' · ' + ort.join(', ') : '') }),
+      h('p', { text: '«' + beleg.zitat + '»' })
+    ]);
+  }
+
   /* --- Darstellung: Frage ------------------------------------------------- */
 
   function frageAnsicht(behaelter) {
@@ -473,7 +536,7 @@
 
     behaelter.appendChild(h('div', { class: 'quiz-kopf' }, [
       h('span', { text: 'Frage ' + (lauf.index + 1) + ' von ' + lauf.fragen.length }),
-      h('span', { text: f.herkunft === 'kuratiert' ? 'Kuratierte Frage' : 'Generierte Frage' })
+      h('span', { text: f.herkunft === 'kuratiert' ? 'Prüfungsfrage' : 'Lexikonfrage (generiert)' })
     ]));
 
     var anteil = HT.ui.prozent(lauf.index, lauf.fragen.length);
@@ -524,6 +587,7 @@
         h('p', { class: 'rueckmeldung__titel', text: richtig ? 'Richtig' : 'Falsch' }),
         richtig ? null : h('p', { text: 'Richtig wäre: ' + f.antworten[f.richtig] }),
         f.erklaerung ? h('p', { text: f.erklaerung }) : null,
+        belegElement(f.beleg),
         HT.ui.quellenLink(f.quelle)
       ]);
       behaelter.appendChild(rueck);
@@ -582,6 +646,7 @@
             h('span', { text: x.f.antworten[x.f.richtig] })
           ]),
           x.f.erklaerung ? h('p', { class: 'fehler-eintrag__zeile', text: x.f.erklaerung }) : null,
+          belegElement(x.f.beleg),
           HT.ui.quellenLink(x.f.quelle)
         ]);
       })));

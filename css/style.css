@@ -441,6 +441,7 @@ main:focus { outline: none; }
 .eintrag--ergebnis { border-left-color: var(--kat-ergebnis-fg); }
 .eintrag--rolle { border-left-color: var(--kat-rolle-fg); }
 .eintrag--grundbegriff { border-left-color: var(--kat-grundbegriff-fg); }
+.eintrag, details.stufe-block, .hb-titel[id] { scroll-margin-top: 64px; }
 .eintrag.ist-hervorgehoben { box-shadow: 0 0 0 3px var(--akzent-schwach), var(--schatten-stark); }
 
 .eintrag__kopf { padding: .8rem .9rem .1rem; }
@@ -947,4 +948,283 @@ a.pm-phase:hover { filter: brightness(.97); }
 @media print {
   .topbar, .nav-bottom, .suche, .chips, .aufklapp { display: none !important; }
   body { background: #fff; color: #000; padding: 0; }
+}
+
+/* ==========================================================================
+   Stufen, Fakten und Handbuchtext
+   ========================================================================== */
+
+/* --- Faktenzeile (Stufe Kurz) -------------------------------------------- */
+.fakten {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .6rem;
+  margin: 0 0 .65rem;
+  font-size: .82rem;
+  color: var(--text-leise);
+}
+.fakt { display: inline-flex; align-items: center; gap: .2rem; line-height: 1.3; }
+.fakt__label { font-weight: 700; letter-spacing: .01em; }
+.fakt__wert { color: var(--text); }
+.fakt__wert a, .hb-link { color: var(--akzent); text-decoration: none; border-bottom: 1px dotted currentColor; }
+.fakt__wert a:hover, .hb-link:hover { color: var(--akzent-hover); border-bottom-style: solid; }
+.fakt--marker {
+  padding: .05rem .5rem;
+  border-radius: 999px;
+  background: var(--kat-ergebnis-bg);
+  color: var(--kat-ergebnis-fg);
+  font-weight: 700;
+  font-size: .76rem;
+}
+.phasenstreifen { display: inline-flex; gap: 2px; vertical-align: middle; }
+.phasenstreifen__feld {
+  display: inline-grid;
+  place-items: center;
+  width: 1.15rem; height: 1.15rem;
+  border-radius: 4px;
+  border: 1px solid var(--rand);
+  background: var(--flaeche-2);
+  color: var(--text-leise);
+  font-size: .68rem;
+  font-weight: 700;
+  opacity: .55;
+}
+.phasenstreifen__feld.ist-aktiv {
+  background: var(--kat-phase-bg);
+  border-color: var(--kat-phase-fg);
+  color: var(--kat-phase-fg);
+  opacity: 1;
+}
+
+/* --- Stufenwahl je Karte ------------------------------------------------- */
+.stufen {
+  display: inline-flex;
+  border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  background: var(--flaeche);
+}
+.stufe {
+  min-height: 38px;
+  padding: .3rem .65rem;
+  border: 0;
+  border-right: 1px solid var(--rand);
+  background: transparent;
+  color: var(--text-leise);
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.stufe:last-child { border-right: 0; }
+.stufe:hover { background: var(--flaeche-2); color: var(--text); }
+.stufe[aria-pressed="true"] { background: var(--akzent); color: var(--akzent-auf); }
+.stufe:focus-visible { outline-offset: -3px; }
+
+.stufenwahl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem .6rem;
+  margin: -.25rem 0 .6rem;
+}
+.stufenwahl__label { font-size: .78rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-leise); }
+.stufenwahl .chips { margin: 0; }
+.stufenwahl .chip { min-height: 32px; padding: .2rem .6rem; font-size: .8rem; }
+
+.detail--handbuch { border-top: 1px dashed var(--rand); }
+
+/* --- Handbuchtext-Blöcke -------------------------------------------------- */
+.hb-verweis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .8rem;
+  margin: .75rem 0 .25rem;
+  font-size: .8rem;
+  color: var(--text-leise);
+}
+.hb-verweis .hb-online { font-weight: 700; text-decoration: none; }
+.hb-abschnitt { margin-top: .6rem; }
+.hb-titel {
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+  margin: .9rem 0 .25rem;
+}
+.hb-nr { color: var(--akzent); font-variant-numeric: tabular-nums; }
+.hb-seite { font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--text-leise); font-size: .85em; }
+.hb-p { margin: 0 0 .6rem; }
+.hb-h { margin: .8rem 0 .3rem; font-size: .95rem; }
+.hb-liste { margin: 0 0 .6rem; padding-left: 1.25rem; }
+.hb-liste li { margin-bottom: .2rem; }
+.hb-liste .hb-liste { margin: .2rem 0 .2rem; }
+.hb-li-titel { display: block; font-weight: 700; }
+.hb-tabelle-wrap { overflow-x: auto; margin: .3rem 0 .8rem; -webkit-overflow-scrolling: touch; }
+.hb-tabelle {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 28rem;
+  font-size: .85rem;
+  line-height: 1.35;
+}
+.hb-tabelle caption { caption-side: top; text-align: left; font-size: .78rem; font-weight: 700; color: var(--text-leise); padding: 0 0 .3rem; }
+.hb-tabelle th, .hb-tabelle td {
+  border: 1px solid var(--rand);
+  padding: .35rem .5rem;
+  text-align: left;
+  vertical-align: top;
+}
+.hb-tabelle th { background: var(--flaeche-2); font-weight: 700; }
+.hb-tabelle .hb-x { text-align: center; color: var(--gut); font-weight: 800; }
+.hb-abb { margin: .6rem 0 .9rem; }
+.hb-abb img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--rand);
+  border-radius: var(--radius-s);
+  padding: .35rem;
+}
+.hb-abb--ohne img { max-height: 70px; width: auto; }
+.hb-abb figcaption { font-size: .78rem; color: var(--text-leise); margin-top: .3rem; }
+
+/* --- Methode: Hub -------------------------------------------------------- */
+.pm-block { margin-bottom: .5rem; }
+.kapitel-raster {
+  display: grid;
+  gap: .7rem;
+  grid-template-columns: 1fr;
+}
+.kapitel-karte {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  padding: .85rem .95rem;
+  background: var(--flaeche);
+  border: 1px solid var(--rand);
+  border-left: 4px solid var(--akzent);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten);
+  text-decoration: none;
+  color: var(--text);
+}
+.kapitel-karte:hover { border-color: var(--akzent); box-shadow: var(--schatten-stark); }
+.kapitel-karte__nr { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--akzent); }
+.kapitel-karte__titel { font-size: 1.05rem; font-weight: 700; }
+.kapitel-karte__teaser { font-size: .88rem; color: var(--text-leise); }
+.kapitel-karte__meta { font-size: .78rem; color: var(--text-leise); margin-top: .2rem; }
+.lernweg { margin: .4rem 0 0; padding-left: 1.25rem; }
+.lernweg li { margin-bottom: .3rem; }
+
+/* --- Methode: Kapitelseite ----------------------------------------------- */
+.brotkrumen { font-size: .82rem; color: var(--text-leise); margin-bottom: .4rem; }
+.brotkrumen a { text-decoration: none; font-weight: 600; }
+.kapitel .hb-verweis { margin-top: 0; }
+
+.stufe-box {
+  background: var(--flaeche);
+  border: 1px solid var(--rand);
+  border-left: 4px solid var(--akzent);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten);
+  padding: .9rem 1rem .6rem;
+  margin: .75rem 0 1rem;
+}
+.stufe-box__titel { margin: 0 0 .5rem; font-size: 1rem; }
+.stufe-box .detail__label { margin-top: .4rem; }
+.detail__label--warn { color: var(--warn); }
+.kernaussagen { margin: 0 0 .6rem; padding-left: 1.4rem; }
+.kernaussagen li { margin-bottom: .4rem; font-weight: 500; }
+.kernaussagen li::marker { color: var(--akzent); font-weight: 800; }
+.pruefungsfallen { margin: 0 0 .4rem; padding-left: 1.25rem; }
+.pruefungsfallen li { margin-bottom: .3rem; }
+.pruefungsfallen li::marker { color: var(--warn); }
+
+details.stufe-block, .stufe-block--offen {
+  background: var(--flaeche);
+  border: 1px solid var(--rand);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten);
+  margin: 0 0 .8rem;
+}
+details.stufe-block > summary {
+  cursor: pointer;
+  padding: .75rem 1rem;
+  font-weight: 700;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+details.stufe-block > summary::-webkit-details-marker { display: none; }
+details.stufe-block > summary::before {
+  content: '▶';
+  font-size: .65rem;
+  color: var(--text-leise);
+  transition: transform .18s ease;
+}
+details.stufe-block[open] > summary::before { transform: rotate(90deg); }
+details.stufe-block > summary:hover { background: var(--flaeche-2); border-radius: var(--radius); }
+.stufe__nr {
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--akzent);
+  background: var(--akzent-schwach);
+  padding: .1rem .45rem;
+  border-radius: 999px;
+}
+.stufe__inhalt { padding: 0 1rem .9rem; }
+.stufe__titel { margin: 1.2rem 0 .6rem; display: flex; align-items: center; gap: .5rem; font-size: 1.05rem; }
+.stufe-wrap { margin-bottom: .5rem; }
+.stufe-block--offen { padding-top: .5rem; }
+.hb-zusammenfassung { margin: .2rem 0 .4rem; }
+
+details.hb-gruppe {
+  border-top: 1px solid var(--rand);
+  margin-top: .5rem;
+}
+details.hb-gruppe > summary {
+  cursor: pointer;
+  padding: .6rem 0;
+  font-weight: 700;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+}
+details.hb-gruppe > summary::-webkit-details-marker { display: none; }
+details.hb-gruppe > summary::before { content: '▶'; font-size: .6rem; color: var(--text-leise); transition: transform .18s ease; }
+details.hb-gruppe[open] > summary::before { transform: rotate(90deg); }
+.hb-gruppe__inhalt { padding: 0 0 .5rem .2rem; }
+.hb-gruppe .hb-titel { text-transform: none; letter-spacing: 0; font-size: .92rem; color: var(--text); }
+
+.belege { margin-top: .6rem; padding-top: .5rem; border-top: 1px dashed var(--rand); }
+.belege__liste { margin: 0; padding-left: 1.1rem; font-size: .85rem; }
+.belege__liste li { margin-bottom: .35rem; }
+.beleg__zitat { font-style: italic; }
+.beleg__ort { color: var(--text-leise); white-space: nowrap; }
+
+.kapitel-nav { margin-top: 1rem; }
+
+/* --- Quiz: Beleg ---------------------------------------------------------- */
+.beleg {
+  margin: .5rem 0;
+  padding: .55rem .7rem;
+  border-left: 3px solid var(--akzent);
+  background: var(--flaeche);
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+  font-size: .88rem;
+}
+.beleg__kopf { display: block; font-size: .72rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-leise); margin-bottom: .15rem; }
+.beleg p { margin: 0; }
+
+@media (min-width: 700px) {
+  .kapitel-raster { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1000px) {
+  .kapitel-raster { grid-template-columns: 1fr 1fr 1fr 1fr; }
 }

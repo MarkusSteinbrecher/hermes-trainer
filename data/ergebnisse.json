@@ -28,7 +28,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/abnahmeprotokoll.html",
       "bezeichnung": "HERMES online · Ergebnis «Abnahmeprotokoll»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-aenderungsantrag",
@@ -56,7 +58,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/aenderungsantrag.html",
       "bezeichnung": "HERMES online · Ergebnis «Änderungsantrag»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-aenderungsstatusliste",
@@ -82,7 +86,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/aenderungsstatusliste.html",
       "bezeichnung": "HERMES online · Ergebnis «Änderungsstatusliste»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-altsystem-entfernt",
@@ -106,7 +112,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/altsystem-entfernt.html",
       "bezeichnung": "HERMES online · Ergebnis «Altsystem entfernt»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-angebot",
@@ -136,7 +143,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/angebot.html",
       "bezeichnung": "HERMES online · Ergebnis «Angebot»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-angebotsprotokoll",
@@ -159,7 +168,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/angebotsprotokoll.html",
       "bezeichnung": "HERMES online · Ergebnis «Angebotsprotokoll»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-anwendungshandbuch",
@@ -184,7 +195,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/anwendungshandbuch.html",
       "bezeichnung": "HERMES online · Ergebnis «Anwendungshandbuch»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-arbeitsauftrag",
@@ -213,7 +226,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/arbeitsauftrag.html",
       "bezeichnung": "HERMES online · Ergebnis «Arbeitsauftrag»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-ausschreibungsunterlagen",
@@ -239,7 +254,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/ausschreibungsunterlagen.html",
       "bezeichnung": "HERMES online · Ergebnis «Ausschreibungsunterlagen»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-beschaffungsanalyse",
@@ -262,7 +279,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/beschaffungsanalyse.html",
       "bezeichnung": "HERMES online · Ergebnis «Beschaffungsanalyse»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-betrieb-aktiviert",
@@ -286,7 +305,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betrieb-aktiviert.html",
       "bezeichnung": "HERMES online · Ergebnis «Betrieb aktiviert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-betriebshandbuch",
@@ -310,7 +330,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebshandbuch.html",
       "bezeichnung": "HERMES online · Ergebnis «Betriebshandbuch»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-betriebsinfrastruktur-realisiert",
@@ -332,7 +354,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebsinfrastruktur-realisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «Betriebsinfrastruktur realisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-betriebskonzept",
@@ -356,7 +379,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebskonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Betriebskonzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-betriebsorganisation-realisiert",
@@ -378,7 +403,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebsorganisation-realisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «Betriebsorganisation realisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-checkliste-abnahme-migration",
@@ -404,7 +430,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-abnahme-migration.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Abnahme Migration»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-abnahme",
@@ -430,7 +458,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-abnahme.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Abnahme»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-ausschreibung",
@@ -457,7 +487,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-ausschreibung.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Ausschreibung»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-betriebsaufnahme",
@@ -483,7 +515,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-betriebsaufnahme.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Betriebsaufnahme»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-durchfuehrungsfreigabe",
@@ -508,7 +542,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-durchfuehrungsfreigabe.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Durchführungsfreigabe»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-isds-konzept",
@@ -534,7 +570,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-isds-konzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste ISDS-Konzept»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-loesungsarchitektur",
@@ -560,7 +598,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-loesungsarchitektur.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Lösungsarchitektur»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-phasenfreigabe-abschluss",
@@ -586,7 +626,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-phasenfreigabe-abschluss.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Phasenfreigabe Abschluss»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-phasenfreigabe",
@@ -612,7 +654,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-phasenfreigabe.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Phasenfreigabe»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-produktkonzept",
@@ -638,7 +682,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-produktkonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Produktkonzept»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-projektabbruch",
@@ -667,7 +713,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektabbruch.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Projektabbruch»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-projektabschluss",
@@ -692,7 +740,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektabschluss.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Projektabschluss»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-projektinitialisierungsfreigabe",
@@ -716,7 +766,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektinitialisierungsfreigabe.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Projektinitialisierungsfreigabe»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-releasefreigabe",
@@ -742,7 +794,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-releasefreigabe.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Releasefreigabe»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-vorabnahme",
@@ -768,7 +822,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-vorabnahme.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Vorabnahme»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-weiteres-vorgehen",
@@ -794,7 +850,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-weiteres-vorgehen.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Weiteres Vorgehen»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checkliste-zuschlag",
@@ -821,7 +879,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-zuschlag.html",
       "bezeichnung": "HERMES online · Ergebnis «Checkliste Zuschlag»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-checklisten",
@@ -834,7 +894,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checklisten.html",
       "bezeichnung": "HERMES online · Ergebnis «Checklisten»"
-    }
+    },
+    "typ": "Checkliste",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-detailspezifikation",
@@ -864,7 +926,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/detailspezifikation.html",
       "bezeichnung": "HERMES online · Ergebnis «Detailspezifikation»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-durchfuehrungsauftrag",
@@ -891,7 +955,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/durchfuehrungsauftrag.html",
       "bezeichnung": "HERMES online · Ergebnis «Durchführungsauftrag»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-einfuehrungskonzept",
@@ -916,7 +982,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungskonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Einführungskonzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-einfuehrungsmassnahmen-durchgefuehrt",
@@ -940,7 +1008,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungsmassnahmen-durchgefuehrt.html",
       "bezeichnung": "HERMES online · Ergebnis «Einführungsmassnahmen durchgeführt»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-einfuehrungsmassnahmen-realisiert",
@@ -964,7 +1033,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungsmassnahmen-realisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «Einführungsmassnahmen realisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-evaluationsbericht",
@@ -992,7 +1062,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/evaluationsbericht.html",
       "bezeichnung": "HERMES online · Ergebnis «Evaluationsbericht»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-geschaeftsmodellbeschreibung",
@@ -1016,7 +1088,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/geschaeftsmodellbeschreibung.html",
       "bezeichnung": "HERMES online · Ergebnis «Geschäftsmodellbeschreibung»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-integrations-und-installationsanleitung",
@@ -1039,7 +1113,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/integrations-und-installationsanleitung.html",
       "bezeichnung": "HERMES online · Ergebnis «Integrations- und Installationsanleitung»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-integrationskonzept",
@@ -1065,7 +1141,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/integrationskonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Integrationskonzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-isds-konzept-ueberfuehrt",
@@ -1090,7 +1168,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-konzept-ueberfuehrt.html",
       "bezeichnung": "HERMES online · Ergebnis «ISDS-Konzept überführt»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-isds-konzept",
@@ -1122,7 +1201,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-konzept.html",
       "bezeichnung": "HERMES online · Ergebnis «ISDS-Konzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-isds-massnahmen-realisiert",
@@ -1148,7 +1229,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-massnahmen-realisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «ISDS-Massnahmen realisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-liste-projektentscheide-fuehrung",
@@ -1182,7 +1264,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/liste-projektentscheide-fuehrung.html",
       "bezeichnung": "HERMES online · Ergebnis «Liste Projektentscheide Führung»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-liste-projektentscheide-steuerung",
@@ -1214,7 +1298,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/liste-projektentscheide-steuerung.html",
       "bezeichnung": "HERMES online · Ergebnis «Liste Projektentscheide Steuerung»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-loesungsanforderungen",
@@ -1245,7 +1331,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/loesungsanforderungen.html",
       "bezeichnung": "HERMES online · Ergebnis «Lösungsanforderungen»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-loesungsarchitektur",
@@ -1272,7 +1360,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/loesungsarchitektur.html",
       "bezeichnung": "HERMES online · Ergebnis «Lösungsarchitektur»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-meilenstein-abnahme-migration",
@@ -1297,7 +1387,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-abnahme-migration.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Abnahme Migration»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-abnahme",
@@ -1322,7 +1413,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-abnahme.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Abnahme»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-ausschreibung",
@@ -1349,7 +1441,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-ausschreibung.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Ausschreibung»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-betriebsaufnahme",
@@ -1375,7 +1468,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-betriebsaufnahme.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Betriebsaufnahme»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-durchfuehrungsfreigabe",
@@ -1400,7 +1494,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-durchfuehrungsfreigabe.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Durchführungsfreigabe»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-isds-konzept",
@@ -1425,7 +1520,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-isds-konzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein ISDS-Konzept»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-loesungsarchitektur",
@@ -1450,7 +1546,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-loesungsarchitektur.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Lösungsarchitektur»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-phasenfreigabe-abschluss",
@@ -1477,7 +1574,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-phasenfreigabe-abschluss.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Phasenfreigabe Abschluss»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-phasenfreigabe",
@@ -1504,7 +1602,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-phasenfreigabe.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Phasenfreigabe»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-produktkonzept",
@@ -1529,7 +1628,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-produktkonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Produktkonzept»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-projektabschluss",
@@ -1558,7 +1658,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-projektabschluss.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Projektabschluss»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-projektinitialisierungsfreigabe",
@@ -1582,7 +1683,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-projektinitialisierungsfreigabe.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Projektinitialisierungsfreigabe»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-releasefreigabe",
@@ -1608,7 +1710,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-releasefreigabe.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Releasefreigabe»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-vorabnahme",
@@ -1633,7 +1736,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-vorabnahme.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Vorabnahme»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-weiteres-vorgehen",
@@ -1657,7 +1761,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-weiteres-vorgehen.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Weiteres Vorgehen»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilenstein-zuschlag",
@@ -1684,7 +1789,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-zuschlag.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilenstein Zuschlag»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-meilensteine",
@@ -1697,7 +1803,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilensteine.html",
       "bezeichnung": "HERMES online · Ergebnis «Meilensteine»"
-    }
+    },
+    "typ": "Meilenstein"
   },
   {
     "id": "ergebnis-migration-durchgefuehrt",
@@ -1721,7 +1828,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migration-durchgefuehrt.html",
       "bezeichnung": "HERMES online · Ergebnis «Migration durchgeführt»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-migrationskonzept",
@@ -1746,7 +1854,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migrationskonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Migrationskonzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-migrationsverfahren-realisiert",
@@ -1769,7 +1879,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migrationsverfahren-realisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «Migrationsverfahren realisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-offertanfrage",
@@ -1796,7 +1907,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/offertanfrage.html",
       "bezeichnung": "HERMES online · Ergebnis «Offertanfrage»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-organisation-aktiviert",
@@ -1819,7 +1932,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisation-aktiviert.html",
       "bezeichnung": "HERMES online · Ergebnis «Organisation aktiviert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-organisation-umgesetzt",
@@ -1841,7 +1955,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisation-umgesetzt.html",
       "bezeichnung": "HERMES online · Ergebnis «Organisation umgesetzt»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-organisationsanforderungen",
@@ -1866,7 +1981,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationsanforderungen.html",
       "bezeichnung": "HERMES online · Ergebnis «Organisationsanforderungen»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-organisationsbeschreibung",
@@ -1891,7 +2008,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationsbeschreibung.html",
       "bezeichnung": "HERMES online · Ergebnis «Organisationsbeschreibung»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-organisationskonzept",
@@ -1915,7 +2034,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationskonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Organisationskonzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-phasenbericht",
@@ -1943,7 +2064,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/phasenbericht.html",
       "bezeichnung": "HERMES online · Ergebnis «Phasenbericht»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-produkt-aktiviert",
@@ -1968,7 +2091,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produkt-aktiviert.html",
       "bezeichnung": "HERMES online · Ergebnis «Produkt aktiviert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-produkt-entwickelt-oder-angepasst",
@@ -1992,7 +2116,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produkt-entwickelt-oder-angepasst.html",
       "bezeichnung": "HERMES online · Ergebnis «Produkt entwickelt oder angepasst»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-produktdokumentation",
@@ -2014,7 +2139,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produktdokumentation.html",
       "bezeichnung": "HERMES online · Ergebnis «Produktdokumentation»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-produktkonzept",
@@ -2039,7 +2166,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produktkonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Produktkonzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-projekterfahrungen",
@@ -2069,7 +2198,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projekterfahrungen.html",
       "bezeichnung": "HERMES online · Ergebnis «Projekterfahrungen»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-projektinitialisierungsauftrag",
@@ -2093,7 +2224,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektinitialisierungsauftrag.html",
       "bezeichnung": "HERMES online · Ergebnis «Projektinitialisierungsauftrag»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-projektmanagementplan",
@@ -2124,7 +2257,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektmanagementplan.html",
       "bezeichnung": "HERMES online · Ergebnis «Projektmanagementplan»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-projektschlussbeurteilung",
@@ -2154,7 +2289,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektschlussbeurteilung.html",
       "bezeichnung": "HERMES online · Ergebnis «Projektschlussbeurteilung»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-projektstatusbericht",
@@ -2183,7 +2320,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektstatusbericht.html",
       "bezeichnung": "HERMES online · Ergebnis «Projektstatusbericht»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-protokoll",
@@ -2213,7 +2352,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/protokoll.html",
       "bezeichnung": "HERMES online · Ergebnis «Protokoll»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-prototyp-realisiert",
@@ -2243,7 +2384,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prototyp-realisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «Prototyp realisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-prototypdokumentation",
@@ -2271,7 +2413,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prototypdokumentation.html",
       "bezeichnung": "HERMES online · Ergebnis «Prototypdokumentation»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-prozessbeschreibung",
@@ -2296,7 +2440,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prozessbeschreibung.html",
       "bezeichnung": "HERMES online · Ergebnis «Prozessbeschreibung»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-pruefprotokoll",
@@ -2324,7 +2470,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/pruefprotokoll.html",
       "bezeichnung": "HERMES online · Ergebnis «Prüfprotokoll»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-publikation",
@@ -2348,7 +2496,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/publikation.html",
       "bezeichnung": "HERMES online · Ergebnis «Publikation»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-qs-und-risikobericht",
@@ -2375,7 +2525,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/qs-und-risikobericht.html",
       "bezeichnung": "HERMES online · Ergebnis «QS- und Risikobericht»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-rechtsgrundlagenanalyse",
@@ -2398,7 +2550,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/rechtsgrundlagenanalyse.html",
       "bezeichnung": "HERMES online · Ergebnis «Rechtsgrundlagenanalyse»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-releasebericht",
@@ -2423,7 +2577,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/releasebericht.html",
       "bezeichnung": "HERMES online · Ergebnis «Releasebericht»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-schnittstellen-realisiert",
@@ -2446,7 +2602,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/schnittstellen-realisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «Schnittstellen realisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-schutzbedarfsanalyse",
@@ -2470,7 +2627,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/schutzbedarfsanalyse.html",
       "bezeichnung": "HERMES online · Ergebnis «Schutzbedarfsanalyse»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-service-level-agreement",
@@ -2497,7 +2656,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/service-level-agreement.html",
       "bezeichnung": "HERMES online · Ergebnis «Service Level Agreement»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-situationsanalyse",
@@ -2524,7 +2685,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/situationsanalyse.html",
       "bezeichnung": "HERMES online · Ergebnis «Situationsanalyse»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-stakeholderinteressen",
@@ -2556,7 +2719,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/stakeholderinteressen.html",
       "bezeichnung": "HERMES online · Ergebnis «Stakeholderinteressen»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-stakeholderliste",
@@ -2589,7 +2754,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/stakeholderliste.html",
       "bezeichnung": "HERMES online · Ergebnis «Stakeholderliste»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-studie",
@@ -2616,7 +2783,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/studie.html",
       "bezeichnung": "HERMES online · Ergebnis «Studie»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-system-aktiviert",
@@ -2642,7 +2811,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-aktiviert.html",
       "bezeichnung": "HERMES online · Ergebnis «System aktiviert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-system-entwickelt-oder-parametrisiert",
@@ -2668,7 +2838,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-entwickelt-oder-parametrisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «System entwickelt oder parametrisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-system-integriert",
@@ -2692,7 +2863,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-integriert.html",
       "bezeichnung": "HERMES online · Ergebnis «System integriert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-systemkonzept",
@@ -2721,7 +2893,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/systemkonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Systemkonzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   },
   {
     "id": "ergebnis-testinfrastruktur-realisiert",
@@ -2746,7 +2920,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testinfrastruktur-realisiert.html",
       "bezeichnung": "HERMES online · Ergebnis «Testinfrastruktur realisiert»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-testinfrastruktur-ueberfuehrt",
@@ -2768,7 +2943,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testinfrastruktur-ueberfuehrt.html",
       "bezeichnung": "HERMES online · Ergebnis «Testinfrastruktur überführt»"
-    }
+    },
+    "typ": "Zustand"
   },
   {
     "id": "ergebnis-testkonzept",
@@ -2800,7 +2976,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testkonzept.html",
       "bezeichnung": "HERMES online · Ergebnis «Testkonzept»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-testprotokoll",
@@ -2826,7 +3004,9 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testprotokoll.html",
       "bezeichnung": "HERMES online · Ergebnis «Testprotokoll»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": true
   },
   {
     "id": "ergebnis-vereinbarung",
@@ -2856,6 +3036,8 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/vereinbarung.html",
       "bezeichnung": "HERMES online · Ergebnis «Vereinbarung»"
-    }
+    },
+    "typ": "Dokument",
+    "minimalGefordert": false
   }
 ]

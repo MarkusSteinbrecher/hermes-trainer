@@ -1,6 +1,7 @@
 /* HERMES-Trainer — Datenzugriff.
    Lädt die JSON-Dateien aus data/ (relative Pfade, GitHub-Pages-tauglich),
    normalisiert die Einträge und stellt Such-/Filterfunktionen bereit.
+   Die Handbuchtexte (data/handbuch/) werden erst bei Bedarf nachgeladen.
    Fehlende, leere oder fehlerhafte Dateien blockieren die App nicht. */
 (function (global) {
   'use strict';
@@ -9,16 +10,21 @@
 
   /* Feste Dateiliste gemäss SCHEMA.md */
   var KATEGORIEN = [
-    { key: 'phase',        datei: 'phasen',        label: 'Phasen',        singular: 'Phase' },
-    { key: 'szenario',     datei: 'szenarien',     label: 'Szenarien',     singular: 'Szenario' },
-    { key: 'modul',        datei: 'module',        label: 'Module',        singular: 'Modul' },
-    { key: 'aufgabe',      datei: 'aufgaben',      label: 'Aufgaben',      singular: 'Aufgabe' },
-    { key: 'ergebnis',     datei: 'ergebnisse',    label: 'Ergebnisse',    singular: 'Ergebnis' },
-    { key: 'rolle',        datei: 'rollen',        label: 'Rollen',        singular: 'Rolle' },
-    { key: 'grundbegriff', datei: 'grundbegriffe', label: 'Grundbegriffe', singular: 'Grundbegriff' }
+    { key: 'phase',        datei: 'phasen',        label: 'Phasen',        singular: 'Phase',        kapitel: 'phasen' },
+    { key: 'szenario',     datei: 'szenarien',     label: 'Szenarien',     singular: 'Szenario',     kapitel: 'szenarien' },
+    { key: 'modul',        datei: 'module',        label: 'Module',        singular: 'Modul',        kapitel: 'module' },
+    { key: 'aufgabe',      datei: 'aufgaben',      label: 'Aufgaben',      singular: 'Aufgabe',      kapitel: 'aufgaben' },
+    { key: 'ergebnis',     datei: 'ergebnisse',    label: 'Ergebnisse',    singular: 'Ergebnis',     kapitel: 'ergebnisse' },
+    { key: 'rolle',        datei: 'rollen',        label: 'Rollen',        singular: 'Rolle',        kapitel: 'rollen' },
+    { key: 'grundbegriff', datei: 'grundbegriffe', label: 'Grundbegriffe', singular: 'Grundbegriff', kapitel: null }
   ];
 
   var QUIZ_DATEI = 'quizfragen';
+
+  /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
+     Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
+     Cache verwenden. */
+  var DATEN_VERSION = '2026-09-03';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
@@ -42,13 +48,23 @@
     }
   ];
 
+  /* Reihenfolge der Phasen für kompakte Anzeigen (I K R E U A). */
+  var PHASEN_KURZ = [
+    ['Initialisierung', 'I'], ['Konzept', 'K'], ['Realisierung', 'R'],
+    ['Einführung', 'E'], ['Umsetzung', 'U'], ['Abschluss', 'A']
+  ];
+
   var zustand = {
     eintraege: [],
     nachId: {},
     nachKategorie: {},
+    nachUrl: {},
     quizfragen: [],
     fehler: [],       // Namen der Dateien, die nicht geladen werden konnten
-    geladen: false
+    geladen: false,
+    handbuch: {},     // Kategorie -> Promise mit Volltexten (lazy)
+    kapitel: null,    // Promise mit Kapiteltexten (lazy)
+    kernaussagen: null
   };
 
   /* --- Textnormalisierung für die Suche ---------------------------------- */
@@ -62,7 +78,7 @@
 
   function diakritikaEntfernen(text) {
     try {
-      return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return text.normalize('NFD').replace(/[̀-ͯ]/g, '');
     } catch (e) {
       return text;
     }
@@ -103,6 +119,32 @@
       .replace(/^-+|-+$/g, '') || 'eintrag';
   }
 
+  /* Abkürzungen, nach denen ein Punkt keinen Satz beendet. */
+  var ABK = /(?:z\. ?B|bzw|ggf|u\. ?a|vgl|inkl|d\. ?h|evtl|usw|resp|bzgl|Nr|Kap|S)\.$/;
+
+  /** Erster Satz eines Textes — die Kurzfassung für die erste Stufe. */
+  function ersterSatz(text) {
+    var t = String(text || '').replace(/\s+/g, ' ').trim();
+    var pos = 0;
+    while (pos < t.length) {
+      var i = t.indexOf('. ', pos);
+      if (i === -1) { return t; }
+      var davor = t.slice(0, i + 1);
+      var danach = t.charAt(i + 2);
+      if (!ABK.test(davor) && /[A-ZÄÖÜ«(]/.test(danach)) { return davor; }
+      pos = i + 1;
+    }
+    return t;
+  }
+
+  function kurzfassung(roh, definition) {
+    var explizit = alsText(roh.kurz);
+    if (explizit) { return explizit; }
+    var satz = ersterSatz(definition);
+    if (satz.length <= 230) { return satz; }
+    return HT.ui.kuerzen(satz, 200);
+  }
+
   function normEintrag(roh, kategorieKey, index) {
     if (!roh || typeof roh !== 'object') { return null; }
 
@@ -131,16 +173,21 @@
       });
     }
 
+    var definition = alsText(roh.definition);
+
     var e = {
       id: alsText(roh.id) || (kategorie + '-' + slug(begriff) + '-' + index),
       kategorie: kategorie,
       begriff: begriff,
-      definition: alsText(roh.definition),
+      kurz: kurzfassung(roh, definition),
+      definition: definition,
       details: alsText(roh.details),
       abgrenzung: alsText(roh.abgrenzung),
       pruefungshinweis: alsText(roh.pruefungshinweis),
       verantwortlich: alsText(roh.verantwortlich),
       ebene: alsText(roh.ebene),
+      typ: alsText(roh.typ),
+      minimalGefordert: roh.minimalGefordert === true,
       beteiligt: alsArray(roh.beteiligt),
       phasen: alsArray(roh.phasen),
       module: alsArray(roh.module),
@@ -153,13 +200,25 @@
 
     e.suchtext = suchvarianten([
       e.begriff, e.definition, e.details, e.abgrenzung, e.pruefungshinweis,
-      e.verantwortlich, e.ebene,
+      e.verantwortlich, e.ebene, e.typ,
       e.beteiligt.join(' '), e.phasen.join(' '), e.module.join(' '),
       e.szenarien.join(' '), e.ergebnisse.join(' '),
       meilensteine.map(function (m) { return m.name + ' ' + m.beschreibung; }).join(' ')
-    ].join(' ')).join('  ');
+    ].join(' ')).join('  ');
 
     return e;
+  }
+
+  function normBeleg(roh) {
+    if (!roh || typeof roh !== 'object') { return null; }
+    var zitat = alsText(roh.zitat);
+    if (!zitat) { return null; }
+    var seite = typeof roh.seite === 'number' ? roh.seite : parseInt(roh.seite, 10);
+    return {
+      zitat: zitat,
+      kapitel: alsText(roh.kapitel),
+      seite: isFinite(seite) ? seite : null
+    };
   }
 
   function normQuizfrage(roh, index) {
@@ -190,18 +249,23 @@
       antworten: antworten,
       richtig: richtig,
       erklaerung: alsText(roh.erklaerung),
+      beleg: normBeleg(roh.beleg),
       quelle: quelle
     };
   }
 
   /* --- Laden -------------------------------------------------------------- */
 
-  function ladeJson(dateiname) {
-    return fetch('data/' + dateiname + '.json', { credentials: 'same-origin' })
+  function ladeJson(pfad) {
+    return fetch(pfad + '?v=' + encodeURIComponent(DATEN_VERSION), { credentials: 'same-origin' })
       .then(function (antwort) {
         if (!antwort.ok) { throw new Error('HTTP ' + antwort.status); }
         return antwort.json();
-      })
+      });
+  }
+
+  function ladeDatei(dateiname) {
+    return ladeJson('data/' + dateiname + '.json')
       .then(function (json) {
         return Array.isArray(json) ? json : [];
       })
@@ -214,8 +278,8 @@
   function laden() {
     if (zustand.geladen) { return Promise.resolve(zustand); }
 
-    var aufgaben = KATEGORIEN.map(function (kat) { return ladeJson(kat.datei); });
-    aufgaben.push(ladeJson(QUIZ_DATEI));
+    var aufgaben = KATEGORIEN.map(function (kat) { return ladeDatei(kat.datei); });
+    aufgaben.push(ladeDatei(QUIZ_DATEI));
 
     return Promise.all(aufgaben).then(function (ergebnisse) {
       var alle = [];
@@ -233,6 +297,7 @@
           if (!zustand.nachKategorie[e.kategorie]) { zustand.nachKategorie[e.kategorie] = []; }
           zustand.nachKategorie[e.kategorie].push(e);
           zustand.nachId[e.id] = e;
+          if (e.quelle && !zustand.nachUrl[e.quelle.url]) { zustand.nachUrl[e.quelle.url] = e; }
         });
       });
 
@@ -246,6 +311,42 @@
       zustand.geladen = true;
       return zustand;
     });
+  }
+
+  /* --- Handbuchtexte (lazy) ---------------------------------------------- */
+
+  /** Volltext eines Eintrags aus data/handbuch/elemente-<kategorie>.json; null wenn keiner existiert. */
+  function handbuchElement(eintrag) {
+    if (!eintrag) { return Promise.resolve(null); }
+    var kat = eintrag.kategorie;
+    if (!zustand.handbuch[kat]) {
+      zustand.handbuch[kat] = ladeJson('data/handbuch/elemente-' + kat + '.json')
+        .then(function (json) { return (json && typeof json === 'object') ? json : {}; })
+        .catch(function () { return {}; });
+    }
+    return zustand.handbuch[kat].then(function (alle) {
+      return alle[eintrag.id] || null;
+    });
+  }
+
+  /** Alle Kapiteltexte (Methodenüberblick, Einleitungen, Hinweise zur Anwendung). */
+  function handbuchKapitel() {
+    if (!zustand.kapitel) {
+      zustand.kapitel = ladeJson('data/handbuch/kapitel.json')
+        .then(function (json) { return Array.isArray(json) ? json : []; })
+        .catch(function () { return []; });
+    }
+    return zustand.kapitel;
+  }
+
+  /** Kuratierte Kernaussagen, Zusammenfassungen und Prüfungsfallen je Kapitel. */
+  function kernaussagen() {
+    if (!zustand.kernaussagen) {
+      zustand.kernaussagen = ladeJson('data/kernaussagen.json')
+        .then(function (json) { return (json && typeof json === 'object') ? json : {}; })
+        .catch(function () { return {}; });
+    }
+    return zustand.kernaussagen;
   }
 
   /* --- Zugriff ------------------------------------------------------------ */
@@ -277,6 +378,32 @@
       if (normalisieren(kandidaten[i].begriff) === ziel) { return kandidaten[i]; }
     }
     return null;
+  }
+
+  function eintragMitUrl(url) {
+    return zustand.nachUrl[url] || null;
+  }
+
+  /**
+   * Zerlegt einen Zellen- oder Listentext des Handbuchs («Auftraggeber*,
+   * Projektleiter*») in Teile und löst jeden Teil auf einen Eintrag auf.
+   * Rückgabe: [{ text, eintrag|null, trenner }]
+   */
+  function begriffeAufloesen(text) {
+    var t = String(text || '');
+    if (!t) { return []; }
+    var teile = t.split(/(,\s*)/);
+    var aus = [];
+    teile.forEach(function (teil) {
+      if (/^,\s*$/.test(teil)) { aus.push({ text: teil, eintrag: null, trenner: true }); return; }
+      var roh = teil.trim();
+      if (!roh) { return; }
+      var kern = roh.replace(/\*+$/, '').trim();
+      var e = eintragMitBegriff(kern);
+      if (!e && /^(Meilenstein|Checkliste)\s/.test(kern)) { e = eintragMitBegriff(kern, 'ergebnis'); }
+      aus.push({ text: roh, eintrag: e, trenner: false });
+    });
+    return aus;
   }
 
   /** Volltextsuche über begriff/definition/details und Zusatzfelder. */
@@ -350,6 +477,18 @@
     });
   }
 
+  /** Phasenliste in kanonischer Reihenfolge, z. B. für Kurzanzeigen. */
+  function phasenSortiert(liste) {
+    var rang = {};
+    PHASEN_KURZ.forEach(function (p, i) { rang[normalisieren(p[0])] = i; });
+    return (liste || []).slice().sort(function (a, b) {
+      var ra = rang[normalisieren(a)], rb = rang[normalisieren(b)];
+      if (ra === undefined) { ra = 99; }
+      if (rb === undefined) { rb = 99; }
+      return ra - rb;
+    });
+  }
+
   function alphabetisch(liste) {
     return liste.slice().sort(function (a, b) {
       return a.begriff.localeCompare(b.begriff, 'de');
@@ -375,14 +514,22 @@
     alleEintraege: alleEintraege,
     eintragMitId: eintragMitId,
     eintragMitBegriff: eintragMitBegriff,
+    eintragMitUrl: eintragMitUrl,
+    begriffeAufloesen: begriffeAufloesen,
     eintraegeDerKategorie: eintraegeDerKategorie,
     suchen: suchen,
     vorgehensweisen: vorgehensweisen,
     phasenOhneVorgehensweise: phasenOhneVorgehensweise,
+    phasenSortiert: phasenSortiert,
+    phasenKurz: PHASEN_KURZ,
     alphabetisch: alphabetisch,
     quizfragen: quizfragen,
     fehlerhafteDateien: fehlerhafteDateien,
     istLeer: istLeer,
-    normalisieren: normalisieren
+    normalisieren: normalisieren,
+    ersterSatz: ersterSatz,
+    handbuchElement: handbuchElement,
+    handbuchKapitel: handbuchKapitel,
+    kernaussagen: kernaussagen
   };
 }(window));

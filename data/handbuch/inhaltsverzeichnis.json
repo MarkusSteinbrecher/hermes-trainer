@@ -1,0 +1,2087 @@
+[
+{
+"nummer": "A",
+"titel": "Methodenüberblick",
+"seite": 6
+},
+{
+"nummer": "A.1",
+"titel": "HERMES-Projektmanagement - Big Picture",
+"seite": 6
+},
+{
+"nummer": "A.2",
+"titel": "Was ist HERMES-Projektmanagement?",
+"seite": 6
+},
+{
+"nummer": "A.3",
+"titel": "Durch HERMES unterstützte Projektgrössen",
+"seite": 7
+},
+{
+"nummer": "A.4",
+"titel": "Nutzung des HERMES-Projektmanagements in der Praxis",
+"seite": 7
+},
+{
+"nummer": "A.5",
+"titel": "Die Schnittstellen des HERMES-Projektmanagements",
+"seite": 8
+},
+{
+"nummer": "A.6",
+"titel": "Agiles Entwicklungsmanagement mit HERMES",
+"seite": 9
+},
+{
+"nummer": "A.7",
+"titel": "Positionierung Programmmanagement",
+"seite": 9
+},
+{
+"nummer": "A.8",
+"titel": "Hinweise zur Anwendung",
+"seite": 10
+},
+{
+"nummer": "B",
+"titel": "HERMES-Projektmanagement-Methodenelemente",
+"seite": 11
+},
+{
+"nummer": "B.1",
+"titel": "Phasen",
+"seite": 11
+},
+{
+"nummer": "B.2",
+"titel": "Szenarien",
+"seite": 12
+},
+{
+"nummer": "B.3",
+"titel": "Module",
+"seite": 12
+},
+{
+"nummer": "B.4",
+"titel": "Ergebnisse",
+"seite": 13
+},
+{
+"nummer": "B.5",
+"titel": "Aufgaben",
+"seite": 14
+},
+{
+"nummer": "B.6",
+"titel": "Rollen",
+"seite": 14
+},
+{
+"nummer": "1",
+"titel": "Phasen",
+"seite": 15
+},
+{
+"nummer": "1.1",
+"titel": "Einleitung",
+"seite": 15
+},
+{
+"nummer": "1.1.1",
+"titel": "Projektlebenszyklus",
+"seite": 15
+},
+{
+"nummer": "1.1.2",
+"titel": "Projektbeginn",
+"seite": 15
+},
+{
+"nummer": "1.1.3",
+"titel": "Lösungsentstehung",
+"seite": 16
+},
+{
+"nummer": "1.1.4",
+"titel": "Projektende",
+"seite": 17
+},
+{
+"nummer": "1.2",
+"titel": "Übersicht der Phasen",
+"seite": 17
+},
+{
+"nummer": "1.2.1",
+"titel": "HERMES-Phasenmodell",
+"seite": 17
+},
+{
+"nummer": "1.2.2",
+"titel": "Einheitliche Projektstruktur",
+"seite": 18
+},
+{
+"nummer": "1.2.3",
+"titel": "Phasenverlauf",
+"seite": 18
+},
+{
+"nummer": "1.3",
+"titel": "Erläuterung der Phasenbeschreibung",
+"seite": 19
+},
+{
+"nummer": "1.4",
+"titel": "Beschreibung der Phasen",
+"seite": 19
+},
+{
+"nummer": "1.4.1",
+"titel": "Projektbeginn",
+"seite": 20
+},
+{
+"nummer": "1.4.1.1",
+"titel": "Initialisierung",
+"seite": 20
+},
+{
+"nummer": "1.4.2",
+"titel": "Lösungsentstehung klassisch",
+"seite": 21
+},
+{
+"nummer": "1.4.2.1",
+"titel": "Konzept",
+"seite": 21
+},
+{
+"nummer": "1.4.2.2",
+"titel": "Realisierung",
+"seite": 21
+},
+{
+"nummer": "1.4.2.3",
+"titel": "Einführung",
+"seite": 22
+},
+{
+"nummer": "1.4.3",
+"titel": "Lösungsentstehung agil",
+"seite": 22
+},
+{
+"nummer": "1.4.3.1",
+"titel": "Umsetzung",
+"seite": 22
+},
+{
+"nummer": "1.4.4",
+"titel": "Projektende",
+"seite": 23
+},
+{
+"nummer": "1.4.4.1",
+"titel": "Abschluss",
+"seite": 23
+},
+{
+"nummer": "2",
+"titel": "Szenarien",
+"seite": 25
+},
+{
+"nummer": "2.1",
+"titel": "Einleitung",
+"seite": 25
+},
+{
+"nummer": "2.2",
+"titel": "Übersicht der Szenarien",
+"seite": 25
+},
+{
+"nummer": "2.2.1",
+"titel": "Aufbau der Szenarien",
+"seite": 25
+},
+{
+"nummer": "2.2.2",
+"titel": "Standardszenarien",
+"seite": 26
+},
+{
+"nummer": "2.2.3",
+"titel": "Benutzerdefinierte Szenarien",
+"seite": 27
+},
+{
+"nummer": "2.2.3.1",
+"titel": "Anpassung der Szenarien",
+"seite": 27
+},
+{
+"nummer": "2.2.3.2",
+"titel": "Sizing",
+"seite": 27
+},
+{
+"nummer": "2.2.3.3",
+"titel": "Tailoring",
+"seite": 27
+},
+{
+"nummer": "2.3",
+"titel": "Erläuterung der Szenario-Beschreibung",
+"seite": 28
+},
+{
+"nummer": "2.4",
+"titel": "Szenarien-Verzeichnis",
+"seite": 28
+},
+{
+"nummer": "2.4.1",
+"titel": "Dienstleistung/Produkt-Szenarien",
+"seite": 28
+},
+{
+"nummer": "2.4.1.1",
+"titel": "Dienstleistung/Produkt Entwicklung",
+"seite": 28
+},
+{
+"nummer": "2.4.1.2",
+"titel": "Dienstleistung/Produkt Adaption",
+"seite": 29
+},
+{
+"nummer": "2.4.2",
+"titel": "Informatik-Szenarien",
+"seite": 30
+},
+{
+"nummer": "2.4.2.1",
+"titel": "IT-Entwicklung",
+"seite": 30
+},
+{
+"nummer": "2.4.2.2",
+"titel": "IT-Adaption",
+"seite": 30
+},
+{
+"nummer": "2.4.3",
+"titel": "Organisation-Szenarien",
+"seite": 31
+},
+{
+"nummer": "2.4.3.1",
+"titel": "Organisationsanpassung",
+"seite": 31
+},
+{
+"nummer": "3",
+"titel": "Module",
+"seite": 33
+},
+{
+"nummer": "3.1",
+"titel": "Einleitung",
+"seite": 33
+},
+{
+"nummer": "3.2",
+"titel": "Übersicht der Module",
+"seite": 33
+},
+{
+"nummer": "3.2.1",
+"titel": "Standardmodule",
+"seite": 33
+},
+{
+"nummer": "3.2.2",
+"titel": "Individuelle Module",
+"seite": 34
+},
+{
+"nummer": "3.3",
+"titel": "Erläuterung der Modulbeschreibung",
+"seite": 34
+},
+{
+"nummer": "3.4",
+"titel": "Beschreibung der Module",
+"seite": 35
+},
+{
+"nummer": "3.4.1",
+"titel": "Module zur Steuerung und Führung",
+"seite": 35
+},
+{
+"nummer": "3.4.1.1",
+"titel": "Projektsteuerung",
+"seite": 35
+},
+{
+"nummer": "3.4.1.2",
+"titel": "Projektführung",
+"seite": 36
+},
+{
+"nummer": "3.4.2",
+"titel": "Module zur Ausführung",
+"seite": 38
+},
+{
+"nummer": "3.4.2.1",
+"titel": "Projektgrundlagen",
+"seite": 38
+},
+{
+"nummer": "3.4.2.2",
+"titel": "Beschaffung",
+"seite": 38
+},
+{
+"nummer": "3.4.2.3",
+"titel": "Organisation",
+"seite": 39
+},
+{
+"nummer": "3.4.2.4",
+"titel": "Produkt",
+"seite": 40
+},
+{
+"nummer": "3.4.2.5",
+"titel": "IT-System",
+"seite": 41
+},
+{
+"nummer": "3.4.2.6",
+"titel": "Tests",
+"seite": 42
+},
+{
+"nummer": "3.4.2.7",
+"titel": "Einführungsorganisation",
+"seite": 42
+},
+{
+"nummer": "3.4.2.8",
+"titel": "IT-Migration",
+"seite": 43
+},
+{
+"nummer": "3.4.2.9",
+"titel": "IT-Betrieb",
+"seite": 44
+},
+{
+"nummer": "3.4.2.10",
+"titel": "ISDS",
+"seite": 44
+},
+{
+"nummer": "4",
+"titel": "Ergebnisse",
+"seite": 46
+},
+{
+"nummer": "4.1",
+"titel": "Einleitung",
+"seite": 46
+},
+{
+"nummer": "4.2",
+"titel": "Übersicht der Ergebnisse",
+"seite": 46
+},
+{
+"nummer": "4.2.1",
+"titel": "Standardergebnisse",
+"seite": 46
+},
+{
+"nummer": "4.2.1.1",
+"titel": "Standarddokumente",
+"seite": 46
+},
+{
+"nummer": "4.2.1.2",
+"titel": "Standardzustände",
+"seite": 48
+},
+{
+"nummer": "4.2.2",
+"titel": "Individuelle Ergebnisse",
+"seite": 49
+},
+{
+"nummer": "4.3",
+"titel": "Erläuterung der Ergebnisbeschreibung",
+"seite": 49
+},
+{
+"nummer": "4.4",
+"titel": "Beschreibung der Ergebnisse",
+"seite": 50
+},
+{
+"nummer": "4.4.1",
+"titel": "Dokumente",
+"seite": 50
+},
+{
+"nummer": "4.4.1.1",
+"titel": "Abnahmeprotokoll",
+"seite": 50
+},
+{
+"nummer": "4.4.1.2",
+"titel": "Änderungsantrag",
+"seite": 50
+},
+{
+"nummer": "4.4.1.3",
+"titel": "Änderungsstatusliste",
+"seite": 51
+},
+{
+"nummer": "4.4.1.4",
+"titel": "Angebot",
+"seite": 51
+},
+{
+"nummer": "4.4.1.5",
+"titel": "Angebotsprotokoll",
+"seite": 51
+},
+{
+"nummer": "4.4.1.6",
+"titel": "Anwendungshandbuch",
+"seite": 52
+},
+{
+"nummer": "4.4.1.7",
+"titel": "Arbeitsauftrag",
+"seite": 52
+},
+{
+"nummer": "4.4.1.8",
+"titel": "Ausschreibungsunterlagen",
+"seite": 52
+},
+{
+"nummer": "4.4.1.9",
+"titel": "Beschaffungsanalyse",
+"seite": 53
+},
+{
+"nummer": "4.4.1.10",
+"titel": "Betriebshandbuch",
+"seite": 54
+},
+{
+"nummer": "4.4.1.11",
+"titel": "Betriebskonzept",
+"seite": 55
+},
+{
+"nummer": "4.4.1.12",
+"titel": "Detailspezifikation",
+"seite": 55
+},
+{
+"nummer": "4.4.1.13",
+"titel": "Durchführungsauftrag",
+"seite": 56
+},
+{
+"nummer": "4.4.1.14",
+"titel": "Einführungskonzept",
+"seite": 56
+},
+{
+"nummer": "4.4.1.15",
+"titel": "Evaluationsbericht",
+"seite": 57
+},
+{
+"nummer": "4.4.1.16",
+"titel": "Geschäftsmodellbeschreibung",
+"seite": 58
+},
+{
+"nummer": "4.4.1.17",
+"titel": "Integrations- und Installationsanleitung",
+"seite": 58
+},
+{
+"nummer": "4.4.1.18",
+"titel": "Integrationskonzept",
+"seite": 58
+},
+{
+"nummer": "4.4.1.19",
+"titel": "ISDS-Konzept",
+"seite": 59
+},
+{
+"nummer": "4.4.1.20",
+"titel": "Liste Projektentscheide Führung",
+"seite": 59
+},
+{
+"nummer": "4.4.1.21",
+"titel": "Liste Projektentscheide Steuerung",
+"seite": 59
+},
+{
+"nummer": "4.4.1.22",
+"titel": "Lösungsanforderungen",
+"seite": 60
+},
+{
+"nummer": "4.4.1.23",
+"titel": "Lösungsarchitektur",
+"seite": 60
+},
+{
+"nummer": "4.4.1.24",
+"titel": "Migrationskonzept",
+"seite": 61
+},
+{
+"nummer": "4.4.1.25",
+"titel": "Offertanfrage",
+"seite": 61
+},
+{
+"nummer": "4.4.1.26",
+"titel": "Organisationsanforderungen",
+"seite": 61
+},
+{
+"nummer": "4.4.1.27",
+"titel": "Organisationsbeschreibung",
+"seite": 62
+},
+{
+"nummer": "4.4.1.28",
+"titel": "Organisationskonzept",
+"seite": 62
+},
+{
+"nummer": "4.4.1.29",
+"titel": "Phasenbericht",
+"seite": 62
+},
+{
+"nummer": "4.4.1.30",
+"titel": "Produktdokumentation",
+"seite": 63
+},
+{
+"nummer": "4.4.1.31",
+"titel": "Produktkonzept",
+"seite": 63
+},
+{
+"nummer": "4.4.1.32",
+"titel": "Projekterfahrungen",
+"seite": 63
+},
+{
+"nummer": "4.4.1.33",
+"titel": "Projektinitialisierungsauftrag",
+"seite": 64
+},
+{
+"nummer": "4.4.1.34",
+"titel": "Projektmanagementplan",
+"seite": 64
+},
+{
+"nummer": "4.4.1.35",
+"titel": "Projektschlussbeurteilung",
+"seite": 65
+},
+{
+"nummer": "4.4.1.36",
+"titel": "Projektstatusbericht",
+"seite": 66
+},
+{
+"nummer": "4.4.1.37",
+"titel": "Protokoll",
+"seite": 66
+},
+{
+"nummer": "4.4.1.38",
+"titel": "Prototypdokumentation",
+"seite": 67
+},
+{
+"nummer": "4.4.1.39",
+"titel": "Prozessbeschreibung",
+"seite": 67
+},
+{
+"nummer": "4.4.1.40",
+"titel": "Prüfprotokoll",
+"seite": 68
+},
+{
+"nummer": "4.4.1.41",
+"titel": "Publikation",
+"seite": 68
+},
+{
+"nummer": "4.4.1.42",
+"titel": "QS- und Risikobericht",
+"seite": 68
+},
+{
+"nummer": "4.4.1.43",
+"titel": "Releasebericht",
+"seite": 69
+},
+{
+"nummer": "4.4.1.44",
+"titel": "Rechtsgrundlagenanalyse",
+"seite": 69
+},
+{
+"nummer": "4.4.1.45",
+"titel": "Schutzbedarfsanalyse",
+"seite": 69
+},
+{
+"nummer": "4.4.1.46",
+"titel": "Service Level Agreement",
+"seite": 70
+},
+{
+"nummer": "4.4.1.47",
+"titel": "Situationsanalyse",
+"seite": 71
+},
+{
+"nummer": "4.4.1.48",
+"titel": "Stakeholderinteressen",
+"seite": 71
+},
+{
+"nummer": "4.4.1.49",
+"titel": "Stakeholderliste",
+"seite": 72
+},
+{
+"nummer": "4.4.1.50",
+"titel": "Studie",
+"seite": 72
+},
+{
+"nummer": "4.4.1.51",
+"titel": "Systemkonzept",
+"seite": 73
+},
+{
+"nummer": "4.4.1.52",
+"titel": "Testkonzept",
+"seite": 73
+},
+{
+"nummer": "4.4.1.53",
+"titel": "Testprotokoll",
+"seite": 74
+},
+{
+"nummer": "4.4.1.54",
+"titel": "Vereinbarung",
+"seite": 74
+},
+{
+"nummer": "4.4.2",
+"titel": "Checklisten",
+"seite": 75
+},
+{
+"nummer": "4.4.2.1",
+"titel": "Checkliste Abnahme",
+"seite": 75
+},
+{
+"nummer": "4.4.2.2",
+"titel": "Checkliste Abnahme Migration",
+"seite": 75
+},
+{
+"nummer": "4.4.2.3",
+"titel": "Checkliste Ausschreibung",
+"seite": 75
+},
+{
+"nummer": "4.4.2.4",
+"titel": "Checkliste Betriebsaufnahme",
+"seite": 75
+},
+{
+"nummer": "4.4.2.5",
+"titel": "Checkliste Durchführungsfreigabe",
+"seite": 75
+},
+{
+"nummer": "4.4.2.6",
+"titel": "Checkliste ISDS-Konzept",
+"seite": 76
+},
+{
+"nummer": "4.4.2.7",
+"titel": "Checkliste Lösungsarchitektur",
+"seite": 76
+},
+{
+"nummer": "4.4.2.8",
+"titel": "Checkliste Phasenfreigabe",
+"seite": 76
+},
+{
+"nummer": "4.4.2.9",
+"titel": "Checkliste Phasenfreigabe Abschluss",
+"seite": 76
+},
+{
+"nummer": "4.4.2.10",
+"titel": "Checkliste Produktkonzept",
+"seite": 76
+},
+{
+"nummer": "4.4.2.11",
+"titel": "Checkliste Projektabbruch",
+"seite": 76
+},
+{
+"nummer": "4.4.2.12",
+"titel": "Checkliste Projektabschluss",
+"seite": 76
+},
+{
+"nummer": "4.4.2.13",
+"titel": "Checkliste Projektinitialisierungsfreigabe",
+"seite": 76
+},
+{
+"nummer": "4.4.2.14",
+"titel": "Checkliste Releasefreigabe",
+"seite": 77
+},
+{
+"nummer": "4.4.2.15",
+"titel": "Checkliste Vorabnahme",
+"seite": 77
+},
+{
+"nummer": "4.4.2.16",
+"titel": "Checkliste Weiteres Vorgehen",
+"seite": 77
+},
+{
+"nummer": "4.4.2.17",
+"titel": "Checkliste Zuschlag",
+"seite": 77
+},
+{
+"nummer": "4.4.3",
+"titel": "Zustände",
+"seite": 77
+},
+{
+"nummer": "4.4.3.1",
+"titel": "Altsystem entfernt",
+"seite": 77
+},
+{
+"nummer": "4.4.3.2",
+"titel": "Betrieb aktiviert",
+"seite": 77
+},
+{
+"nummer": "4.4.3.3",
+"titel": "Betriebsinfrastruktur realisiert",
+"seite": 77
+},
+{
+"nummer": "4.4.3.4",
+"titel": "Betriebsorganisation realisiert",
+"seite": 78
+},
+{
+"nummer": "4.4.3.5",
+"titel": "Einführungsmassnahmen durchgeführt",
+"seite": 78
+},
+{
+"nummer": "4.4.3.6",
+"titel": "Einführungsmassnahmen realisiert",
+"seite": 78
+},
+{
+"nummer": "4.4.3.7",
+"titel": "ISDS-Massnahmen realisiert",
+"seite": 78
+},
+{
+"nummer": "4.4.3.8",
+"titel": "ISDS-Konzept überführt",
+"seite": 78
+},
+{
+"nummer": "4.4.3.9",
+"titel": "Migration durchgeführt",
+"seite": 78
+},
+{
+"nummer": "4.4.3.10",
+"titel": "Migrationsverfahren realisiert",
+"seite": 78
+},
+{
+"nummer": "4.4.3.11",
+"titel": "Organisation aktiviert",
+"seite": 79
+},
+{
+"nummer": "4.4.3.12",
+"titel": "Organisation umgesetzt",
+"seite": 79
+},
+{
+"nummer": "4.4.3.13",
+"titel": "Produkt aktiviert",
+"seite": 79
+},
+{
+"nummer": "4.4.3.14",
+"titel": "Produkt entwickelt oder angepasst",
+"seite": 79
+},
+{
+"nummer": "4.4.3.15",
+"titel": "Prototyp realisiert",
+"seite": 79
+},
+{
+"nummer": "4.4.3.16",
+"titel": "Schnittstellen realisiert",
+"seite": 79
+},
+{
+"nummer": "4.4.3.17",
+"titel": "System aktiviert",
+"seite": 80
+},
+{
+"nummer": "4.4.3.18",
+"titel": "System entwickelt oder parametrisiert",
+"seite": 80
+},
+{
+"nummer": "4.4.3.19",
+"titel": "System integriert",
+"seite": 80
+},
+{
+"nummer": "4.4.3.20",
+"titel": "Testinfrastruktur realisiert",
+"seite": 80
+},
+{
+"nummer": "4.4.3.21",
+"titel": "Testinfrastruktur überführt",
+"seite": 80
+},
+{
+"nummer": "4.4.4",
+"titel": "Meilensteine",
+"seite": 80
+},
+{
+"nummer": "4.4.4.1",
+"titel": "Meilenstein Abnahme",
+"seite": 81
+},
+{
+"nummer": "4.4.4.2",
+"titel": "Meilenstein Abnahme Migration",
+"seite": 81
+},
+{
+"nummer": "4.4.4.3",
+"titel": "Meilenstein Ausschreibung",
+"seite": 81
+},
+{
+"nummer": "4.4.4.4",
+"titel": "Meilenstein Betriebsaufnahme",
+"seite": 81
+},
+{
+"nummer": "4.4.4.5",
+"titel": "Meilenstein Durchführungsfreigabe",
+"seite": 81
+},
+{
+"nummer": "4.4.4.6",
+"titel": "Meilenstein ISDS-Konzept",
+"seite": 81
+},
+{
+"nummer": "4.4.4.7",
+"titel": "Meilenstein Lösungsarchitektur",
+"seite": 81
+},
+{
+"nummer": "4.4.4.8",
+"titel": "Meilenstein Phasenfreigabe",
+"seite": 81
+},
+{
+"nummer": "4.4.4.9",
+"titel": "Meilenstein Phasenfreigabe Abschluss",
+"seite": 82
+},
+{
+"nummer": "4.4.4.10",
+"titel": "Meilenstein Produktkonzept",
+"seite": 82
+},
+{
+"nummer": "4.4.4.11",
+"titel": "Meilenstein Projektabschluss",
+"seite": 82
+},
+{
+"nummer": "4.4.4.12",
+"titel": "Meilenstein Projektinitialisierungsfreigabe",
+"seite": 82
+},
+{
+"nummer": "4.4.4.13",
+"titel": "Meilenstein Releasefreigabe",
+"seite": 82
+},
+{
+"nummer": "4.4.4.14",
+"titel": "Meilenstein Vorabnahme",
+"seite": 82
+},
+{
+"nummer": "4.4.4.15",
+"titel": "Meilenstein Weiteres Vorgehen",
+"seite": 82
+},
+{
+"nummer": "4.4.4.16",
+"titel": "Meilenstein Zuschlag",
+"seite": 82
+},
+{
+"nummer": "5",
+"titel": "Aufgaben",
+"seite": 83
+},
+{
+"nummer": "5.1",
+"titel": "Einleitung",
+"seite": 83
+},
+{
+"nummer": "5.1.1",
+"titel": "Aufgabenpositionierung",
+"seite": 83
+},
+{
+"nummer": "5.1.2",
+"titel": "Entscheidungsaufgaben",
+"seite": 83
+},
+{
+"nummer": "5.1.2.1",
+"titel": "Generell",
+"seite": 83
+},
+{
+"nummer": "5.1.2.2",
+"titel": "Entscheide der Steuerung",
+"seite": 83
+},
+{
+"nummer": "5.1.2.3",
+"titel": "Entscheide der Führung",
+"seite": 84
+},
+{
+"nummer": "5.2",
+"titel": "Übersicht der Aufgaben",
+"seite": 84
+},
+{
+"nummer": "5.2.1",
+"titel": "Standardaufgaben",
+"seite": 84
+},
+{
+"nummer": "5.2.2",
+"titel": "Individuelle Aufgaben",
+"seite": 89
+},
+{
+"nummer": "5.3",
+"titel": "Erläuterung der Aufgabenbeschreibung",
+"seite": 89
+},
+{
+"nummer": "5.4",
+"titel": "Beschreibung der Aufgaben",
+"seite": 90
+},
+{
+"nummer": "5.4.1",
+"titel": "Entscheidungsaufgaben der Steuerung",
+"seite": 90
+},
+{
+"nummer": "5.4.1.1",
+"titel": "Entscheid Ausschreibung treffen",
+"seite": 90
+},
+{
+"nummer": "5.4.1.2",
+"titel": "Entscheid Betriebsaufnahme treffen",
+"seite": 91
+},
+{
+"nummer": "5.4.1.3",
+"titel": "Entscheid Durchführungsfreigabe treffen",
+"seite": 91
+},
+{
+"nummer": "5.4.1.4",
+"titel": "Entscheid Phasenfreigabe Abschluss treffen",
+"seite": 93
+},
+{
+"nummer": "5.4.1.5",
+"titel": "Entscheid Phasenfreigabe treffen",
+"seite": 94
+},
+{
+"nummer": "5.4.1.6",
+"titel": "Entscheid Projektabbruch treffen",
+"seite": 95
+},
+{
+"nummer": "5.4.1.7",
+"titel": "Entscheid Projektabschluss treffen",
+"seite": 97
+},
+{
+"nummer": "5.4.1.8",
+"titel": "Entscheid Projektinitialisierungsfreigabe treffen",
+"seite": 98
+},
+{
+"nummer": "5.4.1.9",
+"titel": "Entscheid Releasefreigabe treffen",
+"seite": 99
+},
+{
+"nummer": "5.4.1.10",
+"titel": "Entscheid Zuschlag treffen",
+"seite": 100
+},
+{
+"nummer": "5.4.2",
+"titel": "Entscheidungsaufgaben der Führung",
+"seite": 101
+},
+{
+"nummer": "5.4.2.1",
+"titel": "Entscheid Abnahme Migration treffen",
+"seite": 101
+},
+{
+"nummer": "5.4.2.2",
+"titel": "Entscheid Abnahme treffen",
+"seite": 102
+},
+{
+"nummer": "5.4.2.3",
+"titel": "Entscheid ISDS-Konzept treffen",
+"seite": 103
+},
+{
+"nummer": "5.4.2.4",
+"titel": "Entscheid Lösungsarchitektur treffen",
+"seite": 104
+},
+{
+"nummer": "5.4.2.5",
+"titel": "Entscheid Produktkonzept treffen",
+"seite": 105
+},
+{
+"nummer": "5.4.2.6",
+"titel": "Entscheid Vorabnahme treffen",
+"seite": 105
+},
+{
+"nummer": "5.4.2.7",
+"titel": "Entscheid Weiteres Vorgehen treffen",
+"seite": 106
+},
+{
+"nummer": "5.4.3",
+"titel": "Sonstige Aufgaben",
+"seite": 108
+},
+{
+"nummer": "5.4.3.1",
+"titel": "Altsystem ausser Betrieb setzen",
+"seite": 108
+},
+{
+"nummer": "5.4.3.2",
+"titel": "Änderungen managen",
+"seite": 108
+},
+{
+"nummer": "5.4.3.3",
+"titel": "Angebote bewerten",
+"seite": 110
+},
+{
+"nummer": "5.4.3.4",
+"titel": "Ausschreibung durchführen",
+"seite": 111
+},
+{
+"nummer": "5.4.3.5",
+"titel": "Ausschreibung erarbeiten",
+"seite": 111
+},
+{
+"nummer": "5.4.3.6",
+"titel": "Beschaffungsanalyse erarbeiten",
+"seite": 113
+},
+{
+"nummer": "5.4.3.7",
+"titel": "Betrieb aktivieren",
+"seite": 114
+},
+{
+"nummer": "5.4.3.8",
+"titel": "Betrieb realisieren",
+"seite": 115
+},
+{
+"nummer": "5.4.3.9",
+"titel": "Betriebskonzept erarbeiten",
+"seite": 116
+},
+{
+"nummer": "5.4.3.10",
+"titel": "Durchführungsauftrag erarbeiten",
+"seite": 117
+},
+{
+"nummer": "5.4.3.11",
+"titel": "Einführungskonzept erarbeiten",
+"seite": 118
+},
+{
+"nummer": "5.4.3.12",
+"titel": "Einführungsmassnahmen durchführen",
+"seite": 119
+},
+{
+"nummer": "5.4.3.13",
+"titel": "Einführungsmassnahmen realisieren",
+"seite": 120
+},
+{
+"nummer": "5.4.3.14",
+"titel": "Integrationskonzept erarbeiten",
+"seite": 121
+},
+{
+"nummer": "5.4.3.15",
+"titel": "ISDS-Konzept erarbeiten",
+"seite": 121
+},
+{
+"nummer": "5.4.3.16",
+"titel": "ISDS-Konzept realisieren",
+"seite": 122
+},
+{
+"nummer": "5.4.3.17",
+"titel": "ISDS-Konzept überführen",
+"seite": 123
+},
+{
+"nummer": "5.4.3.18",
+"titel": "Leistungen vereinbaren und steuern",
+"seite": 124
+},
+{
+"nummer": "5.4.3.19",
+"titel": "Lösungsanforderungen erarbeiten",
+"seite": 126
+},
+{
+"nummer": "5.4.3.20",
+"titel": "Lösungsarchitektur erarbeiten",
+"seite": 127
+},
+{
+"nummer": "5.4.3.21",
+"titel": "Migration durchführen",
+"seite": 128
+},
+{
+"nummer": "5.4.3.22",
+"titel": "Migrationskonzept erarbeiten",
+"seite": 128
+},
+{
+"nummer": "5.4.3.23",
+"titel": "Migrationsverfahren realisieren",
+"seite": 129
+},
+{
+"nummer": "5.4.3.24",
+"titel": "Organisation aktivieren",
+"seite": 130
+},
+{
+"nummer": "5.4.3.25",
+"titel": "Organisation umsetzen",
+"seite": 131
+},
+{
+"nummer": "5.4.3.26",
+"titel": "Organisationsanforderungen erarbeiten",
+"seite": 132
+},
+{
+"nummer": "5.4.3.27",
+"titel": "Organisationskonzept erarbeiten",
+"seite": 133
+},
+{
+"nummer": "5.4.3.28",
+"titel": "Phasenfreigabe vorbereiten",
+"seite": 134
+},
+{
+"nummer": "5.4.3.29",
+"titel": "Probleme behandeln und Erfahrungen nutzen",
+"seite": 135
+},
+{
+"nummer": "5.4.3.30",
+"titel": "Produkt aktivieren",
+"seite": 136
+},
+{
+"nummer": "5.4.3.31",
+"titel": "Produkt realisieren",
+"seite": 137
+},
+{
+"nummer": "5.4.3.32",
+"titel": "Produktkonzept erarbeiten",
+"seite": 138
+},
+{
+"nummer": "5.4.3.33",
+"titel": "Projekt führen und kontrollieren",
+"seite": 138
+},
+{
+"nummer": "5.4.3.34",
+"titel": "Projekt steuern",
+"seite": 140
+},
+{
+"nummer": "5.4.3.35",
+"titel": "Projektabschluss vorbereiten",
+"seite": 142
+},
+{
+"nummer": "5.4.3.36",
+"titel": "Projektmanagementplan erarbeiten",
+"seite": 143
+},
+{
+"nummer": "5.4.3.37",
+"titel": "Prototyping durchführen",
+"seite": 144
+},
+{
+"nummer": "5.4.3.38",
+"titel": "Qualitätssicherung führen",
+"seite": 145
+},
+{
+"nummer": "5.4.3.39",
+"titel": "Rechtsgrundlagenanalyse erarbeiten",
+"seite": 146
+},
+{
+"nummer": "5.4.3.40",
+"titel": "Releaseabschluss vorbereiten",
+"seite": 147
+},
+{
+"nummer": "5.4.3.41",
+"titel": "Risiken managen",
+"seite": 148
+},
+{
+"nummer": "5.4.3.42",
+"titel": "Schutzbedarfsanalyse erarbeiten",
+"seite": 149
+},
+{
+"nummer": "5.4.3.43",
+"titel": "Stakeholder managen und informieren",
+"seite": 150
+},
+{
+"nummer": "5.4.3.44",
+"titel": "Stakeholderinteressen vertreten",
+"seite": 151
+},
+{
+"nummer": "5.4.3.45",
+"titel": "Studie erarbeiten",
+"seite": 152
+},
+{
+"nummer": "5.4.3.46",
+"titel": "System aktivieren",
+"seite": 153
+},
+{
+"nummer": "5.4.3.47",
+"titel": "System in Betrieb integrieren",
+"seite": 154
+},
+{
+"nummer": "5.4.3.48",
+"titel": "System realisieren",
+"seite": 155
+},
+{
+"nummer": "5.4.3.49",
+"titel": "Systemintegration vorbereiten",
+"seite": 156
+},
+{
+"nummer": "5.4.3.50",
+"titel": "Test durchführen",
+"seite": 156
+},
+{
+"nummer": "5.4.3.51",
+"titel": "Testinfrastruktur realisieren",
+"seite": 157
+},
+{
+"nummer": "5.4.3.52",
+"titel": "Testinfrastruktur überführen",
+"seite": 158
+},
+{
+"nummer": "5.4.3.53",
+"titel": "Testkonzept erarbeiten",
+"seite": 159
+},
+{
+"nummer": "5.4.3.54",
+"titel": "Vereinbarung erarbeiten",
+"seite": 160
+},
+{
+"nummer": "6",
+"titel": "Rollen",
+"seite": 161
+},
+{
+"nummer": "6.1",
+"titel": "Einleitung",
+"seite": 161
+},
+{
+"nummer": "6.1.1",
+"titel": "Rollenmodell",
+"seite": 161
+},
+{
+"nummer": "6.1.2",
+"titel": "Stammorganisation",
+"seite": 161
+},
+{
+"nummer": "6.1.3",
+"titel": "Projektorganisation",
+"seite": 162
+},
+{
+"nummer": "6.1.3.1",
+"titel": "Übersicht",
+"seite": 162
+},
+{
+"nummer": "6.1.3.2",
+"titel": "Partnergruppen",
+"seite": 162
+},
+{
+"nummer": "6.1.3.3",
+"titel": "Hierarchieebenen",
+"seite": 163
+},
+{
+"nummer": "6.1.3.4",
+"titel": "Projektrollen in Programmen",
+"seite": 163
+},
+{
+"nummer": "6.2",
+"titel": "Übersicht der Rollen",
+"seite": 166
+},
+{
+"nummer": "6.2.1",
+"titel": "Standardrollen",
+"seite": 166
+},
+{
+"nummer": "6.2.2",
+"titel": "Individuelle Rollen",
+"seite": 167
+},
+{
+"nummer": "6.2.3",
+"titel": "Rollenbesetzung",
+"seite": 167
+},
+{
+"nummer": "6.2.3.1",
+"titel": "Allgemeine Erläuterungen",
+"seite": 167
+},
+{
+"nummer": "6.2.3.2",
+"titel": "Steuerung",
+"seite": 167
+},
+{
+"nummer": "6.2.3.3",
+"titel": "Führung",
+"seite": 168
+},
+{
+"nummer": "6.2.3.4",
+"titel": "Ausführung",
+"seite": 169
+},
+{
+"nummer": "6.3",
+"titel": "Erläuterung der Rollenbeschreibung",
+"seite": 169
+},
+{
+"nummer": "6.4",
+"titel": "Beschreibung der Rollen",
+"seite": 170
+},
+{
+"nummer": "6.4.1",
+"titel": "Steuerungsrollen",
+"seite": 170
+},
+{
+"nummer": "6.4.1.1",
+"titel": "Auftraggeber",
+"seite": 170
+},
+{
+"nummer": "6.4.1.2",
+"titel": "Projektausschuss",
+"seite": 174
+},
+{
+"nummer": "6.4.1.3",
+"titel": "Qualitäts- und Risikomanager",
+"seite": 175
+},
+{
+"nummer": "6.4.2",
+"titel": "Führungsrollen",
+"seite": 176
+},
+{
+"nummer": "6.4.2.1",
+"titel": "Fachausschuss",
+"seite": 176
+},
+{
+"nummer": "6.4.2.2",
+"titel": "Projektleiter",
+"seite": 176
+},
+{
+"nummer": "6.4.2.3",
+"titel": "Projektunterstützung",
+"seite": 183
+},
+{
+"nummer": "6.4.2.4",
+"titel": "Teilprojektleiter",
+"seite": 183
+},
+{
+"nummer": "6.4.3",
+"titel": "Ausführungsrollen",
+"seite": 184
+},
+{
+"nummer": "6.4.3.1",
+"titel": "Anwendervertreter",
+"seite": 184
+},
+{
+"nummer": "6.4.3.2",
+"titel": "Betriebsverantwortlicher",
+"seite": 187
+},
+{
+"nummer": "6.4.3.3",
+"titel": "Business Analyst",
+"seite": 188
+},
+{
+"nummer": "6.4.3.4",
+"titel": "Entwickler",
+"seite": 190
+},
+{
+"nummer": "6.4.3.5",
+"titel": "Umsetzungsorganisation",
+"seite": 192
+},
+{
+"nummer": "6.4.3.6",
+"titel": "ISDS-Verantwortlicher",
+"seite": 192
+},
+{
+"nummer": "6.4.3.7",
+"titel": "IT-Architekt",
+"seite": 194
+},
+{
+"nummer": "6.4.3.8",
+"titel": "Tester",
+"seite": 195
+},
+{
+"nummer": "6.4.3.9",
+"titel": "Testverantwortlicher",
+"seite": 196
+},
+{
+"nummer": "7",
+"titel": "Hinweise zur Anwendung",
+"seite": 198
+},
+{
+"nummer": "7.1",
+"titel": "Einleitung",
+"seite": 198
+},
+{
+"nummer": "7.2",
+"titel": "Übersicht der Hinweise",
+"seite": 198
+},
+{
+"nummer": "7.3",
+"titel": "Erläuterung der Hinweise-Beschreibung",
+"seite": 199
+},
+{
+"nummer": "7.4",
+"titel": "Beschreibung der Hinweise",
+"seite": 199
+},
+{
+"nummer": "7.4.1",
+"titel": "Governance",
+"seite": 199
+},
+{
+"nummer": "7.4.1.1",
+"titel": "Projekt-Governance",
+"seite": 199
+},
+{
+"nummer": "7.4.1.2",
+"titel": "Reporting",
+"seite": 202
+},
+{
+"nummer": "7.4.2",
+"titel": "Nachhaltigkeit",
+"seite": 206
+},
+{
+"nummer": "7.4.2.1",
+"titel": "Nachhaltigkeitsverständnis",
+"seite": 206
+},
+{
+"nummer": "7.4.2.2",
+"titel": "Nachhaltigkeit mit HERMES",
+"seite": 207
+},
+{
+"nummer": "7.4.3",
+"titel": "Projektmanagement und Entwicklungsmanagement",
+"seite": 209
+},
+{
+"nummer": "7.4.3.1",
+"titel": "Projektmanagement",
+"seite": 209
+},
+{
+"nummer": "7.4.3.2",
+"titel": "Entwicklungsmanagement agil",
+"seite": 209
+},
+{
+"nummer": "7.4.3.3",
+"titel": "Entwicklungsmanagement klassisch/agil",
+"seite": 210
+},
+{
+"nummer": "7.4.4",
+"titel": "Finanzielle Steuerung und Führung",
+"seite": 210
+},
+{
+"nummer": "7.4.4.1",
+"titel": "Allgemeines",
+"seite": 210
+},
+{
+"nummer": "7.4.4.2",
+"titel": "Finanzierung",
+"seite": 210
+},
+{
+"nummer": "7.4.4.3",
+"titel": "Steuerung",
+"seite": 211
+},
+{
+"nummer": "7.4.5",
+"titel": "Planung",
+"seite": 211
+},
+{
+"nummer": "7.4.5.1",
+"titel": "Planungsbasis und das Vorgehen",
+"seite": 211
+},
+{
+"nummer": "7.4.5.2",
+"titel": "Initiale Planung der Lösungsentstehung",
+"seite": 212
+},
+{
+"nummer": "7.4.5.3",
+"titel": "Planung der klassischen Lösungsentstehung",
+"seite": 212
+},
+{
+"nummer": "7.4.5.4",
+"titel": "Planung der agilen Lösungsentstehung",
+"seite": 214
+},
+{
+"nummer": "7.4.6",
+"titel": "Realisierungseinheiten bei klassischer Vorgehensweise",
+"seite": 214
+},
+{
+"nummer": "7.4.7",
+"titel": "Anwendung mit anderen Methoden und Praktiken",
+"seite": 215
+},
+{
+"nummer": "7.4.8",
+"titel": "Integration von HERMES in die Stammorganisation",
+"seite": 216
+},
+{
+"nummer": "7.4.8.1",
+"titel": "Allgemeines",
+"seite": 216
+},
+{
+"nummer": "7.4.8.2",
+"titel": "Vorgehen",
+"seite": 217
+},
+{
+"nummer": "7.4.8.3",
+"titel": "Anpassung der Methode",
+"seite": 217
+},
+{
+"nummer": "1",
+"titel": "HERMES-Phasen für Projekte mit klassischer und agiler Lösungsentstehung",
+"seite": 18
+},
+{
+"nummer": "2",
+"titel": "Standardszenarien für Projekte verschiedener Charakteristiken samt Modulen",
+"seite": 26
+},
+{
+"nummer": "3",
+"titel": "Standardmodule den Projektphasen zugeordnet",
+"seite": 34
+},
+{
+"nummer": "4",
+"titel": "Aufgaben und Ergebnisse Modul Projektsteuerung",
+"seite": 36
+},
+{
+"nummer": "5",
+"titel": "Aufgaben und Ergebnisse Modul Projektführung",
+"seite": 37
+},
+{
+"nummer": "6",
+"titel": "Aufgaben und Ergebnisse Modul Projektgrundlagen",
+"seite": 38
+},
+{
+"nummer": "7",
+"titel": "Aufgaben und Ergebnisse Modul Beschaffung",
+"seite": 39
+},
+{
+"nummer": "8",
+"titel": "Aufgaben und Ergebnisse Modul Organisation",
+"seite": 40
+},
+{
+"nummer": "9",
+"titel": "Aufgaben und Ergebnisse Modul Produkt",
+"seite": 40
+},
+{
+"nummer": "10",
+"titel": "Aufgaben und Ergebnisse Modul IT-System",
+"seite": 41
+},
+{
+"nummer": "11",
+"titel": "Aufgaben und Ergebnisse Modul Tests",
+"seite": 42
+},
+{
+"nummer": "12",
+"titel": "Aufgaben und Ergebnisse Modul Einführungsorganisation",
+"seite": 43
+},
+{
+"nummer": "13",
+"titel": "Aufgaben und Ergebnisse Modul IT-Migration",
+"seite": 43
+},
+{
+"nummer": "14",
+"titel": "Aufgaben und Ergebnisse Modul IT-Betrieb",
+"seite": 44
+},
+{
+"nummer": "15",
+"titel": "Aufgaben und Ergebnisse Modul ISDS",
+"seite": 45
+},
+{
+"nummer": "16",
+"titel": "Ergebnisübersicht - Dokumente",
+"seite": 48
+},
+{
+"nummer": "17",
+"titel": "Ergebnisübersicht - Zustände",
+"seite": 49
+},
+{
+"nummer": "18",
+"titel": "Zuordnung aller Aufgaben samt entsprechender Ergebnisse zu Projektphasen",
+"seite": 89
+},
+{
+"nummer": "19",
+"titel": "Rollen und deren Zuordnung zur Hierarchieebene und zur Partnergruppe",
+"seite": 166
+},
+{
+"nummer": "29",
+"titel": "Hinweise zur Anwendung pro Kategorie",
+"seite": 198
+},
+{
+"nummer": "30",
+"titel": "Vokabular HERMES-Phasen 4-sprachig",
+"seite": 219
+},
+{
+"nummer": "31",
+"titel": "Vokabular HERMES-Szenarien 4-sprachig",
+"seite": 219
+},
+{
+"nummer": "32",
+"titel": "Vokabular HERMES-Module 4-sprachig",
+"seite": 220
+},
+{
+"nummer": "33",
+"titel": "Vokabular HERMES-Ergebnisse 4-sprachig",
+"seite": 227
+},
+{
+"nummer": "34",
+"titel": "Vokabular HERMES-Aufgaben 4-sprachig",
+"seite": 232
+},
+{
+"nummer": "35",
+"titel": "Vokabular HERMES-Rollen 4-sprachig",
+"seite": 233
+},
+{
+"nummer": "2",
+"titel": "Die Funktionalität von HERMES-Projektmanagement in der Praxis",
+"seite": 8
+},
+{
+"nummer": "3",
+"titel": "Gleichzeitiges Führen von Projekten und Programmen in einer Stammorganisation",
+"seite": 10
+},
+{
+"nummer": "5",
+"titel": "Projekte einer Stammorganisation mit Szenarien",
+"seite": 12
+},
+{
+"nummer": "6",
+"titel": "Modul setzt sich aus Ergebnissen und Aufgaben zusammen",
+"seite": 12
+},
+{
+"nummer": "7",
+"titel": "Ergebnisse stehen im Zentrum von HERMES",
+"seite": 13
+},
+{
+"nummer": "8",
+"titel": "Phasen und Releases mit Meilensteinen als Quality Gates",
+"seite": 13
+},
+{
+"nummer": "9",
+"titel": "Minimal zu besetzenden Rollen Auftraggeber, Projektleiter und Anwendervertreter",
+"seite": 14
+},
+{
+"nummer": "10",
+"titel": "HERMES-Projektlebenszyklus",
+"seite": 15
+},
+{
+"nummer": "11",
+"titel": "Ergebnisdiagramm der Phase Initialisierung",
+"seite": 16
+},
+{
+"nummer": "13",
+"titel": "Meilensteine am Beginn und am Ende jeder Phase und bei der Releasefreigabe",
+"seite": 18
+},
+{
+"nummer": "14",
+"titel": "Meilensteine für klassische und agile IT-Entwicklungsprojekte",
+"seite": 19
+},
+{
+"nummer": "15",
+"titel": "Wahl und Anwendung des für das Projekt geeigneten Szenarios",
+"seite": 25
+},
+{
+"nummer": "16",
+"titel": "Mehrere Module mit Aufgaben und Ergebnissen als Basis für ein Szenario",
+"seite": 25
+},
+{
+"nummer": "17",
+"titel": "Anwendung von Standard- und benutzerdefinierten Szenarien",
+"seite": 28
+},
+{
+"nummer": "18",
+"titel": "Module im Kontext des Szenarios Dienstleistung/Produkt Entwicklung",
+"seite": 29
+},
+{
+"nummer": "19",
+"titel": "Module im Kontext des Szenarios Dienstleistung/Produkt Adaption",
+"seite": 29
+},
+{
+"nummer": "20",
+"titel": "Module im Kontext des Szenarios IT-Entwicklung",
+"seite": 30
+},
+{
+"nummer": "21",
+"titel": "Module im Kontext des Szenarios IT-Adaption",
+"seite": 31
+},
+{
+"nummer": "22",
+"titel": "Module im Kontext des Szenarios Organisationsanpassung",
+"seite": 32
+},
+{
+"nummer": "23",
+"titel": "Standardmässig verfügbare HERMES-Module im Gesamtkontext",
+"seite": 33
+},
+{
+"nummer": "26",
+"titel": "Projekte zu Programmen zusammengefasst",
+"seite": 164
+},
+{
+"nummer": "27",
+"titel": "Drei mögliche Grundvarianten der Projektorganisation",
+"seite": 165
+},
+{
+"nummer": "28",
+"titel": "Zwei übliche Möglichkeiten der organisatorischen Zuordnung des Portfolios",
+"seite": 202
+},
+{
+"nummer": "29",
+"titel": "Gekapselte, gegenüber der Stammorganisation einheitliche Reporting Struktur",
+"seite": 203
+},
+{
+"nummer": "30",
+"titel": "HERMES bietet Projektmanagement mit klassischer und agiler Umsetzung an",
+"seite": 209
+},
+{
+"nummer": "31",
+"titel": "Phasenmodell mit agiler Entwicklung",
+"seite": 209
+},
+{
+"nummer": "32",
+"titel": "Entwicklungsmanagement klassisch/agil - Beispielvarianten",
+"seite": 210
+},
+{
+"nummer": "33",
+"titel": "Steigende Kenntnisse / abnehmende Planungsungenauigkeit",
+"seite": 214
+},
+{
+"nummer": "34",
+"titel": "Zeitlich verschobene Realisierungseinheiten bei klassischer Vorgehensweise",
+"seite": 215
+},
+{
+"nummer": "35",
+"titel": "Einsatz von ergänzenden Methoden und Praktiken",
+"seite": 216
+},
+{
+"nummer": "119",
+"titel": "Produkt realisieren,",
+"seite": 137
+},
+{
+"nummer": "120",
+"titel": "Projekt führen und kontrollieren,",
+"seite": 138
+},
+{
+"nummer": "101",
+"titel": "Projektabschluss vorbereiten,",
+"seite": 142
+},
+{
+"nummer": "104",
+"titel": "Risiken managen,",
+"seite": 148
+},
+{
+"nummer": "106",
+"titel": "Testinfrastruktur überführen,",
+"seite": 158
+},
+{
+"nummer": "124",
+"titel": "Altsystem entfernt,",
+"seite": 77
+},
+{
+"nummer": "76",
+"titel": "Organisation umgesetzt,",
+"seite": 79
+},
+{
+"nummer": "58",
+"titel": "Publikation,",
+"seite": 68
+}
+]
