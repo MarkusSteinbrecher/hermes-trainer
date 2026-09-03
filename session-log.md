@@ -21,6 +21,8 @@ Neueste Einträge zuerst.
 
 **Sonst:** Datenabrufe und Asset-Links versioniert (`DATEN_VERSION`, `?v=`), weil der Browser im Test veraltete JSON-Dateien aus dem Cache nahm; Route «Übersicht» → «Methode» (Alias bleibt gültig), Startseite ist die Methode; «Über» erklärt Quellen, Auflage und Urheberrecht; README/SCHEMA nachgeführt (neue Felder `kurz`, `typ`, `minimalGefordert`, `beleg`, Schema von `data/kernaussagen.json` und `data/handbuch/`). Browser-Check ohne Konsolenfehler (Methode-Hub, Kapitelseiten inkl. Tabellen/Abbildungen, Lexikon alle drei Stufen, Quiz, Lernkarten, Über). Wiki: Projektseite `projects/hermes-trainer` angelegt (Methode «Quellimport + gestufte Darstellung + belegtes Quiz»), noch nicht committet.
 
+**Veröffentlicht:** Commit `7c28eb6` auf `main` gepusht; GitHub Pages nach 20 s aktualisiert (verifiziert: 120 Fragen mit Beleg, Kapiteltexte, Kernaussagen und Abbildungen werden live ausgeliefert).
+
 **Offen / Ideen:** Programmmanagement-Anhang und Leitfaden Agilität als weitere Kapitel importieren; Spaced Repetition für Lernkarten; Grundbegriffe mit eigenem Handbuchtext hinterlegen (derzeit kuratierte Details + Kapitel-Link); vier grosse Rasterabbildungen nur verlinkt. Vier parallele Agenten liefen in ein Sitzungslimit und wurden per Nachricht fortgesetzt — bei grossen Prüfaufträgen künftig gestaffelt starten.
 
 ## 2026-08-27 — Projektaufbau: Site komplett, QA bestanden
