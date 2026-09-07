@@ -18,11 +18,12 @@
       ]),
 
       h('p', { text: 'Der HERMES-Trainer ist eine private, inoffizielle Lernhilfe zur Vorbereitung auf die HERMES-2022-Prüfung. '
-        + 'Er erschliesst die offizielle Dokumentation in Stufen: zuerst das Wichtigste, dann Kernpunkte, dann der vollständige Text — '
+        + 'Er zeigt die Methodenelemente als Graph mit ihren Zusammenhängen und erschliesst die offizielle Dokumentation in Stufen: zuerst das Wichtigste, dann Kernpunkte, dann der vollständige Text — '
         + 'und verweist bei jedem Eintrag, jeder Lernkarte und jeder Quizfrage auf die Belegstelle im Referenzhandbuch und auf HERMES online.' }),
 
       h('h2', { text: 'Aufbau' }),
       h('ul', {}, [
+        h('li', {}, [h('b', { text: 'Graph: ' }), 'die Methodenelemente und ihre Zusammenhänge: als Struktur (Szenarien, Module, Aufgaben, Ergebnisse, Rollen in Spalten), im Fokus (ein Element mit allen Verbindungen) und entlang der Phasen. Jede Verbindung entspricht einem Querverweis der offiziellen Dokumentation; Kategorien, Beziehungen und Filter lassen sich ein- und ausblenden.']),
         h('li', {}, [h('b', { text: 'Methode: ' }), 'die Kapitel des Referenzhandbuchs (Methodenüberblick, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung) — je Kapitel Kernaussagen und Prüfungsfallen, eine Zusammenfassung und der vollständige Handbuchtext.']),
         h('li', {}, [h('b', { text: 'Lexikon: ' }), 'alle Methodenelemente mit drei Detailstufen: Kurz (erster Satz und Fakten), Kernpunkte (Definition, Abgrenzung, Prüfungshinweis, Querverweise) und Handbuch (vollständige Beschreibung mit Kapitel- und Seitenangabe).']),
         h('li', {}, [h('b', { text: 'Lernkarten: ' }), 'Begriff ↔ Definition mit Selbsteinschätzung; Fortschritt lokal im Browser.']),
@@ -68,6 +69,7 @@
           on: { click: function () {
             if (!global.confirm('Lernfortschritt, Filter und Quiz-Statistik wirklich löschen?')) { return; }
             HT.store.loesche('lexikon');
+            HT.store.loesche('graph');
             HT.store.loesche('lernkarten');
             HT.store.loesche('quiz-konfig');
             HT.store.loesche('quiz-statistik');
@@ -78,6 +80,7 @@
 
       h('h2', { text: 'Hinweise zur Nutzung' }),
       h('ul', {}, [
+        h('li', { text: 'Im Graph: Klick auf einen Knoten zeigt Details und hebt die Nachbarn hervor, Doppelklick stellt ihn in den Fokus; Ziehen verschiebt, Mausrad oder zwei Finger zoomen. Grosse Gruppen sind auf zwölf Einträge gekappt («+ n weitere anzeigen»).' }),
         h('li', { text: 'Im Lexikon lässt sich der Volltext aller Einträge durchsuchen; die Filterchips grenzen auf einzelne Kategorien ein, die Ansicht-Chips legen die Detailtiefe fest.' }),
         h('li', { text: 'Bei den Lernkarten lässt sich die Abfragerichtung umschalten: Begriff → Definition oder Definition → Begriff.' }),
         h('li', { text: 'Im Quiz stehen kuratierte Prüfungsfragen und automatisch aus dem Lexikon erzeugte Fragen zur Wahl. Zu jeder kuratierten Frage wird nach der Antwort das Belegzitat mit Kapitel und Seite des Referenzhandbuchs angezeigt.' }),

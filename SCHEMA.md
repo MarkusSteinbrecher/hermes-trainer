@@ -104,3 +104,35 @@ Objekt mit einem Schlüssel je Kapitel bzw. Hinweis-Thema (`methodenueberblick`,
 `kapitel.json`: Array der Kapitel `{ id, titel, nummer, seite, url, teile: [{ titel, url, nummer, seite, abschnitte: [{ titel, ebene, nummer?, seite?, bloecke }] }] }`.
 `elemente-<kategorie>.json`: Objekt `id → { titel, url, nummer, seite, abschnitte }`.
 Blöcke: `{ t: "p", text }`, `{ t: "ul"|"ol", items: [{ text, items? }] }`, `{ t: "tabelle", titel, zeilen: [[{ text, kopf? }]] }`, `{ t: "abb", src, datei?, text }`, `{ t: "h", n, text }`. Begriffe in Listen und Zellen werden im Frontend über den exakten Wortlaut auf Lexikoneinträge verlinkt.
+
+## Graph (abgeleitet, keine eigene Datei)
+
+`js/graph-modell.js` baut zur Laufzeit einen Graphen aus den Einträgen. Knoten sind **nur** Aufgaben, Ergebnisse und Rollen — sie beschreiben zusammen den Ablauf: wer tut was, und was entsteht dabei. Phasen, Module und Szenarien sind keine Knoten, sondern der **Umfang**: sie wählen aus, welche Aufgaben und Ergebnisse gezeigt werden (Grundbegriffe kommen im Graphen nicht vor). Jede Kante ist auf ein Feld eines Eintrags zurückführbar; es werden keine Beziehungen ergänzt:
+
+| Beziehung | Quelle (Feld) | Richtung |
+|---|---|---|
+| `verantwortlich` | `aufgabe.verantwortlich` (mehrere Rollen kommagetrennt) | Rolle → Aufgabe |
+| `beteiligt` | `aufgabe.beteiligt` (ohne die bereits verantwortliche Rolle) | Rolle → Aufgabe |
+| `erzeugt` | `aufgabe.ergebnisse` | Aufgabe → Ergebnis |
+| `ergebnisrolle` | `ergebnis.verantwortlich` | Rolle → Ergebnis |
+
+Der Umfang (`{ vorgehen, phasen[], module[] }`) filtert über `aufgabe.phasen`/`ergebnis.phasen` und `aufgabe.module`/`ergebnis.module`; `vorgehen` schränkt zusätzlich auf die Phasen der klassischen (Initialisierung, Konzept, Realisierung, Einführung, Abschluss) oder der agilen Vorgehensweise (Initialisierung, Umsetzung, Abschluss) ein. Leere Auswahl heisst «alle». Rollen tragen selbst weder Phasen noch Module — sie erscheinen, wenn sie über eine eingeblendete Beziehung an einer Aufgabe oder einem Ergebnis im Umfang hängen. `szenario.module` dient als Vorwahl der Modulauswahl. Aufgaben und Ergebnisse ohne Phasenangabe — die Sammeleinträge «Checklisten» und «Meilensteine» — lassen sich nicht im Ablauf verorten und erscheinen nur im Lexikon.
+
+Die Ansicht («Nach Phasen» oder «Nach Modulen») legt die Bahnen des Swimlane-Layouts fest: eine Aufgabe steht in der ersten Bahn, zu der sie laut ihren Feldern gehört; ein Ergebnis in der Bahn der Aufgabe, die es erzeugt (ohne erzeugende Aufgabe in seiner eigenen ersten Phase bzw. seinem ersten Modul). Rollen bekommen keine Bahn — sie tragen in HERMES weder Phase noch Modul und stehen als durchgehende Spalte daneben. Die Daten tragen das: 68 von 71 Aufgaben hängen an genau einem Modul, 55 von 71 an genau einer klassischen Phase.
+
+Querverweise werden über den exakten Begriff aufgelöst (`eintragMitBegriff`); nicht auflösbare Werte erzeugen keine Kante. Abgeleitete Kennzeichen: Entscheidungsaufgabe (`begriff` beginnt mit «Entscheid »), Ergebnistyp und «minimal gefordert» aus den Feldern `typ`/`minimalGefordert`.
+
+## Feld: eine Phase in einem Modul (abgeleitet, keine eigene Datei)
+
+`js/feld.js` schneidet die Einträge auf ein Feld der Abbildung 1 zu — eine Phase (Zeile) in einem Modul (Spalte). Die Adresse nennt beide: `#/feld?phase=<Phase>&modul=<Modul>[,<Modul>…]`; mehrere Module sind zulässig, weil die Abbildung Projektsteuerung und Projektführung zu einer Spalte zusammenfasst. Namen werden über `eintragMitBegriff` aufgelöst; ein unbekannter Name macht das Feld ungültig.
+
+| Inhalt | Regel |
+|---|---|
+| Ergebnisse | `ergebnis.phasen` enthält die Phase **und** `ergebnis.module` eines der Module. Reihenfolge: Meilenstein, Dokument, Zustand, Checkliste, darin alphabetisch |
+| Aufgaben | `aufgabe.phasen` enthält die Phase **und** `aufgabe.module` eines der Module |
+| «Entsteht aus» | Aufgaben **dieses Felds**, deren `ergebnisse` das Ergebnis nennen — nicht alle erzeugenden Aufgaben |
+| Meilensteintext | `phase.meilensteine[].beschreibung`, wenn der Name übereinstimmt; sonst die Kurzfassung des Ergebnisses |
+| Rollen | aus `verantwortlich` (kommagetrennt) und `beteiligt` der Aufgaben und Ergebnisse des Felds; «beteiligt an» lässt weg, was die Rolle im selben Feld ohnehin verantwortet |
+| Nachbarfelder | dieselbe Rechnung für die übrigen Phasen bzw. Module; leere Felder erscheinen nicht (das eigene bleibt als Anker stehen) |
+
+Das Kennzeichen «minimal gefordert» wird wie auf der Lexikonkarte nur bei `typ: "Dokument"` angezeigt (Tabelle 16); die 18 Checklisten tragen das Feld ebenfalls, sind aber über ihren Typ schon erkennbar. Vergleiche laufen über `HT.daten.normalisieren`, nicht über Zeichenkettengleichheit.

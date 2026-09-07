@@ -306,6 +306,7 @@
       var btn = h('button', {
         type: 'button', class: 'chip', 'aria-pressed': 'false', dataset: { kat: key }
       }, [
+        key ? HT.ui.katSymbol(key, 15) : null,
         h('span', { text: label }),
         anzahl === null ? null : h('span', { class: 'chip__zahl', text: String(anzahl) })
       ]);

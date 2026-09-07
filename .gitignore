@@ -1,1 +1,4 @@
 .DS_Store
+
+# Grosser Export der Claude-Design-Leinwand (2,6 MB, aus den .dc.html-Quellen erzeugt)
+design/**/graph-steuerung.html

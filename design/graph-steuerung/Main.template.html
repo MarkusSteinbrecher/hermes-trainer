@@ -1,0 +1,851 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
+    a { color: #17558f; text-decoration: none; }
+    a:hover { color: #103f6c; }
+    button { font-family: inherit; }
+    .tbbtn:hover { background: #eef1f5; }
+    .railbtn:hover { background: #eef1f5; }
+    .segbtn:hover { background: #eef1f5; }
+    .chip:hover { border-color: #17558f; }
+    .gk { cursor: pointer; }
+    .gk:hover .gkform { stroke-width: 2.5; }
+    .gkante { fill: none; stroke-linecap: round; }
+    .gtext { font: 700 11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; letter-spacing: .05em; text-transform: uppercase; }
+    .ggruppe { font: 700 10.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; letter-spacing: .04em; text-transform: uppercase; fill: #55636f; }
+    .gklabel { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; dominant-baseline: central; pointer-events: none; }
+    .gkglyph { font: 800 9.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; dominant-baseline: central; pointer-events: none; }
+    .gktyp { font: 600 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; dominant-baseline: central; pointer-events: none; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; display: flex; flex-direction: column; background: #f4f6f8; color: #16202b; overflow: hidden;">
+
+  <!-- Kopfzeile der Website -->
+  <div style="flex: 0 0 auto; background: #ffffff; border-bottom: 1px solid #d3dae2;">
+    <div style="max-width: 992px; margin: 0 auto; padding: 8px 16px; display: flex; align-items: center; gap: 16px; min-height: 52px; box-sizing: border-box;">
+      <div style="display: flex; align-items: center; gap: 9px; font-weight: 700; letter-spacing: -.015em;">
+        <span style="display: grid; place-items: center; width: 28px; height: 28px; border-radius: 7px; background: #17558f; color: #ffffff; font-size: 15px; font-weight: 800;">H</span>
+        <span style="font-size: 16px;">HERMES-Trainer</span>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 2px; font-size: 14.9px; font-weight: 600;">
+        <span style="padding: 9px 11px; border-radius: 8px; background: #e2ecf7; color: #17558f;">Graph</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Methode</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Lexikon</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Lernkarten</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Quiz</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Über</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex: 1 1 auto; display: flex; min-height: 0;">
+    <div style="flex: 1 1 auto; display: flex; flex-direction: column; min-width: 0; position: relative;">
+
+      <!-- Werkzeugleiste -->
+      <div style="flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #ffffff; border-bottom: 1px solid #d3dae2;">
+        <div style="display: inline-flex; border: 1px solid #b6c0cb; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <sc-for list="{{ansichten}}" as="a" hint-placeholder-count="2">
+            <button type="button" class="segbtn" onClick="{{a.waehlen}}" style="min-height: 34px; padding: 4px 15px; border: 0; border-right: 1px solid #d3dae2; background: {{a.hg}}; color: {{a.fg}}; font-size: 13.6px; font-weight: 650; cursor: pointer;">{{a.label}}</button>
+          </sc-for>
+        </div>
+
+        <div style="position: relative; width: 228px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#55636f" stroke-width="2" style="position: absolute; left: 10px; top: 10px;"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+          <div style="min-height: 36px; box-sizing: border-box; padding: 8px 10px 8px 32px; border: 1px solid #b6c0cb; border-radius: 8px; background: #ffffff; color: #55636f; font-size: 14.7px;">Element suchen …</div>
+        </div>
+
+        <p style="margin: 0; flex: 1 1 auto; min-width: 0; font-size: 12.8px; color: #55636f; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{status}}</p>
+
+        <button type="button" class="tbbtn" onClick="{{popDarstellung}}" title="Darstellung" style="display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid {{darRand}}; border-radius: 8px; background: {{darHg}}; color: #16202b; cursor: pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2.4"></circle><circle cx="10" cy="17" r="2.4"></circle></svg>
+        </button>
+        <button type="button" class="tbbtn" onClick="{{popLegende}}" title="Legende" style="display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid {{legRand}}; border-radius: 8px; background: {{legHg}}; color: #16202b; cursor: pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5.5"></path><path d="M12 7.6v.1"></path></svg>
+        </button>
+
+        <div style="display: inline-flex; border: 1px solid #b6c0cb; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <div style="display: grid; place-items: center; min-width: 34px; height: 34px; border-right: 1px solid #d3dae2; font-size: 17px; font-weight: 700;">−</div>
+          <div style="display: grid; place-items: center; min-width: 34px; height: 34px; border-right: 1px solid #d3dae2; font-size: 17px; font-weight: 700;">+</div>
+          <div style="display: grid; place-items: center; padding: 0 10px; height: 34px; font-size: 12.8px; font-weight: 650;">Einpassen</div>
+        </div>
+      </div>
+
+      <!-- Auswahlleiste: welche Phasen bzw. Module -->
+      <div style="flex: 0 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; padding: 8px 12px; background: #ffffff; border-bottom: 1px solid #d3dae2;">
+        <span style="font-size: 11.8px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: #55636f;">{{achseLabel}}</span>
+
+        <sc-if value="{{istPhasen}}" hint-placeholder-val="{{true}}">
+          <div style="display: inline-flex; border: 1px solid #b6c0cb; border-radius: 8px; overflow: hidden; background: #ffffff;">
+            <sc-for list="{{vorgehen}}" as="v" hint-placeholder-count="2">
+              <button type="button" class="segbtn" onClick="{{v.waehlen}}" style="min-height: 30px; padding: 3px 11px; border: 0; border-right: 1px solid #d3dae2; background: {{v.hg}}; color: {{v.fg}}; font-size: 12.6px; font-weight: 650; cursor: pointer;">{{v.label}}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{istModule}}" hint-placeholder-val="{{true}}">
+          <button type="button" class="tbbtn" onClick="{{popSzenario}}" style="display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 3px 10px; border: 1px solid {{szenRand}}; border-radius: 8px; background: {{szenHg}}; color: #16202b; font-size: 12.6px; font-weight: 600; cursor: pointer;">
+            {{szenLabel}}
+            <span style="color: #55636f;">▾</span>
+          </button>
+        </sc-if>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 5px; flex: 1 1 auto;">
+          <sc-for list="{{achseChips}}" as="c" hint-placeholder-count="6">
+            <button type="button" class="chip" onClick="{{c.schalten}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 3px 10px; border: 1px solid {{c.rand}}; border-radius: 999px; background: {{c.hg}}; color: {{c.fg}}; font-size: 12.6px; font-weight: 600; cursor: pointer;">
+              {{c.label}}
+              <span style="font-weight: 500; opacity: .75; font-variant-numeric: tabular-nums;">{{c.zahl}}</span>
+            </button>
+          </sc-for>
+        </div>
+
+        <button type="button" class="tbbtn" onClick="{{popQuer}}" style="display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 3px 10px; border: 1px solid {{querRand}}; border-radius: 8px; background: {{querHg}}; color: #16202b; font-size: 12.6px; font-weight: 600; cursor: pointer;">
+          {{querLabel}}
+          <span style="color: #55636f;">▾</span>
+        </button>
+
+        <sc-if value="{{etwasGewaehlt}}" hint-placeholder-val="{{true}}">
+          <button type="button" onClick="{{allesZuruecksetzen}}" style="border: 0; background: transparent; color: #17558f; font-size: 12.6px; font-weight: 600; cursor: pointer; padding: 4px 6px;">Zurücksetzen</button>
+        </sc-if>
+      </div>
+
+      <!-- Graphfläche -->
+      <div style="flex: 1 1 auto; position: relative; min-height: 0; background-color: #f8f9fb; background-image: radial-gradient(#e4e8ee 1px, transparent 1px); background-size: 22px 22px; overflow: hidden;">
+
+        <svg viewBox="0 0 1056 700" preserveAspectRatio="xMidYMid meet" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;">
+          <g transform="{{buehne}}">
+            <sc-for list="{{kanten}}" as="e" hint-placeholder-count="8">
+              <path class="gkante" d="{{e.d}}" stroke="{{e.farbe}}" stroke-width="{{e.staerke}}" stroke-dasharray="{{e.strich}}" opacity="{{e.deckung}}"></path>
+            </sc-for>
+            <sc-for list="{{titel}}" as="t" hint-placeholder-count="3">
+              <text class="gtext" x="{{t.x}}" y="{{t.y}}" fill="{{t.farbe}}">{{t.text}}</text>
+            </sc-for>
+            <sc-for list="{{gruppen}}" as="g" hint-placeholder-count="3">
+              <g>
+                <text class="ggruppe" x="{{g.x}}" y="{{g.y}}">{{g.text}}</text>
+                <path d="{{g.linie}}" stroke="#d3dae2" stroke-width="1"></path>
+              </g>
+            </sc-for>
+            <sc-for list="{{knoten}}" as="n" hint-placeholder-count="10">
+              <g class="gk" transform="{{n.pos}}" onClick="{{n.waehlen}}">
+                <path class="gkform" d="{{n.d}}" fill="{{n.fuell}}" stroke="{{n.strich}}" stroke-width="{{n.staerke}}" stroke-dasharray="{{n.gestrichelt}}"></path>
+                <sc-if value="{{n.echt}}" hint-placeholder-val="{{true}}">
+                  <circle cx="20" cy="15" r="8" fill="{{n.glyphFuell}}"></circle>
+                  <text class="gkglyph" x="20" y="15" text-anchor="middle" fill="{{n.glyphText}}">{{n.glyph}}</text>
+                </sc-if>
+                <text class="gklabel" x="{{n.textX}}" y="{{n.mitte}}" text-anchor="{{n.anker}}" fill="{{n.textFarbe}}">{{n.label}}</text>
+                <sc-if value="{{n.typSymbol}}" hint-placeholder-val="{{true}}">
+                  <text class="gktyp" x="{{n.typX}}" y="15" fill="#7a5300">{{n.typSymbol}}</text>
+                </sc-if>
+                <sc-for list="{{n.streifen}}" as="s" hint-placeholder-count="6">
+                  <rect x="{{s.x}}" y="11" width="6" height="8" rx="1.5" fill="{{s.fuell}}" stroke="{{s.strich}}" stroke-width="0.6"></rect>
+                </sc-for>
+              </g>
+            </sc-for>
+          </g>
+        </svg>
+
+        <!-- Icon-Leiste: Inhaltstypen und Verbindungen -->
+        <div style="position: absolute; left: 16px; top: 16px; display: flex; flex-direction: column; gap: 2px; padding: 5px; background: #ffffff; border: 1px solid #d3dae2; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08);">
+          <sc-for list="{{rail}}" as="r" hint-placeholder-count="3">
+            <button type="button" class="railbtn" onClick="{{r.schalten}}" title="{{r.titel}}" aria-pressed="{{r.gedrueckt}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 48px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: {{r.hg}}; opacity: {{r.deckung}}; cursor: pointer;">
+              <svg width="30" height="19" viewBox="0 0 30 19">
+                <path d="{{r.d}}" fill="{{r.fuell}}" stroke="{{r.strich}}" stroke-width="1.5"></path>
+                <circle cx="9.5" cy="9.5" r="5.6" fill="{{r.glyphFuell}}"></circle>
+                <text x="9.5" y="9.5" text-anchor="middle" dominant-baseline="central" style="font: 800 7.5px -apple-system, BlinkMacSystemFont, sans-serif;" fill="{{r.glyphText}}">{{r.glyph}}</text>
+              </svg>
+              <span style="font-size: 9.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: {{r.zahlFarbe}}; line-height: 1;">{{r.zahl}}</span>
+            </button>
+          </sc-for>
+
+          <div style="height: 1px; background: #d3dae2; margin: 5px 6px;"></div>
+
+          <sc-for list="{{railRel}}" as="r" hint-placeholder-count="4">
+            <button type="button" class="railbtn" onClick="{{r.schalten}}" title="{{r.titel}}" aria-pressed="{{r.gedrueckt}}" style="display: grid; place-items: center; width: 48px; height: 26px; padding: 0; border: 0; border-radius: 8px; background: {{r.hg}}; opacity: {{r.deckung}}; cursor: pointer;">
+              <svg width="30" height="10" viewBox="0 0 30 10">
+                <path d="M0 5H30" stroke="{{r.farbe}}" stroke-width="{{r.staerke}}" stroke-dasharray="{{r.strich}}"></path>
+              </svg>
+            </button>
+          </sc-for>
+        </div>
+
+        <!-- Popover: das jeweils andere Kriterium -->
+        <sc-if value="{{istQuer}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; right: 16px; top: 12px; width: 336px; max-height: 620px; overflow-y: auto; padding: 14px 16px 16px; background: #ffffff; border: 1px solid #b6c0cb; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); box-sizing: border-box;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-size: 15px;">{{querTitel}}</strong>
+              <button type="button" onClick="{{popZu}}" style="width: 28px; height: 28px; border: 1px solid #d3dae2; border-radius: 8px; background: #ffffff; color: #55636f; cursor: pointer;">✕</button>
+            </div>
+            <p style="margin: 0 0 10px; font-size: 12.5px; color: #55636f; text-wrap: pretty;">{{querHinweis}}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+              <sc-for list="{{querChips}}" as="c" hint-placeholder-count="8">
+                <button type="button" class="chip" onClick="{{c.schalten}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 3px 10px; border: 1px solid {{c.rand}}; border-radius: 999px; background: {{c.hg}}; color: {{c.fg}}; font-size: 12.6px; font-weight: 600; cursor: pointer;">
+                  {{c.label}}
+                  <span style="font-weight: 500; opacity: .75; font-variant-numeric: tabular-nums;">{{c.zahl}}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- Popover: Szenario wählt Module vor -->
+        <sc-if value="{{istSzenario}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; right: 16px; top: 12px; width: 336px; padding: 14px 16px 16px; background: #ffffff; border: 1px solid #b6c0cb; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); box-sizing: border-box;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-size: 15px;">Szenario</strong>
+              <button type="button" onClick="{{popZu}}" style="width: 28px; height: 28px; border: 1px solid #d3dae2; border-radius: 8px; background: #ffffff; color: #55636f; cursor: pointer;">✕</button>
+            </div>
+            <p style="margin: 0 0 10px; font-size: 12.5px; color: #55636f; text-wrap: pretty;">Wählt die Module des Szenarios aus. Danach lässt sich die Auswahl von Hand ergänzen.</p>
+            <div style="display: grid; gap: 5px;">
+              <sc-for list="{{szenarien}}" as="s" hint-placeholder-count="5">
+                <button type="button" class="chip" onClick="{{s.waehlen}}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 34px; padding: 5px 11px; border: 1px solid {{s.rand}}; border-radius: 8px; background: {{s.hg}}; color: {{s.fg}}; font-size: 13.2px; font-weight: 600; text-align: left; cursor: pointer;">
+                  {{s.label}}
+                  <span style="font-weight: 500; opacity: .75; font-variant-numeric: tabular-nums;">{{s.zahl}} Module</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- Popover: Darstellung -->
+        <sc-if value="{{istDarstellung}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; right: 16px; top: 12px; width: 320px; padding: 14px 16px 16px; background: #ffffff; border: 1px solid #b6c0cb; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); box-sizing: border-box;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-size: 15px;">Darstellung</strong>
+              <button type="button" onClick="{{popZu}}" style="width: 28px; height: 28px; border: 1px solid #d3dae2; border-radius: 8px; background: #ffffff; color: #55636f; cursor: pointer;">✕</button>
+            </div>
+            <div style="display: grid; gap: 3px;">
+              <sc-for list="{{darstellung}}" as="d" hint-placeholder-count="4">
+                <button type="button" onClick="{{d.schalten}}" style="display: flex; align-items: center; gap: 9px; min-height: 32px; padding: 2px 0; border: 0; background: transparent; color: #16202b; font-size: 13.6px; text-align: left; cursor: pointer;">
+                  <span style="display: grid; place-items: center; width: 18px; height: 18px; border: 1.5px solid {{d.rand}}; border-radius: 4px; background: {{d.hg}}; color: #ffffff; font-size: 12px; font-weight: 800; line-height: 1;">{{d.haken}}</span>
+                  {{d.label}}
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- Popover: Legende -->
+        <sc-if value="{{istLegende}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; right: 16px; top: 12px; width: 344px; padding: 14px 16px 16px; background: #ffffff; border: 1px solid #b6c0cb; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); box-sizing: border-box;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-size: 15px;">Legende</strong>
+              <button type="button" onClick="{{popZu}}" style="width: 28px; height: 28px; border: 1px solid #d3dae2; border-radius: 8px; background: #ffffff; color: #55636f; cursor: pointer;">✕</button>
+            </div>
+            <p style="margin: 0 0 10px; font-size: 12.5px; color: #55636f; text-wrap: pretty;">Der Graph zeigt immer dieselben drei Elemente: <b>wer</b> (Rolle) tut <b>was</b> (Aufgabe) und was dabei <b>entsteht</b> (Ergebnis). Phasen und Module wählen nur aus.</p>
+            <div style="display: grid; gap: 5px; margin-bottom: 12px;">
+              <sc-for list="{{legendeKat}}" as="l" hint-placeholder-count="3">
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.2px;">
+                  <svg width="30" height="19" viewBox="0 0 30 19" style="flex: 0 0 auto;">
+                    <path d="{{l.d}}" fill="{{l.fuell}}" stroke="{{l.strich}}" stroke-width="1.5"></path>
+                    <circle cx="9.5" cy="9.5" r="5.6" fill="{{l.glyphFuell}}"></circle>
+                    <text x="9.5" y="9.5" text-anchor="middle" dominant-baseline="central" style="font: 800 7.5px -apple-system, BlinkMacSystemFont, sans-serif;" fill="{{l.glyphText}}">{{l.glyph}}</text>
+                  </svg>
+                  {{l.label}}
+                </div>
+              </sc-for>
+              <sc-for list="{{railRel}}" as="r" hint-placeholder-count="4">
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.2px;">
+                  <svg width="30" height="10" viewBox="0 0 30 10" style="flex: 0 0 auto;"><path d="M0 5H30" stroke="{{r.farbe}}" stroke-width="{{r.staerke}}" stroke-dasharray="{{r.strich}}"></path></svg>
+                  {{r.label}}
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; margin-bottom: 10px;">
+              <sc-for list="{{legendeTyp}}" as="t" hint-placeholder-count="4">
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13.2px;">
+                  <span style="width: 20px; text-align: center; color: #7a5300;">{{t.symbol}}</span>{{t.label}}
+                </div>
+              </sc-for>
+            </div>
+            <p style="margin: 0; font-size: 12.2px; color: #55636f; text-wrap: pretty;">Die sechs kleinen Kästchen am Knoten sind die Phasen I K R E U A. Jede Verbindung entspricht einem Querverweis in der offiziellen Dokumentation.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- Detailfeld -->
+    <div style="flex: 0 0 384px; background: #ffffff; border-left: 1px solid #d3dae2; display: flex; flex-direction: column; min-height: 0;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px 16px; border-bottom: 1px solid #d3dae2;">
+        <span style="font-size: 11.8px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #55636f;">Details</span>
+        <span style="display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #d3dae2; border-radius: 8px; color: #55636f;">✕</span>
+      </div>
+      <div style="flex: 1 1 auto; overflow-y: auto; padding: 14px 16px 20px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <span style="display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border: 1px solid #17558f; border-radius: 8px; background: #17558f; color: #ffffff; font-size: 13.6px; font-weight: 600;">◎ Nur dieses zeigen</span>
+          <span style="display: inline-flex; align-items: center; min-height: 36px; padding: 6px 12px; border: 1px solid #b6c0cb; border-radius: 8px; font-size: 13.6px; font-weight: 600;">Im Lexikon</span>
+        </div>
+        <span style="display: inline-block; padding: 3px 9px; border-radius: 999px; background: {{wahlBg}}; color: {{wahlFg}}; font-size: 12px; font-weight: 700;">{{wahlKat}}</span>
+        <h2 style="margin: 8px 0 6px; font-size: 21px; letter-spacing: -.01em; text-wrap: pretty;">{{wahlName}}</h2>
+        <p style="margin: 0 0 14px; font-size: 14.4px; line-height: 1.55; text-wrap: pretty;">{{wahlText}}</p>
+        <div style="display: grid; gap: 8px;">
+          <sc-for list="{{wahlFakten}}" as="f" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 10px; align-items: baseline;">
+              <span style="font-size: 11.6px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #55636f;">{{f.label}}</span>
+              <span style="font-size: 13.6px; text-wrap: pretty;">{{f.wert}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+/*__DATEN__*/
+
+var KAT = {
+  aufgabe:  { label: 'Aufgaben',   sing: 'Aufgabe',  glyph: 'A', farbe: '#d9541a', bg: '#fbe3d6', fg: '#8a3208' },
+  ergebnis: { label: 'Ergebnisse', sing: 'Ergebnis', glyph: 'E', farbe: '#e2a000', bg: '#fbeecb', fg: '#7a5300' },
+  rolle:    { label: 'Rollen',     sing: 'Rolle',    glyph: 'R', farbe: '#a8266a', bg: '#f6dbe8', fg: '#6f1546' }
+};
+var TYP_SYMBOL = ['▤', '☑', '●', '◆'];
+var PHASEN_KURZ = ['I', 'K', 'R', 'E', 'U', 'A'];
+var VORGEHEN_PHASEN = { klassisch: [0, 1, 2, 3, 5], agil: [0, 4, 5] };
+var RELATIONEN = [
+  { key: 'verantwortlich', label: 'Rolle ist verantwortlich für die Aufgabe', farbe: '#a8266a', staerke: 2.2, strich: '0' },
+  { key: 'beteiligt',      label: 'Rolle ist beteiligt',                      farbe: '#a8266a', staerke: 1.1, strich: '5 4' },
+  { key: 'erzeugt',        label: 'Aufgabe erzeugt Ergebnis',                 farbe: '#d9541a', staerke: 1.6, strich: '0' },
+  { key: 'ergebnisrolle',  label: 'Rolle verantwortet das Ergebnis',          farbe: '#a8266a', staerke: 1.4, strich: '1.5 3' }
+];
+var SPALTEN_MAX = 26;
+
+function form(kat, w, h) {
+  var c;
+  if (kat === 'aufgabe')  { c = 7; return 'M' + c + ' 0H' + w + 'L' + (w - c) + ' ' + h + 'H0Z'; }
+  if (kat === 'ergebnis') { c = 8; return 'M0 0H' + (w - c) + 'L' + w + ' ' + c + 'V' + h + 'H0Z'; }
+  if (kat === 'rolle')    { c = h / 2; return 'M' + c + ' 0H' + (w - c) + 'A' + c + ' ' + c + ' 0 0 1 ' + (w - c) + ' ' + h + 'H' + c + 'A' + c + ' ' + c + ' 0 0 1 ' + c + ' 0Z'; }
+  c = 5;
+  return 'M' + c + ' 0H' + (w - c) + 'Q' + w + ' 0 ' + w + ' ' + c + 'V' + (h - c) + 'Q' + w + ' ' + h + ' ' + (w - c) + ' ' + h + 'H' + c + 'Q0 ' + h + ' 0 ' + (h - c) + 'V' + c + 'Q0 0 ' + c + ' 0Z';
+}
+
+function schnitt(a, b) {
+  for (var i = 0; i < a.length; i++) { if (b.indexOf(a[i]) !== -1) { return true; } }
+  return false;
+}
+
+function textBreite(s) { return Math.ceil(String(s).length * 6.55); }
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ansicht: 'module',
+      vorgehen: 'klassisch',
+      phasen: [],
+      module: [3],
+      typen: { aufgabe: true, ergebnis: true, rolle: true },
+      rels: { verantwortlich: true, beteiligt: true, erzeugt: true, ergebnisrolle: false },
+      pop: null,
+      wahl: null,
+      phasenstreifen: true,
+      isoliert: false,
+      nurMinimal: false,
+      nurEntscheide: false
+    };
+  }
+
+  setzen(feld, wert) { var o = {}; o[feld] = wert; this.setState(o); }
+
+  listeSchalten(feld, wert) {
+    var l = this.state[feld].slice();
+    var i = l.indexOf(wert);
+    if (i === -1) { l.push(wert); } else { l.splice(i, 1); }
+    l.sort(function (a, b) { return a - b; });
+    this.setzen(feld, l);
+  }
+
+  objektSchalten(feld, key) {
+    var o = Object.assign({}, this.state[feld]);
+    o[key] = !o[key];
+    this.setzen(feld, o);
+  }
+
+  /* Welche Phasen zählen bei der aktuellen Vorgehensweise. */
+  vorgehenPhasen() { return VORGEHEN_PHASEN[this.state.vorgehen]; }
+
+  /* Aufgaben und Ergebnisse, die zur Auswahl passen. */
+  auswahl() {
+    var st = this.state;
+    var vp = this.vorgehenPhasen();
+    var phasen = st.phasen.length ? st.phasen : vp;
+    var module = st.module;
+
+    function passt(e) {
+      if (!schnitt(e.p, vp)) { return false; }
+      if (!schnitt(e.p, phasen)) { return false; }
+      if (module.length && !schnitt(e.m, module)) { return false; }
+      return true;
+    }
+
+    var aufgaben = [];
+    AUFGABEN.forEach(function (a, i) {
+      if (!passt(a)) { return; }
+      if (st.nurEntscheide && a.n.indexOf('Entscheid ') !== 0) { return; }
+      aufgaben.push({ i: i, e: a });
+    });
+    var ergebnisse = [];
+    ERGEBNISSE.forEach(function (e, i) {
+      if (!passt(e)) { return; }
+      if (st.nurMinimal && !(e.k && e.t === 0)) { return; }
+      ergebnisse.push({ i: i, e: e });
+    });
+    return { aufgaben: aufgaben, ergebnisse: ergebnisse, phasen: phasen };
+  }
+
+  /* Spalten Rolle | Aufgabe | Ergebnis, die Aufgaben nach Phase bzw. Modul gruppiert. */
+  layout() {
+    var st = this.state;
+    var self = this;
+    var aus = this.auswahl();
+    var zeigeA = st.typen.aufgabe, zeigeE = st.typen.ergebnis, zeigeR = st.typen.rolle;
+    var streifen = st.phasenstreifen;
+
+    /* Gruppen der gewählten Achse */
+    var gruppenSchluessel = [];
+    if (st.ansicht === 'phasen') {
+      gruppenSchluessel = aus.phasen.slice().sort(function (a, b) { return a - b; });
+    } else {
+      gruppenSchluessel = (st.module.length ? st.module : MODULE.map(function (m, i) { return i; })).slice();
+    }
+
+    var aufgaben = zeigeA ? aus.aufgaben.slice() : [];
+    var gruppeVon = {};
+    aufgaben.forEach(function (a) {
+      var g = -1;
+      for (var i = 0; i < gruppenSchluessel.length; i++) {
+        var k = gruppenSchluessel[i];
+        if ((st.ansicht === 'phasen' ? a.e.p : a.e.m).indexOf(k) !== -1) { g = k; break; }
+      }
+      gruppeVon[a.i] = g;
+    });
+    aufgaben.sort(function (x, y) {
+      var gx = gruppenSchluessel.indexOf(gruppeVon[x.i]);
+      var gy = gruppenSchluessel.indexOf(gruppeVon[y.i]);
+      if (gx !== gy) { return gx - gy; }
+      return x.e.n.localeCompare(y.e.n, 'de');
+    });
+    var gekappt = false;
+    if (aufgaben.length > SPALTEN_MAX) { aufgaben = aufgaben.slice(0, SPALTEN_MAX); gekappt = true; }
+
+    /* Ergebnisse in der Reihenfolge der erzeugenden Aufgabe */
+    var rang = {};
+    if (st.rels.erzeugt) {
+      aufgaben.forEach(function (a, ai) {
+        a.e.e.forEach(function (ei) { if (rang[ei] === undefined) { rang[ei] = ai; } });
+      });
+    }
+    var ergebnisse = zeigeE ? aus.ergebnisse.slice() : [];
+    ergebnisse.sort(function (x, y) {
+      var rx = rang[x.i] === undefined ? 999 : rang[x.i];
+      var ry = rang[y.i] === undefined ? 999 : rang[y.i];
+      if (rx !== ry) { return rx - ry; }
+      return x.e.n.localeCompare(y.e.n, 'de');
+    });
+    if (st.isoliert) {
+      ergebnisse = ergebnisse.filter(function (e) { return rang[e.i] !== undefined; });
+    }
+    if (ergebnisse.length > SPALTEN_MAX) { ergebnisse = ergebnisse.slice(0, SPALTEN_MAX); gekappt = true; }
+
+    /* Rollen aus dem ganzen Umfang, nicht nur aus den gezeichneten Aufgaben: sonst
+       verschwinden die Rollen, sobald man die Aufgabenspalte ausblendet. Zuerst die
+       gezeichneten Aufgaben, damit die Reihenfolge zu den Kanten passt. */
+    var sichtbarE = {};
+    ergebnisse.forEach(function (e) { sichtbarE[e.i] = true; });
+    var rollenReihe = [];
+    function rolleMerken(ri) { if (rollenReihe.indexOf(ri) === -1) { rollenReihe.push(ri); } }
+    function rollenAus(liste) {
+      liste.forEach(function (a) {
+        if (st.rels.verantwortlich) { a.e.v.forEach(rolleMerken); }
+        if (st.rels.beteiligt) { a.e.b.forEach(function (ri) { if (a.e.v.indexOf(ri) === -1) { rolleMerken(ri); } }); }
+      });
+    }
+    rollenAus(aufgaben);
+    rollenAus(aus.aufgaben);
+    if (st.rels.ergebnisrolle) {
+      ergebnisse.forEach(function (e) { e.e.v.forEach(rolleMerken); });
+      aus.ergebnisse.forEach(function (e) { e.e.v.forEach(rolleMerken); });
+    }
+    var rollen = zeigeR ? rollenReihe.map(function (ri) { return { i: ri, e: ROLLEN[ri] }; }) : [];
+
+    /* Knoten aufbauen */
+    var H = 30, ZEILE = 10, GKOPF = 24, LUECKE = 110, KOPF = 34;
+    var spalten = [];
+
+    if (zeigeR) {
+      spalten.push({
+        kat: 'rolle', titel: 'Rollen · ' + rollen.length,
+        eintraege: rollen.map(function (r) {
+          return { kat: 'rolle', id: 'r' + r.i, ref: r.i, label: r.e.n, w: 50 + textBreite(r.e.n), h: H, streifen: null, typ: -1 };
+        }),
+        gruppen: []
+      });
+    }
+    if (zeigeA) {
+      var eintraegeA = [];
+      var gruppenA = [];
+      var letzte = null;
+      aufgaben.forEach(function (a) {
+        var g = gruppeVon[a.i];
+        if (g !== letzte) {
+          gruppenA.push({ text: st.ansicht === 'phasen' ? (PHASEN[g] || 'Ohne Phase') : (MODULE[g] || 'Ohne Modul') });
+          eintraegeA.push({ gruppe: true });
+          letzte = g;
+        }
+        eintraegeA.push({
+          kat: 'aufgabe', id: 'a' + a.i, ref: a.i, label: a.e.n, typ: -1,
+          w: 50 + textBreite(a.e.n) + (streifen ? 52 : 0), h: H,
+          streifen: streifen ? a.e.p : null
+        });
+      });
+      spalten.push({ kat: 'aufgabe', titel: 'Aufgaben · ' + aus.aufgaben.length, eintraege: eintraegeA, gruppenTexte: gruppenA });
+    }
+    if (zeigeE) {
+      spalten.push({
+        kat: 'ergebnis', titel: 'Ergebnisse · ' + aus.ergebnisse.length,
+        eintraege: ergebnisse.map(function (e) {
+          return {
+            kat: 'ergebnis', id: 'e' + e.i, ref: e.i, label: e.e.n, typ: e.e.t,
+            w: 50 + textBreite(e.e.n) + 16 + (streifen ? 52 : 0), h: H,
+            streifen: streifen ? e.e.p : null
+          };
+        }),
+        gruppen: []
+      });
+    }
+
+    /* Masse und Positionen */
+    var maxH = 0;
+    spalten.forEach(function (s) {
+      s.w = s.eintraege.reduce(function (m, n) { return Math.max(m, n.gruppe ? 0 : n.w); }, 0);
+      s.h = s.eintraege.reduce(function (m, n) { return m + (n.gruppe ? GKOPF : n.h) + ZEILE; }, 0) - ZEILE;
+      if (s.h < 0) { s.h = 0; }
+      maxH = Math.max(maxH, s.h);
+    });
+    var natW = spalten.reduce(function (m, s) { return m + s.w; }, 0) + LUECKE * Math.max(0, spalten.length - 1);
+    var natH = KOPF + maxH;
+
+    var knoten = [];
+    var titel = [];
+    var gruppenMarken = [];
+    var stelle = {};
+    var x = 0;
+    spalten.forEach(function (s) {
+      var y = KOPF + (maxH - s.h) / 2;
+      var gi = 0;
+      s.eintraege.forEach(function (n) {
+        if (n.gruppe) {
+          gruppenMarken.push({
+            x: x, y: y + 15, text: (s.gruppenTexte[gi] || {}).text || '',
+            linie: 'M' + x + ' ' + (y + 21) + 'H' + (x + s.w)
+          });
+          gi++;
+          y += GKOPF + ZEILE;
+          return;
+        }
+        n.x = x;
+        n.y = y;
+        stelle[n.id] = { x: x, y: y, w: n.w, h: n.h };
+        knoten.push(n);
+        y += n.h + ZEILE;
+      });
+      titel.push({ x: x, y: 12, text: s.titel, farbe: KAT[s.kat].fg });
+      x += s.w + LUECKE;
+    });
+
+    /* Kanten */
+    var kanten = [];
+    function bogen(a, b) {
+      var x1 = a.x + a.w, y1 = a.y + a.h / 2, x2 = b.x, y2 = b.y + b.h / 2;
+      var dx = Math.max(30, (x2 - x1) * 0.5);
+      return 'M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + 'C' + (x1 + dx).toFixed(1) + ' ' + y1.toFixed(1) + ',' + (x2 - dx).toFixed(1) + ' ' + y2.toFixed(1) + ',' + x2.toFixed(1) + ' ' + y2.toFixed(1);
+    }
+    function kante(vonId, nachId, relKey) {
+      var a = stelle[vonId], b = stelle[nachId];
+      if (!a || !b) { return; }
+      var r = RELATIONEN.filter(function (x) { return x.key === relKey; })[0];
+      kanten.push({ d: bogen(a, b), farbe: r.farbe, staerke: r.staerke, strich: r.strich, deckung: relKey === 'beteiligt' ? 0.75 : 1 });
+    }
+    aufgaben.forEach(function (a) {
+      if (st.rels.verantwortlich) { a.e.v.forEach(function (ri) { kante('r' + ri, 'a' + a.i, 'verantwortlich'); }); }
+      if (st.rels.beteiligt) { a.e.b.forEach(function (ri) { if (a.e.v.indexOf(ri) === -1) { kante('r' + ri, 'a' + a.i, 'beteiligt'); } }); }
+      if (st.rels.erzeugt) { a.e.e.forEach(function (ei) { if (sichtbarE[ei]) { kante('a' + a.i, 'e' + ei, 'erzeugt'); } }); }
+    });
+    if (st.rels.ergebnisrolle) {
+      ergebnisse.forEach(function (e) { e.e.v.forEach(function (ri) { kante('r' + ri, 'e' + e.i, 'ergebnisrolle'); }); });
+    }
+
+    var platzW = 1056 - 96 - 40, platzH = 700 - 40 - 40;
+    var sk = Math.min(1, natW ? platzW / natW : 1, natH ? platzH / natH : 1);
+    var tx = 96 + Math.max(0, (platzW - natW * sk) / 2);
+    var ty = 40 + Math.max(0, (platzH - natH * sk) / 2);
+
+    return {
+      knoten: knoten, kanten: kanten, titel: titel, gruppen: gruppenMarken,
+      zahlen: { aufgabe: aus.aufgaben.length, ergebnis: aus.ergebnisse.length, rolle: rollenReihe.length },
+      gezeigt: { aufgabe: aufgaben.length, ergebnis: ergebnisse.length, rolle: rollen.length },
+      gekappt: gekappt && (zeigeA || zeigeE),
+      buehne: 'translate(' + tx.toFixed(1) + ',' + ty.toFixed(1) + ') scale(' + sk.toFixed(3) + ')'
+    };
+  }
+
+  /* Zähler für die Chips: wie viele Aufgaben hängen an dieser Phase bzw. diesem Modul. */
+  chipZahl(art, key) {
+    var vp = this.vorgehenPhasen();
+    var st = this.state;
+    var n = 0;
+    AUFGABEN.forEach(function (a) {
+      if (!schnitt(a.p, vp)) { return; }
+      if (art === 'phase') {
+        if (a.p.indexOf(key) === -1) { return; }
+        if (st.module.length && !schnitt(a.m, st.module)) { return; }
+      } else {
+        if (a.m.indexOf(key) === -1) { return; }
+        if (st.phasen.length && !schnitt(a.p, st.phasen)) { return; }
+      }
+      n++;
+    });
+    return n;
+  }
+
+  detail() {
+    var st = this.state;
+    if (!st.wahl) { return null; }
+    var art = st.wahl.charAt(0);
+    var i = parseInt(st.wahl.slice(1), 10);
+    if (art === 'a') {
+      var a = AUFGABEN[i];
+      if (!a) { return null; }
+      return {
+        kat: 'aufgabe', name: a.n, text: a.d,
+        fakten: [
+          { label: 'Modul', wert: a.m.map(function (x) { return MODULE[x]; }).join(', ') || '—' },
+          { label: 'Phasen', wert: a.p.map(function (x) { return PHASEN[x]; }).join(', ') || '—' },
+          { label: 'Verantwortlich', wert: a.v.map(function (x) { return ROLLEN[x].n; }).join(', ') || '—' },
+          { label: 'Beteiligt', wert: a.b.map(function (x) { return ROLLEN[x].n; }).join(', ') || '—' },
+          { label: 'Ergebnisse', wert: a.e.map(function (x) { return ERGEBNISSE[x].n; }).join(', ') || '—' }
+        ]
+      };
+    }
+    if (art === 'e') {
+      var e = ERGEBNISSE[i];
+      if (!e) { return null; }
+      return {
+        kat: 'ergebnis', name: e.n, text: e.d,
+        fakten: [
+          { label: 'Ergebnistyp', wert: TYPEN[e.t] },
+          { label: 'Minimal gefordert', wert: e.k ? 'ja' : 'nein' },
+          { label: 'Modul', wert: e.m.map(function (x) { return MODULE[x]; }).join(', ') || '—' },
+          { label: 'Phasen', wert: e.p.map(function (x) { return PHASEN[x]; }).join(', ') || '—' },
+          { label: 'Verantwortlich', wert: e.v.map(function (x) { return ROLLEN[x].n; }).join(', ') || '—' }
+        ]
+      };
+    }
+    var r = ROLLEN[i];
+    if (!r) { return null; }
+    var vA = 0, bA = 0, vE = 0;
+    AUFGABEN.forEach(function (a) { if (a.v.indexOf(i) !== -1) { vA++; } else if (a.b.indexOf(i) !== -1) { bA++; } });
+    ERGEBNISSE.forEach(function (x) { if (x.v.indexOf(i) !== -1) { vE++; } });
+    return {
+      kat: 'rolle', name: r.n, text: r.d,
+      fakten: [
+        { label: 'Ebene', wert: r.s || '—' },
+        { label: 'Verantwortlich', wert: vA + ' Aufgaben, ' + vE + ' Ergebnisse' },
+        { label: 'Beteiligt', wert: bA + ' weitere Aufgaben' }
+      ]
+    };
+  }
+
+  renderVals() {
+    var self = this;
+    var st = this.state;
+    var L = this.layout();
+    var istPhasen = st.ansicht === 'phasen';
+    var vp = this.vorgehenPhasen();
+
+    var achseChips = (istPhasen ? vp : MODULE.map(function (m, i) { return i; })).map(function (key) {
+      var an = (istPhasen ? st.phasen : st.module).indexOf(key) !== -1;
+      return {
+        label: istPhasen ? PHASEN[key] : MODULE[key],
+        zahl: self.chipZahl(istPhasen ? 'phase' : 'modul', key),
+        hg: an ? '#17558f' : '#ffffff',
+        fg: an ? '#ffffff' : '#55636f',
+        rand: an ? '#17558f' : '#b6c0cb',
+        schalten: function () { self.listeSchalten(istPhasen ? 'phasen' : 'module', key); }
+      };
+    });
+
+    var querListe = istPhasen ? MODULE.map(function (m, i) { return i; }) : vp;
+    var querChips = querListe.map(function (key) {
+      var an = (istPhasen ? st.module : st.phasen).indexOf(key) !== -1;
+      return {
+        label: istPhasen ? MODULE[key] : PHASEN[key],
+        zahl: self.chipZahl(istPhasen ? 'modul' : 'phase', key),
+        hg: an ? '#17558f' : '#ffffff',
+        fg: an ? '#ffffff' : '#55636f',
+        rand: an ? '#17558f' : '#b6c0cb',
+        schalten: function () { self.listeSchalten(istPhasen ? 'module' : 'phasen', key); }
+      };
+    });
+
+    var querAnzahl = istPhasen ? st.module.length : st.phasen.length;
+    var d = this.detail();
+    var wahlMeta = d ? KAT[d.kat] : null;
+
+    return {
+      ansichten: [{ key: 'phasen', label: 'Nach Phasen' }, { key: 'module', label: 'Nach Modulen' }].map(function (a) {
+        var an = st.ansicht === a.key;
+        return { label: a.label, hg: an ? '#17558f' : 'transparent', fg: an ? '#ffffff' : '#55636f', waehlen: function () { self.setzen('ansicht', a.key); } };
+      }),
+      vorgehen: [{ key: 'klassisch', label: 'Klassisch' }, { key: 'agil', label: 'Agil' }].map(function (v) {
+        var an = st.vorgehen === v.key;
+        return { label: v.label, hg: an ? '#17558f' : 'transparent', fg: an ? '#ffffff' : '#55636f', waehlen: function () { self.setState({ vorgehen: v.key, phasen: [] }); } };
+      }),
+      istPhasen: istPhasen,
+      istModule: !istPhasen,
+      achseLabel: istPhasen ? 'Phasen' : 'Module',
+      achseChips: achseChips,
+      querChips: querChips,
+      querLabel: (istPhasen ? 'Module' : 'Phasen') + ': ' + (querAnzahl ? querAnzahl + ' gewählt' : 'alle'),
+      querTitel: istPhasen ? 'Auf Module einschränken' : 'Auf Phasen einschränken',
+      querHinweis: istPhasen
+        ? 'Zusätzlich zur Phasenauswahl: nur die Aufgaben und Ergebnisse dieser Module zeigen.'
+        : 'Zusätzlich zur Modulauswahl: nur die Aufgaben und Ergebnisse dieser Phasen zeigen.',
+      querHg: st.pop === 'quer' || querAnzahl ? '#e2ecf7' : '#ffffff',
+      querRand: st.pop === 'quer' || querAnzahl ? '#17558f' : '#b6c0cb',
+      etwasGewaehlt: st.phasen.length > 0 || st.module.length > 0,
+      allesZuruecksetzen: function () { self.setState({ phasen: [], module: [], pop: null }); },
+
+      szenarien: SZENARIEN.map(function (s) {
+        var an = s.m.length === st.module.length && s.m.every(function (x) { return st.module.indexOf(x) !== -1; });
+        return {
+          label: s.n, zahl: s.m.length,
+          hg: an ? '#e2ecf7' : '#ffffff', fg: '#16202b', rand: an ? '#17558f' : '#d3dae2',
+          waehlen: function () { self.setState({ module: s.m.slice(), pop: null }); }
+        };
+      }),
+      szenLabel: 'Szenario',
+      szenHg: st.pop === 'szenario' ? '#e2ecf7' : '#ffffff',
+      szenRand: st.pop === 'szenario' ? '#17558f' : '#b6c0cb',
+
+      status: (st.module.length ? (st.module.length === 1 ? 'Modul ' + MODULE[st.module[0]] : st.module.length + ' Module') : 'alle Module')
+        + ' · ' + (st.vorgehen === 'agil' ? 'agil' : 'klassisch')
+        + ', ' + (st.phasen.length ? (st.phasen.length === 1 ? 'Phase ' + PHASEN[st.phasen[0]] : st.phasen.length + ' Phasen') : 'alle Phasen')
+        + ' · ' + L.gezeigt.aufgabe + ' Aufgaben, ' + L.gezeigt.ergebnis + ' Ergebnisse, ' + L.gezeigt.rolle + ' Rollen'
+        + ' · ' + L.kanten.length + ' Verbindungen'
+        + (L.gekappt ? ' · Anzeige auf ' + SPALTEN_MAX + ' Elemente je Spalte begrenzt' : ''),
+
+      buehne: L.buehne,
+      titel: L.titel,
+      gruppen: L.gruppen,
+      kanten: L.kanten,
+      knoten: L.knoten.map(function (n) {
+        var m = KAT[n.kat];
+        var gewaehlt = st.wahl === n.id;
+        var streifen = [];
+        if (n.streifen) {
+          var px = n.w - 56;
+          var an = {};
+          n.streifen.forEach(function (i) { an[i] = true; });
+          PHASEN_KURZ.forEach(function (p, i) {
+            streifen.push({ x: px + i * 8, fuell: an[i] ? '#2a78d6' : '#eef1f5', strich: an[i] ? '#2a78d6' : '#d3dae2' });
+          });
+        }
+        return {
+          pos: 'translate(' + n.x.toFixed(1) + ',' + n.y.toFixed(1) + ')',
+          d: form(n.kat, n.w, n.h),
+          fuell: m.bg, strich: m.farbe, gestrichelt: '0',
+          staerke: gewaehlt ? 3 : 1.5,
+          glyph: m.glyph, glyphFuell: m.farbe,
+          glyphText: n.kat === 'ergebnis' ? '#3a2a00' : '#ffffff',
+          echt: true, mitte: 15, textX: 36, anker: 'start', textFarbe: m.fg,
+          label: n.label,
+          typSymbol: n.typ >= 0 ? TYP_SYMBOL[n.typ] : '',
+          typX: 36 + textBreite(n.label) + 5,
+          streifen: streifen,
+          waehlen: function () { self.setzen('wahl', n.id); }
+        };
+      }),
+
+      rail: ['aufgabe', 'ergebnis', 'rolle'].map(function (key) {
+        var m = KAT[key];
+        var an = !!st.typen[key];
+        return {
+          glyph: m.glyph, zahl: L.zahlen[key], d: form(key, 29, 18),
+          fuell: an ? m.bg : '#ffffff',
+          strich: an ? m.farbe : '#b6c0cb',
+          glyphFuell: an ? m.farbe : '#b6c0cb',
+          glyphText: an && key === 'ergebnis' ? '#3a2a00' : '#ffffff',
+          hg: an ? '#eef1f5' : 'transparent',
+          deckung: an ? 1 : 0.62,
+          zahlFarbe: an ? m.fg : '#55636f',
+          gedrueckt: an ? 'true' : 'false',
+          titel: m.label + ' · ' + L.zahlen[key] + ' — ' + (an ? 'ausblenden' : 'einblenden'),
+          schalten: function () { self.objektSchalten('typen', key); }
+        };
+      }),
+      railRel: RELATIONEN.map(function (r) {
+        var an = !!st.rels[r.key];
+        return {
+          label: r.label, farbe: an ? r.farbe : '#b6c0cb', staerke: r.staerke, strich: r.strich,
+          hg: an ? '#eef1f5' : 'transparent', deckung: an ? 1 : 0.5,
+          gedrueckt: an ? 'true' : 'false',
+          titel: r.label + ' — ' + (an ? 'ausblenden' : 'einblenden'),
+          schalten: function () { self.objektSchalten('rels', r.key); }
+        };
+      }),
+
+      darstellung: [
+        { feld: 'phasenstreifen', label: 'Phasenstreifen im Knoten (I K R E U A)' },
+        { feld: 'isoliert', label: 'Ergebnisse ohne erzeugende Aufgabe ausblenden' },
+        { feld: 'nurMinimal', label: 'Nur minimal geforderte Dokumente' },
+        { feld: 'nurEntscheide', label: 'Nur Entscheidungsaufgaben' }
+      ].map(function (o) {
+        var an = !!st[o.feld];
+        return { label: o.label, haken: an ? '✓' : '', hg: an ? '#17558f' : '#ffffff', rand: an ? '#17558f' : '#b6c0cb', schalten: function () { self.setzen(o.feld, !an); } };
+      }),
+
+      legendeKat: ['rolle', 'aufgabe', 'ergebnis'].map(function (key) {
+        var m = KAT[key];
+        return {
+          label: m.sing, glyph: m.glyph, d: form(key, 29, 18), fuell: m.bg, strich: m.farbe,
+          glyphFuell: m.farbe, glyphText: key === 'ergebnis' ? '#3a2a00' : '#ffffff'
+        };
+      }),
+      legendeTyp: TYPEN.map(function (t, i) { return { label: t, symbol: TYP_SYMBOL[i] }; }),
+
+      istQuer: st.pop === 'quer',
+      istSzenario: st.pop === 'szenario',
+      istDarstellung: st.pop === 'darstellung',
+      istLegende: st.pop === 'legende',
+      popQuer: function () { self.setzen('pop', st.pop === 'quer' ? null : 'quer'); },
+      popSzenario: function () { self.setzen('pop', st.pop === 'szenario' ? null : 'szenario'); },
+      popDarstellung: function () { self.setzen('pop', st.pop === 'darstellung' ? null : 'darstellung'); },
+      popLegende: function () { self.setzen('pop', st.pop === 'legende' ? null : 'legende'); },
+      popZu: function () { self.setzen('pop', null); },
+      darHg: st.pop === 'darstellung' ? '#e2ecf7' : '#ffffff',
+      darRand: st.pop === 'darstellung' ? '#17558f' : '#b6c0cb',
+      legHg: st.pop === 'legende' ? '#e2ecf7' : '#ffffff',
+      legRand: st.pop === 'legende' ? '#17558f' : '#b6c0cb',
+
+      wahlKat: d ? wahlMeta.sing : 'Nichts gewählt',
+      wahlBg: d ? wahlMeta.bg : '#e3e8ee',
+      wahlFg: d ? wahlMeta.fg : '#384652',
+      wahlName: d ? d.name : 'Auf einen Knoten tippen',
+      wahlText: d ? d.text : 'Definition, Fakten und alle Verbindungen des gewählten Elements erscheinen hier.',
+      wahlFakten: d ? d.fakten : []
+    };
+  }
+}
+</script>
+</body>
+</html>

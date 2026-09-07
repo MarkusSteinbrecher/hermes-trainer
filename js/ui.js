@@ -60,6 +60,85 @@
     if (kinder && kinder.nodeType) { el.appendChild(kinder); }
   }
 
+  /* Inline-SVG-Symbol aus Pfaden (keine externen Abhängigkeiten). */
+  function symbol(pfade, groesse) {
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', String(groesse || 20));
+    svg.setAttribute('height', String(groesse || 20));
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '1.7');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    (pfade || []).forEach(function (d) {
+      var pf = document.createElementNS(NS, 'path');
+      pf.setAttribute('d', d);
+      svg.appendChild(pf);
+    });
+    return svg;
+  }
+
+  /* Icons der HERMES-Methodenelemente — dieselbe Strichführung wie die
+     Navigation (24er-Raster, Kontur, keine Fläche). Jede Kategorie hat eine
+     eigene Silhouette, damit sie auch ohne Farbe und ohne Beschriftung
+     unterscheidbar bleibt: Rolle Person, Aufgabe Zahnrad, Ergebnis Dokument,
+     Phase Fahne, Szenario Weg, Modul Baustein-Stapel, Grundbegriff Idee. */
+  var KAT_PFADE = {
+    phase: [
+      'M6.2 3.2v17.6',
+      'M6.2 4.8h11.6l-2.4 3.8 2.4 3.8H6.2'
+    ],
+    szenario: [
+      'M4.4 19.6h3.2a4 4 0 0 0 4-4V8.6a4 4 0 0 1 4-4h4',
+      'M17.2 2.2 19.6 4.6 17.2 7'
+    ],
+    modul: [
+      'M12 3.2 20.4 8 12 12.8 3.6 8 12 3.2Z',
+      'M3.6 12 12 16.8 20.4 12',
+      'M3.6 16 12 20.8 20.4 16'
+    ],
+    aufgabe: [
+      'M12 6.6a5.4 5.4 0 1 0 0 10.8 5.4 5.4 0 0 0 0-10.8Z',
+      'M12 3.5v3.1', 'M12 17.4v3.1',
+      'M5.1 7.8 7.8 9.3', 'M16.2 14.7l2.7 1.5',
+      'M5.1 16.2 7.8 14.7', 'M16.2 9.3l2.7-1.5'
+    ],
+    ergebnis: [
+      'M13.6 3.4H7.2a2 2 0 0 0-2 2v13.2a2 2 0 0 0 2 2h9.6a2 2 0 0 0 2-2V8.6l-5.2-5.2Z',
+      'M13.4 3.6v5.2h5.2'
+    ],
+    /* Meilenstein ist kein eigenes Methodenelement, sondern ein Ergebnistyp —
+       im Graph aber so wichtig (Quality Gate), dass er ein eigenes Zeichen hat. */
+    meilenstein: [
+      'M12 3.2 20.8 12 12 20.8 3.2 12Z'
+    ],
+    rolle: [
+      'M12 4.6a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6Z',
+      'M5.2 19.8a6.8 6.8 0 0 1 13.6 0'
+    ],
+    grundbegriff: [
+      'M8.3 14.6a5.6 5.6 0 1 1 7.4 0c-.8.7-1.3 1.5-1.3 2.4H9.6c0-.9-.5-1.7-1.3-2.4Z',
+      'M9.6 19.4h4.8',
+      'M10.8 21.6h2.4'
+    ]
+  };
+
+  /** Pfade des Kategorie-Icons; unbekannte Kategorien fallen auf Grundbegriff. */
+  function katPfade(kategorie) {
+    return KAT_PFADE[kategorie] || KAT_PFADE.grundbegriff;
+  }
+
+  /** Fertiges Kategorie-Icon; die Strichfarbe erbt es vom umgebenden Element. */
+  function katSymbol(kategorie, groesse) {
+    var svg = symbol(katPfade(kategorie), groesse || 16);
+    svg.setAttribute('class', 'kat-ikone kat-ikone--' + (kategorie || 'grundbegriff'));
+    return svg;
+  }
+
   function leeren(el) {
     while (el && el.firstChild) { el.removeChild(el.firstChild); }
     return el;
@@ -211,10 +290,10 @@
 
   function badge(kategorie) {
     var meta = HT.daten && HT.daten.kategorieMeta ? HT.daten.kategorieMeta(kategorie) : null;
-    return h('span', {
-      class: 'badge badge--' + (kategorie || 'grundbegriff'),
-      text: meta ? meta.singular : (kategorie || 'Begriff')
-    });
+    return h('span', { class: 'badge badge--' + (kategorie || 'grundbegriff') }, [
+      katSymbol(kategorie, 13),
+      h('span', { text: meta ? meta.singular : (kategorie || 'Begriff') })
+    ]);
   }
 
   function leerZustand(titel, text, aktion) {
@@ -366,6 +445,9 @@
 
   HT.ui = {
     h: h,
+    symbol: symbol,
+    katSymbol: katSymbol,
+    katPfade: katPfade,
     bloecke: bloecke,
     eintragLink: eintragLink,
     handbuchVerweis: handbuchVerweis,

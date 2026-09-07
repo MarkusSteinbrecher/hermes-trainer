@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
+    a { color: #17558f; text-decoration: none; }
+    a:hover { color: #103f6c; }
+    .kopf { font-size: 11.8px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #55636f; margin: 0; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 3px 10px; border: 1px solid #b6c0cb; border-radius: 999px; background: #ffffff; color: #55636f; font-size: 12.6px; font-weight: 600; }
+    .chip--an { border-color: #17558f; background: #17558f; color: #ffffff; }
+    .chip .z { font-weight: 500; opacity: .75; font-variant-numeric: tabular-nums; }
+  </style>
+</helmet>
+
+<div style="width: 900px; height: 880px; box-sizing: border-box; padding: 28px 32px; background: #ffffff; color: #16202b; display: flex; flex-direction: column; gap: 22px;">
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <h1 style="margin: 0; font-size: 24px; letter-spacing: -.015em;">Auswahl statt Seitenleiste</h1>
+    <p style="margin: 0; font-size: 14.4px; color: #55636f; max-width: 66ch; text-wrap: pretty;">Der Graph enthält nur noch drei Elemente: <b style="color: #16202b;">Rolle</b>, <b style="color: #16202b;">Aufgabe</b>, <b style="color: #16202b;">Ergebnis</b>. Phasen und Module sind keine Knoten mehr, sondern die Auswahl. Damit fällt die ganze linke Seitenleiste weg — es bleiben eine Zeile Auswahl und drei Icons.</p>
+  </div>
+
+  <!-- Was der Graph zeigt -->
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <p class="kopf">Was der Graph zeigt</p>
+    <div style="display: flex; align-items: center; gap: 0; padding: 18px 20px; border: 1px solid #d3dae2; border-radius: 12px; background: #f8f9fb;">
+      <svg width="800" height="72" viewBox="0 0 800 72">
+        <path d="M170 30C210 30,210 30,250 30" fill="none" stroke="#a8266a" stroke-width="2.2"></path>
+        <path d="M170 42C210 42,210 46,250 46" fill="none" stroke="#a8266a" stroke-width="1.1" stroke-dasharray="5 4" opacity="0.75"></path>
+        <path d="M470 36C510 36,510 36,550 36" fill="none" stroke="#d9541a" stroke-width="1.6"></path>
+        <text x="210" y="16" text-anchor="middle" style="font: 600 11px -apple-system, sans-serif;" fill="#6f1546">verantwortlich</text>
+        <text x="210" y="63" text-anchor="middle" style="font: 600 11px -apple-system, sans-serif;" fill="#6f1546">beteiligt</text>
+        <text x="510" y="24" text-anchor="middle" style="font: 600 11px -apple-system, sans-serif;" fill="#8a3208">erzeugt</text>
+
+        <g transform="translate(10,21)">
+          <path d="M15 0H145A15 15 0 0 1 145 30H15A15 15 0 0 1 15 0Z" fill="#f6dbe8" stroke="#a8266a" stroke-width="1.5"></path>
+          <circle cx="20" cy="15" r="8" fill="#a8266a"></circle>
+          <text x="20" y="15" text-anchor="middle" dominant-baseline="central" style="font: 800 9.5px -apple-system, sans-serif;" fill="#ffffff">R</text>
+          <text x="36" y="15" dominant-baseline="central" style="font: 600 12px -apple-system, sans-serif;" fill="#6f1546">Anwendervertreter</text>
+        </g>
+        <g transform="translate(250,21)">
+          <path d="M7 0H220L213 30H0Z" fill="#fbe3d6" stroke="#d9541a" stroke-width="1.5"></path>
+          <circle cx="20" cy="15" r="8" fill="#d9541a"></circle>
+          <text x="20" y="15" text-anchor="middle" dominant-baseline="central" style="font: 800 9.5px -apple-system, sans-serif;" fill="#ffffff">A</text>
+          <text x="36" y="15" dominant-baseline="central" style="font: 600 12px -apple-system, sans-serif;" fill="#8a3208">Ausschreibung erarbeiten</text>
+        </g>
+        <g transform="translate(550,21)">
+          <path d="M0 0H232L240 8V30H0Z" fill="#fbeecb" stroke="#e2a000" stroke-width="1.5"></path>
+          <circle cx="20" cy="15" r="8" fill="#e2a000"></circle>
+          <text x="20" y="15" text-anchor="middle" dominant-baseline="central" style="font: 800 9.5px -apple-system, sans-serif;" fill="#3a2a00">E</text>
+          <text x="36" y="15" dominant-baseline="central" style="font: 600 12px -apple-system, sans-serif;" fill="#7a5300">Ausschreibungsunterlagen</text>
+          <text x="196" y="15" dominant-baseline="central" style="font: 600 11px -apple-system, sans-serif;" fill="#7a5300">▤</text>
+        </g>
+      </svg>
+    </div>
+    <p style="margin: 0; font-size: 12.6px; color: #55636f;">Ein echtes Beispiel aus dem Modul Beschaffung. Jede Verbindung steht so in der Dokumentation.</p>
+  </div>
+
+  <!-- Ansicht -->
+  <div style="display: flex; gap: 28px; align-items: flex-start;">
+    <div style="display: flex; flex-direction: column; gap: 10px; width: 330px;">
+      <p class="kopf">Ansicht — gruppiert die Aufgabenspalte</p>
+      <div style="display: inline-flex; border: 1px solid #b6c0cb; border-radius: 8px; overflow: hidden; width: fit-content;">
+        <span style="display: grid; place-items: center; min-height: 34px; padding: 4px 15px; border-right: 1px solid #d3dae2; background: #17558f; color: #ffffff; font-size: 13.6px; font-weight: 650;">Nach Phasen</span>
+        <span style="display: grid; place-items: center; min-height: 34px; padding: 4px 15px; color: #55636f; font-size: 13.6px; font-weight: 650;">Nach Modulen</span>
+      </div>
+      <p style="margin: 0; font-size: 12.8px; color: #55636f; text-wrap: pretty;">Beides zeigt denselben Graphen — nur die Zwischenüberschriften in der Aufgabenspalte wechseln zwischen Phase und Modul.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto;">
+      <p class="kopf">Das jeweils andere Kriterium bleibt als Filter</p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span style="display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 3px 10px; border: 1px solid #b6c0cb; border-radius: 8px; font-size: 12.6px; font-weight: 600;">Module: alle <span style="color: #55636f;">▾</span></span>
+        <span style="display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 3px 10px; border: 1px solid #17558f; border-radius: 8px; background: #e2ecf7; color: #17558f; font-size: 12.6px; font-weight: 600;">Module: 3 gewählt <span>▾</span></span>
+      </div>
+      <p style="margin: 0; font-size: 12.8px; color: #55636f; text-wrap: pretty;">In der Phasenansicht schränkt man zusätzlich auf Module ein — und umgekehrt. Beide Auswahlen wirken zusammen.</p>
+    </div>
+  </div>
+
+  <!-- Auswahlzeilen -->
+  <div style="display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <p class="kopf">Phasen · klassisch</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+        <span class="chip">Initialisierung <span class="z">13</span></span>
+        <span class="chip chip--an">Konzept <span class="z">33</span></span>
+        <span class="chip">Realisierung <span class="z">25</span></span>
+        <span class="chip">Einführung <span class="z">23</span></span>
+        <span class="chip">Abschluss <span class="z">9</span></span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <p class="kopf">Phasen · agil</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+        <span class="chip">Initialisierung <span class="z">13</span></span>
+        <span class="chip">Umsetzung <span class="z">57</span></span>
+        <span class="chip">Abschluss <span class="z">9</span></span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <p class="kopf">Module — mit Szenario als Vorwahl</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 5px; align-items: center;">
+        <span style="display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 3px 10px; border: 1px solid #b6c0cb; border-radius: 8px; font-size: 12.6px; font-weight: 600;">Szenario <span style="color: #55636f;">▾</span></span>
+        <span class="chip">Projektsteuerung <span class="z">8</span></span>
+        <span class="chip">Projektführung <span class="z">12</span></span>
+        <span class="chip">Projektgrundlagen <span class="z">6</span></span>
+        <span class="chip chip--an">Beschaffung <span class="z">6</span></span>
+        <span class="chip">Organisation <span class="z">5</span></span>
+        <span class="chip">Produkt <span class="z">7</span></span>
+        <span class="chip">IT-System <span class="z">9</span></span>
+        <span class="chip">Tests <span class="z">4</span></span>
+        <span class="chip">Einführungsorganisation <span class="z">6</span></span>
+        <span class="chip">IT-Migration <span class="z">5</span></span>
+        <span class="chip">IT-Betrieb <span class="z">4</span></span>
+        <span class="chip">ISDS <span class="z">4</span></span>
+      </div>
+      <p style="margin: 0; font-size: 12.8px; color: #55636f;">Die Zahl ist die Anzahl Aufgaben — sie berücksichtigt die andere Auswahl, so sieht man vorher, was ein Klick bringt.</p>
+    </div>
+  </div>
+
+  <!-- Icon-Leiste -->
+  <div style="display: flex; gap: 28px; align-items: flex-start; margin-top: auto;">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <p class="kopf">Icon-Leiste auf der Fläche</p>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 5px; background: #ffffff; border: 1px solid #d3dae2; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); width: fit-content;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 48px; height: 44px; border-radius: 8px; background: #eef1f5;">
+          <svg width="30" height="19" viewBox="0 0 30 19"><path d="M7 0H29L22 18H0Z" fill="#fbe3d6" stroke="#d9541a" stroke-width="1.5"></path><circle cx="11" cy="9.5" r="5.6" fill="#d9541a"></circle><text x="11" y="9.5" text-anchor="middle" dominant-baseline="central" style="font: 800 7.5px -apple-system, sans-serif;" fill="#ffffff">A</text></svg>
+          <span style="font-size: 9.5px; font-weight: 700; color: #8a3208; line-height: 1;">6</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 48px; height: 44px; border-radius: 8px; background: #eef1f5;">
+          <svg width="30" height="19" viewBox="0 0 30 19"><path d="M0 0H21L29 8V18H0Z" fill="#fbeecb" stroke="#e2a000" stroke-width="1.5"></path><circle cx="9.5" cy="9.5" r="5.6" fill="#e2a000"></circle><text x="9.5" y="9.5" text-anchor="middle" dominant-baseline="central" style="font: 800 7.5px -apple-system, sans-serif;" fill="#3a2a00">E</text></svg>
+          <span style="font-size: 9.5px; font-weight: 700; color: #7a5300; line-height: 1;">11</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 48px; height: 44px; border-radius: 8px; opacity: .62;">
+          <svg width="30" height="19" viewBox="0 0 30 19"><path d="M9 0H20A9 9 0 0 1 20 18H9A9 9 0 0 1 9 0Z" fill="#ffffff" stroke="#b6c0cb" stroke-width="1.5"></path><circle cx="11" cy="9.5" r="5.6" fill="#b6c0cb"></circle><text x="11" y="9.5" text-anchor="middle" dominant-baseline="central" style="font: 800 7.5px -apple-system, sans-serif;" fill="#ffffff">R</text></svg>
+          <span style="font-size: 9.5px; font-weight: 700; color: #55636f; line-height: 1;">8</span>
+        </div>
+        <div style="height: 1px; background: #d3dae2; margin: 5px 6px;"></div>
+        <div style="display: grid; place-items: center; width: 48px; height: 26px; border-radius: 8px; background: #eef1f5;"><svg width="30" height="10" viewBox="0 0 30 10"><path d="M0 5H30" stroke="#a8266a" stroke-width="2.2"></path></svg></div>
+        <div style="display: grid; place-items: center; width: 48px; height: 26px; border-radius: 8px; background: #eef1f5;"><svg width="30" height="10" viewBox="0 0 30 10"><path d="M0 5H30" stroke="#a8266a" stroke-width="1.1" stroke-dasharray="5 4"></path></svg></div>
+        <div style="display: grid; place-items: center; width: 48px; height: 26px; border-radius: 8px; background: #eef1f5;"><svg width="30" height="10" viewBox="0 0 30 10"><path d="M0 5H30" stroke="#d9541a" stroke-width="1.6"></path></svg></div>
+        <div style="display: grid; place-items: center; width: 48px; height: 26px; border-radius: 8px; opacity: .5;"><svg width="30" height="10" viewBox="0 0 30 10"><path d="M0 5H30" stroke="#b6c0cb" stroke-width="1.4" stroke-dasharray="1.5 3"></path></svg></div>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; flex: 1 1 auto; padding-top: 26px;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <strong style="font-size: 13.4px;">Drei Icons statt sieben</strong>
+        <span style="font-size: 12.8px; color: #55636f;">Aufgaben, Ergebnisse, Rollen — Form, Farbe und Buchstabe wie am Knoten. Die Zahl ist die Anzahl in der aktuellen Auswahl.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <strong style="font-size: 13.4px;">Vier Linien darunter</strong>
+        <span style="font-size: 12.8px; color: #55636f;">Verantwortlich, beteiligt, erzeugt und — voreingestellt aus — «Rolle verantwortet Ergebnis».</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <strong style="font-size: 13.4px;">Ausgeblendet bleibt zählbar</strong>
+        <span style="font-size: 12.8px; color: #55636f;">Grauer Umriss, Zahl bleibt stehen: man sieht, was gerade fehlt.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <strong style="font-size: 13.4px;">Die Leiste ist die Legende</strong>
+        <span style="font-size: 12.8px; color: #55636f;">Weil die Icons dieselben Zeichen tragen wie der Graph, braucht es nur noch eine kurze Legende für die Ergebnistypen.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":900,"height":880}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

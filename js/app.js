@@ -7,9 +7,9 @@
   var HT = global.HT = global.HT || {};
   var h = HT.ui.h;
 
-  var SVG_NS = 'http://www.w3.org/2000/svg';
-
   var ROUTEN = [
+    { name: 'graph',      label: 'Graph',      kurz: 'Graph',    pfade: ['M12 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M5 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M19 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M12 8v3', 'M12 11 6.5 16', 'M12 11l5.5 5'] },
+    { name: 'ueberblick', label: 'Überblick',  kurz: 'Überblick', pfade: ['M3.5 4.5h17v15h-17Z', 'M3.5 9h17', 'M9 9v10.5', 'M14.5 9v10.5'] },
     { name: 'methode',    label: 'Methode',    kurz: 'Methode',  pfade: ['M4 5h6v6H4Z', 'M14 5h6v6h-6Z', 'M4 15h6v4H4Z', 'M14 15h6v4h-6Z'] },
     { name: 'lexikon',    label: 'Lexikon',    kurz: 'Lexikon',  pfade: ['M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M4 17.5h15'] },
     { name: 'lernkarten', label: 'Lernkarten', kurz: 'Karten',   pfade: ['M8 3h10a2 2 0 0 1 2 2v9', 'M5 7h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z'] },
@@ -17,31 +17,9 @@
     { name: 'ueber',      label: 'Über',       kurz: 'Über',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.8h.01'] }
   ];
 
-  var STARTROUTE = 'methode';
+  var STARTROUTE = 'graph';
   var ALIASE = { uebersicht: 'methode' };   // alte Links bleiben gültig
   var ersterAufruf = true;
-
-  /* --- Inline-SVG-Symbole (keine externen Abhängigkeiten) ----------------- */
-
-  function symbol(pfade) {
-    var svg = document.createElementNS(SVG_NS, 'svg');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('width', '20');
-    svg.setAttribute('height', '20');
-    svg.setAttribute('fill', 'none');
-    svg.setAttribute('stroke', 'currentColor');
-    svg.setAttribute('stroke-width', '1.7');
-    svg.setAttribute('stroke-linecap', 'round');
-    svg.setAttribute('stroke-linejoin', 'round');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.setAttribute('focusable', 'false');
-    pfade.forEach(function (d) {
-      var p = document.createElementNS(SVG_NS, 'path');
-      p.setAttribute('d', d);
-      svg.appendChild(p);
-    });
-    return svg;
-  }
 
   /* --- Navigation --------------------------------------------------------- */
 
@@ -62,7 +40,7 @@
           href: '#/' + r.name,
           dataset: { route: r.name }
         }, [
-          h('span', { class: 'nav-icon' }, symbol(r.pfade)),
+          h('span', { class: 'nav-icon' }, HT.ui.symbol(r.pfade)),
           h('span', { class: 'nav-label', text: r.kurz })
         ])));
       }
@@ -131,6 +109,7 @@
 
     HT.ui.leeren(behaelter);
     behaelter.setAttribute('aria-busy', 'false');
+    document.body.dataset.route = route.name;
 
     try {
       view.render(behaelter, route.params);
@@ -142,8 +121,12 @@
       if (global.console && global.console.error) { global.console.error(fehler); }
     }
 
-    document.title = view.titel + ' · HERMES-Trainer';
-    navMarkieren(route.name);
+    /* Seiten, die je Parameter eine eigene Seite sind (Feld der Abbildung),
+       stellen den Titel als Funktion bereit; `nav` sagt, welcher Menüpunkt
+       dazu gehört. */
+    var titel = typeof view.titel === 'function' ? view.titel(route.params) : view.titel;
+    document.title = titel + ' · HERMES-Trainer';
+    navMarkieren(view.nav || route.name);
 
     if (!ersterAufruf && !route.params.id) {
       var haupt = document.getElementById('hauptinhalt');

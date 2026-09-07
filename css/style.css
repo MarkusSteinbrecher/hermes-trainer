@@ -356,6 +356,7 @@ main:focus { outline: none; }
   color: var(--akzent-auf);
 }
 .chip__zahl { font-weight: 500; opacity: .8; font-variant-numeric: tabular-nums; }
+.chip svg { width: 15px; height: 15px; flex: 0 0 auto; margin-inline-start: -.1rem; }
 
 /* Auf schmalen Screens einzeilig scrollbar, damit der Lerninhalt oben bleibt. */
 .chips--streifen {
@@ -400,8 +401,10 @@ main:focus { outline: none; }
 
 /* --- Badges --------------------------------------------------------------- */
 .badge {
-  display: inline-block;
-  padding: .12rem .5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .12rem .5rem .12rem .4rem;
   border-radius: 999px;
   font-size: .74rem;
   font-weight: 700;
@@ -417,6 +420,7 @@ main:focus { outline: none; }
 .badge--ergebnis { background: var(--kat-ergebnis-bg); color: var(--kat-ergebnis-fg); }
 .badge--rolle { background: var(--kat-rolle-bg); color: var(--kat-rolle-fg); }
 .badge--grundbegriff { background: var(--kat-grundbegriff-bg); color: var(--kat-grundbegriff-fg); }
+.badge svg { width: 13px; height: 13px; flex: 0 0 auto; stroke-width: 2.1; }
 
 /* --- Lexikon -------------------------------------------------------------- */
 .trefferzahl {
@@ -1111,7 +1115,25 @@ a.pm-phase:hover { filter: brightness(.97); }
   color: var(--text);
 }
 .kapitel-karte:hover { border-color: var(--akzent); box-shadow: var(--schatten-stark); }
+.kapitel-karte__kopf { display: flex; align-items: center; gap: .45rem; min-height: 26px; }
 .kapitel-karte__nr { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--akzent); }
+/* Das Icon trägt die Kategoriefarbe des Kapitels — dieselbe wie im Graph. */
+.kapitel-karte__ikone {
+  display: inline-grid;
+  place-items: center;
+  width: 26px; height: 26px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: var(--kat-grundbegriff-bg);
+  color: var(--kat-grundbegriff-fg);
+}
+.kapitel-karte__ikone--phase { background: var(--kat-phase-bg); color: var(--kat-phase-fg); }
+.kapitel-karte__ikone--szenario { background: var(--kat-szenario-bg); color: var(--kat-szenario-fg); }
+.kapitel-karte__ikone--modul { background: var(--kat-modul-bg); color: var(--kat-modul-fg); }
+.kapitel-karte__ikone--aufgabe { background: var(--kat-aufgabe-bg); color: var(--kat-aufgabe-fg); }
+.kapitel-karte__ikone--ergebnis { background: var(--kat-ergebnis-bg); color: var(--kat-ergebnis-fg); }
+.kapitel-karte__ikone--rolle { background: var(--kat-rolle-bg); color: var(--kat-rolle-fg); }
+.kapitel-karte__ikone svg { width: 18px; height: 18px; }
 .kapitel-karte__titel { font-size: 1.05rem; font-weight: 700; }
 .kapitel-karte__teaser { font-size: .88rem; color: var(--text-leise); }
 .kapitel-karte__meta { font-size: .78rem; color: var(--text-leise); margin-top: .2rem; }

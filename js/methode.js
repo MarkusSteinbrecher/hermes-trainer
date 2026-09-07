@@ -187,11 +187,17 @@
         class: 'kapitel-karte',
         href: '#/methode?kapitel=' + encodeURIComponent(k.id)
       }, [
-        h('span', { class: 'kapitel-karte__nr', text: 'Kapitel ' + k.nummer }),
+        h('span', { class: 'kapitel-karte__kopf' }, [
+          k.kategorie
+            ? h('span', { class: 'kapitel-karte__ikone kapitel-karte__ikone--' + k.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(k.kategorie, 18))
+            : null,
+          h('span', { class: 'kapitel-karte__nr', text: 'Kapitel ' + k.nummer })
+        ]),
         h('span', { class: 'kapitel-karte__titel', text: k.titel }),
         h('span', { class: 'kapitel-karte__teaser', text: k.teaser }),
         anzahl ? h('span', { class: 'kapitel-karte__meta', text: anzahl + ' ' + (meta ? meta.label : 'Einträge') + ' im Lexikon' }) : null
       ]));
+
     });
 
     behaelter.appendChild(h('section', { class: 'abschnitt' }, [
@@ -205,6 +211,7 @@
     behaelter.appendChild(h('section', { class: 'abschnitt hinweisbox' }, [
       h('span', { class: 'detail__label', text: 'Empfohlener Lernweg' }),
       h('ol', { class: 'lernweg' }, [
+        h('li', {}, ['Im ', h('a', { href: '#/graph', text: 'Graph' }), ' sehen, wer welche Aufgabe verantwortet und welches Ergebnis dabei entsteht — je Phase oder Modul.']),
         h('li', {}, ['Je Kapitel zuerst die ', h('b', { text: 'Kernaussagen' }), ' und Prüfungsfallen lesen.']),
         h('li', {}, ['Dann die ', h('b', { text: 'Zusammenfassung' }), ' — und bei Bedarf den vollständigen Handbuchtext.']),
         h('li', {}, ['Die Elemente im ', h('a', { href: '#/lexikon', text: 'Lexikon' }), ' nachschlagen (Kurz → Kernpunkte → Handbuch).']),
@@ -424,7 +431,10 @@
             h('summary', {}, [h('span', { class: 'stufe__nr', text: 'Lexikon' }), ' ' + (km ? km.label : 'Elemente') + ' (' + HT.daten.eintraegeDerKategorie(meta.kategorie).length + ')']),
             h('div', { class: 'stufe__inhalt' }, [
               liste,
-              h('a', { class: 'btn btn--klein', href: '#/lexikon?kat=' + encodeURIComponent(meta.kategorie), text: 'Alle im Lexikon öffnen' })
+              h('div', { class: 'btn-reihe' }, [
+                h('a', { class: 'btn btn--klein', href: '#/lexikon?kat=' + encodeURIComponent(meta.kategorie), text: 'Alle im Lexikon öffnen' }),
+                h('a', { class: 'btn btn--klein', href: graphZiel(meta.kategorie), text: 'Im Graph erkunden' })
+              ])
             ])
           ]));
         }
@@ -465,6 +475,15 @@
         }
       }, 0);
     });
+  }
+
+  /* Der Graph zeigt Aufgaben, Ergebnisse und Rollen; Phasen, Module und
+     Szenarien setzen dort den Umfang statt eigener Knoten. */
+  function graphZiel(kategorie) {
+    if (kategorie === 'phase') { return '#/graph?ansicht=phasen'; }
+    if (kategorie === 'modul' || kategorie === 'szenario') { return '#/graph?ansicht=module'; }
+    if (HT.graph && HT.graph.KAT[kategorie]) { return '#/graph?kat=' + encodeURIComponent(kategorie); }
+    return '#/graph';
   }
 
   function render(behaelter, params) {

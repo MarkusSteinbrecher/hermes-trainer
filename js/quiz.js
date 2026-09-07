@@ -460,8 +460,11 @@
     function katChip(key, label) {
       var btn = h('button', {
         type: 'button', class: 'chip', 'aria-pressed': 'false',
-        dataset: { kat: key }, text: label
-      });
+        dataset: { kat: key }
+      }, [
+        key ? HT.ui.katSymbol(key, 15) : null,
+        h('span', { text: label })
+      ]);
       btn.addEventListener('click', function () {
         if (key === '') {
           konfig.filter = [];

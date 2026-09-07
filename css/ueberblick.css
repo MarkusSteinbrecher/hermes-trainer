@@ -1,0 +1,244 @@
+/* ==========================================================================
+   HERMES-Trainer — Methodenüberblick
+   Die Originalabbildung des Referenzhandbuchs (SVG aus assets/abb/) wird
+   unverändert gezeigt; darüber liegt eine unsichtbare Trefferschicht, die
+   beim Zeigen und beim Rollenfilter sichtbar wird.
+   Die Grafik ist eine gedruckte Abbildung: sie behält in beiden Farbschemata
+   ihren hellen Grund, sonst wäre die schwarze Beschriftung unlesbar.
+   ========================================================================== */
+
+:root {
+  --ub-plate: #ffffff;
+  --ub-marke: #12508f;          /* Zeigen / verantwortlich */
+  --ub-marke-schwach: #6f9fd0;  /* beteiligt */
+}
+
+/* Das Diagramm ist 1059 px breit; auf grossen Schirmen darf die Ansicht
+   dafür breiter werden, die Textblöcke bleiben schmal. */
+@media (min-width: 70rem) {
+  body[data-route="ueberblick"] .view { max-width: 74rem; }
+}
+
+/* --- Kopf und Leiste ------------------------------------------------------ */
+
+.kopf--knapp { margin-bottom: .6rem; }
+
+.ub-leiste {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem .5rem;
+  margin: 0 0 .6rem;
+}
+
+.ub-select {
+  min-height: 36px;
+  max-width: 15rem;
+  padding: .3rem .5rem;
+  font: inherit;
+  font-size: .85rem;
+  color: var(--text);
+  background: var(--flaeche);
+  border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
+}
+
+.ub-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: .1rem;
+  background: var(--flaeche);
+  border: 1px solid var(--rand);
+  border-radius: 999px;
+  padding: .1rem;
+}
+.ub-zoom__knopf {
+  min-width: 30px;
+  min-height: 30px;
+  display: grid;
+  place-items: center;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.ub-zoom__knopf:hover { background: var(--flaeche-2); }
+.ub-zoom__wert {
+  min-width: 3.4rem;
+  text-align: center;
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-leise);
+}
+
+.ub-hinweis-wrap:empty { display: none; }
+.ub-rollenhinweis { margin: 0 0 .5rem; font-size: .85rem; color: var(--text-leise); }
+.ub-rollenhinweis__marke {
+  display: inline-block;
+  width: .7rem;
+  height: .7rem;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+.ub-rollenhinweis__marke.ist-verantwortlich { background: var(--ub-marke); }
+.ub-rollenhinweis__marke.ist-beteiligt {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--ub-marke-schwach);
+}
+
+/* --- Bühne mit der Abbildung --------------------------------------------- */
+
+.ub-buehne {
+  --ub-zoom: 1;
+  position: relative;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 0 .5rem;
+  padding: .5rem;
+  background: var(--ub-plate);
+  border: 1px solid var(--rand);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten);
+}
+.ub-buehne .ladehinweis { margin: 0; padding: 3rem 0; text-align: center; color: #55636f; }
+.ub-buehne .leer { color: #16202b; }
+
+.ub-abb {
+  display: block;
+  width: calc(var(--ub-breite, 1059) * 1px * var(--ub-zoom));
+  height: auto;
+  max-width: none;
+}
+
+.ub-bildunterschrift {
+  margin: 0 0 1rem;
+  font-size: .82rem;
+  color: var(--text-leise);
+}
+
+/* --- Trefferschicht ------------------------------------------------------- */
+
+/* Unsichtbar, aber klickbar: fill mit Deckkraft 0 fängt Zeigen und Klick,
+   fill:none täte das nicht. */
+.ub-feld {
+  fill: #ffffff;
+  fill-opacity: 0;
+  stroke: none;
+  transition: fill-opacity .08s linear;
+}
+.ub-feld-link { cursor: pointer; }
+.ub-feld-link:hover .ub-feld,
+.ub-feld-link:focus .ub-feld {
+  fill: var(--ub-marke);
+  fill-opacity: .18;
+  stroke: var(--ub-marke);
+  stroke-width: 1.5;
+}
+.ub-feld-link:focus { outline: none; }
+.ub-feld-link:focus-visible .ub-feld { stroke-width: 2.5; }
+
+/* Rollenfilter: verantwortlich kräftig, beteiligt umrandet, der Rest blasst ab. */
+.ub-feld--verantwortlich {
+  fill: var(--ub-marke);
+  fill-opacity: .3;
+  stroke: var(--ub-marke);
+  stroke-width: 1.5;
+}
+.ub-feld--beteiligt {
+  fill-opacity: 0;
+  stroke: var(--ub-marke-schwach);
+  stroke-width: 1.5;
+}
+.ub-feld--ohne,
+.ub-feld--blass { fill: var(--ub-plate); fill-opacity: .68; }
+.ub-feld--ohne.ub-feld--blass { fill-opacity: .8; }
+
+/* --- Schwebefenster ------------------------------------------------------- */
+
+.ub-fenster {
+  position: absolute;
+  z-index: 10;
+  width: min(22rem, calc(100vw - 2.5rem));
+  padding: .6rem .75rem;
+  background: var(--flaeche);
+  border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
+  box-shadow: var(--schatten-stark);
+  font-size: .8rem;
+  color: var(--text);
+  pointer-events: none;
+}
+.ub-fenster[hidden] { display: none; }
+.ub-fenster__kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem; margin-bottom: .3rem; }
+.ub-fenster__titel { font-size: .9rem; }
+.ub-fenster__typ {
+  padding: .05rem .4rem;
+  border-radius: 999px;
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--akzent-auf);
+  background: var(--text-leise);
+}
+.ub-fenster__typ[data-typ="Dokument"] { background: #8a5f00; color: #fff; }
+.ub-fenster__typ[data-typ="Zustand"] { background: #0f6b5c; color: #fff; }
+.ub-fenster__typ[data-typ="Checkliste"] { background: #5b4771; color: #fff; }
+.ub-fenster__typ[data-typ="Meilenstein"] { background: #1c5fa8; color: #fff; }
+.ub-fenster__typ[data-typ="modul"] { background: var(--kat-modul-fg); color: var(--kat-modul-bg); }
+.ub-fenster__typ[data-typ="phase"] { background: var(--kat-phase-fg); color: var(--kat-phase-bg); }
+.ub-fenster__text { margin: 0 0 .35rem; }
+.ub-fenster__marker { margin: 0 0 .35rem; font-size: .7rem; font-weight: 600; color: var(--akzent); }
+.ub-fenster__zeile { margin: 0 0 .2rem; color: var(--text-leise); }
+.ub-fenster__zeile.ist-verantwortlich { color: var(--text); font-weight: 600; }
+.ub-fenster__label { color: var(--text-leise); font-weight: 600; }
+.ub-fenster__label::after { content: ": "; }
+.ub-fenster__sammel { margin: .35rem 0 0; font-size: .72rem; color: var(--text-leise); }
+.ub-fenster__tipp { margin: .4rem 0 0; font-size: .7rem; color: var(--text-leise); }
+
+/* --- Anschluss ------------------------------------------------------------ */
+
+.ub-weiter { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; }
+
+/* --- Detailseite ---------------------------------------------------------- */
+
+.ub-zurueck { margin: 0 0 .7rem; font-size: .88rem; }
+.ub-zurueck--fuss { margin: 1.2rem 0 0; }
+.ub-detail__titelzeile { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.ub-detail__titelzeile h1 { margin: 0; }
+
+.ub-abschnitt { margin: 1.2rem 0 0; }
+.ub-abschnitt h2 { font-size: 1.05rem; margin: 0 0 .3rem; }
+.ub-abschnitt__text { margin: 0 0 .6rem; font-size: .88rem; color: var(--text-leise); }
+
+.ub-pos { display: grid; gap: 2px; overflow-x: auto; }
+.ub-pos__zeile {
+  display: grid;
+  grid-template-columns: minmax(7rem, 12rem) repeat(var(--ub-pos-spalten), minmax(5.5rem, 11rem));
+  gap: 2px;
+  align-items: stretch;
+  justify-content: start;
+}
+.ub-pos__ecke { display: block; }
+.ub-pos__modul, .ub-pos__phase { padding: .3rem .45rem; font-size: .74rem; font-weight: 600; }
+.ub-pos__modul { background: var(--kat-modul-bg); color: var(--kat-modul-fg); border-radius: var(--radius-s); }
+.ub-pos__phase { background: var(--kat-phase-bg); color: var(--kat-phase-fg); border-radius: var(--radius-s); }
+.ub-pos__feld {
+  display: grid;
+  place-items: center;
+  padding: .3rem;
+  background: var(--kat-ergebnis-bg);
+  color: var(--kat-ergebnis-fg);
+  border-radius: var(--radius-s);
+  font-size: .7rem;
+}
+
+/* --- Druck ---------------------------------------------------------------- */
+
+@media print {
+  .ub-leiste, .ub-fenster, .ub-weiter { display: none !important; }
+  .ub-buehne { overflow: visible; box-shadow: none; border: 0; padding: 0; }
+  .ub-abb { width: 100%; }
+}

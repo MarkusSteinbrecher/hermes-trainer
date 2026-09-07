@@ -1,0 +1,38 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 900, "title": "Graph nach Modulen / nach Phasen", "is_interactive": true },
+    { "file": "Leiste.dc.html", "x": 1560, "y": 0, "w": 900, "h": 880, "title": "Auswahl und Icon-Leiste" },
+    { "file": "Mobil.dc.html", "x": 2560, "y": 0, "w": 390, "h": 844, "title": "Schmal · 390 px" }
+  ],
+  "annotations": [
+    {
+      "id": "brief",
+      "x": 0,
+      "y": -330,
+      "w": 900,
+      "text": "Der Graph zeigt nur noch drei Elemente\n\nAufgaben, Ergebnisse und Rollen sind die Knoten — Phasen, Module und Szenarien sind keine Knoten mehr, sondern die Auswahl. Zwei Ansichten: nach Phasen oder nach Modulen; das jeweils andere Kriterium bleibt als zusätzlicher Filter. Damit fällt die linke Seitenleiste ganz weg: es bleiben eine Zeile Auswahl, drei Icons auf der Fläche und zwei Popover.\n\nOffen und noch zu entscheiden: Was passiert mit der bisherigen Fokus-Ansicht (ein Element in der Mitte) und mit der Phasenmatrix (die Tabelle mit den Meilensteinen)? Beide sind im neuen Modell nicht mehr vorgesehen."
+    },
+    {
+      "id": "note-main",
+      "x": 0,
+      "y": -160,
+      "w": 900,
+      "text": "Klickbar, mit den echten Daten aus data/ — alle 71 Aufgaben, 110 Ergebnisse, 16 Rollen. Ansicht wechseln, Phasen oder Module wählen, Icons schalten: der Graph rechnet wirklich. Voreingestellt ist das Modul Beschaffung. Die Aufgabenspalte trägt Zwischentitel nach der gewählten Achse; die Ergebnisse stehen in der Reihenfolge ihrer erzeugenden Aufgabe."
+    },
+    {
+      "id": "note-leiste",
+      "x": 1560,
+      "y": -160,
+      "w": 900,
+      "text": "Wie die Auswahl aufgebaut ist: Ansicht, Phasenchips (klassisch/agil), Modulchips mit Szenario als Vorwahl, das Gegenkriterium als Filterknopf — und die Icon-Leiste mit drei Typen und vier Linien."
+    },
+    {
+      "id": "note-mobil",
+      "x": 2560,
+      "y": -160,
+      "w": 390,
+      "text": "Schmal: Rollen ausgeblendet, damit zwei Spalten Platz haben — genau wofür die Icons da sind. Statisches Bild."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

@@ -24,7 +24,7 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-03';
+  var DATEN_VERSION = '2026-09-04b';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
@@ -120,7 +120,7 @@
   }
 
   /* Abkürzungen, nach denen ein Punkt keinen Satz beendet. */
-  var ABK = /(?:z\. ?B|bzw|ggf|u\. ?a|vgl|inkl|d\. ?h|evtl|usw|resp|bzgl|Nr|Kap|S)\.$/;
+  var ABK = /(?:z\. ?B|\(?z|bzw|ggf|u\. ?a|\(?u|vgl|inkl|d\. ?h|\(?d|evtl|usw|resp|bzgl|Nr|Kap|S)\.$/;
 
   /** Erster Satz eines Textes — die Kurzfassung für die erste Stufe. */
   function ersterSatz(text) {

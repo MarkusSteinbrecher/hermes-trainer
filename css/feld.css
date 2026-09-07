@@ -1,0 +1,61 @@
+/* HERMES-Trainer — Ansicht «Feld» (eine Phase in einem Modul).
+   Baut auf den Grundklassen aus style.css auf (.eintrag, .chip, .fakten,
+   .badge) und ergänzt nur, was diese Seite eigenes hat. */
+
+/* --- Kopf und Einordnung -------------------------------------------------- */
+
+.feld-zurueck { margin: 0 0 .7rem; font-size: .88rem; }
+.feld-badges { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-bottom: .45rem; }
+a.badge { text-decoration: none; }
+a.badge:hover { filter: brightness(.96); }
+
+.feld-abschnitt { margin: 1.2rem 0 0; }
+.feld-abschnitt h2 { font-size: 1.05rem; margin: 0 0 .3rem; }
+.feld-abschnitt__text { margin: 0 0 .6rem; font-size: .88rem; color: var(--text-leise); }
+
+.feld-weiter { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0 0; }
+
+/* --- Marken und Einträge -------------------------------------------------- */
+
+.feld-marke {
+  display: inline-flex;
+  align-items: center;
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  background: var(--flaeche-2);
+  border: 1px solid var(--rand);
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--text-leise);
+  white-space: nowrap;
+}
+.feld-marke--entscheid { background: var(--kat-aufgabe-bg); color: var(--kat-aufgabe-fg); border-color: transparent; }
+.feld-marke--modul { background: var(--kat-modul-bg); color: var(--kat-modul-fg); border-color: transparent; }
+.feld-marke--min { background: var(--akzent-schwach); color: var(--akzent-hover); border-color: transparent; }
+.feld-marke--leise { background: transparent; font-weight: 500; }
+.feld-marke--typ { color: #fff; border-color: transparent; }
+.feld-marke--typ[data-typ="Dokument"] { background: #8a5f00; }
+.feld-marke--typ[data-typ="Zustand"] { background: #0f6b5c; }
+.feld-marke--typ[data-typ="Checkliste"] { background: #5b4771; }
+.feld-marke--typ[data-typ="Meilenstein"] { background: #1c5fa8; }
+
+.feld-einordnung { list-style: none; margin: 0 0 .4rem; padding: 0; display: grid; gap: .35rem; font-size: .88rem; }
+.feld-einordnung li { color: var(--text-leise); }
+
+.feld-e { padding: .7rem .8rem; }
+.feld-e__kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem; margin: 0 0 .3rem; }
+.feld-e__titel { font-weight: 700; }
+.feld-e__text { margin: 0 0 .4rem; font-size: .9rem; }
+.feld-e__zeile { margin: 0 0 .15rem; font-size: .85rem; color: var(--text-leise); }
+.feld-e__zeile:last-child { margin-bottom: 0; }
+.feld-e__label { font-weight: 600; color: var(--text-leise); }
+.feld-e__label::after { content: ": "; }
+
+.feld-abschnitt .chips { margin-bottom: .6rem; }
+.feld-abschnitt .chip { text-decoration: none; }
+.feld-abschnitt .chip[aria-current="page"] {
+  background: var(--akzent);
+  border-color: var(--akzent);
+  color: var(--akzent-auf);
+  cursor: default;
+}

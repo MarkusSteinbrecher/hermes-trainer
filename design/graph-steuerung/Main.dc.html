@@ -1,0 +1,857 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
+    a { color: #17558f; text-decoration: none; }
+    a:hover { color: #103f6c; }
+    button { font-family: inherit; }
+    .tbbtn:hover { background: #eef1f5; }
+    .railbtn:hover { background: #eef1f5; }
+    .segbtn:hover { background: #eef1f5; }
+    .chip:hover { border-color: #17558f; }
+    .gk { cursor: pointer; }
+    .gk:hover .gkform { stroke-width: 2.5; }
+    .gkante { fill: none; stroke-linecap: round; }
+    .gtext { font: 700 11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; letter-spacing: .05em; text-transform: uppercase; }
+    .ggruppe { font: 700 10.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; letter-spacing: .04em; text-transform: uppercase; fill: #55636f; }
+    .gklabel { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; dominant-baseline: central; pointer-events: none; }
+    .gkglyph { font: 800 9.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; dominant-baseline: central; pointer-events: none; }
+    .gktyp { font: 600 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; dominant-baseline: central; pointer-events: none; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; display: flex; flex-direction: column; background: #f4f6f8; color: #16202b; overflow: hidden;">
+
+  <!-- Kopfzeile der Website -->
+  <div style="flex: 0 0 auto; background: #ffffff; border-bottom: 1px solid #d3dae2;">
+    <div style="max-width: 992px; margin: 0 auto; padding: 8px 16px; display: flex; align-items: center; gap: 16px; min-height: 52px; box-sizing: border-box;">
+      <div style="display: flex; align-items: center; gap: 9px; font-weight: 700; letter-spacing: -.015em;">
+        <span style="display: grid; place-items: center; width: 28px; height: 28px; border-radius: 7px; background: #17558f; color: #ffffff; font-size: 15px; font-weight: 800;">H</span>
+        <span style="font-size: 16px;">HERMES-Trainer</span>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 2px; font-size: 14.9px; font-weight: 600;">
+        <span style="padding: 9px 11px; border-radius: 8px; background: #e2ecf7; color: #17558f;">Graph</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Methode</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Lexikon</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Lernkarten</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Quiz</span>
+        <span style="padding: 9px 11px; border-radius: 8px; color: #55636f;">Über</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex: 1 1 auto; display: flex; min-height: 0;">
+    <div style="flex: 1 1 auto; display: flex; flex-direction: column; min-width: 0; position: relative;">
+
+      <!-- Werkzeugleiste -->
+      <div style="flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #ffffff; border-bottom: 1px solid #d3dae2;">
+        <div style="display: inline-flex; border: 1px solid #b6c0cb; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <sc-for list="{{ansichten}}" as="a" hint-placeholder-count="2">
+            <button type="button" class="segbtn" onClick="{{a.waehlen}}" style="min-height: 34px; padding: 4px 15px; border: 0; border-right: 1px solid #d3dae2; background: {{a.hg}}; color: {{a.fg}}; font-size: 13.6px; font-weight: 650; cursor: pointer;">{{a.label}}</button>
+          </sc-for>
+        </div>
+
+        <div style="position: relative; width: 228px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#55636f" stroke-width="2" style="position: absolute; left: 10px; top: 10px;"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+          <div style="min-height: 36px; box-sizing: border-box; padding: 8px 10px 8px 32px; border: 1px solid #b6c0cb; border-radius: 8px; background: #ffffff; color: #55636f; font-size: 14.7px;">Element suchen …</div>
+        </div>
+
+        <p style="margin: 0; flex: 1 1 auto; min-width: 0; font-size: 12.8px; color: #55636f; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{status}}</p>
+
+        <button type="button" class="tbbtn" onClick="{{popDarstellung}}" title="Darstellung" style="display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid {{darRand}}; border-radius: 8px; background: {{darHg}}; color: #16202b; cursor: pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2.4"></circle><circle cx="10" cy="17" r="2.4"></circle></svg>
+        </button>
+        <button type="button" class="tbbtn" onClick="{{popLegende}}" title="Legende" style="display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid {{legRand}}; border-radius: 8px; background: {{legHg}}; color: #16202b; cursor: pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5.5"></path><path d="M12 7.6v.1"></path></svg>
+        </button>
+
+        <div style="display: inline-flex; border: 1px solid #b6c0cb; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <div style="display: grid; place-items: center; min-width: 34px; height: 34px; border-right: 1px solid #d3dae2; font-size: 17px; font-weight: 700;">−</div>
+          <div style="display: grid; place-items: center; min-width: 34px; height: 34px; border-right: 1px solid #d3dae2; font-size: 17px; font-weight: 700;">+</div>
+          <div style="display: grid; place-items: center; padding: 0 10px; height: 34px; font-size: 12.8px; font-weight: 650;">Einpassen</div>
+        </div>
+      </div>
+
+      <!-- Auswahlleiste: welche Phasen bzw. Module -->
+      <div style="flex: 0 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; padding: 8px 12px; background: #ffffff; border-bottom: 1px solid #d3dae2;">
+        <span style="font-size: 11.8px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: #55636f;">{{achseLabel}}</span>
+
+        <sc-if value="{{istPhasen}}" hint-placeholder-val="{{true}}">
+          <div style="display: inline-flex; border: 1px solid #b6c0cb; border-radius: 8px; overflow: hidden; background: #ffffff;">
+            <sc-for list="{{vorgehen}}" as="v" hint-placeholder-count="2">
+              <button type="button" class="segbtn" onClick="{{v.waehlen}}" style="min-height: 30px; padding: 3px 11px; border: 0; border-right: 1px solid #d3dae2; background: {{v.hg}}; color: {{v.fg}}; font-size: 12.6px; font-weight: 650; cursor: pointer;">{{v.label}}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{istModule}}" hint-placeholder-val="{{true}}">
+          <button type="button" class="tbbtn" onClick="{{popSzenario}}" style="display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 3px 10px; border: 1px solid {{szenRand}}; border-radius: 8px; background: {{szenHg}}; color: #16202b; font-size: 12.6px; font-weight: 600; cursor: pointer;">
+            {{szenLabel}}
+            <span style="color: #55636f;">▾</span>
+          </button>
+        </sc-if>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 5px; flex: 1 1 auto;">
+          <sc-for list="{{achseChips}}" as="c" hint-placeholder-count="6">
+            <button type="button" class="chip" onClick="{{c.schalten}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 3px 10px; border: 1px solid {{c.rand}}; border-radius: 999px; background: {{c.hg}}; color: {{c.fg}}; font-size: 12.6px; font-weight: 600; cursor: pointer;">
+              {{c.label}}
+              <span style="font-weight: 500; opacity: .75; font-variant-numeric: tabular-nums;">{{c.zahl}}</span>
+            </button>
+          </sc-for>
+        </div>
+
+        <button type="button" class="tbbtn" onClick="{{popQuer}}" style="display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 3px 10px; border: 1px solid {{querRand}}; border-radius: 8px; background: {{querHg}}; color: #16202b; font-size: 12.6px; font-weight: 600; cursor: pointer;">
+          {{querLabel}}
+          <span style="color: #55636f;">▾</span>
+        </button>
+
+        <sc-if value="{{etwasGewaehlt}}" hint-placeholder-val="{{true}}">
+          <button type="button" onClick="{{allesZuruecksetzen}}" style="border: 0; background: transparent; color: #17558f; font-size: 12.6px; font-weight: 600; cursor: pointer; padding: 4px 6px;">Zurücksetzen</button>
+        </sc-if>
+      </div>
+
+      <!-- Graphfläche -->
+      <div style="flex: 1 1 auto; position: relative; min-height: 0; background-color: #f8f9fb; background-image: radial-gradient(#e4e8ee 1px, transparent 1px); background-size: 22px 22px; overflow: hidden;">
+
+        <svg viewBox="0 0 1056 700" preserveAspectRatio="xMidYMid meet" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;">
+          <g transform="{{buehne}}">
+            <sc-for list="{{kanten}}" as="e" hint-placeholder-count="8">
+              <path class="gkante" d="{{e.d}}" stroke="{{e.farbe}}" stroke-width="{{e.staerke}}" stroke-dasharray="{{e.strich}}" opacity="{{e.deckung}}"></path>
+            </sc-for>
+            <sc-for list="{{titel}}" as="t" hint-placeholder-count="3">
+              <text class="gtext" x="{{t.x}}" y="{{t.y}}" fill="{{t.farbe}}">{{t.text}}</text>
+            </sc-for>
+            <sc-for list="{{gruppen}}" as="g" hint-placeholder-count="3">
+              <g>
+                <text class="ggruppe" x="{{g.x}}" y="{{g.y}}">{{g.text}}</text>
+                <path d="{{g.linie}}" stroke="#d3dae2" stroke-width="1"></path>
+              </g>
+            </sc-for>
+            <sc-for list="{{knoten}}" as="n" hint-placeholder-count="10">
+              <g class="gk" transform="{{n.pos}}" onClick="{{n.waehlen}}">
+                <path class="gkform" d="{{n.d}}" fill="{{n.fuell}}" stroke="{{n.strich}}" stroke-width="{{n.staerke}}" stroke-dasharray="{{n.gestrichelt}}"></path>
+                <sc-if value="{{n.echt}}" hint-placeholder-val="{{true}}">
+                  <circle cx="20" cy="15" r="8" fill="{{n.glyphFuell}}"></circle>
+                  <text class="gkglyph" x="20" y="15" text-anchor="middle" fill="{{n.glyphText}}">{{n.glyph}}</text>
+                </sc-if>
+                <text class="gklabel" x="{{n.textX}}" y="{{n.mitte}}" text-anchor="{{n.anker}}" fill="{{n.textFarbe}}">{{n.label}}</text>
+                <sc-if value="{{n.typSymbol}}" hint-placeholder-val="{{true}}">
+                  <text class="gktyp" x="{{n.typX}}" y="15" fill="#7a5300">{{n.typSymbol}}</text>
+                </sc-if>
+                <sc-for list="{{n.streifen}}" as="s" hint-placeholder-count="6">
+                  <rect x="{{s.x}}" y="11" width="6" height="8" rx="1.5" fill="{{s.fuell}}" stroke="{{s.strich}}" stroke-width="0.6"></rect>
+                </sc-for>
+              </g>
+            </sc-for>
+          </g>
+        </svg>
+
+        <!-- Icon-Leiste: Inhaltstypen und Verbindungen -->
+        <div style="position: absolute; left: 16px; top: 16px; display: flex; flex-direction: column; gap: 2px; padding: 5px; background: #ffffff; border: 1px solid #d3dae2; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08);">
+          <sc-for list="{{rail}}" as="r" hint-placeholder-count="3">
+            <button type="button" class="railbtn" onClick="{{r.schalten}}" title="{{r.titel}}" aria-pressed="{{r.gedrueckt}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 48px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: {{r.hg}}; opacity: {{r.deckung}}; cursor: pointer;">
+              <svg width="30" height="19" viewBox="0 0 30 19">
+                <path d="{{r.d}}" fill="{{r.fuell}}" stroke="{{r.strich}}" stroke-width="1.5"></path>
+                <circle cx="9.5" cy="9.5" r="5.6" fill="{{r.glyphFuell}}"></circle>
+                <text x="9.5" y="9.5" text-anchor="middle" dominant-baseline="central" style="font: 800 7.5px -apple-system, BlinkMacSystemFont, sans-serif;" fill="{{r.glyphText}}">{{r.glyph}}</text>
+              </svg>
+              <span style="font-size: 9.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: {{r.zahlFarbe}}; line-height: 1;">{{r.zahl}}</span>
+            </button>
+          </sc-for>
+
+          <div style="height: 1px; background: #d3dae2; margin: 5px 6px;"></div>
+
+          <sc-for list="{{railRel}}" as="r" hint-placeholder-count="4">
+            <button type="button" class="railbtn" onClick="{{r.schalten}}" title="{{r.titel}}" aria-pressed="{{r.gedrueckt}}" style="display: grid; place-items: center; width: 48px; height: 26px; padding: 0; border: 0; border-radius: 8px; background: {{r.hg}}; opacity: {{r.deckung}}; cursor: pointer;">
+              <svg width="30" height="10" viewBox="0 0 30 10">
+                <path d="M0 5H30" stroke="{{r.farbe}}" stroke-width="{{r.staerke}}" stroke-dasharray="{{r.strich}}"></path>
+              </svg>
+            </button>
+          </sc-for>
+        </div>
+
+        <!-- Popover: das jeweils andere Kriterium -->
+        <sc-if value="{{istQuer}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; right: 16px; top: 12px; width: 336px; max-height: 620px; overflow-y: auto; padding: 14px 16px 16px; background: #ffffff; border: 1px solid #b6c0cb; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); box-sizing: border-box;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-size: 15px;">{{querTitel}}</strong>
+              <button type="button" onClick="{{popZu}}" style="width: 28px; height: 28px; border: 1px solid #d3dae2; border-radius: 8px; background: #ffffff; color: #55636f; cursor: pointer;">✕</button>
+            </div>
+            <p style="margin: 0 0 10px; font-size: 12.5px; color: #55636f; text-wrap: pretty;">{{querHinweis}}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+              <sc-for list="{{querChips}}" as="c" hint-placeholder-count="8">
+                <button type="button" class="chip" onClick="{{c.schalten}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 3px 10px; border: 1px solid {{c.rand}}; border-radius: 999px; background: {{c.hg}}; color: {{c.fg}}; font-size: 12.6px; font-weight: 600; cursor: pointer;">
+                  {{c.label}}
+                  <span style="font-weight: 500; opacity: .75; font-variant-numeric: tabular-nums;">{{c.zahl}}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- Popover: Szenario wählt Module vor -->
+        <sc-if value="{{istSzenario}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; right: 16px; top: 12px; width: 336px; padding: 14px 16px 16px; background: #ffffff; border: 1px solid #b6c0cb; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); box-sizing: border-box;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-size: 15px;">Szenario</strong>
+              <button type="button" onClick="{{popZu}}" style="width: 28px; height: 28px; border: 1px solid #d3dae2; border-radius: 8px; background: #ffffff; color: #55636f; cursor: pointer;">✕</button>
+            </div>
+            <p style="margin: 0 0 10px; font-size: 12.5px; color: #55636f; text-wrap: pretty;">Wählt die Module des Szenarios aus. Danach lässt sich die Auswahl von Hand ergänzen.</p>
+            <div style="display: grid; gap: 5px;">
+              <sc-for list="{{szenarien}}" as="s" hint-placeholder-count="5">
+                <button type="button" class="chip" onClick="{{s.waehlen}}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 34px; padding: 5px 11px; border: 1px solid {{s.rand}}; border-radius: 8px; background: {{s.hg}}; color: {{s.fg}}; font-size: 13.2px; font-weight: 600; text-align: left; cursor: pointer;">
+                  {{s.label}}
+                  <span style="font-weight: 500; opacity: .75; font-variant-numeric: tabular-nums;">{{s.zahl}} Module</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- Popover: Darstellung -->
+        <sc-if value="{{istDarstellung}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; right: 16px; top: 12px; width: 320px; padding: 14px 16px 16px; background: #ffffff; border: 1px solid #b6c0cb; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); box-sizing: border-box;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-size: 15px;">Darstellung</strong>
+              <button type="button" onClick="{{popZu}}" style="width: 28px; height: 28px; border: 1px solid #d3dae2; border-radius: 8px; background: #ffffff; color: #55636f; cursor: pointer;">✕</button>
+            </div>
+            <div style="display: grid; gap: 3px;">
+              <sc-for list="{{darstellung}}" as="d" hint-placeholder-count="4">
+                <button type="button" onClick="{{d.schalten}}" style="display: flex; align-items: center; gap: 9px; min-height: 32px; padding: 2px 0; border: 0; background: transparent; color: #16202b; font-size: 13.6px; text-align: left; cursor: pointer;">
+                  <span style="display: grid; place-items: center; width: 18px; height: 18px; border: 1.5px solid {{d.rand}}; border-radius: 4px; background: {{d.hg}}; color: #ffffff; font-size: 12px; font-weight: 800; line-height: 1;">{{d.haken}}</span>
+                  {{d.label}}
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- Popover: Legende -->
+        <sc-if value="{{istLegende}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; right: 16px; top: 12px; width: 344px; padding: 14px 16px 16px; background: #ffffff; border: 1px solid #b6c0cb; border-radius: 12px; box-shadow: 0 2px 6px rgba(16,30,45,.10), 0 8px 24px rgba(16,30,45,.08); box-sizing: border-box;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <strong style="font-size: 15px;">Legende</strong>
+              <button type="button" onClick="{{popZu}}" style="width: 28px; height: 28px; border: 1px solid #d3dae2; border-radius: 8px; background: #ffffff; color: #55636f; cursor: pointer;">✕</button>
+            </div>
+            <p style="margin: 0 0 10px; font-size: 12.5px; color: #55636f; text-wrap: pretty;">Der Graph zeigt immer dieselben drei Elemente: <b>wer</b> (Rolle) tut <b>was</b> (Aufgabe) und was dabei <b>entsteht</b> (Ergebnis). Phasen und Module wählen nur aus.</p>
+            <div style="display: grid; gap: 5px; margin-bottom: 12px;">
+              <sc-for list="{{legendeKat}}" as="l" hint-placeholder-count="3">
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.2px;">
+                  <svg width="30" height="19" viewBox="0 0 30 19" style="flex: 0 0 auto;">
+                    <path d="{{l.d}}" fill="{{l.fuell}}" stroke="{{l.strich}}" stroke-width="1.5"></path>
+                    <circle cx="9.5" cy="9.5" r="5.6" fill="{{l.glyphFuell}}"></circle>
+                    <text x="9.5" y="9.5" text-anchor="middle" dominant-baseline="central" style="font: 800 7.5px -apple-system, BlinkMacSystemFont, sans-serif;" fill="{{l.glyphText}}">{{l.glyph}}</text>
+                  </svg>
+                  {{l.label}}
+                </div>
+              </sc-for>
+              <sc-for list="{{railRel}}" as="r" hint-placeholder-count="4">
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.2px;">
+                  <svg width="30" height="10" viewBox="0 0 30 10" style="flex: 0 0 auto;"><path d="M0 5H30" stroke="{{r.farbe}}" stroke-width="{{r.staerke}}" stroke-dasharray="{{r.strich}}"></path></svg>
+                  {{r.label}}
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; margin-bottom: 10px;">
+              <sc-for list="{{legendeTyp}}" as="t" hint-placeholder-count="4">
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13.2px;">
+                  <span style="width: 20px; text-align: center; color: #7a5300;">{{t.symbol}}</span>{{t.label}}
+                </div>
+              </sc-for>
+            </div>
+            <p style="margin: 0; font-size: 12.2px; color: #55636f; text-wrap: pretty;">Die sechs kleinen Kästchen am Knoten sind die Phasen I K R E U A. Jede Verbindung entspricht einem Querverweis in der offiziellen Dokumentation.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- Detailfeld -->
+    <div style="flex: 0 0 384px; background: #ffffff; border-left: 1px solid #d3dae2; display: flex; flex-direction: column; min-height: 0;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px 16px; border-bottom: 1px solid #d3dae2;">
+        <span style="font-size: 11.8px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #55636f;">Details</span>
+        <span style="display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #d3dae2; border-radius: 8px; color: #55636f;">✕</span>
+      </div>
+      <div style="flex: 1 1 auto; overflow-y: auto; padding: 14px 16px 20px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <span style="display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border: 1px solid #17558f; border-radius: 8px; background: #17558f; color: #ffffff; font-size: 13.6px; font-weight: 600;">◎ Nur dieses zeigen</span>
+          <span style="display: inline-flex; align-items: center; min-height: 36px; padding: 6px 12px; border: 1px solid #b6c0cb; border-radius: 8px; font-size: 13.6px; font-weight: 600;">Im Lexikon</span>
+        </div>
+        <span style="display: inline-block; padding: 3px 9px; border-radius: 999px; background: {{wahlBg}}; color: {{wahlFg}}; font-size: 12px; font-weight: 700;">{{wahlKat}}</span>
+        <h2 style="margin: 8px 0 6px; font-size: 21px; letter-spacing: -.01em; text-wrap: pretty;">{{wahlName}}</h2>
+        <p style="margin: 0 0 14px; font-size: 14.4px; line-height: 1.55; text-wrap: pretty;">{{wahlText}}</p>
+        <div style="display: grid; gap: 8px;">
+          <sc-for list="{{wahlFakten}}" as="f" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 10px; align-items: baseline;">
+              <span style="font-size: 11.6px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #55636f;">{{f.label}}</span>
+              <span style="font-size: 13.6px; text-wrap: pretty;">{{f.wert}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+var ROLLEN = [{"n":"Anwendervertreter","d":"Der Anwendervertreter vertritt im Projekt die Anwender und deren Interessen. Er verantwortet die mit den …","s":"Ausführung"},{"n":"Auftraggeber","d":"Der Auftraggeber ist verantwortlich für die Ergebnisse des Projekts und die Erreichung der gesetzten Ziele …","s":"Steuerung"},{"n":"Betriebsverantwortlicher","d":"Der Betriebsverantwortliche vertritt im Projekt die Partnergruppe Betreiber und ist für den Aufbau des …","s":"Ausführung"},{"n":"Business Analyst","d":"Der Business Analyst, oft auch Betriebsorganisator genannt, bildet die Schnittstelle zwischen den …","s":"Ausführung"},{"n":"Entwickler","d":"Die Rolle Entwickler ist umfassend und bezeichnet den Produktentwickler und den IT-Entwickler in einem. Der …","s":"Ausführung"},{"n":"Fachausschuss","d":"Der Fachausschuss ist eine Rollengruppe, die beim klassischen Vorgehen den Projektleiter durch die …","s":"Führung"},{"n":"ISDS-Verantwortlicher","d":"Der ISDS-Verantwortliche nimmt die Aspekte der Informationssicherheit und des Datenschutzes im Projekt wahr.","s":"Ausführung"},{"n":"IT-Architekt","d":"Der IT-Architekt entwirft die Lösungsarchitektur des zu erstellenden Systems. Er definiert die …","s":"Ausführung"},{"n":"Projektausschuss","d":"Der Projektausschuss ist eine Rollengruppe. Die Mitglieder des Projektausschusses unterstützen den …","s":"Steuerung"},{"n":"Projektleiter","d":"Der Projektleiter führt das Projekt im Auftrag des Auftraggebers. Er führt und koordiniert das Projekt …","s":"Führung"},{"n":"Projektunterstützung","d":"Die Projektunterstützung hilft dem Projektleiter in organisatorischen und administrativen Belangen. Die Rolle …","s":"Führung"},{"n":"Qualitäts- und Risikomanager","d":"Der Qualitäts- und Risikomanager unterstützt den Auftraggeber mit einer unabhängigen Beurteilung des …","s":"Steuerung"},{"n":"Teilprojektleiter","d":"Der Teilprojektleiter trägt die Verantwortung für das Teilprojekt im Auftrag des Projektleiters. Er verfügt …","s":"Führung"},{"n":"Tester","d":"Der Tester arbeitet bei der Erstellung der Testfallbeschreibungen mit, führt Tests durch und beurteilt und …","s":"Ausführung"},{"n":"Testverantwortlicher","d":"Der Testverantwortliche konzipiert, plant und koordiniert das Testen. Er stellt sicher, dass die …","s":"Ausführung"},{"n":"Umsetzungsorganisation","d":"Die Umsetzungsorganisation ist eine interdisziplinäre Rollengruppe, die ausschliesslich während der agilen …","s":"Ausführung"}];
+var MODULE = ["Projektsteuerung","Projektführung","Projektgrundlagen","Beschaffung","Organisation","Produkt","IT-System","Tests","Einführungsorganisation","IT-Migration","IT-Betrieb","ISDS"];
+var PHASEN = ["Initialisierung","Konzept","Realisierung","Einführung","Umsetzung","Abschluss"];
+var TYPEN = ["Dokument","Checkliste","Zustand","Meilenstein"];
+var SZENARIEN = [{"n":"Dienstleistung/Produkt Entwicklung","m":[0,1,4,5,8]},{"n":"Dienstleistung/Produkt Adaption","m":[0,1,3,4,5,8]},{"n":"IT-Entwicklung","m":[0,1,4,6,7,8,9,10,11]},{"n":"IT-Adaption","m":[0,1,3,4,6,7,8,9,10,11]},{"n":"Organisationsanpassung","m":[0,1,4,8]}];
+var AUFGABEN = [{"n":"Änderungen managen","d":"Das Änderungsmanagement stellt sicher, dass neu erkannte oder veränderte Anforderungen klassisch geführter …","m":[1],"p":[1,2,3,4],"v":[9],"b":[9,0,10,3],"e":[1,2,47,82]},{"n":"Altsystem ausser Betrieb setzen","d":"Nach der produktiven Einführung des neuen oder des weiterentwickelten Systems werden das Altsystem oder die …","m":[9],"p":[5],"v":[7],"b":[7,9,2,3],"e":[3]},{"n":"Angebote bewerten","d":"Die vorliegenden Angebote werden protokolliert und gemäss den Bewertungskriterien bewertet.","m":[3],"p":[1,4],"v":[0],"b":[0,9],"e":[5,38]},{"n":"Ausschreibung durchführen","d":"Die Ausschreibung wird nach einem bestimmten, transparenten Ablauf veröffentlicht.","m":[3],"p":[1,4],"v":[9],"b":[9,0,10,2,4],"e":[4,8]},{"n":"Ausschreibung erarbeiten","d":"Die Erarbeitung der Ausschreibungsunterlagen erlaubt eine formal korrekte Ausschreibung durchzuführen …","m":[3],"p":[1,4],"v":[0],"b":[0,9],"e":[8]},{"n":"Beschaffungsanalyse erarbeiten","d":"Mit der Erarbeitung der Beschaffungsanalyse werden alle beschaffungsrelevanten Informationen und Vorgaben …","m":[2],"p":[0],"v":[0],"b":[0,9],"e":[9]},{"n":"Betrieb aktivieren","d":"Die Aktivierung der neuen Betriebsorganisation gibt das System für die erste Nutzung und spätere Abnahme frei.","m":[10],"p":[3,4],"v":[2],"b":[2,4],"e":[10,11]},{"n":"Betrieb realisieren","d":"Die Betriebsinfrastruktur und -organisation werden auf Basis des Betriebskonzepts soweit realisiert, dass die …","m":[10],"p":[2,4],"v":[2],"b":[2],"e":[11,12,14]},{"n":"Betriebskonzept erarbeiten","d":"Die zukünftige Betriebsinfrastruktur und Betriebsorganisation werden beschrieben, und das Vorgehen für ihre …","m":[10],"p":[1,4],"v":[2],"b":[2,7,1,9,0],"e":[13,96]},{"n":"Durchführungsauftrag erarbeiten","d":"Mit der Erarbeitung des Durchführungsauftrags werden die Voraussetzungen dafür geschaffen, den Entscheid …","m":[1],"p":[0],"v":[9],"b":[9,0,10],"e":[34]},{"n":"Einführungskonzept erarbeiten","d":"Mit der Erarbeitung des Einführungskonzeptes werden alle relevanten Aspekte hinsichtlich der späteren …","m":[8],"p":[1,4],"v":[0],"b":[0,9,3],"e":[35,82]},{"n":"Einführungsmassnahmen durchführen","d":"Die Durchführung der realisierten und vorbereiteten Einführungsmassnahmen schafft eine der Grundlagen für die …","m":[8],"p":[3,4],"v":[0],"b":[0,9,3],"e":[36]},{"n":"Einführungsmassnahmen realisieren","d":"Auf der Grundlage des Einführungskonzeptes werden die Einführungsmassnahmen realisiert.","m":[8],"p":[2,4],"v":[0],"b":[0,9,3],"e":[37]},{"n":"Entscheid Abnahme Migration treffen","d":"Der Entscheid Abnahme Migration zeigt auf, dass die Migration erfolgreich war und bildet eine der …","m":[9],"p":[3,4],"v":[9],"b":[9,0,2,4,11,10],"e":[0,15,45,49]},{"n":"Entscheid Abnahme treffen","d":"Der Entscheid Abnahme beendet die Leistungserbringung im Rahmen der Lösungsentstehung und schafft die …","m":[8],"p":[3,4],"v":[9],"b":[9,0,2,4,11,10],"e":[0,16,45,50]},{"n":"Entscheid Ausschreibung treffen","d":"Der Entscheid Ausschreibung schafft die Voraussetzung für die Publikation.","m":[3],"p":[1,4],"v":[1],"b":[1,9,0,11,8],"e":[17,46,51]},{"n":"Entscheid Betriebsaufnahme treffen","d":"Der Entscheid Betriebsaufnahme bildet die Voraussetzung für die Aktivierung des Produkts oder des Systems …","m":[8],"p":[3,4],"v":[1],"b":[1,9,11,8],"e":[18,46,52]},{"n":"Entscheid Durchführungsfreigabe treffen","d":"Der Entscheid Durchführungsfreigabe setzt das Projekt mit der nächsten Phase fort und startet die …","m":[0],"p":[0],"v":[1],"b":[1,9,8,11,0],"e":[19,34,46,53]},{"n":"Entscheid ISDS-Konzept treffen","d":"Der Entscheid zum ISDS-Konzept bestätigt, dass alle ISDS relevanten Punkte erkannt und realisiert werden …","m":[11],"p":[1,4],"v":[9],"b":[9,10,11,0],"e":[20,45,54]},{"n":"Entscheid Lösungsarchitektur treffen","d":"Der Entscheid zur Lösungsarchitektur bildet die Voraussetzung für die Entwicklung oder Parametrisierung von …","m":[6],"p":[1,4],"v":[9],"b":[9,0,11,10],"e":[21,45,55]},{"n":"Entscheid Phasenfreigabe Abschluss treffen","d":"Der Entscheid Phasenfreigabe Abschluss schafft die Voraussetzung für die Arbeiten in der Phase Abschluss.","m":[0],"p":[3,4],"v":[1],"b":[1,9,11,8,0],"e":[22,46,56,91]},{"n":"Entscheid Phasenfreigabe treffen","d":"Der Entscheid Phasenfreigabe schafft im Rahmen der klassischen Vorgehensweise die Voraussetzung für die …","m":[0],"p":[1,2],"v":[1],"b":[1,9,11,8,0],"e":[23,46,57,91]},{"n":"Entscheid Produktkonzept treffen","d":"Der Entscheid Produktkonzept bildet die Voraussetzung für die Entwicklung oder Adaption von Produkten oder …","m":[5],"p":[1,4],"v":[9],"b":[9,10,11,0],"e":[24,45,58]},{"n":"Entscheid Projektabbruch treffen","d":"Mit dem Entscheid Projektabbruch wird die vorzeitige Beendigung eines Projektes beschlossen, noch bevor die …","m":[0],"p":[1,2,3,4],"v":[1],"b":[1,9,0,11],"e":[25,46,59,80,83]},{"n":"Entscheid Projektabschluss treffen","d":"Mit dem Entscheid Projektabschluss wird die Projektorganisation aufgelöst und das Projekt beendet.","m":[0],"p":[5],"v":[1],"b":[1,9,11,8],"e":[26,46,59,91]},{"n":"Entscheid Projektinitialisierungsfreigabe treffen","d":"Mit dem Entscheid Projektinitialisierungsfreigabe wird das Projekt ins Leben gerufen und es startet mit der …","m":[0],"p":[0],"v":[1],"b":[1,9],"e":[27,46,60,81]},{"n":"Entscheid Releasefreigabe treffen","d":"Der Entscheid Releasefreigabe schafft im Rahmen der agilen Vorgehensweise die Voraussetzung für die Arbeiten …","m":[0],"p":[4],"v":[1],"b":[1,11,9,8,0],"e":[28,46,61,91]},{"n":"Entscheid Vorabnahme treffen","d":"Die Vorabnahme schafft die Grundlage für die Durchführung der Einführungsmassnahmen sowie die anschliessende …","m":[8],"p":[2,4],"v":[9],"b":[9,0,10,11,2,4],"e":[0,29,45,62]},{"n":"Entscheid Weiteres Vorgehen treffen","d":"Der Entscheid Weiteres Vorgehen schafft Klarheit über die Wahl der Lösungsvariante, des Szenarios, der …","m":[2],"p":[0],"v":[9],"b":[9,0,10,11],"e":[30,45,63,100]},{"n":"Entscheid Zuschlag treffen","d":"Der Entscheid Zuschlag schafft die Voraussetzung für die Publikation des Zuschlags und die Erarbeitung des …","m":[3],"p":[1,4],"v":[1],"b":[1,9,0,11,8],"e":[31,46,64,90]},{"n":"Integrationskonzept erarbeiten","d":"Mit der Erarbeitung des Integrationskonzepts werden alle relevanten Aspekte hinsichtlich der späteren …","m":[6],"p":[1,4],"v":[7],"b":[7,2,3,4],"e":[41]},{"n":"ISDS-Konzept erarbeiten","d":"Das ISDS-Konzept schafft die Voraussetzungen dafür, dass die Anforderungen an die Informationssicherheit und …","m":[11],"p":[1,4],"v":[6],"b":[6,2,7],"e":[43]},{"n":"ISDS-Konzept realisieren","d":"Die im ISDS-Konzept definierten Schutzmassnahmen werden realisiert. Die realisierten Schutzmassnahmen sind …","m":[11],"p":[2,4],"v":[0],"b":[0,9,2,6,4,7],"e":[43,44]},{"n":"ISDS-Konzept überführen","d":"Das ISDS Konzept wird aktualisiert, geprüft und von der Projektorganisation in die Stammorganisation …","m":[11],"p":[3,4],"v":[6],"b":[6,1,9,0,2,7],"e":[42,43]},{"n":"Leistungen vereinbaren und steuern","d":"Mit der Leistungsvereinbarung entsteht eine klar geregelte Beziehung zwischen dem Projekt und den (internen …","m":[1],"p":[1,2,3,4],"v":[9],"b":[9,0,10,1],"e":[4,38,69,109]},{"n":"Lösungsanforderungen erarbeiten","d":"Alle relevanten Anforderungen an die Lösung, ihre Einführung, den Betrieb, die Nutzung usw. werden …","m":[5,6],"p":[1,4],"v":[0],"b":[0,3,7],"e":[47,97]},{"n":"Lösungsarchitektur erarbeiten","d":"Mit der Lösungsarchitektur wird die Grundlage für die Realisierung des Systems geschaffen.","m":[6],"p":[1,4],"v":[7],"b":[7,3,0,4,2],"e":[48,104]},{"n":"Migration durchführen","d":"Die Migration vom alten auf das neue System wird durchgeführt.","m":[9],"p":[3,4],"v":[4],"b":[4,2,3],"e":[66]},{"n":"Migrationskonzept erarbeiten","d":"Das Migrationskonzept schafft die Grundlage für die Überführung des alten in das neue System sowie für die …","m":[9],"p":[1,4],"v":[7],"b":[7,3,4],"e":[67]},{"n":"Migrationsverfahren realisieren","d":"Die Migrationsverfahren werden soweit realisiert, dass die Migration ins produktive System durchgeführt …","m":[9],"p":[2,4],"v":[4],"b":[4,2,3,7],"e":[33,68]},{"n":"Organisation aktivieren","d":"Mit der Aktivierung wird die neue Organisation in Kraft gesetzt. Die Mitarbeitenden arbeiten in ihren neuen …","m":[4],"p":[3,4],"v":[3],"b":[3,0],"e":[70]},{"n":"Organisation umsetzen","d":"Die Organisation wird vollständig realisiert. Die organisatorischen und personellen/stellenspezifischen …","m":[4],"p":[2,4],"v":[3],"b":[3,0],"e":[71,73,88]},{"n":"Organisationsanforderungen erarbeiten","d":"Alle relevanten Anforderungen an die Organisation werden erarbeitet.","m":[4],"p":[1,4],"v":[3],"b":[3,0],"e":[72,97]},{"n":"Organisationskonzept erarbeiten","d":"Im Organisationskonzept wird die neue Organisation beschrieben und das Vorgehen für ihre Realisierung …","m":[4],"p":[1,4],"v":[3],"b":[3,0],"e":[39,73,74,88]},{"n":"Phasenfreigabe vorbereiten","d":"Für die Phasenfreigabe werden die Ergebnisse für die Entscheidungsträger zusammengefasst und die nächste …","m":[1],"p":[1,2,3,4],"v":[9],"b":[9,10,0],"e":[75,82,84]},{"n":"Probleme behandeln und Erfahrungen nutzen","d":"Die stufengerechte Bearbeitung von Problemen hilft, die gesetzten Ziele zu erreichen. Mit der Nutzung der …","m":[1],"p":[1,2,3,4,5],"v":[9],"b":[9,1,0],"e":[80]},{"n":"Produkt aktivieren","d":"Die Produktaktivierung gibt das Produkt für die erste Nutzung und spätere Abnahme frei.","m":[5],"p":[3,4],"v":[4],"b":[4,0,3],"e":[76]},{"n":"Produkt realisieren","d":"Das Produkt wird entwickelt oder angepasst, sodass es die Lösungsanforderungen erfüllt und für die Vorabnahme …","m":[5],"p":[2,4],"v":[4],"b":[4,0,3],"e":[6,33,77,78]},{"n":"Produktkonzept erarbeiten","d":"Mit der Erarbeitung des Produktkonzepts wird die Grundlage für die Realisierung des Produkts geschaffen.","m":[5],"p":[1,4],"v":[0],"b":[0,3],"e":[79]},{"n":"Projekt führen und kontrollieren","d":"Während der gesamten Projektdauer werden die Projektbeteiligten koordiniert und geführt. Der Projektstand …","m":[1],"p":[0,1,2,3,4,5],"v":[9],"b":[9,0,10],"e":[7,33,47,82,84,85]},{"n":"Projekt steuern","d":"Während der gesamten Projektdauer wird das Projekt auf der Basis des Reportings und ggf. weiteren …","m":[0],"p":[0,1,2,3,4,5],"v":[1],"b":[1,11,9,8],"e":[46,91]},{"n":"Projektabschluss vorbereiten","d":"Im Rahmen der Vorbereitung des Projektabschlusses werden alle abschliessenden Aktivitäten und Massnahmen aus …","m":[1],"p":[5],"v":[9],"b":[9,10,1,0],"e":[80,83]},{"n":"Projektmanagementplan erarbeiten","d":"Mit der Erarbeitung des Projektmanagementplans werden auf der Basis der Planung und der Termine aus der …","m":[1],"p":[0],"v":[9],"b":[9,1],"e":[82]},{"n":"Prototyping durchführen","d":"Mit dem Prototyping können vereinfachte, jedoch weitestgehend funktionsfähige Lösungsansätze erstellt und …","m":[2,5,6],"p":[0,1,2,4],"v":[4],"b":[4,7,0],"e":[86,87]},{"n":"Qualitätssicherung führen","d":"Mit der Qualitätssicherung wird sichergestellt, dass die im Projektablauf erarbeiteten Ergebnisse die …","m":[1],"p":[1,2,3,4,5],"v":[9],"b":[9,0,10],"e":[82,89]},{"n":"Rechtsgrundlagenanalyse erarbeiten","d":"Mit der Analyse der Rechtsgrundlagen wird sichergestellt, dass die rechtlichen Voraussetzungen für das …","m":[2],"p":[0],"v":[9],"b":[9,10],"e":[92]},{"n":"Releaseabschluss vorbereiten","d":"Für den Abschluss eines Release werden im Rahmen der agilen Vorgehensweise die Ergebnisse zusammengefasst und …","m":[1],"p":[4],"v":[9],"b":[9,0,10],"e":[82,84,93]},{"n":"Risiken managen","d":"Mit dem Risikomanagement werden Risiken frühzeitig identifiziert und Massnahmen festgelegt, um den …","m":[1],"p":[1,2,3,4],"v":[9],"b":[9,10],"e":[82,84]},{"n":"Schutzbedarfsanalyse erarbeiten","d":"Mit der Schutzbedarfsanalyse werden die Anforderungen an die Informationssicherheit und den Datenschutz …","m":[2],"p":[0],"v":[6],"b":[6,9],"e":[95]},{"n":"Stakeholder managen und informieren","d":"Die Stakeholder werden identifiziert, kontaktiert, für das Projekt gewonnen, deren Grundinteressen analysiert …","m":[1],"p":[0,1,2,3,4,5],"v":[9],"b":[9,1,3,10,0],"e":[82,98,99]},{"n":"Stakeholderinteressen vertreten","d":"Bei der Lösungsentstehung spielen die Stakeholder eine zentrale Rolle, da sie die Anforderungen und die …","m":[4,5,6],"p":[1,2,3,4],"v":[0],"b":[0],"e":[98]},{"n":"Studie erarbeiten","d":"Mit der Studie werden u. a. die Ziele gesetzt, Grobanforderungen definiert sowie Lösungsvarianten erarbeitet …","m":[2],"p":[0],"v":[9],"b":[9,1,0,3,10,7],"e":[99,100]},{"n":"System aktivieren","d":"Die Systemaktivierung ist die Voraussetzung für die Aktivierung des Betriebs.","m":[6],"p":[3,4],"v":[4],"b":[4,2,0,3],"e":[101]},{"n":"System in Betrieb integrieren","d":"Die Integration des Systems in die Betriebsinfrastruktur schafft die Voraussetzungen für die Durchführung der …","m":[10],"p":[2,4],"v":[2],"b":[2,4],"e":[11,103]},{"n":"System realisieren","d":"Das System wird so weit entwickelt oder parametrisiert, dass es die Lösungsanforderungen erfüllt und für die …","m":[6],"p":[2,4],"v":[4],"b":[4,0,2,7,3],"e":[6,33,48,102,104]},{"n":"Systemintegration vorbereiten","d":"Die Systemintegration wird durch den Ersteller vorbereitet, damit der Betreiber das System in den Betrieb …","m":[6],"p":[2,4],"v":[4],"b":[4,3,7,2],"e":[33,40,48,94]},{"n":"Test durchführen","d":"Mit Tests wird die Erfüllung der an das System gestellten Anforderungen überprüft. Die Tests werden …","m":[7],"p":[2,3,4],"v":[14],"b":[14,13,0,2,3,4],"e":[107,108]},{"n":"Testinfrastruktur realisieren","d":"Die Testinfrastruktur wird vor Beginn der Tests bereitgestellt. Sie umfasst alle Elemente, die für die …","m":[7],"p":[2,4],"v":[2],"b":[2,0,3,14],"e":[105]},{"n":"Testinfrastruktur überführen","d":"Nach Projektabschluss werden im Rahmen der Nutzungs- und Wartungsphase für Korrekturen und für …","m":[7],"p":[5],"v":[14],"b":[14,9],"e":[85,106,107]},{"n":"Testkonzept erarbeiten","d":"Mit dem Testkonzept werden die Voraussetzungen für die systematische und effiziente Organisation und …","m":[7],"p":[1,4],"v":[14],"b":[14,13,0,2,3,4],"e":[107]},{"n":"Vereinbarung erarbeiten","d":"Auf der Grundlage der Ausschreibungsunterlagen samt Anhängen wie Vertragsentwurf, Allgemeine …","m":[3],"p":[1,4],"v":[9],"b":[9,1,0],"e":[109]}];
+var ERGEBNISSE = [{"n":"Abnahmeprotokoll","d":"Das Abnahmeprotokoll wird bei den Entscheiden Vorabnahme, Abnahme und Abnahme Migration erstellt. Es …","m":[8,9],"p":[2,3,4],"v":[9],"t":0,"k":1},{"n":"Änderungsantrag","d":"Der Änderungsantrag bei klassisch geführter Lösungsentstehung bildet die Grundlage für eine inhaltliche …","m":[1],"p":[1,2,3,4],"v":[9],"t":0,"k":1},{"n":"Änderungsstatusliste","d":"Die Änderungsstatusliste dient zur Aufzählung und Überwachung der Änderungen sowie der Dokumentation aller …","m":[1],"p":[1,2,3,4],"v":[9],"t":0,"k":1},{"n":"Altsystem entfernt","d":"Die alte Systemversion sowie das Altsystem sind unter Berücksichtigung der Vorgaben abgebaut bzw. entfernt …","m":[9],"p":[5],"v":[7],"t":2,"k":0},{"n":"Angebot","d":"Das Angebot spezifiziert die vom Ersteller/Betreiber angebotene Leistung oder das Produkt. Weiter umfasst das …","m":[1,3],"p":[1,2,3,4],"v":[9],"t":0,"k":1},{"n":"Angebotsprotokoll","d":"Bei öffentlichen Beschaffungen wird nach Ablauf der Eingabefrist ein Protokoll der Angebotsöffnung erstellt …","m":[3],"p":[1,4],"v":[0],"t":0,"k":0},{"n":"Anwendungshandbuch","d":"Das Anwendungshandbuch enthält alle Informationen, die der Anwender eines Produkts/Systems braucht, um es …","m":[5,6],"p":[2,4],"v":[4],"t":0,"k":0},{"n":"Arbeitsauftrag","d":"Der Arbeitsauftrag enthält alle relevanten Informationen zur Erledigung einer gestellten Aufgabe. Der …","m":[1],"p":[0,1,2,3,4,5],"v":[9],"t":0,"k":0},{"n":"Ausschreibungsunterlagen","d":"Die Ausschreibungsunterlagen umfassen alle Informationen, die im Rahmen einer Ausschreibung publiziert …","m":[3],"p":[1,4],"v":[0,9],"t":0,"k":1},{"n":"Beschaffungsanalyse","d":"Die Beschaffungsanalyse beschreibt u. a. den konkreten Handlungsbedarf, was durch wen und wann beschafft …","m":[2],"p":[0],"v":[0],"t":0,"k":0},{"n":"Betrieb aktiviert","d":"Der Betrieb des aktivierten Systems ist aufgenommen und erfolgt mit der im Betriebskonzept definierten …","m":[10],"p":[3,4],"v":[2],"t":2,"k":0},{"n":"Betriebshandbuch","d":"Das Betriebshandbuch liefert alle Informationen, die der Betreiber benötigt, um das System ordnungsgemäss …","m":[10],"p":[2,3,4],"v":[2],"t":0,"k":1},{"n":"Betriebsinfrastruktur realisiert","d":"Die Betriebsinfrastruktur umfasst alle für die Erstellung und den Betrieb eines Systems benötigten …","m":[10],"p":[2,4],"v":[2],"t":2,"k":0},{"n":"Betriebskonzept","d":"Das Betriebskonzept beschreibt die Betriebsorganisation mit der Aufbauorganisation und den Betriebsprozessen …","m":[10],"p":[1,4],"v":[2],"t":0,"k":1},{"n":"Betriebsorganisation realisiert","d":"Die im Betriebskonzept definierte Betriebsorganisation mit der Betriebsaufbauorganisation und den …","m":[10],"p":[2,4],"v":[2],"t":2,"k":0},{"n":"Checkliste Abnahme Migration","d":"Die Checkliste Abnahme Migration beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme Migration …","m":[9],"p":[3,4],"v":[9],"t":1,"k":1},{"n":"Checkliste Abnahme","d":"Die Checkliste Abnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme relevant sind.","m":[8],"p":[3,4],"v":[9],"t":1,"k":1},{"n":"Checkliste Ausschreibung","d":"Die Checkliste Ausschreibung beschreibt Prüfpunkte und Kriterien, die für den Entscheid Ausschreibung …","m":[3],"p":[1,4],"v":[1],"t":1,"k":1},{"n":"Checkliste Betriebsaufnahme","d":"Die Checkliste Betriebsaufnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Betriebsaufnahme …","m":[8],"p":[3,4],"v":[1],"t":1,"k":1},{"n":"Checkliste Durchführungsfreigabe","d":"Die Checkliste Durchführungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid …","m":[0],"p":[0],"v":[1],"t":1,"k":1},{"n":"Checkliste ISDS-Konzept","d":"Die Checkliste ISDS-Konzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid ISDS-Konzept relevant …","m":[11],"p":[1,4],"v":[9],"t":1,"k":1},{"n":"Checkliste Lösungsarchitektur","d":"Die Checkliste Lösungsarchitektur beschreibt Prüfpunkte und Kriterien, die für den Entscheid …","m":[6],"p":[1,4],"v":[9],"t":1,"k":1},{"n":"Checkliste Phasenfreigabe Abschluss","d":"Die Checkliste Phasenfreigabe Abschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid …","m":[0],"p":[3,4],"v":[1],"t":1,"k":1},{"n":"Checkliste Phasenfreigabe","d":"Die Checkliste Phasenfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe …","m":[0],"p":[1,2],"v":[1],"t":1,"k":1},{"n":"Checkliste Produktkonzept","d":"Die Checkliste Produktkonzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid Produktkonzept …","m":[5],"p":[1,4],"v":[9],"t":1,"k":1},{"n":"Checkliste Projektabbruch","d":"Die Checkliste Projektabbruch beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabbruch …","m":[0],"p":[1,2,3,4],"v":[1],"t":1,"k":1},{"n":"Checkliste Projektabschluss","d":"Die Checkliste Projektabschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabschluss …","m":[0],"p":[5],"v":[1],"t":1,"k":1},{"n":"Checkliste Projektinitialisierungsfreigabe","d":"Die Checkliste Projektinitialisierungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid …","m":[0],"p":[0],"v":[1],"t":1,"k":1},{"n":"Checkliste Releasefreigabe","d":"Die Checkliste Releasefreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Releasefreigabe …","m":[0],"p":[4],"v":[1],"t":1,"k":1},{"n":"Checkliste Vorabnahme","d":"Die Checkliste Vorabnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Vorabnahme relevant sind.","m":[8],"p":[2,4],"v":[9],"t":1,"k":1},{"n":"Checkliste Weiteres Vorgehen","d":"Die Checkliste Weiteres Vorgehen beschreibt Prüfpunkte und Kriterien, die für den Entscheid Weiteres Vorgehen …","m":[2],"p":[0],"v":[9],"t":1,"k":1},{"n":"Checkliste Zuschlag","d":"Die Checkliste Zuschlag beschreibt Prüfpunkte und Kriterien, die für den Entscheid Zuschlag relevant sind.","m":[3],"p":[1,4],"v":[1],"t":1,"k":1},{"n":"Checklisten","d":"«Checklisten» fasst als Sammeleintrag die HERMES-Checklisten zusammen. Eine Checkliste beschreibt die …","m":[],"p":[],"v":[],"t":1,"k":1},{"n":"Detailspezifikation","d":"In klassisch geführter Lösungsentstehung beschreibt die Detailspezifikation die funktionalen und qualitativen …","m":[1,5,6,9],"p":[2,4],"v":[9,4],"t":0,"k":1},{"n":"Durchführungsauftrag","d":"Der Durchführungsauftrag bildet den Rahmen und die verbindliche Grundlage für die Lösungsentstehung sowie den …","m":[0,1],"p":[0],"v":[1,9],"t":0,"k":1},{"n":"Einführungskonzept","d":"Das Einführungskonzept beschreibt die Massnahmen für die Lösungseinführung und die Einführungsorganisation …","m":[8],"p":[1,4],"v":[0],"t":0,"k":1},{"n":"Einführungsmassnahmen durchgeführt","d":"Die im Einführungskonzept beschriebenen und realisierten Massnahmen sind durchgeführt. Die Umsetzung der …","m":[8],"p":[3,4],"v":[0],"t":2,"k":0},{"n":"Einführungsmassnahmen realisiert","d":"Die im Einführungskonzept beschriebenen Massnahmen und die für die Einführung nötige Organisation sind …","m":[8],"p":[2,4],"v":[0],"t":2,"k":0},{"n":"Evaluationsbericht","d":"Der Evaluationsbericht fasst die Ergebnisse der Angebotsbewertung zusammen. Er bildet die Grundlage für den …","m":[1,3],"p":[1,2,3,4],"v":[9,0],"t":0,"k":1},{"n":"Geschäftsmodellbeschreibung","d":"Die Geschäftsmodellbeschreibung beinhaltet alle organisatorischen Aspekte, die für die Lösung relevant sind …","m":[4],"p":[1,4],"v":[3],"t":0,"k":1},{"n":"Integrations- und Installationsanleitung","d":"Die Integrations- und Installationsanleitung beschreibt, wie das System in der Betriebsinfrastruktur …","m":[6],"p":[2,4],"v":[4],"t":0,"k":0},{"n":"Integrationskonzept","d":"Das Integrationskonzept beschreibt, wie das System im Umfeld integriert wird. Es beschreibt ebenfalls, wie …","m":[6],"p":[1,4],"v":[7],"t":0,"k":1},{"n":"ISDS-Konzept überführt","d":"Das ISDS-Konzept wurde aktualisiert, durch die Controlling- und Vorgabestelle geprüft und von der …","m":[11],"p":[3,4],"v":[6],"t":2,"k":0},{"n":"ISDS-Konzept","d":"Das ISDS-Konzept bildet die Grundlage für die Festlegung der Massnahmen für Informationssicherheit und …","m":[11],"p":[1,2,3,4],"v":[6,0],"t":0,"k":1},{"n":"ISDS-Massnahmen realisiert","d":"Die ISDS-Massnahmen wurden auf der Grundlage des ISDS-Konzepts realisiert. Sie stellen sicher, dass die …","m":[11],"p":[2,4],"v":[0],"t":2,"k":0},{"n":"Liste Projektentscheide Führung","d":"Die Liste Projektentscheide Führung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene …","m":[2,5,6,8,9,11],"p":[0,1,2,3,4],"v":[9],"t":0,"k":1},{"n":"Liste Projektentscheide Steuerung","d":"Die Liste Projektentscheide Steuerung dokumentiert die Ergebnisse der Entscheidungsaufgaben der …","m":[0,3,8],"p":[0,1,2,3,4,5],"v":[1],"t":0,"k":1},{"n":"Lösungsanforderungen","d":"Die Lösungsanforderungen beinhalten sämtliche Anforderungen, die das künftige System oder Produkt erfüllen …","m":[1,5,6],"p":[1,2,3,4],"v":[9,0],"t":0,"k":1},{"n":"Lösungsarchitektur","d":"Die Lösungsarchitektur basiert auf dem Systemkonzept und gliedert das System in Subsysteme und ihre …","m":[6],"p":[1,2,4],"v":[4,7],"t":0,"k":1},{"n":"Meilenstein Abnahme Migration","d":"Der Meilenstein wird erreicht, wenn der Entscheid Abnahme Migration getroffen wird. Die Nutzung des neuen …","m":[9],"p":[3,4],"v":[9],"t":3,"k":0},{"n":"Meilenstein Abnahme","d":"Der Meilenstein wird erreicht, wenn der Entscheid Abnahme getroffen wird. Die Lösung wird definitiv in die …","m":[8],"p":[3,4],"v":[9],"t":3,"k":0},{"n":"Meilenstein Ausschreibung","d":"Der Meilenstein wird erreicht, wenn der Entscheid Ausschreibung getroffen wird. Die Ausschreibung kann …","m":[3],"p":[1,4],"v":[1],"t":3,"k":0},{"n":"Meilenstein Betriebsaufnahme","d":"Der Meilenstein wird erreicht, wenn der Entscheid Betriebsaufnahme getroffen wird. Die Lösung kann in Betrieb …","m":[8],"p":[3,4],"v":[1],"t":3,"k":0},{"n":"Meilenstein Durchführungsfreigabe","d":"Der Meilenstein wird erreicht, wenn der Entscheid Durchführungsfreigabe getroffen wird. Die Arbeiten starten …","m":[0],"p":[0],"v":[1],"t":3,"k":0},{"n":"Meilenstein ISDS-Konzept","d":"Der Meilenstein wird erreicht, wenn der Entscheid ISDS-Konzept getroffen wird. Die Realisierung der …","m":[11],"p":[1,4],"v":[9],"t":3,"k":0},{"n":"Meilenstein Lösungsarchitektur","d":"Der Meilenstein wird erreicht, wenn der Entscheid Lösungsarchitektur getroffen wird. Dies bildet die …","m":[6],"p":[1,4],"v":[9],"t":3,"k":0},{"n":"Meilenstein Phasenfreigabe Abschluss","d":"Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe Abschluss getroffen wird. Die …","m":[0],"p":[3,4],"v":[1],"t":3,"k":0},{"n":"Meilenstein Phasenfreigabe","d":"Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe getroffen wird. Die Arbeiten in der nächsten …","m":[0],"p":[1,2],"v":[1],"t":3,"k":0},{"n":"Meilenstein Produktkonzept","d":"Der Meilenstein wird erreicht, wenn der Entscheid Produktkonzept getroffen wird. Das Konzept ist die …","m":[5],"p":[1,4],"v":[9],"t":3,"k":0},{"n":"Meilenstein Projektabschluss","d":"Der Meilenstein wird erreicht, wenn der Entscheid Projektabschluss getroffen wird. Das Projekt ist beendet.","m":[0],"p":[1,2,3,4,5],"v":[1],"t":3,"k":0},{"n":"Meilenstein Projektinitialisierungsfreigabe","d":"Der Meilenstein wird erreicht, wenn der Entscheid Projektinitialisierungsfreigabe getroffen wird. Das Projekt …","m":[0],"p":[0],"v":[1],"t":3,"k":0},{"n":"Meilenstein Releasefreigabe","d":"Der Meilenstein wird erreicht, wenn der Entscheid Releasefreigabe getroffen wird. Im Rahmen der agilen …","m":[0],"p":[4],"v":[1],"t":3,"k":0},{"n":"Meilenstein Vorabnahme","d":"Der Meilenstein wird erreicht, wenn der Entscheid Vorabnahme getroffen wird. Dies bildet die Grundlage für …","m":[8],"p":[2,4],"v":[9],"t":3,"k":0},{"n":"Meilenstein Weiteres Vorgehen","d":"Der Meilenstein wird erreicht, wenn der Entscheid Weiteres Vorgehen getroffen wird. Dies bildet die Grundlage …","m":[2],"p":[0],"v":[9],"t":3,"k":0},{"n":"Meilenstein Zuschlag","d":"Der Meilenstein wird erreicht, wenn der Entscheid Zuschlag getroffen wird. Der Entscheid kann publiziert und …","m":[3],"p":[1,4],"v":[1],"t":3,"k":0},{"n":"Meilensteine","d":"«Meilensteine» fasst als Sammeleintrag die HERMES-Meilensteine zusammen. Ein Meilenstein ist ein Zustand, der …","m":[],"p":[],"v":[],"t":3,"k":0},{"n":"Migration durchgeführt","d":"Die Migration vom alten auf das neue bzw. weiterentwickelte System ist durchgeführt und gemäss den Vorgaben …","m":[9],"p":[3,4],"v":[4],"t":2,"k":0},{"n":"Migrationskonzept","d":"Das Migrationskonzept beschreibt die technischen und organisatorischen Anforderungen an die Migration und …","m":[9],"p":[1,4],"v":[7],"t":0,"k":0},{"n":"Migrationsverfahren realisiert","d":"Das realisierte Migrationsverfahren ist durch den Entwickler bzw. den Tester des Erstellers getestet worden …","m":[9],"p":[2,4],"v":[4],"t":2,"k":0},{"n":"Offertanfrage","d":"Mit der Offertanfrage werden Angebote für verschiedene organisationsinterne und -externe Leistungen …","m":[1],"p":[1,2,3,4],"v":[9],"t":0,"k":1},{"n":"Organisation aktiviert","d":"Die neue Organisation ist aktiviert. Sie führt ihre Prozesse gemäss den Prozessbeschreibungen durch.","m":[4],"p":[3,4],"v":[3],"t":2,"k":0},{"n":"Organisation umgesetzt","d":"Die im Organisationskonzept definierte Organisation ist umgesetzt.","m":[4],"p":[2,4],"v":[3],"t":2,"k":0},{"n":"Organisationsanforderungen","d":"Die Organisationsanforderungen definieren, ob es ein neues oder aktualisiertes Geschäftsmodell braucht …","m":[4],"p":[1,4],"v":[3],"t":0,"k":1},{"n":"Organisationsbeschreibung","d":"Die Organisationsbeschreibung beschreibt die Aufbauorganisation mit dem detaillierten Organigramm, den …","m":[4],"p":[1,2,4],"v":[3],"t":0,"k":1},{"n":"Organisationskonzept","d":"Das Organisationskonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante aus …","m":[4],"p":[1,4],"v":[3],"t":0,"k":1},{"n":"Phasenbericht","d":"Der Phasenbericht bildet die Grundlage für den Entscheid über die Freigabe der nächsten Phase und für die …","m":[1],"p":[1,2,3,4],"v":[9],"t":0,"k":1},{"n":"Produkt aktiviert","d":"Das aktivierte Produkt wird den Anwendern für die Nutzung zur Verfügung gestellt.","m":[5],"p":[3,4],"v":[4],"t":2,"k":0},{"n":"Produkt entwickelt oder angepasst","d":"Das entwickelte und/oder angepasste Produkt ist durch den Entwickler bzw. den Tester des Erstellers getestet …","m":[5],"p":[2,4],"v":[4],"t":2,"k":0},{"n":"Produktdokumentation","d":"Die Produktdokumentation ist die technische Dokumentation des Produkts. Alle im Entwicklungsprozess …","m":[5],"p":[2,4],"v":[4],"t":0,"k":1},{"n":"Produktkonzept","d":"Das Produktkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den …","m":[5],"p":[1,4],"v":[0],"t":0,"k":1},{"n":"Projekterfahrungen","d":"Die Projekterfahrungen werden systematisch gesammelt und als Projekt-Rückblick laufend dokumentiert. Sie …","m":[0,1],"p":[1,2,3,4,5],"v":[1,9],"t":0,"k":0},{"n":"Projektinitialisierungsauftrag","d":"Der Projektinitialisierungsauftrag bildet die verbindliche Grundlage für die Freigabe der Phase …","m":[0],"p":[0],"v":[1],"t":0,"k":1},{"n":"Projektmanagementplan","d":"Der Projektmanagementplan beinhaltet die Gesamtplanung des Projekts und die wesentlichen Regelungen zu …","m":[1,8],"p":[0,1,2,3,4,5],"v":[9,0],"t":0,"k":1},{"n":"Projektschlussbeurteilung","d":"Die Projektschlussbeurteilung bildet die Grundlage für den Entscheid zum Projektabschluss. Sie informiert den …","m":[0,1],"p":[1,2,3,4,5],"v":[1,9],"t":0,"k":1},{"n":"Projektstatusbericht","d":"Der Projektstatusbericht dient zur periodischen Berichterstattung über den Projektstand, den …","m":[1],"p":[0,1,2,3,4,5],"v":[9],"t":0,"k":1},{"n":"Protokoll","d":"Das Protokoll dokumentiert einerseits die Entscheide und Aufträge, die in einer Besprechung getroffen bzw …","m":[1,7],"p":[0,1,2,3,4,5],"v":[9,14],"t":0,"k":0},{"n":"Prototyp realisiert","d":"Mit dem Prototyp wird die Machbarkeit oder das Verhalten eines Systems bzw. eines Produkts in einer …","m":[2,5,6],"p":[0,1,2,4],"v":[4],"t":2,"k":0},{"n":"Prototypdokumentation","d":"Die Prototypdokumentation bildet die Grundlage für die Erstellung und Auswertung des Prototyps. Sie hält die …","m":[2,5,6],"p":[0,1,2,4],"v":[4],"t":0,"k":0},{"n":"Prozessbeschreibung","d":"Die Prozessbeschreibung ist eine bis auf Prozessebene ausdetaillierte Ablauforganisation, sie beschreibt die …","m":[4],"p":[1,2,4],"v":[3],"t":0,"k":1},{"n":"Prüfprotokoll","d":"Das Prüfprotokoll hält die Befunde aus Prüfungen fest und dokumentiert die Umsetzungsentscheide zu den …","m":[1],"p":[1,2,3,4,5],"v":[9],"t":0,"k":0},{"n":"Publikation","d":"Die Publikation informiert über die Zuschlagserteilung in der betreffenden Ausschreibung. Form und Inhalt der …","m":[3],"p":[1,4],"v":[1],"t":0,"k":1},{"n":"QS- und Risikobericht","d":"Der QS (Qualitätssicherungs)- und Risikobericht wird durch den Qualitäts- und Risikomanager (QRM) nach …","m":[0],"p":[1,2,3,4,5],"v":[1],"t":0,"k":0},{"n":"Rechtsgrundlagenanalyse","d":"Die Rechtsgrundlagenanalyse beschreibt die für das Projektergebnis bestehende bzw. geltende Rechtsgrundlagen …","m":[2],"p":[0],"v":[9],"t":0,"k":1},{"n":"Releasebericht","d":"Der Releasebericht liefert im Rahmen der agilen Vorgehensweise die Übersicht über den bisherigen …","m":[1],"p":[4],"v":[9],"t":0,"k":1},{"n":"Schnittstellen realisiert","d":"Die realisierten Schnittstellen stellen den Datenaustausch zwischen dem System und den Umsystemen sicher.","m":[6],"p":[2,4],"v":[4],"t":2,"k":0},{"n":"Schutzbedarfsanalyse","d":"Die Schutzbedarfsanalyse, auch ISDS-Analyse genannt, dokumentiert die Anforderungen an die …","m":[2],"p":[0],"v":[6],"t":0,"k":1},{"n":"Service Level Agreement","d":"Ein Service Level Agreement (SLA) ist eine vertragliche Vereinbarung zwischen dem Betreiber und dem Anwender …","m":[10],"p":[1,4],"v":[2],"t":0,"k":0},{"n":"Situationsanalyse","d":"Die Situationsanalyse beschreibt und analysiert die gegenwärtige Situation und die zukünftigen Entwicklungen …","m":[4,5,6],"p":[1,4],"v":[3,0],"t":0,"k":1},{"n":"Stakeholderinteressen","d":"Die Stakeholderinteressen bilden die Grundlage für die Information der Stakeholder und für die direkte …","m":[1,4,5,6],"p":[0,1,2,3,4,5],"v":[9,0],"t":0,"k":0},{"n":"Stakeholderliste","d":"Die Stakeholderliste wird erstmals in der Phase Initialisierung erarbeitet und bildet die Grundlage für das …","m":[1,2],"p":[0,1,2,3,4,5],"v":[9],"t":0,"k":1},{"n":"Studie","d":"Die Studie beschreibt die angestrebte Lösung, indem sie basierend auf der Standortbestimmung, die die Ziele …","m":[2],"p":[0],"v":[9],"t":0,"k":1},{"n":"System aktiviert","d":"Das aktivierte System wird den Anwendern für die Nutzung zur Verfügung gestellt.","m":[6],"p":[3,4],"v":[4],"t":2,"k":0},{"n":"System entwickelt oder parametrisiert","d":"Das entwickelte und/oder parametrisierte System ist durch den Entwickler bzw. den Integrator und den Tester …","m":[6],"p":[2,4],"v":[4],"t":2,"k":0},{"n":"System integriert","d":"Das integrierte System steht den Testern des Anwenders für die Tests und die Vorabnahme zur Verfügung.","m":[10],"p":[2,4],"v":[2],"t":2,"k":0},{"n":"Systemkonzept","d":"Das Systemkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den …","m":[6],"p":[1,2,4],"v":[4,7],"t":0,"k":0},{"n":"Testinfrastruktur realisiert","d":"Für die Durchführung der Tests wird eine Testinfrastruktur bestehend aus Testsystem (darunter sind alle …","m":[7],"p":[2,4],"v":[2],"t":2,"k":0},{"n":"Testinfrastruktur überführt","d":"Die gesamte Testinfrastruktur inklusive des Testkonzepts wurde in die Stammorganisation überführt.","m":[7],"p":[5],"v":[14],"t":2,"k":0},{"n":"Testkonzept","d":"Das Testkonzept beschreibt die Testziele, Testobjekte, Testarten, Testinfrastruktur sowie Testorganisation …","m":[7],"p":[1,2,3,4,5],"v":[14],"t":0,"k":1},{"n":"Testprotokoll","d":"Das Testprotokoll hält die Testergebnisse fest. Die Testergebnisse werden gemäss den im Testkonzept …","m":[7],"p":[2,3,4],"v":[14],"t":0,"k":1},{"n":"Vereinbarung","d":"Die Vereinbarung regelt die Zusammenarbeit zwischen den verschiedenen Projektbeteiligten, vorwiegend zwischen …","m":[1,3],"p":[1,2,3,4],"v":[9],"t":0,"k":0}];
+
+var KAT = {
+  aufgabe:  { label: 'Aufgaben',   sing: 'Aufgabe',  glyph: 'A', farbe: '#d9541a', bg: '#fbe3d6', fg: '#8a3208' },
+  ergebnis: { label: 'Ergebnisse', sing: 'Ergebnis', glyph: 'E', farbe: '#e2a000', bg: '#fbeecb', fg: '#7a5300' },
+  rolle:    { label: 'Rollen',     sing: 'Rolle',    glyph: 'R', farbe: '#a8266a', bg: '#f6dbe8', fg: '#6f1546' }
+};
+var TYP_SYMBOL = ['▤', '☑', '●', '◆'];
+var PHASEN_KURZ = ['I', 'K', 'R', 'E', 'U', 'A'];
+var VORGEHEN_PHASEN = { klassisch: [0, 1, 2, 3, 5], agil: [0, 4, 5] };
+var RELATIONEN = [
+  { key: 'verantwortlich', label: 'Rolle ist verantwortlich für die Aufgabe', farbe: '#a8266a', staerke: 2.2, strich: '0' },
+  { key: 'beteiligt',      label: 'Rolle ist beteiligt',                      farbe: '#a8266a', staerke: 1.1, strich: '5 4' },
+  { key: 'erzeugt',        label: 'Aufgabe erzeugt Ergebnis',                 farbe: '#d9541a', staerke: 1.6, strich: '0' },
+  { key: 'ergebnisrolle',  label: 'Rolle verantwortet das Ergebnis',          farbe: '#a8266a', staerke: 1.4, strich: '1.5 3' }
+];
+var SPALTEN_MAX = 26;
+
+function form(kat, w, h) {
+  var c;
+  if (kat === 'aufgabe')  { c = 7; return 'M' + c + ' 0H' + w + 'L' + (w - c) + ' ' + h + 'H0Z'; }
+  if (kat === 'ergebnis') { c = 8; return 'M0 0H' + (w - c) + 'L' + w + ' ' + c + 'V' + h + 'H0Z'; }
+  if (kat === 'rolle')    { c = h / 2; return 'M' + c + ' 0H' + (w - c) + 'A' + c + ' ' + c + ' 0 0 1 ' + (w - c) + ' ' + h + 'H' + c + 'A' + c + ' ' + c + ' 0 0 1 ' + c + ' 0Z'; }
+  c = 5;
+  return 'M' + c + ' 0H' + (w - c) + 'Q' + w + ' 0 ' + w + ' ' + c + 'V' + (h - c) + 'Q' + w + ' ' + h + ' ' + (w - c) + ' ' + h + 'H' + c + 'Q0 ' + h + ' 0 ' + (h - c) + 'V' + c + 'Q0 0 ' + c + ' 0Z';
+}
+
+function schnitt(a, b) {
+  for (var i = 0; i < a.length; i++) { if (b.indexOf(a[i]) !== -1) { return true; } }
+  return false;
+}
+
+function textBreite(s) { return Math.ceil(String(s).length * 6.55); }
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ansicht: 'module',
+      vorgehen: 'klassisch',
+      phasen: [],
+      module: [3],
+      typen: { aufgabe: true, ergebnis: true, rolle: true },
+      rels: { verantwortlich: true, beteiligt: true, erzeugt: true, ergebnisrolle: false },
+      pop: null,
+      wahl: null,
+      phasenstreifen: true,
+      isoliert: false,
+      nurMinimal: false,
+      nurEntscheide: false
+    };
+  }
+
+  setzen(feld, wert) { var o = {}; o[feld] = wert; this.setState(o); }
+
+  listeSchalten(feld, wert) {
+    var l = this.state[feld].slice();
+    var i = l.indexOf(wert);
+    if (i === -1) { l.push(wert); } else { l.splice(i, 1); }
+    l.sort(function (a, b) { return a - b; });
+    this.setzen(feld, l);
+  }
+
+  objektSchalten(feld, key) {
+    var o = Object.assign({}, this.state[feld]);
+    o[key] = !o[key];
+    this.setzen(feld, o);
+  }
+
+  /* Welche Phasen zählen bei der aktuellen Vorgehensweise. */
+  vorgehenPhasen() { return VORGEHEN_PHASEN[this.state.vorgehen]; }
+
+  /* Aufgaben und Ergebnisse, die zur Auswahl passen. */
+  auswahl() {
+    var st = this.state;
+    var vp = this.vorgehenPhasen();
+    var phasen = st.phasen.length ? st.phasen : vp;
+    var module = st.module;
+
+    function passt(e) {
+      if (!schnitt(e.p, vp)) { return false; }
+      if (!schnitt(e.p, phasen)) { return false; }
+      if (module.length && !schnitt(e.m, module)) { return false; }
+      return true;
+    }
+
+    var aufgaben = [];
+    AUFGABEN.forEach(function (a, i) {
+      if (!passt(a)) { return; }
+      if (st.nurEntscheide && a.n.indexOf('Entscheid ') !== 0) { return; }
+      aufgaben.push({ i: i, e: a });
+    });
+    var ergebnisse = [];
+    ERGEBNISSE.forEach(function (e, i) {
+      if (!passt(e)) { return; }
+      if (st.nurMinimal && !(e.k && e.t === 0)) { return; }
+      ergebnisse.push({ i: i, e: e });
+    });
+    return { aufgaben: aufgaben, ergebnisse: ergebnisse, phasen: phasen };
+  }
+
+  /* Spalten Rolle | Aufgabe | Ergebnis, die Aufgaben nach Phase bzw. Modul gruppiert. */
+  layout() {
+    var st = this.state;
+    var self = this;
+    var aus = this.auswahl();
+    var zeigeA = st.typen.aufgabe, zeigeE = st.typen.ergebnis, zeigeR = st.typen.rolle;
+    var streifen = st.phasenstreifen;
+
+    /* Gruppen der gewählten Achse */
+    var gruppenSchluessel = [];
+    if (st.ansicht === 'phasen') {
+      gruppenSchluessel = aus.phasen.slice().sort(function (a, b) { return a - b; });
+    } else {
+      gruppenSchluessel = (st.module.length ? st.module : MODULE.map(function (m, i) { return i; })).slice();
+    }
+
+    var aufgaben = zeigeA ? aus.aufgaben.slice() : [];
+    var gruppeVon = {};
+    aufgaben.forEach(function (a) {
+      var g = -1;
+      for (var i = 0; i < gruppenSchluessel.length; i++) {
+        var k = gruppenSchluessel[i];
+        if ((st.ansicht === 'phasen' ? a.e.p : a.e.m).indexOf(k) !== -1) { g = k; break; }
+      }
+      gruppeVon[a.i] = g;
+    });
+    aufgaben.sort(function (x, y) {
+      var gx = gruppenSchluessel.indexOf(gruppeVon[x.i]);
+      var gy = gruppenSchluessel.indexOf(gruppeVon[y.i]);
+      if (gx !== gy) { return gx - gy; }
+      return x.e.n.localeCompare(y.e.n, 'de');
+    });
+    var gekappt = false;
+    if (aufgaben.length > SPALTEN_MAX) { aufgaben = aufgaben.slice(0, SPALTEN_MAX); gekappt = true; }
+
+    /* Ergebnisse in der Reihenfolge der erzeugenden Aufgabe */
+    var rang = {};
+    if (st.rels.erzeugt) {
+      aufgaben.forEach(function (a, ai) {
+        a.e.e.forEach(function (ei) { if (rang[ei] === undefined) { rang[ei] = ai; } });
+      });
+    }
+    var ergebnisse = zeigeE ? aus.ergebnisse.slice() : [];
+    ergebnisse.sort(function (x, y) {
+      var rx = rang[x.i] === undefined ? 999 : rang[x.i];
+      var ry = rang[y.i] === undefined ? 999 : rang[y.i];
+      if (rx !== ry) { return rx - ry; }
+      return x.e.n.localeCompare(y.e.n, 'de');
+    });
+    if (st.isoliert) {
+      ergebnisse = ergebnisse.filter(function (e) { return rang[e.i] !== undefined; });
+    }
+    if (ergebnisse.length > SPALTEN_MAX) { ergebnisse = ergebnisse.slice(0, SPALTEN_MAX); gekappt = true; }
+
+    /* Rollen aus dem ganzen Umfang, nicht nur aus den gezeichneten Aufgaben: sonst
+       verschwinden die Rollen, sobald man die Aufgabenspalte ausblendet. Zuerst die
+       gezeichneten Aufgaben, damit die Reihenfolge zu den Kanten passt. */
+    var sichtbarE = {};
+    ergebnisse.forEach(function (e) { sichtbarE[e.i] = true; });
+    var rollenReihe = [];
+    function rolleMerken(ri) { if (rollenReihe.indexOf(ri) === -1) { rollenReihe.push(ri); } }
+    function rollenAus(liste) {
+      liste.forEach(function (a) {
+        if (st.rels.verantwortlich) { a.e.v.forEach(rolleMerken); }
+        if (st.rels.beteiligt) { a.e.b.forEach(function (ri) { if (a.e.v.indexOf(ri) === -1) { rolleMerken(ri); } }); }
+      });
+    }
+    rollenAus(aufgaben);
+    rollenAus(aus.aufgaben);
+    if (st.rels.ergebnisrolle) {
+      ergebnisse.forEach(function (e) { e.e.v.forEach(rolleMerken); });
+      aus.ergebnisse.forEach(function (e) { e.e.v.forEach(rolleMerken); });
+    }
+    var rollen = zeigeR ? rollenReihe.map(function (ri) { return { i: ri, e: ROLLEN[ri] }; }) : [];
+
+    /* Knoten aufbauen */
+    var H = 30, ZEILE = 10, GKOPF = 24, LUECKE = 110, KOPF = 34;
+    var spalten = [];
+
+    if (zeigeR) {
+      spalten.push({
+        kat: 'rolle', titel: 'Rollen · ' + rollen.length,
+        eintraege: rollen.map(function (r) {
+          return { kat: 'rolle', id: 'r' + r.i, ref: r.i, label: r.e.n, w: 50 + textBreite(r.e.n), h: H, streifen: null, typ: -1 };
+        }),
+        gruppen: []
+      });
+    }
+    if (zeigeA) {
+      var eintraegeA = [];
+      var gruppenA = [];
+      var letzte = null;
+      aufgaben.forEach(function (a) {
+        var g = gruppeVon[a.i];
+        if (g !== letzte) {
+          gruppenA.push({ text: st.ansicht === 'phasen' ? (PHASEN[g] || 'Ohne Phase') : (MODULE[g] || 'Ohne Modul') });
+          eintraegeA.push({ gruppe: true });
+          letzte = g;
+        }
+        eintraegeA.push({
+          kat: 'aufgabe', id: 'a' + a.i, ref: a.i, label: a.e.n, typ: -1,
+          w: 50 + textBreite(a.e.n) + (streifen ? 52 : 0), h: H,
+          streifen: streifen ? a.e.p : null
+        });
+      });
+      spalten.push({ kat: 'aufgabe', titel: 'Aufgaben · ' + aus.aufgaben.length, eintraege: eintraegeA, gruppenTexte: gruppenA });
+    }
+    if (zeigeE) {
+      spalten.push({
+        kat: 'ergebnis', titel: 'Ergebnisse · ' + aus.ergebnisse.length,
+        eintraege: ergebnisse.map(function (e) {
+          return {
+            kat: 'ergebnis', id: 'e' + e.i, ref: e.i, label: e.e.n, typ: e.e.t,
+            w: 50 + textBreite(e.e.n) + 16 + (streifen ? 52 : 0), h: H,
+            streifen: streifen ? e.e.p : null
+          };
+        }),
+        gruppen: []
+      });
+    }
+
+    /* Masse und Positionen */
+    var maxH = 0;
+    spalten.forEach(function (s) {
+      s.w = s.eintraege.reduce(function (m, n) { return Math.max(m, n.gruppe ? 0 : n.w); }, 0);
+      s.h = s.eintraege.reduce(function (m, n) { return m + (n.gruppe ? GKOPF : n.h) + ZEILE; }, 0) - ZEILE;
+      if (s.h < 0) { s.h = 0; }
+      maxH = Math.max(maxH, s.h);
+    });
+    var natW = spalten.reduce(function (m, s) { return m + s.w; }, 0) + LUECKE * Math.max(0, spalten.length - 1);
+    var natH = KOPF + maxH;
+
+    var knoten = [];
+    var titel = [];
+    var gruppenMarken = [];
+    var stelle = {};
+    var x = 0;
+    spalten.forEach(function (s) {
+      var y = KOPF + (maxH - s.h) / 2;
+      var gi = 0;
+      s.eintraege.forEach(function (n) {
+        if (n.gruppe) {
+          gruppenMarken.push({
+            x: x, y: y + 15, text: (s.gruppenTexte[gi] || {}).text || '',
+            linie: 'M' + x + ' ' + (y + 21) + 'H' + (x + s.w)
+          });
+          gi++;
+          y += GKOPF + ZEILE;
+          return;
+        }
+        n.x = x;
+        n.y = y;
+        stelle[n.id] = { x: x, y: y, w: n.w, h: n.h };
+        knoten.push(n);
+        y += n.h + ZEILE;
+      });
+      titel.push({ x: x, y: 12, text: s.titel, farbe: KAT[s.kat].fg });
+      x += s.w + LUECKE;
+    });
+
+    /* Kanten */
+    var kanten = [];
+    function bogen(a, b) {
+      var x1 = a.x + a.w, y1 = a.y + a.h / 2, x2 = b.x, y2 = b.y + b.h / 2;
+      var dx = Math.max(30, (x2 - x1) * 0.5);
+      return 'M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + 'C' + (x1 + dx).toFixed(1) + ' ' + y1.toFixed(1) + ',' + (x2 - dx).toFixed(1) + ' ' + y2.toFixed(1) + ',' + x2.toFixed(1) + ' ' + y2.toFixed(1);
+    }
+    function kante(vonId, nachId, relKey) {
+      var a = stelle[vonId], b = stelle[nachId];
+      if (!a || !b) { return; }
+      var r = RELATIONEN.filter(function (x) { return x.key === relKey; })[0];
+      kanten.push({ d: bogen(a, b), farbe: r.farbe, staerke: r.staerke, strich: r.strich, deckung: relKey === 'beteiligt' ? 0.75 : 1 });
+    }
+    aufgaben.forEach(function (a) {
+      if (st.rels.verantwortlich) { a.e.v.forEach(function (ri) { kante('r' + ri, 'a' + a.i, 'verantwortlich'); }); }
+      if (st.rels.beteiligt) { a.e.b.forEach(function (ri) { if (a.e.v.indexOf(ri) === -1) { kante('r' + ri, 'a' + a.i, 'beteiligt'); } }); }
+      if (st.rels.erzeugt) { a.e.e.forEach(function (ei) { if (sichtbarE[ei]) { kante('a' + a.i, 'e' + ei, 'erzeugt'); } }); }
+    });
+    if (st.rels.ergebnisrolle) {
+      ergebnisse.forEach(function (e) { e.e.v.forEach(function (ri) { kante('r' + ri, 'e' + e.i, 'ergebnisrolle'); }); });
+    }
+
+    var platzW = 1056 - 96 - 40, platzH = 700 - 40 - 40;
+    var sk = Math.min(1, natW ? platzW / natW : 1, natH ? platzH / natH : 1);
+    var tx = 96 + Math.max(0, (platzW - natW * sk) / 2);
+    var ty = 40 + Math.max(0, (platzH - natH * sk) / 2);
+
+    return {
+      knoten: knoten, kanten: kanten, titel: titel, gruppen: gruppenMarken,
+      zahlen: { aufgabe: aus.aufgaben.length, ergebnis: aus.ergebnisse.length, rolle: rollenReihe.length },
+      gezeigt: { aufgabe: aufgaben.length, ergebnis: ergebnisse.length, rolle: rollen.length },
+      gekappt: gekappt && (zeigeA || zeigeE),
+      buehne: 'translate(' + tx.toFixed(1) + ',' + ty.toFixed(1) + ') scale(' + sk.toFixed(3) + ')'
+    };
+  }
+
+  /* Zähler für die Chips: wie viele Aufgaben hängen an dieser Phase bzw. diesem Modul. */
+  chipZahl(art, key) {
+    var vp = this.vorgehenPhasen();
+    var st = this.state;
+    var n = 0;
+    AUFGABEN.forEach(function (a) {
+      if (!schnitt(a.p, vp)) { return; }
+      if (art === 'phase') {
+        if (a.p.indexOf(key) === -1) { return; }
+        if (st.module.length && !schnitt(a.m, st.module)) { return; }
+      } else {
+        if (a.m.indexOf(key) === -1) { return; }
+        if (st.phasen.length && !schnitt(a.p, st.phasen)) { return; }
+      }
+      n++;
+    });
+    return n;
+  }
+
+  detail() {
+    var st = this.state;
+    if (!st.wahl) { return null; }
+    var art = st.wahl.charAt(0);
+    var i = parseInt(st.wahl.slice(1), 10);
+    if (art === 'a') {
+      var a = AUFGABEN[i];
+      if (!a) { return null; }
+      return {
+        kat: 'aufgabe', name: a.n, text: a.d,
+        fakten: [
+          { label: 'Modul', wert: a.m.map(function (x) { return MODULE[x]; }).join(', ') || '—' },
+          { label: 'Phasen', wert: a.p.map(function (x) { return PHASEN[x]; }).join(', ') || '—' },
+          { label: 'Verantwortlich', wert: a.v.map(function (x) { return ROLLEN[x].n; }).join(', ') || '—' },
+          { label: 'Beteiligt', wert: a.b.map(function (x) { return ROLLEN[x].n; }).join(', ') || '—' },
+          { label: 'Ergebnisse', wert: a.e.map(function (x) { return ERGEBNISSE[x].n; }).join(', ') || '—' }
+        ]
+      };
+    }
+    if (art === 'e') {
+      var e = ERGEBNISSE[i];
+      if (!e) { return null; }
+      return {
+        kat: 'ergebnis', name: e.n, text: e.d,
+        fakten: [
+          { label: 'Ergebnistyp', wert: TYPEN[e.t] },
+          { label: 'Minimal gefordert', wert: e.k ? 'ja' : 'nein' },
+          { label: 'Modul', wert: e.m.map(function (x) { return MODULE[x]; }).join(', ') || '—' },
+          { label: 'Phasen', wert: e.p.map(function (x) { return PHASEN[x]; }).join(', ') || '—' },
+          { label: 'Verantwortlich', wert: e.v.map(function (x) { return ROLLEN[x].n; }).join(', ') || '—' }
+        ]
+      };
+    }
+    var r = ROLLEN[i];
+    if (!r) { return null; }
+    var vA = 0, bA = 0, vE = 0;
+    AUFGABEN.forEach(function (a) { if (a.v.indexOf(i) !== -1) { vA++; } else if (a.b.indexOf(i) !== -1) { bA++; } });
+    ERGEBNISSE.forEach(function (x) { if (x.v.indexOf(i) !== -1) { vE++; } });
+    return {
+      kat: 'rolle', name: r.n, text: r.d,
+      fakten: [
+        { label: 'Ebene', wert: r.s || '—' },
+        { label: 'Verantwortlich', wert: vA + ' Aufgaben, ' + vE + ' Ergebnisse' },
+        { label: 'Beteiligt', wert: bA + ' weitere Aufgaben' }
+      ]
+    };
+  }
+
+  renderVals() {
+    var self = this;
+    var st = this.state;
+    var L = this.layout();
+    var istPhasen = st.ansicht === 'phasen';
+    var vp = this.vorgehenPhasen();
+
+    var achseChips = (istPhasen ? vp : MODULE.map(function (m, i) { return i; })).map(function (key) {
+      var an = (istPhasen ? st.phasen : st.module).indexOf(key) !== -1;
+      return {
+        label: istPhasen ? PHASEN[key] : MODULE[key],
+        zahl: self.chipZahl(istPhasen ? 'phase' : 'modul', key),
+        hg: an ? '#17558f' : '#ffffff',
+        fg: an ? '#ffffff' : '#55636f',
+        rand: an ? '#17558f' : '#b6c0cb',
+        schalten: function () { self.listeSchalten(istPhasen ? 'phasen' : 'module', key); }
+      };
+    });
+
+    var querListe = istPhasen ? MODULE.map(function (m, i) { return i; }) : vp;
+    var querChips = querListe.map(function (key) {
+      var an = (istPhasen ? st.module : st.phasen).indexOf(key) !== -1;
+      return {
+        label: istPhasen ? MODULE[key] : PHASEN[key],
+        zahl: self.chipZahl(istPhasen ? 'modul' : 'phase', key),
+        hg: an ? '#17558f' : '#ffffff',
+        fg: an ? '#ffffff' : '#55636f',
+        rand: an ? '#17558f' : '#b6c0cb',
+        schalten: function () { self.listeSchalten(istPhasen ? 'module' : 'phasen', key); }
+      };
+    });
+
+    var querAnzahl = istPhasen ? st.module.length : st.phasen.length;
+    var d = this.detail();
+    var wahlMeta = d ? KAT[d.kat] : null;
+
+    return {
+      ansichten: [{ key: 'phasen', label: 'Nach Phasen' }, { key: 'module', label: 'Nach Modulen' }].map(function (a) {
+        var an = st.ansicht === a.key;
+        return { label: a.label, hg: an ? '#17558f' : 'transparent', fg: an ? '#ffffff' : '#55636f', waehlen: function () { self.setzen('ansicht', a.key); } };
+      }),
+      vorgehen: [{ key: 'klassisch', label: 'Klassisch' }, { key: 'agil', label: 'Agil' }].map(function (v) {
+        var an = st.vorgehen === v.key;
+        return { label: v.label, hg: an ? '#17558f' : 'transparent', fg: an ? '#ffffff' : '#55636f', waehlen: function () { self.setState({ vorgehen: v.key, phasen: [] }); } };
+      }),
+      istPhasen: istPhasen,
+      istModule: !istPhasen,
+      achseLabel: istPhasen ? 'Phasen' : 'Module',
+      achseChips: achseChips,
+      querChips: querChips,
+      querLabel: (istPhasen ? 'Module' : 'Phasen') + ': ' + (querAnzahl ? querAnzahl + ' gewählt' : 'alle'),
+      querTitel: istPhasen ? 'Auf Module einschränken' : 'Auf Phasen einschränken',
+      querHinweis: istPhasen
+        ? 'Zusätzlich zur Phasenauswahl: nur die Aufgaben und Ergebnisse dieser Module zeigen.'
+        : 'Zusätzlich zur Modulauswahl: nur die Aufgaben und Ergebnisse dieser Phasen zeigen.',
+      querHg: st.pop === 'quer' || querAnzahl ? '#e2ecf7' : '#ffffff',
+      querRand: st.pop === 'quer' || querAnzahl ? '#17558f' : '#b6c0cb',
+      etwasGewaehlt: st.phasen.length > 0 || st.module.length > 0,
+      allesZuruecksetzen: function () { self.setState({ phasen: [], module: [], pop: null }); },
+
+      szenarien: SZENARIEN.map(function (s) {
+        var an = s.m.length === st.module.length && s.m.every(function (x) { return st.module.indexOf(x) !== -1; });
+        return {
+          label: s.n, zahl: s.m.length,
+          hg: an ? '#e2ecf7' : '#ffffff', fg: '#16202b', rand: an ? '#17558f' : '#d3dae2',
+          waehlen: function () { self.setState({ module: s.m.slice(), pop: null }); }
+        };
+      }),
+      szenLabel: 'Szenario',
+      szenHg: st.pop === 'szenario' ? '#e2ecf7' : '#ffffff',
+      szenRand: st.pop === 'szenario' ? '#17558f' : '#b6c0cb',
+
+      status: (st.module.length ? (st.module.length === 1 ? 'Modul ' + MODULE[st.module[0]] : st.module.length + ' Module') : 'alle Module')
+        + ' · ' + (st.vorgehen === 'agil' ? 'agil' : 'klassisch')
+        + ', ' + (st.phasen.length ? (st.phasen.length === 1 ? 'Phase ' + PHASEN[st.phasen[0]] : st.phasen.length + ' Phasen') : 'alle Phasen')
+        + ' · ' + L.gezeigt.aufgabe + ' Aufgaben, ' + L.gezeigt.ergebnis + ' Ergebnisse, ' + L.gezeigt.rolle + ' Rollen'
+        + ' · ' + L.kanten.length + ' Verbindungen'
+        + (L.gekappt ? ' · Anzeige auf ' + SPALTEN_MAX + ' Elemente je Spalte begrenzt' : ''),
+
+      buehne: L.buehne,
+      titel: L.titel,
+      gruppen: L.gruppen,
+      kanten: L.kanten,
+      knoten: L.knoten.map(function (n) {
+        var m = KAT[n.kat];
+        var gewaehlt = st.wahl === n.id;
+        var streifen = [];
+        if (n.streifen) {
+          var px = n.w - 56;
+          var an = {};
+          n.streifen.forEach(function (i) { an[i] = true; });
+          PHASEN_KURZ.forEach(function (p, i) {
+            streifen.push({ x: px + i * 8, fuell: an[i] ? '#2a78d6' : '#eef1f5', strich: an[i] ? '#2a78d6' : '#d3dae2' });
+          });
+        }
+        return {
+          pos: 'translate(' + n.x.toFixed(1) + ',' + n.y.toFixed(1) + ')',
+          d: form(n.kat, n.w, n.h),
+          fuell: m.bg, strich: m.farbe, gestrichelt: '0',
+          staerke: gewaehlt ? 3 : 1.5,
+          glyph: m.glyph, glyphFuell: m.farbe,
+          glyphText: n.kat === 'ergebnis' ? '#3a2a00' : '#ffffff',
+          echt: true, mitte: 15, textX: 36, anker: 'start', textFarbe: m.fg,
+          label: n.label,
+          typSymbol: n.typ >= 0 ? TYP_SYMBOL[n.typ] : '',
+          typX: 36 + textBreite(n.label) + 5,
+          streifen: streifen,
+          waehlen: function () { self.setzen('wahl', n.id); }
+        };
+      }),
+
+      rail: ['aufgabe', 'ergebnis', 'rolle'].map(function (key) {
+        var m = KAT[key];
+        var an = !!st.typen[key];
+        return {
+          glyph: m.glyph, zahl: L.zahlen[key], d: form(key, 29, 18),
+          fuell: an ? m.bg : '#ffffff',
+          strich: an ? m.farbe : '#b6c0cb',
+          glyphFuell: an ? m.farbe : '#b6c0cb',
+          glyphText: an && key === 'ergebnis' ? '#3a2a00' : '#ffffff',
+          hg: an ? '#eef1f5' : 'transparent',
+          deckung: an ? 1 : 0.62,
+          zahlFarbe: an ? m.fg : '#55636f',
+          gedrueckt: an ? 'true' : 'false',
+          titel: m.label + ' · ' + L.zahlen[key] + ' — ' + (an ? 'ausblenden' : 'einblenden'),
+          schalten: function () { self.objektSchalten('typen', key); }
+        };
+      }),
+      railRel: RELATIONEN.map(function (r) {
+        var an = !!st.rels[r.key];
+        return {
+          label: r.label, farbe: an ? r.farbe : '#b6c0cb', staerke: r.staerke, strich: r.strich,
+          hg: an ? '#eef1f5' : 'transparent', deckung: an ? 1 : 0.5,
+          gedrueckt: an ? 'true' : 'false',
+          titel: r.label + ' — ' + (an ? 'ausblenden' : 'einblenden'),
+          schalten: function () { self.objektSchalten('rels', r.key); }
+        };
+      }),
+
+      darstellung: [
+        { feld: 'phasenstreifen', label: 'Phasenstreifen im Knoten (I K R E U A)' },
+        { feld: 'isoliert', label: 'Ergebnisse ohne erzeugende Aufgabe ausblenden' },
+        { feld: 'nurMinimal', label: 'Nur minimal geforderte Dokumente' },
+        { feld: 'nurEntscheide', label: 'Nur Entscheidungsaufgaben' }
+      ].map(function (o) {
+        var an = !!st[o.feld];
+        return { label: o.label, haken: an ? '✓' : '', hg: an ? '#17558f' : '#ffffff', rand: an ? '#17558f' : '#b6c0cb', schalten: function () { self.setzen(o.feld, !an); } };
+      }),
+
+      legendeKat: ['rolle', 'aufgabe', 'ergebnis'].map(function (key) {
+        var m = KAT[key];
+        return {
+          label: m.sing, glyph: m.glyph, d: form(key, 29, 18), fuell: m.bg, strich: m.farbe,
+          glyphFuell: m.farbe, glyphText: key === 'ergebnis' ? '#3a2a00' : '#ffffff'
+        };
+      }),
+      legendeTyp: TYPEN.map(function (t, i) { return { label: t, symbol: TYP_SYMBOL[i] }; }),
+
+      istQuer: st.pop === 'quer',
+      istSzenario: st.pop === 'szenario',
+      istDarstellung: st.pop === 'darstellung',
+      istLegende: st.pop === 'legende',
+      popQuer: function () { self.setzen('pop', st.pop === 'quer' ? null : 'quer'); },
+      popSzenario: function () { self.setzen('pop', st.pop === 'szenario' ? null : 'szenario'); },
+      popDarstellung: function () { self.setzen('pop', st.pop === 'darstellung' ? null : 'darstellung'); },
+      popLegende: function () { self.setzen('pop', st.pop === 'legende' ? null : 'legende'); },
+      popZu: function () { self.setzen('pop', null); },
+      darHg: st.pop === 'darstellung' ? '#e2ecf7' : '#ffffff',
+      darRand: st.pop === 'darstellung' ? '#17558f' : '#b6c0cb',
+      legHg: st.pop === 'legende' ? '#e2ecf7' : '#ffffff',
+      legRand: st.pop === 'legende' ? '#17558f' : '#b6c0cb',
+
+      wahlKat: d ? wahlMeta.sing : 'Nichts gewählt',
+      wahlBg: d ? wahlMeta.bg : '#e3e8ee',
+      wahlFg: d ? wahlMeta.fg : '#384652',
+      wahlName: d ? d.name : 'Auf einen Knoten tippen',
+      wahlText: d ? d.text : 'Definition, Fakten und alle Verbindungen des gewählten Elements erscheinen hier.',
+      wahlFakten: d ? d.fakten : []
+    };
+  }
+}
+</script>
+</body>
+</html>
