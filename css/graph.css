@@ -29,6 +29,10 @@
   --graph-bahn: #ffffff;
   --graph-bahn-2: #eef1f6;
   --detail-breite: 24rem;
+  /* Nur für schmale Schirme, wo die Seite im normalen Fluss scrollt: dort ist
+     die Kopfzeile die Markenzeile allein. Ab 700 px füllt die Leinwand den
+     Rest der Höhe per Flexbox — ohne Zahl, die zur Kopfzeile passen muss. */
+  --kopf: 53px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -61,16 +65,15 @@
 /* --- Seite: drei Bereiche -------------------------------------------------- */
 body[data-route="graph"] .view { max-width: none; padding: 0; }
 body[data-route="graph"] .fusszeile { display: none; }
-/* Eine Leiste: die Graph-Seite trägt Marke und Hauptnavigation selbst
-   (.gmarke mit Menü), darum entfällt hier die Kopfzeile der Anwendung. */
-body[data-route="graph"] .topbar { display: none; }
 
 .graph-seite {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto;
-  min-height: calc(100vh - 52px - 64px);
+  /* Die Kopfzeile der Anwendung steht auch hier; unter ihr und über der
+     Fussnavigation bleibt der Rest für die Leinwand. */
+  min-height: calc(100vh - var(--kopf) - 64px);
   background: var(--graph-bg);
 }
 
@@ -235,8 +238,8 @@ body[data-route="graph"] .topbar { display: none; }
   min-width: 0;
   min-height: 0;
 }
-/* Die einzige Leiste der Seite: Marke mit Navigation, Ansicht, Auswahl,
-   Werkzeuge. Was nicht hineinpasst, liegt in einem Popover. */
+/* Die Leiste des Graphen unter der Kopfzeile: Ansicht, Auswahl, Werkzeuge.
+   Was nicht hineinpasst, liegt in einem Popover. */
 .graph-leiste {
   display: flex;
   flex-wrap: wrap;
@@ -248,49 +251,6 @@ body[data-route="graph"] .topbar { display: none; }
 }
 .graph-werkzeuge { display: flex; align-items: center; gap: .35rem; margin-left: auto; flex: 0 0 auto; }
 
-/* Marke = Menü der Hauptnavigation */
-.gmarke {
-  display: inline-flex;
-  align-items: center;
-  gap: .1rem;
-  flex: 0 0 auto;
-  padding: .2rem .25rem .2rem .2rem;
-  border: 1px solid transparent;
-  border-radius: var(--radius-s);
-  background: transparent;
-  color: var(--text-leise);
-  cursor: pointer;
-}
-.gmarke:hover { background: var(--flaeche-2); color: var(--text); }
-.gmarke[aria-expanded="true"] { border-color: var(--akzent); background: var(--akzent-schwach); color: var(--akzent); }
-.gmarke__logo {
-  display: grid;
-  place-items: center;
-  width: 28px; height: 28px;
-  border-radius: 7px;
-  background: var(--akzent);
-  color: var(--akzent-auf);
-  font-size: .95rem;
-  font-weight: 800;
-}
-.gmarke__pfeil { font-size: .65rem; }
-
-.gnav__liste { list-style: none; margin: 0; padding: 0; display: grid; gap: .1rem; }
-.gnav__link {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  min-height: var(--tap);
-  padding: .4rem .55rem;
-  border-radius: var(--radius-s);
-  text-decoration: none;
-  color: var(--text);
-  font-size: .92rem;
-  font-weight: 600;
-}
-.gnav__link:hover { background: var(--flaeche-2); }
-.gnav__link.ist-aktiv { background: var(--akzent-schwach); color: var(--akzent); }
-.gnav__ikone { display: grid; place-items: center; width: 22px; height: 22px; flex: 0 0 auto; }
 .graph-pfad { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; flex: 1 1 100%; }
 .graph-pfad[hidden] { display: none; }
 .graph-pfad__label { font-size: .72rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-leise); margin-right: .2rem; }
@@ -595,8 +555,6 @@ body[data-route="graph"] .topbar { display: none; }
   box-shadow: var(--schatten-stark);
 }
 .gpop[hidden] { display: none; }
-/* Menü unter der Marke: am linken Rand statt am rechten. */
-.gpop--links { left: .75rem; right: auto; }
 /* Die Suche liegt im Popover; die Trefferliste steht dort im Fluss. */
 .gpop .suche__feld--klein { width: 100%; }
 .gpop .gs-treffer {
@@ -680,8 +638,7 @@ body[data-route="graph"] .topbar { display: none; }
 }
 
 @media (max-width: 699px) {
-  .graph-seite { min-height: calc(100vh - 64px); }
-  .graph-flaeche { min-height: calc(100vh - 64px - 100px); }
+  .graph-flaeche { min-height: calc(100vh - var(--kopf) - 64px - 100px); }
   .graph-detail { max-height: 78vh; bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
   /* Icon-Leiste liegend, damit die Fläche in der Breite frei bleibt. */
   .grail { flex-direction: row; left: .5rem; right: .5rem; top: .5rem; overflow-x: auto; scrollbar-width: none; }
@@ -689,8 +646,8 @@ body[data-route="graph"] .topbar { display: none; }
   .grail__trenner { width: 1px; height: auto; margin: .3rem; }
   .grail__knopf--linie { min-height: 44px; width: 34px; }
   .gpop { left: .5rem; right: .5rem; top: auto; bottom: .5rem; width: auto; max-height: 70%; }
-  /* Schmal: drei kurze Zeilen statt vier — oben Navigation, Ansicht und
-     Werkzeuge, darunter die Auswahl-Chips, zuunterst die Filter. */
+  /* Schmal: drei kurze Zeilen — oben Ansicht und Werkzeuge, darunter die
+     Auswahl-Chips, zuunterst die Filter. */
   .graph-leiste { gap: .3rem .35rem; padding: .35rem .5rem; }
   .graph-leiste .segment__knopf { padding: .3rem .5rem; font-size: .8rem; }
   .segment__knopf--ikone { min-width: 40px; }
@@ -698,7 +655,6 @@ body[data-route="graph"] .topbar { display: none; }
      «Einpassen» bleibt — dafür gibt es keine Geste. */
   .graph-zoom__knopf--stufe { display: none; }
   .graph-zoom__knopf--ikone { min-width: 36px; }
-  .gmarke { order: 1; }
   .segment--ansicht { order: 2; }
   .graph-werkzeuge { order: 3; }
   .chips--auswahl { order: 4; flex-basis: 100%; }
@@ -707,8 +663,21 @@ body[data-route="graph"] .topbar { display: none; }
   .gauswahl__reset { order: 7; margin-left: auto; }
 }
 
+/* Ab Tablettbreite füllt die Seite den Schirm: die Kopfzeile oben, darunter
+   die Leinwand mit dem Rest der Höhe. Die Flexkette braucht keine Zahl für
+   die Kopfzeile und hält auch, wenn deren Navigation umbricht. */
 @media (min-width: 700px) {
-  .graph-seite { min-height: 100vh; }
+  body[data-route="graph"] {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  body[data-route="graph"] .topbar { position: static; flex: 0 0 auto; }
+  body[data-route="graph"] main { flex: 1 1 auto; min-width: 0; min-height: 0; display: flex; }
+  body[data-route="graph"] .view { flex: 1 1 auto; min-width: 0; min-height: 0; display: flex; }
+
+  .graph-seite { flex: 1 1 auto; min-width: 0; min-height: 0; }
   .graph-detail { bottom: 0; }
 }
 
@@ -716,7 +685,6 @@ body[data-route="graph"] .topbar { display: none; }
 @media (min-width: 1100px) {
   .graph-seite {
     grid-template-columns: minmax(0, 1fr) 0;
-    height: 100vh;
     min-height: 0;
     transition: grid-template-columns .2s ease;
   }

@@ -2,6 +2,16 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-08 (2) — Hauptnavigation auch im Graph sichtbar
+
+**Auftrag:** «Ich sehe keinen Überblick auf der Navigationsleiste.» Zu Recht: Startseite ist der Graph, und der blendete die Kopfzeile der Anwendung aus (`body[data-route="graph"] .topbar { display: none }`). Die Hauptnavigation steckte dort in einem Popover hinter dem kleinen Markenknopf — auf der Startseite war also gar keine Navigationsleiste zu sehen. Der Design-Handoff nennt genau das als Schwäche des Graphen («no clear entry point»). Nach Rückfrage entschied der Sponsor: Kopfzeile auch im Graph zeigen.
+
+**Umgesetzt:** Die Kopfzeile steht jetzt auf allen Routen. Im Graph entfallen dafür der Markenknopf (`.gmarke`), das Navigations-Popover (`POPS.nav`, `navInhalt()`, `.gnav__*`) und die Linksverankerung `gpop--links`, die es nur für dieses eine Menü gab — die Marke steht dreissig Pixel darüber in der Kopfzeile, ein zweites «H» in der Graph-Leiste wäre Doppelung. Die Leiste beginnt nun mit der Ansicht.
+
+**Höhe ohne Zauberzahl:** `.graph-seite` rechnete mit `calc(100vh - 52px - 64px)`. Gemessen ist die Kopfzeile 57.7 px hoch (die Navigationszeile ist höher als die Markenzelle), was 4 px Seitenscroll ergab. Ab 700 px füllt die Seite den Schirm jetzt über eine Flexkette (`body` → `main` → `.view` → `.graph-seite`), ganz ohne Konstante; geprüft: Kopfzeile 57.7 + Leinwand 685.3 = 743 = Viewport, kein Body-Scroll. Unter 700 px bleibt der normale Fluss mit Fussnavigation, dort ist die Kopfzeile die Markenzeile allein (`--kopf: 53px`, gemessen bestätigt).
+
+**Geprüft:** Graph mit sichtbarer Navigation und Detailspalte (öffnet bündig unter der Kopfzeile bis zur Unterkante), Legenden-Popover, Wechsel Graph → Überblick → Lexikon → Methode → Graph (Body-Layout stellt sich je Route korrekt um, andere Routen scrollen weiter normal), 390 px im sichtbaren iframe. Keine Konsolenfehler.
+
 ## 2026-09-08 — Überblick nach dem Modernist-Entwurf neu gebaut
 
 **Auftrag:** «In the Design folder, there is some guidance from Claude Design to implement» — der Handoff `design/design_handoff_hermes_ueberblick/` (README, drei `.dc.html`-Prototypen, Modernist-Tokensheet) beschreibt die Ansicht «Überblick» als Werkbank aus zwei Bereichen. Der Prototyp ist ein Komponentenformat mit `<x-dc>`/`class Component`; der Handoff verlangt ausdrücklich, das **nicht** zu portieren, sondern das Ergebnis im bestehenden Vanilla-JS-Gerüst nachzubauen. Genau das ist geschehen: `js/ueberblick.js` und `css/ueberblick.css` sind neu geschrieben, kein Framework, kein Build-Schritt, weiter ohne `innerHTML`.

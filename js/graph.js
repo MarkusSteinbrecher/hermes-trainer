@@ -3,10 +3,9 @@
    Phasen und Module sind keine Knoten, sondern die Auswahl: die Ansicht
    («Nach Phasen» oder «Nach Modulen») legt die Bahnen des Swimlane-Layouts
    fest, das jeweils andere Kriterium bleibt als zusätzlicher Filter. Steuerung: eine
-   einzige Leiste über der Fläche (Marke mit Hauptnavigation, Ansicht,
-   Auswahl, Werkzeuge) — die Seite blendet dafür die Kopfzeile der Anwendung
-   aus; Icon-Leiste für Elemente und Verbindungen auf der Fläche, alles
-   Weitere als Popover. Ein Klick auf einen
+   einzige Leiste über der Fläche (Ansicht, Auswahl, Werkzeuge) unter der
+   Kopfzeile der Anwendung; Icon-Leiste für Elemente und Verbindungen auf
+   der Fläche, alles Weitere als Popover. Ein Klick auf einen
    Knoten wählt ihn aus, hebt seine Verbindungen hervor und zeigt rechts die
    Lexikonkarte mit allen Querverweisen. */
 (function (global) {
@@ -186,9 +185,8 @@
   }
 
   /* Alle Popover an einer Stelle: Titel, Inhalt und der Knopf, der sie
-     öffnet. «links» verankert das Feld am linken Rand (Menü unter der Marke). */
+     öffnet. */
   var POPS = {
-    nav:         { titel: 'HERMES-Trainer', inhalt: function () { return navInhalt(); },         knopf: 'knopfNav', links: true },
     suche:       { titel: 'Element suchen', inhalt: function () { return sucheInhalt(); },       knopf: 'knopfSuche' },
     quer:        { titel: function () { return zustand.ansicht === 'phasen' ? 'Auf Module einschränken' : 'Auf Phasen einschränken'; },
                    inhalt: function () { return querInhalt(); },        knopf: 'knopfQuer' },
@@ -204,7 +202,6 @@
   function popZeichnen() {
     HT.ui.leeren(refs.pop);
     refs.pop.hidden = !zustand.pop;
-    refs.pop.classList.remove('gpop--links');
     popAusloeser().forEach(function (b) {
       if (b) { b.setAttribute('aria-expanded', 'false'); }
     });
@@ -214,7 +211,6 @@
     var knopf = refs[meta.knopf];
     var titel = typeof meta.titel === 'function' ? meta.titel() : meta.titel;
     if (knopf) { knopf.setAttribute('aria-expanded', 'true'); }
-    if (meta.links) { refs.pop.classList.add('gpop--links'); }
 
     refs.pop.appendChild(h('div', { class: 'gpop__kopf' }, [
       h('strong', { class: 'gpop__titel', text: titel }),
@@ -227,27 +223,6 @@
 
   function popInhalt(kinder) {
     return h('div', { class: 'gpop__inhalt' }, kinder);
-  }
-
-  /* Hauptnavigation: auf dieser Route steckt sie im Marken-Menü, damit über
-     dem Graphen nur eine Leiste steht. Dieselben Icons wie die mobile
-     Navigationsleiste. */
-  function navInhalt() {
-    return popInhalt([
-      h('nav', { 'aria-label': 'Hauptnavigation' },
-        h('ul', { class: 'gnav__liste' }, (HT.app && HT.app.routen ? HT.app.routen : []).map(function (r) {
-          var hier = r.name === 'graph';
-          return h('li', {}, h('a', {
-            class: 'gnav__link' + (hier ? ' ist-aktiv' : ''),
-            href: '#/' + r.name,
-            'aria-current': hier ? 'page' : null,
-            on: { click: popSchliessen }
-          }, [
-            h('span', { class: 'gnav__ikone', 'aria-hidden': 'true' }, HT.ui.symbol(r.pfade, 18)),
-            h('span', { text: r.label })
-          ]));
-        })))
-    ]);
   }
 
   function sucheInhalt() {
@@ -374,21 +349,11 @@
     }, HT.ui.symbol(symbolPfade, 18));
   }
 
-  /* Eine Leiste für die ganze Seite: links die Marke, die zugleich die
-     Hauptnavigation trägt (die Kopfzeile der Anwendung ist auf dieser Route
-     ausgeblendet), dann Ansicht und Auswahl, rechts die Werkzeuge. Alles,
-     was nicht in eine Zeile passt — Suche, Darstellung, Legende, Umfang —
-     liegt in Popovern. */
+  /* Eine Leiste für den Graphen: links Ansicht und Auswahl, rechts die
+     Werkzeuge. Alles, was nicht in eine Zeile passt — Suche, Darstellung,
+     Legende, Umfang — liegt in Popovern. Die Hauptnavigation steht darüber
+     in der Kopfzeile der Anwendung. */
   function leisteBauen() {
-    refs.knopfNav = h('button', {
-      type: 'button', class: 'gmarke', title: 'HERMES-Trainer — Navigation',
-      'aria-label': 'Navigation', 'aria-expanded': 'false', 'aria-haspopup': 'dialog',
-      on: { click: function () { popOeffnen('nav'); } }
-    }, [
-      h('span', { class: 'gmarke__logo', 'aria-hidden': 'true', text: 'H' }),
-      h('span', { class: 'gmarke__pfeil', 'aria-hidden': 'true', text: '▾' })
-    ]);
-
     refs.ansichtSegment = segment(ANSICHTEN, zustand.ansicht, ansichtSetzen, 'Ansicht');
     refs.ansichtSegment.classList.add('segment--ansicht');
 
@@ -454,7 +419,6 @@
     });
 
     refs.werkzeugleiste = h('div', { class: 'graph-leiste' }, [
-      refs.knopfNav,
       refs.ansichtSegment,
       refs.vorgehenSegment,
       refs.knopfSzenario,
