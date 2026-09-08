@@ -103,7 +103,7 @@ Objekt mit einem Schlüssel je Kapitel bzw. Hinweis-Thema (`methodenueberblick`,
 
 `kapitel.json`: Array der Kapitel `{ id, titel, nummer, seite, url, teile: [{ titel, url, nummer, seite, abschnitte: [{ titel, ebene, nummer?, seite?, bloecke }] }] }`.
 `elemente-<kategorie>.json`: Objekt `id → { titel, url, nummer, seite, abschnitte }`.
-Blöcke: `{ t: "p", text }`, `{ t: "ul"|"ol", items: [{ text, items? }] }`, `{ t: "tabelle", titel, zeilen: [[{ text, kopf? }]] }`, `{ t: "abb", src, datei?, text }`, `{ t: "h", n, text }`. Begriffe in Listen und Zellen werden im Frontend über den exakten Wortlaut auf Lexikoneinträge verlinkt.
+Blöcke: `{ t: "p", text }`, `{ t: "ul"|"ol", items: [{ text, items? }] }`, `{ t: "tabelle", titel, zeilen: [[{ text, kopf? }]] }`, `{ t: "abb", src, datei?, text }`, `{ t: "download", titel, datei, groesse, url }` (Dokumentvorlage `.dotx`), `{ t: "h", n, text }`. Begriffe in Listen und Zellen werden im Frontend über den exakten Wortlaut auf Lexikoneinträge verlinkt.
 
 ## Graph (abgeleitet, keine eigene Datei)
 

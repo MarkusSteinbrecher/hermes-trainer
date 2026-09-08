@@ -290,6 +290,47 @@ def tabelle(knoten):
     return {'t': 'tabelle', 'titel': titel, 'zeilen': zeilen}
 
 
+def download(knoten):
+    """<a class="download-item"> — Verweis auf eine Dokumentvorlage (.dotx).
+    Titel, Dateiname und Grösse stehen in Kindelementen; `inline_text` würde
+    sie überspringen, weil das umschliessende <div> ein Blockelement ist."""
+    titel = ''
+    meta = []
+
+    def gehen(n):
+        nonlocal titel
+        for k in n.kinder:
+            if isinstance(k, str):
+                continue
+            klasse = k.attrs.get('class') or ''
+            if 'download-item__title' in klasse:
+                titel = flach(norm(inline_text(k, [])))
+            elif 'meta-info__item' in klasse:
+                meta.append(flach(norm(inline_text(k, []))))
+            else:
+                gehen(k)
+    gehen(knoten)
+    return {
+        't': 'download',
+        'titel': titel,
+        'datei': meta[0] if meta else '',
+        'groesse': meta[1] if len(meta) > 1 else '',
+        'url': href_abs(knoten.attrs.get('href')),
+    }
+
+
+def downloads(knoten, aus):
+    """Alle Vorlagenverweise eines Teilbaums, in Dokumentreihenfolge."""
+    for k in knoten.kinder:
+        if isinstance(k, str):
+            continue
+        if k.tag == 'a' and 'download-item' in (k.attrs.get('class') or ''):
+            aus.append(download(k))
+        else:
+            downloads(k, aus)
+    return aus
+
+
 def figur(knoten):
     src = None
     text = ''
@@ -331,9 +372,13 @@ def bloecke(knoten, aus):
             if t:
                 aus.append({'t': 'p', 'text': t})
         elif tag in ('ul', 'ol'):
-            items = liste(k)
-            if items:
-                aus.append({'t': tag, 'items': items})
+            dl = downloads(k, [])
+            if dl:
+                aus.extend(dl)          # Vorlagenliste, keine Aufzählung
+            else:
+                items = liste(k)
+                if items:
+                    aus.append({'t': tag, 'items': items})
         elif tag == 'table':
             tb = tabelle(k)
             if tb['zeilen']:
@@ -498,6 +543,14 @@ def main():
     os.makedirs(ausgabe, exist_ok=True)
 
     toc = toc_lesen(args.pdf_text) if args.pdf_text else []
+    if not toc:
+        # Ohne --pdf-text das zuletzt gesicherte Verzeichnis weiterverwenden,
+        # sonst verlöre ein erneuter Lauf alle Kapitelnummern und Seitenzahlen.
+        alt = os.path.join(ausgabe, 'inhaltsverzeichnis.json')
+        if os.path.exists(alt):
+            with open(alt, encoding='utf-8') as f:
+                toc = json.load(f)
+            print('Inhaltsverzeichnis aus', alt, 'übernommen (kein --pdf-text)')
     print('Inhaltsverzeichnis:', len(toc), 'Einträge')
     with open(os.path.join(ausgabe, 'inhaltsverzeichnis.json'), 'w', encoding='utf-8') as f:
         json.dump(toc, f, ensure_ascii=False, indent=0)

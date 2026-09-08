@@ -1096,6 +1096,37 @@ a.pm-phase:hover { filter: brightness(.97); }
 .hb-abb--ohne img { max-height: 70px; width: auto; }
 .hb-abb figcaption { font-size: .78rem; color: var(--text-leise); margin-top: .3rem; }
 
+/* Verweis auf eine Dokumentvorlage (.dotx) von hermes.admin.ch. */
+.hb-vorlage {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .65rem .8rem;
+  margin: .3rem 0 .8rem;
+  border: 1px solid var(--rand);
+  border-radius: var(--radius-s);
+  background: var(--flaeche);
+  color: var(--text);
+  text-decoration: none;
+}
+.hb-vorlage:hover { border-color: var(--akzent); }
+.hb-vorlage__ikone {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-s);
+  background: var(--akzent);
+  color: var(--akzent-auf);
+  font-size: .95rem;
+  font-weight: 700;
+}
+.hb-vorlage__text { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
+.hb-vorlage__text b { font-size: .9rem; font-weight: 700; }
+.hb-vorlage__meta { font-size: .74rem; color: var(--text-leise); }
+
 /* --- Methode: Hub -------------------------------------------------------- */
 .pm-block { margin-bottom: .5rem; }
 .kapitel-raster {

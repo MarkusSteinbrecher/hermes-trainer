@@ -42,10 +42,13 @@
   /* Farben, an denen die Grafik ihre Bestandteile unterscheidet. Sie stammen
      aus dem Office-Export und werden wörtlich verglichen — keine Themenfarben. */
   var FARBEN = {
-    ergebnis: '#DCEBFA',        // Ergebniskasten (eckig)
-    ergebnisRand: '#DCEBFA',    // Dokumentform (weiss gefüllt, welliger Fuss)
+    ergebnis: '#DCEBFA',        // Ergebniskasten (eckig): Dokument oder Checkliste
+    ergebnisRand: '#DCEBFA',    // Zustandskasten (weiss gefüllt, runde Ecken)
     modulRand: '#000000',       // Modulrahmen
-    phase: ['#B7D5F1', '#D9D9D9', '#EBC9C7']   // Phasenbalken am linken Rand
+    phase: ['#B7D5F1', '#D9D9D9', '#EBC9C7'],  // Phasenbalken am linken Rand
+    /* Nur für die Legende — an diesen Farben wird nichts erkannt. */
+    uebergang: '#DF1D7F',       // gestrichelte Linie am Phasenübergang
+    iteration: '#FF0000'        // Pfeile und Linien der agilen Iteration
   };
 
   /* Farben der Trefferschicht. */
@@ -72,8 +75,25 @@
   var INHALT_MIN = 280;
   var ABB_MIN = 380;           // so viel bleibt der Abbildung mindestens
 
+  var GRAPH_STANDARD = 260;    // Höhe des Graphbereichs unten in px
+  var GRAPH_MIN = 120;
+  var TEXT_MIN = 160;          // so viel bleibt dem Text darüber mindestens
+
   var RUNDEN_LAENGE = 12;
   var SPEICHER = 'ueberblick-drill';
+
+  /* Die Zeichen, aus denen die Originalgrafik besteht — Legende unter der
+     Abbildung. Sie greift auf FARBEN zu, damit Legende und Kastenerkennung
+     nicht auseinanderlaufen. Die Kästen selbst sind anklickbar, die Linien
+     und Rauten nicht. */
+  var ABB_LEGENDE = [
+    { form: 'ergebnis', text: 'Ergebnis — Dokument oder Checkliste' },
+    { form: 'zustand', text: 'Ergebnis — Zustand' },
+    { form: 'modul', text: 'Modul — Kopf einer Spalte' },
+    { form: 'phase', text: 'Phase — Band am linken Rand' },
+    { form: 'meilenstein', text: 'Meilenstein — Phasenübergang als Quality Gate' },
+    { form: 'iteration', text: 'Iteration — agile Vorgehensweise' }
+  ];
 
   var LEGENDE = [
     { kat: 'rolle', text: 'Rolle — wer verantwortet und mitwirkt' },
@@ -90,10 +110,13 @@
     nurMinimal: false,        // alles ausblassen, was nicht minimal gefordert ist
     zoom: 1,
     aktiv: null,              // Eintrag, den die Inhaltsseite zeigt
+    gezeichnet: null,         // id des zuletzt gezeichneten Eintrags
     gehalten: false,          // durch Klick festgehalten
     nurAbb: false,            // «Breit»: Inhaltsseite eingeklappt
     panel: false,             // Steuerung offen
     inhaltBreite: INHALT_STANDARD,
+    graphHoehe: GRAPH_STANDARD,
+    graphOffen: true,         // unterer Bereich der Inhaltsseite aufgeklappt
     runde: null,              // { aufgaben, i, phase, falschesFeld }
     punkte: 0,
     versuche: 0,
@@ -110,10 +133,17 @@
 
   /* --- Zustand sichern ----------------------------------------------------- */
 
-  /* Gespeichert wird nur, was über eine Runde hinaus zählt: die Fehlerbilanz
-     und die beste Serie. Punkte und laufende Serie gehören zur Runde. */
+  /* Gespeichert wird, was über eine Runde hinaus zählt: die Fehlerbilanz, die
+     beste Serie und der Zuschnitt des unteren Bereichs — ein zugeklappter
+     Graph soll zugeklappt bleiben. Punkte und laufende Serie gehören zur
+     Runde, die Spaltenbreite stellt sich bei jedem Aufruf neu ein. */
   function speichern() {
-    HT.store.schreib(SPEICHER, { fehler: zustand.fehler, besteSerie: zustand.besteSerie });
+    HT.store.schreib(SPEICHER, {
+      fehler: zustand.fehler,
+      besteSerie: zustand.besteSerie,
+      graphHoehe: zustand.graphHoehe,
+      graphOffen: zustand.graphOffen
+    });
   }
 
   function wiederherstellen() {
@@ -121,6 +151,8 @@
     if (!g || typeof g !== 'object') { return; }
     if (g.fehler && typeof g.fehler === 'object') { zustand.fehler = g.fehler; }
     if (typeof g.besteSerie === 'number' && g.besteSerie >= 0) { zustand.besteSerie = g.besteSerie; }
+    if (typeof g.graphHoehe === 'number' && g.graphHoehe >= GRAPH_MIN) { zustand.graphHoehe = g.graphHoehe; }
+    if (typeof g.graphOffen === 'boolean') { zustand.graphOffen = g.graphOffen; }
   }
 
   /* --- Beschriftung -> Eintrag -------------------------------------------- */
@@ -1113,6 +1145,253 @@
     ].concat(kinder));
   }
 
+  /* --- Handbuchabschnitte --------------------------------------------------- */
+
+  /* Die Inhaltsseite folgt dem Aufbau der Seite auf hermes.admin.ch:
+     Beschreibung, Inhalt, Dokumentenvorlage. «Beziehungen» wird nicht als
+     Tabelle übernommen, sondern aus dem Graphmodell gezeichnet — dieselben
+     Daten, aber verlinkt und in der Breite der Inhaltsseite lesbar. */
+  var AUS_GRAPH = ['Beziehungen', 'Aufgaben und Ergebnisse'];
+
+  function hbAbschnitt(text, titel) {
+    if (!text || !text.abschnitte) { return null; }
+    for (var i = 0; i < text.abschnitte.length; i++) {
+      if ((text.abschnitte[i].titel || '').trim().toLowerCase() === titel.toLowerCase()) {
+        return text.abschnitte[i];
+      }
+    }
+    return null;
+  }
+
+  function absaetze(a) {
+    return a ? a.bloecke.filter(function (b) { return b.t === 'p'; }) : [];
+  }
+
+  /* Quelle des Leads: der Abschnitt «Beschreibung», sonst der erste Absatzblock
+     des ersten Abschnitts (Phasenseiten tragen keine Zwischentitel). Die
+     verwendeten Blöcke werden mitgegeben, damit sie unten nicht ein zweites
+     Mal erscheinen. Der Lead zeigt alle Absätze, nicht nur den ersten Satz —
+     diese Seite hat keine Stufen, an denen mehr nachkäme. */
+  function leadQuelle(text) {
+    var a = hbAbschnitt(text, 'Beschreibung');
+    if (a) { return { abschnitt: a, bloecke: absaetze(a) }; }
+    var erster = text && text.abschnitte && text.abschnitte[0];
+    if (!erster) { return { abschnitt: null, bloecke: [] }; }
+    var raus = [];
+    for (var i = 0; i < erster.bloecke.length; i++) {
+      if (erster.bloecke[i].t === 'p') { raus.push(erster.bloecke[i]); }
+      else if (raus.length) { break; }
+    }
+    return { abschnitt: null, bloecke: raus };
+  }
+
+  function leadBauen(e, lead) {
+    if (lead.bloecke.length) {
+      return lead.bloecke.map(function (b) { return h('p', { text: b.text }); });
+    }
+    var ersatz = e.definition || e.kurz || '';
+    return ersatz ? [h('p', { text: ersatz })] : [];
+  }
+
+  /* Eine Gruppe der Beziehungsliste: Überschrift und verlinkte Einträge,
+     je Eintrag eine Beizeile aus Modul, Verantwortung oder Ergebnistyp. */
+  function bezGruppe(label, eintraege, linkZiel) {
+    if (!eintraege.length) { return null; }
+    eintraege.sort(function (a, b) { return a.begriff.localeCompare(b.begriff, 'de'); });
+    return h('div', { class: 'ub-bez' }, [
+      h('span', { class: 'ub-bez__label', text: label }),
+      h('ul', { class: 'ub-bez__liste' }, eintraege.map(function (x) {
+        var zusatz = [];
+        if (x.kategorie === 'ergebnis' && x.typ) { zusatz.push(x.typ); }
+        if (x.kategorie === 'aufgabe' && x.module && x.module.length) { zusatz.push(x.module.join(', ')); }
+        if (x.verantwortlich) { zusatz.push(x.verantwortlich); }
+        return h('li', {}, [
+          h('a', { class: 'ub-bez__ziel', href: linkZiel(x), text: x.begriff }),
+          zusatz.length ? h('span', { class: 'ub-bez__zusatz', text: zusatz.join(' · ') }) : null
+        ]);
+      }))
+    ]);
+  }
+
+  /* --- Graphbild: das Ergebnis im Zentrum ---------------------------------- */
+
+  /* Masse im Koordinatensystem des SVG; die Zeichnung skaliert mit der
+     Breite der Inhaltsseite (viewBox + width:100%). */
+  var GB = {
+    breite: 360,
+    knotenX: 44, knotenB: 310,      // Nachbarknoten
+    mitteX: 30, mitteB: 324,        // das Ergebnis
+    zeile1: 26, zeile2: 36,         // Knotenhöhe mit einer bzw. zwei Zeilen
+    luecke: 7, abstand: 12, rand: 5,
+    biegung: 12,                    // x der Kontrollpunkte, dort fächern die Kanten
+    glyph: 15,                      // Kantenlänge des Kategorie-Icons
+    textX: 32                       // Textanfang, rechts neben dem Icon
+  };
+
+  /* Wie viele Zeichen in eine Zeile passen — SVG kann nicht kürzen. */
+  function passt(text, groesse) {
+    return HT.ui.kuerzen(text, groesse === 'klein' ? 50 : 41);
+  }
+
+  function gbKnoten(x, y, breite, hoehe, klasse, kat, z1, z2, ziel, titel) {
+    var g = svgEl('a', { 'class': 'ub-gb__knoten ' + klasse, href: ziel });
+    g.appendChild(svgEl('rect', { x: x, y: y, width: breite, height: hoehe }));
+    var t = svgEl('title', {});
+    t.textContent = titel || z1;
+    g.appendChild(t);
+    /* Dieselben Kategoriezeichen wie im Graph, im Lexikon und in der Legende
+       (HT.ui.KAT_PFADE) — hier in die Zeichnung skaliert. */
+    g.appendChild(HT.ui.katGruppe(kat, x + 17, y + hoehe / 2, GB.glyph, 'ub-gb__ikone'));
+    var t1 = svgEl('text', { x: x + GB.textX, y: y + (z2 ? 15 : hoehe / 2 + 4), 'class': 'ub-gb__t1' });
+    t1.textContent = passt(z1);
+    g.appendChild(t1);
+    if (z2) {
+      var t2 = svgEl('text', { x: x + GB.textX, y: y + 27, 'class': 'ub-gb__t2' });
+      t2.textContent = passt(z2, 'klein');
+      g.appendChild(t2);
+    }
+    return g;
+  }
+
+  /* Das Ergebnis in der Mitte, darüber die Aufgaben, in denen es entsteht,
+     darunter die Rollen. «Beteiligt» ist im Graphmodell keine Kante (es kennt
+     für Ergebnisse nur die Verantwortung), steht aber als Querverweis in den
+     Daten und auf der Quellseite — hier wird es gestrichelt gezeichnet. */
+  function graphBild(e, linkZiel) {
+    var knoten = HT.graph && HT.graph.knoten(e.id);
+    if (!knoten) { return null; }
+
+    var aufgaben = [];
+    var rollen = [];
+    var verantw = {};
+    HT.graph.nachbarn(e.id).forEach(function (n) {
+      var x = n.knoten.eintrag;
+      if (x.kategorie === 'aufgabe') { aufgaben.push({ e: x, rel: 'erzeugt' }); }
+      else if (x.kategorie === 'rolle') { verantw[x.begriff] = true; rollen.push({ e: x, rel: 'verantwortet' }); }
+    });
+    (e.beteiligt || []).forEach(function (name) {
+      if (verantw[name]) { return; }
+      var x = HT.daten.eintragMitBegriff(name, 'rolle');
+      if (x) { rollen.push({ e: x, rel: 'beteiligt' }); }
+    });
+    if (!aufgaben.length && !rollen.length) { return null; }
+
+    function sortieren(a, b) { return a.e.begriff.localeCompare(b.e.begriff, 'de'); }
+    aufgaben.sort(sortieren);
+    rollen.sort(function (a, b) {
+      if (a.rel !== b.rel) { return a.rel === 'verantwortet' ? -1 : 1; }
+      return sortieren(a, b);
+    });
+
+    /* Höhen von oben nach unten festlegen. */
+    var y = GB.rand;
+    aufgaben.forEach(function (a) {
+      a.hoehe = a.e.module && a.e.module.length ? GB.zeile2 : GB.zeile1;
+      a.y = y;
+      y += a.hoehe + GB.luecke;
+    });
+    y += GB.abstand - GB.luecke;
+    var mitteY = y;
+    var mitteH = e.typ ? GB.zeile2 : GB.zeile1;
+    y += mitteH + GB.abstand;
+    rollen.forEach(function (r) {
+      r.hoehe = GB.zeile2;
+      r.y = y;
+      y += r.hoehe + GB.luecke;
+    });
+    var hoehe = y - GB.luecke + GB.rand;
+
+    var svg = svgEl('svg', {
+      'class': 'ub-gb', viewBox: '0 0 ' + GB.breite + ' ' + hoehe,
+      role: 'img', 'aria-label': 'Beziehungen von ' + e.begriff
+    });
+
+    /* Kanten zuerst, damit die Knoten darüber liegen. */
+    var mitteAnker = mitteY + mitteH / 2;
+    var kanten = svgEl('g', { 'class': 'ub-gb__kanten' });
+    aufgaben.concat(rollen).forEach(function (n) {
+      var ny = n.y + n.hoehe / 2;
+      kanten.appendChild(svgEl('path', {
+        'class': 'ub-gb__kante' + (n.rel === 'beteiligt' ? ' ist-lose' : ''),
+        d: 'M' + GB.mitteX + ' ' + mitteAnker
+         + 'C' + GB.biegung + ' ' + mitteAnker + ',' + GB.biegung + ' ' + ny + ',' + GB.knotenX + ' ' + ny
+      }));
+    });
+    svg.appendChild(kanten);
+
+    aufgaben.forEach(function (a) {
+      svg.appendChild(gbKnoten(GB.knotenX, a.y, GB.knotenB, a.hoehe, 'ist-aufgabe', 'aufgabe',
+        a.e.begriff, (a.e.module || []).join(', '), linkZiel(a.e), a.e.begriff + ' — entsteht darin'));
+    });
+    svg.appendChild(gbKnoten(GB.mitteX, mitteY, GB.mitteB, mitteH, 'ist-mitte', ikoneFuer(e),
+      e.begriff, e.typ || '', linkZiel(e), e.begriff));
+    rollen.forEach(function (r) {
+      svg.appendChild(gbKnoten(GB.knotenX, r.y, GB.knotenB, r.hoehe, 'ist-rolle', 'rolle',
+        r.e.begriff, r.rel, linkZiel(r.e), r.e.begriff + ' — ' + r.rel));
+    });
+
+    return [
+      h('p', { class: 'ub-gb__lese', text:
+        (aufgaben.length ? 'Oben die Aufgaben, in denen das Ergebnis entsteht. ' : '')
+        + 'Unten die Rollen; gestrichelt heisst beteiligt.' }),
+      svg,
+      h('p', { class: 'ub-gb__mehr' }, h('a', {
+        class: 'ub-verweis',
+        href: '#/graph?id=' + encodeURIComponent(e.id),
+        text: 'Im vollen Graph öffnen'
+      }))
+    ];
+  }
+
+  /* Eine Gruppe von Beziehungen als Liste — für Module, die im Graphmodell
+     keine Knoten sind (es kennt nur Rolle → Aufgabe → Ergebnis). */
+  function graphBeziehungen(e, linkZiel) {
+    if (!HT.graph || !HT.graph.knoten(e.id)) { return null; }
+    var gruppen = [];
+    var nachLabel = {};
+    HT.graph.nachbarn(e.id).forEach(function (n) {
+      n.relationen.forEach(function (r) {
+        /* «verantwortet» wiederholt nur den Steckbrief. */
+        if (r.rel === 'ergebnisrolle') { return; }
+        var g = nachLabel[r.label];
+        if (!g) {
+          g = { label: r.label, eintraege: [] };
+          nachLabel[r.label] = g;
+          gruppen.push(g);
+        }
+        g.eintraege.push(n.knoten.eintrag);
+      });
+    });
+    var raus = gruppen.map(function (g) { return bezGruppe(g.label, g.eintraege, linkZiel); })
+      .filter(function (x) { return !!x; });
+    return raus.length ? raus : null;
+  }
+
+  /* Module sind keine Knoten des Graphen — er zeigt nur Rolle → Aufgabe →
+     Ergebnis. Ihre Beziehungen stehen aber in denselben Daten: alles, was das
+     Modul führt. Die Quellseite gibt das als breite Tabelle aus, hier stehen
+     zwei Listen. */
+  function modulBeziehungen(e, linkZiel) {
+    var aufgaben = [];
+    var ergebnisse = [];
+    HT.daten.alleEintraege().forEach(function (x) {
+      if (!x.module || x.module.indexOf(e.begriff) === -1) { return; }
+      if (x.kategorie === 'aufgabe') { aufgaben.push(x); }
+      else if (x.kategorie === 'ergebnis') { ergebnisse.push(x); }
+    });
+    var raus = [
+      bezGruppe('umfasst die Aufgaben', aufgaben, linkZiel),
+      bezGruppe('erzeugt die Ergebnisse', ergebnisse, linkZiel)
+    ].filter(function (x) { return !!x; });
+    return raus.length ? raus : null;
+  }
+
+  /* Ergebnisse bekommen das Bild, Module die Listen — sie sind keine Knoten. */
+  function beziehungenVon(e, linkZiel) {
+    if (e.kategorie === 'modul') { return modulBeziehungen(e, linkZiel); }
+    return graphBild(e, linkZiel) || graphBeziehungen(e, linkZiel);
+  }
+
   function leerseite() {
     return h('div', { class: 'ub-leerseite' }, [
       h('h2', { class: 'ub-leerseite__titel', text: 'Noch nichts ausgewählt' }),
@@ -1126,17 +1405,45 @@
     ]);
   }
 
+  /* Handbuchtexte je Eintrag, sobald geladen (null = keiner vorhanden). Die
+     Kategoriedatei holt HT.daten einmalig; danach löst das Versprechen sofort
+     auf und das Nachzeichnen ist nicht sichtbar. */
+  var hbTexte = {};
+
+  function handbuchHolen(e) {
+    if (Object.prototype.hasOwnProperty.call(hbTexte, e.id)) { return; }
+    hbTexte[e.id] = null;                       // nicht zweimal anfragen
+    var id = e.id;
+    HT.daten.handbuchElement(e).then(function (t) {
+      hbTexte[id] = t || null;
+      if (t && zustand.aktiv && zustand.aktiv.id === id) { inhaltZeichnen(); }
+    }).catch(function () { /* Fallback bleibt «Aus der Dokumentation» */ });
+  }
+
+  function lexikonZiel(x) {
+    return '#/lexikon?id=' + encodeURIComponent(x.id);
+  }
+
   function inhaltZeichnen() {
     if (!refs.inhalt) { return; }
+    var vorher = refs.inhalt.scrollTop;
     HT.ui.leeren(refs.inhalt);
+    HT.ui.leeren(refs.graph);
 
     var e = zustand.aktiv;
     if (!e) {
       refs.inhalt.appendChild(leerseite());
       refs.inhalt.scrollTop = 0;
+      zustand.gezeichnet = null;
+      refs.graph.appendChild(graphHinweis(
+        'Ein Ergebnis, ein Modul oder eine Phase wählen — hier stehen dann die Beziehungen dazu.'));
+      graphBereichSetzen();
       return;
     }
 
+    handbuchHolen(e);
+    var text = hbTexte[e.id] || null;
+    var lead = leadQuelle(text);
     var marker = markerVon(e);
 
     refs.inhalt.appendChild(h('article', { class: 'ub-kopf' }, [
@@ -1146,10 +1453,13 @@
         marker ? h('span', { class: 'ub-marker', text: marker }) : null
       ]),
       h('h2', { class: 'ub-kopf__titel', text: e.begriff }),
-      h('p', { class: 'ub-kopf__lead', text: e.kurz || e.definition || '' })
+      h('div', { class: 'ub-kopf__lead' }, leadBauen(e, lead))
     ]));
 
-    var fakten = faktenVon(e);
+    /* Ergebnisse zeigen ihre Fakten unten im Graphbild — Ergebnistyp und
+       «minimal gefordert» stehen bereits als Kicker und Marke im Kopf.
+       Module und Phasen sind keine Knoten und behalten den Steckbrief. */
+    var fakten = e.kategorie === 'ergebnis' ? [] : faktenVon(e);
     if (fakten.length) {
       refs.inhalt.appendChild(abschnitt('Steckbrief', [
         h('dl', { class: 'ub-fakten' }, fakten.map(function (f) {
@@ -1160,6 +1470,35 @@
           ]);
         }))
       ]));
+    }
+
+    /* Die übrigen Abschnitte der Quellseite in ihrer Reihenfolge — «Inhalt»
+       und «Dokumentenvorlage» also genau so, wie sie auf hermes.admin.ch
+       stehen. Die Beziehungen stehen nicht hier, sondern im unteren Bereich. */
+    var beziehungen = beziehungenVon(e, lexikonZiel);
+    (text && text.abschnitte ? text.abschnitte : []).forEach(function (a) {
+      if (a === lead.abschnitt) { return; }                     // steht im Lead
+      var titel = (a.titel || '').trim();
+      if (AUS_GRAPH.indexOf(titel) !== -1 && beziehungen) { return; }
+      var bs = (a.bloecke || []).filter(function (b) { return lead.bloecke.indexOf(b) === -1; });
+      if (!bs.length) { return; }
+      refs.inhalt.appendChild(abschnitt(titel || 'Aus dem Handbuch',
+        [HT.ui.bloecke(bs, { verlinken: false, ebene: 4 })], 'ub-abschnitt--regel'));
+    });
+
+    if (beziehungen) {
+      beziehungen.forEach(function (k) { refs.graph.appendChild(k); });
+    } else {
+      refs.graph.appendChild(graphHinweis(
+        'Für ' + HT.ui.zitat(e.begriff) + ' führt das Handbuch keine Beziehungen zu Aufgaben oder Rollen.'));
+    }
+    graphBereichSetzen();
+
+    /* Ohne Handbuchtext bleibt die kuratierte Fassung die einzige Quelle. */
+    if (!text && e.details) {
+      refs.inhalt.appendChild(abschnitt('Aus der Dokumentation', [
+        h('p', { class: 'ub-doku', text: e.details })
+      ], 'ub-abschnitt--regel'));
     }
 
     if (e.pruefungshinweis) {
@@ -1175,12 +1514,6 @@
       ]));
     }
 
-    if (e.details) {
-      refs.inhalt.appendChild(abschnitt('Aus der Dokumentation', [
-        h('p', { class: 'ub-doku', text: e.details })
-      ], 'ub-abschnitt--regel'));
-    }
-
     refs.inhalt.appendChild(h('section', { class: 'ub-verweise' }, [
       h('a', { class: 'ub-verweis', href: '#/lexikon?id=' + encodeURIComponent(e.id), text: 'Im Lexikon' }),
       h('a', {
@@ -1191,7 +1524,52 @@
       })
     ]));
 
-    refs.inhalt.scrollTop = 0;
+    /* Nur beim Wechsel nach oben springen — das Nachzeichnen mit dem
+       Handbuchtext darf die Leseposition nicht verlieren. */
+    if (zustand.gezeichnet !== e.id) {
+      refs.inhalt.scrollTop = 0;
+      zustand.gezeichnet = e.id;
+    } else {
+      refs.inhalt.scrollTop = vorher;
+    }
+  }
+
+  /* --- Legende zur Abbildung ----------------------------------------------- */
+
+  /* Ein Musterzeichen im Format der Grafik: 26 × 14, dieselben Farben. */
+  function zeichen(form) {
+    var svg = svgEl('svg', {
+      width: 26, height: 14, viewBox: '0 0 26 14',
+      'class': 'ub-zeichen', 'aria-hidden': 'true', focusable: 'false'
+    });
+    var teile = {
+      ergebnis: [['rect', { x: 2.5, y: 1.5, width: 21, height: 11, fill: FARBEN.ergebnis }]],
+      zustand: [['rect', { x: 3, y: 2, width: 20, height: 10, rx: 4, fill: '#FFFFFF', stroke: FARBEN.ergebnisRand }]],
+      modul: [['rect', { x: 3, y: 2, width: 20, height: 10, fill: 'none', stroke: FARBEN.modulRand }]],
+      phase: [
+        ['rect', { x: 4, y: 0, width: 8, height: 14, fill: FARBEN.phase[1] }],
+        ['rect', { x: 14, y: 0, width: 8, height: 14, fill: FARBEN.phase[0] }]
+      ],
+      meilenstein: [
+        ['path', { d: 'M0 7 H26', stroke: FARBEN.uebergang, 'stroke-dasharray': '4 3' }],
+        ['path', { d: 'M13 2.5 L17.5 7 L13 11.5 L8.5 7 Z', fill: '#575757' }]
+      ],
+      iteration: [
+        ['path', { d: 'M2 7 H18', stroke: FARBEN.iteration, 'stroke-dasharray': '3 3' }],
+        ['path', { d: 'M17 3 L24 7 L17 11 Z', fill: FARBEN.iteration }]
+      ]
+    }[form] || [];
+    teile.forEach(function (t) { svg.appendChild(svgEl(t[0], t[1])); });
+    return svg;
+  }
+
+  function abbLegendeBauen() {
+    return h('div', { class: 'ub-abblegende' }, [
+      h('span', { class: 'ub-abblegende__titel', text: 'Zeichen der Abbildung' }),
+      h('ul', { class: 'ub-abblegende__liste' }, ABB_LEGENDE.map(function (l) {
+        return h('li', {}, [zeichen(l.form), h('span', { text: l.text })]);
+      }))
+    ]);
   }
 
   /* --- Aufbau -------------------------------------------------------------- */
@@ -1211,11 +1589,113 @@
       warnung || null,
       refs.prompt,
       refs.buehne,
+      abbLegendeBauen(),
       h('p', { class: 'ub-bildunterschrift' }, [
         BILDUNTERSCHRIFT + ' — Originalgrafik, ',
         h('a', { href: QUELLE_ABB, target: '_blank', rel: 'noopener', text: 'hermes.admin.ch ↗' })
       ])
     ]);
+  }
+
+  /* --- Unterer Bereich der Inhaltsseite: Graph ----------------------------- */
+
+  /* Die Inhaltsseite ist zweigeteilt: oben der Text, unten der Graph. Beide
+     scrollen für sich, dazwischen liegt eine ziehbare Linie; die Kopfzeile
+     des unteren Bereichs klappt ihn zu und wieder auf. */
+
+  function graphHoeheSetzen(px) {
+    var raum = refs.seite ? refs.seite.clientHeight : 0;
+    var grenze = raum ? Math.max(GRAPH_MIN, raum - TEXT_MIN) : 640;
+    zustand.graphHoehe = Math.round(Math.max(GRAPH_MIN, Math.min(px, grenze)));
+    if (refs.seite) { refs.seite.style.setProperty('--ub-graph', zustand.graphHoehe + 'px'); }
+  }
+
+  /* Der untere Bereich bleibt immer sichtbar — auch ohne Auswahl und bei
+     Einträgen ohne Beziehungen. Verschwände er, sähe die geteilte Seite je
+     nach Auswahl anders aus und der Graph wirkte verschwunden. */
+  function graphBereichSetzen() {
+    if (!refs.seite) { return; }
+    refs.seite.dataset.graph = zustand.graphOffen ? 'auf' : 'zu';
+    if (refs.graphKnopf) {
+      refs.graphKnopf.setAttribute('aria-expanded', String(zustand.graphOffen));
+      refs.graphKnopf.title = zustand.graphOffen ? 'Graph zuklappen' : 'Graph aufklappen';
+    }
+  }
+
+  function graphHinweis(text) {
+    return h('p', { class: 'ub-graph__hinweis', text: text });
+  }
+
+  function graphUmschalten() {
+    zustand.graphOffen = !zustand.graphOffen;
+    graphBereichSetzen();
+    speichern();
+  }
+
+  function graphZiehenStarten(ev) {
+    if (ev.button !== undefined && ev.button !== 0) { return; }
+    if (!zustand.graphOffen) { return; }
+    ev.preventDefault();
+
+    var startY = ev.clientY;
+    var startHoehe = zustand.graphHoehe;
+
+    function bewegen(e) { graphHoeheSetzen(startHoehe - (e.clientY - startY)); }
+    function beenden() {
+      global.removeEventListener('mousemove', bewegen);
+      global.removeEventListener('mouseup', beenden);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      speichern();
+    }
+
+    document.body.style.cursor = 'row-resize';
+    document.body.style.userSelect = 'none';
+    global.addEventListener('mousemove', bewegen);
+    global.addEventListener('mouseup', beenden);
+  }
+
+  function graphGriffTaste(ev) {
+    if (ev.key !== 'ArrowUp' && ev.key !== 'ArrowDown') { return; }
+    ev.preventDefault();
+    graphHoeheSetzen(zustand.graphHoehe + (ev.key === 'ArrowUp' ? 24 : -24));
+    speichern();
+  }
+
+  function graphBereichBauen() {
+    var griff = h('div', {
+      class: 'ub-hgriff',
+      role: 'separator',
+      'aria-orientation': 'horizontal',
+      'aria-label': 'Höhe des Graphbereichs',
+      tabindex: '0',
+      title: 'Ziehen ändert die Höhe · Doppelklick setzt zurück'
+    }, [h('span', { class: 'ub-hgriff__strich', 'aria-hidden': 'true' })]);
+    griff.addEventListener('mousedown', graphZiehenStarten);
+    griff.addEventListener('keydown', graphGriffTaste);
+    griff.addEventListener('dblclick', function () {
+      graphHoeheSetzen(GRAPH_STANDARD);
+      speichern();
+    });
+
+    refs.graphKnopf = h('button', {
+      type: 'button',
+      class: 'ub-graphkopf__knopf',
+      'aria-controls': 'ub-graphbereich',
+      'aria-expanded': 'true',
+      on: { click: graphUmschalten }
+    }, [
+      h('span', { class: 'ub-graphkopf__pfeil', 'aria-hidden': 'true' }),
+      h('span', { text: 'Beziehungen' })
+    ]);
+
+    refs.graph = h('div', {
+      class: 'ub-graph',
+      id: 'ub-graphbereich',
+      'aria-label': 'Beziehungen des gewählten Elements'
+    });
+
+    return [griff, h('div', { class: 'ub-graphkopf' }, refs.graphKnopf), refs.graph];
   }
 
   function trennerBauen() {
@@ -1250,19 +1730,22 @@
   function werkbankRendern(behaelter) {
     refs.felder = [];
 
-    refs.inhalt = h('aside', { class: 'ub-inhalt', 'aria-label': 'Inhaltsseite zum gewählten Element' });
+    refs.inhalt = h('div', { class: 'ub-inhalt__text' });
+    refs.seite = h('aside', { class: 'ub-inhalt', 'aria-label': 'Inhaltsseite zum gewählten Element' },
+      [refs.inhalt].concat(graphBereichBauen()));
 
     refs.werkbank = h('div', { class: 'ub-werkbank' }, [
       h('h1', { class: 'nur-sr', text: 'Methodenüberblick' }),
       abbildungSeiteBauen(),
       trennerBauen(),
-      refs.inhalt
+      refs.seite
     ]);
 
     behaelter.appendChild(refs.werkbank);
 
     werkzeugAktualisieren();
     inhaltBreiteSetzen(zustand.inhaltBreite);
+    graphHoeheSetzen(zustand.graphHoehe);
     inhaltZeichnen();
     panelZeichnen();
     promptZeichnen();

@@ -60,9 +60,10 @@
     if (kinder && kinder.nodeType) { el.appendChild(kinder); }
   }
 
+  var NS = 'http://www.w3.org/2000/svg';
+
   /* Inline-SVG-Symbol aus Pfaden (keine externen Abhängigkeiten). */
   function symbol(pfade, groesse) {
-    var NS = 'http://www.w3.org/2000/svg';
     var svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('viewBox', '0 0 24 24');
     svg.setAttribute('width', String(groesse || 20));
@@ -137,6 +138,26 @@
     var svg = symbol(katPfade(kategorie), groesse || 16);
     svg.setAttribute('class', 'kat-ikone kat-ikone--' + (kategorie || 'grundbegriff'));
     return svg;
+  }
+
+  /**
+   * Dasselbe Icon als <g> in einer bestehenden SVG-Zeichnung: das 24er-Raster
+   * wird auf `kante` skaliert und um (cx, cy) zentriert. Strichbreite und
+   * Farbe kommen aus dem CSS der jeweiligen Zeichnung.
+   * Genutzt vom Graphen und vom Graphbild der Überblick-Inhaltsseite.
+   */
+  function katGruppe(kategorie, cx, cy, kante, klasse) {
+    var m = kante / 24;
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', (klasse || 'kat-ikone') + ' kat-ikone--' + (kategorie || 'grundbegriff'));
+    g.setAttribute('transform', 'translate(' + (Math.round((cx - kante / 2) * 10) / 10)
+      + ',' + (Math.round((cy - kante / 2) * 10) / 10) + ') scale(' + (Math.round(m * 100) / 100) + ')');
+    katPfade(kategorie).forEach(function (d) {
+      var pf = document.createElementNS(NS, 'path');
+      pf.setAttribute('d', d);
+      g.appendChild(pf);
+    });
+    return g;
   }
 
   function leeren(el) {
@@ -388,8 +409,28 @@
     ]);
   }
 
+  /* Verweis auf eine Dokumentvorlage (.dotx) auf hermes.admin.ch. Der Klick
+     lädt eine Datei — deshalb steht Dateiname und Grösse sichtbar dabei. */
+  function downloadElement(block) {
+    if (!block.url) { return null; }
+    var meta = [block.datei, block.groesse].filter(Boolean).join(' · ');
+    return h('a', {
+      class: 'hb-vorlage',
+      href: block.url,
+      target: '_blank',
+      rel: 'noopener',
+      download: block.datei || true
+    }, [
+      h('span', { class: 'hb-vorlage__ikone', 'aria-hidden': 'true', text: '↓' }),
+      h('span', { class: 'hb-vorlage__text' }, [
+        h('b', { text: block.titel || 'Dokumentvorlage' }),
+        meta ? h('span', { class: 'hb-vorlage__meta', text: meta }) : null
+      ])
+    ]);
+  }
+
   /**
-   * Rendert eine Blockliste (p, ul/ol, tabelle, abb, h).
+   * Rendert eine Blockliste (p, ul/ol, tabelle, abb, download, h).
    * optionen.verlinken: Begriffe in Listen/Zellen auf das Lexikon verlinken.
    * optionen.ebene: HTML-Überschriftenebene für «h»-Blöcke (Standard 4).
    */
@@ -407,6 +448,8 @@
         el = tabelleElement(b, optionen);
       } else if (b.t === 'abb') {
         el = abbildungElement(b);
+      } else if (b.t === 'download') {
+        el = downloadElement(b);
       } else if (b.t === 'h') {
         var n = Math.min(6, Math.max(2, (optionen.ebene || 4) + Math.max(0, (b.n || 2) - 2)));
         el = h('h' + n, { class: 'hb-h', text: b.text || '' });
@@ -448,6 +491,7 @@
     symbol: symbol,
     katSymbol: katSymbol,
     katPfade: katPfade,
+    katGruppe: katGruppe,
     bloecke: bloecke,
     eintragLink: eintragLink,
     handbuchVerweis: handbuchVerweis,

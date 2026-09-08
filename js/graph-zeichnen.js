@@ -36,7 +36,6 @@
   }
 
   function rund(n) { return Math.round(n * 10) / 10; }
-  function rund2(n) { return Math.round(n * 1000) / 1000; }
 
   /* --- Textbreite messen -------------------------------------------------- */
 
@@ -112,12 +111,7 @@
 
   /* Kategorie-Icon (24er-Raster aus HT.ui) in den Knotenkreis skaliert. */
   function ikone(kategorie, cx, cy, kante) {
-    var g = s('g', {
-      class: 'gk__ikone',
-      transform: 'translate(' + rund(cx - kante / 2) + ',' + rund(cy - kante / 2) + ') scale(' + rund2(kante / 24) + ')'
-    });
-    HT.ui.katPfade(kategorie).forEach(function (d) { g.appendChild(s('path', { d: d })); });
-    return g;
+    return HT.ui.katGruppe(kategorie, cx, cy, kante, 'gk__ikone');
   }
 
   function knotenElement(k, opt) {
