@@ -18,6 +18,8 @@ Neueste Einträge zuerst.
 
 **Geprüft im Browser** (lokaler Server mit `Cache-Control: no-store`): 98 von 99 Kästen mit dem Lexikon verbunden — der einzige Rest ist wie dokumentiert die Sammelfläche «Phasenunabhängig»; Hover/Klick/Tastatur (Enter auf fokussiertem Kasten), Rolleneinfärbung (Auftraggeber: 3 verantwortet · 13 beteiligt), «nur minimal» blasst 31 Kästen ab, Steuerung öffnet/schliesst per Klick, Aussenklick und Escape, Trennlinie ziehen/Doppelklick/Pfeiltasten, «Breit» klappt ein und passt den Zoom nach, eine ganze Abfragerunde bis «Runde beendet» inklusive Schwachstellenliste und Persistenz, Route verlassen und zurück, schmale Darstellung bei 390 px im sichtbaren iframe. Keine Konsolenfehler.
 
+**Veröffentlicht:** Commit `69ee441` auf `main` gepusht; GitHub Pages nach rund 15 s aktualisiert (verifiziert: neue `js/ueberblick.js` und `css/ueberblick.css` werden ausgeliefert, Archivo lädt, 98 Kästen verbunden). Das Handoff-Bündel bleibt auf Wunsch des Sponsors ausserhalb des Repos (`.gitignore`) — es steckt vollständig im Ergebnis.
+
 **Offen:** Der Handoff nennt den Graph als nächstes Stück Arbeit (zu viele Knoten auf einmal, kein klarer Einstieg, schwer lesbares Swimlane-Layout); die übrigen Routen tragen weiterhin das alte blaue Kartendesign.
 
 ## 2026-09-07 (3) — Eigene Seite je Feld der Abbildung (Phase × Modul)
