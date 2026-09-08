@@ -28,7 +28,9 @@ Neueste Einträge zuerst.
 
 **Nachgefasst:** Erklärtext über dem Beziehungsbild entfernt («not needed»). Hervorhebung beim Zeigen wie im grossen Graph («we had highlighted the relationships on mouse over — can we restore that?»): Zeigen oder Fokus auf einen Knoten lässt ihn samt Nachbarn und Kanten stehen und dimmt den Rest (`hervorheben()` in `graphBild()`, Regeln `.ub-gb.ist-hervorhebung` spiegeln die von `.graph-svg`). Im grossen Graph war die Hervorhebung nie weg — geprüft. Versionsmarke `?v=2026-09-08q`.
 
-**Offen / nicht gemacht:** Nicht committet, nicht gepusht. Quiz-Endbilanz (`.statistik`, `.abschluss`) ist gestylt, aber nicht durchgespielt. Bei Fensterbreiten zwischen 700 und ~1000 px umbricht die Kategoriezeile weiterhin mit einem führenden Haarstrich — kosmetisch. README nachgeführt (Design gilt für die ganze Anwendung, Bedienelemente auf der Bühne).
+**Veröffentlicht:** Commit `f64b53c` auf `main` gepusht; GitHub Pages nach rund einer Minute aktualisiert (verifiziert: `index.html` mit Marke `?v=2026-09-08q`, neue `css/ueberblick.css` live).
+
+**Offen / nicht gemacht:** Quiz-Endbilanz (`.statistik`, `.abschluss`) ist gestylt, aber nicht durchgespielt. Bei Fensterbreiten zwischen 700 und ~1000 px umbricht die Kategoriezeile weiterhin mit einem führenden Haarstrich — kosmetisch. README nachgeführt (Design gilt für die ganze Anwendung, Bedienelemente auf der Bühne).
 
 ## 2026-09-08 (4) — Inhaltsseite des Überblicks nach dem Aufbau der Quellseite
 
