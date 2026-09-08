@@ -4,6 +4,10 @@
 
 /* --- Kopf und Einordnung -------------------------------------------------- */
 
+/* Knapper Seitenkopf — stand früher in css/ueberblick.css, wird aber nur noch
+   hier gebraucht. */
+.kopf--knapp { margin-bottom: .6rem; }
+
 .feld-zurueck { margin: 0 0 .7rem; font-size: .88rem; }
 .feld-badges { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-bottom: .45rem; }
 a.badge { text-decoration: none; }

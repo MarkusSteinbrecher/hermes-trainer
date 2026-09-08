@@ -2,6 +2,24 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-08 — Überblick nach dem Modernist-Entwurf neu gebaut
+
+**Auftrag:** «In the Design folder, there is some guidance from Claude Design to implement» — der Handoff `design/design_handoff_hermes_ueberblick/` (README, drei `.dc.html`-Prototypen, Modernist-Tokensheet) beschreibt die Ansicht «Überblick» als Werkbank aus zwei Bereichen. Der Prototyp ist ein Komponentenformat mit `<x-dc>`/`class Component`; der Handoff verlangt ausdrücklich, das **nicht** zu portieren, sondern das Ergebnis im bestehenden Vanilla-JS-Gerüst nachzubauen. Genau das ist geschehen: `js/ueberblick.js` und `css/ueberblick.css` sind neu geschrieben, kein Framework, kein Build-Schritt, weiter ohne `innerHTML`.
+
+**Die Ansicht:** links die unveränderte Originalabbildung mit Trefferschicht, rechts eine Inhaltsseite mit fester Abschnittsfolge (Kopf mit Kategorie-Ikone/Kicker/Marker, Steckbrief als Definitionsliste mit Ikonen, Prüfungshinweis im Akzent-Hauch, Abgrenzung, «Aus der Dokumentation», Verweise), dazwischen eine ziehbare Trennlinie (`role="separator"`, Doppelklick setzt auf 420 px, Pfeiltasten ±24 px). Werkzeugleiste mit Modus-Tabs, Zoom (×1.2, 0.4–2.5), «Passend», «Breit» und der Steuerung als einziger erhobener Fläche der Seite.
+
+**Zwei Modi.** *Erkunden*: Zeigen füllt die Inhaltsseite, Klick hält den Eintrag fest, Rollenauswahl färbt (verantwortlich gefüllt, beteiligt umrandet, Rest blasst ab), Schalter «nur minimal gefordert». *Abfragen* (neu): jeder der 80 Ergebniskästen bekommt einen Deckel in seiner eigenen Füllfarbe — nur die Beschriftung verschwindet, Modulrahmen und Phasenbalken bleiben als Orientierung stehen. Gesucht wird der Ort in der Abbildung; Runde aus 12 Aufgaben, Fehlerbilanz und beste Serie in `localStorage` (`hermes-trainer:ueberblick-drill`), Begriffe mit Fehlern bekommen bis zu drei Zusatzlose je Runde.
+
+**Design.** Modernist: Archivo, Radius 0, Struktur aus Linien statt Kästen, Akzent `#ec3013`, kein Dark Mode. Alle Regeln hängen an `body[data-route="ueberblick"]` — auch die Umgestaltung der Kopfzeile —, damit die übrigen Ansichten unangetastet bleiben; geprüft: Lexikon und Feld rendern unverändert. Ab 700 px füllt die Werkbank den Schirm (`100vh`, nur die zwei Bereiche scrollen, Fusszeile ausgeblendet), darunter wird gestapelt, damit die Seite auf dem Telefon samt Fussnavigation benutzbar bleibt.
+
+**Drei bewusste Abweichungen vom Handoff**, jeweils weil er sonst eine Lücke liesse: (1) Das `<title>` eines verdeckten Kastens hiess im Prototyp weiter wie der Begriff — der native Tooltip hätte im Abfragemodus die Lösung verraten; verdeckte Kästen heissen jetzt «Verdeckter Ergebniskasten». (2) Am Rundenende liegt «Neue Runde» zusätzlich in der Aufgabenzeile, nicht nur in der Steuerung — sonst endet die Runde ohne sichtbare Fortsetzung. (3) Escape schliesst die Steuerung und gibt den Fokus an den Auslöser zurück.
+
+**Entscheidungen.** Schrift Archivo global über Google Fonts in `index.html` (Rückfrage an den Sponsor; damit ist die Site nicht mehr abhängigkeitsfrei — README und der Kopf von `css/style.css` sind nachgeführt). Die Ergebnis-Detailseite unter `#/ueberblick?id=…` ist entfallen: der Eintrag steht jetzt rechts in der Inhaltsseite und vollständig im Lexikon, alte Links leiten dorthin um; `js/feld.js` verlinkt Ergebnisse direkt ins Lexikon.
+
+**Geprüft im Browser** (lokaler Server mit `Cache-Control: no-store`): 98 von 99 Kästen mit dem Lexikon verbunden — der einzige Rest ist wie dokumentiert die Sammelfläche «Phasenunabhängig»; Hover/Klick/Tastatur (Enter auf fokussiertem Kasten), Rolleneinfärbung (Auftraggeber: 3 verantwortet · 13 beteiligt), «nur minimal» blasst 31 Kästen ab, Steuerung öffnet/schliesst per Klick, Aussenklick und Escape, Trennlinie ziehen/Doppelklick/Pfeiltasten, «Breit» klappt ein und passt den Zoom nach, eine ganze Abfragerunde bis «Runde beendet» inklusive Schwachstellenliste und Persistenz, Route verlassen und zurück, schmale Darstellung bei 390 px im sichtbaren iframe. Keine Konsolenfehler.
+
+**Offen:** Der Handoff nennt den Graph als nächstes Stück Arbeit (zu viele Knoten auf einmal, kein klarer Einstieg, schwer lesbares Swimlane-Layout); die übrigen Routen tragen weiterhin das alte blaue Kartendesign.
+
 ## 2026-09-07 (3) — Eigene Seite je Feld der Abbildung (Phase × Modul)
 
 **Auftrag:** «Detailseiten für jede Überschneidung von Phase und Modul, z. B. Projektsteuerung/Projektführung und Initialisierung. Auf der Detailseite sollten alle Elemente dargestellt werden, die dafür wichtig sind.» Nachtrag: erst eine Seite zum Test. Nach dem ersten Blick: «Die Seite sollte wirklich eine eigene Seite sein und nichts anderes zeigen als den Ausschnitt, allerdings mit allen Details.»

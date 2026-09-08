@@ -1,7 +1,9 @@
 /* ==========================================================================
    HERMES-Trainer — Stylesheet
    Mobile-first, Light als Basis, Dark via prefers-color-scheme.
-   Keine externen Abhängigkeiten, keine Webfonts.
+   Keine Laufzeitbibliotheken. Einzige externe Ressource ist die Schrift Archivo
+   (Google Fonts) — sie gilt nur für die Ansicht «Überblick», alles andere nutzt
+   weiterhin die Systemschrift.
    ========================================================================== */
 
 /* --- Design-Tokens (Light) ------------------------------------------------ */

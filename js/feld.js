@@ -20,10 +20,9 @@
 
   var h = HT.ui.h;
 
-  /* Ergebnisse haben eine eigene Detailseite in der Überblick-Ansicht; alles
-     andere steht im Lexikon. */
+  /* Jedes Element steht vollständig im Lexikon; der Methodenüberblick zeigt
+     seine Kurzfassung inzwischen selbst in der Inhaltsseite. */
   function verweisZiel(e) {
-    if (e && e.kategorie === 'ergebnis') { return '#/ueberblick?id=' + encodeURIComponent(e.id); }
     return '#/lexikon?id=' + encodeURIComponent(e.id);
   }
 

@@ -2,3 +2,7 @@
 
 # Grosser Export der Claude-Design-Leinwand (2,6 MB, aus den .dc.html-Quellen erzeugt)
 design/**/graph-steuerung.html
+
+# Handoff-Bündel von Claude Design zum Überblick — Prototypen samt Kopien der
+# Daten und der Abbildung; das Ergebnis steckt in js/ueberblick.js + css/ueberblick.css
+design/design_handoff_hermes_ueberblick/

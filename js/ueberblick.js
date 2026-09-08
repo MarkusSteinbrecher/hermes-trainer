@@ -1,19 +1,25 @@
-/* HERMES-Trainer — Ansicht «Überblick».
-   Zeigt Abbildung 1 des Referenzhandbuchs («Gesamtbild der HERMES-Module und
-   der wesentlichen Ergebnisse entlang der Phasen») unverändert — es ist die
-   Originalgrafik von hermes.admin.ch aus assets/abb/ — und legt eine
-   Interaktionsschicht darüber:
+/* HERMES-Trainer — Ansicht «Überblick» (Methodenüberblick).
 
-   – Zeigen auf einen Kasten öffnet Kurzfassung, Verantwortung und beteiligte
-     Rollen; das gilt auch für die Modulköpfe und die Phasenbalken am Rand.
-   – Klick öffnet die Detailseite des Elements.
-   – Eine Rollenauswahl färbt die Kästen, die diese Rolle verantwortet oder an
-     denen sie beteiligt ist.
+   Eine Werkbank aus zwei Bereichen: links Abbildung 1 des Referenzhandbuchs
+   («Gesamtbild der HERMES-Module und der wesentlichen Ergebnisse entlang der
+   Phasen») unverändert als Originalgrafik von hermes.admin.ch, darüber eine
+   unsichtbare Trefferschicht; rechts eine Inhaltsseite, die zu jedem Kasten
+   immer dieselben Abschnitte in derselben Reihenfolge zeigt. Dazwischen eine
+   ziehbare Trennlinie.
 
-   Die Grafik selbst wird nicht nachgebaut: Kästen, Beschriftungen und Pfeile
-   stammen aus der SVG-Datei. Zur Laufzeit werden nur die Kästen erkannt (über
-   Füllfarbe und Kontur), ihre Beschriftung aus den Textfragmenten
-   zusammengesetzt und mit den Einträgen aus data/ verbunden. */
+   Zwei Modi:
+   – Erkunden — Zeigen füllt die Inhaltsseite, Klick hält den Eintrag fest.
+     Über die Steuerung lässt sich eine Rolle einfärben oder alles ausblassen,
+     was nicht minimal gefordert ist.
+   – Abfragen — die Ergebniskästen werden verdeckt; gesucht wird der Ort in
+     der Abbildung. Modulrahmen und Phasenbalken bleiben sichtbar, sie sind
+     die Orientierungspunkte. Fehler werden gezählt und kommen in späteren
+     Runden häufiger dran.
+
+   Die Grafik wird nicht nachgebaut: Kästen, Beschriftungen und Pfeile stammen
+   aus der SVG-Datei. Zur Laufzeit werden nur die Kästen über Füllfarbe und
+   Kontur erkannt, ihre Beschriftung aus den Textfragmenten zusammengesetzt
+   und mit den Einträgen aus data/ verbunden. */
 (function (global) {
   'use strict';
 
@@ -30,13 +36,21 @@
   var BILDUNTERSCHRIFT = 'Abbildung 1: Gesamtbild der HERMES-Module und der '
     + 'wesentlichen Ergebnisse entlang der Phasen';
 
-  /* Farben, an denen die Grafik ihre Bestandteile unterscheidet. */
+  var QUELLE_ABB = 'https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html';
+  var QUELLE_ALLGEMEIN = 'https://www.hermes.admin.ch/de/projektmanagement.html';
+
+  /* Farben, an denen die Grafik ihre Bestandteile unterscheidet. Sie stammen
+     aus dem Office-Export und werden wörtlich verglichen — keine Themenfarben. */
   var FARBEN = {
-    ergebnis: '#DCEBFA',        // Ergebniskasten (Dokument, eckig)
-    ergebnisRand: '#DCEBFA',    // Zustandskasten (weiss gefüllt, gerundet)
-    modulRand: '#000000',       // Modulkopf
+    ergebnis: '#DCEBFA',        // Ergebniskasten (eckig)
+    ergebnisRand: '#DCEBFA',    // Dokumentform (weiss gefüllt, welliger Fuss)
+    modulRand: '#000000',       // Modulrahmen
     phase: ['#B7D5F1', '#D9D9D9', '#EBC9C7']   // Phasenbalken am linken Rand
   };
+
+  /* Farben der Trefferschicht. */
+  var AKZENT = '#ec3013';
+  var TINTE = '#201e1d';
 
   /* Kästen, die in der Grafik anders oder verkürzt beschriftet sind als im
      Lexikon. Zwei Kästen stehen für je zwei Elemente — die Grafik fasst
@@ -50,39 +64,63 @@
     { label: 'Projektsteuerung Projektführung', ziele: ['Projektsteuerung', 'Projektführung'], kat: 'modul' }
   ];
 
-  var SPEICHER = 'ueberblick';
-  var ZOOM_MIN = 0.5;
+  var ZOOM_MIN = 0.4;
   var ZOOM_MAX = 2.5;
+  var ZOOM_SCHRITT = 1.2;
+
+  var INHALT_STANDARD = 420;   // Breite der Inhaltsseite in px
+  var INHALT_MIN = 280;
+  var ABB_MIN = 380;           // so viel bleibt der Abbildung mindestens
+
+  var RUNDEN_LAENGE = 12;
+  var SPEICHER = 'ueberblick-drill';
+
+  var LEGENDE = [
+    { kat: 'rolle', text: 'Rolle — wer verantwortet und mitwirkt' },
+    { kat: 'aufgabe', text: 'Aufgabe — was getan wird' },
+    { kat: 'ergebnis', text: 'Ergebnis — was dabei entsteht' },
+    { kat: 'meilenstein', text: 'Meilenstein — Ergebnis als Quality Gate' },
+    { kat: 'modul', text: 'Modul — Bündel von Aufgaben und Ergebnissen' },
+    { kat: 'phase', text: 'Phase — Abschnitt im Projektverlauf' }
+  ];
 
   var zustand = {
-    rolle: '',                  // hervorgehobene Rolle (Begriff) oder ''
-    nurMinimal: false,          // minimal geforderte Ergebnisse hervorheben
+    modus: 'erkunden',        // 'erkunden' | 'abfragen'
+    rolle: '',                // eingefärbte Rolle (Begriff) oder ''
+    nurMinimal: false,        // alles ausblassen, was nicht minimal gefordert ist
     zoom: 1,
+    aktiv: null,              // Eintrag, den die Inhaltsseite zeigt
+    gehalten: false,          // durch Klick festgehalten
+    nurAbb: false,            // «Breit»: Inhaltsseite eingeklappt
+    panel: false,             // Steuerung offen
+    inhaltBreite: INHALT_STANDARD,
+    runde: null,              // { aufgaben, i, phase, falschesFeld }
+    punkte: 0,
+    versuche: 0,
+    serie: 0,
+    besteSerie: 0,
+    fehler: {},               // Begriff -> Anzahl Fehlversuche
     initialisiert: false
   };
 
   var refs = {};
+  var abbQuelle = null;       // einmal geholter SVG-Text, für spätere Aufrufe
+  var passTimer = null;
+  var groesseAngemeldet = false;
 
-  /* --- Zustand sichern und wiederherstellen -------------------------------- */
+  /* --- Zustand sichern ----------------------------------------------------- */
 
+  /* Gespeichert wird nur, was über eine Runde hinaus zählt: die Fehlerbilanz
+     und die beste Serie. Punkte und laufende Serie gehören zur Runde. */
   function speichern() {
-    HT.store.schreib(SPEICHER, {
-      rolle: zustand.rolle,
-      nurMinimal: zustand.nurMinimal,
-      zoom: zustand.zoom
-    });
+    HT.store.schreib(SPEICHER, { fehler: zustand.fehler, besteSerie: zustand.besteSerie });
   }
 
   function wiederherstellen() {
     var g = HT.store.lies(SPEICHER, null);
     if (!g || typeof g !== 'object') { return; }
-    if (typeof g.rolle === 'string' && HT.daten.eintragMitBegriff(g.rolle, 'rolle')) {
-      zustand.rolle = g.rolle;
-    }
-    zustand.nurMinimal = !!g.nurMinimal;
-    if (typeof g.zoom === 'number' && g.zoom >= ZOOM_MIN && g.zoom <= ZOOM_MAX) {
-      zustand.zoom = g.zoom;
-    }
+    if (g.fehler && typeof g.fehler === 'object') { zustand.fehler = g.fehler; }
+    if (typeof g.besteSerie === 'number' && g.besteSerie >= 0) { zustand.besteSerie = g.besteSerie; }
   }
 
   /* --- Beschriftung -> Eintrag -------------------------------------------- */
@@ -162,7 +200,7 @@
     ]);
   }
 
-  /* Die gerundeten Kästen sind Pfade aus M/L/C/Z — ausschliesslich
+  /* Die Dokumentform ist ein Pfad aus M/L/C/Z — ausschliesslich
      Koordinatenpaare, deshalb genügt das Auslesen aller Zahlen. */
   function rahmenVonPfad(el) {
     var zahlen = (el.getAttribute('d') || '').match(/-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?/g);
@@ -210,6 +248,7 @@
       var r = rahmenVonRect(el);
       if (r.w < 4 || r.h < 4) { return; }
       r.art = art;
+      r.fuell = art === 'ergebnis' ? FARBEN.ergebnis : null;
       kaesten.push(r);
     });
 
@@ -218,6 +257,7 @@
       var r = rahmenVonPfad(el);
       if (!r || r.w < 4 || r.h < 4) { return; }
       r.art = 'ergebnis';
+      r.fuell = '#FFFFFF';
       kaesten.push(r);
     });
 
@@ -251,7 +291,7 @@
     });
   }
 
-  /* --- Interaktionsschicht ------------------------------------------------- */
+  /* --- Trefferschicht ------------------------------------------------------ */
 
   function svgEl(tag, attrs) {
     var el = document.createElementNS(SVG_NS, tag);
@@ -263,10 +303,79 @@
     return el;
   }
 
-  function detailZiel(e) {
-    if (e.kategorie === 'ergebnis') { return '#/ueberblick?id=' + encodeURIComponent(e.id); }
-    return '#/lexikon?id=' + encodeURIComponent(e.id);
+  function namenVon(eintraege) {
+    return eintraege.map(function (x) { return x.begriff; }).join(' / ');
   }
+
+  function feldBauen(k, eintraege) {
+    var gruppe = svgEl('g', { tabindex: '0', role: 'button', 'class': 'ub-feld' });
+    var flaeche = svgEl('rect', {
+      x: k.x - 1, y: k.y - 1, width: k.w + 2, height: k.h + 2,
+      fill: '#ffffff', 'fill-opacity': '0', stroke: 'none'
+    });
+    var titel = svgEl('title', {});
+    titel.appendChild(document.createTextNode(namenVon(eintraege)));
+
+    gruppe.appendChild(flaeche);
+    gruppe.appendChild(titel);
+
+    var feld = {
+      gruppe: gruppe, flaeche: flaeche, titel: titel, deckel: null,
+      eintraege: eintraege, rahmen: k, art: k.art,
+      name: namenVon(eintraege), schwebt: false, aufgedeckt: false
+    };
+
+    gruppe.addEventListener('mouseenter', function () {
+      feld.schwebt = true;
+      if (zustand.modus === 'erkunden' && !zustand.gehalten) { aktivSetzen(eintraege[0]); }
+      malen();
+    });
+    gruppe.addEventListener('mouseleave', function () { feld.schwebt = false; malen(); });
+    gruppe.addEventListener('focus', function () {
+      feld.schwebt = true;
+      if (zustand.modus === 'erkunden' && !zustand.gehalten) { aktivSetzen(eintraege[0]); }
+      malen();
+    });
+    gruppe.addEventListener('blur', function () { feld.schwebt = false; malen(); });
+    gruppe.addEventListener('click', function () { feldGeklickt(feld); });
+    gruppe.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+        ev.preventDefault();
+        feldGeklickt(feld);
+      }
+    });
+
+    return feld;
+  }
+
+  function feldGeklickt(feld) {
+    if (zustand.modus === 'abfragen') { antworten(feld); return; }
+    var gleich = zustand.aktiv && zustand.aktiv.id === feld.eintraege[0].id;
+    zustand.gehalten = !(gleich && zustand.gehalten);
+    aktivSetzen(feld.eintraege[0]);
+    malen();
+    if (zustand.gehalten) { inhaltInSichtBringen(); }
+  }
+
+  /* Auf schmalen Schirmen steht die Inhaltsseite unter der Abbildung; ohne
+     diesen Sprung sieht ein Tippen auf einen Kasten nach nichts aus. */
+  function inhaltInSichtBringen() {
+    if (!refs.inhalt || !global.matchMedia) { return; }
+    if (!global.matchMedia('(max-width: 699.98px)').matches) { return; }
+    try {
+      refs.inhalt.scrollIntoView({ block: 'start' });
+    } catch (e) {
+      refs.inhalt.scrollIntoView();
+    }
+  }
+
+  function aktivSetzen(eintrag) {
+    if (zustand.aktiv === eintrag) { return; }
+    zustand.aktiv = eintrag;
+    inhaltZeichnen();
+  }
+
+  /* --- Einfärben ----------------------------------------------------------- */
 
   function rollenBezug(e) {
     if (!zustand.rolle || e.kategorie !== 'ergebnis') { return ''; }
@@ -279,45 +388,62 @@
     return 'ohne';
   }
 
-  function flaechenKlasse(eintraege) {
-    var e = eintraege[0];
-    var klassen = ['ub-feld', 'ub-feld--' + e.kategorie];
-    var bezug = rollenBezug(e);
-    if (bezug) { klassen.push('ub-feld--' + bezug); }
-    if (zustand.nurMinimal && e.kategorie === 'ergebnis' && !e.minimalGefordert) {
-      klassen.push('ub-feld--blass');
-    }
-    return klassen.join(' ');
-  }
+  /* Gezeichnet wird ausschliesslich auf der Trefferschicht; die Originalgrafik
+     bleibt unangetastet. */
+  function malen() {
+    var runde = zustand.runde;
+    var gesucht = runde ? runde.aufgaben[runde.i] : null;
 
-  function felderFaerben() {
     (refs.felder || []).forEach(function (f) {
-      f.flaeche.setAttribute('class', flaechenKlasse(f.eintraege));
+      var e = f.eintraege[0];
+      var fill = '#ffffff', op = 0, stroke = 'none', sw = 0;
+      var verdeckt = false;
+
+      if (zustand.modus === 'abfragen') {
+        verdeckt = f.art === 'ergebnis' && !!runde && runde.phase !== 'ende' && !f.aufgedeckt;
+        if (f.deckel) { f.deckel.style.display = verdeckt ? 'block' : 'none'; }
+
+        if (runde && gesucht && istGesucht(f, gesucht) && runde.phase !== 'frage') {
+          fill = AKZENT; op = 0.32; stroke = AKZENT; sw = 2;
+        } else if (runde && f === runde.falschesFeld) {
+          fill = TINTE; op = 0.1; stroke = TINTE; sw = 2;
+        } else if (f.schwebt && f.art === 'ergebnis' && runde && runde.phase === 'frage') {
+          fill = TINTE; op = 0.08;
+        }
+      } else {
+        if (f.deckel) { f.deckel.style.display = 'none'; }
+        var bezug = rollenBezug(e);
+        var blass = zustand.nurMinimal && e.kategorie === 'ergebnis' && !e.minimalGefordert;
+
+        if (bezug === 'verantwortlich') { fill = AKZENT; op = 0.3; stroke = AKZENT; sw = 2; }
+        else if (bezug === 'beteiligt') { op = 0; stroke = AKZENT; sw = 2; }
+        else if (bezug === 'ohne' || blass) { fill = '#ffffff'; op = (bezug === 'ohne' && blass) ? 0.82 : 0.7; }
+
+        if (zustand.gehalten && zustand.aktiv && istGleich(f, zustand.aktiv)) {
+          fill = AKZENT; op = 0.18; stroke = AKZENT; sw = 2;
+        }
+        if (f.schwebt) { fill = AKZENT; op = 0.2; stroke = AKZENT; sw = 2; }
+      }
+
+      f.flaeche.setAttribute('fill', fill);
+      f.flaeche.setAttribute('fill-opacity', String(op));
+      f.flaeche.setAttribute('stroke', stroke);
+      f.flaeche.setAttribute('stroke-width', String(sw));
+
+      /* Verdeckte Kästen dürfen ihren Namen nicht im Tooltip verraten. */
+      f.titel.textContent = verdeckt ? 'Verdeckter Ergebniskasten' : f.name;
     });
   }
 
-  function feldBauen(k, eintraege) {
-    var e = eintraege[0];
-    var a = svgEl('a', { href: detailZiel(e), tabindex: '0', 'class': 'ub-feld-link' });
-    var flaeche = svgEl('rect', {
-      x: k.x - 1, y: k.y - 1, width: k.w + 2, height: k.h + 2,
-      rx: k.art === 'phase' ? 2 : 3
-    });
-    var titel = svgEl('title', {});
-    titel.appendChild(document.createTextNode(
-      eintraege.map(function (x) { return x.begriff; }).join(' / ') + ' — Details öffnen'
-    ));
-
-    a.appendChild(flaeche);
-    a.appendChild(titel);
-
-    a.addEventListener('mouseenter', function () { fensterZeigen(eintraege, k, a); });
-    a.addEventListener('mouseleave', fensterVerbergen);
-    a.addEventListener('focus', function () { fensterZeigen(eintraege, k, a); });
-    a.addEventListener('blur', fensterVerbergen);
-
-    return { link: a, flaeche: flaeche, eintraege: eintraege, rahmen: k };
+  function istGleich(feld, eintrag) {
+    return feld.eintraege.some(function (x) { return x.id === eintrag.id; });
   }
+
+  function istGesucht(feld, gesucht) {
+    return istGleich(feld, gesucht);
+  }
+
+  /* --- Diagramm einsetzen -------------------------------------------------- */
 
   var KATEGORIE_JE_ART = { ergebnis: 'ergebnis', modul: 'modul', phase: 'phase' };
 
@@ -326,6 +452,7 @@
     var kaesten = kaestenLesen(svg);
     beschriftungVerteilen(kaesten, texteLesen(svg));
 
+    var maske = svgEl('g', { 'class': 'ub-deckel' });
     var ebene = svgEl('g', { 'class': 'ub-felder' });
     var felder = [];
     var ohneTreffer = [];
@@ -334,202 +461,40 @@
       if (!k.beschriftung) { return; }
       var eintraege = eintraegeZuBeschriftung(k.beschriftung, KATEGORIE_JE_ART[k.art]);
       if (!eintraege) { ohneTreffer.push(k.beschriftung); return; }
+
       var feld = feldBauen(k, eintraege);
+      if (k.art === 'ergebnis') {
+        /* Der Deckel trägt die Originalfüllung des Kastens: im Abfragemodus
+           bleibt der Kasten sichtbar, nur die Beschriftung verschwindet. */
+        feld.deckel = svgEl('rect', {
+          x: k.x + 1, y: k.y + 1,
+          width: Math.max(0, k.w - 2), height: Math.max(0, k.h - 2),
+          fill: k.fuell, stroke: 'none'
+        });
+        feld.deckel.style.display = 'none';
+        maske.appendChild(feld.deckel);
+      }
       felder.push(feld);
-      ebene.appendChild(feld.link);
+      ebene.appendChild(feld.gruppe);
     });
 
+    gruppe.appendChild(maske);
     gruppe.appendChild(ebene);
     refs.felder = felder;
-    felderFaerben();
 
     if (ohneTreffer.length && global.console && global.console.info) {
       global.console.info('Überblick: Kästen ohne Lexikoneintrag —', ohneTreffer.join(' · '));
     }
-    return felder.length;
   }
 
-  /* --- Schwebefenster ------------------------------------------------------ */
-
-  function zeile(label, werte, klasse) {
-    if (!werte || !werte.length) { return null; }
-    return h('p', { class: 'ub-fenster__zeile' + (klasse ? ' ' + klasse : '') }, [
-      h('span', { class: 'ub-fenster__label', text: label }),
-      h('span', { text: werte.join(', ') })
-    ]);
-  }
-
-  function fensterInhalt(eintraege) {
-    var e = eintraege[0];
-    var meta = HT.daten.kategorieMeta(e.kategorie);
-    var marke = e.kategorie === 'ergebnis'
-      ? (e.typ || (meta ? meta.singular : ''))
-      : (meta ? meta.singular : '');
-
-    var kinder = [
-      h('div', { class: 'ub-fenster__kopf' }, [
-        h('strong', { class: 'ub-fenster__titel', text: e.begriff }),
-        h('span', {
-          class: 'ub-fenster__typ',
-          dataset: { typ: e.kategorie === 'ergebnis' ? (e.typ || '') : e.kategorie },
-          text: marke
-        })
-      ]),
-      h('p', { class: 'ub-fenster__text', text: HT.ui.kuerzen(e.kurz || e.definition || '', 190) })
-    ];
-
-    if (e.kategorie === 'ergebnis' && e.minimalGefordert) {
-      kinder.push(h('p', { class: 'ub-fenster__marker', text: 'Minimal gefordert' }));
+  function diagrammLesen(text) {
+    var doc = new global.DOMParser().parseFromString(text, 'image/svg+xml');
+    var wurzel = doc.documentElement;
+    if (!wurzel || String(wurzel.nodeName).toLowerCase() !== 'svg') {
+      throw new Error('Keine SVG-Datei');
     }
-    if (e.kategorie === 'modul' && HT.karte.ZWINGENDE_MODULE.indexOf(e.begriff) !== -1) {
-      kinder.push(h('p', { class: 'ub-fenster__marker', text: 'Zwingend in jedem Projekt' }));
-    }
-
-    kinder.push(zeile('Verantwortlich', e.verantwortlich ? [e.verantwortlich] : null, 'ist-verantwortlich'));
-    kinder.push(zeile('Beteiligt', e.beteiligt, null));
-    kinder.push(zeile('Module', e.kategorie === 'modul' ? null : e.module, null));
-    kinder.push(zeile('Phasen', e.kategorie === 'phase' ? null : HT.daten.phasenSortiert(e.phasen), null));
-    if (e.kategorie === 'phase' && e.meilensteine && e.meilensteine.length) {
-      kinder.push(zeile('Meilensteine', e.meilensteine.map(function (m) {
-        return m.name.replace(/^Meilenstein\s+/i, '');
-      }), null));
-    }
-
-    if (eintraege.length > 1) {
-      kinder.push(h('p', { class: 'ub-fenster__sammel', text:
-        'Ein Kasten für ' + eintraege.map(function (x) { return x.begriff; }).join(' und ') + '.' }));
-    }
-    kinder.push(h('p', { class: 'ub-fenster__tipp', text: 'Klick öffnet die Detailseite' }));
-
-    return kinder.filter(function (k) { return !!k; });
+    return document.importNode(wurzel, true);
   }
-
-  /* Das Fenster liegt über der Bühne; die Kastenkoordinaten stammen aus dem
-     SVG-Raster und werden über den Zoom in Bildschirmpixel umgerechnet. */
-  function fensterZeigen(eintraege, k, anker) {
-    if (!refs.fenster || !refs.buehne) { return; }
-    if (refs.anker && refs.anker !== anker) { refs.anker.removeAttribute('aria-describedby'); }
-    refs.anker = anker;
-    anker.setAttribute('aria-describedby', 'ub-fenster');
-
-    HT.ui.leeren(refs.fenster);
-    fensterInhalt(eintraege).forEach(function (kind) { refs.fenster.appendChild(kind); });
-    refs.fenster.hidden = false;
-
-    var z = zustand.zoom;
-    var mitteX = (k.x + k.w / 2 + refs.versatzX) * z;
-    var obenY = (k.y + refs.versatzY) * z;
-    var untenY = (k.y + k.h + refs.versatzY) * z;
-
-    var breite = refs.fenster.offsetWidth;
-    var hoehe = refs.fenster.offsetHeight;
-    var sichtL = refs.buehne.scrollLeft;
-    var sichtB = refs.buehne.clientWidth;
-
-    var links = mitteX - breite / 2;
-    links = Math.max(sichtL + 4, Math.min(links, sichtL + sichtB - breite - 4));
-
-    var oben = obenY - hoehe - 8;
-    if (oben < refs.buehne.scrollTop + 2) { oben = untenY + 8; }
-
-    refs.fenster.style.left = Math.round(links) + 'px';
-    refs.fenster.style.top = Math.round(oben) + 'px';
-  }
-
-  function fensterVerbergen() {
-    if (refs.anker) { refs.anker.removeAttribute('aria-describedby'); refs.anker = null; }
-    if (refs.fenster) { refs.fenster.hidden = true; }
-  }
-
-  /* --- Leiste -------------------------------------------------------------- */
-
-  function zoomSetzen(wert) {
-    zustand.zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, wert));
-    if (refs.buehne) { refs.buehne.style.setProperty('--ub-zoom', String(zustand.zoom)); }
-    if (refs.zoomWert) { refs.zoomWert.textContent = Math.round(zustand.zoom * 100) + ' %'; }
-    fensterVerbergen();
-    speichern();
-  }
-
-  function rollenHinweis() {
-    if (!refs.hinweis) { return; }
-    HT.ui.leeren(refs.hinweis);
-    if (!zustand.rolle) { return; }
-
-    var verantwortet = 0, beteiligt = 0;
-    (refs.felder || []).forEach(function (f) {
-      var bezug = rollenBezug(f.eintraege[0]);
-      if (bezug === 'verantwortlich') { verantwortet++; }
-      if (bezug === 'beteiligt') { beteiligt++; }
-    });
-
-    var rolle = HT.daten.eintragMitBegriff(zustand.rolle, 'rolle');
-    refs.hinweis.appendChild(h('p', { class: 'ub-rollenhinweis', role: 'status' }, [
-      h('span', { class: 'ub-rollenhinweis__marke ist-verantwortlich', 'aria-hidden': 'true' }),
-      h('span', { text: ' verantwortlich für ' + verantwortet + ' Kästen · ' }),
-      h('span', { class: 'ub-rollenhinweis__marke ist-beteiligt', 'aria-hidden': 'true' }),
-      h('span', { text: ' beteiligt an ' + beteiligt + ' — ' }),
-      rolle
-        ? h('a', { href: '#/lexikon?id=' + encodeURIComponent(rolle.id), text: zustand.rolle })
-        : h('span', { text: zustand.rolle })
-    ]));
-  }
-
-  function leisteBauen() {
-    var rollenAuswahl = h('select', {
-      class: 'ub-select', id: 'ub-rolle', 'aria-label': 'Rolle im Diagramm hervorheben'
-    }, [h('option', { value: '', text: 'Rolle hervorheben …' })].concat(
-      HT.daten.alphabetisch(HT.daten.eintraegeDerKategorie('rolle')).map(function (r) {
-        return h('option', { value: r.begriff, text: r.begriff });
-      })
-    ));
-    rollenAuswahl.value = zustand.rolle;
-    rollenAuswahl.addEventListener('change', function () {
-      zustand.rolle = rollenAuswahl.value;
-      speichern();
-      felderFaerben();
-      rollenHinweis();
-    });
-
-    var minimal = h('button', {
-      type: 'button', class: 'chip',
-      'aria-pressed': zustand.nurMinimal ? 'true' : 'false',
-      title: 'Alles ausblassen, was das Referenzhandbuch nicht als minimal gefordert führt',
-      text: 'Minimal gefordert'
-    });
-    minimal.addEventListener('click', function () {
-      zustand.nurMinimal = !zustand.nurMinimal;
-      minimal.setAttribute('aria-pressed', zustand.nurMinimal ? 'true' : 'false');
-      speichern();
-      felderFaerben();
-    });
-
-    var kleiner = h('button', { type: 'button', class: 'ub-zoom__knopf', 'aria-label': 'Verkleinern', text: '−' });
-    var groesser = h('button', { type: 'button', class: 'ub-zoom__knopf', 'aria-label': 'Vergrössern', text: '+' });
-    refs.zoomWert = h('span', { class: 'ub-zoom__wert', role: 'status', text: Math.round(zustand.zoom * 100) + ' %' });
-    kleiner.addEventListener('click', function () { zoomSetzen(zustand.zoom / 1.25); });
-    groesser.addEventListener('click', function () { zoomSetzen(zustand.zoom * 1.25); });
-
-    var zuruecksetzen = h('button', { type: 'button', class: 'btn btn--klein', text: 'Zurücksetzen' });
-    zuruecksetzen.addEventListener('click', function () {
-      zustand.rolle = '';
-      zustand.nurMinimal = false;
-      rollenAuswahl.value = '';
-      minimal.setAttribute('aria-pressed', 'false');
-      zoomSetzen(1);
-      felderFaerben();
-      rollenHinweis();
-    });
-
-    return h('div', { class: 'ub-leiste' }, [
-      rollenAuswahl,
-      minimal,
-      h('div', { class: 'ub-zoom', role: 'group', 'aria-label': 'Zoom' }, [kleiner, refs.zoomWert, groesser]),
-      zuruecksetzen
-    ]);
-  }
-
-  /* --- Diagramm laden ------------------------------------------------------ */
 
   /* Der Pfad steht im Handbuchkapitel; so bleibt er richtig, wenn der Import
      die Abbildung neu ablegt. */
@@ -550,19 +515,16 @@
     }).catch(function () { return ABBILDUNG; });
   }
 
-  function diagrammLaden() {
+  function abbildungHolen() {
+    if (abbQuelle) { return global.Promise.resolve(abbQuelle); }
     return abbildungspfadSuchen().then(function (pfad) {
       return global.fetch(pfad).then(function (antwort) {
         if (!antwort.ok) { throw new Error('HTTP ' + antwort.status); }
         return antwort.text();
       });
     }).then(function (text) {
-      var doc = new global.DOMParser().parseFromString(text, 'image/svg+xml');
-      var wurzel = doc.documentElement;
-      if (!wurzel || String(wurzel.nodeName).toLowerCase() !== 'svg') {
-        throw new Error('Keine SVG-Datei');
-      }
-      return document.importNode(wurzel, true);
+      abbQuelle = text;
+      return text;
     });
   }
 
@@ -570,12 +532,11 @@
     var breite = Number(svg.getAttribute('width')) || 1059;
     var hoehe = Number(svg.getAttribute('height')) || 759;
 
-    /* Der Office-Export verschiebt die Zeichnung um translate(-7 -6); dieselbe
-       Verschiebung braucht das Schwebefenster für seine Position. */
-    var gruppe = svg.getElementsByTagName('g')[0];
-    var versatz = gruppe ? matrixVon(gruppe) : [1, 0, 0, 1, 0, 0];
-    refs.versatzX = versatz[4];
-    refs.versatzY = versatz[5];
+    /* Manche Exporte tragen einen c2pa-Block als <metadata>; einzelne Parser
+       zeigen dessen Inhalt als Text an. */
+    liste(svg, 'metadata').forEach(function (m) {
+      if (m.parentNode) { m.parentNode.removeChild(m); }
+    });
 
     svg.setAttribute('viewBox', '0 0 ' + breite + ' ' + hoehe);
     svg.removeAttribute('width');
@@ -584,111 +545,739 @@
     svg.setAttribute('class', 'ub-abb');
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', BILDUNTERSCHRIFT);
-    svg.style.setProperty('--ub-breite', breite);
-    svg.style.setProperty('--ub-hoehe', hoehe);
 
     diagrammVeredeln(svg);
 
+    refs.abb = svg;
+    refs.abbBreite = breite;
+
     HT.ui.leeren(refs.buehne);
     refs.buehne.appendChild(svg);
-    refs.buehne.appendChild(refs.fenster);
-    refs.buehne.style.setProperty('--ub-zoom', String(zustand.zoom));
-    rollenHinweis();
+    zoomPassend();
+    malen();
+    rundeNachladenRichten();
   }
 
-  /* --- Detailseite eines Ergebnisses --------------------------------------- */
+  /* Die Felder entstehen erst mit der Abbildung. Wer vorher auf «Abfragen»
+     schaltet oder die Ansicht mit laufender Runde verlässt und zurückkommt,
+     trifft auf eine leere oder auf verschwundene Felder zeigende Runde. */
+  function rundeNachladenRichten() {
+    if (zustand.modus !== 'abfragen') { return; }
+    var runde = zustand.runde;
+    if (!runde || !runde.aufgaben.length) { rundeStarten(); return; }
 
-  function verweisZiel(ziel) {
-    if (ziel && ziel.kategorie === 'ergebnis') { return detailZiel(ziel); }
-    return '#/lexikon?id=' + encodeURIComponent(ziel.id);
+    runde.falschesFeld = null;
+    var gesucht = runde.aufgaben[runde.i];
+    if (gesucht && runde.phase !== 'frage') {
+      refs.felder.forEach(function (f) { if (istGleich(f, gesucht)) { f.aufgedeckt = true; } });
+    }
+    promptZeichnen();
+    malen();
   }
 
-  function positionBauen(e) {
-    var phasen = HT.daten.phasenSortiert(e.phasen || []);
-    var module = e.module || [];
-    if (!phasen.length || !module.length) { return null; }
+  /* --- Zoom ---------------------------------------------------------------- */
 
-    var kopf = h('div', { class: 'ub-pos__zeile ub-pos__zeile--kopf' }, [h('span', { class: 'ub-pos__ecke' })]
-      .concat(module.map(function (m) { return h('span', { class: 'ub-pos__modul', text: m }); })));
+  function zoomAnwenden() {
+    if (refs.abb && refs.abbBreite) {
+      refs.abb.style.width = Math.round(refs.abbBreite * zustand.zoom) + 'px';
+    }
+    if (refs.zoomWert) { refs.zoomWert.textContent = Math.round(zustand.zoom * 100) + ' %'; }
+  }
 
-    var zeilen = phasen.map(function (p) {
-      return h('div', { class: 'ub-pos__zeile' }, [h('span', { class: 'ub-pos__phase', text: p })]
-        .concat(module.map(function () {
-          return h('span', { class: 'ub-pos__feld', 'aria-hidden': 'true', text: '●' });
-        })));
+  function zoomSetzen(wert) {
+    zustand.zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, wert));
+    zoomAnwenden();
+  }
+
+  function zoomPassend() {
+    if (!refs.buehne || !refs.abbBreite) { return; }
+    var platz = refs.buehne.clientWidth - 32;
+    if (platz <= 0) { return; }
+    zoomSetzen(platz / refs.abbBreite);
+  }
+
+  function zoomPassendSpaeter(verzoegerung) {
+    global.clearTimeout(passTimer);
+    passTimer = global.setTimeout(zoomPassend, verzoegerung || 60);
+  }
+
+  /* --- Breite der Inhaltsseite --------------------------------------------- */
+
+  function inhaltBreiteSetzen(px) {
+    var grenze = Math.max(INHALT_MIN, global.innerWidth - ABB_MIN);
+    zustand.inhaltBreite = Math.max(INHALT_MIN, Math.min(px, grenze));
+    if (refs.werkbank) {
+      refs.werkbank.style.setProperty('--ub-inhalt', zustand.inhaltBreite + 'px');
+    }
+  }
+
+  function ziehenStarten(ev) {
+    if (ev.button !== undefined && ev.button !== 0) { return; }
+    ev.preventDefault();
+
+    var startX = ev.clientX;
+    var startBreite = zustand.inhaltBreite;
+
+    function bewegen(e) { inhaltBreiteSetzen(startBreite - (e.clientX - startX)); }
+    function beenden() {
+      global.removeEventListener('mousemove', bewegen);
+      global.removeEventListener('mouseup', beenden);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      zoomPassendSpaeter(60);
+    }
+
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    global.addEventListener('mousemove', bewegen);
+    global.addEventListener('mouseup', beenden);
+  }
+
+  function trennerTaste(ev) {
+    if (ev.key === 'ArrowLeft') {
+      ev.preventDefault();
+      inhaltBreiteSetzen(zustand.inhaltBreite + 24);
+      zoomPassendSpaeter(60);
+    } else if (ev.key === 'ArrowRight') {
+      ev.preventDefault();
+      inhaltBreiteSetzen(zustand.inhaltBreite - 24);
+      zoomPassendSpaeter(60);
+    }
+  }
+
+  /* --- Werkzeugleiste ------------------------------------------------------ */
+
+  function werkzeugKnopf(text, klasse, aufruf, attrs) {
+    var a = { type: 'button', 'class': klasse, text: text };
+    for (var k in (attrs || {})) {
+      if (Object.prototype.hasOwnProperty.call(attrs, k)) { a[k] = attrs[k]; }
+    }
+    var el = h('button', a);
+    el.addEventListener('click', aufruf);
+    return el;
+  }
+
+  function werkzeugTrenner() {
+    return h('span', { class: 'ub-werkzeug__strich', 'aria-hidden': 'true' });
+  }
+
+  function werkzeugAktualisieren() {
+    if (!refs.tabErkunden) { return; }
+    var erkunden = zustand.modus === 'erkunden';
+    refs.tabErkunden.setAttribute('aria-pressed', erkunden ? 'true' : 'false');
+    refs.tabAbfragen.setAttribute('aria-pressed', erkunden ? 'false' : 'true');
+    refs.knopfBreit.setAttribute('aria-pressed', zustand.nurAbb ? 'true' : 'false');
+    refs.knopfPanel.setAttribute('aria-expanded', zustand.panel ? 'true' : 'false');
+    refs.werkbank.dataset.breit = zustand.nurAbb ? 'true' : 'false';
+    refs.werkbank.dataset.modus = zustand.modus;
+  }
+
+  function modusSetzen(modus) {
+    if (zustand.modus === modus) { return; }
+    zustand.modus = modus;
+    zustand.panel = false;
+    panelZeichnen();
+
+    if (modus === 'abfragen') {
+      rundeStarten();
+    } else {
+      zustand.runde = null;
+      zustand.aktiv = null;
+      zustand.gehalten = false;
+      (refs.felder || []).forEach(function (f) { f.aufgedeckt = false; });
+      promptZeichnen();
+      inhaltZeichnen();
+      malen();
+    }
+    werkzeugAktualisieren();
+  }
+
+  function werkzeugBauen() {
+    refs.tabErkunden = werkzeugKnopf('Erkunden', 'ub-tab', function () { modusSetzen('erkunden'); });
+    refs.tabAbfragen = werkzeugKnopf('Abfragen', 'ub-tab', function () { modusSetzen('abfragen'); });
+
+    refs.zoomWert = h('span', {
+      class: 'ub-zoom__wert', role: 'status',
+      text: Math.round(zustand.zoom * 100) + ' %'
     });
 
-    var raster = h('div', { class: 'ub-pos' }, [kopf].concat(zeilen));
-    raster.style.setProperty('--ub-pos-spalten', String(module.length));
+    refs.knopfBreit = werkzeugKnopf('Breit', 'ub-werkzeug__knopf', function () {
+      zustand.nurAbb = !zustand.nurAbb;
+      werkzeugAktualisieren();
+      zoomPassendSpaeter(40);
+    }, { 'aria-pressed': 'false', title: 'Inhaltsseite einklappen' });
 
-    return h('section', { class: 'ub-abschnitt' }, [
-      h('h2', { text: 'Phasen und Module' }),
-      h('p', { class: 'ub-abschnitt__text', text: 'Das Ergebnis kommt in diesen Phasen und Modulen vor.' }),
-      raster
+    refs.knopfPanel = werkzeugKnopf('Steuerung', 'ub-werkzeug__knopf', function () {
+      panelSchalten();
+    }, { 'aria-expanded': 'false', 'aria-haspopup': 'dialog' });
+
+    return h('div', { class: 'ub-werkzeug' }, [
+      h('div', { class: 'ub-modus', role: 'group', 'aria-label': 'Modus' }, [
+        refs.tabErkunden, refs.tabAbfragen
+      ]),
+      werkzeugTrenner(),
+      werkzeugKnopf('−', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom / ZOOM_SCHRITT); },
+        { 'aria-label': 'Verkleinern' }),
+      refs.zoomWert,
+      werkzeugKnopf('+', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom * ZOOM_SCHRITT); },
+        { 'aria-label': 'Vergrössern' }),
+      werkzeugTrenner(),
+      werkzeugKnopf('Passend', 'ub-werkzeug__knopf', zoomPassend,
+        { title: 'Abbildung auf die Breite der Bühne bringen' }),
+      werkzeugTrenner(),
+      refs.knopfBreit,
+      werkzeugTrenner(),
+      refs.knopfPanel
     ]);
   }
 
-  function detailRendern(behaelter, e) {
-    behaelter.appendChild(h('p', { class: 'ub-zurueck' }, [
-      h('a', { href: '#/ueberblick', text: '← Zurück zum Ergebnisdiagramm' })
+  /* --- Steuerung (Überlagerung) -------------------------------------------- */
+
+  function panelSchalten() {
+    zustand.panel = !zustand.panel;
+    panelZeichnen();
+    werkzeugAktualisieren();
+    if (zustand.panel && refs.panelErstes) { refs.panelErstes.focus(); }
+  }
+
+  function panelSchliessen(zurueck) {
+    if (!zustand.panel) { return; }
+    zustand.panel = false;
+    panelZeichnen();
+    werkzeugAktualisieren();
+    if (zurueck && refs.knopfPanel) { refs.knopfPanel.focus(); }
+  }
+
+  function rollenZahlen() {
+    var verantwortet = 0, beteiligt = 0;
+    (refs.felder || []).forEach(function (f) {
+      var bezug = rollenBezug(f.eintraege[0]);
+      if (bezug === 'verantwortlich') { verantwortet++; }
+      if (bezug === 'beteiligt') { beteiligt++; }
+    });
+    return { verantwortet: verantwortet, beteiligt: beteiligt };
+  }
+
+  function panelErkunden() {
+    var auswahl = h('select', { class: 'ub-select', id: 'ub-rolle' },
+      [h('option', { value: '', text: '— keine —' })].concat(
+        HT.daten.alphabetisch(HT.daten.eintraegeDerKategorie('rolle')).map(function (r) {
+          return h('option', { value: r.begriff, text: r.begriff });
+        })
+      ));
+    auswahl.value = zustand.rolle;
+
+    var zahl = h('p', { class: 'ub-panel__zahl' });
+    function zahlSchreiben() {
+      var z = rollenZahlen();
+      zahl.textContent = zustand.rolle
+        ? (z.verantwortet + ' verantwortet · ' + z.beteiligt + ' beteiligt')
+        : '';
+    }
+    zahlSchreiben();
+
+    auswahl.addEventListener('change', function () {
+      zustand.rolle = auswahl.value;
+      malen();
+      zahlSchreiben();
+    });
+
+    var haken = h('input', { type: 'checkbox', class: 'ub-haken' });
+    haken.checked = zustand.nurMinimal;
+    haken.addEventListener('change', function () {
+      zustand.nurMinimal = haken.checked;
+      malen();
+    });
+
+    refs.panelErstes = auswahl;
+
+    return [
+      h('div', { class: 'ub-panel__block' }, [
+        h('label', { class: 'ub-panel__label', for: 'ub-rolle', text: 'Rolle einfärben' }),
+        auswahl,
+        h('div', { class: 'ub-panel__legende' }, [
+          h('span', {}, [h('span', { class: 'ub-swatch ub-swatch--voll', 'aria-hidden': 'true' }), 'verantwortlich']),
+          h('span', {}, [h('span', { class: 'ub-swatch ub-swatch--rand', 'aria-hidden': 'true' }), 'beteiligt'])
+        ]),
+        zahl
+      ]),
+      h('div', { class: 'ub-panel__block' }, [
+        h('div', { class: 'ub-panel__label', text: 'Darstellung' }),
+        h('label', { class: 'ub-panel__haken' }, [
+          haken,
+          h('span', {}, [
+            'Nur minimal geforderte Dokumente',
+            h('span', { class: 'ub-panel__hilfe', text:
+              'Blasst ab, was das Referenzhandbuch nicht als minimal gefordert führt.' })
+          ])
+        ])
+      ])
+    ];
+  }
+
+  function panelAbfragen() {
+    var schwach = Object.keys(zustand.fehler).map(function (k) {
+      return { begriff: k, zahl: zustand.fehler[k] };
+    }).sort(function (a, b) { return b.zahl - a.zahl; }).slice(0, 8);
+
+    var neu = h('button', { type: 'button', class: 'ub-textknopf', text: 'Neue Runde' });
+    neu.addEventListener('click', function () {
+      panelSchliessen(false);
+      rundeStarten();
+    });
+    refs.panelErstes = neu;
+
+    var koerper = schwach.length
+      ? h('ul', { class: 'ub-schwach' }, schwach.map(function (s) {
+        return h('li', {}, [
+          h('span', { class: 'ub-schwach__begriff', text: s.begriff }),
+          h('span', { class: 'ub-schwach__zahl', text: s.zahl + '×' })
+        ]);
+      }))
+      : h('p', { class: 'ub-panel__hilfe ub-panel__hilfe--allein', text:
+        'Noch keine Fehler erfasst. Was hier landet, kommt in späteren Runden häufiger.' });
+
+    return [
+      h('div', { class: 'ub-panel__block' }, [
+        h('div', { class: 'ub-panel__kopf' }, [
+          h('span', { class: 'ub-panel__label', text: 'Schwachstellen' }),
+          neu
+        ]),
+        koerper
+      ])
+    ];
+  }
+
+  function panelZeichnen() {
+    if (!refs.panelHuelle) { return; }
+    HT.ui.leeren(refs.panelHuelle);
+    refs.panelErstes = null;
+    if (!zustand.panel) { return; }
+
+    var faenger = h('div', { class: 'ub-panel__faenger' });
+    faenger.addEventListener('mousedown', function () { panelSchliessen(true); });
+
+    var panel = h('div', {
+      class: 'ub-panel', role: 'dialog', 'aria-label': 'Steuerung'
+    }, zustand.modus === 'erkunden' ? panelErkunden() : panelAbfragen());
+
+    panel.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') { ev.stopPropagation(); panelSchliessen(true); }
+    });
+
+    refs.panelHuelle.appendChild(faenger);
+    refs.panelHuelle.appendChild(panel);
+  }
+
+  /* --- Abfragen ------------------------------------------------------------ */
+
+  /* Jeder Begriff kommt einmal in den Topf, dazu bis zu drei weitere Lose je
+     erfasstem Fehler. Nach dem Mischen bleibt der erste Treffer stehen —
+     Schwachstellen rutschen so nach vorne, ohne die Runde zu füllen. */
+  function kandidaten() {
+    var topf = [];
+    (refs.felder || []).forEach(function (f) {
+      if (f.art !== 'ergebnis') { return; }
+      var e = f.eintraege[0];
+      topf.push(e);
+      var fehl = zustand.fehler[e.begriff];
+      if (fehl) {
+        for (var i = 0; i < Math.min(3, fehl); i++) { topf.push(e); }
+      }
+    });
+
+    var gesehen = {};
+    return HT.ui.mischen(topf).filter(function (e) {
+      if (gesehen[e.id]) { return false; }
+      gesehen[e.id] = true;
+      return true;
+    });
+  }
+
+  function rundeStarten() {
+    var aufgaben = kandidaten().slice(0, RUNDEN_LAENGE);
+    (refs.felder || []).forEach(function (f) { f.aufgedeckt = false; });
+
+    zustand.runde = { aufgaben: aufgaben, i: 0, phase: 'frage', falschesFeld: null };
+    zustand.punkte = 0;
+    zustand.versuche = 0;
+    zustand.serie = 0;
+    zustand.aktiv = null;
+    zustand.gehalten = false;
+
+    promptZeichnen();
+    inhaltZeichnen();
+    malen();
+  }
+
+  function antworten(feld) {
+    var runde = zustand.runde;
+    if (!runde || runde.phase !== 'frage') { return; }
+    if (feld.art !== 'ergebnis') { return; }
+
+    var gesucht = runde.aufgaben[runde.i];
+    if (!gesucht) { return; }
+    var richtig = istGleich(feld, gesucht);
+
+    if (richtig) {
+      zustand.serie += 1;
+      zustand.besteSerie = Math.max(zustand.besteSerie, zustand.serie);
+      zustand.punkte += 1;
+    } else {
+      zustand.serie = 0;
+      zustand.fehler[gesucht.begriff] = (zustand.fehler[gesucht.begriff] || 0) + 1;
+      feld.aufgedeckt = true;
+    }
+    zustand.versuche += 1;
+
+    (refs.felder || []).forEach(function (f) {
+      if (istGleich(f, gesucht)) { f.aufgedeckt = true; }
+    });
+
+    runde.phase = richtig ? 'richtig' : 'falsch';
+    runde.falschesFeld = richtig ? null : feld;
+    zustand.gehalten = true;
+    zustand.aktiv = gesucht;
+
+    speichern();
+    promptZeichnen();
+    inhaltZeichnen();
+    malen();
+    inhaltInSichtBringen();
+  }
+
+  function weiter() {
+    var runde = zustand.runde;
+    if (!runde) { return; }
+    var naechste = runde.i + 1;
+
+    if (naechste >= runde.aufgaben.length) {
+      runde.phase = 'ende';
+      runde.falschesFeld = null;
+      promptZeichnen();
+      malen();
+      return;
+    }
+
+    (refs.felder || []).forEach(function (f) { f.aufgedeckt = false; });
+    runde.i = naechste;
+    runde.phase = 'frage';
+    runde.falschesFeld = null;
+    zustand.aktiv = null;
+    zustand.gehalten = false;
+
+    promptZeichnen();
+    inhaltZeichnen();
+    malen();
+  }
+
+  function ikone(kat, groesse, klasse) {
+    var svg = HT.ui.katSymbol(kat, groesse);
+    if (klasse) { svg.setAttribute('class', svg.getAttribute('class') + ' ' + klasse); }
+    return svg;
+  }
+
+  function ikoneFuer(e) {
+    if (e.kategorie === 'ergebnis' && e.typ === 'Meilenstein') { return 'meilenstein'; }
+    return e.kategorie;
+  }
+
+  function promptZeichnen() {
+    if (!refs.prompt) { return; }
+    HT.ui.leeren(refs.prompt);
+
+    var runde = zustand.runde;
+    if (zustand.modus !== 'abfragen' || !runde) {
+      refs.prompt.hidden = true;
+      return;
+    }
+    refs.prompt.hidden = false;
+    refs.prompt.dataset.phase = runde.phase;
+
+    var gesucht = runde.aufgaben[runde.i];
+    var kicker, titel, hinweis, status = '';
+
+    if (runde.phase === 'ende') {
+      kicker = 'Runde beendet';
+      titel = zustand.punkte + ' von ' + runde.aufgaben.length + ' getroffen';
+      hinweis = 'Die Schwachstellen links kommen in der nächsten Runde häufiger.';
+    } else {
+      kicker = 'Aufgabe ' + (runde.i + 1) + ' von ' + runde.aufgaben.length;
+      titel = gesucht ? gesucht.begriff : '';
+      if (runde.phase === 'frage') {
+        hinweis = 'Wo steht dieses Ergebnis? Kasten in der Abbildung anklicken.';
+      } else if (runde.phase === 'richtig') {
+        status = 'Richtig';
+        hinweis = 'Der Kasten ist markiert; rechts steht der ganze Eintrag.';
+      } else {
+        status = 'Daneben';
+        hinweis = 'Der gesuchte Kasten ist rot markiert.';
+      }
+    }
+
+    var zahl = function (wert, label) {
+      return h('span', {}, [h('strong', { text: String(wert) }), ' ' + label]);
+    };
+
+    refs.prompt.appendChild(h('div', { class: 'ub-prompt__kopf' }, [
+      h('span', { class: 'ub-prompt__kicker', text: kicker }),
+      status ? h('span', { class: 'ub-prompt__status', role: 'status', text: status }) : null
     ]));
 
-    behaelter.appendChild(h('div', { class: 'kopf kopf--knapp' }, [
-      h('div', { class: 'ub-detail__titelzeile' }, [
-        h('h1', { text: e.begriff }),
-        HT.ui.badge('ergebnis')
+    refs.prompt.appendChild(h('div', { class: 'ub-prompt__zeile' }, [
+      h('span', { class: 'ub-prompt__ziel' }, [
+        runde.phase === 'ende' ? null : ikone(
+          gesucht && gesucht.typ === 'Meilenstein' ? 'meilenstein' : 'ergebnis', 22, 'ub-ikone--prompt'),
+        h('strong', { class: 'ub-prompt__titel', text: titel })
+      ]),
+      h('span', { class: 'ub-prompt__hinweis', text: hinweis }),
+      h('span', { class: 'ub-prompt__zahlen' }, [
+        zahl(zustand.punkte, 'richtig'),
+        zahl(zustand.versuche ? HT.ui.prozent(zustand.punkte, zustand.versuche) + ' %' : '—', 'Quote'),
+        zahl(zustand.serie, 'Serie'),
+        h('span', { text: 'Beste ' + zustand.besteSerie })
       ])
     ]));
 
-    behaelter.appendChild(HT.karte.bauen(e, {
-      stufe: 1,
-      ohneTitel: true,
-      linkZiel: verweisZiel,
-      zusatz: h('a', {
-        class: 'btn btn--klein',
-        href: '#/lexikon?id=' + encodeURIComponent(e.id),
-        text: 'Im Lexikon'
-      })
-    }));
-
-    var pos = positionBauen(e);
-    if (pos) { behaelter.appendChild(pos); }
-
-    behaelter.appendChild(h('p', { class: 'ub-zurueck ub-zurueck--fuss' }, [
-      h('a', { href: '#/ueberblick', text: '← Zurück zum Ergebnisdiagramm' })
-    ]));
+    if (runde.phase === 'richtig' || runde.phase === 'falsch') {
+      var knopf = h('button', { type: 'button', class: 'ub-primaer', text: 'Weiter' });
+      knopf.addEventListener('click', weiter);
+      refs.prompt.appendChild(knopf);
+      knopf.focus();
+    } else if (runde.phase === 'ende') {
+      /* Am Rundenende ist die nächste Handlung eine neue Runde; sie liegt sonst
+         nur in der Steuerung. */
+      var neu = h('button', { type: 'button', class: 'ub-primaer', text: 'Neue Runde' });
+      neu.addEventListener('click', rundeStarten);
+      refs.prompt.appendChild(neu);
+      neu.focus();
+    }
   }
 
-  /* --- Render -------------------------------------------------------------- */
+  /* --- Inhaltsseite -------------------------------------------------------- */
 
-  function uebersichtRendern(behaelter) {
-    behaelter.appendChild(h('div', { class: 'kopf kopf--knapp' }, [
-      h('h1', { text: 'Methodenüberblick' })
+  var TYP_KICKER = { Dokument: 'Dokument', Zustand: 'Zustand', Checkliste: 'Checkliste', Meilenstein: 'Meilenstein' };
+
+  function kickerVon(e) {
+    if (e.kategorie === 'modul') { return 'Modul'; }
+    if (e.kategorie === 'phase') { return 'Phase'; }
+    return TYP_KICKER[e.typ] || 'Ergebnis';
+  }
+
+  function markerVon(e) {
+    if (e.kategorie === 'ergebnis' && e.minimalGefordert) { return 'Minimal gefordert'; }
+    if (e.kategorie === 'modul' && HT.karte.ZWINGENDE_MODULE.indexOf(e.begriff) !== -1) {
+      return 'Zwingend in jedem Projekt';
+    }
+    return '';
+  }
+
+  function faktenVon(e) {
+    var raus = [];
+
+    if (e.kategorie === 'ergebnis' && e.typ) {
+      raus.push({
+        label: 'Ergebnistyp',
+        wert: e.typ + (e.minimalGefordert ? ' · minimal gefordert' : ''),
+        kat: e.typ === 'Meilenstein' ? 'meilenstein' : 'ergebnis'
+      });
+    }
+    if (e.verantwortlich) {
+      raus.push({ label: 'Verantwortlich', wert: e.verantwortlich, kat: 'rolle' });
+    }
+    if (e.beteiligt && e.beteiligt.length) {
+      raus.push({ label: 'Beteiligt', wert: e.beteiligt.join(', '), kat: 'rolle' });
+    }
+    if (e.kategorie !== 'modul' && e.module && e.module.length) {
+      raus.push({ label: 'Module', wert: e.module.join(', '), kat: 'modul' });
+    }
+    if (e.kategorie !== 'phase' && e.phasen && e.phasen.length) {
+      raus.push({ label: 'Phasen', wert: HT.daten.phasenSortiert(e.phasen).join(' · '), kat: 'phase' });
+    }
+    if (e.kategorie === 'phase' && e.meilensteine && e.meilensteine.length) {
+      raus.push({
+        label: 'Meilensteine',
+        wert: e.meilensteine.map(function (m) { return m.name.replace(/^Meilenstein\s+/i, ''); }).join(' · '),
+        kat: 'meilenstein'
+      });
+    }
+    if (e.kategorie === 'modul' && e.szenarien && e.szenarien.length) {
+      raus.push({ label: 'Szenarien', wert: e.szenarien.join(', '), kat: 'szenario' });
+    }
+    return raus;
+  }
+
+  function abschnitt(titel, kinder, klasse) {
+    return h('section', { class: 'ub-abschnitt' + (klasse ? ' ' + klasse : '') }, [
+      h('h3', { class: 'ub-mikro', text: titel })
+    ].concat(kinder));
+  }
+
+  function leerseite() {
+    return h('div', { class: 'ub-leerseite' }, [
+      h('h2', { class: 'ub-leerseite__titel', text: 'Noch nichts ausgewählt' }),
+      h('p', { class: 'ub-leerseite__text', text:
+        'Zeigen auf einen Ergebniskasten, einen Modulkopf oder einen Phasenbalken füllt '
+        + 'diese Seite. Ein Klick hält den Eintrag fest, die Trennlinie links lässt sich ziehen.' }),
+      h('h3', { class: 'ub-mikro ub-mikro--legende', text: 'Die Elemente der Methode' }),
+      h('ul', { class: 'ub-legende' }, LEGENDE.map(function (l) {
+        return h('li', {}, [ikone(l.kat, 20, 'ub-ikone--legende'), h('span', { text: l.text })]);
+      }))
+    ]);
+  }
+
+  function inhaltZeichnen() {
+    if (!refs.inhalt) { return; }
+    HT.ui.leeren(refs.inhalt);
+
+    var e = zustand.aktiv;
+    if (!e) {
+      refs.inhalt.appendChild(leerseite());
+      refs.inhalt.scrollTop = 0;
+      return;
+    }
+
+    var marker = markerVon(e);
+
+    refs.inhalt.appendChild(h('article', { class: 'ub-kopf' }, [
+      h('div', { class: 'ub-kopf__zeile' }, [
+        ikone(ikoneFuer(e), 24, 'ub-ikone--kopf'),
+        h('span', { class: 'ub-kopf__kicker', text: kickerVon(e) }),
+        marker ? h('span', { class: 'ub-marker', text: marker }) : null
+      ]),
+      h('h2', { class: 'ub-kopf__titel', text: e.begriff }),
+      h('p', { class: 'ub-kopf__lead', text: e.kurz || e.definition || '' })
     ]));
 
-    var warnung = HT.app.datenWarnung();
-    if (warnung) { behaelter.appendChild(warnung); }
+    var fakten = faktenVon(e);
+    if (fakten.length) {
+      refs.inhalt.appendChild(abschnitt('Steckbrief', [
+        h('dl', { class: 'ub-fakten' }, fakten.map(function (f) {
+          return h('div', { class: 'ub-fakt' }, [
+            ikone(f.kat, 16, 'ub-ikone--fakt'),
+            h('dt', { text: f.label }),
+            h('dd', { text: f.wert })
+          ]);
+        }))
+      ]));
+    }
 
-    refs.hinweis = h('div', { class: 'ub-hinweis-wrap' });
-    refs.fenster = h('div', { class: 'ub-fenster', id: 'ub-fenster', role: 'tooltip', hidden: true });
+    if (e.pruefungshinweis) {
+      refs.inhalt.appendChild(h('section', { class: 'ub-abschnitt ub-abschnitt--hinweis' }, [
+        h('h3', { class: 'ub-mikro ub-mikro--akzent', text: 'Prüfungshinweis' }),
+        h('p', { class: 'ub-prosa', text: e.pruefungshinweis })
+      ]));
+    }
+
+    if (e.abgrenzung) {
+      refs.inhalt.appendChild(abschnitt('Abgrenzung', [
+        h('p', { class: 'ub-prosa', text: e.abgrenzung })
+      ]));
+    }
+
+    if (e.details) {
+      refs.inhalt.appendChild(abschnitt('Aus der Dokumentation', [
+        h('p', { class: 'ub-doku', text: e.details })
+      ], 'ub-abschnitt--regel'));
+    }
+
+    refs.inhalt.appendChild(h('section', { class: 'ub-verweise' }, [
+      h('a', { class: 'ub-verweis', href: '#/lexikon?id=' + encodeURIComponent(e.id), text: 'Im Lexikon' }),
+      h('a', {
+        class: 'ub-verweis ub-verweis--akzent',
+        href: (e.quelle && e.quelle.url) || QUELLE_ALLGEMEIN,
+        target: '_blank', rel: 'noopener',
+        text: 'Offizielle Seite ↗'
+      })
+    ]));
+
+    refs.inhalt.scrollTop = 0;
+  }
+
+  /* --- Aufbau -------------------------------------------------------------- */
+
+  function abbildungSeiteBauen() {
+    refs.prompt = h('div', { class: 'ub-prompt', hidden: true });
+    refs.panelHuelle = h('div', { class: 'ub-panel-huelle' });
     refs.buehne = h('div', { class: 'ub-buehne' }, [
-      h('p', { class: 'ladehinweis', text: 'Diagramm wird geladen …' })
+      h('p', { class: 'ub-buehne__laden', text: 'Abbildung wird geladen' })
     ]);
 
-    behaelter.appendChild(leisteBauen());
-    behaelter.appendChild(refs.hinweis);
-    behaelter.appendChild(refs.buehne);
-    behaelter.appendChild(h('p', { class: 'ub-bildunterschrift', text: BILDUNTERSCHRIFT }));
+    var warnung = HT.app.datenWarnung();
 
-    behaelter.appendChild(h('p', { class: 'ub-weiter' }, [
-      h('a', {
-        class: 'btn btn--klein', href: '#/methode?kapitel=methodenueberblick',
-        text: 'Kapitel «Methodenüberblick»'
-      }),
-      h('a', { class: 'btn btn--klein', href: '#/graph', text: 'Dieselben Elemente als Graph' })
-    ]));
+    return h('section', { class: 'ub-seite' }, [
+      werkzeugBauen(),
+      refs.panelHuelle,
+      warnung || null,
+      refs.prompt,
+      refs.buehne,
+      h('p', { class: 'ub-bildunterschrift' }, [
+        BILDUNTERSCHRIFT + ' — Originalgrafik, ',
+        h('a', { href: QUELLE_ABB, target: '_blank', rel: 'noopener', text: 'hermes.admin.ch ↗' })
+      ])
+    ]);
+  }
 
-    diagrammLaden().then(diagrammEinsetzen).catch(function (fehler) {
+  function trennerBauen() {
+    var trenner = h('div', {
+      class: 'ub-trenner',
+      role: 'separator',
+      'aria-orientation': 'vertical',
+      'aria-label': 'Breite der Inhaltsseite',
+      tabindex: '0',
+      title: 'Ziehen ändert die Breite · Doppelklick setzt zurück'
+    }, [h('span', { class: 'ub-trenner__strich', 'aria-hidden': 'true' })]);
+
+    trenner.addEventListener('mousedown', ziehenStarten);
+    trenner.addEventListener('keydown', trennerTaste);
+    trenner.addEventListener('dblclick', function () {
+      inhaltBreiteSetzen(INHALT_STANDARD);
+      zoomPassendSpaeter(40);
+    });
+    return trenner;
+  }
+
+  function groesseAnmelden() {
+    if (groesseAngemeldet) { return; }
+    groesseAngemeldet = true;
+    global.addEventListener('resize', function () {
+      if (!refs.buehne || !document.body.contains(refs.buehne)) { return; }
+      inhaltBreiteSetzen(zustand.inhaltBreite);
+      zoomPassendSpaeter(60);
+    });
+  }
+
+  function werkbankRendern(behaelter) {
+    refs.felder = [];
+
+    refs.inhalt = h('aside', { class: 'ub-inhalt', 'aria-label': 'Inhaltsseite zum gewählten Element' });
+
+    refs.werkbank = h('div', { class: 'ub-werkbank' }, [
+      h('h1', { class: 'nur-sr', text: 'Methodenüberblick' }),
+      abbildungSeiteBauen(),
+      trennerBauen(),
+      refs.inhalt
+    ]);
+
+    behaelter.appendChild(refs.werkbank);
+
+    werkzeugAktualisieren();
+    inhaltBreiteSetzen(zustand.inhaltBreite);
+    inhaltZeichnen();
+    panelZeichnen();
+    promptZeichnen();
+    groesseAnmelden();
+
+    /* Escape schliesst die Steuerung auch dann, wenn der Fokus ausserhalb liegt. */
+    refs.werkbank.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && zustand.panel) { panelSchliessen(true); }
+    });
+
+    abbildungHolen().then(function (text) {
+      if (!document.body.contains(refs.buehne)) { return; }
+      diagrammEinsetzen(diagrammLesen(text));
+    }).catch(function (fehler) {
+      if (!refs.buehne) { return; }
       HT.ui.leeren(refs.buehne);
       refs.buehne.appendChild(HT.ui.leerZustand(
         'Das Diagramm konnte nicht geladen werden',
@@ -704,8 +1293,7 @@
       wiederherstellen();
       zustand.initialisiert = true;
     }
-    refs.felder = [];
-    refs.anker = null;
+    refs = { felder: [] };
 
     /* Ältere Links auf ein Feld der Abbildung: die Feldseite ist eine eigene
        Route geworden. */
@@ -715,25 +1303,23 @@
       return;
     }
 
+    /* Ergebnisse hatten hier einmal eine eigene Detailseite; sie stehen jetzt
+       rechts in der Inhaltsseite und vollständig im Lexikon. */
     if (params && params.id) {
       var e = HT.daten.eintragMitId(params.id);
-      if (e && e.kategorie === 'ergebnis') {
-        detailRendern(behaelter, e);
-        return;
-      }
       if (e) {
         global.location.hash = '#/lexikon?id=' + encodeURIComponent(e.id);
         return;
       }
       behaelter.appendChild(HT.ui.leerZustand(
-        'Dieses Ergebnis gibt es nicht',
+        'Diesen Eintrag gibt es nicht',
         'Der Link zeigt auf einen Eintrag, der nicht erfasst ist.',
-        h('a', { class: 'btn btn--klein', href: '#/ueberblick', text: 'Zum Ergebnisdiagramm' })
+        h('a', { class: 'btn btn--klein', href: '#/ueberblick', text: 'Zum Methodenüberblick' })
       ));
       return;
     }
 
-    uebersichtRendern(behaelter);
+    werkbankRendern(behaelter);
   }
 
   HT.views.ueberblick = {
