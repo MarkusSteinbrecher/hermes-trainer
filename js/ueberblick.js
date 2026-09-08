@@ -677,7 +677,11 @@
     }
   }
 
-  /* --- Werkzeugleiste ------------------------------------------------------ */
+  /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
+
+  /* Die Werkzeugleiste über der Abbildung ist weg; ihre Knöpfe liegen als drei
+     schwebende Gruppen auf der Bühne selbst — Modus oben links, Breit und
+     Steuerung oben rechts, Zoom unten rechts wie auf einer Karte. */
 
   function werkzeugKnopf(text, klasse, aufruf, attrs) {
     var a = { type: 'button', 'class': klasse, text: text };
@@ -690,7 +694,7 @@
   }
 
   function werkzeugTrenner() {
-    return h('span', { class: 'ub-werkzeug__strich', 'aria-hidden': 'true' });
+    return h('span', { class: 'ub-schweber__strich', 'aria-hidden': 'true' });
   }
 
   function werkzeugAktualisieren() {
@@ -724,7 +728,7 @@
     werkzeugAktualisieren();
   }
 
-  function werkzeugBauen() {
+  function schweberBauen() {
     refs.tabErkunden = werkzeugKnopf('Erkunden', 'ub-tab', function () { modusSetzen('erkunden'); });
     refs.tabAbfragen = werkzeugKnopf('Abfragen', 'ub-tab', function () { modusSetzen('abfragen'); });
 
@@ -733,34 +737,36 @@
       text: Math.round(zustand.zoom * 100) + ' %'
     });
 
-    refs.knopfBreit = werkzeugKnopf('Breit', 'ub-werkzeug__knopf', function () {
+    refs.knopfBreit = werkzeugKnopf('Breit', 'ub-schweber__knopf', function () {
       zustand.nurAbb = !zustand.nurAbb;
       werkzeugAktualisieren();
       zoomPassendSpaeter(40);
     }, { 'aria-pressed': 'false', title: 'Inhaltsseite einklappen' });
 
-    refs.knopfPanel = werkzeugKnopf('Steuerung', 'ub-werkzeug__knopf', function () {
+    refs.knopfPanel = werkzeugKnopf('Steuerung', 'ub-schweber__knopf', function () {
       panelSchalten();
     }, { 'aria-expanded': 'false', 'aria-haspopup': 'dialog' });
 
-    return h('div', { class: 'ub-werkzeug' }, [
-      h('div', { class: 'ub-modus', role: 'group', 'aria-label': 'Modus' }, [
+    return [
+      h('div', { class: 'ub-schweber ub-schweber--modus', role: 'group', 'aria-label': 'Modus' }, [
         refs.tabErkunden, refs.tabAbfragen
       ]),
-      werkzeugTrenner(),
-      werkzeugKnopf('−', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom / ZOOM_SCHRITT); },
-        { 'aria-label': 'Verkleinern' }),
-      refs.zoomWert,
-      werkzeugKnopf('+', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom * ZOOM_SCHRITT); },
-        { 'aria-label': 'Vergrössern' }),
-      werkzeugTrenner(),
-      werkzeugKnopf('Passend', 'ub-werkzeug__knopf', zoomPassend,
-        { title: 'Abbildung auf die Breite der Bühne bringen' }),
-      werkzeugTrenner(),
-      refs.knopfBreit,
-      werkzeugTrenner(),
-      refs.knopfPanel
-    ]);
+      h('div', { class: 'ub-schweber ub-schweber--rechts' }, [
+        refs.knopfBreit,
+        werkzeugTrenner(),
+        refs.knopfPanel
+      ]),
+      h('div', { class: 'ub-schweber ub-schweber--zoom', role: 'group', 'aria-label': 'Zoom' }, [
+        werkzeugKnopf('−', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom / ZOOM_SCHRITT); },
+          { 'aria-label': 'Verkleinern' }),
+        refs.zoomWert,
+        werkzeugKnopf('+', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom * ZOOM_SCHRITT); },
+          { 'aria-label': 'Vergrössern' }),
+        werkzeugTrenner(),
+        werkzeugKnopf('Passend', 'ub-schweber__knopf', zoomPassend,
+          { title: 'Abbildung auf die Breite der Bühne bringen' })
+      ]
+    )];
   }
 
   /* --- Steuerung (Überlagerung) -------------------------------------------- */
@@ -1213,127 +1219,160 @@
     ]);
   }
 
-  /* --- Graphbild: das Ergebnis im Zentrum ---------------------------------- */
+  /* --- Beziehungsbild: Rolle → Aufgabe → Ergebnis -------------------------- */
 
-  /* Masse im Koordinatensystem des SVG; die Zeichnung skaliert mit der
-     Breite der Inhaltsseite (viewBox + width:100%). */
+  /* Dieselbe Darstellung wie im grossen Graph — Knoten und Kanten kommen aus
+     js/graph-zeichnen.js und css/graph.css, nur die Anordnung ist enger:
+     links die Rollen, rechts die Aufgaben, mit S-Kurven dazwischen wie im
+     Graph (durchgezogen verantwortlich, gestrichelt beteiligt); darunter,
+     in der Aufgabenspalte, das Ergebnis, zu dem «erzeugt» am rechten Rand
+     mit Pfeil hinführt. Gepunktet, wenn eine Rolle das Ergebnis selbst
+     verantwortet. Gezeigt wird genau, was das Graphmodell kennt — nicht mehr
+     und nicht weniger als im grossen Graph. */
   var GB = {
-    breite: 360,
-    knotenX: 44, knotenB: 310,      // Nachbarknoten
-    mitteX: 30, mitteB: 324,        // das Ergebnis
-    zeile1: 26, zeile2: 36,         // Knotenhöhe mit einer bzw. zwei Zeilen
-    luecke: 7, abstand: 12, rand: 5,
-    biegung: 12,                    // x der Kontrollpunkte, dort fächern die Kanten
-    glyph: 15,                      // Kantenlänge des Kategorie-Icons
-    textX: 32                       // Textanfang, rechts neben dem Icon
+    rand: 6,        // Luft oben, unten und links
+    spalte: 40,     // Abstand zwischen Rollen- und Aufgabenspalte (Platz für die Kurven)
+    zeile: 34,      // Zeilenabstand (Knoten 28 + 6)
+    stufe: 18,      // Abstand zwischen Aufgaben und Ergebnis
+    minBreite: 360
   };
 
-  /* Wie viele Zeichen in eine Zeile passen — SVG kann nicht kürzen. */
-  function passt(text, groesse) {
-    return HT.ui.kuerzen(text, groesse === 'klein' ? 50 : 41);
+  function gbKnotenFuer(k) {
+    return { id: k.id, kategorie: k.kategorie, begriff: k.begriff, eintrag: k.eintrag, h: HT.graphZeichnen.KNOTEN_HOEHE };
   }
 
-  function gbKnoten(x, y, breite, hoehe, klasse, kat, z1, z2, ziel, titel) {
-    var g = svgEl('a', { 'class': 'ub-gb__knoten ' + klasse, href: ziel });
-    g.appendChild(svgEl('rect', { x: x, y: y, width: breite, height: hoehe }));
-    var t = svgEl('title', {});
-    t.textContent = titel || z1;
-    g.appendChild(t);
-    /* Dieselben Kategoriezeichen wie im Graph, im Lexikon und in der Legende
-       (HT.ui.KAT_PFADE) — hier in die Zeichnung skaliert. */
-    g.appendChild(HT.ui.katGruppe(kat, x + 17, y + hoehe / 2, GB.glyph, 'ub-gb__ikone'));
-    var t1 = svgEl('text', { x: x + GB.textX, y: y + (z2 ? 15 : hoehe / 2 + 4), 'class': 'ub-gb__t1' });
-    t1.textContent = passt(z1);
-    g.appendChild(t1);
-    if (z2) {
-      var t2 = svgEl('text', { x: x + GB.textX, y: y + 27, 'class': 'ub-gb__t2' });
-      t2.textContent = passt(z2, 'klein');
-      g.appendChild(t2);
-    }
-    return g;
-  }
-
-  /* Das Ergebnis in der Mitte, darüber die Aufgaben, in denen es entsteht,
-     darunter die Rollen. «Beteiligt» ist im Graphmodell keine Kante (es kennt
-     für Ergebnisse nur die Verantwortung), steht aber als Querverweis in den
-     Daten und auf der Quellseite — hier wird es gestrichelt gezeichnet. */
   function graphBild(e, linkZiel) {
-    var knoten = HT.graph && HT.graph.knoten(e.id);
-    if (!knoten) { return null; }
+    var Z = HT.graphZeichnen;
+    if (!HT.graph || !HT.graph.knoten(e.id) || !Z || !Z.knotenElement) { return null; }
+    Z.schriftLesen(refs.graph || document.body);
 
-    var aufgaben = [];
-    var rollen = [];
-    var verantw = {};
+    var rollen = [], aufgaben = [], kanten = [], gesehen = {}, kanteGesehen = {};
+    function merken(liste, k) {
+      if (gesehen[k.id]) { return; }
+      gesehen[k.id] = true;
+      liste.push(gbKnotenFuer(k));
+    }
+    function kante(k) {
+      if (kanteGesehen[k.id]) { return; }
+      kanteGesehen[k.id] = true;
+      kanten.push(k);
+    }
     HT.graph.nachbarn(e.id).forEach(function (n) {
-      var x = n.knoten.eintrag;
-      if (x.kategorie === 'aufgabe') { aufgaben.push({ e: x, rel: 'erzeugt' }); }
-      else if (x.kategorie === 'rolle') { verantw[x.begriff] = true; rollen.push({ e: x, rel: 'verantwortet' }); }
+      n.relationen.forEach(function (r) {
+        if (r.rel === 'erzeugt') { merken(aufgaben, n.knoten); kante(r.kante); }
+        if (r.rel === 'ergebnisrolle') { merken(rollen, n.knoten); kante(r.kante); }
+      });
     });
-    (e.beteiligt || []).forEach(function (name) {
-      if (verantw[name]) { return; }
-      var x = HT.daten.eintragMitBegriff(name, 'rolle');
-      if (x) { rollen.push({ e: x, rel: 'beteiligt' }); }
+    aufgaben.forEach(function (a) {
+      HT.graph.nachbarn(a.id).forEach(function (n) {
+        n.relationen.forEach(function (r) {
+          if (r.rel === 'verantwortlich' || r.rel === 'beteiligt') { merken(rollen, n.knoten); kante(r.kante); }
+        });
+      });
     });
     if (!aufgaben.length && !rollen.length) { return null; }
 
-    function sortieren(a, b) { return a.e.begriff.localeCompare(b.e.begriff, 'de'); }
+    function sortieren(a, b) { return a.begriff.localeCompare(b.begriff, 'de'); }
+    rollen.sort(sortieren);
     aufgaben.sort(sortieren);
-    rollen.sort(function (a, b) {
-      if (a.rel !== b.rel) { return a.rel === 'verantwortet' ? -1 : 1; }
-      return sortieren(a, b);
-    });
+    var mitte = gbKnotenFuer(HT.graph.knoten(e.id));
 
-    /* Höhen von oben nach unten festlegen. */
-    var y = GB.rand;
-    aufgaben.forEach(function (a) {
-      a.hoehe = a.e.module && a.e.module.length ? GB.zeile2 : GB.zeile1;
-      a.y = y;
-      y += a.hoehe + GB.luecke;
-    });
-    y += GB.abstand - GB.luecke;
-    var mitteY = y;
-    var mitteH = e.typ ? GB.zeile2 : GB.zeile1;
-    y += mitteH + GB.abstand;
-    rollen.forEach(function (r) {
-      r.hoehe = GB.zeile2;
-      r.y = y;
-      y += r.hoehe + GB.luecke;
-    });
-    var hoehe = y - GB.luecke + GB.rand;
+    /* Anordnung: zwei Spalten wie im Graph, das Ergebnis unter den Aufgaben. */
+    var alle = rollen.concat(aufgaben, [mitte]);
+    var position = {};
+    alle.forEach(function (k) { k.w = Z.knotenBreite(k, {}); position[k.id] = k; });
+    var rollenBreite = rollen.reduce(function (m, k) { return Math.max(m, k.w); }, 0);
+    var aufgabenX = rollen.length ? GB.rand + rollenBreite + GB.spalte : GB.rand;
+    var aufgabenHoehe = aufgaben.length * GB.zeile - (GB.zeile - mitte.h);
+    var rollenHoehe = rollen.length * GB.zeile - (GB.zeile - mitte.h);
+    /* Rollen mittig zur Aufgabenspalte, damit die Kurven flach bleiben. */
+    var y = GB.rand + Math.max(0, (aufgabenHoehe - rollenHoehe) / 2);
+    rollen.forEach(function (k) { k.x = GB.rand; k.y = y; y += GB.zeile; });
+    y = GB.rand + Math.max(0, (rollenHoehe - aufgabenHoehe) / 2);
+    aufgaben.forEach(function (k) { k.x = aufgabenX; k.y = y; y += GB.zeile; });
+    mitte.x = aufgabenX;
+    mitte.y = GB.rand + Math.max(aufgabenHoehe, rollenHoehe) + GB.stufe;
+    var hoehe = mitte.y + mitte.h + GB.rand;
+    var rechts = alle.reduce(function (m, k) { return Math.max(m, k.x + k.w); }, 0);
+    var schieneRechts = rechts + 14;
+    var breite = Math.max(GB.minBreite, schieneRechts + 6);
 
     var svg = svgEl('svg', {
-      'class': 'ub-gb', viewBox: '0 0 ' + GB.breite + ' ' + hoehe,
-      role: 'img', 'aria-label': 'Beziehungen von ' + e.begriff
+      'class': 'ub-gb', viewBox: '0 0 ' + breite + ' ' + hoehe,
+      role: 'img', 'aria-label': 'Beziehungen von ' + e.begriff + ': Rolle, Aufgabe, Ergebnis'
     });
+    svg.style.width = breite + 'px';
+    var defs = svgEl('defs', {});
+    var marker = svgEl('marker', { id: 'ub-gpfeil', viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto-start-reverse' });
+    marker.appendChild(svgEl('path', { d: 'M0 0L10 5L0 10Z', 'class': 'gpfeil' }));
+    defs.appendChild(marker);
+    svg.appendChild(defs);
 
-    /* Kanten zuerst, damit die Knoten darüber liegen. */
-    var mitteAnker = mitteY + mitteH / 2;
-    var kanten = svgEl('g', { 'class': 'ub-gb__kanten' });
-    aufgaben.concat(rollen).forEach(function (n) {
-      var ny = n.y + n.hoehe / 2;
-      kanten.appendChild(svgEl('path', {
-        'class': 'ub-gb__kante' + (n.rel === 'beteiligt' ? ' ist-lose' : ''),
-        d: 'M' + GB.mitteX + ' ' + mitteAnker
-         + 'C' + GB.biegung + ' ' + mitteAnker + ',' + GB.biegung + ' ' + ny + ',' + GB.knotenX + ' ' + ny
-      }));
+    /* Kanten zuerst, damit die Knoten darüber liegen. «erzeugt» läuft über
+       die rechte Schiene zum Ergebnis, alles mit Rollen über die linke. */
+    var ebeneKanten = svgEl('g', { 'class': 'ub-gb__kanten' });
+    var nachbarschaft = {};   // id -> { knoten: {id:true}, kanten: {id:true} }
+    var elemente = { knoten: {}, kanten: {} };
+    function nachbar(id) {
+      if (!nachbarschaft[id]) { nachbarschaft[id] = { knoten: {}, kanten: {} }; }
+      return nachbarschaft[id];
+    }
+    kanten.forEach(function (k) {
+      var von = position[k.von], nach = position[k.nach];
+      if (!von || !nach) { return; }
+      nachbar(k.von).kanten[k.id] = true; nachbar(k.von).knoten[k.nach] = true;
+      nachbar(k.nach).kanten[k.id] = true; nachbar(k.nach).knoten[k.von] = true;
+      var y1 = von.y + von.h / 2, y2 = nach.y + nach.h / 2;
+      var stil = HT.graph.REL[k.rel] ? HT.graph.REL[k.rel].stil : 'struktur';
+      var d, attrs = { 'class': 'gkante gkante--' + stil, 'data-id': k.id };
+      if (k.rel === 'erzeugt') {
+        d = 'M' + (von.x + von.w) + ' ' + y1
+          + 'C' + schieneRechts + ' ' + y1 + ',' + schieneRechts + ' ' + y2 + ',' + (nach.x + nach.w) + ' ' + y2;
+        attrs['marker-end'] = 'url(#ub-gpfeil)';
+      } else {
+        /* S-Kurve von der Rolle zur Aufgabe bzw. zum Ergebnis, wie im Graph. */
+        var x1 = von.x + von.w, x2 = nach.x, mx = (x1 + x2) / 2;
+        d = 'M' + x1 + ' ' + y1 + 'C' + mx + ' ' + y1 + ',' + mx + ' ' + y2 + ',' + x2 + ' ' + y2;
+      }
+      attrs.d = d;
+      var pfad = svgEl('path', attrs);
+      elemente.kanten[k.id] = pfad;
+      ebeneKanten.appendChild(pfad);
     });
-    svg.appendChild(kanten);
+    svg.appendChild(ebeneKanten);
 
-    aufgaben.forEach(function (a) {
-      svg.appendChild(gbKnoten(GB.knotenX, a.y, GB.knotenB, a.hoehe, 'ist-aufgabe', 'aufgabe',
-        a.e.begriff, (a.e.module || []).join(', '), linkZiel(a.e), a.e.begriff + ' — entsteht darin'));
+    /* Hervorhebung beim Zeigen und beim Fokus — wie im grossen Graph: der
+       Knoten samt Nachbarn und Kanten bleibt, alles andere wird gedimmt. */
+    function hervorheben(id) {
+      svg.classList.toggle('ist-hervorhebung', !!id);
+      Object.keys(elemente.knoten).forEach(function (x) { elemente.knoten[x].classList.remove('ist-aktiv'); });
+      Object.keys(elemente.kanten).forEach(function (x) { elemente.kanten[x].classList.remove('ist-aktiv'); });
+      if (!id || !elemente.knoten[id]) { return; }
+      elemente.knoten[id].classList.add('ist-aktiv');
+      var n = nachbarschaft[id];
+      if (!n) { return; }
+      Object.keys(n.knoten).forEach(function (x) { if (elemente.knoten[x]) { elemente.knoten[x].classList.add('ist-aktiv'); } });
+      Object.keys(n.kanten).forEach(function (x) { if (elemente.kanten[x]) { elemente.kanten[x].classList.add('ist-aktiv'); } });
+    }
+
+    var ebeneKnoten = svgEl('g', { 'class': 'ub-gb__knoten' });
+    alle.forEach(function (k) {
+      var el = Z.knotenElement(k, {});
+      el.removeAttribute('tabindex');
+      el.removeAttribute('role');
+      if (k.id === mitte.id) { el.classList.add('ist-gewaehlt'); }
+      var a = svgEl('a', { 'class': 'ub-gb__link', href: linkZiel(k.eintrag), 'aria-label': el.getAttribute('aria-label') + ' — im Lexikon öffnen' });
+      a.appendChild(el);
+      elemente.knoten[k.id] = el;
+      a.addEventListener('mouseenter', function () { hervorheben(k.id); });
+      a.addEventListener('mouseleave', function () { hervorheben(null); });
+      a.addEventListener('focus', function () { hervorheben(k.id); });
+      a.addEventListener('blur', function () { hervorheben(null); });
+      ebeneKnoten.appendChild(a);
     });
-    svg.appendChild(gbKnoten(GB.mitteX, mitteY, GB.mitteB, mitteH, 'ist-mitte', ikoneFuer(e),
-      e.begriff, e.typ || '', linkZiel(e), e.begriff));
-    rollen.forEach(function (r) {
-      svg.appendChild(gbKnoten(GB.knotenX, r.y, GB.knotenB, r.hoehe, 'ist-rolle', 'rolle',
-        r.e.begriff, r.rel, linkZiel(r.e), r.e.begriff + ' — ' + r.rel));
-    });
+    svg.appendChild(ebeneKnoten);
 
     return [
-      h('p', { class: 'ub-gb__lese', text:
-        (aufgaben.length ? 'Oben die Aufgaben, in denen das Ergebnis entsteht. ' : '')
-        + 'Unten die Rollen; gestrichelt heisst beteiligt.' }),
       svg,
       h('p', { class: 'ub-gb__mehr' }, h('a', {
         class: 'ub-verweis',
@@ -1342,6 +1381,7 @@
       }))
     ];
   }
+
 
   /* Eine Gruppe von Beziehungen als Liste — für Module, die im Graphmodell
      keine Knoten sind (es kennt nur Rolle → Aufgabe → Ergebnis). */
@@ -1583,12 +1623,15 @@
 
     var warnung = HT.app.datenWarnung();
 
+    /* Die Hülle trägt die schwebenden Gruppen und die Steuerung, die Bühne
+       darin scrollt — läge das Schwebende in der Bühne, scrollte es mit. */
+    refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle' },
+      [refs.buehne].concat(schweberBauen(), [refs.panelHuelle]));
+
     return h('section', { class: 'ub-seite' }, [
-      werkzeugBauen(),
-      refs.panelHuelle,
       warnung || null,
       refs.prompt,
-      refs.buehne,
+      refs.buehneHuelle,
       abbLegendeBauen(),
       h('p', { class: 'ub-bildunterschrift' }, [
         BILDUNTERSCHRIFT + ' — Originalgrafik, ',

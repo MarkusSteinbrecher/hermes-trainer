@@ -2,7 +2,10 @@
    HERMES-Trainer — Graph (Struktur, Fokus, Phasen)
    Kategoriefarben: helle Palette validiert (Lichtheit, Chroma, Farbfehl-
    sichtigkeit über alle Paare); Kategorie zusätzlich über Knotenform und
-   Icon codiert, nie nur über Farbe.
+   Icon codiert, nie nur über Farbe. Die Kategoriefarben sind eine
+   Datencodierung und bleiben — alles andere (Leiste, Popover, Detailfeld)
+   folgt dem Modernist-System aus css/style.css: kein Radius, Linien statt
+   Kästen, Text-Knöpfe in Versalien, Rot als einziger Akzent.
    ========================================================================== */
 
 :root {
@@ -24,43 +27,62 @@
   --gkante-meilenstein: #7a5300;
   --gkante-grundbegriff: #556474;
 
-  --graph-bg: #f8f9fb;
-  --graph-raster: #e4e8ee;
+  /* Die Fläche ist weiss wie die Bühne der Originalabbildung im Überblick;
+     Bahnen wechseln zwischen Weiss und dem Grund der Seite. */
+  --graph-bg: #ffffff;
   --graph-bahn: #ffffff;
-  --graph-bahn-2: #eef1f6;
+  --graph-bahn-2: #f3f2f2;
   --detail-breite: 24rem;
   /* Nur für schmale Schirme, wo die Seite im normalen Fluss scrollt: dort ist
-     die Kopfzeile die Markenzeile allein. Ab 700 px füllt die Leinwand den
-     Rest der Höhe per Flexbox — ohne Zahl, die zur Kopfzeile passen muss. */
-  --kopf: 53px;
+     die Kopfzeile die Markenzeile allein (46 px + 2 px Linie). Ab 700 px füllt
+     die Leinwand den Rest der Höhe per Flexbox — ohne Zahl, die zur Kopfzeile
+     passen muss. */
+  --kopf: 48px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --gk-phase: #4d93e6;        --gk-phase-bg: #1a3450;        --gk-phase-fg: #aacdf4;
-    --gk-szenario: #7357c6;     --gk-szenario-bg: #2d2450;     --gk-szenario-fg: #c9bdf3;
-    --gk-modul: #1c9a7f;        --gk-modul-bg: #123d36;        --gk-modul-fg: #8fdcc9;
-    --gk-aufgabe: #df6626;      --gk-aufgabe-bg: #43230f;      --gk-aufgabe-fg: #f5b48c;
-    --gk-ergebnis: #c3931a;     --gk-ergebnis-bg: #3d2f0a;     --gk-ergebnis-fg: #f0cf7a;
-    --gk-rolle: #c94a8b;        --gk-rolle-bg: #451a30;        --gk-rolle-fg: #f3aed0;
-    --gk-grundbegriff: #8a9bb0; --gk-grundbegriff-bg: #29313b; --gk-grundbegriff-fg: #c2ccd7;
-    --gk-glyph-auf: #0c1219;
-    --gk-ergebnis-glyph-auf: #0c1219;
-
-    --gkante: #4b5866;
-    --gkante-stark: #a2b0bd;
-    --gkante-verantwortlich: #e07ab0;
-    --gkante-erzeugt: #ef8a55;
-    --gkante-phase: #6fa6ea;
-    --gkante-meilenstein: #d9b45a;
-    --gkante-grundbegriff: #8a9bb0;
-
-    --graph-bg: #0d1117;
-    --graph-raster: #1c2530;
-    --graph-bahn: #141c25;
-    --graph-bahn-2: #0f161e;
-  }
+/* Gemeinsame Form der Text-Knöpfe in Leiste, Popover und Detailfeld. */
+.graph-seite .btn--klein,
+.segment__knopf,
+.chip--auswahl,
+.gauswahl__reset,
+.graph-werkzeug,
+.graph-zoom__knopf,
+.graph-schliessen {
+  height: 28px;
+  min-height: 0;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-leise);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
 }
+.graph-seite .btn--klein:hover,
+.segment__knopf:hover,
+.chip--auswahl:hover,
+.graph-werkzeug:hover,
+.graph-zoom__knopf:hover,
+.graph-schliessen:hover { color: var(--text); background: transparent; }
+.graph-seite .btn--klein.btn--primaer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  background: var(--akzent);
+  border: 2px solid var(--akzent);
+  color: #fff;
+}
+.graph-seite .btn--klein.btn--primaer:hover { background: var(--akzent-hover); border-color: var(--akzent-hover); color: #fff; }
 
 /* --- Seite: drei Bereiche -------------------------------------------------- */
 body[data-route="graph"] .view { max-width: none; padding: 0; }
@@ -77,65 +99,53 @@ body[data-route="graph"] .fusszeile { display: none; }
   background: var(--graph-bg);
 }
 
-.segment {
-  display: inline-flex;
-  flex-wrap: wrap;
-  border: 1px solid var(--rand-stark);
-  border-radius: var(--radius-s);
-  overflow: hidden;
-  background: var(--flaeche);
-}
-.segment__knopf {
-  flex: 1 1 auto;
-  min-height: 36px;
-  padding: .3rem .7rem;
-  border: 0;
-  border-right: 1px solid var(--rand);
-  background: transparent;
-  color: var(--text-leise);
-  font-size: .85rem;
-  font-weight: 650;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.segment__knopf:last-child { border-right: 0; }
+.segment { display: inline-flex; align-items: center; gap: 2px; }
+.segment__knopf { flex: 0 0 auto; }
 /* Ansicht als Icon: der Name steht in aria-label und Titel. */
-.segment__knopf--ikone { display: grid; place-items: center; min-width: 44px; padding: .3rem .5rem; }
-.segment__knopf:hover { background: var(--flaeche-2); color: var(--text); }
-.segment__knopf[aria-pressed="true"] { background: var(--akzent); color: var(--akzent-auf); }
-.segment__knopf:focus-visible { outline-offset: -3px; }
+.segment__knopf--ikone { display: grid; place-items: center; width: 28px; padding: 0; }
+.segment__knopf[aria-pressed="true"] {
+  color: var(--text);
+  font-weight: 800;
+  box-shadow: inset 0 -3px 0 var(--akzent);
+}
+.segment__knopf:focus-visible { outline-offset: -2px; }
 
 .gs-suche { position: relative; }
-.suche__feld--klein { min-height: 40px; padding-right: .8rem; font-size: .92rem; }
-.gs-treffer {
-  position: absolute;
-  left: 0; right: 0; top: calc(100% + 4px);
-  z-index: 5;
-  margin: 0; padding: .25rem;
-  list-style: none;
-  background: var(--flaeche);
+.graph-seite .suche__feld--klein {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 10px;
   border: 1px solid var(--rand-stark);
-  border-radius: var(--radius-s);
-  box-shadow: var(--schatten-stark);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  box-shadow: none;
+}
+.graph-seite .suche__feld--klein::placeholder { color: var(--text-leise-hell); }
+.gs-treffer {
+  margin: 0; padding: 0;
+  list-style: none;
   max-height: 18rem;
   overflow-y: auto;
 }
 .gs-treffer__knopf {
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 8px;
   width: 100%;
-  padding: .45rem .5rem;
+  padding: 7px 4px;
   border: 0;
-  border-radius: 6px;
+  border-top: 1px solid var(--rand-fein);
   background: transparent;
   color: var(--text);
   text-align: left;
-  font-size: .9rem;
+  font-size: 14px;
   cursor: pointer;
 }
-.gs-treffer__knopf:hover, .gs-treffer__knopf:focus-visible { background: var(--akzent-schwach); }
-.gs-treffer__leer { padding: .5rem; color: var(--text-leise); font-size: .85rem; }
+.gs-treffer > li:first-child .gs-treffer__knopf { border-top: 0; }
+.gs-treffer__knopf:hover, .gs-treffer__knopf:focus-visible { background: var(--flaeche-2); }
+.gs-treffer__leer { padding: 6px 0; color: var(--text-leise); font-size: 13px; }
 
 
 .gswatch {
@@ -156,63 +166,66 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gswatch--rolle { background: var(--gk-rolle); }
 .gswatch--grundbegriff { background: var(--gk-grundbegriff); }
 
-.gs-liste { display: grid; gap: .3rem; }
+.gs-liste { display: grid; }
 .gs-schalter {
   display: flex;
   align-items: center;
-  gap: .5rem;
-  min-height: 32px;
-  font-size: .85rem;
+  gap: 10px;
+  min-height: 34px;
+  border-top: 1px solid var(--rand-fein);
+  font-size: 13.5px;
   cursor: pointer;
 }
-.gs-schalter__eingabe { width: 18px; height: 18px; margin: 0; accent-color: var(--akzent); flex: 0 0 auto; }
+.gs-liste > .gs-schalter:first-child { border-top: 0; }
+.gs-schalter__eingabe { width: 16px; height: 16px; margin: 0; accent-color: var(--akzent); flex: 0 0 auto; }
 .gs-schalter__label { flex: 1 1 auto; }
-.gs-schalter__extra { font-size: .7rem; color: var(--text-leise); text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
+.gs-schalter__extra { font-size: 10.5px; color: var(--text-leise); text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
 
-.gs-feld { display: grid; gap: .25rem; }
-.gs-feld--zeile { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .6rem; }
-.gs-feld__label { font-size: .74rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-leise); }
+.gs-feld { display: grid; gap: 6px; }
+.gs-feld--zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.gs-feld__label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
 .gs-select {
-  min-height: 38px;
-  padding: .3rem .6rem;
+  min-height: 32px;
+  padding: 0 8px;
   border: 1px solid var(--rand-stark);
-  border-radius: var(--radius-s);
-  background: var(--flaeche);
+  border-radius: 0;
+  background: var(--bg);
   color: var(--text);
-  font-size: .9rem;
+  font-size: 13.5px;
   max-width: 100%;
 }
 
-.gs-beispiele { display: grid; gap: .4rem; }
+/* Beispiele: Zeilen mit Linien, keine Kästen. */
+.gs-beispiele { display: grid; }
 .gs-beispiel {
   display: grid;
-  gap: .1rem;
-  padding: .55rem .7rem;
-  border: 1px solid var(--rand);
-  border-left: 3px solid var(--akzent);
-  border-radius: var(--radius-s);
-  background: var(--flaeche);
+  gap: 2px;
+  padding: 9px 0;
+  border: 0;
+  border-top: 1px solid var(--rand-fein);
+  background: transparent;
   color: var(--text);
   text-align: left;
   cursor: pointer;
 }
-.gs-beispiel:hover { background: var(--akzent-schwach); border-color: var(--akzent); }
-.gs-beispiel__titel { font-weight: 700; font-size: .88rem; }
-.gs-beispiel__hinweis { font-size: .78rem; color: var(--text-leise); }
+.gs-beispiele > .gs-beispiel:first-child { border-top: 0; }
+.gs-beispiel:hover .gs-beispiel__titel { color: var(--akzent-text); }
+.gs-beispiel__titel { font-weight: 700; font-size: 14px; }
+.gs-beispiel__hinweis { font-size: 12.5px; color: var(--text-leise); }
 
-.glegende { display: grid; gap: .6rem; font-size: .82rem; }
-.glegende__gruppe { display: grid; gap: .25rem; }
+.glegende { display: grid; gap: 12px; font-size: 13px; }
+.glegende__gruppe { display: grid; gap: 5px; }
 .glegende__gruppe--typen { grid-template-columns: 1fr 1fr; }
-.glegende__eintrag { display: flex; align-items: center; gap: .5rem; }
-.glegende__symbol { width: 20px; text-align: center; color: var(--gk-ergebnis-fg); font-size: .9rem; }
-.glegende__hinweis { margin: 0; font-size: .78rem; color: var(--text-leise); }
+.glegende__eintrag { display: flex; align-items: center; gap: 8px; }
+.glegende__symbol { width: 20px; text-align: center; color: var(--gk-ergebnis-fg); font-size: 14px; }
+.glegende__hinweis { margin: 0; font-size: 12.5px; color: var(--text-leise); }
 /* Was der Graph gerade zeigt — stand früher als Text in der Leiste. */
 .glegende__status {
   margin: 0;
-  padding: .4rem .5rem;
-  border-radius: var(--radius-s);
-  background: var(--flaeche-2);
-  font-size: .8rem;
+  padding: 8px 0;
+  border-top: 1px solid var(--rand);
+  border-bottom: 1px solid var(--rand);
+  font-size: 13px;
   color: var(--text);
 }
 
@@ -244,56 +257,59 @@ body[data-route="graph"] .fusszeile { display: none; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: .35rem .5rem;
-  padding: .35rem .6rem;
-  background: var(--flaeche);
+  gap: 4px 2px;
+  padding: 7px 16px;
+  background: var(--bg);
   border-bottom: 1px solid var(--rand);
 }
-.graph-werkzeuge { display: flex; align-items: center; gap: .35rem; margin-left: auto; flex: 0 0 auto; }
+.graph-werkzeuge { display: flex; align-items: center; gap: 2px; margin-left: auto; flex: 0 0 auto; }
+/* Hairlines zwischen den Gruppen der Leiste: 1 × 16 px, wie im Überblick.
+   Die Auswahl-Chips scrollen in sich, deshalb kein Pseudo-Element, sondern
+   ein Hintergrundstrich am linken Rand. */
+.gauswahl__vorgehen:not([hidden]),
+.gauswahl__szenario:not([hidden]),
+.chips--auswahl,
+.gauswahl__quer,
+.graph-werkzeuge {
+  margin-left: 8px;
+  padding-left: 11px;
+  background-image: linear-gradient(var(--rand), var(--rand));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 1px 16px;
+}
+.graph-zoom { margin-left: 8px; padding-left: 9px; }
+.graph-zoom::before { content: ""; width: 1px; height: 16px; margin-right: 2px; background: var(--rand); }
 
 .graph-pfad { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; flex: 1 1 100%; }
 .graph-pfad[hidden] { display: none; }
-.graph-pfad__label { font-size: .72rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-leise); margin-right: .2rem; }
+.graph-pfad__label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); margin-right: 4px; }
 .graph-pfad__knopf {
   display: inline-flex;
   align-items: center;
-  gap: .35rem;
-  min-height: 30px;
-  padding: .15rem .55rem .15rem .25rem;
-  border: 1px solid var(--rand);
-  border-radius: 999px;
-  background: var(--flaeche);
+  gap: 6px;
+  height: 28px;
+  padding: 0 8px 0 4px;
+  border: 0;
+  background: transparent;
   color: var(--text);
-  font-size: .8rem;
+  font-size: 13px;
   cursor: pointer;
   max-width: 16rem;
 }
 .graph-pfad__knopf span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.graph-pfad__knopf:hover { border-color: var(--akzent); color: var(--akzent); }
+.graph-pfad__knopf:hover { color: var(--akzent-text); }
 .graph-pfad__knopf .gswatch { width: 18px; height: 18px; }
 
-.graph-zoom { display: inline-flex; border: 1px solid var(--rand-stark); border-radius: var(--radius-s); overflow: hidden; background: var(--flaeche); }
-.graph-zoom__knopf {
-  min-width: 36px; min-height: 34px;
-  padding: 0 .5rem;
-  border: 0; border-right: 1px solid var(--rand);
-  background: transparent;
-  color: var(--text);
-  font-size: 1.05rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-.graph-zoom__knopf:last-child { border-right: 0; }
-.graph-zoom__knopf--ikone { display: grid; place-items: center; padding: 0 .35rem; }
-.graph-zoom__knopf:hover { background: var(--flaeche-2); }
+.graph-zoom { display: inline-flex; align-items: center; gap: 2px; }
+.graph-zoom__knopf { width: 28px; padding: 0; display: grid; place-items: center; font-size: 18px; }
+.graph-zoom__knopf--ikone { font-size: 12px; }
 
 .graph-flaeche {
   position: relative;
   flex: 1 1 auto;
   min-height: 60vh;
   background-color: var(--graph-bg);
-  background-image: radial-gradient(var(--graph-raster) 1px, transparent 1px);
-  background-size: 22px 22px;
   overflow: hidden;
   touch-action: none;
 }
@@ -337,7 +353,14 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gk--ergebnis .gk__label { fill: var(--gk-ergebnis-fg); }
 .gk--ergebnis .gk__glyph { fill: var(--gk-ergebnis); }
 .gk--ergebnis .gk__ikone { stroke: var(--gk-ergebnis-glyph-auf); }
-.gk--rolle .gk__form { fill: var(--gk-rolle-bg); stroke: var(--gk-rolle); }
+/* Rollen ohne Kasten: Glyph und Name genügen — so heben sie sich von Aufgaben
+   und Ergebnissen deutlicher ab. Die Form bleibt transparent als Trefffläche. */
+.gk--rolle .gk__form { fill: transparent; stroke: none; }
+.gk--rolle:hover .gk__label { text-decoration: underline; }
+.gk--rolle:focus-visible .gk__form { stroke: none; }
+.gk--rolle:focus-visible .gk__glyph,
+.gk--rolle.ist-gewaehlt .gk__glyph { stroke: var(--fokus); stroke-width: 2.5; }
+.gk--rolle.ist-gewaehlt .gk__form { filter: none; }
 .gk--rolle .gk__label { fill: var(--gk-rolle-fg); }
 .gk--rolle .gk__glyph { fill: var(--gk-rolle); }
 .gk--grundbegriff .gk__form { stroke-dasharray: 4 3; }
@@ -402,17 +425,16 @@ body[data-route="graph"] .fusszeile { display: none; }
   z-index: 6;
   max-width: 20rem;
   padding: .55rem .7rem;
-  background: var(--flaeche);
+  background: var(--bg);
   border: 1px solid var(--rand-stark);
-  border-radius: var(--radius-s);
   box-shadow: var(--schatten-stark);
-  font-size: .82rem;
+  font-size: 13px;
   pointer-events: none;
 }
-.graph-tooltip__kopf { display: flex; align-items: center; gap: .4rem; margin-bottom: .25rem; }
-.graph-tooltip__rel { margin: 0 0 .25rem; color: var(--akzent); font-weight: 600; }
-.graph-tooltip__text { margin: 0; color: var(--text); }
-.graph-tooltip__tipp { margin: .3rem 0 0; font-size: .72rem; color: var(--text-leise); }
+.graph-tooltip__kopf { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: 700; }
+.graph-tooltip__rel { margin: 0 0 4px; color: var(--akzent-text); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.graph-tooltip__text { margin: 0; color: var(--text-weich); }
+.graph-tooltip__tipp { margin: 6px 0 0; font-size: 11.5px; color: var(--text-leise); }
 
 /* --- Auswahl in der Leiste: welche Phasen bzw. Module -------------------- */
 .gauswahl__vorgehen[hidden], .gauswahl__szenario[hidden], .gauswahl__reset[hidden] { display: none; }
@@ -438,53 +460,43 @@ body[data-route="graph"] .fusszeile { display: none; }
   -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
   mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
 }
-.chip--auswahl { flex: 0 0 auto; min-height: 32px; padding: .2rem .6rem; font-size: .82rem; gap: .4rem; }
+.chip--auswahl { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 5px; }
+.chip--auswahl[aria-pressed="true"] { color: var(--text); font-weight: 800; box-shadow: inset 0 -3px 0 var(--akzent); }
+.chip--auswahl .chip__zahl { font-weight: 500; letter-spacing: 0; color: var(--text-leise); font-variant-numeric: tabular-nums; }
+.chip--auswahl svg { width: 14px; height: 14px; }
 
-/* Phasen sind eine Folge — das Chevron-Band zeigt sie als solche. Kein
-   Rahmen: clip-path würde ihn an den Schrägen anschneiden; deshalb Fläche
-   statt Kontur und der Fokusring als innerer Schatten. Die Einkerbung links
-   greift über die Spitze des Vorgängers, das ergibt eine gleichmässige Fuge. */
-.chips--phasen { gap: 0; }
-.chip--phase {
-  border: 0;
-  border-radius: 0;
-  padding: .2rem .65rem .2rem 1.1rem;
-  background: var(--flaeche-2);
-  color: var(--text-leise);
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%);
+/* Phasen sind eine Folge — sie stehen als Reihe flacher Reiter mit Zähler
+   nebeneinander; die gewählte Phase trägt die Unterstreichung. */
+.chips--phasen { gap: 2px; }
+.chip--phase:focus-visible { outline-offset: -2px; }
+
+/* «Module: alle ▾» — die einzige Auswahl mit Rahmen: ein Select ohne Radius. */
+.graph-seite .gauswahl__quer,
+.graph-seite .gauswahl__szenario {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--rand-stark);
+  padding: 0 8px;
+  color: var(--text);
 }
-.chips--phasen .chip--phase + .chip--phase { margin-left: -8px; }
-.chip--phase:first-child {
-  padding-left: .65rem;
-  border-radius: 7px 0 0 7px;
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
-}
-.chip--phase:hover { background: var(--rand); color: var(--text); }
-.chip--phase[aria-pressed="true"] { background: var(--akzent); color: var(--akzent-auf); }
-.chip--phase[aria-pressed="true"]:hover { background: var(--akzent); }
-.chip--phase:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--fokus); }
-.gauswahl__quer.ist-aktiv { border-color: var(--akzent); background: var(--akzent-schwach); color: var(--akzent); }
-.gauswahl__reset {
-  border: 0; padding: .3rem .45rem; border-radius: 6px;
-  background: transparent; color: var(--akzent);
-  font: inherit; font-size: .82rem; font-weight: 600; cursor: pointer;
-}
-.gauswahl__reset:hover { background: var(--akzent-schwach); }
+.graph-seite .gauswahl__quer:hover,
+.graph-seite .gauswahl__szenario:hover { border-color: var(--text); }
+.graph-seite .gauswahl__quer.ist-aktiv { border-color: var(--akzent); color: var(--akzent-text); }
+.graph-seite .gauswahl__quer[aria-expanded="true"],
+.graph-seite .gauswahl__szenario[aria-expanded="true"] { border-color: var(--text); color: var(--text); }
+.gauswahl__reset { color: var(--akzent-text); padding: 0 4px; }
+.gauswahl__reset:hover { color: var(--akzent); }
 
 /* --- Werkzeugknöpfe in der Leiste ---------------------------------------- */
 .graph-werkzeug {
   display: grid;
   place-items: center;
-  width: 36px; height: 36px;
+  width: 28px;
+  padding: 0;
   flex: 0 0 auto;
-  border: 1px solid var(--rand-stark);
-  border-radius: var(--radius-s);
-  background: var(--flaeche);
-  color: var(--text);
-  cursor: pointer;
 }
-.graph-werkzeug:hover { background: var(--flaeche-2); }
-.graph-werkzeug[aria-expanded="true"] { border-color: var(--akzent); background: var(--akzent-schwach); color: var(--akzent); }
+.graph-werkzeug[aria-expanded="true"] { color: var(--text); box-shadow: inset 0 -3px 0 var(--akzent); }
 
 /* --- Icon-Leiste auf der Fläche ------------------------------------------ */
 .graph-flaeche-huelle { position: relative; flex: 1 1 auto; min-height: 0; display: flex; }
@@ -495,14 +507,12 @@ body[data-route="graph"] .fusszeile { display: none; }
   display: flex;
   flex-direction: column;
   gap: .1rem;
-  padding: .3rem;
-  background: var(--flaeche);
+  padding: 4px;
+  background: var(--graph-bg);
   border: 1px solid var(--rand);
-  border-radius: var(--radius);
-  box-shadow: var(--schatten-stark);
 }
 .grail__gruppe { display: flex; flex-direction: column; gap: .1rem; }
-.grail__trenner { height: 1px; background: var(--rand); margin: .3rem .35rem; }
+.grail__trenner { height: 1px; background: var(--rand); margin: 4px 6px; }
 .grail__knopf {
   display: flex;
   flex-direction: column;
@@ -513,17 +523,16 @@ body[data-route="graph"] .fusszeile { display: none; }
   min-height: 44px;
   padding: .2rem 0;
   border: 0;
-  border-radius: var(--radius-s);
   background: transparent;
   cursor: pointer;
 }
 .grail__knopf:hover { background: var(--flaeche-2); }
-.grail__knopf[aria-pressed="true"] { background: var(--flaeche-2); }
+.grail__knopf[aria-pressed="true"] { background: transparent; }
 .grail__knopf[aria-pressed="false"] { opacity: .55; }
 .grail__knopf[aria-pressed="false"] .gswatch { filter: grayscale(1); }
 .grail__knopf[aria-pressed="false"] .glinie { filter: grayscale(1); }
 .grail__knopf .gswatch { width: 22px; height: 22px; }
-.grail__zahl { font-size: .62rem; font-weight: 700; line-height: 1; color: var(--text-leise); font-variant-numeric: tabular-nums; }
+.grail__zahl { font-size: 10px; font-weight: 700; line-height: 1; color: var(--text-leise); font-variant-numeric: tabular-nums; }
 .grail__knopf--linie { min-height: 28px; }
 
 /* --- Leerer Zustand auf der Fläche --------------------------------------- */
@@ -549,40 +558,34 @@ body[data-route="graph"] .fusszeile { display: none; }
   max-height: calc(100% - 1.5rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  background: var(--flaeche);
+  background: var(--bg);
   border: 1px solid var(--rand-stark);
-  border-radius: var(--radius);
   box-shadow: var(--schatten-stark);
 }
 .gpop[hidden] { display: none; }
 /* Die Suche liegt im Popover; die Trefferliste steht dort im Fluss. */
 .gpop .suche__feld--klein { width: 100%; }
-.gpop .gs-treffer {
-  position: static;
-  margin-top: .4rem;
-  padding: 0;
-  border: 0;
-  box-shadow: none;
-  max-height: 15rem;
-}
+.gpop .gs-treffer { margin-top: 6px; max-height: 15rem; }
 .gpop__kopf {
   position: sticky;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: .5rem;
-  padding: .5rem .5rem .5rem .8rem;
-  background: var(--flaeche);
+  gap: 8px;
+  padding: 8px 8px 8px 16px;
+  background: var(--bg);
   border-bottom: 1px solid var(--rand);
 }
-.gpop__titel { font-size: .95rem; }
-.gpop__inhalt { padding: .7rem .8rem .9rem; display: grid; gap: .6rem; }
-.gpop__hinweis { margin: 0; font-size: .8rem; color: var(--text-leise); }
+.gpop__titel { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
+.gpop__inhalt { padding: 14px 16px 16px; display: grid; gap: 12px; }
+.gpop__hinweis { margin: 0; font-size: 12.5px; color: var(--text-leise); text-wrap: pretty; }
+.gpop .chips--klein { display: flex; flex-wrap: wrap; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.graph-schliessen { width: 28px; padding: 0; display: grid; place-items: center; font-size: 14px; }
 
 /* --- Detailfeld ---------------------------------------------------------- */
 .graph-detail {
-  background: var(--flaeche);
+  background: var(--bg);
   border-left: 1px solid var(--rand);
   display: flex;
   flex-direction: column;
@@ -592,30 +595,39 @@ body[data-route="graph"] .fusszeile { display: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: .5rem;
-  padding: .55rem .75rem .55rem 1rem;
-  border-bottom: 1px solid var(--rand);
+  gap: 8px;
+  padding: 8px 8px 8px 20px;
+  border-bottom: 2px solid var(--linie-stark);
 }
-.graph-detail__titel { font-size: .74rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--text-leise); }
-.graph-detail__inhalt { flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: .75rem; }
-.graph-detail__hinweis { margin: 0 0 .6rem; padding: .5rem .6rem; border-radius: var(--radius-s); background: var(--akzent-schwach); font-size: .82rem; }
-.graph-detail__aktionen { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .6rem; }
+.graph-detail__titel { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
+.graph-detail__inhalt { flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 20px 24px; }
+.graph-detail__hinweis {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: var(--akzent-schwach);
+  font-size: 13px;
+  color: var(--text-weich);
+}
+.graph-detail__hinweis .gauswahl__reset { padding: 0; height: auto; }
+.graph-detail__aktionen { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-bottom: 12px; }
+.graph-detail .btn--klein:not(.btn--primaer) { padding: 0; box-shadow: inset 0 -2px 0 var(--rand); }
+.graph-detail .btn--klein:not(.btn--primaer):hover { box-shadow: inset 0 -2px 0 var(--akzent); }
 .graph-detail .eintrag { box-shadow: none; }
-.graph-detail .eintrag__titel { font-size: 1.1rem; }
+.graph-detail .eintrag__titel { font-size: 20px; }
 
-.gv { margin-top: .9rem; }
-.gv__titel { font-size: .78rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-leise); margin: 0 0 .4rem; }
-.gv__gruppe { margin-bottom: .6rem; padding: .5rem .6rem; background: var(--flaeche); border: 1px solid var(--rand); border-radius: var(--radius-s); }
-.gv__kat { display: flex; align-items: center; gap: .4rem; font-size: .9rem; margin: 0 0 .3rem; }
-.gv__rel { margin: .25rem 0 .4rem; }
+/* Verbindungen: Gruppen mit Linien statt Kästen, Ziele als Textlinks. */
+.gv { margin-top: 20px; }
+.gv__titel { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); margin: 0 0 4px; }
+.gv__gruppe { padding: 10px 0; border-top: 1px solid var(--rand); }
+.gv__kat { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; margin: 0 0 4px; }
+.gv__rel { margin: 4px 0 8px; }
 .gv__rel.ist-ausgeblendet { opacity: .6; }
-.gv__rel-label { display: flex; align-items: center; gap: .4rem; font-size: .76rem; color: var(--text-leise); font-weight: 650; margin-bottom: .2rem; }
-.gv__liste { display: flex; flex-wrap: wrap; gap: .3rem; list-style: none; margin: 0; padding: 0; }
-.gv__link { display: inline-block; padding: .15rem .5rem; border-radius: 6px; background: var(--flaeche-2); border: 1px solid var(--rand); font-size: .83rem; text-decoration: none; color: var(--text); }
-.gv__link:hover { border-color: var(--akzent); color: var(--akzent); }
+.gv__rel-label { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-leise); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+.gv__liste { display: flex; flex-wrap: wrap; gap: 4px 14px; list-style: none; margin: 0; padding: 0; }
+.gv__link { display: inline-block; padding: 1px 0; font-size: 13.5px; text-decoration: none; color: var(--text); box-shadow: inset 0 -1px 0 var(--rand); }
+.gv__link:hover { color: var(--akzent-text); box-shadow: inset 0 -2px 0 var(--akzent); }
 
-.btn--graph { gap: .3rem; }
-.btn--primaer.btn--klein { border-color: var(--akzent); }
+.btn--graph { gap: 6px; }
 
 /* --- Schmale Viewports: Detail als Blatt von unten ---------------------- */
 @media (max-width: 1099px) {
@@ -625,8 +637,7 @@ body[data-route="graph"] .fusszeile { display: none; }
     z-index: 58;
     max-height: 72vh;
     border-left: 0;
-    border-top: 1px solid var(--rand-stark);
-    border-radius: var(--radius) var(--radius) 0 0;
+    border-top: 2px solid var(--linie-stark);
     box-shadow: var(--schatten-stark);
     transform: translateY(104%);
     transition: transform .22s ease;
@@ -648,17 +659,15 @@ body[data-route="graph"] .fusszeile { display: none; }
   .gpop { left: .5rem; right: .5rem; top: auto; bottom: .5rem; width: auto; max-height: 70%; }
   /* Schmal: drei kurze Zeilen — oben Ansicht und Werkzeuge, darunter die
      Auswahl-Chips, zuunterst die Filter. */
-  .graph-leiste { gap: .3rem .35rem; padding: .35rem .5rem; }
-  .graph-leiste .segment__knopf { padding: .3rem .5rem; font-size: .8rem; }
-  .segment__knopf--ikone { min-width: 40px; }
+  .graph-leiste { gap: 4px 2px; padding: 6px 10px; }
+  .graph-leiste .segment__knopf { padding: 0 6px; }
   /* Zoomstufen weg: auf dem Touchgerät zoomt man mit zwei Fingern.
      «Einpassen» bleibt — dafür gibt es keine Geste. */
   .graph-zoom__knopf--stufe { display: none; }
-  .graph-zoom__knopf--ikone { min-width: 36px; }
   .segment--ansicht { order: 2; }
   .graph-werkzeuge { order: 3; }
-  .chips--auswahl { order: 4; flex-basis: 100%; }
-  .gauswahl__vorgehen, .gauswahl__szenario { order: 5; }
+  .chips--auswahl { order: 4; flex-basis: 100%; margin-left: 0; padding-left: 0; background-image: none; }
+  .gauswahl__vorgehen, .gauswahl__szenario { order: 5; margin-left: 0; padding-left: 0; background-image: none; }
   .gauswahl__quer { order: 6; }
   .gauswahl__reset { order: 7; margin-left: auto; }
 }

@@ -700,6 +700,11 @@
     erstellen: erstellen,
     layoutSpalten: layoutSpalten,
     messen: messen,
+    /* Einzelne Knoten für Ansichten mit eigener Anordnung (Beziehungsbild des
+       Überblicks) — so sehen Knoten überall gleich aus. */
+    schriftLesen: schriftLesen,
+    knotenBreite: knotenBreite,
+    knotenElement: knotenElement,
     KNOTEN_HOEHE: KNOTEN_HOEHE,
     TYP_SYMBOL: TYP_SYMBOL
   };

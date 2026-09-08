@@ -3,128 +3,20 @@
 
    Diese Ansicht folgt dem Modernist-Entwurf aus design/: flach, architektonisch,
    fast einfarbig rot auf warmem hellen Grund, kein einziger Rundungsradius,
-   Struktur aus Linien statt aus Kästen, Archivo für alles. Die Regeln sind
-   deshalb durchgehend auf `body[data-route="ueberblick"]` beschränkt — die
-   übrigen Ansichten tragen weiterhin das alte Farbschema.
+   Struktur aus Linien statt aus Kästen, Archivo für alles. Seit der
+   Angleichung aller Ansichten liegen Tokens, Schrift und Kopfzeile in
+   css/style.css; hier steht nur, was die Werkbank eigenes hat.
 
    Die Originalabbildung des Referenzhandbuchs (SVG aus assets/abb/) bleibt
    unverändert; darüber liegt eine unsichtbare Trefferschicht, die beim Zeigen,
    beim Rollenfilter und im Abfragemodus sichtbar wird.
 
-   Dark Mode ist für diese Ansicht bewusst ausgeschaltet: die Abbildung ist eine
-   gedruckte Grafik mit schwarzer Beschriftung auf hellem Grund.
+   Die Abbildung ist eine gedruckte Grafik mit schwarzer Beschriftung auf
+   hellem Grund — einer der Gründe, warum die Anwendung nur hell ist.
    ========================================================================== */
 
-body[data-route="ueberblick"] {
-  --ub-grund: #f3f2f2;
-  --ub-flaeche: #eae9e9;
-  --ub-tinte: #201e1d;
-  --ub-tinte-weich: #444141;
-  --ub-leise: #605d5d;
-  --ub-leise-hell: #9b9797;
-  --ub-linie: #d7d3d3;
-  --ub-linie-fein: #eae7e7;
-  --ub-rand: #bab6b6;
-  --ub-akzent: #ec3013;
-  --ub-akzent-tief: #dd2b0f;
-  --ub-akzent-text: #ae1800;
-  --ub-akzent-hauch: #fff2ef;
-  --ub-akzent-hauch-2: #ffe0d9;
-  --ub-auswahl: #ffc4b8;
-  --ub-schrift: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-
-  color-scheme: light;
-  background: var(--ub-grund);
-  color: var(--ub-tinte);
-  font-family: var(--ub-schrift);
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-body[data-route="ueberblick"] a { color: var(--ub-akzent-text); text-decoration: none; }
-body[data-route="ueberblick"] a:hover { color: var(--ub-akzent); }
-body[data-route="ueberblick"] ::selection { background: var(--ub-auswahl); }
-body[data-route="ueberblick"] :focus-visible {
-  outline: 2px solid var(--ub-akzent);
-  outline-offset: 2px;
-  border-radius: 0;
-}
-body[data-route="ueberblick"] button,
-body[data-route="ueberblick"] select,
-body[data-route="ueberblick"] input { font-family: inherit; color: inherit; }
-
-/* --- Kopfzeile ------------------------------------------------------------ */
-
-body[data-route="ueberblick"] .topbar {
-  background: var(--ub-grund);
-  border-bottom: 2px solid var(--ub-tinte);
-}
-body[data-route="ueberblick"] .topbar__inner {
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  gap: 0;
-  min-height: 0;
-  align-items: stretch;
-}
-body[data-route="ueberblick"] .marke {
-  gap: 10px;
-  padding: 10px 20px;
-  color: var(--ub-tinte);
-}
-body[data-route="ueberblick"] .marke__logo {
-  width: 26px;
-  height: 26px;
-  border-radius: 0;
-  background: var(--ub-akzent);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 800;
-}
-body[data-route="ueberblick"] .marke__text {
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-body[data-route="ueberblick"] .nav-top__liste a {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0 16px;
-  border-radius: 0;
-  background: none;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--ub-leise);
-}
-body[data-route="ueberblick"] .nav-top__liste a:hover {
-  color: var(--ub-tinte);
-  background: var(--ub-flaeche);
-}
-body[data-route="ueberblick"] .nav-top__liste a[aria-current="page"] {
-  color: var(--ub-tinte);
-  font-weight: 700;
-  background: none;
-  box-shadow: inset 0 -4px 0 var(--ub-akzent);
-}
-body[data-route="ueberblick"] .skiplink {
-  background: var(--ub-akzent);
-  color: #fff;
-  border-radius: 0;
-}
-
-/* Mobile Navigation: dieselbe Akzentfarbe, sonst bliebe hier Blau stehen. */
-body[data-route="ueberblick"] .nav-bottom { background: #fff; border-top: 1px solid var(--ub-linie); }
-body[data-route="ueberblick"] .nav-bottom__liste a { color: var(--ub-leise); }
-body[data-route="ueberblick"] .nav-bottom__liste a[aria-current="page"] { color: var(--ub-akzent); }
-body[data-route="ueberblick"] .nav-bottom__liste a[aria-current="page"] .nav-icon {
-  background: var(--ub-akzent-hauch);
-  border-radius: 0;
-}
+/* Farben, Schrift und Kopfzeile kommen seit der Angleichung aller Ansichten
+   aus css/style.css (Tokens --ub-* sind dort Aliasse der globalen Tokens). */
 
 /* --- Seitengerüst --------------------------------------------------------- */
 
@@ -155,7 +47,8 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   .ub-werkbank[data-breit="true"] { grid-template-columns: minmax(0, 1fr) 0 0; }
 
   .ub-seite { min-height: 0; }
-  .ub-buehne { flex: 1 1 auto; min-height: 0; }
+  .ub-buehne-huelle { flex: 1 1 auto; min-height: 0; }
+  .ub-buehne { height: 100%; }
   .ub-inhalt { min-height: 0; }
 }
 
@@ -169,24 +62,37 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   background: var(--ub-grund);
 }
 
-/* --- Werkzeugleiste ------------------------------------------------------- */
+/* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
 
-.ub-werkzeug {
-  flex: 0 0 auto;
+/* Drei Gruppen liegen auf der weissen Bühne: Modus oben links, Breit und
+   Steuerung oben rechts, Zoom unten rechts. Sie stehen auf dem Grundton mit
+   Haarlinie — flach, keine erhobene Fläche; die einzige bleibt die Steuerung. */
+
+.ub-buehne-huelle {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 2px;
-  padding: 7px 16px;
-  border-bottom: 1px solid var(--ub-linie);
+  flex-direction: column;
+  min-width: 0;
 }
-.ub-werkzeug__strich {
+.ub-schweber {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  background: var(--ub-grund);
+  border: 1px solid var(--ub-linie);
+}
+.ub-schweber--modus { top: 12px; left: 12px; padding: 0 4px; }
+.ub-schweber--rechts { top: 12px; right: 12px; }
+.ub-schweber--zoom { bottom: 12px; right: 12px; }
+.ub-schweber__strich {
   width: 1px;
   height: 16px;
-  margin: 0 10px;
+  margin: 0 6px;
   background: var(--ub-linie);
 }
-.ub-modus { display: flex; align-items: center; gap: 2px; }
 
 .ub-tab {
   height: 30px;
@@ -208,7 +114,7 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   box-shadow: inset 0 -3px 0 var(--ub-akzent);
 }
 
-.ub-werkzeug__knopf {
+.ub-schweber__knopf {
   height: 28px;
   padding: 0 4px;
   border: 0;
@@ -221,9 +127,9 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   color: var(--ub-leise);
   cursor: pointer;
 }
-.ub-werkzeug__knopf:hover { color: var(--ub-tinte); }
-.ub-werkzeug__knopf[aria-pressed="true"] { color: var(--ub-akzent); }
-.ub-werkzeug__knopf[aria-expanded="true"] { color: var(--ub-tinte); }
+.ub-schweber__knopf:hover { color: var(--ub-tinte); }
+.ub-schweber__knopf[aria-pressed="true"] { color: var(--ub-akzent); }
+.ub-schweber__knopf[aria-expanded="true"] { color: var(--ub-tinte); }
 
 .ub-zoom__knopf {
   width: 28px;
@@ -250,12 +156,12 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 
 /* --- Steuerung (einzige erhobene Fläche dieser Ansicht) ------------------- */
 
-.ub-panel-huelle { position: relative; z-index: 20; }
+.ub-panel-huelle { position: absolute; top: 0; right: 0; z-index: 20; }
 .ub-panel__faenger { position: fixed; inset: 0; background: transparent; }
 .ub-panel {
   position: absolute;
-  top: 6px;
-  right: 16px;
+  top: 48px;
+  right: 12px;
   width: 320px;
   max-width: calc(100vw - 40px);
   background: #fff;
@@ -428,7 +334,9 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   background: #fff;
-  padding: 16px;
+  /* Oben und unten Platz für die schwebenden Gruppen, damit sie die Ränder
+     der Abbildung in der Ausgangslage nicht verdecken. */
+  padding: 56px 16px 56px;
 }
 .ub-buehne__laden {
   margin: 0;
@@ -565,7 +473,10 @@ body[data-route="ueberblick"] .datenwarnung {
 }
 .ub-hgriff:hover { background: var(--ub-akzent-hauch-2); }
 .ub-hgriff__strich { width: 100%; height: 1px; background: var(--ub-linie); }
-.ub-inhalt[data-graph="zu"] .ub-hgriff { display: none; }
+/* Zugeklappt bleibt der Griff ein Rasterelement — nur unsichtbar. Mit
+   `display:none` fiele er aus der Platzierung, die Kopfzeile rutschte in die
+   0-px-Zeile des Griffs und wäre nicht mehr zu sehen: kein Knopf zum Aufklappen. */
+.ub-inhalt[data-graph="zu"] .ub-hgriff { visibility: hidden; }
 
 .ub-graphkopf {
   border-top: 1px solid var(--ub-linie);
@@ -631,6 +542,8 @@ body[data-route="ueberblick"] .datenwarnung {
   white-space: nowrap;
 }
 .ub-kopf__titel {
+  hyphens: auto;
+  -webkit-hyphens: auto;
   margin: 12px 0 0;
   font-size: 31px;
   font-weight: 800;
@@ -732,64 +645,21 @@ body[data-route="ueberblick"] .hb-vorlage__meta { color: var(--ub-leise); }
 .ub-bez__ziel { font-size: 14.5px; font-weight: 600; }
 .ub-bez__zusatz { font-size: 12px; color: var(--ub-leise); }
 
-/* Graphbild: das Ergebnis im Zentrum, darüber die Aufgaben, darunter die
-   Rollen. Skaliert mit der Breite der Inhaltsseite. */
-/* Feste Zeichenbreite statt `width:100%`: sonst wüchse mit der Spalte auch
-   die Schrift im Bild, und die Höhe des unteren Bereichs wäre nicht mehr
-   verlässlich. Schmaler als 360 px wird verkleinert, breiter nicht. */
-.ub-gb { display: block; width: 360px; max-width: 100%; height: auto; }
-.ub-gb__lese {
-  margin: 0 0 10px;
-  max-width: 60ch;
-  font-size: 12px;
-  line-height: 1.45;
-  color: var(--ub-leise);
-}
+/* Beziehungsbild: Rolle → Aufgabe → Ergebnis. Knoten und Kanten kommen aus
+   css/graph.css (.gk, .gkante, .gpfeil) — dieselbe Zeichnung wie im grossen
+   Graph. Die Breite setzt das Skript in Pixeln auf das natürliche Mass:
+   schmaler als die Spalte wird verkleinert, breiter nicht, sonst wüchse die
+   Schrift mit der Spalte und die Höhe des Bereichs wäre nicht verlässlich. */
+.ub-gb { display: block; max-width: 100%; height: auto; }
+/* Hervorhebung beim Zeigen — dieselben Regeln wie für .graph-svg in graph.css. */
+.ub-gb.ist-hervorhebung .gk:not(.ist-aktiv) { opacity: .28; }
+.ub-gb.ist-hervorhebung .gkante:not(.ist-aktiv) { opacity: .12; }
+.ub-gb.ist-hervorhebung .gkante.ist-aktiv { stroke-width: 2.6; opacity: 1; }
+.ub-gb.ist-hervorhebung .gkante--verantwortlich.ist-aktiv { stroke-width: 3.2; }
+.ub-gb .gk, .ub-gb .gkante { transition: opacity .15s ease; }
 .ub-gb__mehr { margin: 10px 0 0; }
-
-.ub-gb__kante {
-  fill: none;
-  stroke: var(--ub-rand);
-  stroke-width: 1.2;
-}
-.ub-gb__kante.ist-lose { stroke-dasharray: 3 3; }
-
-.ub-gb__knoten { cursor: pointer; }
-.ub-gb__knoten rect {
-  fill: #fff;
-  stroke: var(--ub-rand);
-  stroke-width: 1;
-}
-/* Kategoriezeichen aus HT.ui.KAT_PFADE — dieselbe Strichführung wie im
-   Graph, in der Legende und im Lexikon. */
-.ub-gb__ikone {
-  fill: none;
-  stroke: var(--ub-leise);
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  pointer-events: none;
-}
-.ub-gb__knoten .ub-gb__t1 {
-  font-family: var(--ub-schrift);
-  font-size: 12px;
-  font-weight: 600;
-  fill: var(--ub-tinte);
-}
-.ub-gb__knoten .ub-gb__t2 {
-  font-family: var(--ub-schrift);
-  font-size: 10px;
-  fill: var(--ub-leise);
-}
-.ub-gb__knoten:hover rect { stroke: var(--ub-akzent); }
-.ub-gb__knoten:focus-visible { outline: 2px solid var(--ub-akzent); outline-offset: 1px; }
-
-/* Aufgaben tragen die Farbe der Abbildung nicht — dort sind sie gar nicht
-   gezeichnet; das Ergebnis dagegen schon. */
-.ub-gb__knoten.ist-mitte rect { fill: var(--ub-akzent-hauch); stroke: var(--ub-akzent); }
-.ub-gb__knoten.ist-mitte .ub-gb__t1 { font-weight: 800; }
-.ub-gb__knoten.ist-mitte .ub-gb__t2 { fill: var(--ub-akzent-text); }
-.ub-gb__knoten.ist-mitte .ub-gb__ikone { stroke: var(--ub-akzent); }
+.ub-gb__link { cursor: pointer; }
+.ub-gb__link:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
 
 .ub-fakten { margin: 0; }
 .ub-fakt {
@@ -877,6 +747,12 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   /* Höhe nach der Abbildung, gedeckelt — sonst steht unter der auf die Breite
      gepassten Grafik eine grosse weisse Fläche. */
   .ub-buehne { max-height: 72vh; min-height: 200px; }
+  /* Zwei Gruppen nebeneinander passen nicht: Steuerung rückt unter den Modus.
+     «Breit» gibt es gestapelt nicht — es gibt keine Spalte, die es einklappen könnte. */
+  .ub-schweber--rechts { top: 50px; right: auto; left: 12px; }
+  .ub-schweber--rechts .ub-schweber__knopf[aria-pressed],
+  .ub-schweber--rechts .ub-schweber__strich { display: none; }
+  .ub-buehne { padding-top: 92px; }
   .ub-kopf, .ub-abschnitt, .ub-leerseite { padding-left: 16px; padding-right: 16px; }
   .ub-abschnitt--hinweis { padding-left: 16px; padding-right: 16px; }
   .ub-verweise { padding: 18px 16px 24px; }
@@ -895,7 +771,7 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
 /* --- Druck ---------------------------------------------------------------- */
 
 @media print {
-  .ub-werkzeug, .ub-panel-huelle, .ub-trenner, .ub-prompt { display: none !important; }
+  .ub-schweber, .ub-panel-huelle, .ub-trenner, .ub-prompt { display: none !important; }
   body[data-route="ueberblick"] { height: auto; overflow: visible; display: block; }
   .ub-werkbank { display: block; }
   .ub-buehne { overflow: visible; padding: 0; height: auto; }
