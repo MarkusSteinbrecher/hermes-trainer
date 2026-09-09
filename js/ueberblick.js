@@ -112,8 +112,9 @@
     aktiv: null,              // Eintrag, den die Inhaltsseite zeigt
     gezeichnet: null,         // id des zuletzt gezeichneten Eintrags
     gehalten: false,          // durch Klick festgehalten
-    nurAbb: false,            // «Breit»: Inhaltsseite eingeklappt
+    nurAbb: false,            // Inhaltsseite eingeklappt («Breit»)
     panel: false,             // Steuerung offen
+    legende: false,           // Zeichen der Abbildung eingeblendet
     inhaltBreite: INHALT_STANDARD,
     graphHoehe: GRAPH_STANDARD,
     graphOffen: true,         // unterer Bereich der Inhaltsseite aufgeklappt
@@ -142,7 +143,8 @@
       fehler: zustand.fehler,
       besteSerie: zustand.besteSerie,
       graphHoehe: zustand.graphHoehe,
-      graphOffen: zustand.graphOffen
+      graphOffen: zustand.graphOffen,
+      legende: zustand.legende
     });
   }
 
@@ -153,6 +155,7 @@
     if (typeof g.besteSerie === 'number' && g.besteSerie >= 0) { zustand.besteSerie = g.besteSerie; }
     if (typeof g.graphHoehe === 'number' && g.graphHoehe >= GRAPH_MIN) { zustand.graphHoehe = g.graphHoehe; }
     if (typeof g.graphOffen === 'boolean') { zustand.graphOffen = g.graphOffen; }
+    if (typeof g.legende === 'boolean') { zustand.legende = g.legende; }
   }
 
   /* --- Beschriftung -> Eintrag -------------------------------------------- */
@@ -679,9 +682,24 @@
 
   /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
 
-  /* Die Werkzeugleiste über der Abbildung ist weg; ihre Knöpfe liegen als drei
-     schwebende Gruppen auf der Bühne selbst — Modus oben links, Breit und
-     Steuerung oben rechts, Zoom unten rechts wie auf einer Karte. */
+  /* Auf der Bühne liegen nur noch Icons: oben rechts öffnet ein Schieberegler
+     die Steuerung (Modus, Rolle, Darstellung, Inhaltsseite einklappen), unten
+     links blendet ein Info-Zeichen die Legende der Abbildung ein und aus, unten
+     rechts sitzt der Zoom wie auf einer Karte. Die Icons sind dieselben wie in
+     der Leiste des Graphen. */
+
+  var IKONE_STEUERUNG = ['M4 7h10M18 7h2M4 17h4M12 17h8', 'M16 4.6a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8Z', 'M10 14.6a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8Z'];
+  var IKONE_LEGENDE = ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.6h.01'];
+
+  function ikonKnopf(beschriftung, pfade, aufruf, attrs) {
+    var a = { type: 'button', 'class': 'ub-ikonknopf', title: beschriftung, 'aria-label': beschriftung };
+    for (var k in (attrs || {})) {
+      if (Object.prototype.hasOwnProperty.call(attrs, k)) { a[k] = attrs[k]; }
+    }
+    var el = h('button', a, HT.ui.symbol(pfade, 18));
+    el.addEventListener('click', aufruf);
+    return el;
+  }
 
   function werkzeugKnopf(text, klasse, aufruf, attrs) {
     var a = { type: 'button', 'class': klasse, text: text };
@@ -698,14 +716,25 @@
   }
 
   function werkzeugAktualisieren() {
-    if (!refs.tabErkunden) { return; }
-    var erkunden = zustand.modus === 'erkunden';
-    refs.tabErkunden.setAttribute('aria-pressed', erkunden ? 'true' : 'false');
-    refs.tabAbfragen.setAttribute('aria-pressed', erkunden ? 'false' : 'true');
-    refs.knopfBreit.setAttribute('aria-pressed', zustand.nurAbb ? 'true' : 'false');
+    if (!refs.knopfPanel) { return; }
     refs.knopfPanel.setAttribute('aria-expanded', zustand.panel ? 'true' : 'false');
+    refs.knopfLegende.setAttribute('aria-expanded', zustand.legende ? 'true' : 'false');
+    if (refs.abblegende) { refs.abblegende.hidden = !zustand.legende; }
     refs.werkbank.dataset.breit = zustand.nurAbb ? 'true' : 'false';
     refs.werkbank.dataset.modus = zustand.modus;
+  }
+
+  function legendeSchalten() {
+    zustand.legende = !zustand.legende;
+    werkzeugAktualisieren();
+    speichern();
+  }
+
+  function breitSetzen(nurAbb) {
+    if (zustand.nurAbb === nurAbb) { return; }
+    zustand.nurAbb = nurAbb;
+    werkzeugAktualisieren();
+    zoomPassendSpaeter(40);
   }
 
   function modusSetzen(modus) {
@@ -729,33 +758,19 @@
   }
 
   function schweberBauen() {
-    refs.tabErkunden = werkzeugKnopf('Erkunden', 'ub-tab', function () { modusSetzen('erkunden'); });
-    refs.tabAbfragen = werkzeugKnopf('Abfragen', 'ub-tab', function () { modusSetzen('abfragen'); });
-
     refs.zoomWert = h('span', {
       class: 'ub-zoom__wert', role: 'status',
       text: Math.round(zustand.zoom * 100) + ' %'
     });
 
-    refs.knopfBreit = werkzeugKnopf('Breit', 'ub-schweber__knopf', function () {
-      zustand.nurAbb = !zustand.nurAbb;
-      werkzeugAktualisieren();
-      zoomPassendSpaeter(40);
-    }, { 'aria-pressed': 'false', title: 'Inhaltsseite einklappen' });
-
-    refs.knopfPanel = werkzeugKnopf('Steuerung', 'ub-schweber__knopf', function () {
-      panelSchalten();
-    }, { 'aria-expanded': 'false', 'aria-haspopup': 'dialog' });
+    refs.knopfPanel = ikonKnopf('Steuerung', IKONE_STEUERUNG, function () { panelSchalten(); },
+      { 'aria-expanded': 'false', 'aria-haspopup': 'dialog' });
+    refs.knopfLegende = ikonKnopf('Zeichen der Abbildung', IKONE_LEGENDE, legendeSchalten,
+      { 'aria-expanded': 'false', 'aria-controls': 'ub-abblegende' });
 
     return [
-      h('div', { class: 'ub-schweber ub-schweber--modus', role: 'group', 'aria-label': 'Modus' }, [
-        refs.tabErkunden, refs.tabAbfragen
-      ]),
-      h('div', { class: 'ub-schweber ub-schweber--rechts' }, [
-        refs.knopfBreit,
-        werkzeugTrenner(),
-        refs.knopfPanel
-      ]),
+      h('div', { class: 'ub-schweber ub-schweber--steuerung' }, [refs.knopfPanel]),
+      h('div', { class: 'ub-schweber ub-schweber--legende' }, [refs.knopfLegende]),
       h('div', { class: 'ub-schweber ub-schweber--zoom', role: 'group', 'aria-label': 'Zoom' }, [
         werkzeugKnopf('−', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom / ZOOM_SCHRITT); },
           { 'aria-label': 'Verkleinern' }),
@@ -796,6 +811,39 @@
     return { verantwortet: verantwortet, beteiligt: beteiligt };
   }
 
+  /* Der Modus steht als erster Block in der Steuerung — als Segment aus zwei
+     Knöpfen, wie vorher als Tabs auf der Bühne. */
+  function panelModus() {
+    var erkunden = zustand.modus === 'erkunden';
+    var tabErkunden = werkzeugKnopf('Erkunden', 'ub-tab', function () { modusSetzen('erkunden'); },
+      { 'aria-pressed': erkunden ? 'true' : 'false' });
+    var tabAbfragen = werkzeugKnopf('Abfragen', 'ub-tab', function () { modusSetzen('abfragen'); },
+      { 'aria-pressed': erkunden ? 'false' : 'true' });
+    refs.panelErstes = erkunden ? tabErkunden : tabAbfragen;
+    return h('div', { class: 'ub-panel__block' }, [
+      h('div', { class: 'ub-panel__label', text: 'Modus' }),
+      h('div', { class: 'ub-segment', role: 'group', 'aria-label': 'Modus' }, [tabErkunden, tabAbfragen]),
+      h('p', { class: 'ub-panel__hilfe ub-panel__hilfe--allein', text: erkunden
+        ? 'Zeigen füllt die Inhaltsseite, Klick hält den Eintrag fest.'
+        : 'Die Ergebniskästen sind verdeckt; gesucht wird ihr Ort in der Abbildung.' })
+    ]);
+  }
+
+  /* Die Inhaltsseite einklappen («Breit») — gestapelt unter 700 px gibt es
+     keine Spalte, die sich einklappen liesse; die Zeile ist dann ausgeblendet. */
+  function panelBreit() {
+    var haken = h('input', { type: 'checkbox', class: 'ub-haken' });
+    haken.checked = zustand.nurAbb;
+    haken.addEventListener('change', function () { breitSetzen(haken.checked); });
+    return h('label', { class: 'ub-panel__haken ub-panel__nurbreit' }, [
+      haken,
+      h('span', {}, [
+        'Inhaltsseite einklappen',
+        h('span', { class: 'ub-panel__hilfe', text: 'Nur die Abbildung, über die ganze Breite.' })
+      ])
+    ]);
+  }
+
   function panelErkunden() {
     var auswahl = h('select', { class: 'ub-select', id: 'ub-rolle' },
       [h('option', { value: '', text: '— keine —' })].concat(
@@ -827,9 +875,8 @@
       malen();
     });
 
-    refs.panelErstes = auswahl;
-
     return [
+      panelModus(),
       h('div', { class: 'ub-panel__block' }, [
         h('label', { class: 'ub-panel__label', for: 'ub-rolle', text: 'Rolle einfärben' }),
         auswahl,
@@ -848,7 +895,8 @@
             h('span', { class: 'ub-panel__hilfe', text:
               'Blasst ab, was das Referenzhandbuch nicht als minimal gefordert führt.' })
           ])
-        ])
+        ]),
+        panelBreit()
       ])
     ];
   }
@@ -863,7 +911,6 @@
       panelSchliessen(false);
       rundeStarten();
     });
-    refs.panelErstes = neu;
 
     var koerper = schwach.length
       ? h('ul', { class: 'ub-schwach' }, schwach.map(function (s) {
@@ -876,12 +923,17 @@
         'Noch keine Fehler erfasst. Was hier landet, kommt in späteren Runden häufiger.' });
 
     return [
+      panelModus(),
       h('div', { class: 'ub-panel__block' }, [
         h('div', { class: 'ub-panel__kopf' }, [
           h('span', { class: 'ub-panel__label', text: 'Schwachstellen' }),
           neu
         ]),
         koerper
+      ]),
+      h('div', { class: 'ub-panel__block ub-panel__block--nurbreit' }, [
+        h('div', { class: 'ub-panel__label', text: 'Darstellung' }),
+        panelBreit()
       ])
     ];
   }
@@ -1590,13 +1642,16 @@
     return svg;
   }
 
+  /* Die Legende ist eine kleine Karte über dem Info-Icon unten links; sie
+     bleibt eingeblendet, bis das Icon sie wieder schliesst (gespeichert). */
   function abbLegendeBauen() {
-    return h('div', { class: 'ub-abblegende' }, [
+    refs.abblegende = h('div', { class: 'ub-abblegende', id: 'ub-abblegende', hidden: true }, [
       h('span', { class: 'ub-abblegende__titel', text: 'Zeichen der Abbildung' }),
       h('ul', { class: 'ub-abblegende__liste' }, ABB_LEGENDE.map(function (l) {
         return h('li', {}, [zeichen(l.form), h('span', { text: l.text })]);
       }))
     ]);
+    return refs.abblegende;
   }
 
   /* --- Aufbau -------------------------------------------------------------- */
@@ -1610,16 +1665,15 @@
 
     var warnung = HT.app.datenWarnung();
 
-    /* Die Hülle trägt die schwebenden Gruppen und die Steuerung, die Bühne
+    /* Die Hülle trägt die Icons, die Legende und die Steuerung, die Bühne
        darin scrollt — läge das Schwebende in der Bühne, scrollte es mit. */
     refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle' },
-      [refs.buehne].concat(schweberBauen(), [refs.panelHuelle]));
+      [refs.buehne].concat(schweberBauen(), [abbLegendeBauen(), refs.panelHuelle]));
 
     return h('section', { class: 'ub-seite' }, [
       warnung || null,
       refs.prompt,
       refs.buehneHuelle,
-      abbLegendeBauen(),
       h('p', { class: 'ub-bildunterschrift' }, [
         BILDUNTERSCHRIFT + ' — Originalgrafik, ',
         h('a', { href: QUELLE_ABB, target: '_blank', rel: 'noopener', text: 'hermes.admin.ch ↗' })

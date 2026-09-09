@@ -64,9 +64,9 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 
 /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
 
-/* Drei Gruppen liegen auf der weissen Bühne: Modus oben links, Breit und
-   Steuerung oben rechts, Zoom unten rechts. Sie stehen auf dem Grundton mit
-   Haarlinie — flach, keine erhobene Fläche; die einzige bleibt die Steuerung. */
+/* Auf der weissen Bühne liegen nur Icons: Steuerung oben rechts, Legende
+   unten links, Zoom unten rechts. Sie stehen auf dem Grundton mit Haarlinie —
+   flach, keine erhobene Fläche; die einzige bleibt die Steuerung. */
 
 .ub-buehne-huelle {
   position: relative;
@@ -84,9 +84,23 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   background: var(--ub-grund);
   border: 1px solid var(--ub-linie);
 }
-.ub-schweber--modus { top: 12px; left: 12px; padding: 0 4px; }
-.ub-schweber--rechts { top: 12px; right: 12px; }
+.ub-schweber--steuerung { top: 12px; right: 12px; padding: 2px; }
+.ub-schweber--legende { bottom: 12px; left: 12px; padding: 2px; }
 .ub-schweber--zoom { bottom: 12px; right: 12px; }
+
+.ub-ikonknopf {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ub-leise);
+  cursor: pointer;
+}
+.ub-ikonknopf:hover { color: var(--ub-tinte); }
+.ub-ikonknopf[aria-expanded="true"] { color: var(--ub-tinte); box-shadow: inset 0 -3px 0 var(--ub-akzent); }
 .ub-schweber__strich {
   width: 1px;
   height: 16px;
@@ -94,8 +108,11 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   background: var(--ub-linie);
 }
 
+.ub-segment { display: flex; border: 1px solid var(--ub-linie); }
+.ub-segment + .ub-panel__hilfe { margin-top: 8px; }
 .ub-tab {
-  height: 30px;
+  flex: 1 1 0;
+  height: 32px;
   padding: 0 8px;
   border: 0;
   background: transparent;
@@ -128,8 +145,6 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   cursor: pointer;
 }
 .ub-schweber__knopf:hover { color: var(--ub-tinte); }
-.ub-schweber__knopf[aria-pressed="true"] { color: var(--ub-akzent); }
-.ub-schweber__knopf[aria-expanded="true"] { color: var(--ub-tinte); }
 
 .ub-zoom__knopf {
   width: 28px;
@@ -219,6 +234,7 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-panel__zahl:empty { display: none; }
 
 .ub-panel__haken { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; cursor: pointer; }
+.ub-panel__haken + .ub-panel__haken { margin-top: 12px; }
 .ub-haken { width: 16px; height: 16px; margin: 3px 0 0; flex: 0 0 auto; accent-color: var(--ub-akzent); }
 .ub-panel__hilfe { display: block; margin-top: 2px; font-size: 12.5px; color: var(--ub-leise); }
 .ub-panel__hilfe--allein { margin: 0; text-wrap: pretty; }
@@ -334,9 +350,10 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   background: #fff;
-  /* Oben und unten Platz für die schwebenden Gruppen, damit sie die Ränder
-     der Abbildung in der Ausgangslage nicht verdecken. */
-  padding: 56px 16px 56px;
+  /* Unten Platz für Legende- und Zoom-Icon, damit sie die letzte Reihe der
+     Abbildung in der Ausgangslage nicht verdecken; oben steht nur ein Icon
+     rechts, wo die Grafik leer ist. */
+  padding: 16px 16px 56px;
 }
 .ub-buehne__laden {
   margin: 0;
@@ -358,18 +375,22 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 
 .ub-abb { display: block; height: auto; max-width: none; }
 
-/* Legende der Zeichen, aus denen die Originalgrafik besteht — sie steht
-   unter der Abbildung und bleibt sichtbar, auch wenn die Inhaltsseite
-   rechts bereits einen Eintrag zeigt. */
+/* Legende der Zeichen, aus denen die Originalgrafik besteht — eine kleine
+   Karte über dem Info-Icon unten links, per Icon ein- und ausblendbar. */
 .ub-abblegende {
-  flex: 0 0 auto;
+  position: absolute;
+  left: 12px;
+  bottom: 52px;
+  z-index: 6;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 5px 20px;
-  padding: 8px 16px;
-  border-top: 1px solid var(--ub-linie);
-  font-size: 11.5px;
+  flex-direction: column;
+  gap: 8px;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  padding: 12px 16px 14px;
+  background: var(--ub-grund);
+  border: 1px solid var(--ub-linie);
+  font-size: 12px;
   color: var(--ub-tinte-weich);
 }
 .ub-abblegende__titel {
@@ -381,8 +402,8 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 }
 .ub-abblegende__liste {
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px 20px;
+  flex-direction: column;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -742,12 +763,9 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   /* Höhe nach der Abbildung, gedeckelt — sonst steht unter der auf die Breite
      gepassten Grafik eine grosse weisse Fläche. */
   .ub-buehne { max-height: 72vh; min-height: 200px; }
-  /* Zwei Gruppen nebeneinander passen nicht: Steuerung rückt unter den Modus.
-     «Breit» gibt es gestapelt nicht — es gibt keine Spalte, die es einklappen könnte. */
-  .ub-schweber--rechts { top: 50px; right: auto; left: 12px; }
-  .ub-schweber--rechts .ub-schweber__knopf[aria-pressed],
-  .ub-schweber--rechts .ub-schweber__strich { display: none; }
-  .ub-buehne { padding-top: 92px; }
+  /* «Inhaltsseite einklappen» gibt es gestapelt nicht — es gibt keine
+     Spalte, die sich einklappen liesse. */
+  .ub-panel__nurbreit, .ub-panel__block--nurbreit { display: none; }
   .ub-kopf, .ub-abschnitt, .ub-leerseite { padding-left: 16px; padding-right: 16px; }
   .ub-verweise { padding: 18px 16px 24px; }
   .ub-inhalt { border-top: 1px solid var(--ub-linie); }
@@ -766,6 +784,8 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
 
 @media print {
   .ub-schweber, .ub-panel-huelle, .ub-trenner, .ub-prompt { display: none !important; }
+  .ub-abblegende { display: flex !important; position: static; flex-direction: row; flex-wrap: wrap; gap: 5px 20px; max-width: none; border: 0; border-top: 1px solid var(--ub-linie); }
+  .ub-abblegende__liste { flex-direction: row; flex-wrap: wrap; gap: 5px 20px; }
   body[data-route="ueberblick"] { height: auto; overflow: visible; display: block; }
   .ub-werkbank { display: block; }
   .ub-buehne { overflow: visible; padding: 0; height: auto; }

@@ -2,6 +2,16 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (2) — Überblick: nur noch Icons auf der Bühne
+
+**Auftrag:** «Die Legende auf der linken Seite unten, können wir die als kleines Icon ergänzen, damit man sie ein- und ausblenden kann? Und das "Erkunden und Abfragen" oben würde ich entfernen. Die Boxen rechts mit "breit" und "Steuerung" auch. Die Steuerungselemente sollten wir als kleines Icon in der Übersicht haben.»
+
+**Bühne:** Die Modus-Tabs oben links und die Gruppe «Breit / Steuerung» oben rechts sind weg. Oben rechts bleibt ein Schieberegler-Icon, das die Steuerung öffnet; unten links kommt ein Info-Icon, das die Legende «Zeichen der Abbildung» als kleine Karte über dem Icon ein- und ausblendet (Zustand gespeichert, Standard: zu). Beide Icons sind dieselben wie in der Leiste des Graphen (`HT.ui.symbol`, Pfade aus `js/graph.js` übernommen). Der Zoom bleibt unten rechts. Die Legendenzeile unter der Abbildung entfällt, die Bühne gewinnt ihre Höhe; oben braucht sie keinen Abstand mehr (16 statt 56 px), weil dort nur das Icon rechts steht, wo die Grafik leer ist.
+
+**Steuerung:** Der Modus (Erkunden / Abfragen) steht jetzt als Segment als erster Block im Panel, mit einem Satz Erklärung; «Inhaltsseite einklappen» (vorher «Breit») ist ein Häkchen unter «Darstellung» — in beiden Modi. Gestapelt unter 700 px ist diese Zeile ausgeblendet, wie vorher der Knopf. Der Fokus beim Öffnen liegt auf dem aktiven Modus-Knopf. Im Druck erscheint die Legende wieder als Zeile.
+
+**Geprüft im Browser:** Icons an Ort, Legende auf/zu, Panel in beiden Modi, Wechsel nach Abfragen (Aufgabenzeile erscheint, Panel schliesst) und zurück — ohne Konsolenfehler. `?v=` auf 2026-09-09b.
+
 ## 2026-09-09 — Nur noch Originaldokumentation: Prüfungshinweis und Abgrenzung entfernt
 
 **Auftrag:** Frage, ob die Abschnitte «Prüfungshinweis» und «Abgrenzung» aus der HERMES-Dokumentation stammen — sie stammten von uns (kuratierte Zugaben der ersten Session, in SCHEMA.md so definiert). Entscheid des Sponsors: komplett entfernen und vorerst nur Inhalte aus der Originaldokumentation nutzen.
