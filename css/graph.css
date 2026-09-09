@@ -630,7 +630,7 @@ body[data-route="graph"] .fusszeile { display: none; }
   justify-content: space-between;
   gap: 8px;
   padding: 8px 8px 8px 20px;
-  border-bottom: 2px solid var(--linie-stark);
+  border-bottom: 1px solid var(--linie-stark);
 }
 .graph-detail__titel { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
 .graph-detail__inhalt { flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 20px 24px; }
@@ -670,7 +670,7 @@ body[data-route="graph"] .fusszeile { display: none; }
     z-index: 58;
     max-height: 72vh;
     border-left: 0;
-    border-top: 2px solid var(--linie-stark);
+    border-top: 1px solid var(--linie-stark);
     box-shadow: var(--schatten-stark);
     transform: translateY(104%);
     transition: transform .22s ease;

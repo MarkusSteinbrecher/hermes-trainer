@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (6) — Strukturlinien dünn und hellgrau
+
+**Auftrag:** «Die dicken schwarzen Linien sind etwas unschön, können wir die dünn und hellgrau machen?» Dazu die Frage nach einem Logo anstelle des roten H, das keine Markenrechte verletzt (Vorschläge im Chat, noch nicht umgesetzt).
+
+**Umsetzung:** Das Token `--linie-stark` (Kopfzeile unten, Markenzelle rechts, Abschnitts- und Tabellenlinien, Kapitelüberschriften der Feldseite, Fussbereich) war `#201e1d` und stand überall als `2px solid`. Neu `#cfcbcb` und an allen elf Stellen `1px`. Die Kantenlegende im Graph (`--gkante-stark`) bleibt — sie ist ein Muster, keine Seitenlinie. Geprüft: Methode und Lexikon. `?v=` auf 2026-09-09f.
+
 ## 2026-09-09 (5) — Überblick ohne Steckbrief, volle Textbreite, Expand-Icon; Graph mit Fokus-Filter
 
 **Auftrag:** Steckbrief bei Modulen und Phasen entfernen (bei Ergebnissen schon weg); der Text rechts brach auch bei breiter Inhaltsseite um; «Im vollen Graph öffnen» durch ein Expand-Icon ersetzen, das im Graph auf das Element filtert; und im Graph selbst fehlte ein Filter, mit dem man «schnell und simpel die für mich interessanten Elemente» sieht (Phasen, Rollen …).

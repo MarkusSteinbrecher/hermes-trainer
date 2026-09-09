@@ -29,7 +29,7 @@
   --rand: #d7d3d3;
   --rand-fein: #eae7e7;
   --rand-stark: #bab6b6;
-  --linie-stark: #201e1d;
+  --linie-stark: #cfcbcb;          /* Strukturlinien: dünn und hellgrau statt dick und schwarz */
 
   --akzent: #ec3013;
   --akzent-hover: #dd2b0f;
@@ -171,7 +171,7 @@ main:focus { outline: none; }
   top: 0;
   z-index: 40;
   background: var(--bg);
-  border-bottom: 2px solid var(--linie-stark);
+  border-bottom: 1px solid var(--linie-stark);
 }
 .topbar__inner {
   display: flex;
@@ -209,7 +209,7 @@ main:focus { outline: none; }
   display: none;
   flex: 1 1 auto;
   justify-content: center;
-  border-left: 2px solid var(--linie-stark);
+  border-left: 1px solid var(--linie-stark);
 }
 .nav-top__liste {
   display: flex;
@@ -242,7 +242,7 @@ main:focus { outline: none; }
   left: 0; right: 0; bottom: 0;
   z-index: 45;
   background: var(--bg);
-  border-top: 2px solid var(--linie-stark);
+  border-top: 1px solid var(--linie-stark);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 .nav-bottom__liste {
@@ -312,7 +312,7 @@ main:focus { outline: none; }
 /* Kein Kasten, keine Schatten: eine «Box» ist ein Abschnitt zwischen einer
    starken Linie oben und einer Haarlinie unten. */
 .box {
-  border-top: 2px solid var(--linie-stark);
+  border-top: 1px solid var(--linie-stark);
   border-bottom: 1px solid var(--rand);
 }
 
@@ -809,7 +809,7 @@ fieldset.feldgruppe { border: 0; padding: 0; margin-inline: 0; }
 
 .statistik { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
 .statistik__feld {
-  border-top: 2px solid var(--linie-stark);
+  border-top: 1px solid var(--linie-stark);
   padding: 8px 0 0;
   text-align: left;
 }
@@ -911,7 +911,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
   gap: 8px;
   margin-bottom: 10px;
   padding-bottom: 6px;
-  border-bottom: 2px solid var(--linie-stark);
+  border-bottom: 1px solid var(--linie-stark);
 }
 .abschnitt__kopf h2 { margin: 0; }
 .abschnitt__zahl { font-size: 12px; color: var(--text-leise); }
@@ -1121,7 +1121,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
   text-align: left;
   vertical-align: top;
 }
-.hb-tabelle th { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-leise); border-top: 2px solid var(--linie-stark); }
+.hb-tabelle th { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-leise); border-top: 1px solid var(--linie-stark); }
 .hb-tabelle .hb-x { text-align: center; color: var(--akzent); font-weight: 800; }
 .hb-abb { margin: 10px 0 16px; }
 .hb-abb img {
@@ -1205,7 +1205,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 
 /* Stufe 1: Kernaussagen — ein Abschnitt unter einer starken Linie. */
 .stufe-box {
-  border-top: 2px solid var(--linie-stark);
+  border-top: 1px solid var(--linie-stark);
   padding: 14px 0 10px;
   margin: 12px 0 18px;
 }

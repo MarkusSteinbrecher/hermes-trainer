@@ -14,7 +14,7 @@ a.badge { text-decoration: none; }
 a.badge:hover { color: var(--akzent); }
 
 .feld-abschnitt { margin: 22px 0 0; }
-.feld-abschnitt h2 { font-size: 18px; margin: 0 0 4px; padding-top: 8px; border-top: 2px solid var(--linie-stark); }
+.feld-abschnitt h2 { font-size: 18px; margin: 0 0 4px; padding-top: 8px; border-top: 1px solid var(--linie-stark); }
 .feld-abschnitt__text { margin: 0 0 10px; font-size: 14px; color: var(--text-leise); max-width: 60ch; text-wrap: pretty; }
 
 .feld-weiter { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 22px 0 0; padding-top: 12px; border-top: 1px solid var(--rand); }
