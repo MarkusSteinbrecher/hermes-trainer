@@ -2,6 +2,16 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 — Nur noch Originaldokumentation: Prüfungshinweis und Abgrenzung entfernt
+
+**Auftrag:** Frage, ob die Abschnitte «Prüfungshinweis» und «Abgrenzung» aus der HERMES-Dokumentation stammen — sie stammten von uns (kuratierte Zugaben der ersten Session, in SCHEMA.md so definiert). Entscheid des Sponsors: komplett entfernen und vorerst nur Inhalte aus der Originaldokumentation nutzen.
+
+**Entfernt:** die Felder `abgrenzung` und `pruefungshinweis` aus allen sieben Elementdateien in `data/` (zeilenweise, Formatierung unverändert, Ergebnis gegen ein Round-Trip ohne die Felder geprüft); ihre Darstellung in Lexikonkarte (Stufe Kernpunkte und Handbuch), Überblick, Lernkarten-Rückseite und Graph-Detailfeld; im Quiz die Erklärung generierter Fragen fällt auf die Definition bzw. den reinen Sachverhalt zurück; das Suchfeld indexiert sie nicht mehr; SCHEMA.md, README und die Über-Seite nachgeführt (Stufe Kernpunkte = «Definition und Querverweise»); zwei verwaiste CSS-Regeln (`.detail__block--hinweis`, `.ub-abschnitt--hinweis`) gestrichen. `DATEN_VERSION` und `?v=` auf 2026-09-09a.
+
+**Nicht angefasst, weiterhin eigene Zusammenfassungen:** die Kurzfassungen (`kurz`), der `details`-Rückfalltext, die Kernaussagen der Methode-Kapitel und die kuratierten Quizfragen. Die Über-Seite nennt sie weiterhin als eigene, am Wortlaut geprüfte Texte.
+
+**Geprüft im Browser:** Lexikon (Kernpunkte), Überblick mit Ergebniskasten, Lernkarten-Rückseite, Quiz mit generierter Frage — ohne Konsolenfehler.
+
 ## 2026-09-08 (5) — Ein Erscheinungsbild für die ganze Anwendung; Bedienung des Überblicks auf der Bühne
 
 **Auftrag:** «Put the percentage zoom in and out icons into the overview itself and delete that navigation on the left. On the top nav in Übersicht, the items should be centered. Also, align the remaining page to this look and feel.»

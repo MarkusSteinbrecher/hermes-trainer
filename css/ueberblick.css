@@ -568,12 +568,7 @@ body[data-route="ueberblick"] .datenwarnung {
 .ub-mikro--akzent { margin-bottom: 8px; color: var(--ub-akzent-text); }
 .ub-mikro--legende { margin: 26px 0 4px; }
 
-.ub-abschnitt { margin: 26px 0 0; padding: 0 32px; }
-.ub-abschnitt--hinweis {
-  padding: 20px 32px;
-  background: var(--ub-akzent-hauch);
-}
-.ub-abschnitt--regel { padding-top: 20px; border-top: 1px solid var(--ub-linie); }
+.ub-abschnitt { margin: 26px 0 0; padding: 0 32px; }.ub-abschnitt--regel { padding-top: 20px; border-top: 1px solid var(--ub-linie); }
 .ub-abschnitt--regel .ub-mikro { margin-bottom: 8px; }
 
 .ub-prosa { margin: 0; font-size: 14.5px; line-height: 1.55; max-width: 60ch; text-wrap: pretty; }
@@ -754,7 +749,6 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   .ub-schweber--rechts .ub-schweber__strich { display: none; }
   .ub-buehne { padding-top: 92px; }
   .ub-kopf, .ub-abschnitt, .ub-leerseite { padding-left: 16px; padding-right: 16px; }
-  .ub-abschnitt--hinweis { padding-left: 16px; padding-right: 16px; }
   .ub-verweise { padding: 18px 16px 24px; }
   .ub-inhalt { border-top: 1px solid var(--ub-linie); }
   /* Gestapelt gibt es nichts zu ziehen — der Graph steht einfach darunter

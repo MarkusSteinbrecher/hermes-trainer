@@ -576,14 +576,6 @@ main:focus { outline: none; }
   margin-bottom: 4px;
 }
 .detail__text { margin: 0; white-space: pre-wrap; color: var(--text-weich); font-size: 14.5px; line-height: 1.55; max-width: 60ch; text-wrap: pretty; }
-.detail__block--hinweis {
-  background: var(--akzent-schwach);
-  padding: 12px 14px 14px;
-  margin-top: 14px;
-}
-.detail__block--hinweis .detail__label { color: var(--akzent-text); }
-.detail__block--hinweis .detail__text { color: var(--text); }
-
 .werteliste { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 0; padding: 0; }
 .wert {
   display: inline-block;

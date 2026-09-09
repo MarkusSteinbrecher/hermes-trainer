@@ -1541,19 +1541,6 @@
       ], 'ub-abschnitt--regel'));
     }
 
-    if (e.pruefungshinweis) {
-      refs.inhalt.appendChild(h('section', { class: 'ub-abschnitt ub-abschnitt--hinweis' }, [
-        h('h3', { class: 'ub-mikro ub-mikro--akzent', text: 'Prüfungshinweis' }),
-        h('p', { class: 'ub-prosa', text: e.pruefungshinweis })
-      ]));
-    }
-
-    if (e.abgrenzung) {
-      refs.inhalt.appendChild(abschnitt('Abgrenzung', [
-        h('p', { class: 'ub-prosa', text: e.abgrenzung })
-      ]));
-    }
-
     refs.inhalt.appendChild(h('section', { class: 'ub-verweise' }, [
       h('a', { class: 'ub-verweis', href: '#/lexikon?id=' + encodeURIComponent(e.id), text: 'Im Lexikon' }),
       h('a', {

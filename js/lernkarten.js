@@ -110,16 +110,9 @@
       kinder.push(h('div', { class: 'flip__inhalt flip__inhalt--klein', text: e.definition }));
     }
 
-    if (e.pruefungshinweis) {
-      kinder.push(h('div', { class: 'flip__hinweis' }, [
-        h('strong', { text: 'Prüfungshinweis: ' }),
-        h('span', { text: e.pruefungshinweis })
-      ]));
-    }
-
     var quelle = HT.ui.quellenLink(e.quelle);
     if (quelle) {
-      kinder.push(h('div', { class: e.pruefungshinweis ? '' : 'flip__hinweis' }, quelle));
+      kinder.push(h('div', { class: 'flip__hinweis' }, quelle));
     }
 
     return h('div', {

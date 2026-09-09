@@ -30,9 +30,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/aenderungen-managen.html",
       "bezeichnung": "HERMES online · Aufgabe «Änderungen managen»"
-    },
-    "abgrenzung": "Nicht zu verwechseln mit «Risiken managen» (vorausschauender Umgang mit Unsicherheiten) und «Probleme behandeln und Erfahrungen nutzen» (bereits eingetretene Störungen). «Änderungen managen» behandelt neu erkannte oder veränderte Anforderungen.",
-    "pruefungshinweis": "Die Identifikation und Beurteilung von Änderungen betrifft nur die klassisch geführte Lösungsentstehung; dokumentiert werden Änderungen jedoch in allen Projekten, unabhängig von der Vorgehensweise. Verantwortlich ist der Projektleiter, nicht der Auftraggeber."
+    }
   },
   {
     "id": "aufgabe-altsystem-ausser-betrieb-setzen",
@@ -59,9 +57,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/altsystem-ausser-betrieb-setzen.html",
       "bezeichnung": "HERMES online · Aufgabe «Altsystem ausser Betrieb setzen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Migration durchführen»: Erst nach erfolgreicher produktiver Einführung wird das Altsystem ausser Betrieb gesetzt.",
-    "pruefungshinweis": "Einzige Aufgabe des Moduls IT-Migration in der Phase Abschluss. Verantwortlich ist der IT-Architekt, nicht der Betriebsverantwortliche."
+    }
   },
   {
     "id": "aufgabe-angebote-bewerten",
@@ -88,9 +84,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/angebote-bewerten.html",
       "bezeichnung": "HERMES online · Aufgabe «Angebote bewerten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Zuschlag treffen»: Das Bewerten der Angebote ist eine Ausführungsaufgabe des Anwendervertreters, der Zuschlag ist ein Steuerungsentscheid des Auftraggebers.",
-    "pruefungshinweis": "Ergebnisse sind Angebotsprotokoll und Evaluationsbericht. Verantwortlich ist der Anwendervertreter, nicht der Projektleiter."
+    }
   },
   {
     "id": "aufgabe-ausschreibung-durchfuehren",
@@ -120,9 +114,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/ausschreibung-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Ausschreibung durchführen»"
-    },
-    "abgrenzung": "Klar zu trennen von «Ausschreibung erarbeiten»: Dort werden die Ausschreibungsunterlagen erstellt (Verantwortung Anwendervertreter), hier wird die Ausschreibung publiziert und abgewickelt (Verantwortung Projektleiter).",
-    "pruefungshinweis": "Verantwortlich ist der Projektleiter. Ergebnis dieser Aufgabe ist das Angebot; die Ausschreibungsunterlagen werden hier nur weitergeführt, nicht erstmals erstellt."
+    }
   },
   {
     "id": "aufgabe-ausschreibung-erarbeiten",
@@ -148,9 +140,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/ausschreibung-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Ausschreibung erarbeiten»"
-    },
-    "abgrenzung": "Klar zu trennen von «Ausschreibung durchführen» (Publikation und Abwicklung, Verantwortung Projektleiter) und von «Beschaffungsanalyse erarbeiten» (Modul Projektgrundlagen, Phase Initialisierung).",
-    "pruefungshinweis": "Verantwortlich ist der Anwendervertreter, nicht der Projektleiter. Ergebnis sind die Ausschreibungsunterlagen mit Lastenheft, Kriterienkatalog, Vertragsentwurf und Ausschreibungstext."
+    }
   },
   {
     "id": "aufgabe-beschaffungsanalyse-erarbeiten",
@@ -175,9 +165,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/beschaffungsanalyse-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Beschaffungsanalyse erarbeiten»"
-    },
-    "abgrenzung": "Gehört zum Modul Projektgrundlagen in der Phase Initialisierung — nicht zum Modul Beschaffung. Die Ausschreibungsunterlagen entstehen erst später mit «Ausschreibung erarbeiten».",
-    "pruefungshinweis": "Die Beschaffungsanalyse legt die Grundlage für die Wahl der Verfahrensart. Verantwortlich ist der Anwendervertreter."
+    }
   },
   {
     "id": "aufgabe-betrieb-aktivieren",
@@ -204,9 +192,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/betrieb-aktivieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Betrieb aktivieren»"
-    },
-    "abgrenzung": "Abzugrenzen von «Betrieb realisieren» (Phase Realisierung) und von «System aktivieren» (Modul IT-System). Die Systemaktivierung ist Voraussetzung für die Betriebsaktivierung.",
-    "pruefungshinweis": "Verantwortlich ist der Betriebsverantwortliche. Die Aktivierung erfolgt in der Phase Einführung nach dem Entscheid Betriebsaufnahme."
+    }
   },
   {
     "id": "aufgabe-betrieb-realisieren",
@@ -233,9 +219,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/betrieb-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Betrieb realisieren»"
-    },
-    "abgrenzung": "Abzugrenzen von «Betrieb aktivieren» (Phase Einführung) und von «System in Betrieb integrieren» (Integration des Systems in die realisierte Betriebsinfrastruktur).",
-    "pruefungshinweis": "Grundlage ist das Betriebskonzept. Ergebnisse sind «Betriebsinfrastruktur realisiert» und «Betriebsorganisation realisiert» sowie das Betriebshandbuch."
+    }
   },
   {
     "id": "aufgabe-betriebskonzept-erarbeiten",
@@ -265,9 +249,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/betriebskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Betriebskonzept erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Integrationskonzept erarbeiten» (Modul IT-System, Integration des Systems in die Betriebsinfrastruktur).",
-    "pruefungshinweis": "Verantwortlich ist der Betriebsverantwortliche. Neben dem Betriebskonzept entsteht hier auch das Service Level Agreement (SLA)."
+    }
   },
   {
     "id": "aufgabe-durchfuehrungsauftrag-erarbeiten",
@@ -293,9 +275,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/durchfuehrungsauftrag-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Durchführungsauftrag erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Projektmanagementplan erarbeiten»: Der Projektmanagementplan ist die Grundlage, der Durchführungsauftrag das Steuerungsdokument für den Entscheid Durchführungsfreigabe.",
-    "pruefungshinweis": "Verantwortlich ist der Projektleiter; entschieden wird der Durchführungsauftrag jedoch vom Auftraggeber mit «Entscheid Durchführungsfreigabe treffen». Phase Initialisierung."
+    }
   },
   {
     "id": "aufgabe-einfuehrungskonzept-erarbeiten",
@@ -323,9 +303,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/einfuehrungskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Einführungskonzept erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Organisationskonzept erarbeiten» (Modul Organisation) und von «Einführungsmassnahmen realisieren» bzw. «durchführen».",
-    "pruefungshinweis": "Verantwortlich ist der Anwendervertreter. Modul Einführungsorganisation, Phase Konzept (agil: Umsetzung)."
+    }
   },
   {
     "id": "aufgabe-einfuehrungsmassnahmen-durchfuehren",
@@ -352,9 +330,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/einfuehrungsmassnahmen-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Einführungsmassnahmen durchführen»"
-    },
-    "abgrenzung": "Klar zu trennen von «Einführungsmassnahmen realisieren»: Realisiert wird in der Phase Realisierung, durchgeführt wird in der Phase Einführung.",
-    "pruefungshinweis": "Ergebnis ist «Einführungsmassnahmen durchgeführt». Die Durchführung ist eine Grundlage für die Betriebsaufnahme."
+    }
   },
   {
     "id": "aufgabe-einfuehrungsmassnahmen-realisieren",
@@ -381,9 +357,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/einfuehrungsmassnahmen-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Einführungsmassnahmen realisieren»"
-    },
-    "abgrenzung": "Klar zu trennen von «Einführungsmassnahmen durchführen» (Phase Einführung). Hier werden die Massnahmen auf Basis des Einführungskonzepts erst erstellt.",
-    "pruefungshinweis": "Phase Realisierung (agil: Umsetzung), Ergebnis «Einführungsmassnahmen realisiert». Verantwortlich ist der Anwendervertreter."
+    }
   },
   {
     "id": "aufgabe-entscheid-abnahme-migration-treffen",
@@ -416,9 +390,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-abnahme-migration-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Abnahme Migration treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Abnahme treffen» (Modul Einführungsorganisation, Abnahme der Gesamtlösung). Hier geht es ausschliesslich um die Migration im Modul IT-Migration.",
-    "pruefungshinweis": "Führungsentscheid des Projektleiters, nicht Steuerungsentscheid des Auftraggebers. Voraussetzung für die Betriebsaufnahme."
+    }
   },
   {
     "id": "aufgabe-entscheid-abnahme-treffen",
@@ -451,9 +423,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-abnahme-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Abnahme treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Vorabnahme treffen» (vor der Einführung, Grundlage für Einführungsmassnahmen) und von «Entscheid Abnahme Migration treffen» (nur Migration).",
-    "pruefungshinweis": "Führungsentscheid des Projektleiters. Der Entscheid Abnahme beendet die Leistungserbringung der Lösungsentstehung und schafft die Grundlage für den Entscheid Phasenfreigabe Abschluss."
+    }
   },
   {
     "id": "aufgabe-entscheid-ausschreibung-treffen",
@@ -484,9 +454,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-ausschreibung-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Ausschreibung treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Zuschlag treffen»: Der Entscheid Ausschreibung geht der Publikation der Ausschreibung voraus, der Entscheid Zuschlag der Publikation des Zuschlags.",
-    "pruefungshinweis": "Steuerungsentscheid des Auftraggebers. Ergebnisse: Checkliste Ausschreibung, Liste Projektentscheide Steuerung, Meilenstein Ausschreibung."
+    }
   },
   {
     "id": "aufgabe-entscheid-betriebsaufnahme-treffen",
@@ -516,9 +484,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-betriebsaufnahme-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Betriebsaufnahme treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Abnahme treffen» (Führungsentscheid des Projektleiters). Die Betriebsaufnahme ist ein Steuerungsentscheid des Auftraggebers.",
-    "pruefungshinweis": "Der Entscheid Betriebsaufnahme geht der Aktivierung von Produkt bzw. System und des Betriebs voraus — er folgt ihr nicht."
+    }
   },
   {
     "id": "aufgabe-entscheid-durchfuehrungsfreigabe-treffen",
@@ -549,9 +515,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-durchfuehrungsfreigabe-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Durchführungsfreigabe treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Projektinitialisierungsfreigabe treffen» (startet die Phase Initialisierung) und von «Entscheid Weiteres Vorgehen treffen» (Führungsentscheid des Projektleiters innerhalb der Initialisierung).",
-    "pruefungshinweis": "Steuerungsentscheid des Auftraggebers am Ende der Phase Initialisierung. Er führt bei klassischer Vorgehensweise in die Phase Konzept, bei agiler Vorgehensweise in die Phase Umsetzung."
+    }
   },
   {
     "id": "aufgabe-entscheid-isds-konzept-treffen",
@@ -581,9 +545,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-isds-konzept-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid ISDS-Konzept treffen»"
-    },
-    "abgrenzung": "Führungsentscheid des Projektleiters, nicht Steuerungsentscheid des Auftraggebers — anders als etwa der Entscheid Phasenfreigabe.",
-    "pruefungshinweis": "Der Entscheid bestätigt, dass alle ISDS-relevanten Punkte erkannt sind und realisiert werden können. Erstellt wird das ISDS-Konzept vom ISDS-Verantwortlichen."
+    }
   },
   {
     "id": "aufgabe-entscheid-loesungsarchitektur-treffen",
@@ -613,9 +575,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-loesungsarchitektur-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Lösungsarchitektur treffen»"
-    },
-    "abgrenzung": "Pendant im Modul Produkt ist «Entscheid Produktkonzept treffen». Die Lösungsarchitektur betrifft das Modul IT-System.",
-    "pruefungshinweis": "Führungsentscheid des Projektleiters. Voraussetzung für die Entwicklung oder Parametrisierung von Systemen."
+    }
   },
   {
     "id": "aufgabe-entscheid-phasenfreigabe-abschluss-treffen",
@@ -647,9 +607,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-phasenfreigabe-abschluss-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Phasenfreigabe Abschluss treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Phasenfreigabe treffen» (Phasen Konzept und Realisierung) und von «Entscheid Projektabschluss treffen» (beendet das Projekt in der Phase Abschluss).",
-    "pruefungshinweis": "Dieser Entscheid gibt die Phase Abschluss frei, er beendet das Projekt aber noch nicht. Steuerungsentscheid des Auftraggebers."
+    }
   },
   {
     "id": "aufgabe-entscheid-phasenfreigabe-treffen",
@@ -681,9 +639,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-phasenfreigabe-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Phasenfreigabe treffen»"
-    },
-    "abgrenzung": "Nur bei klassischer Vorgehensweise. Das agile Pendant ist «Entscheid Releasefreigabe treffen». Die Freigabe der Phase Abschluss erfolgt mit «Entscheid Phasenfreigabe Abschluss treffen».",
-    "pruefungshinweis": "Steuerungsentscheid des Auftraggebers in den Phasen Konzept und Realisierung. Vorbereitet wird er vom Projektleiter mit «Phasenfreigabe vorbereiten»."
+    }
   },
   {
     "id": "aufgabe-entscheid-produktkonzept-treffen",
@@ -713,9 +669,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-produktkonzept-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Produktkonzept treffen»"
-    },
-    "abgrenzung": "Pendant im Modul IT-System ist «Entscheid Lösungsarchitektur treffen». Das Produktkonzept betrifft das Modul Produkt.",
-    "pruefungshinweis": "Führungsentscheid des Projektleiters. Voraussetzung für die Entwicklung oder Adaption von Produkten oder Dienstleistungen."
+    }
   },
   {
     "id": "aufgabe-entscheid-projektabbruch-treffen",
@@ -749,9 +703,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-projektabbruch-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Projektabbruch treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Projektabschluss treffen»: Der Abbruch beendet das Projekt vorzeitig, bevor die Ziele erreicht sind; der Projektabschluss beendet ein zielerreichendes Projekt in der Phase Abschluss.",
-    "pruefungshinweis": "Steuerungsentscheid des Auftraggebers, möglich in den Phasen Konzept, Realisierung, Einführung und Umsetzung. Ergebnis ist unter anderem der Meilenstein Projektabschluss."
+    }
   },
   {
     "id": "aufgabe-entscheid-projektabschluss-treffen",
@@ -781,9 +733,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-projektabschluss-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Projektabschluss treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Projektabschluss vorbereiten» (Führungsaufgabe des Projektleiters) und von «Entscheid Projektabbruch treffen» (vorzeitige Beendigung).",
-    "pruefungshinweis": "Steuerungsentscheid des Auftraggebers in der Phase Abschluss; mit ihm wird die Projektorganisation aufgelöst."
+    }
   },
   {
     "id": "aufgabe-entscheid-projektinitialisierungsfreigabe-treffen",
@@ -811,9 +761,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-projektinitialisierungsfreigabe-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Projektinitialisierungsfreigabe treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Durchführungsfreigabe treffen»: Die Projektinitialisierungsfreigabe startet die Phase Initialisierung, die Durchführungsfreigabe beendet sie.",
-    "pruefungshinweis": "Mit diesem Entscheid wird das Projekt überhaupt erst ins Leben gerufen. Ergebnis ist unter anderem der Projektinitialisierungsauftrag. Steuerungsentscheid des Auftraggebers."
+    }
   },
   {
     "id": "aufgabe-entscheid-releasefreigabe-treffen",
@@ -844,9 +792,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-releasefreigabe-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Releasefreigabe treffen»"
-    },
-    "abgrenzung": "Agiles Pendant zu «Entscheid Phasenfreigabe treffen». Nur in der Phase Umsetzung.",
-    "pruefungshinweis": "Steuerungsentscheid des Auftraggebers; vorbereitet wird er vom Projektleiter mit «Releaseabschluss vorbereiten»."
+    }
   },
   {
     "id": "aufgabe-entscheid-vorabnahme-treffen",
@@ -879,9 +825,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-vorabnahme-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Vorabnahme treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Entscheid Abnahme treffen»: Die Vorabnahme erfolgt vor der Einführung, die Abnahme nach der produktiven Nutzung in der Phase Einführung.",
-    "pruefungshinweis": "Führungsentscheid des Projektleiters in den Phasen Realisierung bzw. Umsetzung. Sie schafft die Grundlage für die Durchführung der Einführungsmassnahmen."
+    }
   },
   {
     "id": "aufgabe-entscheid-weiteres-vorgehen-treffen",
@@ -911,9 +855,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-weiteres-vorgehen-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Weiteres Vorgehen treffen»"
-    },
-    "abgrenzung": "Führungsentscheid des Projektleiters im Modul Projektgrundlagen — abzugrenzen vom Steuerungsentscheid «Entscheid Durchführungsfreigabe treffen» des Auftraggebers.",
-    "pruefungshinweis": "Hier werden Lösungsvariante, Szenario, Vorgehensweise (klassisch oder agil) und Projektwertigkeit festgelegt. Dokumentiert wird der Entscheid in der Studie."
+    }
   },
   {
     "id": "aufgabe-entscheid-zuschlag-treffen",
@@ -945,9 +887,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-zuschlag-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Zuschlag treffen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Angebote bewerten» (Ausführungsaufgabe des Anwendervertreters) und von «Entscheid Ausschreibung treffen» (vor der Publikation der Ausschreibung).",
-    "pruefungshinweis": "Steuerungsentscheid des Auftraggebers. Ergebnis ist unter anderem die Publikation; er schafft die Voraussetzung für «Vereinbarung erarbeiten»."
+    }
   },
   {
     "id": "aufgabe-integrationskonzept-erarbeiten",
@@ -975,9 +915,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/integrationskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Integrationskonzept erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Betriebskonzept erarbeiten» (Modul IT-Betrieb). Das Integrationskonzept gehört zum Modul IT-System.",
-    "pruefungshinweis": "Verantwortlich ist der IT-Architekt. Es ist die Grundlage für «Systemintegration vorbereiten»."
+    }
   },
   {
     "id": "aufgabe-isds-konzept-erarbeiten",
@@ -1004,9 +942,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/isds-konzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «ISDS-Konzept erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Schutzbedarfsanalyse erarbeiten» (Modul Projektgrundlagen, Phase Initialisierung) sowie von «ISDS-Konzept realisieren» und «ISDS-Konzept überführen».",
-    "pruefungshinweis": "Verantwortlich ist der ISDS-Verantwortliche. Die Schutzbedarfsanalyse erhebt die Anforderungen, das ISDS-Konzept legt die Massnahmen fest."
+    }
   },
   {
     "id": "aufgabe-isds-konzept-realisieren",
@@ -1037,9 +973,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/isds-konzept-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «ISDS-Konzept realisieren»"
-    },
-    "abgrenzung": "Anders als «ISDS-Konzept erarbeiten» und «ISDS-Konzept überführen» liegt die Verantwortung hier beim Anwendervertreter, nicht beim ISDS-Verantwortlichen.",
-    "pruefungshinweis": "Die realisierten Schutzmassnahmen sind Voraussetzung für die Vorabnahme. Ergebnis ist «ISDS-Massnahmen realisiert»."
+    }
   },
   {
     "id": "aufgabe-isds-konzept-ueberfuehren",
@@ -1070,9 +1004,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/isds-konzept-ueberfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «ISDS-Konzept überführen»"
-    },
-    "abgrenzung": "Abzugrenzen von «ISDS-Konzept realisieren» (Phase Realisierung). Die Überführung erfolgt in der Phase Einführung von der Projekt- in die Stammorganisation.",
-    "pruefungshinweis": "Verantwortlich ist der ISDS-Verantwortliche. Die Überführung ist eine Voraussetzung für den Entscheid Betriebsaufnahme."
+    }
   },
   {
     "id": "aufgabe-leistungen-vereinbaren-und-steuern",
@@ -1105,9 +1037,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/leistungen-vereinbaren-und-steuern.html",
       "bezeichnung": "HERMES online · Aufgabe «Leistungen vereinbaren und steuern»"
-    },
-    "abgrenzung": "Abgrenzungen gemäss HERMES: Wird im Rahmen der Initialisierungsphase festgestellt, dass das ganze Vorhaben lediglich eine Beschaffung darstellt und sonst keine Projektaktivitäten mehr anfallen, geht die Beschaffung direkt an den Einkauf der Stammorganisation über und das Vorhaben wird beendet. HERMES unterstützt keine blosse Beschaffung. Umfassende Beschaffung mittels offener oder selektiver Verfahren und öffentlicher Publikation (z. B. eine öffentliche Ausschreibung) werden im Fall von Produkt- oder Systemadaption mit dem Modul Beschaffung durchgeführt, ansonsten ausserhalb der Projektorganisation direkt durch den Einkauf der Stammorganisation. Eine Vereinbarung über den Bezug von betriebs- und wartungsspezifischen Dienstleistungen während der Nutzungsphase des Systems zwischen dem Anwender und dem künftigen Betreiber des Systems, das Service Level Agreement (SLA), wird im Modul IT-Betrieb erarbeitet.",
-    "pruefungshinweis": "Modul Projektführung, nicht Modul Beschaffung. Verantwortlich ist der Projektleiter. Ergebnisse sind Offertanfrage, Angebot, Evaluationsbericht und Vereinbarung."
+    }
   },
   {
     "id": "aufgabe-loesungsanforderungen-erarbeiten",
@@ -1136,9 +1066,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/loesungsanforderungen-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Lösungsanforderungen erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Organisationsanforderungen erarbeiten» (Modul Organisation, Verantwortung Business Analyst).",
-    "pruefungshinweis": "Verantwortlich ist der Anwendervertreter. Die Aufgabe gehört sowohl zum Modul IT-System als auch zum Modul Produkt."
+    }
   },
   {
     "id": "aufgabe-loesungsarchitektur-erarbeiten",
@@ -1168,9 +1096,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/loesungsarchitektur-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Lösungsarchitektur erarbeiten»"
-    },
-    "abgrenzung": "Pendant im Modul Produkt ist «Produktkonzept erarbeiten». Abzugrenzen auch von «Integrationskonzept erarbeiten».",
-    "pruefungshinweis": "Verantwortlich ist der IT-Architekt, nicht der Entwickler. Ergebnisse sind Lösungsarchitektur und Systemkonzept."
+    }
   },
   {
     "id": "aufgabe-migration-durchfuehren",
@@ -1197,9 +1123,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/migration-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Migration durchführen»"
-    },
-    "abgrenzung": "Klar zu trennen von «Migrationsverfahren realisieren» (Phase Realisierung) und von «Migrationskonzept erarbeiten» (Phase Konzept).",
-    "pruefungshinweis": "Verantwortlich ist der Entwickler. Phase Einführung (agil: Umsetzung), Ergebnis «Migration durchgeführt»."
+    }
   },
   {
     "id": "aufgabe-migrationskonzept-erarbeiten",
@@ -1226,9 +1150,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/migrationskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Migrationskonzept erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Migrationsverfahren realisieren» und «Migration durchführen». Das Konzept deckt auch die Ausserbetriebssetzung des Altsystems ab.",
-    "pruefungshinweis": "Verantwortlich ist der IT-Architekt, nicht der Entwickler."
+    }
   },
   {
     "id": "aufgabe-migrationsverfahren-realisieren",
@@ -1257,9 +1179,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/migrationsverfahren-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Migrationsverfahren realisieren»"
-    },
-    "abgrenzung": "Abzugrenzen von «Migration durchführen» (Phase Einführung). Hier werden nur die Verfahren realisiert, noch nicht produktiv migriert.",
-    "pruefungshinweis": "Verantwortlich ist der Entwickler. Ergebnisse sind Detailspezifikation und «Migrationsverfahren realisiert»."
+    }
   },
   {
     "id": "aufgabe-organisation-aktivieren",
@@ -1285,9 +1205,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisation-aktivieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Organisation aktivieren»"
-    },
-    "abgrenzung": "Abzugrenzen von «Organisation umsetzen» (Phase Realisierung). Aktiviert wird in der Phase Einführung.",
-    "pruefungshinweis": "Verantwortlich ist der Business Analyst, nicht der Anwendervertreter. Ergebnis ist «Organisation aktiviert»."
+    }
   },
   {
     "id": "aufgabe-organisation-umsetzen",
@@ -1315,9 +1233,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisation-umsetzen.html",
       "bezeichnung": "HERMES online · Aufgabe «Organisation umsetzen»"
-    },
-    "abgrenzung": "Im Modul Organisation heisst die Realisierungsaufgabe «Organisation umsetzen» — nicht «Organisation realisieren». Aktiviert wird sie mit «Organisation aktivieren».",
-    "pruefungshinweis": "Verantwortlich ist der Business Analyst. Ergebnisse: «Organisation umgesetzt», Organisationsbeschreibung, Prozessbeschreibung."
+    }
   },
   {
     "id": "aufgabe-organisationsanforderungen-erarbeiten",
@@ -1344,9 +1260,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisationsanforderungen-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Organisationsanforderungen erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Lösungsanforderungen erarbeiten» (Module IT-System und Produkt, Verantwortung Anwendervertreter).",
-    "pruefungshinweis": "Verantwortlich ist der Business Analyst. Ergebnisse sind Organisationsanforderungen und Situationsanalyse."
+    }
   },
   {
     "id": "aufgabe-organisationskonzept-erarbeiten",
@@ -1375,9 +1289,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisationskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Organisationskonzept erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Einführungskonzept erarbeiten» (Modul Einführungsorganisation, Verantwortung Anwendervertreter).",
-    "pruefungshinweis": "Verantwortlich ist der Business Analyst. Neben dem Organisationskonzept entstehen Geschäftsmodellbeschreibung, Organisationsbeschreibung und Prozessbeschreibung."
+    }
   },
   {
     "id": "aufgabe-phasenfreigabe-vorbereiten",
@@ -1408,9 +1320,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/phasenfreigabe-vorbereiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Phasenfreigabe vorbereiten»"
-    },
-    "abgrenzung": "Klar zu trennen von «Entscheid Phasenfreigabe treffen»: Vorbereiten ist Führungsaufgabe des Projektleiters, Entscheiden ist Steuerungsaufgabe des Auftraggebers. Agiles Pendant: «Releaseabschluss vorbereiten».",
-    "pruefungshinweis": "Ergebnisse sind Phasenbericht, Projektstatusbericht und Projektmanagementplan. Die nächste Phase wird hier geplant."
+    }
   },
   {
     "id": "aufgabe-probleme-behandeln-und-erfahrungen-nutzen",
@@ -1440,9 +1350,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/probleme-behandeln-und-erfahrungen-nutzen.html",
       "bezeichnung": "HERMES online · Aufgabe «Probleme behandeln und Erfahrungen nutzen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Risiken managen» (noch nicht eingetretene Unsicherheiten) und «Änderungen managen» (veränderte Anforderungen).",
-    "pruefungshinweis": "Ergebnis sind die Projekterfahrungen. Die Aufgabe läuft in allen Phasen ausser der Initialisierung."
+    }
   },
   {
     "id": "aufgabe-produkt-aktivieren",
@@ -1469,9 +1377,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/produkt-aktivieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Produkt aktivieren»"
-    },
-    "abgrenzung": "Abzugrenzen von «Produkt realisieren» (Phase Realisierung) und von «System aktivieren» (Modul IT-System).",
-    "pruefungshinweis": "Verantwortlich ist der Entwickler. Die Aktivierung gibt das Produkt für die erste Nutzung und die spätere Abnahme frei."
+    }
   },
   {
     "id": "aufgabe-produkt-realisieren",
@@ -1501,9 +1407,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/produkt-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Produkt realisieren»"
-    },
-    "abgrenzung": "Pendant im Modul IT-System ist «System realisieren». Abzugrenzen von «Produkt aktivieren» (Phase Einführung).",
-    "pruefungshinweis": "Verantwortlich ist der Entwickler. Ergebnisse: Produkt entwickelt oder angepasst, Detailspezifikation, Produktdokumentation, Anwendungshandbuch."
+    }
   },
   {
     "id": "aufgabe-produktkonzept-erarbeiten",
@@ -1529,9 +1433,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/produktkonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Produktkonzept erarbeiten»"
-    },
-    "abgrenzung": "Pendant im Modul IT-System ist «Lösungsarchitektur erarbeiten».",
-    "pruefungshinweis": "Verantwortlich ist der Anwendervertreter, nicht der Business Analyst oder der IT-Architekt."
+    }
   },
   {
     "id": "aufgabe-projekt-fuehren-und-kontrollieren",
@@ -1567,9 +1469,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projekt-fuehren-und-kontrollieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Projekt führen und kontrollieren»"
-    },
-    "abgrenzung": "Klar zu trennen von «Projekt steuern»: Führen und Kontrollieren ist Aufgabe des Projektleiters im Modul Projektführung, Steuern ist Aufgabe des Auftraggebers im Modul Projektsteuerung.",
-    "pruefungshinweis": "Läuft über die gesamte Projektdauer, also in allen Phasen. Verantwortlich ist der Projektleiter."
+    }
   },
   {
     "id": "aufgabe-projekt-steuern",
@@ -1602,9 +1502,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projekt-steuern.html",
       "bezeichnung": "HERMES online · Aufgabe «Projekt steuern»"
-    },
-    "abgrenzung": "Klar zu trennen von «Projekt führen und kontrollieren» (Modul Projektführung, Verantwortung Projektleiter). Steuern gehört zum Modul Projektsteuerung.",
-    "pruefungshinweis": "Verantwortlich ist der Auftraggeber. Ergebnisse sind die Liste Projektentscheide Steuerung und der QS- und Risikobericht. Läuft in allen Phasen."
+    }
   },
   {
     "id": "aufgabe-projektabschluss-vorbereiten",
@@ -1632,9 +1530,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projektabschluss-vorbereiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Projektabschluss vorbereiten»"
-    },
-    "abgrenzung": "Klar zu trennen von «Entscheid Projektabschluss treffen»: Vorbereiten ist Führungsaufgabe des Projektleiters, Entscheiden ist Steuerungsaufgabe des Auftraggebers.",
-    "pruefungshinweis": "Phase Abschluss. Ergebnisse sind Projektschlussbeurteilung und Projekterfahrungen."
+    }
   },
   {
     "id": "aufgabe-projektmanagementplan-erarbeiten",
@@ -1659,9 +1555,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projektmanagementplan-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Projektmanagementplan erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Durchführungsauftrag erarbeiten»: Der Projektmanagementplan ist die Gesamtplanung, der Durchführungsauftrag das Entscheidungsdokument für den Auftraggeber.",
-    "pruefungshinweis": "Grundlage sind Planung und Termine aus der Studie. Verantwortlich ist der Projektleiter; Phase Initialisierung."
+    }
   },
   {
     "id": "aufgabe-prototyping-durchfuehren",
@@ -1693,9 +1587,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/prototyping-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Prototyping durchführen»"
-    },
-    "abgrenzung": "Keine eigenständige Realisierungsaufgabe: Der Prototyp dient der Prüfung von Machbarkeit, Brauchbarkeit und Akzeptanz, nicht der produktiven Lösung.",
-    "pruefungshinweis": "Einzige Aufgabe, die zu drei Modulen gehört: IT-System, Produkt und Projektgrundlagen. Verantwortlich ist der Entwickler; sie ist ab der Phase Initialisierung möglich."
+    }
   },
   {
     "id": "aufgabe-qualitaetssicherung-fuehren",
@@ -1726,9 +1618,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/qualitaetssicherung-fuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Qualitätssicherung führen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Test durchführen» (Modul Tests, Verantwortung Testverantwortlicher). Die Qualitätssicherung prüft alle Ergebnisse, nicht nur das System.",
-    "pruefungshinweis": "Modul Projektführung, verantwortlich ist der Projektleiter — nicht der Qualitäts- und Risikomanager. Ergebnisse sind der Projektmanagementplan und das Prüfprotokoll."
+    }
   },
   {
     "id": "aufgabe-rechtsgrundlagenanalyse-erarbeiten",
@@ -1753,9 +1643,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/rechtsgrundlagenanalyse-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Rechtsgrundlagenanalyse erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Schutzbedarfsanalyse erarbeiten» und «Beschaffungsanalyse erarbeiten» — alle drei sind Aufgaben des Moduls Projektgrundlagen in der Phase Initialisierung.",
-    "pruefungshinweis": "Verantwortlich ist der Projektleiter, nicht ein Jurist oder der Anwendervertreter."
+    }
   },
   {
     "id": "aufgabe-releaseabschluss-vorbereiten",
@@ -1783,9 +1671,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/releaseabschluss-vorbereiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Releaseabschluss vorbereiten»"
-    },
-    "abgrenzung": "Agiles Pendant zu «Phasenfreigabe vorbereiten». Nur in der Phase Umsetzung.",
-    "pruefungshinweis": "Verantwortlich ist der Projektleiter. Ergebnis ist unter anderem der Releasebericht — nicht der Phasenbericht."
+    }
   },
   {
     "id": "aufgabe-risiken-managen",
@@ -1814,9 +1700,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/risiken-managen.html",
       "bezeichnung": "HERMES online · Aufgabe «Risiken managen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Probleme behandeln und Erfahrungen nutzen» (bereits eingetretene Störungen) und «Änderungen managen» (veränderte Anforderungen).",
-    "pruefungshinweis": "Modul Projektführung, verantwortlich ist der Projektleiter — nicht der Qualitäts- und Risikomanager. Ergebnisse sind Projektmanagementplan und Projektstatusbericht."
+    }
   },
   {
     "id": "aufgabe-schutzbedarfsanalyse-erarbeiten",
@@ -1841,9 +1725,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/schutzbedarfsanalyse-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Schutzbedarfsanalyse erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «ISDS-Konzept erarbeiten» (Modul ISDS, Phase Konzept). Die Schutzbedarfsanalyse gehört zum Modul Projektgrundlagen in der Phase Initialisierung.",
-    "pruefungshinweis": "Verantwortlich ist der ISDS-Verantwortliche. Sie erhebt die Anforderungen an Informationssicherheit und Datenschutz."
+    }
   },
   {
     "id": "aufgabe-stakeholder-managen-und-informieren",
@@ -1878,9 +1760,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/stakeholder-managen-und-informieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Stakeholder managen und informieren»"
-    },
-    "abgrenzung": "Klar zu trennen von «Stakeholderinteressen vertreten»: Managen und Informieren ist Führungsaufgabe des Projektleiters im Modul Projektführung, das Vertreten der Interessen ist Ausführungsaufgabe des Anwendervertreters.",
-    "pruefungshinweis": "Zum Informieren gehört auch das Projektmarketing. Ergebnisse: Stakeholderliste, Stakeholderinteressen, Projektmanagementplan."
+    }
   },
   {
     "id": "aufgabe-stakeholderinteressen-vertreten",
@@ -1909,9 +1789,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/stakeholderinteressen-vertreten.html",
       "bezeichnung": "HERMES online · Aufgabe «Stakeholderinteressen vertreten»"
-    },
-    "abgrenzung": "Klar zu trennen von «Stakeholder managen und informieren» (Modul Projektführung, Verantwortung Projektleiter).",
-    "pruefungshinweis": "Verantwortlich ist der Anwendervertreter — er ist auch die einzige beteiligte Rolle. Die Aufgabe gehört zu den Modulen IT-System, Organisation und Produkt."
+    }
   },
   {
     "id": "aufgabe-studie-erarbeiten",
@@ -1941,9 +1819,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/studie-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Studie erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Projektmanagementplan erarbeiten» und «Durchführungsauftrag erarbeiten», die auf der Studie aufbauen.",
-    "pruefungshinweis": "In der Studie werden Lösungsvarianten erarbeitet und evaluiert; der Entscheid Weiteres Vorgehen wird in ihr dokumentiert. Ergebnisse sind Studie und Stakeholderliste."
+    }
   },
   {
     "id": "aufgabe-system-aktivieren",
@@ -1971,9 +1847,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/system-aktivieren.html",
       "bezeichnung": "HERMES online · Aufgabe «System aktivieren»"
-    },
-    "abgrenzung": "Abzugrenzen von «Betrieb aktivieren» (Modul IT-Betrieb) und «Produkt aktivieren» (Modul Produkt). Die Systemaktivierung ist Voraussetzung für die Aktivierung des Betriebs.",
-    "pruefungshinweis": "Verantwortlich ist der Entwickler, nicht der Betriebsverantwortliche."
+    }
   },
   {
     "id": "aufgabe-system-in-betrieb-integrieren",
@@ -2000,9 +1874,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/system-in-betrieb-integrieren.html",
       "bezeichnung": "HERMES online · Aufgabe «System in Betrieb integrieren»"
-    },
-    "abgrenzung": "Klar zu trennen von «Systemintegration vorbereiten»: Vorbereitet wird durch den Ersteller (Entwickler, Modul IT-System), integriert wird durch den Betreiber (Betriebsverantwortlicher, Modul IT-Betrieb).",
-    "pruefungshinweis": "Ergebnisse sind «System integriert» und das Betriebshandbuch. Schafft die Voraussetzung für Tests und Vorabnahme."
+    }
   },
   {
     "id": "aufgabe-system-realisieren",
@@ -2035,9 +1907,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/system-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «System realisieren»"
-    },
-    "abgrenzung": "Pendant im Modul Produkt ist «Produkt realisieren». Abzugrenzen von «System aktivieren» (Phase Einführung).",
-    "pruefungshinweis": "Verantwortlich ist der Entwickler. Ergebnis ist «System entwickelt oder parametrisiert» — das System ist danach für die Integration bereit, nicht für die Abnahme."
+    }
   },
   {
     "id": "aufgabe-systemintegration-vorbereiten",
@@ -2068,9 +1938,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/systemintegration-vorbereiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Systemintegration vorbereiten»"
-    },
-    "abgrenzung": "Klar zu trennen von «System in Betrieb integrieren» (Modul IT-Betrieb, Verantwortung Betriebsverantwortlicher).",
-    "pruefungshinweis": "Verantwortlich ist der Entwickler als Ersteller. Ergebnisse: Integrations- und Installationsanleitung, «Schnittstellen realisiert», Detailspezifikation, Lösungsarchitektur."
+    }
   },
   {
     "id": "aufgabe-test-durchfuehren",
@@ -2102,9 +1970,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/test-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Test durchführen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Testkonzept erarbeiten» (Phase Konzept) und von «Qualitätssicherung führen» (Modul Projektführung).",
-    "pruefungshinweis": "Verantwortlich ist der Testverantwortliche, nicht der Tester. Das Testprotokoll wird vor dem Entscheid Vorabnahme geprüft."
+    }
   },
   {
     "id": "aufgabe-testinfrastruktur-realisieren",
@@ -2132,9 +1998,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/testinfrastruktur-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Testinfrastruktur realisieren»"
-    },
-    "abgrenzung": "Abzugrenzen von «Testinfrastruktur überführen» (Phase Abschluss). Verantwortlich ist hier der Betriebsverantwortliche, dort der Testverantwortliche.",
-    "pruefungshinweis": "Die Testinfrastruktur muss vor Beginn der Tests bereitstehen; sie ist Vorbedingung für «Test durchführen»."
+    }
   },
   {
     "id": "aufgabe-testinfrastruktur-ueberfuehren",
@@ -2161,9 +2025,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/testinfrastruktur-ueberfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Testinfrastruktur überführen»"
-    },
-    "abgrenzung": "Abzugrenzen von «Testinfrastruktur realisieren» (Phase Realisierung, Verantwortung Betriebsverantwortlicher).",
-    "pruefungshinweis": "Phase Abschluss. Überführt wird die Testinfrastruktur inklusive Testkonzept in die Stammorganisation — für Korrekturen und Weiterentwicklungen in der Nutzungs- und Wartungsphase."
+    }
   },
   {
     "id": "aufgabe-testkonzept-erarbeiten",
@@ -2193,9 +2055,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/testkonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Testkonzept erarbeiten»"
-    },
-    "abgrenzung": "Abzugrenzen von «Test durchführen» (Phasen Realisierung und Einführung) und von «Testinfrastruktur realisieren».",
-    "pruefungshinweis": "Verantwortlich ist der Testverantwortliche. Das Testkonzept enthält die Testfallbeschreibungen und die Beurteilungskriterien."
+    }
   },
   {
     "id": "aufgabe-vereinbarung-erarbeiten",
@@ -2222,8 +2082,6 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/vereinbarung-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Vereinbarung erarbeiten»"
-    },
-    "abgrenzung": "Modul Beschaffung — abzugrenzen von «Leistungen vereinbaren und steuern» im Modul Projektführung, das Vereinbarungen ausserhalb offener oder selektiver Verfahren abdeckt.",
-    "pruefungshinweis": "Verantwortlich ist der Projektleiter. Grundlage sind die Ausschreibungsunterlagen samt Vertragsentwurf, AGB und Angebot."
+    }
   }
 ]

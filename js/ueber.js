@@ -25,7 +25,7 @@
       h('ul', {}, [
         h('li', {}, [h('b', { text: 'Graph: ' }), 'die Methodenelemente und ihre Zusammenhänge: als Struktur (Szenarien, Module, Aufgaben, Ergebnisse, Rollen in Spalten), im Fokus (ein Element mit allen Verbindungen) und entlang der Phasen. Jede Verbindung entspricht einem Querverweis der offiziellen Dokumentation; Kategorien, Beziehungen und Filter lassen sich ein- und ausblenden.']),
         h('li', {}, [h('b', { text: 'Methode: ' }), 'die Kapitel des Referenzhandbuchs (Methodenüberblick, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung) — je Kapitel Kernaussagen und Prüfungsfallen, eine Zusammenfassung und der vollständige Handbuchtext.']),
-        h('li', {}, [h('b', { text: 'Lexikon: ' }), 'alle Methodenelemente mit drei Detailstufen: Kurz (erster Satz und Fakten), Kernpunkte (Definition, Abgrenzung, Prüfungshinweis, Querverweise) und Handbuch (vollständige Beschreibung mit Kapitel- und Seitenangabe).']),
+        h('li', {}, [h('b', { text: 'Lexikon: ' }), 'alle Methodenelemente mit drei Detailstufen: Kurz (erster Satz und Fakten), Kernpunkte (Definition und Querverweise) und Handbuch (vollständige Beschreibung mit Kapitel- und Seitenangabe).']),
         h('li', {}, [h('b', { text: 'Lernkarten: ' }), 'Begriff ↔ Definition mit Selbsteinschätzung; Fortschritt lokal im Browser.']),
         h('li', {}, [h('b', { text: 'Quiz: ' }), 'kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus dem Lexikon erzeugte Fragen.'])
       ]),
@@ -37,7 +37,7 @@
         extern('https://www.hermes.admin.ch/de/projektmanagement.html', 'HERMES online'),
         ' (gemäss Impressum die führende, für die Zertifizierung massgebliche Quelle) und dem ',
         extern('https://www.hermes.admin.ch/de/downloads.html', 'Referenzhandbuch Projektmanagement, Ausgabe 2022, 3. Auflage vom 9. März 2026'),
-        ', aus dem die Kapitelnummern und Seitenzahlen stammen. Kurzfassungen, Kernpunkte, Prüfungshinweise, Kernaussagen und Quizfragen sind eigene, an diesem Wortlaut geprüfte Zusammenfassungen.'
+        ', aus dem die Kapitelnummern und Seitenzahlen stammen. Kurzfassungen, Kernaussagen und Quizfragen sind eigene, an diesem Wortlaut geprüfte Zusammenfassungen.'
       ]),
       h('p', { text: 'Die Urheberrechte an der HERMES-Dokumentation liegen bei der Schweizerischen Eidgenossenschaft (Bundeskanzlei, Digitale Transformation und IKT-Lenkung). '
         + 'Die Wiedergabe dient ausschliesslich dem Lernen; massgebend bleibt in jedem Fall die offizielle Dokumentation.' }),

@@ -164,8 +164,7 @@
           kategorie: e.kategorie,
           frage: 'Welcher Begriff ist so definiert?',
           zitat: maskierteDef,
-          erklaerung: 'Richtig ist ' + HT.ui.zitat(e.begriff) + '. '
-            + (e.pruefungshinweis || e.abgrenzung || ''),
+          erklaerung: 'Richtig ist ' + HT.ui.zitat(e.begriff) + '.',
           quelle: e.quelle
         }, e.begriff, distraktoren(begriffe, [e.begriff], 3));
         if (f1) { fragen.push(f1); }
@@ -187,7 +186,7 @@
           kategorie: e.kategorie,
           frage: 'Welche Definition gehört zu ' + bezeichnung + ' ' + HT.ui.zitat(e.begriff) + '?',
           zitat: '',
-          erklaerung: (e.pruefungshinweis || e.abgrenzung || e.definition),
+          erklaerung: e.definition,
           quelle: e.quelle
         }, richtigeDef, distraktoren(defs, [richtigeDef], 3));
         if (f2) { fragen.push(f2); }
@@ -200,8 +199,7 @@
           kategorie: 'rolle',
           frage: 'Welche Rolle ist für die Aufgabe ' + HT.ui.zitat(e.begriff) + ' verantwortlich?',
           zitat: '',
-          erklaerung: 'Verantwortlich ist ' + HT.ui.zitat(e.verantwortlich) + '. '
-            + (e.pruefungshinweis || ''),
+          erklaerung: 'Verantwortlich ist ' + HT.ui.zitat(e.verantwortlich) + '.',
           quelle: e.quelle
         }, e.verantwortlich, distraktoren(alleRollen, [e.verantwortlich], 3));
         if (f3) { fragen.push(f3); }
@@ -214,7 +212,7 @@
           kategorie: 'rolle',
           frage: 'Welche Rolle verantwortet das Ergebnis ' + HT.ui.zitat(e.begriff) + '?',
           zitat: '',
-          erklaerung: 'Verantwortlich ist ' + HT.ui.zitat(e.verantwortlich) + '. ' + (e.pruefungshinweis || ''),
+          erklaerung: 'Verantwortlich ist ' + HT.ui.zitat(e.verantwortlich) + '.',
           quelle: e.quelle
         }, e.verantwortlich, distraktoren(alleRollen, [e.verantwortlich], 3));
         if (f5) { fragen.push(f5); }
@@ -228,7 +226,7 @@
           frage: 'Zu welchem Modul gehört die Aufgabe ' + HT.ui.zitat(e.begriff) + '?',
           zitat: '',
           erklaerung: 'Die Aufgabe ' + HT.ui.zitat(e.begriff) + ' gehört zum Modul '
-            + HT.ui.zitat(e.module[0]) + '. ' + (e.pruefungshinweis || ''),
+            + HT.ui.zitat(e.module[0]) + '.',
           quelle: e.quelle
         }, e.module[0], distraktoren(alleModule, e.module, 3));
         if (f6) { fragen.push(f6); }
@@ -256,7 +254,7 @@
           frage: 'Zu welchem Modul gehört das Ergebnis ' + HT.ui.zitat(e.begriff) + '?',
           zitat: '',
           erklaerung: 'Das Ergebnis ' + HT.ui.zitat(e.begriff) + ' gehört zum Modul '
-            + HT.ui.zitat(e.module[0]) + '. ' + (e.pruefungshinweis || ''),
+            + HT.ui.zitat(e.module[0]) + '.',
           quelle: e.quelle
         }, e.module[0], distraktoren(alleModule, e.module, 3));
         if (f4) { fragen.push(f4); }

@@ -23,9 +23,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/initialisierung.html",
       "bezeichnung": "HERMES online · Phase «Initialisierung»"
-    },
-    "abgrenzung": "Die Phasen Initialisierung und Abschluss sind kein Bestandteil eines Szenarios. Ein Szenario beschreibt ausschliesslich die Lösungsentstehung, also die dazwischen eingeschlossenen Phasen.",
-    "pruefungshinweis": "Jedes Projekt beginnt mit der Phase Initialisierung – klassisch wie agil. Der Meilenstein Weiteres Vorgehen ist der einzige Phasenmeilenstein der Initialisierung, der nicht im Modul Projektsteuerung, sondern im Modul Projektgrundlagen liegt und in der Verantwortung des Projektleiters (nicht des Auftraggebers) steht."
+    }
   },
   {
     "id": "phase-konzept",
@@ -63,9 +61,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/konzept.html",
       "bezeichnung": "HERMES online · Phase «Konzept»"
-    },
-    "abgrenzung": "Konzept kommt nur bei klassischer Vorgehensweise vor. Bei agiler Vorgehensweise ersetzt die einzige Phase Umsetzung die drei Phasen Konzept, Realisierung und Einführung.",
-    "pruefungshinweis": "Der Meilenstein am Ende der Phase Konzept heisst «Meilenstein Phasenfreigabe» – nicht «Freigabe Realisierung». «Freigabe der Realisierung» beschreibt lediglich den Inhalt des Entscheids; der Ergebnis- und Meilensteinname ist generisch «Phasenfreigabe» und wird am Ende von Konzept und Realisierung gleich verwendet."
+    }
   },
   {
     "id": "phase-realisierung",
@@ -87,9 +83,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/realisierung.html",
       "bezeichnung": "HERMES online · Phase «Realisierung»"
-    },
-    "abgrenzung": "Das Modul Beschaffung kommt in der Phase Realisierung nicht vor; die Beschaffung wird in den Phasen Konzept bzw. Umsetzung abgewickelt.",
-    "pruefungshinweis": "Die Vorabnahme liegt am Ende der Phase Realisierung, die Abnahme am Ende der Phase Einführung. Der Entscheid Phasenfreigabe zur Einführung basiert auf dem Entscheid Vorabnahme – die beiden sind nicht identisch."
+    }
   },
   {
     "id": "phase-einfuehrung",
@@ -115,9 +109,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/einfuehrung.html",
       "bezeichnung": "HERMES online · Phase «Einführung»"
-    },
-    "abgrenzung": "Nicht mit der Phase Abschluss verwechseln: Die Einführung beendet die Lösungsentstehung und übergibt in den Betrieb; die Phase Abschluss beendet danach das Projekt organisatorisch und administrativ.",
-    "pruefungshinweis": "Für den Übergang in die Phase Abschluss heisst der Meilenstein «Phasenfreigabe Abschluss» (eigener Ergebnisname), nicht bloss «Phasenfreigabe». Der Entscheid Abnahme markiert den Beginn der Gewährleistung und des regulären Betriebs."
+    }
   },
   {
     "id": "phase-umsetzung",
@@ -151,9 +143,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/umsetzung.html",
       "bezeichnung": "HERMES online · Phase «Umsetzung»"
-    },
-    "abgrenzung": "Die Phase Umsetzung ersetzt bei agiler Vorgehensweise die drei klassischen Phasen Konzept, Realisierung und Einführung. Sie ist nicht mit der Umsetzungsorganisation gleichzusetzen: Die Umsetzungsorganisation ist nur während der Phase Umsetzung Teil der Projektorganisation.",
-    "pruefungshinweis": "Die Phase Umsetzung kann nicht weiter unterteilt werden. Der Entscheid Releasefreigabe ist optional und muss bereits in der Phase Initialisierung als erforderlich festgelegt werden. In der Phase Umsetzung gibt es keinen Meilenstein «Phasenfreigabe», sondern nur «Phasenfreigabe Abschluss» und optional «Releasefreigabe»."
+    }
   },
   {
     "id": "phase-abschluss",
@@ -171,8 +161,6 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/abschluss.html",
       "bezeichnung": "HERMES online · Phase «Abschluss»"
-    },
-    "abgrenzung": "Die Phase Abschluss ist – wie die Initialisierung – kein Bestandteil eines Szenarios. Sie ist zudem vom Entscheid Projektabbruch zu unterscheiden: Für den Abbruch gibt es eine Checkliste Projektabbruch, aber keinen eigenen Meilenstein.",
-    "pruefungshinweis": "Nur vier Module kommen in der Phase Abschluss vor: Projektsteuerung, Projektführung, Tests und IT-Migration. Die Phase Abschluss verfolgt insbesondere den Zweck sicherzustellen, dass die Übergabe- und Übergangsschnittstellen des Projekts unabhängig der gewählten Vorgehensweise identisch bleiben."
+    }
   }
 ]

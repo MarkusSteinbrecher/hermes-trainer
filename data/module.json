@@ -10,9 +10,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektsteuerung.html",
       "bezeichnung": "HERMES online · Modul «Projektsteuerung»"
-    },
-    "abgrenzung": "Nicht mit der Hierarchieebene Steuerung verwechseln: Projektsteuerung ist ein Modul (Bündel von Aufgaben und Ergebnissen), Steuerung ist eine der drei Hierarchieebenen, denen die Rollen zugeordnet sind.",
-    "pruefungshinweis": "Eines der vier Module, die zur Einhaltung der Projekt-Governance zwingend in jedem Projekt vorkommen müssen. Kommt zusammen mit Projektführung als einziges Modul in allen sechs Phasen vor."
+    }
   },
   {
     "id": "modul-projektfuehrung",
@@ -25,9 +23,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektfuehrung.html",
       "bezeichnung": "HERMES online · Modul «Projektführung»"
-    },
-    "abgrenzung": "Abzugrenzen vom Modul Beschaffung: Nur Beschaffungen mit offenem oder selektivem Verfahren und öffentlicher Publikation laufen über das Modul Beschaffung; alle anderen Fälle von Beschaffungen werden im Modul Projektführung abgewickelt.",
-    "pruefungshinweis": "Eines der vier zwingenden Module. Führung heisst planen, führen und koordinieren – die Entscheide zur Steuerung liegen dagegen im Modul Projektsteuerung."
+    }
   },
   {
     "id": "modul-projektgrundlagen",
@@ -40,9 +36,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektgrundlagen.html",
       "bezeichnung": "HERMES online · Modul «Projektgrundlagen»"
-    },
-    "abgrenzung": "Abzugrenzen vom Modul Beschaffung: Die Erarbeitung der Beschaffungsgrundlagen wie Bedarfs- und Marktanalyse, Abklärung des korrekten Verfahrens mit Beschaffung/Einkauf, Sicherstellung der rechtlichen Aspekte oder Verfahrenswahl findet bei der Erarbeitung der Beschaffungsanalyse im Modul Projektgrundlagen statt – nicht im Modul Beschaffung.",
-    "pruefungshinweis": "Das einzige Modul, das nur in der Phase Initialisierung vorkommt, und deshalb das einzige der vier zwingenden Module, das in keinem Szenario enthalten ist – denn ein Szenario beschreibt ausschliesslich die Lösungsentstehung. Es enthält als einziges Modul den Meilenstein Weiteres Vorgehen."
+    }
   },
   {
     "id": "modul-beschaffung",
@@ -55,9 +49,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/beschaffung.html",
       "bezeichnung": "HERMES online · Modul «Beschaffung»"
-    },
-    "abgrenzung": "Die Beschaffungsanalyse gehört zum Modul Projektgrundlagen (Phase Initialisierung), nicht zum Modul Beschaffung.",
-    "pruefungshinweis": "Das einzige Modul, das nur in den Phasen Konzept und Umsetzung vorkommt – also weder in Realisierung noch in Einführung. Es kommt nur in den beiden Adaptions-Szenarien vor, weil nur dort am Markt beschafft wird."
+    }
   },
   {
     "id": "modul-organisation",
@@ -70,9 +62,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/organisation.html",
       "bezeichnung": "HERMES online · Modul «Organisation»"
-    },
-    "abgrenzung": "Nicht mit dem Szenario Organisationsanpassung verwechseln: Das Modul Organisation kommt in allen fünf Standardszenarien vor, nicht nur im Szenario Organisationsanpassung.",
-    "pruefungshinweis": "Das einzige nicht zwingende Modul, das trotzdem in allen fünf Standardszenarien vorkommt. Es enthält keine Meilensteine."
+    }
   },
   {
     "id": "modul-produkt",
@@ -85,9 +75,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/produkt.html",
       "bezeichnung": "HERMES online · Modul «Produkt»"
-    },
-    "abgrenzung": "Abzugrenzen vom Modul IT-System: Produkt dient der Entwicklung eines Produkts oder einer Dienstleistung, IT-System der Entwicklung eines Systems. In den IT-Szenarien tritt IT-System an die Stelle von Produkt; kein Standardszenario enthält beide.",
-    "pruefungshinweis": "Kommt nur in den beiden Dienstleistung/Produkt-Szenarien vor. Zusammen mit IT-System ist es gemäss HERMES der treibende Kern der Iteration während der agilen Entwicklung."
+    }
   },
   {
     "id": "modul-it-system",
@@ -100,9 +88,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-system.html",
       "bezeichnung": "HERMES online · Modul «IT-System»"
-    },
-    "abgrenzung": "Abzugrenzen vom Modul IT-Betrieb: IT-System entwickelt und integriert das System selbst; IT-Betrieb konzipiert und realisiert die Betriebsorganisation beim Betreiber und aktiviert den Betrieb.",
-    "pruefungshinweis": "Der Meilenstein Lösungsarchitektur gehört zum Modul IT-System – nicht zum Modul Projektsteuerung, obwohl er ein Entscheid ist."
+    }
   },
   {
     "id": "modul-tests",
@@ -115,9 +101,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/tests.html",
       "bezeichnung": "HERMES online · Modul «Tests»"
-    },
-    "abgrenzung": "Abzugrenzen von der Vorabnahme und der Abnahme: Diese Entscheide gehören zum Modul Einführungsorganisation, nicht zum Modul Tests.",
-    "pruefungshinweis": "Eines von nur vier Modulen, die auch in der Phase Abschluss vorkommen (Testinfrastruktur überführen). Im Szenario Dienstleistung/Produkt Adaption kann Tests bei Bedarf eingebettet werden, gehört dort aber nicht zum Standardumfang."
+    }
   },
   {
     "id": "modul-einfuehrungsorganisation",
@@ -130,9 +114,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/einfuehrungsorganisation.html",
       "bezeichnung": "HERMES online · Modul «Einführungsorganisation»"
-    },
-    "abgrenzung": "Nicht mit der Phase Einführung verwechseln: Das Modul Einführungsorganisation kommt bereits in der Phase Konzept vor (Einführungskonzept) und reicht bis in die Phase Einführung bzw. Umsetzung.",
-    "pruefungshinweis": "Eines der vier Module, die zur Einhaltung der Projekt-Governance zwingend in jedem Projekt vorkommen müssen – und das einzige davon, das nicht in der Phase Initialisierung vorkommt. Die Meilensteine Vorabnahme, Betriebsaufnahme und Abnahme liegen hier."
+    }
   },
   {
     "id": "modul-it-migration",
@@ -145,9 +127,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-migration.html",
       "bezeichnung": "HERMES online · Modul «IT-Migration»"
-    },
-    "abgrenzung": "Der Meilenstein Abnahme Migration ist nicht der Meilenstein Abnahme: Letzterer gehört zum Modul Einführungsorganisation und betrifft die gesamte Lösung.",
-    "pruefungshinweis": "Eines von nur vier Modulen, die auch in der Phase Abschluss vorkommen – dort wird das Altsystem entfernt."
+    }
   },
   {
     "id": "modul-it-betrieb",
@@ -160,9 +140,7 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-betrieb.html",
       "bezeichnung": "HERMES online · Modul «IT-Betrieb»"
-    },
-    "abgrenzung": "Der Entscheid Betriebsaufnahme gehört nicht zum Modul IT-Betrieb, sondern zum Modul Einführungsorganisation.",
-    "pruefungshinweis": "IT-Betrieb betrifft die Betreiberseite (Partnergruppe Betreiber): Betriebsinfrastruktur, Betriebsorganisation und Betriebsaktivierung."
+    }
   },
   {
     "id": "modul-isds",
@@ -175,8 +153,6 @@
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/module/isds.html",
       "bezeichnung": "HERMES online · Modul «ISDS»"
-    },
-    "abgrenzung": "Abzugrenzen von der Schutzbedarfsanalyse: Diese wird in der Phase Initialisierung im Modul Projektgrundlagen erarbeitet, das ISDS-Konzept dagegen im Modul ISDS ab der Phase Konzept bzw. Umsetzung.",
-    "pruefungshinweis": "ISDS steht für Informationssicherheit und Datenschutz. Der Meilenstein ISDS-Konzept liegt im Modul ISDS; die Verantwortung für die Aufgabe «Entscheid ISDS-Konzept treffen» trägt der Projektleiter (Hierarchieebene Führung), nicht der Auftraggeber."
+    }
   }
 ]

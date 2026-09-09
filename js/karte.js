@@ -1,6 +1,6 @@
 /* HERMES-Trainer — Lexikonkarte (gemeinsam für Lexikon und Graph).
    Eine Karte zeigt einen Eintrag in drei Stufen: Kurz (erster Satz + Fakten),
-   Kernpunkte (Definition, Abgrenzung, Prüfungshinweis, Querverweise) und
+   Kernpunkte (Definition, Querverweise) und
    Handbuch (vollständiger Text der offiziellen Dokumentation, nachgeladen).
    Die Inhalte kommen unverändert aus data/. */
 (function (global) {
@@ -11,7 +11,7 @@
 
   var STUFEN = [
     { wert: 0, label: 'Kurz',       titel: 'Nur das Wichtigste: erster Satz und Fakten' },
-    { wert: 1, label: 'Kernpunkte', titel: 'Definition, Abgrenzung, Prüfungshinweis und Querverweise' },
+    { wert: 1, label: 'Kernpunkte', titel: 'Definition und Querverweise' },
     { wert: 2, label: 'Handbuch',   titel: 'Vollständiger Text aus dem Referenzhandbuch' }
   ];
 
@@ -154,7 +154,6 @@
     if (e.definition && e.definition !== e.kurz) {
       bloecke.push(textBlock('Definition', e.definition));
     }
-    bloecke.push(textBlock('Abgrenzung', e.abgrenzung));
 
     if (e.verantwortlich) {
       bloecke.push(h('div', { class: 'detail__block' }, [
@@ -185,10 +184,6 @@
           ]);
         }))
       ]));
-    }
-
-    if (e.pruefungshinweis) {
-      bloecke.push(textBlock('Prüfungshinweis', e.pruefungshinweis, 'detail__block--hinweis'));
     }
 
     var vorhanden = bloecke.filter(function (b) { return !!b; });
@@ -287,10 +282,6 @@
         abschnitt.appendChild(HT.ui.bloecke(a.bloecke, { verlinken: true, ebene: 4 }));
         behaelter.appendChild(abschnitt);
       });
-
-      if (e.pruefungshinweis) {
-        behaelter.appendChild(textBlock('Prüfungshinweis', e.pruefungshinweis, 'detail__block--hinweis'));
-      }
     }).catch(function () {
       HT.ui.leeren(behaelter);
       handbuchFallback(e).forEach(function (k) { behaelter.appendChild(k); });

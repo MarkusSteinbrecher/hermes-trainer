@@ -49,8 +49,6 @@ Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSO
   "ergebnisse": ["Ausschreibung"],
   "ebene": "Führung",
   "meilensteine": [{ "name": "Freigabe Umsetzung", "beschreibung": "…" }],
-  "abgrenzung": "Wovon ist der Begriff abzugrenzen? Exakte Unterscheidung bei Verwechslungsgefahr.",
-  "pruefungshinweis": "Typische Stolperfalle oder exakter Ausdruck, auf den die Prüfung zielt.",
   "kurz": "Nur wenn der erste Satz der Definition nicht als Kurzfassung taugt.",
   "typ": "Ergebnisse: Dokument | Checkliste | Zustand | Meilenstein (aus Tabellen 16/17, gesetzt von tools/ergebnis-typen.py)",
   "minimalGefordert": true

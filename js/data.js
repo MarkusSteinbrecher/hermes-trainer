@@ -24,15 +24,14 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-08b';
+  var DATEN_VERSION = '2026-09-09a';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
 
   /* HERMES 2022 kennt sechs Phasen, verteilt auf zwei Vorgehensweisen:
      klassisch fünf, agil drei. Initialisierung und Abschluss sind beiden
-     gemeinsam. Ein Modell «mit vier Phasen» gibt es nicht — genau davor warnt
-     der Prüfungshinweis zum Grundbegriff «Phase». */
+     gemeinsam. Ein Modell «mit vier Phasen» gibt es nicht. */
   var VORGEHENSWEISEN = [
     {
       key: 'klassisch',
@@ -182,8 +181,6 @@
       kurz: kurzfassung(roh, definition),
       definition: definition,
       details: alsText(roh.details),
-      abgrenzung: alsText(roh.abgrenzung),
-      pruefungshinweis: alsText(roh.pruefungshinweis),
       verantwortlich: alsText(roh.verantwortlich),
       ebene: alsText(roh.ebene),
       typ: alsText(roh.typ),
@@ -199,7 +196,7 @@
     };
 
     e.suchtext = suchvarianten([
-      e.begriff, e.definition, e.details, e.abgrenzung, e.pruefungshinweis,
+      e.begriff, e.definition, e.details,
       e.verantwortlich, e.ebene, e.typ,
       e.beteiligt.join(' '), e.phasen.join(' '), e.module.join(' '),
       e.szenarien.join(' '), e.ergebnisse.join(' '),
