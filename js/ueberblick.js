@@ -475,13 +475,9 @@
   /* Szenario-Filter: ein Feld gehört dazu, wenn eines seiner Elemente in
      einem Modul des Szenarios liegt (Modulköpfe über ihren Namen). Phasen
      bleiben immer sichtbar — sie sind die Orientierung. */
-  var szenarioModuleCache = {};
+  /* Modulliste aus dem Graphmodell — samt der zwingenden Module (Kap. 3.2.1). */
   function szenarioModule(name) {
-    if (!szenarioModuleCache[name]) {
-      var s = HT.daten.eintragMitBegriff(name, 'szenario');
-      szenarioModuleCache[name] = s ? s.module : [];
-    }
-    return szenarioModuleCache[name];
+    return (HT.graph && HT.graph.szenarioModule(name)) || [];
   }
   function imSzenario(feld) {
     if (feld.art === 'phase') { return true; }

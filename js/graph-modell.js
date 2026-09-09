@@ -191,9 +191,16 @@
   }
 
   /** Module eines Szenarios (für die Vorwahl über das Szenario). */
+  /* Die Szenarioseiten der Quelle führen Projektgrundlagen nicht in ihrer
+     Modulliste; nach Kap. 3.2.1 ist es aber wie Projektsteuerung,
+     Projektführung und Einführungsorganisation in jedem Projekt zwingend.
+     Ein Szenario umfasst deshalb immer auch die zwingenden Module. */
   function szenarioModule(begriffOderId) {
     var e = HT.daten.eintragMitId(begriffOderId) || HT.daten.eintragMitBegriff(begriffOderId, 'szenario');
-    return e && e.kategorie === 'szenario' ? e.module.slice() : null;
+    if (!e || e.kategorie !== 'szenario') { return null; }
+    var module = e.module.slice();
+    ZWINGENDE_MODULE.forEach(function (m) { if (module.indexOf(m) === -1) { module.push(m); } });
+    return module;
   }
 
   /** Wie viele Aufgaben trägt diese Phase bzw. dieses Modul zum aktuellen Umfang bei? */
