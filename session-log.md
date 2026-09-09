@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (8) — Überblick: Szenario-Filter in der Steuerung
+
+**Auftrag:** «Haben wir den Filter auf der Übersicht links schon eingebaut? Wir müssten für den Filter auch noch Szenarien ergänzen.» — Der Überblick hatte keinen Filter, nur «Rolle einfärben» und «nur minimal gefordert»; der Graph hat die Szenario-Auswahl bereits in der Leiste.
+
+**Umsetzung:** In der Steuerung des Überblicks steht neu als erster Block nach dem Modus ein Szenario-Select (`zustand.szenario`, nicht gespeichert). Gewählt blasst `malen()` alles ab, was nicht zu den Modulen des Szenarios gehört — Modulköpfe über ihren Namen, Ergebniskästen über ihr Feld `module` (ein Feld zählt, wenn eines seiner Elemente passt), Phasenbalken bleiben als Orientierung. Das Abblenden nutzt denselben Weg wie «nur minimal gefordert» (weisse Fläche, 70 %). Geprüft mit «Organisationsanpassung», ohne Konsolenfehler. `?v=` auf 2026-09-09h.
+
 ## 2026-09-09 (7) — Markenzeichen: Meilenstein-Raute statt rotem H
 
 **Auftrag:** «Ja, bau die Raute ein.» — Ein einzelnes H auf Rot lag zu nah an der Kernmarke des Modehauses Hermès. Das neue Zeichen kommt aus der Methode selbst: die Raute des Meilensteins (Quality Gate), wie sie der Graph als Knotenform nutzt.

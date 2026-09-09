@@ -107,6 +107,7 @@
   var zustand = {
     modus: 'erkunden',        // 'erkunden' | 'abfragen'
     rolle: '',                // eingefärbte Rolle (Begriff) oder ''
+    szenario: '',             // Szenario (Begriff) oder '': alles ausserhalb seiner Module blasst ab
     nurMinimal: false,        // alles ausblassen, was nicht minimal gefordert ist
     zoom: 1,
     aktiv: null,              // Eintrag, den die Inhaltsseite zeigt
@@ -448,7 +449,8 @@
       } else {
         if (f.deckel) { f.deckel.style.display = 'none'; }
         var bezug = rollenBezug(e);
-        var blass = zustand.nurMinimal && e.kategorie === 'ergebnis' && !e.minimalGefordert;
+        var blass = (zustand.nurMinimal && e.kategorie === 'ergebnis' && !e.minimalGefordert)
+          || (zustand.szenario && !imSzenario(f));
 
         if (bezug === 'verantwortlich') { fill = AKZENT; op = 0.3; stroke = AKZENT; sw = 2; }
         else if (bezug === 'beteiligt') { op = 0; stroke = AKZENT; sw = 2; }
@@ -467,6 +469,26 @@
 
       /* Verdeckte Kästen dürfen ihren Namen nicht im Tooltip verraten. */
       f.titel.textContent = verdeckt ? 'Verdeckter Ergebniskasten' : f.name;
+    });
+  }
+
+  /* Szenario-Filter: ein Feld gehört dazu, wenn eines seiner Elemente in
+     einem Modul des Szenarios liegt (Modulköpfe über ihren Namen). Phasen
+     bleiben immer sichtbar — sie sind die Orientierung. */
+  var szenarioModuleCache = {};
+  function szenarioModule(name) {
+    if (!szenarioModuleCache[name]) {
+      var s = HT.daten.eintragMitBegriff(name, 'szenario');
+      szenarioModuleCache[name] = s ? s.module : [];
+    }
+    return szenarioModuleCache[name];
+  }
+  function imSzenario(feld) {
+    if (feld.art === 'phase') { return true; }
+    var module = szenarioModule(zustand.szenario);
+    return feld.eintraege.some(function (e) {
+      if (e.kategorie === 'modul') { return module.indexOf(e.begriff) !== -1; }
+      return (e.module || []).some(function (m) { return module.indexOf(m) !== -1; });
     });
   }
 
@@ -875,8 +897,26 @@
       malen();
     });
 
+    var szenarioWahl = h('select', { class: 'ub-select', id: 'ub-szenario' },
+      [h('option', { value: '', text: '— alle —' })].concat(
+        HT.daten.eintraegeDerKategorie('szenario').map(function (s) {
+          return h('option', { value: s.begriff, text: s.begriff });
+        })
+      ));
+    szenarioWahl.value = zustand.szenario;
+    szenarioWahl.addEventListener('change', function () {
+      zustand.szenario = szenarioWahl.value;
+      malen();
+    });
+
     return [
       panelModus(),
+      h('div', { class: 'ub-panel__block' }, [
+        h('label', { class: 'ub-panel__label', for: 'ub-szenario', text: 'Szenario' }),
+        szenarioWahl,
+        h('p', { class: 'ub-panel__hilfe ub-panel__hilfe--allein', text:
+          'Blasst ab, was nicht zu den Modulen des Szenarios gehört.' })
+      ]),
       h('div', { class: 'ub-panel__block' }, [
         h('label', { class: 'ub-panel__label', for: 'ub-rolle', text: 'Rolle einfärben' }),
         auswahl,
