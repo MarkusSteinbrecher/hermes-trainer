@@ -667,6 +667,8 @@ body[data-route="ueberblick"] .hb-vorlage__meta { color: var(--ub-leise); }
    schmaler als die Spalte wird verkleinert, breiter nicht, sonst wüchse die
    Schrift mit der Spalte und die Höhe des Bereichs wäre nicht verlässlich. */
 .ub-gb { display: block; max-width: 100%; height: auto; }
+/* Das Modulbild hat drei Spalten — es scrollt seitwärts, statt zu schrumpfen. */
+.ub-gb--breit { max-width: none; }
 /* Hervorhebung beim Zeigen — dieselben Regeln wie für .graph-svg in graph.css. */
 .ub-gb.ist-hervorhebung .gk:not(.ist-aktiv) { opacity: .28; }
 .ub-gb.ist-hervorhebung .gkante:not(.ist-aktiv) { opacity: .12; }

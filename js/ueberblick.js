@@ -1349,9 +1349,118 @@
     var schieneRechts = rechts + 14;
     var breite = Math.max(GB.minBreite, schieneRechts + 6);
 
+    return bildRendern(e, alle, kanten, {
+      breite: breite, hoehe: hoehe, schieneRechts: schieneRechts,
+      label: 'Beziehungen von ' + e.begriff + ': Rolle, Aufgabe, Ergebnis'
+    }, linkZiel);
+  }
+
+  /* Modul: alles, was das Modul führt, in drei Spalten wie im grossen Graph —
+     links die Rollen, in der Mitte die Aufgaben in der Reihenfolge der
+     Methode, rechts die Ergebnisse. Kanten wie dort: verantwortlich und
+     beteiligt (Rolle → Aufgabe), erzeugt (Aufgabe → Ergebnis, mit Pfeil),
+     Rolle verantwortet Ergebnis (gepunktet). Rollen und Ergebnisse stehen
+     nach dem Schwerpunkt ihrer Aufgaben, damit die Kurven flach bleiben. */
+  function graphBildModul(e, linkZiel) {
+    var Z = HT.graphZeichnen;
+    if (!HT.graph || !Z || !Z.knotenElement) { return null; }
+    Z.schriftLesen(refs.graph || document.body);
+
+    var rollen = [], aufgaben = [], ergebnisse = [], kanten = [], gesehen = {}, kanteGesehen = {};
+    function merken(liste, k) {
+      if (gesehen[k.id]) { return; }
+      gesehen[k.id] = true;
+      liste.push(gbKnotenFuer(k));
+    }
+    function kante(k) {
+      if (kanteGesehen[k.id]) { return; }
+      kanteGesehen[k.id] = true;
+      kanten.push(k);
+    }
+    function imModul(x) { return x.module && x.module.indexOf(e.begriff) !== -1; }
+
+    HT.daten.alleEintraege().forEach(function (x) {
+      if (!imModul(x)) { return; }
+      var k = HT.graph.knoten(x.id);
+      if (!k) { return; }
+      if (x.kategorie === 'aufgabe') { merken(aufgaben, k); }
+      else if (x.kategorie === 'ergebnis') { merken(ergebnisse, k); }
+    });
+    aufgaben.forEach(function (a) {
+      HT.graph.nachbarn(a.id).forEach(function (n) {
+        n.relationen.forEach(function (r) {
+          if (r.rel === 'verantwortlich' || r.rel === 'beteiligt') { merken(rollen, n.knoten); kante(r.kante); }
+          if (r.rel === 'erzeugt') { merken(ergebnisse, n.knoten); kante(r.kante); }
+        });
+      });
+    });
+    ergebnisse.forEach(function (x) {
+      HT.graph.nachbarn(x.id).forEach(function (n) {
+        n.relationen.forEach(function (r) {
+          if (r.rel === 'ergebnisrolle') { merken(rollen, n.knoten); kante(r.kante); }
+        });
+      });
+    });
+    if (!aufgaben.length && !ergebnisse.length) { return null; }
+
+    aufgaben.sort(function (a, b) { return a.eintrag.reihenfolge - b.eintrag.reihenfolge; });
+    var zeileVon = {};
+    aufgaben.forEach(function (k, i) { zeileVon[k.id] = i; });
+
+    /* Schwerpunkt: mittlere Zeile der verbundenen Aufgaben; ohne Aufgabe ans Ende. */
+    function schwerpunkt(k) {
+      var summe = 0, zahl = 0;
+      kanten.forEach(function (x) {
+        var anderer = x.von === k.id ? x.nach : (x.nach === k.id ? x.von : null);
+        if (anderer !== null && zeileVon[anderer] !== undefined) { summe += zeileVon[anderer]; zahl++; }
+      });
+      return zahl ? summe / zahl : aufgaben.length;
+    }
+    function nachSchwerpunkt(a, b) {
+      return (a.sp - b.sp) || a.begriff.localeCompare(b.begriff, 'de');
+    }
+    rollen.forEach(function (k) { k.sp = schwerpunkt(k); });
+    ergebnisse.forEach(function (k) { k.sp = schwerpunkt(k); });
+    rollen.sort(nachSchwerpunkt);
+    ergebnisse.sort(nachSchwerpunkt);
+
+    var alle = rollen.concat(aufgaben, ergebnisse);
+    alle.forEach(function (k) { k.w = Z.knotenBreite(k, {}); });
+    function spaltenBreite(liste) { return liste.reduce(function (m, k) { return Math.max(m, k.w); }, 0); }
+    var hoeheVon = function (liste) { return liste.length ? liste.length * GB.zeile - (GB.zeile - Z.KNOTEN_HOEHE) : 0; };
+    var hoechste = Math.max(hoeheVon(rollen), hoeheVon(aufgaben), hoeheVon(ergebnisse));
+    var x = GB.rand;
+    /* Alle Spalten beginnen oben — die Reihenfolge der Methode liest sich
+       von oben nach unten, und der Bereich zeigt zuerst den Anfang. */
+    [rollen, aufgaben, ergebnisse].forEach(function (liste) {
+      if (!liste.length) { return; }
+      var y = GB.rand;
+      liste.forEach(function (k) { k.x = x; k.y = y; y += GB.zeile; });
+      x += spaltenBreite(liste) + GB.spalte;
+    });
+    var breite = Math.max(GB.minBreite, x - GB.spalte + GB.rand);
+    var hoehe = GB.rand + hoechste + GB.rand;
+
+    return bildRendern(e, alle, kanten, {
+      breite: breite, hoehe: hoehe, breit: true,
+      label: 'Beziehungen im Modul ' + e.begriff + ': Rollen, Aufgaben, Ergebnisse'
+    }, linkZiel);
+  }
+
+  /* Zeichnet ein fertig angeordnetes Bild: Kanten zuerst, darüber die
+     verlinkten Knoten, dazu die Hervorhebung beim Zeigen und der Verweis
+     in den vollen Graph. masse: breite, hoehe, label; schieneRechts lässt
+     «erzeugt» über eine rechte Schiene laufen (Ergebnis unter den Aufgaben),
+     breit lässt das Bild seitwärts scrollen statt es zu verkleinern. */
+  function bildRendern(e, alle, kanten, masse, linkZiel) {
+    var Z = HT.graphZeichnen;
+    var position = {};
+    alle.forEach(function (k) { position[k.id] = k; });
+    var breite = masse.breite, hoehe = masse.hoehe, schieneRechts = masse.schieneRechts;
+
     var svg = svgEl('svg', {
-      'class': 'ub-gb', viewBox: '0 0 ' + breite + ' ' + hoehe,
-      role: 'img', 'aria-label': 'Beziehungen von ' + e.begriff + ': Rolle, Aufgabe, Ergebnis'
+      'class': 'ub-gb' + (masse.breit ? ' ub-gb--breit' : ''), viewBox: '0 0 ' + breite + ' ' + hoehe,
+      role: 'img', 'aria-label': masse.label
     });
     svg.style.width = breite + 'px';
     var defs = svgEl('defs', {});
@@ -1377,11 +1486,12 @@
       var y1 = von.y + von.h / 2, y2 = nach.y + nach.h / 2;
       var stil = HT.graph.REL[k.rel] ? HT.graph.REL[k.rel].stil : 'struktur';
       var d, attrs = { 'class': 'gkante gkante--' + stil, 'data-id': k.id };
-      if (k.rel === 'erzeugt') {
+      if (k.rel === 'erzeugt' && schieneRechts) {
         d = 'M' + (von.x + von.w) + ' ' + y1
           + 'C' + schieneRechts + ' ' + y1 + ',' + schieneRechts + ' ' + y2 + ',' + (nach.x + nach.w) + ' ' + y2;
         attrs['marker-end'] = 'url(#ub-gpfeil)';
       } else {
+        if (k.rel === 'erzeugt') { attrs['marker-end'] = 'url(#ub-gpfeil)'; }
         /* S-Kurve von der Rolle zur Aufgabe bzw. zum Ergebnis, wie im Graph. */
         var x1 = von.x + von.w, x2 = nach.x, mx = (x1 + x2) / 2;
         d = 'M' + x1 + ' ' + y1 + 'C' + mx + ' ' + y1 + ',' + mx + ' ' + y2 + ',' + x2 + ' ' + y2;
@@ -1412,7 +1522,7 @@
       var el = Z.knotenElement(k, {});
       el.removeAttribute('tabindex');
       el.removeAttribute('role');
-      if (k.id === mitte.id) { el.classList.add('ist-gewaehlt'); }
+      if (k.id === e.id) { el.classList.add('ist-gewaehlt'); }
       var a = svgEl('a', { 'class': 'ub-gb__link', href: linkZiel(k.eintrag), 'aria-label': el.getAttribute('aria-label') + ' — im Lexikon öffnen' });
       a.appendChild(el);
       elemente.knoten[k.id] = el;
@@ -1459,10 +1569,7 @@
     return raus.length ? raus : null;
   }
 
-  /* Module sind keine Knoten des Graphen — er zeigt nur Rolle → Aufgabe →
-     Ergebnis. Ihre Beziehungen stehen aber in denselben Daten: alles, was das
-     Modul führt. Die Quellseite gibt das als breite Tabelle aus, hier stehen
-     zwei Listen. */
+  /* Rückfall ohne Graphmodell: alles, was das Modul führt, als zwei Listen. */
   function modulBeziehungen(e, linkZiel) {
     var aufgaben = [];
     var ergebnisse = [];
@@ -1478,9 +1585,9 @@
     return raus.length ? raus : null;
   }
 
-  /* Ergebnisse bekommen das Bild, Module die Listen — sie sind keine Knoten. */
+  /* Ergebnisse und Module bekommen das Bild; die Listen bleiben Rückfall. */
   function beziehungenVon(e, linkZiel) {
-    if (e.kategorie === 'modul') { return modulBeziehungen(e, linkZiel); }
+    if (e.kategorie === 'modul') { return graphBildModul(e, linkZiel) || modulBeziehungen(e, linkZiel); }
     return graphBild(e, linkZiel) || graphBeziehungen(e, linkZiel);
   }
 

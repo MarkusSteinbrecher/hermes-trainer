@@ -2,6 +2,14 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (3) — Überblick: Module bekommen dasselbe Beziehungsbild wie Ergebnisse
+
+**Auftrag:** «Wenn ich auf ein Modul klicke, sehe ich rechts unten in der Graphsicht etwas anderes als bei den Ergebnissen. Können wir nicht einfach das gleiche darstellen (alle Elemente und deren Beziehungen)?»
+
+**Umsetzung:** Module zeigten im unteren Bereich zwei Listen («umfasst die Aufgaben», «erzeugt die Ergebnisse»), weil Module keine Graphknoten sind. Neu zeichnet `graphBildModul()` dasselbe Bild wie bei Ergebnissen, nur in drei Spalten wie im grossen Graph: links die Rollen, in der Mitte alle Aufgaben des Moduls in der Reihenfolge der Methode, rechts die Ergebnisse (die des Moduls plus alles, was seine Aufgaben erzeugen). Kanten genau die des Graphmodells: verantwortlich/beteiligt als S-Kurve Rolle → Aufgabe, erzeugt als S-Kurve mit Pfeil Aufgabe → Ergebnis, Rolle verantwortet Ergebnis gepunktet. Rollen und Ergebnisse stehen nach dem Schwerpunkt (mittlere Zeile) ihrer Aufgaben, damit die Kurven flach bleiben; alle Spalten beginnen oben. Das Zeichnen (Kanten, verlinkte Knoten, Hervorhebung beim Zeigen, «Im vollen Graph öffnen») ist in `bildRendern()` ausgelagert, das Ergebnisbild nutzt es mit der rechten Schiene für «erzeugt», das Modulbild ohne. Das Modulbild ist breiter als die Inhaltsseite und scrollt seitwärts (`.ub-gb--breit`, kein `max-width`), statt mit der Schrift zu schrumpfen — die Trennlinie verbreitert die Seite. Die Listen bleiben als Rückfall ohne Graphmodell.
+
+**Geprüft im Browser:** Modul «Organisation» — drei Spalten mit allen Kanten, verbreiterte Inhaltsseite zeigt das ganze Bild, ohne Konsolenfehler. `?v=` auf 2026-09-09c.
+
 ## 2026-09-09 (2) — Überblick: nur noch Icons auf der Bühne
 
 **Auftrag:** «Die Legende auf der linken Seite unten, können wir die als kleines Icon ergänzen, damit man sie ein- und ausblenden kann? Und das "Erkunden und Abfragen" oben würde ich entfernen. Die Boxen rechts mit "breit" und "Steuerung" auch. Die Steuerungselemente sollten wir als kleines Icon in der Übersicht haben.»
