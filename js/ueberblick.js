@@ -1162,41 +1162,6 @@
     return '';
   }
 
-  function faktenVon(e) {
-    var raus = [];
-
-    if (e.kategorie === 'ergebnis' && e.typ) {
-      raus.push({
-        label: 'Ergebnistyp',
-        wert: e.typ + (e.minimalGefordert ? ' · minimal gefordert' : ''),
-        kat: e.typ === 'Meilenstein' ? 'meilenstein' : 'ergebnis'
-      });
-    }
-    if (e.verantwortlich) {
-      raus.push({ label: 'Verantwortlich', wert: e.verantwortlich, kat: 'rolle' });
-    }
-    if (e.beteiligt && e.beteiligt.length) {
-      raus.push({ label: 'Beteiligt', wert: e.beteiligt.join(', '), kat: 'rolle' });
-    }
-    if (e.kategorie !== 'modul' && e.module && e.module.length) {
-      raus.push({ label: 'Module', wert: e.module.join(', '), kat: 'modul' });
-    }
-    if (e.kategorie !== 'phase' && e.phasen && e.phasen.length) {
-      raus.push({ label: 'Phasen', wert: HT.daten.phasenSortiert(e.phasen).join(' · '), kat: 'phase' });
-    }
-    if (e.kategorie === 'phase' && e.meilensteine && e.meilensteine.length) {
-      raus.push({
-        label: 'Meilensteine',
-        wert: e.meilensteine.map(function (m) { return m.name.replace(/^Meilenstein\s+/i, ''); }).join(' · '),
-        kat: 'meilenstein'
-      });
-    }
-    if (e.kategorie === 'modul' && e.szenarien && e.szenarien.length) {
-      raus.push({ label: 'Szenarien', wert: e.szenarien.join(', '), kat: 'szenario' });
-    }
-    return raus;
-  }
-
   function abschnitt(titel, kinder, klasse) {
     return h('section', { class: 'ub-abschnitt' + (klasse ? ' ' + klasse : '') }, [
       h('h3', { class: 'ub-mikro', text: titel })
@@ -1546,14 +1511,7 @@
     });
     svg.appendChild(ebeneKnoten);
 
-    return [
-      svg,
-      h('p', { class: 'ub-gb__mehr' }, h('a', {
-        class: 'ub-verweis',
-        href: '#/graph?id=' + encodeURIComponent(e.id),
-        text: 'Im vollen Graph öffnen'
-      }))
-    ];
+    return [svg];
   }
 
 
@@ -1661,6 +1619,15 @@
     HT.ui.leeren(refs.graph);
 
     var e = zustand.aktiv;
+    if (refs.graphLink) {
+      refs.graphLink.hidden = !e;
+      if (e) {
+        /* Ergebnis: Fokus auf das Element; Modul und Phase setzen den Umfang. */
+        var knoten = e.kategorie === 'ergebnis' || e.kategorie === 'aufgabe' || e.kategorie === 'rolle';
+        refs.graphLink.href = '#/graph?' + (knoten ? 'fokus=' : 'id=') + encodeURIComponent(e.id);
+        refs.graphLink.title = 'Im Graph öffnen: ' + e.begriff;
+      }
+    }
     if (!e) {
       refs.inhalt.appendChild(leerseite());
       refs.inhalt.scrollTop = 0;
@@ -1686,21 +1653,8 @@
       h('div', { class: 'ub-kopf__lead' }, leadBauen(e, lead))
     ]));
 
-    /* Ergebnisse zeigen ihre Fakten unten im Graphbild — Ergebnistyp und
-       «minimal gefordert» stehen bereits als Kicker und Marke im Kopf.
-       Module und Phasen sind keine Knoten und behalten den Steckbrief. */
-    var fakten = e.kategorie === 'ergebnis' ? [] : faktenVon(e);
-    if (fakten.length) {
-      refs.inhalt.appendChild(abschnitt('Steckbrief', [
-        h('dl', { class: 'ub-fakten' }, fakten.map(function (f) {
-          return h('div', { class: 'ub-fakt' }, [
-            ikone(f.kat, 16, 'ub-ikone--fakt'),
-            h('dt', { text: f.label }),
-            h('dd', { text: f.wert })
-          ]);
-        }))
-      ]));
-    }
+    /* Kein Steckbrief: Ergebnistyp und «minimal gefordert» stehen als Kicker
+       und Marke im Kopf, alles andere zeigt das Beziehungsbild unten. */
 
     /* Die übrigen Abschnitte der Quellseite in ihrer Reihenfolge — «Inhalt»
        und «Dokumentenvorlage» also genau so, wie sie auf hermes.admin.ch
@@ -1911,13 +1865,22 @@
       h('span', { text: 'Beziehungen' })
     ]);
 
+    /* Rechts in der Kopfzeile: ins Graph-Modul, im Fokus auf das Element
+       (Modul und Phase setzen dort den Umfang). Der Link bekommt sein Ziel
+       beim Zeichnen des Eintrags. */
+    refs.graphLink = h('a', {
+      class: 'ub-graphkopf__link', href: '#/graph',
+      title: 'Im Graph öffnen', 'aria-label': 'Im Graph öffnen'
+    }, HT.ui.symbol(['M14 4h6v6', 'M20 4l-7 7', 'M10 20H4v-6', 'M4 20l7-7'], 18));
+    refs.graphLink.hidden = true;
+
     refs.graph = h('div', {
       class: 'ub-graph',
       id: 'ub-graphbereich',
       'aria-label': 'Beziehungen des gewählten Elements'
     });
 
-    return [griff, h('div', { class: 'ub-graphkopf' }, refs.graphKnopf), refs.graph];
+    return [griff, h('div', { class: 'ub-graphkopf' }, [refs.graphKnopf, refs.graphLink]), refs.graph];
   }
 
   function trennerBauen() {

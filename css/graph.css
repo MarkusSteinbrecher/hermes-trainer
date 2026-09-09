@@ -486,6 +486,39 @@ body[data-route="graph"] .fusszeile { display: none; }
 .graph-seite .gauswahl__quer[aria-expanded="true"],
 .graph-seite .gauswahl__szenario[aria-expanded="true"] { border-color: var(--text); color: var(--text); }
 .gauswahl__reset { color: var(--akzent-text); padding: 0 4px; }
+
+/* Fokus-Chip in der Leiste: das Element, auf das der Graph eingeschränkt
+   ist; Klick hebt den Fokus auf. */
+.gfokus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  margin-left: 8px;
+  padding: 0 6px 0 8px;
+  border: 1px solid var(--akzent);
+  background: var(--akzent-schwach);
+  color: var(--akzent-text);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.gfokus[hidden] { display: none; }
+.gfokus:hover { background: var(--akzent-schwach-2); }
+.gfokus .gswatch svg { width: 13px; height: 13px; }
+.gfokus__x { font-size: 15px; font-weight: 400; margin-left: 2px; }
+.graph-werkzeug.ist-aktiv { color: var(--akzent-text); }
+
+/* Filter-Popover */
+.gpop__label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); margin-bottom: -6px; }
+.gfilter__aktiv { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--akzent); background: var(--akzent-schwach); font-size: 13px; font-weight: 700; }
+.gfilter__name { flex: 1 1 auto; min-width: 0; }
+.gfilter__aktiv .gauswahl__reset { height: auto; padding: 0; }
 .gauswahl__reset:hover { color: var(--akzent); }
 
 /* --- Werkzeugknöpfe in der Leiste ---------------------------------------- */

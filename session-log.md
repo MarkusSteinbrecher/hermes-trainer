@@ -2,6 +2,16 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (5) — Überblick ohne Steckbrief, volle Textbreite, Expand-Icon; Graph mit Fokus-Filter
+
+**Auftrag:** Steckbrief bei Modulen und Phasen entfernen (bei Ergebnissen schon weg); der Text rechts brach auch bei breiter Inhaltsseite um; «Im vollen Graph öffnen» durch ein Expand-Icon ersetzen, das im Graph auf das Element filtert; und im Graph selbst fehlte ein Filter, mit dem man «schnell und simpel die für mich interessanten Elemente» sieht (Phasen, Rollen …).
+
+**Überblick:** Steckbrief samt `faktenVon()` gestrichen — Ergebnistyp und «minimal gefordert» stehen im Kopf, alles andere im Beziehungsbild. Die `max-width: 60ch/64ch` an Kopf, Prosa, Handbuchabsätzen und Beziehungslisten der Inhaltsseite sind weg; der Text folgt jetzt der Breite, die man mit der Trennlinie einstellt. Der Textlink unter dem Bild ist durch ein Expand-Icon rechts in der Kopfzeile «Beziehungen» ersetzt (`refs.graphLink`, Ziel beim Zeichnen gesetzt): Ergebnisse, Aufgaben, Rollen → `#/graph?fokus=id`, Module und Phasen → `#/graph?id=id` (setzen den Umfang wie bisher).
+
+**Graph, Fokus-Filter:** Neuer Zustand `fokusId` (URL `fokus=`, nicht gespeichert). Das Modell (`teilgraph`) filtert Aufgaben, Ergebnisse und Rollen auf `HT.graph.fokusMenge(id)` — dieselbe Nachbarschaft wie im Beziehungsbild des Überblicks: Rolle → ihre Aufgaben → deren Ergebnisse (plus direkt verantwortete Ergebnisse); Aufgabe → Rollen und Ergebnisse; Ergebnis → erzeugende Aufgaben → deren Rollen. Beim Setzen wird die Phasen-/Modulauswahl geleert (sonst fehlte z. B. bei Situationsanalyse die zweite erzeugende Aufgabe aus dem Modul Organisation), die Vorgehensweise folgt dem Element; Phasen und Module lassen sich danach dazuschalten, der Fokus bleibt. Im Fokus wird nichts abgeblendet (Hervorhebung aus) — alles Gezeigte ist relevant. UI: Filter-Icon in den Werkzeugen mit Popover (Erklärung, aktiver Fokus mit «Aufheben», alle Rollen als Chips, Suchfeld für jedes andere Element — die Trefferliste ist mit der Suche geteilt, `trefferZeichnen(feld, liste, beiWahl)`), ein Fokus-Chip in der Leiste mit ×, «Zurücksetzen» hebt auch den Fokus auf, im Detailfeld ist «Nur dieses Element» der primäre Knopf und «Nur Modul …» rückt daneben.
+
+**Geprüft im Browser:** Überblick Modul Projektgrundlagen (kein Steckbrief, Text volle Breite), Situationsanalyse → Expand-Icon → Graph mit 2 Aufgaben und 3 Rollen; Filter-Popover, Rolle Projektleiter (44 Aufgaben, 73 Ergebnisse über alle Phasen), Fokus per × aufgehoben — ohne Konsolenfehler. `?v=` auf 2026-09-09e.
+
 ## 2026-09-09 (4) — Überblick: Phasen bekommen dasselbe Beziehungsbild; Aufgaben gruppiert wie im Graph
 
 **Auftrag:** «Ja, mach das gleiche Bild auch für Phasen.»

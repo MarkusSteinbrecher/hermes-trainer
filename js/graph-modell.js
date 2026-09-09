@@ -229,7 +229,8 @@
    * Sichtbarer Graph zum Zustand.
    * zustand: { umfang, kategorien: {key:bool}, relationen: {key:bool},
    *            gruppierung: 'phase'|'modul', nurMinimal, nurEntscheide,
-   *            isolierteAusblenden }
+   *            isolierteAusblenden, fokus: id|null }
+   * fokus zeigt nur ein Element mit seiner Nachbarschaft (siehe fokusMenge).
    * Rückgabe: Spalten in Reihenfolge Rolle, Aufgabe, Ergebnis; die
    * Aufgaben und Ergebnisse tragen ihre Bahn (Phase bzw. Modul) für das
    * Swimlane-Layout; Rollen haben keine.
@@ -247,11 +248,14 @@
           return u.module.length ? alle.filter(function (x) { return u.module.indexOf(x) !== -1; }) : alle;
         }());
 
-    /* 1. Umfang bestimmen */
+    /* 1. Umfang bestimmen — im Fokus zusätzlich nur die Nachbarschaft */
+    var fokus = zustand.fokus ? fokusMenge(zustand.fokus) : null;
+    function imFokus(id) { return !fokus || !!fokus[id]; }
     var aufgabenAlle = [], ergebnisseAlle = [];
     m.liste.forEach(function (k) {
       if (k.kategorie === 'rolle') { return; }
       if (!imUmfang(k.eintrag, u)) { return; }
+      if (!imFokus(k.id)) { return; }
       if (k.kategorie === 'aufgabe') {
         if (zustand.nurEntscheide && !k.entscheid) { return; }
         aufgabenAlle.push(k);
@@ -333,7 +337,7 @@
     var sichtbarE = {};
     ergebnisse.forEach(function (k) { sichtbarE[k.id] = true; });
     var rollenReihe = [];
-    function rolleMerken(id) { if (id && rollenReihe.indexOf(id) === -1) { rollenReihe.push(id); } }
+    function rolleMerken(id) { if (id && imFokus(id) && rollenReihe.indexOf(id) === -1) { rollenReihe.push(id); } }
     function rollenAus(liste) {
       liste.forEach(function (k) {
         k.kanten.forEach(function (kante) {
@@ -388,6 +392,47 @@
       zahlen: { rolle: rollenReihe.length, aufgabe: aufgabenAlle.length, ergebnis: ergebnisseAlle.length },
       gezeigt: { rolle: rollen.length, aufgabe: aufgaben.length, ergebnis: ergebnisse.length }
     };
+  }
+
+  /* --- Fokus: ein Element mit seiner Nachbarschaft ------------------------- */
+
+  /**
+   * Menge der Knoten-IDs, die zum Fokus auf `id` gehören — dieselbe
+   * Nachbarschaft wie im Beziehungsbild des Überblicks: eine Rolle mit ihren
+   * Aufgaben und deren Ergebnissen (und den Ergebnissen, die sie direkt
+   * verantwortet), eine Aufgabe mit ihren Rollen und Ergebnissen, ein
+   * Ergebnis mit den Aufgaben, die es erzeugen, und deren Rollen.
+   */
+  function fokusMenge(id) {
+    var m = bauen();
+    var k = m.knoten[id];
+    if (!k) { return null; }
+    var menge = {};
+    menge[id] = true;
+    function nachbarnVon(kid, rels) {
+      var raus = [];
+      (m.knoten[kid] ? m.knoten[kid].kanten : []).forEach(function (kante) {
+        if (rels && rels.indexOf(kante.rel) === -1) { return; }
+        raus.push(kante.von === kid ? kante.nach : kante.von);
+      });
+      return raus;
+    }
+    var direkt = nachbarnVon(id, null);
+    direkt.forEach(function (x) { menge[x] = true; });
+    if (k.kategorie === 'rolle') {
+      direkt.forEach(function (x) {
+        if (m.knoten[x].kategorie === 'aufgabe') {
+          nachbarnVon(x, ['erzeugt']).forEach(function (y) { menge[y] = true; });
+        }
+      });
+    } else if (k.kategorie === 'ergebnis') {
+      direkt.forEach(function (x) {
+        if (m.knoten[x].kategorie === 'aufgabe') {
+          nachbarnVon(x, ['verantwortlich', 'beteiligt']).forEach(function (y) { menge[y] = true; });
+        }
+      });
+    }
+    return menge;
   }
 
   /* --- Einstieg über einen Lexikoneintrag ---------------------------------- */
@@ -445,6 +490,7 @@
     ZWINGENDE_MODULE: ZWINGENDE_MODULE,
     bauen: bauen,
     knoten: knoten,
+    fokusMenge: fokusMenge,
     alleKnoten: alleKnoten,
     nachbarn: nachbarn,
     leererUmfang: leererUmfang,

@@ -500,15 +500,28 @@ body[data-route="ueberblick"] .datenwarnung {
 .ub-inhalt[data-graph="zu"] .ub-hgriff { visibility: hidden; }
 
 .ub-graphkopf {
+  display: flex;
+  align-items: stretch;
   border-top: 1px solid var(--ub-linie);
   background: var(--ub-flaeche);
 }
+/* Rechts das Expand-Icon: öffnet den Graph im Fokus auf das Element. */
+.ub-graphkopf__link {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  flex: 0 0 auto;
+  color: var(--ub-leise);
+}
+.ub-graphkopf__link:hover { color: var(--ub-akzent); }
+.ub-graphkopf__link:focus-visible { outline: 2px solid var(--ub-akzent); outline-offset: -2px; }
 .ub-inhalt[data-graph="auf"] .ub-graphkopf { border-top: 0; }
 .ub-graphkopf__knopf {
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   padding: 9px 32px;
   border: 0;
   background: none;
@@ -535,14 +548,13 @@ body[data-route="ueberblick"] .datenwarnung {
 .ub-graph { padding: 4px 32px 20px; }
 .ub-graph__hinweis {
   margin: 6px 0 0;
-  max-width: 60ch;
   font-size: 13px;
   line-height: 1.5;
   color: var(--ub-leise);
 }
 .ub-inhalt[data-graph="zu"] .ub-graph { display: none; }
 
-.ub-kopf { padding: 26px 32px 0; max-width: 64ch; }
+.ub-kopf { padding: 26px 32px 0; }
 .ub-kopf__zeile { display: flex; align-items: center; gap: 10px; }
 .ub-kopf__kicker {
   font-size: 11px;
@@ -592,28 +604,26 @@ body[data-route="ueberblick"] .datenwarnung {
 .ub-abschnitt { margin: 26px 0 0; padding: 0 32px; }.ub-abschnitt--regel { padding-top: 20px; border-top: 1px solid var(--ub-linie); }
 .ub-abschnitt--regel .ub-mikro { margin-bottom: 8px; }
 
-.ub-prosa { margin: 0; font-size: 14.5px; line-height: 1.55; max-width: 60ch; text-wrap: pretty; }
+.ub-prosa { margin: 0; font-size: 14.5px; line-height: 1.55; text-wrap: pretty; }
 .ub-doku {
   margin: 0;
   font-size: 14px;
   line-height: 1.6;
   color: var(--ub-tinte-weich);
   white-space: pre-wrap;
-  max-width: 60ch;
 }
 
 /* --- Handbuchabschnitte auf der Inhaltsseite ------------------------------ */
 
 /* Die Blöcke aus data/handbuch/ tragen die Klassen aus css/style.css; hier
    werden sie auf die Typografie dieser Ansicht gebracht. */
-.ub-abschnitt .hb-p { margin: 0 0 10px; font-size: 14.5px; line-height: 1.55; max-width: 60ch; }
+.ub-abschnitt .hb-p { margin: 0 0 10px; font-size: 14.5px; line-height: 1.55; }
 .ub-abschnitt .hb-p:last-child { margin-bottom: 0; }
 .ub-abschnitt .hb-liste {
   margin: 0;
   padding-left: 18px;
   font-size: 14.5px;
   line-height: 1.5;
-  max-width: 60ch;
 }
 .ub-abschnitt .hb-liste li { margin: 0 0 4px; }
 .ub-abschnitt .hb-liste .hb-liste { margin-top: 4px; }
@@ -637,7 +647,7 @@ body[data-route="ueberblick"] .hb-vorlage__ikone {
 body[data-route="ueberblick"] .hb-vorlage__meta { color: var(--ub-leise); }
 
 /* Beziehungen aus dem Graphmodell statt der Tabelle der Quellseite. */
-.ub-bez { margin: 0 0 14px; max-width: 60ch; }
+.ub-bez { margin: 0 0 14px; }
 .ub-bez:last-child { margin-bottom: 0; }
 .ub-bez__label {
   display: block;
@@ -675,7 +685,6 @@ body[data-route="ueberblick"] .hb-vorlage__meta { color: var(--ub-leise); }
 .ub-gb.ist-hervorhebung .gkante.ist-aktiv { stroke-width: 2.6; opacity: 1; }
 .ub-gb.ist-hervorhebung .gkante--verantwortlich.ist-aktiv { stroke-width: 3.2; }
 .ub-gb .gk, .ub-gb .gkante { transition: opacity .15s ease; }
-.ub-gb__mehr { margin: 10px 0 0; }
 .ub-gb__link { cursor: pointer; }
 .ub-gb__link:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
 

@@ -41,6 +41,7 @@
       kategorien: kategorien,
       relationen: { verantwortlich: true, beteiligt: true, erzeugt: true, ergebnisrolle: false },
       auswahlId: null,
+      fokusId: null,            // nur dieses Element mit seiner Nachbarschaft
       pop: null,
       statusText: '',
       phasenstreifen: true,
@@ -98,7 +99,8 @@
     if (zustand.umfang.vorgehen === 'agil') { teile.push('vorgehen=agil'); }
     if (zustand.umfang.phasen.length) { teile.push('phase=' + encodeURIComponent(zustand.umfang.phasen.join(','))); }
     if (zustand.umfang.module.length) { teile.push('modul=' + encodeURIComponent(zustand.umfang.module.join(','))); }
-    if (zustand.auswahlId) { teile.push('id=' + encodeURIComponent(zustand.auswahlId)); }
+    if (zustand.fokusId) { teile.push('fokus=' + encodeURIComponent(zustand.fokusId)); }
+    if (zustand.auswahlId && zustand.auswahlId !== zustand.fokusId) { teile.push('id=' + encodeURIComponent(zustand.auswahlId)); }
     var neu = '#/graph?' + teile.join('&');
     if (global.location.hash !== neu) {
       try { global.history.replaceState(null, '', neu); } catch (e) { /* egal */ }
@@ -115,7 +117,8 @@
       gruppierung: zustand.ansicht === 'phasen' ? 'phase' : 'modul',
       nurMinimal: zustand.nurMinimal,
       nurEntscheide: zustand.nurEntscheide,
-      isolierteAusblenden: zustand.isolierteAusblenden
+      isolierteAusblenden: zustand.isolierteAusblenden,
+      fokus: zustand.fokusId
     };
   }
 
@@ -150,7 +153,7 @@
   function auswaehlen(id) {
     zustand.auswahlId = id || null;
     detailZeigen(zustand.auswahlId);
-    if (zeichner) { zeichner.hervorheben(zustand.auswahlId, true); }
+    if (zeichner) { zeichner.hervorheben(zustand.fokusId ? null : zustand.auswahlId, true); }
     urlSetzen();
   }
 
@@ -164,9 +167,39 @@
     geaendert();
   }
 
+  /* Im Fokus soll die ganze Nachbarschaft sichtbar sein, nicht nur der Teil
+     in einem Modul oder einer Phase: die Auswahl wird geleert, die
+     Vorgehensweise passt sich dem Element an. Phasen und Module lassen sich
+     danach wieder dazuschalten — der Fokus bleibt. */
+  function fokusUmfang(k) {
+    var e = k.kategorie === 'rolle' ? null : HT.graph.einstieg(k.id);
+    zustand.umfang = { vorgehen: e ? e.umfang.vorgehen : zustand.umfang.vorgehen, phasen: [], module: [] };
+  }
+
+  /** Fokus: nur dieses Element mit seiner Nachbarschaft. Nochmals gewählt
+      hebt ihn auf. Der Umfang wird bei Bedarf so gesetzt, dass das Element
+      sichtbar ist — wie beim Anzeigen aus der Suche. */
+  function fokusSetzen(id) {
+    if (!id || zustand.fokusId === id) {
+      zustand.fokusId = null;
+      popSchliessen();
+      geaendert();
+      return;
+    }
+    var k = HT.graph.knoten(id);
+    if (!k) { return; }
+    fokusUmfang(k);
+    if (!zustand.kategorien[k.kategorie]) { zustand.kategorien[k.kategorie] = true; }
+    zustand.fokusId = id;
+    zustand.auswahlId = id;
+    popSchliessen();
+    geaendert();
+  }
+
   function alleZuruecksetzen() {
     zustand.umfang.phasen = [];
     zustand.umfang.module = [];
+    zustand.fokusId = null;
     popSchliessen();
     geaendert();
   }
@@ -187,6 +220,7 @@
   /* Alle Popover an einer Stelle: Titel, Inhalt und der Knopf, der sie
      öffnet. */
   var POPS = {
+    filter:      { titel: 'Filter',         inhalt: function () { return filterInhalt(); },      knopf: 'knopfFilter' },
     suche:       { titel: 'Element suchen', inhalt: function () { return sucheInhalt(); },       knopf: 'knopfSuche' },
     quer:        { titel: function () { return zustand.ansicht === 'phasen' ? 'Auf Module einschränken' : 'Auf Phasen einschränken'; },
                    inhalt: function () { return querInhalt(); },        knopf: 'knopfQuer' },
@@ -227,6 +261,37 @@
 
   function sucheInhalt() {
     return popInhalt([refs.sucheFeld, refs.sucheListe]);
+  }
+
+  /* Filter: ein Element mit seiner Nachbarschaft. Rollen sind der häufigste
+     Fall («was tut der Projektleiter?») und stehen als Chips bereit; jedes
+     andere Element lässt sich suchen oder im Detailfeld wählen. */
+  function filterInhalt() {
+    var fokus = zustand.fokusId ? HT.daten.eintragMitId(zustand.fokusId) : null;
+    var kinder = [];
+
+    kinder.push(h('p', { class: 'gpop__hinweis', text:
+      'Zeigt nur ein Element mit allem, was direkt daran hängt — eine Rolle mit ihren Aufgaben und Ergebnissen, '
+      + 'ein Ergebnis mit den Aufgaben und Rollen, die es erzeugen. Phasen und Module bleiben als Auswahl in der Leiste.' }));
+
+    if (fokus) {
+      kinder.push(h('div', { class: 'gfilter__aktiv' }, [
+        h('span', { class: 'gswatch gswatch--' + fokus.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(fokus.kategorie, 13)),
+        h('span', { class: 'gfilter__name', text: fokus.begriff }),
+        h('button', { type: 'button', class: 'gauswahl__reset', text: 'Aufheben', on: { click: function () { fokusSetzen(null); } } })
+      ]));
+    }
+
+    kinder.push(h('div', { class: 'gpop__label', text: 'Rolle' }));
+    kinder.push(h('div', { class: 'chips chips--klein', role: 'group', 'aria-label': 'Rolle' },
+      HT.daten.alphabetisch(HT.daten.eintraegeDerKategorie('rolle')).map(function (r) {
+        return chip(r.begriff, null, zustand.fokusId === r.id, function () { fokusSetzen(r.id); });
+      })));
+
+    kinder.push(h('div', { class: 'gpop__label', text: 'Anderes Element' }));
+    kinder.push(refs.filterFeld);
+    kinder.push(refs.filterListe);
+    return popInhalt(kinder);
   }
 
   function chip(label, zahl, aktiv, beiKlick, klasse) {
@@ -384,6 +449,38 @@
        Screenreader als Live-Bereich. */
     refs.status = h('p', { class: 'graph-status nur-sr', role: 'status', 'aria-live': 'polite' });
 
+    /* Suchfeld des Filters: Treffer setzen den Fokus statt der Auswahl. */
+    refs.filterFeld = h('input', {
+      type: 'search', class: 'suche__feld suche__feld--klein', placeholder: 'Aufgabe, Ergebnis oder Rolle …',
+      autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': 'Element für den Fokus suchen'
+    });
+    refs.filterListe = h('ul', { class: 'gs-treffer', role: 'listbox', 'aria-label': 'Suchtreffer' });
+    refs.filterListe.hidden = true;
+    var filterTimer = null;
+    refs.filterFeld.addEventListener('input', function () {
+      if (filterTimer) { clearTimeout(filterTimer); }
+      filterTimer = setTimeout(function () { trefferZeichnen(refs.filterFeld, refs.filterListe, fokusSetzen); }, 120);
+    });
+    refs.filterFeld.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') {
+        ev.preventDefault();
+        var erster = refs.filterListe.querySelector('button');
+        if (erster) { erster.click(); }
+      } else if (ev.key === 'Escape') {
+        refs.filterFeld.value = '';
+        trefferZeichnen(refs.filterFeld, refs.filterListe, fokusSetzen);
+      }
+    });
+
+    refs.knopfFilter = werkzeugKnopf('graph-werkzeug--filter', 'Filter: nur ein Element mit seiner Nachbarschaft',
+      ['M3.5 5h17', 'M6.5 12h11', 'M10 19h4'],
+      function () { popOeffnen('filter'); });
+    refs.fokusChip = h('button', {
+      type: 'button', class: 'gfokus', title: 'Fokus aufheben',
+      on: { click: function () { fokusSetzen(null); } }
+    });
+    refs.fokusChip.hidden = true;
+
     refs.knopfSuche = werkzeugKnopf('graph-werkzeug--suche', 'Element suchen',
       ['M10.6 3.6a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z', 'M15.6 15.6 20.4 20.4'],
       function () { popOeffnen('suche'); });
@@ -424,9 +521,10 @@
       refs.knopfSzenario,
       refs.chips,
       refs.knopfQuer,
+      refs.fokusChip,
       refs.knopfReset,
       h('div', { class: 'graph-werkzeuge' }, [
-        refs.knopfSuche, refs.knopfDarstellung, refs.knopfLegende, refs.zoom
+        refs.knopfFilter, refs.knopfSuche, refs.knopfDarstellung, refs.knopfLegende, refs.zoom
       ]),
       refs.status
     ]);
@@ -470,7 +568,18 @@
     refs.knopfQuer.appendChild(h('span', { 'aria-hidden': 'true', text: ' ▾' }));
     refs.knopfQuer.classList.toggle('ist-aktiv', querAnzahl > 0);
 
-    refs.knopfReset.hidden = !HT.graph.umfangAktiv(zustand.umfang);
+    var fokus = zustand.fokusId ? HT.daten.eintragMitId(zustand.fokusId) : null;
+    HT.ui.leeren(refs.fokusChip);
+    refs.fokusChip.hidden = !fokus;
+    if (fokus) {
+      refs.fokusChip.appendChild(h('span', { class: 'gswatch gswatch--' + fokus.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(fokus.kategorie, 13)));
+      refs.fokusChip.appendChild(h('span', { text: fokus.begriff }));
+      refs.fokusChip.appendChild(h('span', { class: 'gfokus__x', 'aria-hidden': 'true', text: '×' }));
+      refs.fokusChip.setAttribute('aria-label', 'Fokus auf ' + fokus.begriff + ' aufheben');
+    }
+    refs.knopfFilter.classList.toggle('ist-aktiv', !!fokus);
+
+    refs.knopfReset.hidden = !HT.graph.umfangAktiv(zustand.umfang) && !fokus;
   }
 
   /* --- Icon-Leiste ---------------------------------------------------------- */
@@ -525,22 +634,27 @@
   /* --- Suche ---------------------------------------------------------------- */
 
   function sucheAktualisieren() {
-    var text = refs.sucheFeld.value.trim();
-    HT.ui.leeren(refs.sucheListe);
-    if (text.length < 2) { refs.sucheListe.hidden = true; return; }
+    trefferZeichnen(refs.sucheFeld, refs.sucheListe, zeigen);
+  }
+
+  /* Trefferliste zu einem Suchfeld; beiWahl(id) bekommt den Klick. */
+  function trefferZeichnen(feld, liste, beiWahl) {
+    var text = feld.value.trim();
+    HT.ui.leeren(liste);
+    if (text.length < 2) { liste.hidden = true; return; }
     var treffer = HT.graph.suchen(text, 8);
     if (!treffer.length) {
-      refs.sucheListe.appendChild(h('li', { class: 'gs-treffer__leer', text: 'Keine Treffer' }));
-      refs.sucheListe.hidden = false;
+      liste.appendChild(h('li', { class: 'gs-treffer__leer', text: 'Keine Treffer' }));
+      liste.hidden = false;
       return;
     }
     treffer.forEach(function (k) {
-      refs.sucheListe.appendChild(h('li', {}, h('button', {
+      liste.appendChild(h('li', {}, h('button', {
         type: 'button', class: 'gs-treffer__knopf', on: { click: function () {
-          refs.sucheFeld.value = '';
-          refs.sucheListe.hidden = true;
+          feld.value = '';
+          liste.hidden = true;
           popSchliessen();
-          zeigen(k.id);
+          beiWahl(k.id);
         } }
       }, [
         h('span', { class: 'gswatch gswatch--' + k.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(k.kategorie, 13)),
@@ -594,7 +708,7 @@
           if (zustand.auswahlId) { zeichner.markieren(zustand.auswahlId); }
           tooltipZeigen(id);
         } else {
-          zeichner.hervorheben(zustand.auswahlId, true);
+          zeichner.hervorheben(zustand.fokusId ? null : zustand.auswahlId, true);
           tooltipVerbergen();
         }
       }
@@ -680,7 +794,7 @@
          aber im Detailfeld darauf hinweisen. */
       zeichner.hervorheben(null, false);
     } else if (zustand.auswahlId) {
-      zeichner.hervorheben(zustand.auswahlId, true);
+      zeichner.hervorheben(zustand.fokusId ? null : zustand.auswahlId, true);
     }
   }
 
@@ -784,11 +898,17 @@
     }
 
     var aktionen = [];
-    if (e.module && e.module.length) {
+    var imFokus = zustand.fokusId === id;
+    aktionen.push(h('button', {
+      type: 'button', class: 'btn btn--klein btn--primaer',
+      'aria-pressed': imFokus ? 'true' : 'false',
+      on: { click: function () { fokusSetzen(id); } }
+    }, [h('span', { 'aria-hidden': 'true', text: '◎ ' }), imFokus ? 'Fokus aufheben' : 'Nur dieses Element']));
+    if (e.module && e.module.length && !imFokus) {
       aktionen.push(h('button', {
-        type: 'button', class: 'btn btn--klein btn--primaer',
+        type: 'button', class: 'btn btn--klein',
         on: { click: function () { einschraenken(id); } }
-      }, [h('span', { 'aria-hidden': 'true', text: '◎ ' }), 'Nur Modul ' + e.module[0]]));
+      }, 'Nur Modul ' + e.module[0]));
     }
     aktionen.push(h('a', { class: 'btn btn--klein', href: '#/lexikon?id=' + encodeURIComponent(id), text: 'Im Lexikon' }));
     refs.detailInhalt.appendChild(h('div', { class: 'graph-detail__aktionen' }, aktionen));
@@ -855,6 +975,15 @@
       zustand.umfang[feld] = String(werte).split(',').map(function (x) { return x.trim(); }).filter(Boolean);
       etwas = true;
     });
+    if (params.fokus) {
+      var kf = HT.graph.knoten(params.fokus);
+      if (kf) {
+        zustand.fokusId = params.fokus;
+        zustand.auswahlId = params.fokus;
+        zustand.kategorien[kf.kategorie] = true;
+        if (!etwas) { fokusUmfang(kf); }
+      }
+    }
     if (params.id) {
       var k = HT.graph.knoten(params.id);
       if (k) {
