@@ -182,6 +182,9 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   background: #fff;
   border: 1px solid var(--ub-rand);
   box-shadow: 0 12px 32px rgba(45, 43, 43, .22);
+  /* Mit Filterchips wird das Panel hoch: scrollt, statt unten abzureissen. */
+  max-height: calc(100vh - 110px);
+  overflow: auto;
 }
 .ub-panel__block { padding: 14px 16px 16px; }
 .ub-panel__block + .ub-panel__block { border-top: 1px solid var(--ub-linie); }
@@ -238,6 +241,40 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-haken { width: 16px; height: 16px; margin: 3px 0 0; flex: 0 0 auto; accent-color: var(--ub-akzent); }
 .ub-panel__hilfe { display: block; margin-top: 2px; font-size: 12.5px; color: var(--ub-leise); }
 .ub-panel__hilfe--allein { margin: 0; text-wrap: pretty; }
+
+/* Filter in der Steuerung: Chips für Phasen und Module */
+.ub-filter__gruppe { margin-top: 12px; }
+.ub-filter__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ub-leise-hell);
+}
+.ub-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.ub-chip {
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid var(--ub-linie);
+  background: transparent;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ub-leise);
+  cursor: pointer;
+}
+.ub-chip:hover { color: var(--ub-tinte); border-color: var(--ub-rand); }
+.ub-chip[aria-pressed="true"] {
+  border-color: var(--ub-akzent);
+  background: var(--ub-akzent-hauch);
+  color: var(--ub-akzent-text);
+}
+.ub-ikonknopf.ist-aktiv { color: var(--ub-akzent); }
 
 .ub-textknopf {
   padding: 0;

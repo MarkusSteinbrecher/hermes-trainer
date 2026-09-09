@@ -108,6 +108,8 @@
     modus: 'erkunden',        // 'erkunden' | 'abfragen'
     rolle: '',                // eingefärbte Rolle (Begriff) oder ''
     szenario: '',             // Szenario (Begriff) oder '': alles ausserhalb seiner Module blasst ab
+    phasen: [],               // gewählte Phasen (leer = alle); der Rest blasst ab
+    module: [],               // gewählte Module (leer = alle); der Rest blasst ab
     nurMinimal: false,        // alles ausblassen, was nicht minimal gefordert ist
     zoom: 1,
     aktiv: null,              // Eintrag, den die Inhaltsseite zeigt
@@ -450,7 +452,8 @@
         if (f.deckel) { f.deckel.style.display = 'none'; }
         var bezug = rollenBezug(e);
         var blass = (zustand.nurMinimal && e.kategorie === 'ergebnis' && !e.minimalGefordert)
-          || (zustand.szenario && !imSzenario(f));
+          || (zustand.szenario && !imSzenario(f))
+          || !imAuswahl(f);
 
         if (bezug === 'verantwortlich') { fill = AKZENT; op = 0.3; stroke = AKZENT; sw = 2; }
         else if (bezug === 'beteiligt') { op = 0; stroke = AKZENT; sw = 2; }
@@ -486,6 +489,28 @@
       if (e.kategorie === 'modul') { return module.indexOf(e.begriff) !== -1; }
       return (e.module || []).some(function (m) { return module.indexOf(m) !== -1; });
     });
+  }
+
+  /* Phasen- und Modulauswahl: leer heisst alle. Ein Ergebniskasten passt,
+     wenn eines seiner Elemente in einer gewählten Phase und einem gewählten
+     Modul liegt; Modulköpfe zählen über ihren Namen, Phasenbalken über ihren. */
+  function filterAktiv() {
+    return !!(zustand.phasen.length || zustand.module.length || zustand.szenario);
+  }
+  function imAuswahl(feld) {
+    var ph = zustand.phasen, mo = zustand.module;
+    if (!ph.length && !mo.length) { return true; }
+    return feld.eintraege.some(function (e) {
+      if (e.kategorie === 'phase') { return !ph.length || ph.indexOf(e.begriff) !== -1; }
+      if (e.kategorie === 'modul') { return !mo.length || mo.indexOf(e.begriff) !== -1; }
+      var phOk = !ph.length || (e.phasen || []).some(function (p) { return ph.indexOf(p) !== -1; });
+      var moOk = !mo.length || (e.module || []).some(function (m) { return mo.indexOf(m) !== -1; });
+      return phOk && moOk;
+    });
+  }
+  function filterGeaendert() {
+    malen();
+    werkzeugAktualisieren();
   }
 
   function istGleich(feld, eintrag) {
@@ -740,6 +765,7 @@
     if (refs.abblegende) { refs.abblegende.hidden = !zustand.legende; }
     refs.werkbank.dataset.breit = zustand.nurAbb ? 'true' : 'false';
     refs.werkbank.dataset.modus = zustand.modus;
+    refs.knopfPanel.classList.toggle('ist-aktiv', filterAktiv());
   }
 
   function legendeSchalten() {
@@ -862,6 +888,67 @@
     ]);
   }
 
+  /* Filterblock: Phasen und Module als Chips zum An- und Abwählen — leer
+     heisst alle. Dazu das Szenario und ein Zurücksetzen. */
+  function chipReihe(label, namen, liste) {
+    var chips = namen.map(function (name) {
+      var c = h('button', {
+        type: 'button', class: 'ub-chip', text: name,
+        'aria-pressed': liste.indexOf(name) !== -1 ? 'true' : 'false'
+      });
+      c.addEventListener('click', function () {
+        var i = liste.indexOf(name);
+        if (i === -1) { liste.push(name); } else { liste.splice(i, 1); }
+        c.setAttribute('aria-pressed', i === -1 ? 'true' : 'false');
+        filterGeaendert();
+      });
+      return c;
+    });
+    return h('div', { class: 'ub-filter__gruppe' }, [
+      h('div', { class: 'ub-filter__label', text: label }),
+      h('div', { class: 'ub-chips', role: 'group', 'aria-label': label }, chips)
+    ]);
+  }
+
+  function panelFilter() {
+    var szenarioWahl = h('select', { class: 'ub-select', id: 'ub-szenario' },
+      [h('option', { value: '', text: '— alle —' })].concat(
+        HT.daten.eintraegeDerKategorie('szenario').map(function (s) {
+          return h('option', { value: s.begriff, text: s.begriff });
+        })
+      ));
+    szenarioWahl.value = zustand.szenario;
+    szenarioWahl.addEventListener('change', function () {
+      zustand.szenario = szenarioWahl.value;
+      filterGeaendert();
+    });
+
+    var reset = h('button', { type: 'button', class: 'ub-textknopf', text: 'Zurücksetzen' });
+    reset.hidden = !filterAktiv();
+    reset.addEventListener('click', function () {
+      zustand.phasen = [];
+      zustand.module = [];
+      zustand.szenario = '';
+      filterGeaendert();
+      panelZeichnen();
+    });
+
+    return h('div', { class: 'ub-panel__block' }, [
+      h('div', { class: 'ub-panel__kopf' }, [
+        h('span', { class: 'ub-panel__label', text: 'Filter' }),
+        reset
+      ]),
+      h('p', { class: 'ub-panel__hilfe ub-panel__hilfe--allein', text:
+        'Nicht Gewähltes bleibt sichtbar, blasst aber ab. Ohne Auswahl gilt alles.' }),
+      chipReihe('Phasen', HT.daten.phasenSortiert(namen('phase')), zustand.phasen),
+      chipReihe('Module', namen('modul'), zustand.module),
+      h('div', { class: 'ub-filter__gruppe' }, [
+        h('label', { class: 'ub-filter__label', for: 'ub-szenario', text: 'Szenario' }),
+        szenarioWahl
+      ])
+    ]);
+  }
+
   function panelErkunden() {
     var auswahl = h('select', { class: 'ub-select', id: 'ub-rolle' },
       [h('option', { value: '', text: '— keine —' })].concat(
@@ -893,26 +980,9 @@
       malen();
     });
 
-    var szenarioWahl = h('select', { class: 'ub-select', id: 'ub-szenario' },
-      [h('option', { value: '', text: '— alle —' })].concat(
-        HT.daten.eintraegeDerKategorie('szenario').map(function (s) {
-          return h('option', { value: s.begriff, text: s.begriff });
-        })
-      ));
-    szenarioWahl.value = zustand.szenario;
-    szenarioWahl.addEventListener('change', function () {
-      zustand.szenario = szenarioWahl.value;
-      malen();
-    });
-
     return [
       panelModus(),
-      h('div', { class: 'ub-panel__block' }, [
-        h('label', { class: 'ub-panel__label', for: 'ub-szenario', text: 'Szenario' }),
-        szenarioWahl,
-        h('p', { class: 'ub-panel__hilfe ub-panel__hilfe--allein', text:
-          'Blasst ab, was nicht zu den Modulen des Szenarios gehört.' })
-      ]),
+      panelFilter(),
       h('div', { class: 'ub-panel__block' }, [
         h('label', { class: 'ub-panel__label', for: 'ub-rolle', text: 'Rolle einfärben' }),
         auswahl,

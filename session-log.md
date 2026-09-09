@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (9) — Überblick: Phasen und Module als Filterchips
+
+**Auftrag:** «Im Filter fehlt noch etwas Wichtiges: ich muss in der Lage sein, schnell und intuitiv Phasen und Module an-/abzuwählen für meine Ansicht.» Vorher: «Wenn ein Filter aktiv ist, sollten Elemente, die nicht im Filter enthalten sind, ausgegraut, aber sichtbar sein.»
+
+**Umsetzung:** Die Steuerung des Überblicks hat nach dem Modus einen Block «Filter»: Phasen (Reihenfolge der Vorgehensweise) und Module (Reihenfolge der Methode) als Chips zum An- und Abwählen, darunter das Szenario, oben rechts «Zurücksetzen», sobald etwas gewählt ist. Leer heisst alle. `imAuswahl(feld)`: ein Ergebniskasten bleibt kräftig, wenn eines seiner Elemente in einer gewählten Phase *und* einem gewählten Modul liegt; Modulköpfe und Phasenbalken zählen über ihren Namen. Alles andere blasst wie bisher ab (weisse Fläche 70 %), bleibt sichtbar und klickbar. Ein aktiver Filter (Phasen, Module oder Szenario) färbt das Steuerungs-Icon in Akzent. Das Panel scrollt, wenn es höher als der Viewport wird. Nicht gespeichert, wie Rolle und Szenario. Geprüft mit Konzept + IT-System, ohne Konsolenfehler. `?v=` auf 2026-09-09j.
+
 ## 2026-09-09 (8) — Überblick: Szenario-Filter in der Steuerung
 
 **Auftrag:** «Haben wir den Filter auf der Übersicht links schon eingebaut? Wir müssten für den Filter auch noch Szenarien ergänzen.» — Der Überblick hatte keinen Filter, nur «Rolle einfärben» und «nur minimal gefordert»; der Graph hat die Szenario-Auswahl bereits in der Leiste.
