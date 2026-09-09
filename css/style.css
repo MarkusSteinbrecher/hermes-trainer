@@ -187,16 +187,16 @@ main:focus { outline: none; }
   color: var(--text);
 }
 .marke:hover { color: var(--text); }
+/* Markenzeichen: die Meilenstein-Raute der Methode — ein Quality Gate, kein
+   Buchstabe. Aussen Akzent, innen ausgespart. */
 .marke__logo {
   display: grid;
   place-items: center;
   width: 26px; height: 26px;
   flex: 0 0 auto;
-  background: var(--akzent);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 800;
+  color: var(--akzent);
 }
+.marke__logo svg { display: block; }
 .marke__text {
   font-size: 15px;
   font-weight: 800;

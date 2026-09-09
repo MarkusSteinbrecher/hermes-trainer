@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (7) — Markenzeichen: Meilenstein-Raute statt rotem H
+
+**Auftrag:** «Ja, bau die Raute ein.» — Ein einzelnes H auf Rot lag zu nah an der Kernmarke des Modehauses Hermès. Das neue Zeichen kommt aus der Methode selbst: die Raute des Meilensteins (Quality Gate), wie sie der Graph als Knotenform nutzt.
+
+**Umsetzung:** Kopfzeile (`.marke__logo`) zeigt ein Inline-SVG — Raute in Akzentrot mit ausgesparter Innenraute, ohne Kasten dahinter; das Favicon in `index.html` ist dieselbe Raute als Daten-URI. Kein Buchstabe, kein Fremdmotiv. `?v=` auf 2026-09-09g.
+
 ## 2026-09-09 (6) — Strukturlinien dünn und hellgrau
 
 **Auftrag:** «Die dicken schwarzen Linien sind etwas unschön, können wir die dünn und hellgrau machen?» Dazu die Frage nach einem Logo anstelle des roten H, das keine Markenrechte verletzt (Vorschläge im Chat, noch nicht umgesetzt).
