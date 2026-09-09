@@ -679,6 +679,97 @@
     passTimer = global.setTimeout(zoomPassend, verzoegerung || 60);
   }
 
+  /* --- Rad und Ziehen auf scrollenden Flächen ------------------------------ */
+
+  /* Das Mausrad zoomt um den Zeiger, wie im grossen Graph: erst den Massstab
+     ändern, dann so weit scrollen, dass der Punkt unter dem Zeiger stehen
+     bleibt. Weil das Rad damit nicht mehr scrollt, verschiebt Ziehen mit
+     gedrückter Maustaste die Fläche. Ein Klick bleibt ein Klick: erst ab 8 px
+     Weg zählt es als Zug, und der Klick danach wird geschluckt. Auf schmalen
+     Bildschirmen scrollt die Fläche nicht selbst — dort bleibt alles beim
+     Alten, sonst stünde das Rad für die Seite still.
+     inhaltHolen() liefert das gezoomte Element oder null; skalieren(faktor)
+     wendet den Faktor an und gibt den tatsächlich erreichten zurück. */
+  function radZoomAnbinden(flaeche, inhaltHolen, skalieren) {
+    function scrollt() {
+      var cs = global.getComputedStyle(flaeche);
+      return /auto|scroll/.test(cs.overflowX + ' ' + cs.overflowY);
+    }
+
+    flaeche.addEventListener('wheel', function (ev) {
+      var inhalt = inhaltHolen();
+      if (!inhalt || !scrollt()) { return; }
+      ev.preventDefault();
+      var r = inhalt.getBoundingClientRect();
+      var px = ev.clientX - r.left, py = ev.clientY - r.top;
+      var f = skalieren(Math.exp(-ev.deltaY * (ev.deltaMode === 1 ? 0.05 : 0.0015)));
+      if (!f || f === 1) { return; }
+      flaeche.scrollLeft += px * (f - 1);
+      flaeche.scrollTop += py * (f - 1);
+    }, { passive: false });
+
+    var zug = null;
+    var bewegt = false;
+
+    flaeche.addEventListener('pointerdown', function (ev) {
+      if (ev.button !== 0 || ev.pointerType === 'touch') { return; }
+      if (!inhaltHolen() || !scrollt()) { return; }
+      zug = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, links: flaeche.scrollLeft, oben: flaeche.scrollTop };
+      bewegt = false;
+    });
+
+    flaeche.addEventListener('pointermove', function (ev) {
+      if (!zug || ev.pointerId !== zug.id) { return; }
+      var dx = ev.clientX - zug.x, dy = ev.clientY - zug.y;
+      if (!bewegt) {
+        if (Math.hypot(dx, dy) <= 8) { return; }
+        bewegt = true;
+        try { flaeche.setPointerCapture(zug.id); } catch (e) { /* egal */ }
+        flaeche.classList.add('ist-am-ziehen');
+        document.body.style.userSelect = 'none';
+        if (global.getSelection) { global.getSelection().removeAllRanges(); }
+      }
+      flaeche.scrollLeft = zug.links - dx;
+      flaeche.scrollTop = zug.oben - dy;
+    });
+
+    function zugEnde(ev) {
+      if (!zug || ev.pointerId !== zug.id) { return; }
+      zug = null;
+      flaeche.classList.remove('ist-am-ziehen');
+      document.body.style.userSelect = '';
+      /* «bewegt» bleibt bis zum click-Ereignis gesetzt, damit ein Zug keinen Klick auslöst. */
+      global.setTimeout(function () { bewegt = false; }, 0);
+    }
+    flaeche.addEventListener('pointerup', zugEnde);
+    flaeche.addEventListener('pointercancel', zugEnde);
+    flaeche.addEventListener('click', function (ev) {
+      if (bewegt) { ev.preventDefault(); ev.stopPropagation(); }
+    }, true);
+  }
+
+  /* Massstab der Bühne: derselbe Zoom wie die Knöpfe unten rechts. */
+  function buehneSkalieren(faktor) {
+    var alt = zustand.zoom;
+    zoomSetzen(alt * faktor);
+    return zustand.zoom / alt;
+  }
+
+  /* Massstab des Beziehungsbilds: die Breite wächst oder schrumpft um den
+     Faktor, begrenzt auf das 0,4- bis 3-Fache der Zeichnungsbreite. Ab dem
+     ersten Zoomen gilt die CSS-Grenze «höchstens Spaltenbreite» nicht mehr. */
+  function gbSkalieren(faktor) {
+    var svg = refs.graph && refs.graph.querySelector('svg.ub-gb');
+    if (!svg) { return 1; }
+    var alt = svg.getBoundingClientRect().width;
+    if (!alt) { return 1; }
+    var natur = parseFloat(svg.getAttribute('data-breite')) || alt;
+    var neu = Math.max(natur * 0.4, Math.min(natur * 3, alt * faktor));
+    svg.style.width = Math.round(neu) + 'px';
+    svg.style.maxWidth = 'none';
+    return neu / alt;
+  }
+
   /* --- Breite der Inhaltsseite --------------------------------------------- */
 
   function inhaltBreiteSetzen(px) {
@@ -1268,6 +1359,45 @@
     return '';
   }
 
+  /* Siegel in der Akzentfarbe statt Wortmarke; der Wortlaut («Minimal
+     gefordert», «Zwingend in jedem Projekt») steht im Tooltip und für den
+     Screenreader. */
+  function markerIkone(text) {
+    var svg = svgEl('svg', { viewBox: '0 0 24 24', width: 20, height: 20, 'aria-hidden': 'true', focusable: 'false' });
+    svg.appendChild(svgEl('circle', { cx: 12, cy: 12, r: 10 }));
+    svg.appendChild(svgEl('path', { d: 'M7.6 12.4l2.9 2.9 5.9-6.2' }));
+    return h('span', { class: 'ub-marker', role: 'img', title: text, 'aria-label': text }, svg);
+  }
+
+  var IKONE_DOWNLOAD = ['M12 4v11', 'M7.5 10.5 12 15l4.5-4.5', 'M4.5 19.5h15'];
+
+  /* Der erste Vorlagenverweis (.dotx) aus dem Handbuchtext — auf der
+     Quellseite ein eigener Abschnitt, hier ein Download-Icon im Kopf. */
+  function vorlageVon(text) {
+    var abschnitte = text && text.abschnitte ? text.abschnitte : [];
+    for (var i = 0; i < abschnitte.length; i++) {
+      var bs = abschnitte[i].bloecke || [];
+      for (var j = 0; j < bs.length; j++) {
+        if (bs[j].t === 'download' && bs[j].url) { return bs[j]; }
+      }
+    }
+    return null;
+  }
+
+  function vorlageIkone(block) {
+    var meta = [block.datei, block.groesse].filter(Boolean).join(' · ');
+    var titel = 'Dokumentvorlage herunterladen' + (meta ? ' (' + meta + ')' : '');
+    return h('a', {
+      class: 'ub-kopf__vorlage',
+      href: block.url,
+      target: '_blank',
+      rel: 'noopener',
+      download: block.datei || true,
+      title: titel,
+      'aria-label': titel
+    }, HT.ui.symbol(IKONE_DOWNLOAD, 20));
+  }
+
   function abschnitt(titel, kinder, klasse) {
     return h('section', { class: 'ub-abschnitt' + (klasse ? ' ' + klasse : '') }, [
       h('h3', { class: 'ub-mikro', text: titel })
@@ -1546,6 +1676,7 @@
       role: 'img', 'aria-label': masse.label
     });
     svg.style.width = breite + 'px';
+    svg.setAttribute('data-breite', String(breite));
     var defs = svgEl('defs', {});
     var marker = svgEl('marker', { id: 'ub-gpfeil', viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto-start-reverse' });
     marker.appendChild(svgEl('path', { d: 'M0 0L10 5L0 10Z', 'class': 'gpfeil' }));
@@ -1721,6 +1852,8 @@
   function inhaltZeichnen() {
     if (!refs.inhalt) { return; }
     var vorher = refs.inhalt.scrollTop;
+    var gbAlt = refs.graph && refs.graph.querySelector('svg.ub-gb');
+    var gbBreite = gbAlt && gbAlt.style.maxWidth === 'none' ? gbAlt.style.width : '';
     HT.ui.leeren(refs.inhalt);
     HT.ui.leeren(refs.graph);
 
@@ -1748,29 +1881,37 @@
     var text = hbTexte[e.id] || null;
     var lead = leadQuelle(text);
     var marker = markerVon(e);
+    var vorlage = vorlageVon(text);
 
     refs.inhalt.appendChild(h('article', { class: 'ub-kopf' }, [
       h('div', { class: 'ub-kopf__zeile' }, [
         ikone(ikoneFuer(e), 24, 'ub-ikone--kopf'),
         h('span', { class: 'ub-kopf__kicker', text: kickerVon(e) }),
-        marker ? h('span', { class: 'ub-marker', text: marker }) : null
+        (marker || vorlage) ? h('span', { class: 'ub-kopf__zeichen' }, [
+          marker ? markerIkone(marker) : null,
+          vorlage ? vorlageIkone(vorlage) : null
+        ]) : null
       ]),
       h('h2', { class: 'ub-kopf__titel', text: e.begriff }),
       h('div', { class: 'ub-kopf__lead' }, leadBauen(e, lead))
     ]));
 
-    /* Kein Steckbrief: Ergebnistyp und «minimal gefordert» stehen als Kicker
-       und Marke im Kopf, alles andere zeigt das Beziehungsbild unten. */
+    /* Kein Steckbrief: Ergebnistyp, «minimal gefordert» und die Dokument-
+       vorlage stehen als Kicker und Zeichen im Kopf, alles andere zeigt das
+       Beziehungsbild unten. */
 
     /* Die übrigen Abschnitte der Quellseite in ihrer Reihenfolge — «Inhalt»
-       und «Dokumentenvorlage» also genau so, wie sie auf hermes.admin.ch
-       stehen. Die Beziehungen stehen nicht hier, sondern im unteren Bereich. */
+       also genau so, wie er auf hermes.admin.ch steht. Der Vorlagenverweis
+       hängt als Icon im Kopf; bleibt vom Abschnitt «Dokumentenvorlage» sonst
+       nichts übrig, entfällt er. Die Beziehungen stehen im unteren Bereich. */
     var beziehungen = beziehungenVon(e, lexikonZiel);
     (text && text.abschnitte ? text.abschnitte : []).forEach(function (a) {
       if (a === lead.abschnitt) { return; }                     // steht im Lead
       var titel = (a.titel || '').trim();
       if (AUS_GRAPH.indexOf(titel) !== -1 && beziehungen) { return; }
-      var bs = (a.bloecke || []).filter(function (b) { return lead.bloecke.indexOf(b) === -1; });
+      var bs = (a.bloecke || []).filter(function (b) {
+        return lead.bloecke.indexOf(b) === -1 && b.t !== 'download';
+      });
       if (!bs.length) { return; }
       refs.inhalt.appendChild(abschnitt(titel || 'Aus dem Handbuch',
         [HT.ui.bloecke(bs, { verlinken: false, ebene: 4 })], 'ub-abschnitt--regel'));
@@ -1778,6 +1919,9 @@
 
     if (beziehungen) {
       beziehungen.forEach(function (k) { refs.graph.appendChild(k); });
+      /* Das Nachzeichnen mit dem Handbuchtext darf den Zoom nicht verlieren. */
+      var gb = zustand.gezeichnet === e.id && gbBreite && refs.graph.querySelector('svg.ub-gb');
+      if (gb) { gb.style.width = gbBreite; gb.style.maxWidth = 'none'; }
     } else {
       refs.graph.appendChild(graphHinweis(
         'Für ' + HT.ui.zitat(e.begriff) + ' führt das Handbuch keine Beziehungen zu Aufgaben oder Rollen.'));
@@ -1860,6 +2004,7 @@
     refs.buehne = h('div', { class: 'ub-buehne' }, [
       h('p', { class: 'ub-buehne__laden', text: 'Abbildung wird geladen' })
     ]);
+    radZoomAnbinden(refs.buehne, function () { return refs.abb || null; }, buehneSkalieren);
 
     var warnung = HT.app.datenWarnung();
 
@@ -1985,6 +2130,7 @@
       id: 'ub-graphbereich',
       'aria-label': 'Beziehungen des gewählten Elements'
     });
+    radZoomAnbinden(refs.graph, function () { return refs.graph.querySelector('svg.ub-gb'); }, gbSkalieren);
 
     return [griff, h('div', { class: 'ub-graphkopf' }, [refs.graphKnopf, refs.graphLink]), refs.graph];
   }

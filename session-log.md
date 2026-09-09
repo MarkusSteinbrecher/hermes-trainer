@@ -2,6 +2,18 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (10) — Überblick: Kopfzeile mit Zeichen statt Text, Rad-Zoom auf Bühne und Beziehungsbild
+
+**Auftrag:** (1) Der Link auf die Dokumentvorlage stand als eigener Handbuchabschnitt im Text der Inhaltsseite — ganz nach oben, nur als Download-Icon. (2) Die Wortmarke «Minimal gefordert» oben ebenfalls als Icon. (3) Zoomen mit dem Mausrad im Beziehungsfenster unten und in der Übersicht links.
+
+**Kopfzeile (`js/ueberblick.js`, `inhaltZeichnen`):** Rechts in der Kicker-Zeile ein Block `ub-kopf__zeichen`: Siegel (roter Kreis mit Haken) für «Minimal gefordert» bzw. «Zwingend in jedem Projekt» (Module), daneben ein Download-Icon, das den ersten `download`-Block aus dem Handbuchtext trägt (`href`, `download`, Tooltip mit Dateiname und Grösse). Der Wortlaut steht jeweils in `title` und `aria-label`. Im Text werden `download`-Blöcke übersprungen; der Abschnitt «Dokumentenvorlage» entfällt damit ganz (er bestand nur aus dem Link). Die Überschreibungen für `.hb-vorlage` auf dieser Route sind aus `css/ueberblick.css` raus. `HT.ui.downloadElement` bleibt für Lexikon/Methode.
+
+**Rad-Zoom (`radZoomAnbinden`):** Eine Hilfe für beide scrollenden Flächen: das Rad zoomt um den Zeiger (Massstab ändern, dann so scrollen, dass der Punkt unter dem Zeiger bleibt — dieselbe Faktorformel wie im grossen Graph); weil das Rad damit nicht mehr scrollt, verschiebt Ziehen mit gedrückter Maustaste die Fläche (Schwelle 8 px, Pointer Capture, Klick danach wird in der Capture-Phase geschluckt, Touch bleibt nativ). Bühne: über `zoomSetzen`, die Knöpfe unten rechts zeigen den Wert mit. Beziehungsbild: Breite des `svg.ub-gb` zwischen 0,4- und 3-facher Zeichnungsbreite (`data-breite`), ab dem ersten Zoom ohne die CSS-Grenze «höchstens Spaltenbreite»; der Zoom überlebt das Nachzeichnen, wenn der Handbuchtext eintrifft. Wenn die Fläche nicht selbst scrollt (schmales Layout, Druck), greift nichts — sonst stünde das Rad für die Seite still.
+
+**Geprüft (lokal, Chrome 1552 px):** Projektmanagementplan (Siegel + Download, Text nur noch «Inhalt»), Phasenbericht, Modul Projektsteuerung (Siegel «Zwingend»), Zustand Organisation aktiviert (keine Zeichen). Rad: Bühne 95 → 149 % mit Scroll-Ausgleich, Beziehungsbild 493 → 558 px; Ziehen verschiebt beide Flächen, Klick auf ein Feld danach wählt weiterhin aus. Keine Konsolenfehler. Cache-Marke `?v=2026-09-09k`. Hinweis für künftige Tests: die `scroll`-Aktion der Chrome-Automatisierung löst keine `wheel`-Ereignisse aus — Rad-Handler per `dispatchEvent(new WheelEvent(…))` prüfen.
+
+**Nicht gemacht:** nicht committet (kein Auftrag). Schmales Layout nicht geprüft (Fenster lässt sich hier nicht verkleinern).
+
 ## 2026-09-09 (9) — Überblick: Phasen und Module als Filterchips
 
 **Auftrag:** «Im Filter fehlt noch etwas Wichtiges: ich muss in der Lage sein, schnell und intuitiv Phasen und Module an-/abzuwählen für meine Ansicht.» Vorher: «Wenn ein Filter aktiv ist, sollten Elemente, die nicht im Filter enthalten sind, ausgegraut, aber sichtbar sein.»

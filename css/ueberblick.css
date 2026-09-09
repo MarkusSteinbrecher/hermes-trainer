@@ -411,6 +411,9 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 }
 
 .ub-abb { display: block; height: auto; max-width: none; }
+/* Rad zoomt, Ziehen verschiebt — während des Zugs greift die Hand. */
+.ub-buehne.ist-am-ziehen, .ub-graph.ist-am-ziehen { cursor: grabbing; }
+.ub-buehne.ist-am-ziehen *, .ub-graph.ist-am-ziehen * { cursor: grabbing; }
 
 /* Legende der Zeichen, aus denen die Originalgrafik besteht — eine kleine
    Karte über dem Info-Icon unten links, per Icon ein- und ausblendbar. */
@@ -600,16 +603,25 @@ body[data-route="ueberblick"] .datenwarnung {
   text-transform: uppercase;
   color: var(--ub-akzent-text);
 }
-.ub-marker {
-  margin-left: auto;
-  padding: 3px 8px;
-  background: var(--ub-akzent);
-  color: #fff;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  white-space: nowrap;
+/* Rechts in der Kopfzeile: Siegel («minimal gefordert» / «zwingend») und
+   Download der Dokumentvorlage — nur Zeichen, der Wortlaut steht im Tooltip. */
+.ub-kopf__zeichen { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.ub-marker { display: inline-flex; color: var(--ub-akzent); }
+.ub-marker svg { display: block; }
+.ub-marker circle { fill: currentColor; stroke: none; }
+.ub-marker path { fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ub-kopf__vorlage {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--ub-rand);
+  background: #fff;
+  color: var(--ub-tinte);
+}
+.ub-kopf__vorlage:hover, .ub-kopf__vorlage:focus-visible {
+  border-color: var(--ub-akzent);
+  color: var(--ub-akzent-text);
 }
 .ub-kopf__titel {
   hyphens: auto;
@@ -666,22 +678,6 @@ body[data-route="ueberblick"] .datenwarnung {
 .ub-abschnitt .hb-liste .hb-liste { margin-top: 4px; }
 .ub-abschnitt .hb-li-titel { font-weight: 600; }
 .ub-abschnitt .hb-tabelle { font-size: 13px; }
-
-/* Der Vorlagenverweis steht in css/style.css; hier nur die Farben dieser
-   Ansicht (kein Radius, Rot statt Blau). */
-body[data-route="ueberblick"] .hb-vorlage {
-  border-radius: 0;
-  border-color: var(--ub-rand);
-  background: #fff;
-  color: var(--ub-tinte);
-}
-body[data-route="ueberblick"] .hb-vorlage:hover { border-color: var(--ub-akzent); }
-body[data-route="ueberblick"] .hb-vorlage__ikone {
-  border-radius: 0;
-  background: var(--ub-akzent);
-  color: #fff;
-}
-body[data-route="ueberblick"] .hb-vorlage__meta { color: var(--ub-leise); }
 
 /* Beziehungen aus dem Graphmodell statt der Tabelle der Quellseite. */
 .ub-bez { margin: 0 0 14px; }
