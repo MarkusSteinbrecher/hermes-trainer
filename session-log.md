@@ -2,6 +2,14 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (4) — Überblick: Phasen bekommen dasselbe Beziehungsbild; Aufgaben gruppiert wie im Graph
+
+**Auftrag:** «Ja, mach das gleiche Bild auch für Phasen.»
+
+**Umsetzung:** `graphBildModul()` ist zu `graphBildMenge(e, gehoertDazu, gruppen, gruppeFeld)` verallgemeinert; Modul und Phase rufen es mit ihrem Zugehörigkeitsfeld auf (`module` bzw. `phasen`). Phasen zeigten vorher gar keine Beziehungen (keine Graphknoten). Dabei fiel auf, dass `reihenfolge` die Dateiposition ist und `data/aufgaben.json` alphabetisch liegt — die «Reihenfolge der Methode» gab es so nicht. Die Aufgaben stehen jetzt wie im grossen Graph gruppiert: im Modulbild nach Phasen (Reihenfolge der Vorgehensweise, `HT.daten.phasenSortiert`), im Phasenbild nach Modulen (Reihenfolge der Methode), innerhalb der Gruppe alphabetisch. Rollen und Ergebnisse weiterhin nach Schwerpunkt ihrer Aufgaben. Eine Phase wie Konzept bringt 33 Aufgaben und alle Rollen — das Bild ist dicht, die Hervorhebung beim Zeigen trägt es.
+
+**Geprüft im Browser:** Phase «Konzept» (Projektsteuerung zuerst, dann Projektführung …), Modul «IT-Betrieb», Ergebnisbild unverändert, ohne Konsolenfehler. `?v=` auf 2026-09-09d.
+
 ## 2026-09-09 (3) — Überblick: Module bekommen dasselbe Beziehungsbild wie Ergebnisse
 
 **Auftrag:** «Wenn ich auf ein Modul klicke, sehe ich rechts unten in der Graphsicht etwas anderes als bei den Ergebnissen. Können wir nicht einfach das gleiche darstellen (alle Elemente und deren Beziehungen)?»

@@ -1355,13 +1355,18 @@
     }, linkZiel);
   }
 
-  /* Modul: alles, was das Modul führt, in drei Spalten wie im grossen Graph —
-     links die Rollen, in der Mitte die Aufgaben in der Reihenfolge der
-     Methode, rechts die Ergebnisse. Kanten wie dort: verantwortlich und
+  /* Modul oder Phase: alles, was dazugehört, in drei Spalten wie im grossen
+     Graph — links die Rollen, in der Mitte die Aufgaben in der Reihenfolge
+     der Methode, rechts die Ergebnisse. Kanten wie dort: verantwortlich und
      beteiligt (Rolle → Aufgabe), erzeugt (Aufgabe → Ergebnis, mit Pfeil),
      Rolle verantwortet Ergebnis (gepunktet). Rollen und Ergebnisse stehen
-     nach dem Schwerpunkt ihrer Aufgaben, damit die Kurven flach bleiben. */
-  function graphBildModul(e, linkZiel) {
+     nach dem Schwerpunkt ihrer Aufgaben, damit die Kurven flach bleiben.
+     gehoertDazu(eintrag) entscheidet über die Zugehörigkeit — beim Modul
+     das Feld `module`, bei der Phase das Feld `phasen`. Die Aufgaben stehen
+     wie im grossen Graph gruppiert: gruppen ist die Folge der Gruppennamen
+     (Phasen der Vorgehensweise bzw. Module der Methode), gruppeFeld das
+     Feld der Aufgabe, in dem sie stehen; innerhalb der Gruppe alphabetisch. */
+  function graphBildMenge(e, gehoertDazu, gruppen, gruppeFeld, linkZiel) {
     var Z = HT.graphZeichnen;
     if (!HT.graph || !Z || !Z.knotenElement) { return null; }
     Z.schriftLesen(refs.graph || document.body);
@@ -1377,10 +1382,8 @@
       kanteGesehen[k.id] = true;
       kanten.push(k);
     }
-    function imModul(x) { return x.module && x.module.indexOf(e.begriff) !== -1; }
-
     HT.daten.alleEintraege().forEach(function (x) {
-      if (!imModul(x)) { return; }
+      if (!gehoertDazu(x)) { return; }
       var k = HT.graph.knoten(x.id);
       if (!k) { return; }
       if (x.kategorie === 'aufgabe') { merken(aufgaben, k); }
@@ -1403,7 +1406,16 @@
     });
     if (!aufgaben.length && !ergebnisse.length) { return null; }
 
-    aufgaben.sort(function (a, b) { return a.eintrag.reihenfolge - b.eintrag.reihenfolge; });
+    function gruppe(k) {
+      var werte = k.eintrag[gruppeFeld] || [];
+      for (var i = 0; i < gruppen.length; i++) {
+        if (werte.indexOf(gruppen[i]) !== -1) { return i; }
+      }
+      return gruppen.length;
+    }
+    aufgaben.sort(function (a, b) {
+      return (gruppe(a) - gruppe(b)) || a.begriff.localeCompare(b.begriff, 'de');
+    });
     var zeileVon = {};
     aufgaben.forEach(function (k, i) { zeileVon[k.id] = i; });
 
@@ -1443,7 +1455,7 @@
 
     return bildRendern(e, alle, kanten, {
       breite: breite, hoehe: hoehe, breit: true,
-      label: 'Beziehungen im Modul ' + e.begriff + ': Rollen, Aufgaben, Ergebnisse'
+      label: 'Beziehungen in ' + (e.kategorie === 'phase' ? 'der Phase ' : 'dem Modul ') + e.begriff + ': Rollen, Aufgaben, Ergebnisse'
     }, linkZiel);
   }
 
@@ -1585,9 +1597,28 @@
     return raus.length ? raus : null;
   }
 
-  /* Ergebnisse und Module bekommen das Bild; die Listen bleiben Rückfall. */
+  function namen(kategorie) {
+    return HT.daten.eintraegeDerKategorie(kategorie).map(function (x) { return x.begriff; });
+  }
+
+  /* Modul: Aufgaben nach Phasen gruppiert (Reihenfolge der Vorgehensweise). */
+  function graphBildModul(e, linkZiel) {
+    return graphBildMenge(e,
+      function (x) { return x.module && x.module.indexOf(e.begriff) !== -1; },
+      HT.daten.phasenSortiert(namen('phase')), 'phasen', linkZiel);
+  }
+
+  /* Phase: Aufgaben nach Modulen gruppiert (Reihenfolge der Methode). */
+  function graphBildPhase(e, linkZiel) {
+    return graphBildMenge(e,
+      function (x) { return x.phasen && x.phasen.indexOf(e.begriff) !== -1; },
+      namen('modul'), 'module', linkZiel);
+  }
+
+  /* Ergebnisse, Module und Phasen bekommen das Bild; die Listen bleiben Rückfall. */
   function beziehungenVon(e, linkZiel) {
     if (e.kategorie === 'modul') { return graphBildModul(e, linkZiel) || modulBeziehungen(e, linkZiel); }
+    if (e.kategorie === 'phase') { return graphBildPhase(e, linkZiel); }
     return graphBild(e, linkZiel) || graphBeziehungen(e, linkZiel);
   }
 
