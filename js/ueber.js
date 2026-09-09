@@ -24,6 +24,7 @@
       h('h2', { text: 'Aufbau' }),
       h('ul', {}, [
         h('li', {}, [h('b', { text: 'Graph: ' }), 'die Methodenelemente und ihre Zusammenhänge: als Struktur (Szenarien, Module, Aufgaben, Ergebnisse, Rollen in Spalten), im Fokus (ein Element mit allen Verbindungen) und entlang der Phasen. Jede Verbindung entspricht einem Querverweis der offiziellen Dokumentation; Kategorien, Beziehungen und Filter lassen sich ein- und ausblenden.']),
+        h('li', {}, [h('b', { text: 'Trainer: ' }), 'Ausschnitte aus dem Gesamtbild der Methode — je Phase, je Modul oder das ganze Bild — mit leeren Ergebniskästen; die Namen liegen als Chips bereit und werden an ihren Platz gezogen, die Prüfung zeigt richtig, falsch und offen.']),
         h('li', {}, [h('b', { text: 'Methode: ' }), 'die Kapitel des Referenzhandbuchs (Methodenüberblick, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung) — je Kapitel Kernaussagen und Prüfungsfallen, eine Zusammenfassung und der vollständige Handbuchtext.']),
         h('li', {}, [h('b', { text: 'Lexikon: ' }), 'alle Methodenelemente mit drei Detailstufen: Kurz (erster Satz und Fakten), Kernpunkte (Definition und Querverweise) und Handbuch (vollständige Beschreibung mit Kapitel- und Seitenangabe).']),
         h('li', {}, [h('b', { text: 'Lernkarten: ' }), 'Begriff ↔ Definition mit Selbsteinschätzung; Fortschritt lokal im Browser.']),

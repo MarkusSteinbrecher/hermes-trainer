@@ -2,6 +2,25 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-09 (11) — Neue Ansicht «Trainer»: Ausschnitte der Abbildung zum Zuordnen
+
+**Auftrag:** Auf Basis des Überblicks eine Reihe von Seiten als Ausschnitt aus der Gesamtmethode (Phasen wie Initialisierung, Konzept; jedes Modul). Je Seite die Elemente der Übersicht ohne Inhalt, ein Pool dieser Elemente zum Hineinziehen und Zuordnen; am Ende die Lösung mit richtig/falsch.
+
+**Gemeinsame Grundlage ausgelagert:** `js/abbildung.js` (`HT.abbildung.holen/lesen/masse/kaesten`) trägt jetzt, was der Überblick an der Grafik macht — Laden, Farben, Kastenerkennung aus den `transform`-Matrizen, Beschriftung aus den Textfragmenten, Zuordnung zum Lexikon samt der Tabelle abweichender Beschriftungen. `js/ueberblick.js` nutzt es (Verhalten unverändert, im Browser geprüft). Der Rad-Zoom mit Zieh-Verschiebung aus der Vormittagssitzung liegt als `HT.ui.radZoomAnbinden` in `js/ui.js`.
+
+**Trainer (`js/trainer.js`, `css/trainer.css`, Route `#/trainer` zwischen Überblick und Methode):**
+- Übungen werden zur Laufzeit aus der Geometrie der Grafik abgeleitet, nichts ist hart codiert: Phasenbalken → Zeilen (5 klassische Phasen, Umsetzung als grösste zuletzt), Modulköpfe → Spalten (gleichnamige Köpfe vereint — Projektsteuerung/Projektführung steht zweimal; eine Spalte reicht bis zum nächsten anderen Kopf darunter, darum umfasst Projektgrundlagen nur die Initialisierung), dazu das Gesamtbild. 18 Übungen; Zählprobe stimmig: Phasen 8+27+29+11+5 = Module 16+4+10+7+12+3+6+5+5+7+5 = Gesamtbild 80 Kästen.
+- Ein Ausschnitt ist ein Raster aus Fenstern: je Zeile × Spalte ein verschachteltes `<svg>` mit eigenem `viewBox` auf eine gemeinsame Kopie der Grafik (`<defs>` + `<use>`); so stehen Phasenbalken und Modulspalte nebeneinander, obwohl sie in der Grafik weit auseinander liegen, und über einer Phasenzeile bleibt die Kopfzeile der Module (nur wenn sie nicht ohnehin in der Zeile liegt — bei Konzept liegt sie drin). Gepunktete Linien markieren die Schnittkanten. Die Kästen werden dafür einmal in Wurzelkoordinaten umgerechnet — die erste Gruppe der Grafik trägt `translate(-7 -6)`, was im Überblick nie auffiel, weil die Trefferschicht dort in dieser Gruppe liegt.
+- Je Ergebniskasten: Deckel in der Originalfüllung (weiss bei Zuständen), `<foreignObject>` mit dem Etikett in Arial 9 und den Umbrüchen des Drucks (Textfragmente zeilenweise gefügt, Bindestrich am Zeilenende bleibt Umbruchstelle), Trefferfläche mit `title`/`aria-label` und Tastatur (Tab, Enter/Leertaste).
+- Pool: Chips alphabetisch (Lexikonnamen, gleichnamige Kästen haben je einen Chip; Prüfung über die Eintrags-ID, darum passt jeder in jeden gleichnamigen Kasten). Ziehen mit Maus/Stift (Dokument-Listener, Geist am Zeiger, Ziel unter dem Zeiger hervorgehoben, Klick nach dem Zug wird geschluckt; ein Zug ohne Zwischenbewegung zählt über den Weg bis zum Loslassen), auf Touch nur Antippen (Chip, dann Kasten — ein Zug stritte mit dem Scrollen des Pools). Klick auf belegten Kasten legt zurück, Chip auf belegten Kasten tauscht.
+- Prüfen: grün/rot/grau gestrichelt, richtiger Name in jedem Kasten, daneben «Falsch gelegt» (durchgestrichen → richtig, verlinkt) und «Offen geblieben»; beste Quote je Übung in localStorage (`trainer`), auf den Karten der Übersicht mit Haken bei voller Punktzahl. Knöpfe Prüfen/Zurücksetzen bzw. Nochmals, dazu «Nächste: …». Zoom −/+/Passend (Passend berücksichtigt Breite und Fensterhöhe — Modulspalten sind hoch), Rad um den Zeiger, Ziehen verschiebt.
+
+**Geprüft (lokal, Chrome 1552 px, keine Konsolenfehler):** Übersicht mit 18 Karten; Konzept (Kopfzeile ohne Initialisierungsköpfe, Deckel passgenau), IT-System (Phasenbalken + Spalte), Gesamtbild; Antippen-Zuordnung, Prüfen mit einem richtigen und einem falschen Chip (Auswertung, Farben, Listen); Überblick nach der Auslagerung unverändert (Klick auf Projektmanagementplan, Siegel + Download). Ziehen nur mit synthetischen Pointer-Ereignissen verifiziert — die `left_click_drag`-Aktion der Chrome-Automatisierung lässt die Maustaste nicht los (kein `pointerup`), echte Mausbedienung nicht simulierbar. Bekannt: der erste Klick nach `navigate` geht verloren (wie im Überblick).
+
+**Sonst:** README (Absatz Trainer, Technik-Absatz zu `abbildung.js`/Fenster-Raster), Über-Seite, Cache-Marke `?v=2026-09-09l`. Nicht committet.
+
+**Offen / Ideen:** Modulköpfe und Phasenbalken wahlweise ebenfalls leeren (dann kämen sie in den Pool); Übung «Rollen» (wer verantwortet welches Ergebnis) im selben Muster; schmales Layout nicht geprüft; Chips auf Touch-Geräten sehr lang bei 80 Kästen — eventuell Suche im Pool.
+
 ## 2026-09-09 (10) — Überblick: Kopfzeile mit Zeichen statt Text, Rad-Zoom auf Bühne und Beziehungsbild
 
 **Auftrag:** (1) Der Link auf die Dokumentvorlage stand als eigener Handbuchabschnitt im Text der Inhaltsseite — ganz nach oben, nur als Download-Icon. (2) Die Wortmarke «Minimal gefordert» oben ebenfalls als Icon. (3) Zoomen mit dem Mausrad im Beziehungsfenster unten und in der Übersicht links.

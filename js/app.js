@@ -10,6 +10,7 @@
   var ROUTEN = [
     { name: 'graph',      label: 'Graph',      kurz: 'Graph',    pfade: ['M12 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M5 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M19 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M12 8v3', 'M12 11 6.5 16', 'M12 11l5.5 5'] },
     { name: 'ueberblick', label: 'Überblick',  kurz: 'Überblick', pfade: ['M3.5 4.5h17v15h-17Z', 'M3.5 9h17', 'M9 9v10.5', 'M14.5 9v10.5'] },
+    { name: 'trainer',    label: 'Trainer',    kurz: 'Trainer',  pfade: ['M4 5h7v6H4Z', 'M13 13h7v6h-7Z', 'M13 5h7v6h-7Z', 'M4 13h7v6H4Z', 'M6 16l1.6 1.6L10 14.8'] },
     { name: 'methode',    label: 'Methode',    kurz: 'Methode',  pfade: ['M4 5h6v6H4Z', 'M14 5h6v6h-6Z', 'M4 15h6v4H4Z', 'M14 15h6v4h-6Z'] },
     { name: 'lexikon',    label: 'Lexikon',    kurz: 'Lexikon',  pfade: ['M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M4 17.5h15'] },
     { name: 'lernkarten', label: 'Lernkarten', kurz: 'Karten',   pfade: ['M8 3h10a2 2 0 0 1 2 2v9', 'M5 7h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z'] },

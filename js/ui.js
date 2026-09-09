@@ -486,6 +486,76 @@
     ]);
   }
 
+  /* --- Rad und Ziehen auf scrollenden Flächen ------------------------------ */
+
+  /* Das Mausrad zoomt um den Zeiger, wie im grossen Graph: erst den Massstab
+     ändern, dann so weit scrollen, dass der Punkt unter dem Zeiger stehen
+     bleibt. Weil das Rad damit nicht mehr scrollt, verschiebt Ziehen mit
+     gedrückter Maustaste die Fläche. Ein Klick bleibt ein Klick: erst ab 8 px
+     Weg zählt es als Zug, und der Klick danach wird geschluckt. Auf schmalen
+     Bildschirmen scrollt die Fläche nicht selbst — dort bleibt alles beim
+     Alten, sonst stünde das Rad für die Seite still.
+     inhaltHolen() liefert das gezoomte Element oder null; skalieren(faktor)
+     wendet den Faktor an und gibt den tatsächlich erreichten zurück. */
+  function radZoomAnbinden(flaeche, inhaltHolen, skalieren) {
+    function scrollt() {
+      var cs = global.getComputedStyle(flaeche);
+      return /auto|scroll/.test(cs.overflowX + ' ' + cs.overflowY);
+    }
+
+    flaeche.addEventListener('wheel', function (ev) {
+      var inhalt = inhaltHolen();
+      if (!inhalt || !scrollt()) { return; }
+      ev.preventDefault();
+      var r = inhalt.getBoundingClientRect();
+      var px = ev.clientX - r.left, py = ev.clientY - r.top;
+      var f = skalieren(Math.exp(-ev.deltaY * (ev.deltaMode === 1 ? 0.05 : 0.0015)));
+      if (!f || f === 1) { return; }
+      flaeche.scrollLeft += px * (f - 1);
+      flaeche.scrollTop += py * (f - 1);
+    }, { passive: false });
+
+    var zug = null;
+    var bewegt = false;
+
+    flaeche.addEventListener('pointerdown', function (ev) {
+      if (ev.button !== 0 || ev.pointerType === 'touch') { return; }
+      if (!inhaltHolen() || !scrollt()) { return; }
+      zug = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, links: flaeche.scrollLeft, oben: flaeche.scrollTop };
+      bewegt = false;
+    });
+
+    flaeche.addEventListener('pointermove', function (ev) {
+      if (!zug || ev.pointerId !== zug.id) { return; }
+      var dx = ev.clientX - zug.x, dy = ev.clientY - zug.y;
+      if (!bewegt) {
+        if (Math.hypot(dx, dy) <= 8) { return; }
+        bewegt = true;
+        try { flaeche.setPointerCapture(zug.id); } catch (e) { /* egal */ }
+        flaeche.classList.add('ist-am-ziehen');
+        document.body.style.userSelect = 'none';
+        if (global.getSelection) { global.getSelection().removeAllRanges(); }
+      }
+      flaeche.scrollLeft = zug.links - dx;
+      flaeche.scrollTop = zug.oben - dy;
+    });
+
+    function zugEnde(ev) {
+      if (!zug || ev.pointerId !== zug.id) { return; }
+      zug = null;
+      flaeche.classList.remove('ist-am-ziehen');
+      document.body.style.userSelect = '';
+      /* «bewegt» bleibt bis zum click-Ereignis gesetzt, damit ein Zug keinen Klick auslöst. */
+      global.setTimeout(function () { bewegt = false; }, 0);
+    }
+    flaeche.addEventListener('pointerup', zugEnde);
+    flaeche.addEventListener('pointercancel', zugEnde);
+    flaeche.addEventListener('click', function (ev) {
+      if (bewegt) { ev.preventDefault(); ev.stopPropagation(); }
+    }, true);
+  }
+
+
   HT.ui = {
     h: h,
     symbol: symbol,
@@ -507,6 +577,7 @@
     prozent: prozent,
     quellenLink: quellenLink,
     badge: badge,
-    leerZustand: leerZustand
+    leerZustand: leerZustand,
+    radZoomAnbinden: radZoomAnbinden
   };
 }(window));
