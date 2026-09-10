@@ -4,8 +4,9 @@
    («Nach Phasen» oder «Nach Modulen») legt die Bahnen des Swimlane-Layouts
    fest, das jeweils andere Kriterium bleibt als zusätzlicher Filter. Steuerung: eine
    einzige Leiste über der Fläche (Ansicht, Auswahl, Werkzeuge) unter der
-   Kopfzeile der Anwendung; Icon-Leiste für Elemente und Verbindungen auf
-   der Fläche, alles Weitere als Popover. Ein Klick auf einen
+   Kopfzeile der Anwendung; auf der Fläche links die Icon-Leiste für
+   Elemente und Verbindungen, rechts die Werkzeuge (Filter, Suche,
+   Darstellung, Legende, Zoom), alles Weitere als Popover. Ein Klick auf einen
    Knoten wählt ihn aus, hebt seine Verbindungen hervor und zeigt rechts die
    Lexikonkarte mit allen Querverweisen. */
 (function (global) {
@@ -696,9 +697,6 @@
       refs.knopfQuer,
       refs.fokusChip,
       refs.knopfReset,
-      h('div', { class: 'graph-werkzeuge' }, [
-        refs.knopfFilter, refs.knopfSuche, refs.knopfDarstellung, refs.knopfLegende, refs.zoom
-      ]),
       refs.status
     ]);
 
@@ -767,6 +765,21 @@
       refs.railRel
     ]);
     return refs.rail;
+  }
+
+  /* Rechte Icon-Leiste: die Werkzeuge, die früher rechts in der Leiste
+     standen — Filter, Suche, Darstellung, Legende und darunter der Zoom.
+     Die Knöpfe entstehen in leisteBauen(), damit die Popover-Tabelle POPS
+     sie über refs findet. */
+  function railRechtsBauen() {
+    refs.railRechts = h('div', { class: 'grail grail--rechts' }, [
+      h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Werkzeuge' }, [
+        refs.knopfFilter, refs.knopfSuche, refs.knopfDarstellung, refs.knopfLegende
+      ]),
+      h('div', { class: 'grail__trenner', 'aria-hidden': 'true' }),
+      refs.zoom
+    ]);
+    return refs.railRechts;
   }
 
   function railAktualisieren(zahlen) {
@@ -869,7 +882,7 @@
     refs.leer.hidden = true;
 
     refs.buehne = h('div', { class: 'graph-buehne' }, leisteBauen().concat([
-      h('div', { class: 'graph-flaeche-huelle' }, [refs.flaeche, railBauen(), refs.leer, refs.pop, refs.tooltip])
+      h('div', { class: 'graph-flaeche-huelle' }, [refs.flaeche, railBauen(), railRechtsBauen(), refs.leer, refs.pop, refs.tooltip])
     ]));
 
     zeichner = HT.graphZeichnen.erstellen(refs.flaeche, {

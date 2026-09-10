@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-10 — Graph: Werkzeuge als rechte Icon-Leiste auf der Fläche
+
+**Auftrag:** «Nimm die Icons, die wir in der Top Navigation ganz rechts haben (+/- etc.) und füge sie in die Graph Seite selber ein. Ähnlich wie die Box die wir links haben, nur dafür auf der rechten Seite.»
+
+**Umsetzung:** `railRechtsBauen()` in `js/graph.js` legt `grail grail--rechts` mit Filter, Suche, Darstellung, Legende und darunter dem Zoom (−, +, Einpassen) rechts oben auf die Fläche; die Knöpfe entstehen weiterhin in `leisteBauen()`, damit `POPS` sie über `refs` findet. Die Leiste darüber enthält nur noch Ansicht, «Alle Filter», Auswahl und Zurücksetzen. Popover rücken um die Leistenbreite nach links (`right: calc(1.5rem + 54px)`, auch `gpop--breit`). Unter 700 px liegt die rechte Leiste als Reihe unten, der Zoom liegend.
+
 ## 2026-09-10 — Umbenennung in «meinHERMES», Ko-fi-Link
 
 **Auftrag:** «Schau mal in das rrradio repository, dort haben wir das Kofi Logo von mir auf der Seite. Ergänze das auf der HERMES Seite. Und lass uns die Seite "meinHERMES" nennen.»
