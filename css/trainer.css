@@ -189,7 +189,9 @@ body.tr-zieht, body.tr-zieht * { cursor: grabbing; }
 .tr-geist {
   position: fixed;
   z-index: 60;
-  transform: translate(-50%, -140%);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
   padding: 5px 9px;
   border: 1px solid var(--akzent);
   background: var(--weiss);
@@ -198,7 +200,7 @@ body.tr-zieht, body.tr-zieht * { cursor: grabbing; }
   line-height: 1.3;
   box-shadow: var(--schatten-stark);
   pointer-events: none;
-  white-space: nowrap;
+  text-align: left;
 }
 
 .tr-ergebnis { padding: 12px 14px; border: 1px solid var(--rand); background: var(--weiss); outline: none; }

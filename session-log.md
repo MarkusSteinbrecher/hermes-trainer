@@ -2,6 +2,17 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-10 — Trainer: Prüflogik über alle Übungen geprüft, Geist unter der Maus, Abschluss vollständig
+
+**Auftrag:** «Ich ziehe die richtigen Elemente auf die Boxen und wenn ich prüfen klicke, zeigt es an, dass es falsch ist. Checke das bitte nochmal über alles. … Kann der Kasten direkt unter der Maus sein? Der Reset Knopf funktioniert auch noch nicht.»
+
+**Befund:** Die Prüflogik (`passt`, Ziel-IDs aus `abbildung.js`) ist korrekt — im Browser alle 18 Übungen skriptgesteuert mit der aufgedeckten Lösung belegt, überall 100 % (Phasen 8/27/29/11/5/67, Module 16/4/10/7/12/3/6/5/5/7/5, Gesamtbild 80). Zwei echte Fehler dahinter:
+- **Phase Abschluss war unlösbar (max. 4/5):** «Projekterfahrungen» ragt in der Grafik über den Abschluss-Balken hinaus in die Zeile darüber. Die Mitte lag im Fenster (→ Ziel gezählt), die linke obere Ecke nicht (→ `versatz()` null, kein Zielrechteck, Originaltext blieb sichtbar). Neu `fensterWeiten()`: jedes Fenster nimmt Kästen, deren Mitte darin liegt, ganz auf; berührende Fenster verschmelzen; Zielzahl danach neu gezählt.
+- **Geist 41 px über dem Zeiger** (`translate(-50%, -140%)`): wer den Geist auf den Kasten legt, lässt mit dem Zeiger einen Kasten tiefer los — im Initialisierungs-Stapel (37 px Abstand) landet der Chip dann daneben. Das erklärt die «falschen» Prüfungen. Neu: Griffpunkt beim `pointerdown` gemerkt, Geist in Chipgrösse an derselben Stelle unter dem Zeiger; Trefferprüfung weiterhin am Zeiger.
+- **Reset** funktioniert im aktuellen Stand (Commit `caf15d2` hatte ihn repariert); vermutlich noch die gecachte Fassung auf GitHub Pages (`index.html` max-age 600). Nebenbei: `gezogen`-Sperre klebte nach einem Treffer am Chip (Knopf wird ersetzt, Klick kommt nie) — erster Klick nach dem Zurücklegen ging verloren; Sperre fällt jetzt beim Neuaufbau des Chips.
+
+**Test-Notiz:** Im Hintergrundtab drosselt Chrome `setTimeout` auf 1/s — Testskripte ohne Timer schreiben (MessageChannel zum Yielden). Testbestwerte aus `localStorage` (`hermes-trainer:trainer`) wieder entfernt; der Sponsor hatte noch keine.
+
 ## 2026-09-10 — Persönliche Notizen: Markieren, Kommentieren, freie Notizen, Sichern als Datei
 
 **Auftrag:** «Können wir die Seite so personalisieren, dass der User Textpassagen highlighten, Kommentare ergänzen kann? Im Browser speichern und lokal sichern.» Nach Rückfrage: ja zu Lernstand im Export und zu freien Notizen ohne Textbezug.

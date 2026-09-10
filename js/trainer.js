@@ -194,7 +194,37 @@
     });
 
     liste.forEach(function (u) { u.anzahl = kaestenIm(u).length; });
-    return liste.filter(function (u) { return u.anzahl > 0; });
+    liste = liste.filter(function (u) { return u.anzahl > 0; });
+    liste.forEach(function (u) { fensterWeiten(u); u.anzahl = kaestenIm(u).length; });
+    return liste;
+  }
+
+  /* Ein Fenster nimmt jeden Kasten ganz auf, dessen Mitte darin liegt. In der
+     Grafik ragt «Projekterfahrungen» über den Balken der Phase Abschluss
+     hinaus in die Zeile darüber — ohne Weitung fiele der Kasten aus dem
+     Ausschnitt und bliebe als Ziel unerreichbar. Berühren sich zwei Fenster
+     danach, verschmelzen sie. */
+  function fensterWeiten(def) {
+    var kaesten = kaestenIm(def);
+    function weiten(bahnen, lage, laenge) {
+      kaesten.forEach(function (k) {
+        var m = mitte(k)[lage];
+        var a = k[lage] - 1, b = k[lage] + k[laenge] + 1;
+        bahnen.forEach(function (r) {
+          if (m >= r[0] && m <= r[1]) { r[0] = Math.min(r[0], a); r[1] = Math.max(r[1], b); }
+        });
+      });
+      var sortiert = bahnen.slice().sort(function (p, q) { return p[0] - q[0]; });
+      var raus = [];
+      sortiert.forEach(function (r) {
+        var letzte = raus[raus.length - 1];
+        if (letzte && r[0] <= letzte[1] + LUECKE / 2) { letzte[1] = Math.max(letzte[1], r[1]); }
+        else { raus.push([r[0], r[1]]); }
+      });
+      return raus;
+    }
+    def.xs = weiten(def.xs, 'x', 'w');
+    def.ys = weiten(def.ys, 'y', 'h');
   }
 
   /* Die Kästen werden in den Koordinaten der ersten Gruppe der Grafik
@@ -536,6 +566,7 @@
         disabled: gepr ? 'disabled' : null
       });
       c.el = el;
+      c.gezogen = false;
       el.addEventListener('click', function () { if (!c.gezogen) { chipGeklickt(c); } c.gezogen = false; });
       chipZiehbar(c, el);
       refs.pool.appendChild(el);
@@ -600,6 +631,10 @@
     el.addEventListener('pointerdown', function (ev) {
       if (ev.button !== 0 || ev.pointerType === 'touch' || uebung.geprueft) { return; }
       var start = { x: ev.clientX, y: ev.clientY };
+      /* Griffpunkt im Chip: der Geist erscheint an derselben Stelle unter
+         dem Zeiger, an der der Chip angefasst wurde, in derselben Grösse. */
+      var mass = el.getBoundingClientRect();
+      var griff = { x: ev.clientX - mass.left, y: ev.clientY - mass.top };
       var geist = null;
       var drueber = null;
 
@@ -616,12 +651,14 @@
         if (!geist) {
           if (Math.hypot(e.clientX - start.x, e.clientY - start.y) < 6) { return; }
           geist = h('div', { class: 'tr-geist', text: chip.name });
+          geist.style.width = Math.round(mass.width) + 'px';
+          geist.style.height = Math.round(mass.height) + 'px';
           document.body.appendChild(geist);
           el.classList.add('ist-am-ziehen');
           document.body.classList.add('tr-zieht');
         }
-        geist.style.left = e.clientX + 'px';
-        geist.style.top = e.clientY + 'px';
+        geist.style.left = (e.clientX - griff.x) + 'px';
+        geist.style.top = (e.clientY - griff.y) + 'px';
         var z = zielUnter(e);
         if (z !== drueber) {
           if (drueber && drueber.gruppe) { drueber.gruppe.classList.remove('ist-drueber'); }
@@ -645,6 +682,9 @@
         document.body.classList.remove('tr-zieht');
         if (drueber && drueber.gruppe) { drueber.gruppe.classList.remove('ist-drueber'); }
         if (!geist && !weit) { return; }
+        /* Der Klick, der dem Loslassen folgt, darf den Chip nicht wählen.
+           Nach einem Treffer kommt kein Klick mehr am alten Knopf an — die
+           Sperre fällt dann beim nächsten Aufbau des Chips (zeichnen). */
         chip.gezogen = true;
         var z = punkt && e.type === 'pointerup' ? zielUnter(punkt) : null;
         if (z) { setzen(chip, z); }
