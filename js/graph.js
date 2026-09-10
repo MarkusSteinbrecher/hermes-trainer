@@ -7,8 +7,9 @@
    Kopfzeile der Anwendung; auf der Fläche links die Icon-Leiste für
    Elemente und Verbindungen, rechts die Werkzeuge (Filter, Suche,
    Darstellung, Legende, Zoom), alles Weitere als Popover. Ein Klick auf einen
-   Knoten wählt ihn aus, hebt seine Verbindungen hervor und zeigt rechts die
-   Lexikonkarte mit allen Querverweisen. */
+   Knoten fokussiert ihn: nur er und seine verbundenen Elemente bleiben
+   stehen, in die Fläche eingepasst, rechts die Lexikonkarte mit allen
+   Querverweisen. Ein zweiter Klick hebt den Fokus wieder auf. */
 (function (global) {
   'use strict';
 
@@ -172,17 +173,23 @@
      in einem Modul oder einer Phase: die Auswahl wird geleert, die
      Vorgehensweise passt sich dem Element an. Phasen und Module lassen sich
      danach wieder dazuschalten — der Fokus bleibt. */
+  var umfangVorFokus = null;
+
   function fokusUmfang(k) {
     var e = k.kategorie === 'rolle' ? null : HT.graph.einstieg(k.id);
+    if (!zustand.fokusId) { umfangVorFokus = zustand.umfang; }
     zustand.umfang = { vorgehen: e ? e.umfang.vorgehen : zustand.umfang.vorgehen, phasen: [], module: [] };
   }
 
-  /** Fokus: nur dieses Element mit seiner Nachbarschaft. Nochmals gewählt
-      hebt ihn auf. Der Umfang wird bei Bedarf so gesetzt, dass das Element
-      sichtbar ist — wie beim Anzeigen aus der Suche. */
+  /** Fokus: nur dieses Element mit seiner Nachbarschaft, eingepasst in die
+      Fläche. Ein Klick auf einen Knoten setzt ihn; das fokussierte Element
+      nochmals gewählt hebt ihn auf und stellt die Auswahl von vorher wieder
+      her. Der Umfang wird bei Bedarf so gesetzt, dass das Element sichtbar
+      ist — wie beim Anzeigen aus der Suche. */
   function fokusSetzen(id) {
     if (!id || zustand.fokusId === id) {
       zustand.fokusId = null;
+      if (umfangVorFokus) { zustand.umfang = umfangVorFokus; umfangVorFokus = null; }
       popSchliessen();
       geaendert();
       return;
@@ -201,6 +208,7 @@
     zustand.umfang.phasen = [];
     zustand.umfang.module = [];
     zustand.fokusId = null;
+    umfangVorFokus = null;
     popSchliessen();
     geaendert();
   }
@@ -408,7 +416,7 @@
           abschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
         ]),
         abschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
-          darstellungHaken('Phasenmodell im Knoten (Phasen des Elements schwarz)', 'phasenstreifen', false),
+          darstellungHaken('Phasenmodell im Knoten (Phasen des Elements dunkelgrau)', 'phasenstreifen', false),
           darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
           darstellungHaken('Nur minimal geforderte Dokumente', 'nurMinimal'),
           darstellungHaken('Nur Entscheidungsaufgaben', 'nurEntscheide')
@@ -519,7 +527,7 @@
   function darstellungInhalt() {
     return popInhalt([
       h('div', { class: 'gs-liste' }, [
-        schalter('Phasenmodell im Knoten (Phasen des Elements schwarz)', zustand.phasenstreifen, function (v) { zustand.phasenstreifen = v; geaendert(false); popZeichnen(); }),
+        schalter('Phasenmodell im Knoten (Phasen des Elements dunkelgrau)', zustand.phasenstreifen, function (v) { zustand.phasenstreifen = v; geaendert(false); popZeichnen(); }),
         schalter('Ergebnisse ohne erzeugende Aufgabe ausblenden', zustand.isolierteAusblenden, function (v) { zustand.isolierteAusblenden = v; geaendert(); popZeichnen(); }),
         schalter('Nur minimal geforderte Dokumente', zustand.nurMinimal, function (v) { zustand.nurMinimal = v; geaendert(); popZeichnen(); }),
         schalter('Nur Entscheidungsaufgaben', zustand.nurEntscheide, function (v) { zustand.nurEntscheide = v; geaendert(); popZeichnen(); })
@@ -549,7 +557,7 @@
           h('span', { text: t })
         ]);
       })),
-      h('p', { class: 'glegende__hinweis', text: 'Meilensteine sind Ergebnisse, stehen als Quality Gate aber im Sechseck mit Raute. Das kleine Phasenmodell am Knoten zeigt die Phasen des Elements schwarz: links Initialisierung, in der Mitte oben Konzept, Realisierung und Einführung, darunter Umsetzung (agil), rechts Abschluss. Jede Verbindung entspricht einem Querverweis in der offiziellen Dokumentation — es werden keine Beziehungen ergänzt.' })
+      h('p', { class: 'glegende__hinweis', text: 'Meilensteine sind Ergebnisse, stehen als Quality Gate aber im Sechseck mit Raute. Das kleine Phasenmodell am Knoten zeigt die Phasen des Elements dunkelgrau: links Initialisierung, in der Mitte oben Konzept, Realisierung und Einführung, darunter Umsetzung (agil), rechts Abschluss. Jede Verbindung entspricht einem Querverweis in der offiziellen Dokumentation — es werden keine Beziehungen ergänzt.' })
     ]);
   }
 
@@ -659,7 +667,7 @@
       h('button', { type: 'button', class: 'graph-zoom__knopf graph-zoom__knopf--stufe', 'aria-label': 'Verkleinern', title: 'Verkleinern', text: '−', on: { click: function () { if (zeichner) { zeichner.zoomen(0.8); } } } }),
       h('button', { type: 'button', class: 'graph-zoom__knopf graph-zoom__knopf--stufe', 'aria-label': 'Vergrössern', title: 'Vergrössern', text: '+', on: { click: function () { if (zeichner) { zeichner.zoomen(1.25); } } } }),
       h('button', { type: 'button', class: 'graph-zoom__knopf graph-zoom__knopf--ikone', 'aria-label': 'Einpassen', title: 'Einpassen',
-        on: { click: function () { if (zeichner) { zeichner.einpassen(); } } } },
+        on: { click: function () { if (zeichner) { zeichner.einpassen(einpassOptionen()); } } } },
         HT.ui.symbol(['M9.6 4.6H4.6v5', 'M14.4 4.6h5v5', 'M9.6 19.4h-5v-5', 'M14.4 19.4h5v-5'], 17))
     ]);
 
@@ -886,7 +894,8 @@
     ]));
 
     zeichner = HT.graphZeichnen.erstellen(refs.flaeche, {
-      beiKlick: function (id) { popSchliessen(); auswaehlen(id); },
+      freihalten: function () { return [refs.rail, refs.railRechts]; },
+      beiKlick: function (id) { fokusSetzen(id); },
       beiDoppelklick: einschraenken,
       beiLeerklick: function () { tooltipVerbergen(); popSchliessen(); },
       beiHover: function (id) {
@@ -914,7 +923,7 @@
     HT.ui.leeren(refs.tooltip);
     refs.tooltip.appendChild(h('div', { class: 'graph-tooltip__kopf' }, [HT.ui.badge(k.kategorie), h('b', { text: k.begriff })]));
     refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__text', text: HT.ui.kuerzen(k.eintrag.kurz || k.eintrag.definition, 160) }));
-    refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__tipp', text: meta.singular + ' · Klick: Details' + (k.eintrag.module && k.eintrag.module.length ? ' · Doppelklick: auf Modul einschränken' : '') }));
+    refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__tipp', text: meta.singular + ' · Klick: nur dieses Element mit seinen Verbindungen' + (k.eintrag.module && k.eintrag.module.length ? ' · Doppelklick: auf Modul einschränken' : '') }));
     refs.tooltip.hidden = false;
 
     var b = refs.buehne.getBoundingClientRect();
@@ -974,7 +983,7 @@
     refs.status.textContent = zustand.statusText;
 
     var layout = HT.graphZeichnen.layoutSpalten(tg, { phasenstreifen: zustand.phasenstreifen });
-    zeichner.zeigen(layout, { einpassen: einpassen !== false, phasenstreifen: zustand.phasenstreifen });
+    zeichner.zeigen(layout, { einpassen: einpassen !== false, phasenstreifen: zustand.phasenstreifen, maxZoom: einpassOptionen().maxZoom });
     leerZustandZeigen(layout.knoten.length === 0);
 
     if (zustand.auswahlId && !layout.knoten.some(function (n) { return n.id === zustand.auswahlId; })) {
@@ -1114,9 +1123,15 @@
     return global.matchMedia && global.matchMedia('(min-width: 1100px)').matches;
   }
 
+  /* Im Fokus sind es wenige Knoten — sie dürfen die Fläche füllen. */
+  function einpassOptionen() {
+    return { maxZoom: zustand.fokusId ? 1.6 : undefined };
+  }
+
+  /* Nach dem Öffnen oder Schliessen des Detailfelds (Übergang .2s) neu einpassen. */
   function neuEinpassen() {
     if (!zeichner) { return; }
-    global.setTimeout(function () { zeichner.einpassen(); }, 230);
+    global.setTimeout(function () { zeichner.einpassen(einpassOptionen()); }, 260);
   }
 
   function alles(einpassen) {

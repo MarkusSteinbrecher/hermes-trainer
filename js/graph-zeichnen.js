@@ -435,6 +435,10 @@
     container.appendChild(svg);
 
     var sicht = { k: 1, x: 0, y: 0 };
+    /* Solange die Ansicht seit dem letzten Einpassen nicht von Hand verschoben
+       oder gezoomt wurde, folgt sie einer Grössenänderung der Fläche — etwa
+       wenn das Detailfeld aufgeht oder das Fenster schmaler wird. */
+    var eingepasst = null;
     var elemente = { knoten: {}, kanten: {} };
     var nachbarschaft = {};   // id -> { knoten: {id:true}, kanten: {id:true} }
     var aktuellesLayout = null;
@@ -448,28 +452,52 @@
       return { w: r.width || 800, h: r.height || 600, links: r.left, oben: r.top };
     }
 
+    /* Bereiche, die über der Fläche liegen (die Icon-Leisten), sollen den
+       eingepassten Graphen nicht verdecken. Jedes Element schneidet die
+       Fläche an der Seite ab, an der das am wenigsten kostet: eine schmale
+       Spalte links nimmt links Platz weg, eine flache Reihe unten unten. */
+    function freierBereich(m) {
+      var frei = { links: 0, rechts: 0, oben: 0, unten: 0 };
+      var elemente = rueckrufe.freihalten ? rueckrufe.freihalten() : [];
+      elemente.forEach(function (el) {
+        if (!el || el.hidden || !el.offsetParent) { return; }
+        var r = el.getBoundingClientRect();
+        var links = r.right - m.links, rechts = m.links + m.w - r.left;
+        var oben = r.bottom - m.oben, unten = m.oben + m.h - r.top;
+        var wahl = [
+          ['links', links, links * m.h], ['rechts', rechts, rechts * m.h],
+          ['oben', oben, oben * m.w], ['unten', unten, unten * m.w]
+        ].sort(function (a, b) { return a[2] - b[2]; })[0];
+        frei[wahl[0]] = Math.max(frei[wahl[0]], wahl[1]);
+      });
+      return frei;
+    }
+
     function einpassen(optionen) {
       optionen = optionen || {};
       var m = masse();
       var box;
       try { box = welt.getBBox(); } catch (e) { return; }
       if (!box || !box.width || !box.height) { return; }
+      eingepasst = optionen;
       var rand = optionen.rand || 28;
-      var kx = (m.w - 2 * rand) / box.width;
-      var ky = (m.h - 2 * rand) / box.height;
-      var k = Math.min(kx, ky, optionen.maxZoom || 1.15);
+      var frei = freierBereich(m);
+      var x0 = frei.links + rand, y0 = frei.oben + rand;
+      var bw = Math.max(80, m.w - frei.links - frei.rechts - 2 * rand);
+      var bh = Math.max(80, m.h - frei.oben - frei.unten - 2 * rand);
+      var k = Math.min(bw / box.width, bh / box.height, optionen.maxZoom || 1.15);
       /* Auf schmalen Flächen darf der Graph kleiner werden — Zoomen per Finger ist dort näher als Schieben. */
       k = Math.max(k, optionen.minZoom || (m.w < 700 ? 0.42 : 0.6));
       sicht.k = k;
-      if (box.width * k + 2 * rand > m.w) {
-        sicht.x = rand - box.x * k;
+      if (box.width * k > bw) {
+        sicht.x = x0 - box.x * k;
       } else {
-        sicht.x = (m.w - box.width * k) / 2 - box.x * k;
+        sicht.x = x0 + (bw - box.width * k) / 2 - box.x * k;
       }
-      if (box.height * k + 2 * rand > m.h) {
-        sicht.y = rand - box.y * k;
+      if (box.height * k > bh) {
+        sicht.y = y0 - box.y * k;
       } else {
-        sicht.y = (m.h - box.height * k) / 2 - box.y * k;
+        sicht.y = y0 + (bh - box.height * k) / 2 - box.y * k;
       }
       anwenden();
     }
@@ -477,6 +505,7 @@
     function zoomBei(cx, cy, faktor) {
       var m = masse();
       var px = cx - m.links, py = cy - m.oben;
+      eingepasst = null;
       var neu = Math.min(3, Math.max(0.2, sicht.k * faktor));
       var f = neu / sicht.k;
       sicht.x = px - (px - sicht.x) * f;
@@ -488,6 +517,12 @@
     function zoomen(faktor) {
       var m = masse();
       zoomBei(m.links + m.w / 2, m.oben + m.h / 2, faktor);
+    }
+
+    if (global.ResizeObserver) {
+      new global.ResizeObserver(function () {
+        if (eingepasst && aktuellesLayout) { einpassen(eingepasst); }
+      }).observe(svg);
     }
 
     /* Zeiger: Verschieben mit einem Finger/Maus, Zoomen mit zwei Fingern. */
@@ -523,6 +558,7 @@
            Pixel — darunter zählte er als Zug und wurde verschluckt. */
         if (!bewegt && Math.hypot(dx, dy) > 8) { bewegt = true; svg.classList.add('ist-am-ziehen'); }
         if (bewegt) {
+          eingepasst = null;
           sicht.x = start.sx + dx;
           sicht.y = start.sy + dy;
           anwenden();

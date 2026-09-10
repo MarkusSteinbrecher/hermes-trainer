@@ -21,12 +21,14 @@
 
   --gkante: #9aa7b4;
   --gkante-stark: #55636f;
-  /* Verbindungen in Grau: kräftig für «verantwortlich» und «erzeugt»,
-     hell für «beteiligt» und «verantwortet das Ergebnis». */
-  --gkante-dunkel: #3f3c3c;
-  --gkante-hell: #b3afaf;
-  --gkante-verantwortlich: var(--gkante-dunkel);
-  --gkante-erzeugt: var(--gkante-dunkel);
+  /* Verbindungen in den Farben der Quelle: Rosé der Rolle für
+     «verantwortlich», «beteiligt» und «verantwortet das Ergebnis»,
+     Orange der Aufgabe für «erzeugt». */
+  --gkante-verantwortlich: #a8266a;
+  --gkante-erzeugt: #d9541a;
+  /* Phasenmodell im Knoten: Grundfläche hell, Phasen des Elements dunkelgrau. */
+  --gk-phase-leer: #d9d6d6;
+  --gk-phase-aktiv: #5a5656;
   --gkante-phase: #2a78d6;
   --gkante-meilenstein: #7a5300;
   --gkante-grundbegriff: #556474;
@@ -242,10 +244,10 @@ body[data-route="graph"] .fusszeile { display: none; }
 .glinie--struktur { border-top-color: var(--gkante-stark); }
 .glinie--erzeugt { border-top-color: var(--gkante-erzeugt); border-top-width: 2.5px; }
 .glinie--verantwortlich { border-top-color: var(--gkante-verantwortlich); border-top-width: 3px; }
-.glinie--beteiligt { border-top-color: var(--gkante-hell); border-top-style: dashed; border-top-width: 2.5px; }
+.glinie--beteiligt { border-top-color: var(--gkante-verantwortlich); border-top-style: dashed; }
 .glinie--phase { border-top-color: var(--gkante-phase); border-top-style: dotted; border-top-width: 3px; }
 .glinie--meilenstein { border-top-color: var(--gkante-meilenstein); border-top-style: double; border-top-width: 3px; }
-.glinie--ergebnisrolle { border-top-color: var(--gkante-hell); border-top-style: dotted; border-top-width: 2.5px; }
+.glinie--ergebnisrolle { border-top-color: var(--gkante-verantwortlich); border-top-style: dotted; border-top-width: 2px; }
 
 /* --- Bühne --------------------------------------------------------------- */
 .graph-buehne {
@@ -339,9 +341,9 @@ body[data-route="graph"] .fusszeile { display: none; }
   pointer-events: none;
 }
 .gk__typ { font: 600 13px var(--schrift); fill: var(--gk-ergebnis-fg); dominant-baseline: central; pointer-events: none; }
-/* Phasenmodell im Knoten: hellgrau, die Phasen des Elements schwarz. */
-.gk__phase { fill: #d9d6d6; stroke: none; }
-.gk__phase.ist-aktiv { fill: var(--text); }
+/* Phasenmodell im Knoten: hellgrau, die Phasen des Elements dunkelgrau. */
+.gk__phase { fill: var(--gk-phase-leer); stroke: none; }
+.gk__phase.ist-aktiv { fill: var(--gk-phase-aktiv); }
 
 .gk--phase .gk__form { fill: var(--gk-phase-bg); stroke: var(--gk-phase); }
 .gk--phase .gk__label { fill: var(--gk-phase-fg); }
@@ -387,10 +389,10 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gkante--struktur { stroke: var(--gkante); }
 .gkante--erzeugt { stroke: var(--gkante-erzeugt); stroke-width: 1.6; }
 .gkante--verantwortlich { stroke: var(--gkante-verantwortlich); stroke-width: 2.2; }
-.gkante--beteiligt { stroke: var(--gkante-hell); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.gkante--beteiligt { stroke: var(--gkante-verantwortlich); stroke-width: 1.1; stroke-dasharray: 5 4; opacity: .75; }
 .gkante--phase { stroke: var(--gkante-phase); stroke-dasharray: 1.5 4; stroke-width: 2; }
 .gkante--meilenstein { stroke: var(--gkante-meilenstein); stroke-width: 2; }
-.gkante--ergebnisrolle { stroke: var(--gkante-hell); stroke-width: 1.4; stroke-dasharray: 1.5 3; }
+.gkante--ergebnisrolle { stroke: var(--gkante-verantwortlich); stroke-width: 1.2; stroke-dasharray: 1.5 3; opacity: .7; }
 .ggruppenlinie { stroke: var(--rand); stroke-width: 1; }
 /* Bahnen des Swimlane-Layouts: abwechselnd getönt, damit die Zuordnung
    ohne Linienlesen erkennbar bleibt. Liegen hinter Kanten und Knoten. */

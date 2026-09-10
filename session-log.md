@@ -2,6 +2,16 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-10 — Graph: farbige Verbindungen, Klick fokussiert und passt ein
+
+**Auftrag:** «Mach die Linien doch wieder farbig, so wie wir es vorher hatten. Die kleinen Phasen-Kästchen in den Elementen machen wir dunkelgrau und nicht schwarz. Und wenn wir ein Element anklicken: alles andere ausblenden, die verlinkten Elemente zeigen und die Ansicht passend zoomen.»
+
+**Umsetzung:** Verbindungen wieder in den Farben der Quelle (`css/graph.css`): Rosé der Rolle für «verantwortlich», «beteiligt», «verantwortet das Ergebnis», Orange der Aufgabe für «erzeugt»; die Grau-Variablen sind weg. Phasenmodell im Knoten: aktive Phasen `--gk-phase-aktiv` (#5a5656) statt Schwarz, Texte in Darstellung und Legende angepasst. Ein Klick auf einen Knoten ruft jetzt `fokusSetzen()` statt `auswaehlen()`: nur das Element mit seiner Nachbarschaft bleibt stehen, Detailfeld geht auf, Ansicht wird eingepasst (im Fokus bis Zoom 1,6). Zweiter Klick auf das fokussierte Element hebt den Fokus auf und stellt die vorherige Phasen-/Modulauswahl wieder her (`umfangVorFokus`); Klick auf einen Nachbarn verschiebt den Fokus. Tooltip sagt «Klick: nur dieses Element mit seinen Verbindungen».
+
+**Einpassen:** `einpassen()` in `js/graph-zeichnen.js` hält die beiden Icon-Leisten frei (`rueckrufe.freihalten()` liefert die Elemente; jede Leiste schneidet die Fläche an der Seite ab, wo es am wenigsten kostet — schmale Spalte links/rechts, flache Reihe unten). Ein `ResizeObserver` auf dem SVG passt neu ein, solange die Ansicht seit dem letzten Einpassen nicht von Hand verschoben oder gezoomt wurde — damit stimmt der Ausschnitt auch, wenn das Detailfeld nach dem Zeichnen aufgeht (beim Laden mit `fokus=` in der Adresse blieb er vorher auf der vollen Breite berechnet). Zoom-Knopf «Einpassen» und der Nachlauf nach dem Detailfeld nutzen dieselben Optionen (`einpassOptionen()`).
+
+**Geprüft** im Browser (localhost, Modulansicht): Klick auf «Entscheid Phasenfreigabe treffen» zeigt 5 Rollen, 1 Aufgabe, 4 Ergebnisse eingepasst; zweiter Klick bringt den ganzen Graphen zurück; Klick auf «Auftraggeber» im Fokus wechselt den Fokus; keine Konsolenfehler.
+
 ## 2026-09-10 — Graph: Werkzeuge als rechte Icon-Leiste auf der Fläche
 
 **Auftrag:** «Nimm die Icons, die wir in der Top Navigation ganz rechts haben (+/- etc.) und füge sie in die Graph Seite selber ein. Ähnlich wie die Box die wir links haben, nur dafür auf der rechten Seite.»
