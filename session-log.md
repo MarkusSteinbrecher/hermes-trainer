@@ -2,6 +2,18 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-10 — Graph: Popover «Alle Filter» mit allen Filtern untereinander
+
+**Auftrag:** «Auf der Graph Seite: erstelle ein Popup mit allen Filtern auf einer Seite, Phasen, Szenarien, etc. Alle aufgelistet untereinander, so dass man einfach und schnell alle Phasen oder einzelne auswählen kann.»
+
+**Umsetzung (`js/graph.js`, `css/graph.css`):** Neuer Knopf «Alle Filter ▾» in der Leiste direkt nach der Ansicht, öffnet den Popover `alle` (gleicher Mechanismus wie Suche, Szenario, Darstellung). Inhalt in Abschnitten mit Titelzeile: Ansicht (Nach Phasen / Nach Modulen), Vorgehensweise (Klassisch / Agil), Phasen als Häkchenliste mit Aufgabenzahl und Link «Alle Phasen», Szenarien als Radioliste (nochmals wählen hebt auf), Module als Häkchenliste mit «Alle Module», Elemente (Rollen/Aufgaben/Ergebnisse mit Zahl), Verbindungen, Darstellung, unten «Auswahl zurücksetzen» und «Fertig». Jedes Häkchen wirkt sofort; Leiste, Icon-Leiste und URL zeigen dieselbe Auswahl.
+- **«Alle» = leere Liste** im Modell: die Liste zeigt dann jedes Häkchen gesetzt; ein Häkchen wegnehmen behält die übrigen (Liste = alle ausser diesem); sind wieder alle gesetzt, wird die Liste leer. Szenarien setzen nur die Module, wechseln die Ansicht nicht (anders als der alte Szenario-Knopf).
+- **Popover bleibt beim Neuaufbau stehen:** `popZeichnen()` hält `scrollTop` und stellt den Fokus über `data-fokus` wieder her; erster Fokus nur beim Öffnen (`popFokusNoetig`).
+- **Fehler in der Klick-daneben-Logik behoben:** Der Dokument-Listener lief die Elternkette von `ev.target` hoch — ein Knopf, der in seinem eigenen Klick den Popover neu aufbaut, hängt dann nicht mehr im Dokument, die Kette endet im Leeren, der Popover ging zu. Jetzt `ev.composedPath()` (Pfad zum Zeitpunkt des Ereignisses). Das betraf schon vorher die Chips im «Module: alle ▾»-Popover.
+- `index.html`: `?v=2026-09-10b` — der Trainer-Fix von heute Nachmittag war noch unter `…10a` gepusht, also möglicherweise gecacht.
+
+**Test:** Browser, skriptgesteuert (Häkchen, Szenario, Alle-Links, Ansicht, Vorgehen, Elemente, Verbindungen, Fertig) — Zustand in Leiste, Rail und URL konsistent, Popover bleibt offen. `javascript_tool` blockt die *Ausgabe*, sobald sie nach Query-String aussieht (`location.hash` mit `?ansicht=`); das Skript läuft trotzdem — Ergebnisse ohne Hash formulieren. Gespeicherter Graph-Zustand des Sponsors auf den Standard zurückgesetzt (Initialisierung, klassisch).
+
 ## 2026-09-10 — Trainer: Prüflogik über alle Übungen geprüft, Geist unter der Maus, Abschluss vollständig
 
 **Auftrag:** «Ich ziehe die richtigen Elemente auf die Boxen und wenn ich prüfen klicke, zeigt es an, dass es falsch ist. Checke das bitte nochmal über alles. … Kann der Kasten direkt unter der Maus sein? Der Reset Knopf funktioniert auch noch nicht.»

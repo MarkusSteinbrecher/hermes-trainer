@@ -266,6 +266,7 @@ body[data-route="graph"] .fusszeile { display: none; }
 /* Hairlines zwischen den Gruppen der Leiste: 1 × 16 px, wie im Überblick.
    Die Auswahl-Chips scrollen in sich, deshalb kein Pseudo-Element, sondern
    ein Hintergrundstrich am linken Rand. */
+.gauswahl__alle,
 .gauswahl__vorgehen:not([hidden]),
 .gauswahl__szenario:not([hidden]),
 .chips--auswahl,
@@ -470,9 +471,10 @@ body[data-route="graph"] .fusszeile { display: none; }
 .chips--phasen { gap: 2px; }
 .chip--phase:focus-visible { outline-offset: -2px; }
 
-/* «Module: alle ▾» — die einzige Auswahl mit Rahmen: ein Select ohne Radius. */
+/* «Module: alle ▾» und «Alle Filter ▾» — Auswahl mit Rahmen: ein Select ohne Radius. */
 .graph-seite .gauswahl__quer,
-.graph-seite .gauswahl__szenario {
+.graph-seite .gauswahl__szenario,
+.graph-seite .gauswahl__alle {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -480,11 +482,47 @@ body[data-route="graph"] .fusszeile { display: none; }
   padding: 0 8px;
   color: var(--text);
 }
+.graph-seite .gauswahl__alle svg { width: 15px; height: 15px; margin-right: 2px; }
 .graph-seite .gauswahl__quer:hover,
-.graph-seite .gauswahl__szenario:hover { border-color: var(--text); }
-.graph-seite .gauswahl__quer.ist-aktiv { border-color: var(--akzent); color: var(--akzent-text); }
+.graph-seite .gauswahl__szenario:hover,
+.graph-seite .gauswahl__alle:hover { border-color: var(--text); }
+.graph-seite .gauswahl__quer.ist-aktiv,
+.graph-seite .gauswahl__alle.ist-aktiv { border-color: var(--akzent); color: var(--akzent-text); }
 .graph-seite .gauswahl__quer[aria-expanded="true"],
-.graph-seite .gauswahl__szenario[aria-expanded="true"] { border-color: var(--text); color: var(--text); }
+.graph-seite .gauswahl__szenario[aria-expanded="true"],
+.graph-seite .gauswahl__alle[aria-expanded="true"] { border-color: var(--text); color: var(--text); }
+
+/* Popover «Alle Filter»: Abschnitte untereinander, jeder mit Titelzeile. */
+.gaf { display: grid; gap: 4px; }
+.gaf__kopf { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.gaf__titel { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
+.gaf__alle { border: 0; background: transparent; padding: 0; font-size: 12px; color: var(--akzent-text); cursor: pointer; }
+.gaf__alle:hover { color: var(--akzent); text-decoration: underline; }
+.gaf__alle:disabled { color: var(--text-leise); cursor: default; text-decoration: none; }
+.gaf .gs-schalter { min-height: 30px; }
+.gaf .gswatch { width: 18px; height: 18px; flex: 0 0 auto; }
+.gaf .glinie { flex: 0 0 auto; }
+.gaf__szenario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 30px;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--rand-fein);
+  background: transparent;
+  color: var(--text);
+  font-size: 13.5px;
+  text-align: left;
+  cursor: pointer;
+}
+.gs-liste > .gaf__szenario:first-child { border-top: 0; }
+.gaf__szenario-haken { width: 16px; text-align: center; color: var(--text-leise); font-size: 12px; flex: 0 0 auto; }
+.gaf__szenario[aria-pressed="true"] .gaf__szenario-haken { color: var(--akzent); }
+.gaf__szenario[aria-pressed="true"] .gaf__szenario-titel { font-weight: 700; }
+.gaf__szenario:hover .gaf__szenario-titel { color: var(--akzent-text); }
+.gaf__szenario-titel { flex: 1 1 auto; }
+.gaf__fuss { display: flex; justify-content: flex-end; gap: 6px; padding-top: 4px; border-top: 1px solid var(--rand-fein); }
 .gauswahl__reset { color: var(--akzent-text); padding: 0 4px; }
 
 /* Fokus-Chip in der Leiste: das Element, auf das der Graph eingeschränkt
@@ -701,6 +739,7 @@ body[data-route="graph"] .fusszeile { display: none; }
   .graph-werkzeuge { order: 3; }
   .chips--auswahl { order: 4; flex-basis: 100%; margin-left: 0; padding-left: 0; background-image: none; }
   .gauswahl__vorgehen, .gauswahl__szenario { order: 5; margin-left: 0; padding-left: 0; background-image: none; }
+  .gauswahl__alle { order: 6; }
   .gauswahl__quer { order: 6; }
   .gauswahl__reset { order: 7; margin-left: auto; }
 }

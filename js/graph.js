@@ -206,8 +206,11 @@
 
   /* --- Popover -------------------------------------------------------------- */
 
+  var popFokusNoetig = false;
+
   function popOeffnen(key) {
     zustand.pop = zustand.pop === key ? null : key;
+    popFokusNoetig = !!zustand.pop;
     popZeichnen();
   }
 
@@ -220,6 +223,7 @@
   /* Alle Popover an einer Stelle: Titel, Inhalt und der Knopf, der sie
      öffnet. */
   var POPS = {
+    alle:        { titel: 'Alle Filter',    inhalt: function () { return alleFilterInhalt(); },  knopf: 'knopfAlle' },
     filter:      { titel: 'Filter',         inhalt: function () { return filterInhalt(); },      knopf: 'knopfFilter' },
     suche:       { titel: 'Element suchen', inhalt: function () { return sucheInhalt(); },       knopf: 'knopfSuche' },
     quer:        { titel: function () { return zustand.ansicht === 'phasen' ? 'Auf Module einschränken' : 'Auf Phasen einschränken'; },
@@ -234,6 +238,11 @@
   }
 
   function popZeichnen() {
+    /* Beim Neuaufbau nach einem Klick bleiben Scrollstand und Fokus, wo sie
+       waren — sonst springt eine lange Liste bei jedem Häkchen nach oben. */
+    var scroll = refs.pop.scrollTop;
+    var aktiv = document.activeElement;
+    var fokusKey = aktiv && refs.pop.contains(aktiv) ? aktiv.getAttribute('data-fokus') : null;
     HT.ui.leeren(refs.pop);
     refs.pop.hidden = !zustand.pop;
     popAusloeser().forEach(function (b) {
@@ -251,8 +260,15 @@
       h('button', { type: 'button', class: 'graph-schliessen', 'aria-label': titel + ' schliessen', text: '✕', on: { click: popSchliessen } })
     ]));
     refs.pop.appendChild(meta.inhalt());
-    var erstes = refs.pop.querySelector('.gpop__inhalt input, .gpop__inhalt button, .gpop__inhalt a');
-    if (erstes) { erstes.focus(); }
+    refs.pop.scrollTop = scroll;
+    var wieder = fokusKey ? refs.pop.querySelector('[data-fokus="' + fokusKey.replace(/"/g, '') + '"]') : null;
+    if (wieder) {
+      wieder.focus({ preventScroll: true });
+    } else if (popFokusNoetig) {
+      var erstes = refs.pop.querySelector('.gpop__inhalt input, .gpop__inhalt button, .gpop__inhalt a');
+      if (erstes) { erstes.focus(); }
+    }
+    popFokusNoetig = false;
   }
 
   function popInhalt(kinder) {
@@ -261,6 +277,141 @@
 
   function sucheInhalt() {
     return popInhalt([refs.sucheFeld, refs.sucheListe]);
+  }
+
+  /* Alle Filter auf einer Seite, untereinander: Ansicht, Vorgehensweise,
+     Phasen, Szenarien, Module, Elemente, Verbindungen, Darstellung. Phasen
+     und Module sind Häkchenlisten; «alle» heisst im Modell eine leere Liste,
+     darum zeigt die Liste dann jedes Häkchen gesetzt, und wer eines
+     wegnimmt, behält die übrigen. Sind wieder alle gesetzt, wird die Liste
+     leer. */
+  function alleFilterInhalt() {
+    var istPhasen = zustand.ansicht === 'phasen';
+    var phasen = HT.graph.phasenDerVorgehensweise(zustand.umfang.vorgehen);
+    var module = HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
+    var zahlen = refs.zahlen || {};
+
+    function abschnitt(titel, rechts, inhalt) {
+      return h('section', { class: 'gaf' }, [
+        h('div', { class: 'gaf__kopf' }, [h('h3', { class: 'gaf__titel', text: titel }), rechts]),
+        inhalt
+      ]);
+    }
+
+    function alleKnopf(feld, label) {
+      var alle = !zustand.umfang[feld].length;
+      return h('button', {
+        type: 'button', class: 'gaf__alle', 'aria-pressed': alle ? 'true' : 'false',
+        text: alle ? label + ': alle' : 'Alle ' + label,
+        disabled: alle ? 'disabled' : null,
+        on: { click: function () { zustand.umfang[feld] = []; geaendert(); popZeichnen(); } }
+      });
+    }
+
+    function haken(feld, name, alle, zahl, klasse) {
+      var liste = zustand.umfang[feld];
+      var an = !liste.length || liste.indexOf(name) !== -1;
+      var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': feld + ':' + name });
+      kasten.checked = an;
+      kasten.addEventListener('change', function () {
+        var l = zustand.umfang[feld];
+        if (!l.length) {
+          zustand.umfang[feld] = alle.filter(function (n) { return n !== name; });
+        } else {
+          var i = l.indexOf(name);
+          if (i === -1) { l.push(name); } else { l.splice(i, 1); }
+          if (alle.every(function (n) { return l.indexOf(n) !== -1; })) { zustand.umfang[feld] = []; }
+        }
+        geaendert();
+        popZeichnen();
+      });
+      return h('label', { class: 'gs-schalter' + (klasse ? ' ' + klasse : '') }, [
+        kasten,
+        h('span', { class: 'gs-schalter__label', text: name }),
+        zahl === null || zahl === undefined ? null : h('span', { class: 'gs-schalter__extra', text: String(zahl) })
+      ]);
+    }
+
+    function kategorieHaken(m) {
+      var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': 'kat:' + m.key });
+      kasten.checked = !!zustand.kategorien[m.key];
+      kasten.addEventListener('change', function () { zustand.kategorien[m.key] = kasten.checked; geaendert(); popZeichnen(); });
+      return h('label', { class: 'gs-schalter' }, [
+        kasten,
+        h('span', { class: 'gswatch gswatch--' + m.key, 'aria-hidden': 'true' }, HT.ui.katSymbol(m.key, 13)),
+        h('span', { class: 'gs-schalter__label', text: m.label }),
+        zahlen[m.key] === undefined ? null : h('span', { class: 'gs-schalter__extra', text: String(zahlen[m.key]) })
+      ]);
+    }
+
+    function relationHaken(r) {
+      var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': 'rel:' + r.key });
+      kasten.checked = !!zustand.relationen[r.key];
+      kasten.addEventListener('change', function () { zustand.relationen[r.key] = kasten.checked; geaendert(); popZeichnen(); });
+      return h('label', { class: 'gs-schalter' }, [
+        kasten,
+        h('span', { class: 'glinie glinie--' + r.stil, 'aria-hidden': 'true' }),
+        h('span', { class: 'gs-schalter__label', text: r.label })
+      ]);
+    }
+
+    function darstellungHaken(label, key, neuEinpassen) {
+      var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': 'dar:' + key });
+      kasten.checked = !!zustand[key];
+      kasten.addEventListener('change', function () { zustand[key] = kasten.checked; geaendert(neuEinpassen); popZeichnen(); });
+      return h('label', { class: 'gs-schalter' }, [kasten, h('span', { class: 'gs-schalter__label', text: label })]);
+    }
+
+    var aktuell = zustand.umfang.module;
+    var szenarien = HT.daten.eintraegeDerKategorie('szenario').map(function (sz) {
+      var gleich = sz.module.length === aktuell.length && sz.module.every(function (m) { return aktuell.indexOf(m) !== -1; });
+      return h('button', {
+        type: 'button', class: 'gaf__szenario', 'aria-pressed': gleich ? 'true' : 'false', 'data-fokus': 'sz:' + sz.id,
+        on: { click: function () {
+          zustand.umfang.module = gleich ? [] : sz.module.slice();
+          geaendert();
+          popZeichnen();
+        } }
+      }, [
+        h('span', { class: 'gaf__szenario-haken', 'aria-hidden': 'true', text: gleich ? '●' : '○' }),
+        h('span', { class: 'gaf__szenario-titel', text: sz.begriff }),
+        h('span', { class: 'gs-schalter__extra', text: sz.module.length + ' Module' })
+      ]);
+    });
+
+    var ansichtOptionen = ANSICHTEN.map(function (a) { return { key: a.key, label: a.label }; });
+
+    var kinder = [
+      h('p', { class: 'gpop__hinweis', text: 'Alles auf einer Seite. Jedes Häkchen wirkt sofort auf den Graphen; die Leiste zeigt dieselbe Auswahl.' }),
+      abschnitt('Ansicht', null, segment(ansichtOptionen, zustand.ansicht, function (key) { ansichtSetzen(key); popOeffnen('alle'); }, 'Ansicht', true)),
+      abschnitt('Vorgehensweise', null, segment(VORGEHENSWEISEN, zustand.umfang.vorgehen, function (key) { vorgehenSetzen(key); popZeichnen(); }, 'Vorgehensweise', true)),
+      abschnitt('Phasen', alleKnopf('phasen', 'Phasen'),
+        h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Phasen' }, phasen.map(function (name) {
+          return haken('phasen', name, phasen, HT.graph.beitrag('phase', name, zustand.umfang));
+        }))),
+      abschnitt('Szenarien', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien)),
+      abschnitt('Module', alleKnopf('module', 'Module'),
+        h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Module' }, module.map(function (name) {
+          return haken('module', name, module, HT.graph.beitrag('modul', name, zustand.umfang));
+        }))),
+      abschnitt('Elemente', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
+      abschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken))),
+      abschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
+        darstellungHaken('Phasenstreifen im Knoten (I K R E U A)', 'phasenstreifen', false),
+        darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
+        darstellungHaken('Nur minimal geforderte Dokumente', 'nurMinimal'),
+        darstellungHaken('Nur Entscheidungsaufgaben', 'nurEntscheide')
+      ])),
+      h('div', { class: 'gaf__fuss' }, [
+        h('button', {
+          type: 'button', class: 'btn btn--klein', text: 'Auswahl zurücksetzen',
+          disabled: HT.graph.umfangAktiv(zustand.umfang) || zustand.fokusId ? null : 'disabled',
+          on: { click: function () { zustand.umfang.phasen = []; zustand.umfang.module = []; zustand.fokusId = null; geaendert(); popZeichnen(); } }
+        }),
+        h('button', { type: 'button', class: 'btn btn--klein btn--primaer', text: 'Fertig', on: { click: popSchliessen } })
+      ])
+    ];
+    return popInhalt(kinder);
   }
 
   /* Filter: ein Element mit seiner Nachbarschaft. Rollen sind der häufigste
@@ -500,6 +651,15 @@
     ]);
 
     /* Auswahl (früher eine eigene Leiste) */
+    refs.knopfAlle = h('button', {
+      type: 'button', class: 'btn btn--klein gauswahl__alle', 'aria-expanded': 'false', 'aria-haspopup': 'dialog',
+      title: 'Alle Filter auf einer Seite',
+      on: { click: function () { popOeffnen('alle'); } }
+    }, [
+      HT.ui.symbol(['M4 6h16', 'M7 12h10', 'M10 18h4'], 15),
+      h('span', { text: 'Alle Filter' }),
+      h('span', { 'aria-hidden': 'true', text: ' ▾' })
+    ]);
     refs.vorgehenSegment = h('span', { class: 'gauswahl__vorgehen' });
     refs.knopfSzenario = h('button', {
       type: 'button', class: 'btn btn--klein gauswahl__szenario', 'aria-expanded': 'false', 'aria-haspopup': 'dialog',
@@ -517,6 +677,7 @@
 
     refs.werkzeugleiste = h('div', { class: 'graph-leiste' }, [
       refs.ansichtSegment,
+      refs.knopfAlle,
       refs.vorgehenSegment,
       refs.knopfSzenario,
       refs.chips,
@@ -580,6 +741,7 @@
     refs.knopfFilter.classList.toggle('ist-aktiv', !!fokus);
 
     refs.knopfReset.hidden = !HT.graph.umfangAktiv(zustand.umfang) && !fokus;
+    refs.knopfAlle.classList.toggle('ist-aktiv', HT.graph.umfangAktiv(zustand.umfang));
   }
 
   /* --- Icon-Leiste ---------------------------------------------------------- */
@@ -596,6 +758,7 @@
   }
 
   function railAktualisieren(zahlen) {
+    refs.zahlen = zahlen;
     HT.ui.leeren(refs.railTypen);
     HT.graph.KATEGORIEN.forEach(function (m) {
       var an = !!zustand.kategorien[m.key];
@@ -1038,10 +1201,16 @@
       document.addEventListener('click', function (ev) {
         if (!zustand.pop || !document.body.contains(refs.seite)) { return; }
         var ausloeser = popAusloeser();
-        var el = ev.target;
-        while (el && el !== document) {
-          if (el === refs.pop || ausloeser.indexOf(el) !== -1) { return; }
-          el = el.parentNode;
+        /* Der Pfad des Ereignisses, nicht die Elternkette: ein Knopf im
+           Popover, der beim Klick den Popover neu aufbaut, hängt hier schon
+           nicht mehr im Dokument — seine Elternkette endet im Leeren, und
+           der Popover ginge zu. */
+        var pfad = typeof ev.composedPath === 'function' ? ev.composedPath() : [];
+        if (!pfad.length) {
+          for (var el = ev.target; el && el !== document; el = el.parentNode) { pfad.push(el); }
+        }
+        for (var i = 0; i < pfad.length; i++) {
+          if (pfad[i] === refs.pop || ausloeser.indexOf(pfad[i]) !== -1) { return; }
         }
         popSchliessen();
       });
