@@ -12,19 +12,21 @@
   var GLYPH_R = 10;
   var GLYPH_KANTE = 14;   /* Kantenlänge des Kategorie-Icons im Knotenkreis */
   /* Der Phasenstreifen im Knoten bildet das Phasenmodell der Methode nach,
-     wie es die HERMES-Übersicht zeigt: Initialisierung über die ganze Höhe,
-     dann Konzept, Realisierung und Einführung oben und darunter Umsetzung
-     (agil) über dieselbe Breite, zuletzt Abschluss wieder über die ganze
-     Höhe. Masse in Knotenpixeln, Ursprung links oben des Streifens. */
+     wie es die HERMES-Übersicht zeigt: links Initialisierung, dann Konzept,
+     Realisierung und Einführung oben und darunter Umsetzung (agil) über
+     dieselbe Breite, rechts Abschluss. Alle Felder gleich hoch;
+     Initialisierung und Abschluss stehen mittig zwischen den beiden Reihen.
+     Masse in Knotenpixeln, Ursprung links oben des Streifens. */
   var ZELLE = 7, ZELLE_LUECKE = 1.5, STREIFEN_H = 20;
   var HALB = (STREIFEN_H - ZELLE_LUECKE) / 2;
+  var MITTIG = (STREIFEN_H - HALB) / 2;
   var PHASEN_ZELLEN = [
-    { name: 'Initialisierung', x: 0, y: 0, w: ZELLE, h: STREIFEN_H },
+    { name: 'Initialisierung', x: 0, y: MITTIG, w: ZELLE, h: HALB },
     { name: 'Konzept',         x: ZELLE + ZELLE_LUECKE, y: 0, w: ZELLE, h: HALB },
     { name: 'Realisierung',    x: 2 * (ZELLE + ZELLE_LUECKE), y: 0, w: ZELLE, h: HALB },
     { name: 'Einführung',      x: 3 * (ZELLE + ZELLE_LUECKE), y: 0, w: ZELLE, h: HALB },
     { name: 'Umsetzung',       x: ZELLE + ZELLE_LUECKE, y: HALB + ZELLE_LUECKE, w: 3 * ZELLE + 2 * ZELLE_LUECKE, h: HALB },
-    { name: 'Abschluss',       x: 4 * (ZELLE + ZELLE_LUECKE), y: 0, w: ZELLE, h: STREIFEN_H }
+    { name: 'Abschluss',       x: 4 * (ZELLE + ZELLE_LUECKE), y: MITTIG, w: ZELLE, h: HALB }
   ];
   var STREIFEN_B = 5 * ZELLE + 4 * ZELLE_LUECKE;
   var TYP_SYMBOL = { Dokument: '▤', Checkliste: '☑', Zustand: '●', Meilenstein: '◆' };
