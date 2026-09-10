@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Abbildung 1 des Referenzhandbuchs («Gesamtbild der
+/* meinHERMES — Abbildung 1 des Referenzhandbuchs («Gesamtbild der
    HERMES-Module und der wesentlichen Ergebnisse entlang der Phasen»).
 
    Gemeinsame Grundlage von Überblick und Trainer: die Grafik wird nicht

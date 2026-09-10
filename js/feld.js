@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Feld»: eine Phase in einem Modul.
+/* meinHERMES — Ansicht «Feld»: eine Phase in einem Modul.
 
    Die Abbildung im Methodenüberblick ist ein Raster: Spalten sind Module,
    Zeilen sind Phasen. Wo sie sich kreuzen, steht die Arbeit eines Moduls in

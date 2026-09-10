@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Überblick» (Methodenüberblick).
+/* meinHERMES — Ansicht «Überblick» (Methodenüberblick).
 
    Eine Werkbank aus zwei Bereichen: links Abbildung 1 des Referenzhandbuchs
    («Gesamtbild der HERMES-Module und der wesentlichen Ergebnisse entlang der

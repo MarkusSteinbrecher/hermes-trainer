@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Graphmodell.
+/* meinHERMES — Graphmodell.
    Der Graph zeigt nur die drei Elemente, die zusammen den Ablauf beschreiben:
    Rolle → Aufgabe → Ergebnis. Phasen, Module und Szenarien sind keine Knoten,
    sondern der Umfang: sie wählen aus, welche Aufgaben und Ergebnisse gezeigt

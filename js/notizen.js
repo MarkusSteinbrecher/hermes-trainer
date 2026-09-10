@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Persönliche Notizen: Markierungen, Kommentare, freie Notizen.
+/* meinHERMES — Persönliche Notizen: Markierungen, Kommentare, freie Notizen.
 
    Alles bleibt im Browser (localStorage, Schlüssel «notizen») und lässt sich
    als Datei sichern und wieder einlesen — die Site hat keinen Server.
@@ -603,7 +603,7 @@
   }
 
   function dateiname(endung) {
-    return 'hermes-trainer-notizen-' + jetzt().slice(0, 10) + '.' + endung;
+    return 'meinhermes-notizen-' + jetzt().slice(0, 10) + '.' + endung;
   }
 
   function gruppen() {
@@ -623,7 +623,7 @@
   }
 
   function markdown() {
-    var zeilen = ['# Meine Notizen — HERMES-Trainer', '', 'Exportiert am ' + datum(jetzt()) + '.', ''];
+    var zeilen = ['# Meine Notizen — meinHERMES', '', 'Exportiert am ' + datum(jetzt()) + '.', ''];
     gruppen().forEach(function (g) {
       zeilen.push('## ' + g.titel);
       zeilen.push('');
@@ -645,7 +645,7 @@
     var obj;
     try { obj = JSON.parse(text); } catch (x) { return { fehler: 'Die Datei ist kein gültiges JSON.' }; }
     if (!obj || obj.app !== 'hermes-trainer' || !obj.notizen || !Array.isArray(obj.notizen.eintraege)) {
-      return { fehler: 'Das ist keine Notizen-Datei des HERMES-Trainers.' };
+      return { fehler: 'Das ist keine Notizen-Datei von meinHERMES.' };
     }
     laden();
     var vorhanden = {};

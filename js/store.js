@@ -1,4 +1,4 @@
-/* HERMES-Trainer — localStorage-Kapsel.
+/* meinHERMES — localStorage-Kapsel.
    Jeder Zugriff in try/catch; die App funktioniert auch ohne Storage
    (Privatmodus, deaktivierte Cookies, voller Speicher). */
 (function (global) {

@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Über». */
+/* meinHERMES — Ansicht «Über». */
 (function (global) {
   'use strict';
 
@@ -14,11 +14,11 @@
   function renderUeber(behaelter) {
     var prosa = h('div', { class: 'prosa' }, [
       h('div', { class: 'kopf' }, [
-        h('h1', { text: 'Über den HERMES-Trainer' })
+        h('h1', { text: 'Über meinHERMES' })
       ]),
 
-      h('p', { text: 'Der HERMES-Trainer ist eine private, inoffizielle Lernhilfe zur Vorbereitung auf die HERMES-2022-Prüfung. '
-        + 'Er zeigt die Methodenelemente als Graph mit ihren Zusammenhängen und erschliesst die offizielle Dokumentation in Stufen: zuerst das Wichtigste, dann Kernpunkte, dann der vollständige Text — '
+      h('p', { text: 'meinHERMES ist eine private, inoffizielle Lernhilfe zur Vorbereitung auf die HERMES-2022-Prüfung. '
+        + 'Die Seite zeigt die Methodenelemente als Graph mit ihren Zusammenhängen und erschliesst die offizielle Dokumentation in Stufen: zuerst das Wichtigste, dann Kernpunkte, dann der vollständige Text — '
         + 'und verweist bei jedem Eintrag, jeder Lernkarte und jeder Quizfrage auf die Belegstelle im Referenzhandbuch und auf HERMES online.' }),
 
       h('h2', { text: 'Aufbau' }),
@@ -43,6 +43,13 @@
       ]),
       h('p', { text: 'Die Urheberrechte an der HERMES-Dokumentation liegen bei der Schweizerischen Eidgenossenschaft (Bundeskanzlei, Digitale Transformation und IKT-Lenkung). '
         + 'Die Wiedergabe dient ausschliesslich dem Lernen; massgebend bleibt in jedem Fall die offizielle Dokumentation.' }),
+
+      h('h2', { text: 'Unterstützen' }),
+      h('p', {}, [
+        'meinHERMES ist kostenlos und ohne Werbung. Wer die Seite nützlich findet, kann die Arbeit daran mit einem Kaffee unterstützen: ',
+        extern('https://ko-fi.com/rrradio', 'Ko-fi'),
+        '.'
+      ]),
       h('ul', {}, [
         h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html', 'Methodenüberblick')),
         h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/phasen.html', 'Phasen')),

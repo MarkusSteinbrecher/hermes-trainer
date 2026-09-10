@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Datenzugriff.
+/* meinHERMES — Datenzugriff.
    Lädt die JSON-Dateien aus data/ (relative Pfade, GitHub-Pages-tauglich),
    normalisiert die Einträge und stellt Such-/Filterfunktionen bereit.
    Die Handbuchtexte (data/handbuch/) werden erst bei Bedarf nachgeladen.

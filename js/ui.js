@@ -1,4 +1,4 @@
-/* HERMES-Trainer — kleine DOM- und Text-Helfer.
+/* meinHERMES — kleine DOM- und Text-Helfer.
    Bewusst ohne innerHTML: alle Inhalte werden als Textknoten gesetzt. */
 (function (global) {
   'use strict';

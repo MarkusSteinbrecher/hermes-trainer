@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Lexikonkarte (gemeinsam für Lexikon und Graph).
+/* meinHERMES — Lexikonkarte (gemeinsam für Lexikon und Graph).
    Eine Karte zeigt einen Eintrag in drei Stufen: Kurz (erster Satz + Fakten),
    Kernpunkte (Definition, Querverweise) und
    Handbuch (vollständiger Text der offiziellen Dokumentation, nachgeladen).

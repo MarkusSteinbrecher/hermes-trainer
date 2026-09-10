@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Lexikon».
+/* meinHERMES — Ansicht «Lexikon».
    Volltextsuche, Kategoriefilter und Karten in drei Stufen (siehe js/karte.js):
    Kurz (erster Satz + Fakten) → Kernpunkte (Definition, Querverweise)
    → Handbuch (vollständiger Text der

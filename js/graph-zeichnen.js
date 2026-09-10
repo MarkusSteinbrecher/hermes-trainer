@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Graph zeichnen.
+/* meinHERMES — Graph zeichnen.
    Reines SVG ohne Abhängigkeiten: Spaltenlayout (Rolle, Aufgabe, Ergebnis),
    Knotenformen je Kategorie, Kantenstile je Beziehung, Verschieben und Zoomen
    mit Maus, Rad und Touch, Hervorhebung eines Knotens samt Nachbarn. */

@@ -1,4 +1,6 @@
-# HERMES-Trainer
+# meinHERMES
+
+(früher «HERMES-Trainer»; Repository, Speicherschlüssel `hermes-trainer:*` und die Kennung `app: "hermes-trainer"` in Notizen-Dateien behalten den alten Namen.)
 
 Lernwebsite zur Vorbereitung auf die HERMES-2022-Prüfung. Schwerpunkt: Begriffsverständnis und exakte HERMES-Terminologie, mit direkten Verweisen auf die offizielle HERMES-Dokumentation (hermes.admin.ch) bei jedem Begriff.
 

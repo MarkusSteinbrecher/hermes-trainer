@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Methode».
+/* meinHERMES — Ansicht «Methode».
    Folgt dem Aufbau des Referenzhandbuchs (Methodenüberblick, Phasen,
    Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung)
    und zeigt jedes Kapitel in drei Stufen: Kernaussagen → Zusammenfassung →

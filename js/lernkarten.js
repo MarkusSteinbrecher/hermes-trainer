@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Lernkarten».
+/* meinHERMES — Ansicht «Lernkarten».
    Karte drehen, selbst einschätzen; «Nochmals» kehrt im Stapel zurück.
    Fortschritt liegt im localStorage und ist zurücksetzbar. */
 (function (global) {

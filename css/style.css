@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HERMES-Trainer — Stylesheet
+   meinHERMES — Stylesheet
    Mobile-first. Ein Farbschema (Light) für die ganze Anwendung — das
    Modernist-System aus design/: flach, architektonisch, fast einfarbig Rot
    auf warmem hellem Grund, kein Rundungsradius, Struktur aus Linien statt
@@ -198,12 +198,24 @@ main:focus { outline: none; }
 }
 .marke__logo svg { display: block; }
 .marke__text {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
   white-space: nowrap;
 }
+
+/* Ko-fi: der offizielle Becher als Bild, rechts in der Kopfzeile — auch auf
+   dem Telefon, wo die Hauptnavigation unten liegt. */
+.kofi {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0 16px;
+  border-left: 1px solid var(--linie-stark);
+  flex: 0 0 auto;
+}
+.kofi:hover { background: var(--flaeche-2); }
+.kofi img { width: 24px; height: auto; display: block; }
 
 .nav-top {
   display: none;

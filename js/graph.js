@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Graph».
+/* meinHERMES — Ansicht «Graph».
    Der Graph zeigt drei Elemente in drei Spalten: Rolle → Aufgabe → Ergebnis.
    Phasen und Module sind keine Knoten, sondern die Auswahl: die Ansicht
    («Nach Phasen» oder «Nach Modulen») legt die Bahnen des Swimlane-Layouts

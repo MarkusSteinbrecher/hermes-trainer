@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Trainer»: Ausschnitte der Abbildung 1 zum Zuordnen.
+/* meinHERMES — Ansicht «Trainer»: Ausschnitte der Abbildung 1 zum Zuordnen.
 
    Jede Übung ist ein Ausschnitt aus dem Gesamtbild der Methode — eine Phase
    (die Zeile der Abbildung, darüber die Modulköpfe als Orientierung) oder

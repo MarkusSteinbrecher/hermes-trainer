@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Ansicht «Quiz».
+/* meinHERMES — Ansicht «Quiz».
    Multiple Choice mit vier Antworten, sofortiger Rückmeldung und Auswertung.
    Fragen stammen aus data/quizfragen.json und aus generierten Lexikonfragen. */
 (function (global) {

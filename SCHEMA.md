@@ -1,4 +1,4 @@
-# Datenschema — HERMES-Trainer
+# Datenschema — meinHERMES
 
 Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSON in `data/`, eine Datei je Kategorie, Top-Level ist ein Array von Einträgen. Sprache: Deutsch, Schweizer Rechtschreibung (ss statt ß), HERMES-2022-Terminologie exakt — keine Synonyme, keine Umschreibungen.
 

@@ -1,4 +1,4 @@
-/* HERMES-Trainer — Anwendungsgerüst.
+/* meinHERMES — Anwendungsgerüst.
    Lädt die Daten, baut die Navigation und schaltet die Ansichten
    über location.hash um (GitHub Pages braucht so keine Server-Konfiguration). */
 (function (global) {
@@ -127,7 +127,7 @@
        stellen den Titel als Funktion bereit; `nav` sagt, welcher Menüpunkt
        dazu gehört. */
     var titel = typeof view.titel === 'function' ? view.titel(route.params) : view.titel;
-    document.title = titel + ' · HERMES-Trainer';
+    document.title = titel + ' · meinHERMES';
     navMarkieren(view.nav || route.name);
 
     if (!ersterAufruf && !route.params.id) {

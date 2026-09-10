@@ -2,6 +2,14 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-10 — Umbenennung in «meinHERMES», Ko-fi-Link
+
+**Auftrag:** «Schau mal in das rrradio repository, dort haben wir das Kofi Logo von mir auf der Seite. Ergänze das auf der HERMES Seite. Und lass uns die Seite "meinHERMES" nennen.»
+
+- **Ko-fi:** Becher-Logo aus `~/Code/rrradio/public/kofi-cup.png` nach `assets/bild/kofi-cup.png` kopiert. Link rechts in der Kopfzeile (`.kofi`, auch auf dem Telefon sichtbar, da die Kopfzeile bleibt), Textlink in der Fusszeile, Abschnitt «Unterstützen» auf der Über-Seite. Ziel wie bei rrradio: `https://ko-fi.com/rrradio`.
+- **Name:** Titel, Marke (jetzt ohne Versalien, 16 px), `document.title`-Suffix, Über-Seite, Notizen-Export (Dateiname `meinhermes-notizen-…`, Markdown-Titel, Fehlermeldung), README, SCHEMA und die Kopfkommentare aller JS/CSS-Dateien. Bewusst unverändert: Repository-Name, `localStorage`-Präfix `hermes-trainer:` und die Kennung `app: "hermes-trainer"` in Notizen-Dateien — sonst verlören Nutzer Lernstand und Import-Kompatibilität.
+- Versionsmarke `?v=2026-09-10d`.
+
 ## 2026-09-10 — Graph: graue Verbindungen, grössere Knoten, Phasenmodell im Knoten, grössere Spaltentitel
 
 **Auftrag:** «ändere die Farbe der Linien zu hell- und dunkelgrau; mach die Boxen der Aufgaben und Ergebnisse grösser und die Zuordnung zu den Phasen (die kleinen Rechtecke) sollten wie in der HERMES Übersicht dargestellt werden — Initialisierung in der Mitte, Konzept, Realisierung, Einführung oben, Umsetzung unten und Abschluss wieder in der Mitte. Die Boxen sollten schwarz sein oder hellgrau. Der Text der Überschriften oben ist zu klein.»
