@@ -266,8 +266,12 @@
     HT.ui.leeren(behaelter);
     behaelter.appendChild(h('p', { class: 'trefferzahl', text: 'Handbuchtext wird geladen …' }));
 
+    var block = behaelter.closest ? behaelter.closest('[data-nz-ort]') : null;
     HT.daten.handbuchElement(e).then(function (text) {
       HT.ui.leeren(behaelter);
+      /* Ab jetzt ist der Text der Karte vollständig — Notizen dürfen
+         Markierungen, die sie nicht finden, als verwaist führen. */
+      if (block) { block.setAttribute('data-nz-komplett', '1'); }
       if (!text) {
         handbuchFallback(e).forEach(function (k) { behaelter.appendChild(k); });
         return;
@@ -337,10 +341,13 @@
     var quelle = HT.ui.quellenLink(e.quelle);
     var titelTag = optionen.titelEbene || 'h2';
 
+    /* Ort für persönliche Notizen (js/notizen.js): die Karte ist der Block,
+       in dem Markierungen verankert werden — im Lexikon wie im Überblick. */
+    var ort = '#/lexikon?id=' + encodeURIComponent(e.id);
     var artikel = h('article', {
       class: 'eintrag eintrag--' + e.kategorie,
       id: 'eintrag-' + e.id,
-      dataset: { id: e.id }
+      dataset: { id: e.id, nzOrt: ort, nzTitel: e.begriff }
     }, [
       h('div', { class: 'eintrag__kopf' }, [
         optionen.ohneTitel ? null : h('div', { class: 'eintrag__titelzeile' }, [
@@ -356,7 +363,8 @@
         optionen.zusatz || null
       ]),
       kern,
-      handbuch
+      handbuch,
+      HT.notizen && !optionen.ohneNotizen ? HT.notizen.panel(ort, e.begriff, { kompakt: true }) : null
     ]);
 
     anwenden(typeof optionen.stufe === 'number' ? optionen.stufe : 0);

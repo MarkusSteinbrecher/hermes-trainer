@@ -33,6 +33,9 @@
   var ZOOM_MIN = 0.5;
   var ZOOM_MAX = 3;
   var ZOOM_SCHRITT = 1.2;
+  var SCHMAL = 900;     // unterhalb: Bühne über der Seite (siehe css/trainer.css)
+  var LESBAR = 0.8;     // kleinster Grundmassstab auf schmalen Schirmen (Arial 9 → gut 7 px)
+  var SUCHE_AB = 12;    // ab so vielen Chips bekommt der Pool ein Suchfeld
 
   var abb = null;       // { svg, breite, hoehe, kaesten, uebungen } — einmal je Sitzung
   var abbLaeuft = null; // laufendes Versprechen, damit zwei Aufrufe nicht zweimal laden
@@ -212,6 +215,7 @@
     }
     kaesten.forEach(function (k) {
       k.x = k.x * a + e; k.y = k.y * d + f; k.w = k.w * a; k.h = k.h * d;
+      (k.texte || []).forEach(function (t) { t.x = t.x * a + e; t.y = t.y * d + f; });
     });
     return kaesten;
   }
@@ -297,9 +301,18 @@
       if (x === null || y === null) { return; }
       z.x = x; z.y = y;
       var g = svgEl('g', { 'class': 'tr-ziel', 'data-ziel': i, tabindex: '0', role: 'button' });
+      /* Der Deckel deckt auch die gedruckte Beschriftung: im Office-Export
+         ragt ein vierzeiliger Name («Integrations- und Installationsanleitung»)
+         mit der letzten Grundlinie unter den Kastenrand — sonst lugt er hervor. */
+      var oben = y + 1, unten = y + k.h - 1;
+      (k.texte || []).forEach(function (t) {
+        var grund = y + (t.y - k.y);
+        oben = Math.min(oben, grund - 7.5);
+        unten = Math.max(unten, grund + 2.5);
+      });
       g.appendChild(svgEl('rect', {
-        'class': 'tr-ziel__deckel', x: x + 1, y: y + 1,
-        width: Math.max(0, k.w - 2), height: Math.max(0, k.h - 2), fill: k.fuell
+        'class': 'tr-ziel__deckel', x: x + 1, y: oben,
+        width: Math.max(0, k.w - 2), height: Math.max(0, unten - oben), fill: k.fuell
       }));
       /* Volle Kastenhöhe: dreizeilige Namen («Rechts-grundlagen-analyse»)
          füllen den Kasten im Druck bis an den Rand. */
@@ -341,7 +354,11 @@
     var hh = Number(refs.abb.getAttribute('data-hoehe')) || 1;
     var platzB = refs.buehne.clientWidth - 28;
     var platzH = Math.max(320, global.innerHeight - refs.buehne.getBoundingClientRect().top - 48);
-    return Math.max(0.1, Math.min(platzB / b, platzH / hh));
+    var passend = Math.min(platzB / b, platzH / hh);
+    /* Auf einem Telefon wäre «passend» für eine Phasenzeile ein Drittel —
+       unlesbar. Dort gilt ein Mindestmass, die Bühne scrollt seitlich. */
+    if (global.innerWidth < SCHMAL) { passend = Math.max(passend, LESBAR); }
+    return Math.max(0.1, passend);
   }
 
   function zoomAnwenden() {
@@ -365,7 +382,7 @@
   /* --- Übung: Zustand ------------------------------------------------------ */
 
   /* uebung = { def, ziele: [{ k, name, ids, chip }], chips: [{ name, ids, ziel, el }],
-                gewaehlt: Chip | null, geprueft: false | { richtig, gesamt } } */
+                gewaehlt: Chip | null, geprueft: false | { richtig, gesamt }, suche: '' } */
   function uebungStarten(def) {
     var ziele = kaestenIm(def).map(function (k) {
       return { k: k, name: namenVon(k.eintraege), druck: druckText(k), ids: idsVon(k.eintraege), chip: null, status: '' };
@@ -375,11 +392,22 @@
     ziele.sort(function (a, b) { return (a.k.y - b.k.y) || (a.k.x - b.k.x); });
     var chips = ziele.map(function (z) { return { name: z.name, druck: z.druck, ids: z.ids, ziel: null, el: null }; });
     chips.sort(function (a, b) { return a.name.localeCompare(b.name, 'de'); });
-    uebung = { def: def, ziele: ziele, chips: chips, gewaehlt: null, geprueft: false };
+    uebung = { def: def, ziele: ziele, chips: chips, gewaehlt: null, geprueft: false, suche: '' };
   }
 
   function chipsImPool() {
     return uebung.chips.filter(function (c) { return !c.ziel; });
+  }
+
+  /* Suche im Pool: Umlaute und Diakritika tolerant («losung» trifft «Lösung»). */
+  function suchform(text) {
+    var t = HT.daten.normalisieren(text).replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'ss');
+    try { t = t.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (x) { /* ältere Browser */ }
+    return t;
+  }
+
+  function trifft(chip, suche) {
+    return !suche || suchform(chip.name).indexOf(suche) !== -1;
   }
 
   function setzen(chip, ziel) {
@@ -436,8 +464,16 @@
     }
   }
 
+  /* Zurück auf Anfang — an den bestehenden Objekten, denn die Ziele tragen
+     die Verweise auf ihre SVG-Elemente (gruppe, etikett, titel); ein frischer
+     Satz aus uebungStarten() liesse die Bühne im alten Zustand stehen. */
   function zuruecksetzen() {
-    uebungStarten(uebung.def);
+    uebung.ziele.forEach(function (z) { z.chip = null; z.status = ''; });
+    uebung.chips.forEach(function (c) { c.ziel = null; c.el = null; c.gezogen = false; });
+    uebung.gewaehlt = null;
+    uebung.geprueft = false;
+    uebung.suche = '';
+    if (refs.suche && refs.suche.feld) { refs.suche.feld.value = ''; }
     zeichnen();
   }
 
@@ -479,9 +515,17 @@
 
     /* Pool */
     HT.ui.leeren(refs.pool);
-    var offen = chipsImPool();
-    if (!offen.length) {
+    var alleOffen = chipsImPool();
+    var suche = suchform(uebung.suche);
+    var offen = alleOffen.filter(function (c) { return trifft(c, suche); });
+    if (!alleOffen.length) {
       refs.pool.appendChild(h('p', { class: 'tr-pool__leer', text: gepr ? 'Alle Chips lagen im Bild.' : 'Alle Chips liegen im Bild — jetzt prüfen.' }));
+    } else if (!offen.length) {
+      refs.pool.appendChild(h('p', { class: 'tr-pool__leer', text: 'Kein Chip passt zu «' + uebung.suche.trim() + '».' }));
+    }
+    if (refs.suche) {
+      refs.suche.hidden = alleOffen.length < SUCHE_AB && !uebung.suche;
+      refs.sucheStand.textContent = suche ? offen.length + ' von ' + alleOffen.length + ' Chips' : alleOffen.length + ' Chips';
     }
     offen.forEach(function (c) {
       var el = h('button', {
@@ -674,6 +718,23 @@
     return el;
   }
 
+  /* Bei vielen Chips (Gesamtbild: 80) ein Suchfeld über dem Pool — vor allem
+     auf dem Telefon, wo der Pool sonst mehrere Bildschirme lang ist. */
+  function suchfeld() {
+    var feld = h('input', {
+      type: 'search', class: 'suche__feld tr-suche__feld', placeholder: 'Chip suchen …',
+      autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': 'Chips durchsuchen'
+    });
+    var loeschen = h('button', { type: 'button', class: 'suche__loeschen', 'aria-label': 'Suche löschen', text: '✕' });
+    refs.sucheStand = h('span', { class: 'tr-suche__stand', role: 'status' });
+    feld.addEventListener('input', function () { uebung.suche = feld.value; zeichnen(); });
+    feld.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') { feld.value = ''; uebung.suche = ''; zeichnen(); } });
+    loeschen.addEventListener('click', function () { feld.value = ''; uebung.suche = ''; zeichnen(); feld.focus(); });
+    var huelle = h('div', { class: 'suche tr-suche', hidden: true }, [feld, loeschen, refs.sucheStand]);
+    huelle.feld = feld;
+    return huelle;
+  }
+
   function uebungRendern(behaelter, def) {
     uebungStarten(def);
     zoom = 1;
@@ -691,6 +752,7 @@
     ]);
 
     refs.pool = h('div', { class: 'tr-pool', role: 'list', 'aria-label': 'Chips' });
+    refs.suche = suchfeld();
     refs.zaehler = h('span', { class: 'tr-zaehler', role: 'status' });
     refs.hinweis = h('p', { class: 'tr-hinweis', text:
       'Chip in einen leeren Kasten ziehen — oder Chip antippen und dann den Kasten. '
@@ -718,6 +780,7 @@
         h('div', { class: 'btn-reihe tr-knoepfe' }, [refs.knopfPruefen, refs.knopfReset, refs.knopfNochmals, knopfWeiter]),
         refs.ergebnis,
         refs.hinweis,
+        refs.suche,
         refs.pool
       ])
     ]);

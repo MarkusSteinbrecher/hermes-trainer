@@ -2,6 +2,40 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-10 — Persönliche Notizen: Markieren, Kommentieren, freie Notizen, Sichern als Datei
+
+**Auftrag:** «Können wir die Seite so personalisieren, dass der User Textpassagen highlighten, Kommentare ergänzen kann? Im Browser speichern und lokal sichern.» Nach Rückfrage: ja zu Lernstand im Export und zu freien Notizen ohne Textbezug.
+
+**Neues Modul `js/notizen.js` + `css/notizen.css`, Route `#/notizen` (Nav zwischen Quiz und Über):**
+- **Markieren:** Text auswählen → Blase mit vier Farben und «Kommentar» (Blase reagiert auf `selectionchange`, Knöpfe fangen `mousedown` ab, damit die Auswahl nicht kollabiert). Klick auf eine Markierung öffnet einen schwebenden Editor (Kommentar mit Autosave, Farbe, Löschen, Esc). Kommentierte Markierungen tragen eine feste Unterkante.
+- **Verankerung** nach W3C-Web-Annotation (TextQuoteSelector): `exact` + 32 Zeichen `prefix`/`suffix`, Ort = nächster Block mit `data-nz-ort`. Positionen im Block über `Range.toString()`-Längen, wiedergefunden per `indexOf` (Kontext → Zitat allein → beste Kontextübereinstimmung). Textknoten werden gesplittet und in `<mark>` gehüllt, beim Neu-Anwenden erst ausgepackt und `normalize()`t. Ein `MutationObserver` auf `#view` (nur childList, eigene Änderungen per Zähler stumm) legt alles nach jedem Aufbau und Nachladen neu — die Ansichten setzen nur Attribute.
+- **Orte:** Lexikonkarte (`#/lexikon?id=`, `karte.js`), Kapitelteil (`#/methode?kapitel=&teil=`) und Kapitel (`methode.js`), Inhaltsseite des Überblicks mit demselben Ort wie die Karte (`ueberblick.js`) — eine Markierung dort erscheint auch auf der Karte, sobald deren Stufe «Handbuch» geladen ist.
+- **Verwaist** wird eine Markierung nur in einem Block mit `data-nz-komplett` — sonst hätte jede Karte in Stufe «Kurz» alle Handbuch-Markierungen als verloren geführt. Karte setzt es nach dem Nachladen, Kapitelteile tragen es ab Erstellung, das Kapitel nach dem Füllen, der Überblick sobald der Handbuchtext da ist.
+- **Freie Notizen:** `HT.notizen.panel(ort, titel)` ist ein `<details>` «Meine Notizen · n» mit Textareas (Autosave, Höhe wächst mit) und der Liste der Markierungen des Orts (Klick springt hin). Kapitelende, Inhaltsseite des Überblicks, Lexikonkarte (dort kompakt, ohne eigene Linie).
+- **Seite «Notizen»:** nach Ort gruppiert, Notizen editierbar, Markierungen mit Zitat, Kommentar und Sprunglink `…&nz=<id>` (scrollt und blitzt), Löschen je Eintrag. Export JSON (Notizen + Lernstand `lernkarten`, `quiz-statistik`, `quiz-konfig`, `trainer`) und Markdown über Blob-URL; Import per `FileReader`, Zusammenführen nach ID (neueres `geaendert` gewinnt), Lernstand optional (Häkchen). «Alle Notizen löschen» zweistufig, kein `confirm()`.
+
+**Beim Prüfen gefunden:** Der Klick «Kommentar» in der Blase öffnete den Editor und schloss ihn im selben Ereignis wieder (Dokument-Listener «Klick ausserhalb»); Klicks aus der Blase zählen jetzt nicht als «ausserhalb». Der Zähler im Panel aktualisierte sich nicht, solange das Textfeld den Fokus hat (Panel wird dann bewusst nicht neu gebaut) — der Zähler wird separat gesetzt.
+
+**Geprüft (lokal, Chrome 1568 px und 390-px-iframe, keine Konsolenfehler):** Kapitel Ergebnisse: Auswahl → Blase → Kommentar-Editor → Farbe Grün → Fertig; Markierung überlebt Neuladen; Notizenseite listet sie, Sprunglink führt hin; freie Notiz am Kapitelende; Lexikonkarte mit kompakter Zeile, Deep-Link scrollt weiterhin; Überblick: Auswahl im Lead, Blau — dieselbe Markierung erscheint auf der Lexikonkarte, sobald die Stufe «Handbuch» geladen ist; Import headless geprüft (gleiche Datei: 0 neu, geänderter Eintrag mit jüngerem Datum gewinnt, fremde Datei wird abgewiesen); untere Navigation mit neun Einträgen passt bei 390 px. Die Testnotizen und die Trainer-Quote aus dem Vortag wurden am Ende aus localStorage entfernt. README, Über-Seite, Cache-Marke `?v=2026-09-10a`. Nicht committet.
+
+**Offen / Ideen:** Markierungen in Kernaussagen des Hubs und in Quiz-Belegen (kein `data-nz-ort`); Touch: die Blase erscheint bei Auswahl auf dem Telefon, das native Kontextmenü liegt aber darüber — echtes Gerät prüfen; Suche auf der Notizenseite; Markierungen beim Export als Markdown mit Kapitel-/Seitenangabe.
+
+## 2026-09-09 (12) — Trainer: offene Punkte — Deckel über Beschriftung, Suche im Pool, schmales Layout
+
+**Auftrag:** «continue» — weiter mit den offenen Punkten aus Eintrag (11).
+
+**Schmales Layout geprüft — und dafür ein Weg gefunden:** Das Chrome-Fenster lässt sich hier nicht unter ~1470 px verkleinern, aber eine Hilfsseite mit `<iframe width=390>` auf die lokale App (eigener Server auf Port 8081, Datei im Scratchpad) zeigt das Telefon-Layout samt Media-Queries und unterer Navigation. Befund: das Gerüst stapelt korrekt (Kopf, Bühne, Seite), aber «Passend» skalierte eine Phasenzeile auf ein Drittel — Arial 9 bei 3 px, unlesbar. Jetzt gilt unter 900 px ein Mindestmass von 0,8 für den Grundmassstab (`LESBAR`), die Bühne scrollt seitlich; dazu ist die Bühne dort auf 58 vh begrenzt, damit der Weg Chip → Kasten kürzer bleibt.
+
+**Beim Prüfen gefunden:** Unter dem Kasten «Integrations- und Installationsanleitung» (IT-System, Realisierung) lugte «anleitung» hervor — auch im breiten Layout. Der Office-Export setzt die vierte Zeile mit der Grundlinie unter den Kastenrand (`abbildung.js` lässt bis 6 Einheiten Toleranz zu), der Deckel deckte nur das Rechteck. Der Deckel reicht jetzt von der obersten Grundlinie − 7,5 bis zur untersten + 2,5, mindestens aber über den Kasten; dafür rechnet `inWurzelkoordinaten` auch die Textfragmente um (vorher nur x/y/w/h).
+
+**Suche im Pool:** Ab zwölf Chips (`SUCHE_AB`) steht ein Suchfeld über dem Pool — dasselbe `.suche__feld` wie im Lexikon, Zähler «n von m Chips», umlaut- und diakritikatolerant («losung» trifft «Lösungsarchitektur»), Esc und ✕ leeren, Zurücksetzen/Nochmals leert mit. Das native ✕ des `type=search` stand doppelt neben unserem — global für `.suche__feld` ausgeblendet (betrifft auch das Lexikon).
+
+**Beim Prüfen gefunden (2), Altlast aus Eintrag 11:** «Nochmals» und «Zurücksetzen» leerten Pool und Zähler, die Bühne behielt aber Auswertung und Etiketten — `zuruecksetzen()` rief `uebungStarten()` auf und bekam neue Zielobjekte ohne die Verweise auf die SVG-Elemente (`gruppe`, `etikett`, `titel`), die `zeichnen()` dann übersprang. Jetzt werden die bestehenden Ziele und Chips zurückgestellt statt neu gebaut.
+
+**Geprüft (lokal, Chrome 1568 px und im 390/760-px-iframe, keine Konsolenfehler):** Deckel über «…anleitung» passgenau; Suchfeld erscheint bei 12 Chips, «losung» → 2 von 12, «system» → 3 von 12, natives ✕ weg; mit Filter Chip antippen → Kasten → Prüfen: 1 von 12 richtig, Auswertung und Etiketten stimmen; schmal: Konzept in lesbarer Grösse mit Seitenscroll, Hub, IT-System bei 760 px einspaltig, untere Navigation frei. **Nicht geprüft:** der Reset nach dem Fix an `zuruecksetzen()` — die Chrome-Erweiterung verlor danach dreimal die Verbindung (die Logik ist überschaubar: `zeichnen()` setzt Klasse und Etikett jedes Ziels aus dem Zustand). Hinweis: im Browser des Sponsors steht durch den Test «Beste 1/12» beim Modul IT-System in localStorage (`trainer`). README nachgeführt, Cache-Marke `?v=2026-09-09m`. Nicht committet.
+
+**Offen / Ideen (unverändert):** Modulköpfe und Phasenbalken wahlweise leeren; Übung «Rollen»; Wiki-Projektseite in HQ ist geändert, aber nicht committet.
+
 ## 2026-09-09 (11) — Neue Ansicht «Trainer»: Ausschnitte der Abbildung zum Zuordnen
 
 **Auftrag:** Auf Basis des Überblicks eine Reihe von Seiten als Ausschnitt aus der Gesamtmethode (Phasen wie Initialisierung, Konzept; jedes Modul). Je Seite die Elemente der Übersicht ohne Inhalt, ein Pool dieser Elemente zum Hineinziehen und Zuordnen; am Ende die Lösung mit richtig/falsch.

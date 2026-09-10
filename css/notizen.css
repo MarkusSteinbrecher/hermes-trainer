@@ -1,0 +1,210 @@
+/* ==========================================================================
+   HERMES-Trainer — Notizen: Markierungen, Kommentare, freie Notizen
+
+   Vier Markierfarben, hell und druckfähig; ein Kommentar zeigt sich als
+   feste Unterkante. Blase und Editor sind die einzigen schwebenden Teile
+   der Anwendung — flach, mit Linie und Schatten, kein Radius.
+   ========================================================================== */
+
+:root {
+  --nz-gelb: #fbe58a;
+  --nz-gruen: #bfe7c5;
+  --nz-blau: #c6dcf7;
+  --nz-rosa: #f7c9dc;
+}
+
+/* --- Markierung im Text ---------------------------------------------------- */
+
+mark.nz-mark {
+  padding: .04em 0;
+  color: inherit;
+  cursor: pointer;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+mark.nz-mark--gelb { background: var(--nz-gelb); }
+mark.nz-mark--gruen { background: var(--nz-gruen); }
+mark.nz-mark--blau { background: var(--nz-blau); }
+mark.nz-mark--rosa { background: var(--nz-rosa); }
+mark.nz-mark--kommentar { border-bottom: 2px solid var(--text); }
+mark.nz-mark:hover, mark.nz-mark:focus-visible { outline: 2px solid var(--akzent); outline-offset: 1px; }
+mark.nz-mark.ist-blitz, .nz-notiz.ist-blitz { outline: 3px solid var(--akzent); outline-offset: 2px; }
+
+/* --- Farbknöpfe ------------------------------------------------------------ */
+
+.nz-farbe {
+  width: 24px; height: 24px;
+  padding: 0;
+  border: 1px solid var(--rand-stark);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.nz-farbe--gelb { background: var(--nz-gelb); }
+.nz-farbe--gruen { background: var(--nz-gruen); }
+.nz-farbe--blau { background: var(--nz-blau); }
+.nz-farbe--rosa { background: var(--nz-rosa); }
+.nz-farbe:hover, .nz-farbe.ist-aktiv { border-color: var(--text); box-shadow: 0 0 0 2px var(--weiss), 0 0 0 3px var(--text); }
+
+.nz-punkt {
+  flex: 0 0 auto;
+  display: inline-block;
+  width: 10px; height: 10px;
+  margin-top: .45em;
+  border-radius: 50%;
+  border: 1px solid var(--rand-stark);
+}
+.nz-punkt--gelb { background: var(--nz-gelb); }
+.nz-punkt--gruen { background: var(--nz-gruen); }
+.nz-punkt--blau { background: var(--nz-blau); }
+.nz-punkt--rosa { background: var(--nz-rosa); }
+
+/* --- Auswahlblase ---------------------------------------------------------- */
+
+.nz-blase {
+  position: fixed;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  background: var(--weiss);
+  border: 1px solid var(--rand-stark);
+  box-shadow: var(--schatten-stark);
+}
+.nz-blase__farben { display: flex; gap: 6px; }
+.nz-blase__kommentar {
+  min-height: 24px;
+  padding: 0 8px;
+  border: 0;
+  border-left: 1px solid var(--rand);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.nz-blase__kommentar:hover { color: var(--akzent-text); }
+
+/* --- Editor ------------------------------------------------------------------ */
+
+.nz-editor {
+  position: fixed;
+  z-index: 71;
+  width: min(340px, calc(100vw - 16px));
+  padding: 12px;
+  background: var(--weiss);
+  border: 1px solid var(--rand-stark);
+  box-shadow: var(--schatten-stark);
+}
+.nz-editor__zitat { margin: 0 0 8px; font-size: 12.5px; line-height: 1.4; color: var(--text-leise); }
+.nz-editor__feld, .nz-notiz__feld {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--rand-stark);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.nz-editor__fuss { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
+.nz-editor__farben { display: flex; gap: 6px; }
+.nz-editor__knoepfe { display: flex; gap: 6px; }
+
+/* --- Panel «Meine Notizen» ------------------------------------------------- */
+
+.nz-panel {
+  margin: 18px 0 0;
+  border-top: 1px solid var(--linie-stark);
+  padding-top: 8px;
+}
+.nz-panel > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+.nz-panel > summary::-webkit-details-marker { display: none; }
+.nz-panel > summary::before { content: '▸'; font-size: .8em; transition: transform .15s ease; }
+.nz-panel[open] > summary::before { transform: rotate(90deg); }
+.nz-panel.hat-notizen > summary { color: var(--text); }
+/* In der Lexikonkarte: eine leise Zeile unter dem Fuss, keine eigene Linie. */
+.nz-panel--kompakt { margin: 4px 0 0; padding-top: 0; border-top: 0; }
+.nz-panel--kompakt > summary { min-height: 26px; font-size: 10.5px; color: var(--text-leise-hell); }
+.nz-panel--kompakt.hat-notizen > summary, .nz-panel--kompakt[open] > summary { color: var(--text-leise); }
+.nz-panel--kompakt > summary:hover { color: var(--text); }
+.nz-panel__zahl {
+  min-width: 18px;
+  padding: 1px 6px;
+  border: 1px solid var(--rand);
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--text-weich);
+}
+.nz-panel__zahl:empty { display: none; }
+.nz-panel__inhalt { padding: 6px 0 4px; }
+.nz-panel__knoepfe { display: flex; align-items: center; gap: 14px; margin: 6px 0 4px; }
+.nz-panel__alle { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-leise); text-decoration: none; }
+.nz-panel__alle:hover { color: var(--akzent-text); }
+.nz-mikro { margin: 14px 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
+
+.nz-notiz { margin: 0 0 10px; }
+.nz-notiz__feld { min-height: 64px; overflow: hidden; }
+.nz-notiz__zeile { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 2px; }
+.nz-notiz__wann { font-size: 11.5px; color: var(--text-leise-hell); }
+.nz-notiz__weg {
+  min-width: 28px; min-height: 28px;
+  padding: 0 6px;
+  border: 0;
+  background: transparent;
+  color: var(--text-leise);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.nz-notiz__weg:hover { color: var(--akzent-text); }
+
+.nz-markliste { margin: 0; padding: 0; list-style: none; }
+.nz-markliste__zeile { display: flex; align-items: flex-start; gap: 8px; margin: 0 0 6px; font-size: 13.5px; line-height: 1.45; }
+.nz-markliste__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.nz-markliste__zitat { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--rand-stark); }
+.nz-markliste__zitat:hover { color: var(--akzent-text); border-bottom-color: var(--akzent); }
+.nz-markliste__kommentar { color: var(--text-weich); white-space: pre-wrap; }
+.nz-markliste__verwaist { font-size: 12px; color: var(--warn); }
+.ist-verwaist .nz-markliste__zitat { color: var(--text-leise); }
+
+/* --- Seite «Notizen» --------------------------------------------------------- */
+
+.nz-seite { max-width: var(--maxbreite); margin: 0 auto; }
+.nz-werkzeuge { margin: 0 0 22px; padding: 14px 0; border-top: 1px solid var(--linie-stark); border-bottom: 1px solid var(--linie-stark); }
+.nz-datei { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; pointer-events: none; }
+.nz-lernstand { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: var(--text-weich); }
+.nz-meldung { margin: 10px 0 0; font-size: 13px; color: var(--gut); }
+.nz-meldung.ist-schlecht { color: var(--schlecht); }
+.nz-seite__zahl { margin: 0 0 14px; font-size: 13px; color: var(--text-leise); }
+.nz-gruppe { margin: 0 0 22px; padding: 0 0 14px; border-bottom: 1px solid var(--rand); }
+.nz-gruppe__titel { margin: 0 0 10px; font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+.nz-gruppe__titel a { color: var(--text); text-decoration: none; }
+.nz-gruppe__titel a:hover { color: var(--akzent-text); }
+.nz-gruppe__notizen { margin: 0 0 8px; }
+.nz-gruppe .nz-markliste__zeile .nz-notiz__weg { flex: 0 0 auto; margin-top: -4px; }
+.nz-seite__fuss { margin-top: 20px; }
+.nz-allesweg { color: var(--text-leise); }
+.nz-allesweg.ist-scharf { color: var(--schlecht); border-color: var(--schlecht); }
+
+@media print {
+  .nz-blase, .nz-editor, .nz-werkzeuge, .nz-seite__fuss, .nz-panel__knoepfe, .nz-notiz__weg { display: none !important; }
+  mark.nz-mark { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

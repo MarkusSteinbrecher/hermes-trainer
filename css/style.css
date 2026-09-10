@@ -442,6 +442,8 @@ main:focus { outline: none; }
   font-size: 14px;
 }
 .suche__feld::placeholder { color: var(--text-leise-hell); }
+/* Der Browser bringt beim Suchfeld ein eigenes ✕ mit — wir haben unseres. */
+.suche__feld::-webkit-search-cancel-button, .suche__feld::-webkit-search-decoration { -webkit-appearance: none; appearance: none; display: none; }
 .suche__feld:focus-visible { outline-offset: 0; }
 .suche__loeschen {
   position: absolute;

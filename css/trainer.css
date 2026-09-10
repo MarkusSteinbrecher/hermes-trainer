@@ -58,6 +58,9 @@ body[data-route="trainer"] .view { max-width: none; padding: 18px 20px 40px; }
 }
 @media (max-width: 899.98px) {
   .tr-uebung { grid-template-columns: minmax(0, 1fr); grid-template-areas: "kopf" "buehne" "seite"; }
+  /* Bühne und Pool teilen sich den Schirm: die Bühne bleibt kürzer, damit
+     der Weg Chip → Kasten ohne langes Scrollen geht. */
+  .tr-buehne { max-height: 58vh; }
 }
 
 .tr-kopf { grid-area: kopf; display: flex; flex-direction: column; gap: 6px; }
@@ -158,6 +161,9 @@ body[data-route="trainer"] .view { max-width: none; padding: 18px 20px 40px; }
 .tr-knoepfe { margin: 0; }
 .tr-hinweis { margin: 0; font-size: 13px; line-height: 1.5; color: var(--text-leise); }
 
+.tr-suche { margin: 0; }
+.tr-suche__feld { min-height: 36px; font-size: 13.5px; }
+.tr-suche__stand { display: block; margin-top: 4px; font-size: 12px; color: var(--text-leise); }
 .tr-pool { display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; }
 .tr-pool__leer { margin: 0; font-size: 13px; color: var(--text-leise); }
 .tr-chip {

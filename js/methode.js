@@ -323,8 +323,12 @@
     ];
   }
 
-  function teilElement(teil, kernDaten, offen, einzeln) {
+  function teilElement(teil, kernDaten, offen, einzeln, kapitelId) {
     var inhalt = h('div', { class: 'stufe__inhalt' });
+    /* Ort für persönliche Notizen: der Kapitelteil mit seinem Direktlink. */
+    var nz = teil.nummer
+      ? { nzOrt: '#/methode?kapitel=' + encodeURIComponent(kapitelId) + '&teil=' + encodeURIComponent(teil.nummer), nzTitel: teil.nummer + ' ' + (teil.titel || ''), nzKomplett: '1' }
+      : null;
 
     (kernDaten || []).forEach(function (d) {
       var kb = kernaussagenBlock(d.daten, d.titel);
@@ -361,9 +365,10 @@
 
     if (einzeln) {
       inhalt.className = 'stufe-block stufe-block--3 stufe-block--offen';
+      if (nz) { inhalt.dataset.nzOrt = nz.nzOrt; inhalt.dataset.nzTitel = nz.nzTitel; }
       return inhalt;
     }
-    return h('details', { class: 'stufe-block stufe-block--3', open: !!offen, id: teil.nummer ? 'teil-' + teil.nummer : null }, [
+    return h('details', { class: 'stufe-block stufe-block--3', open: !!offen, id: teil.nummer ? 'teil-' + teil.nummer : null, dataset: nz }, [
       h('summary', {}, summaryText(teil.nummer, teil.titel, teil.seite)),
       inhalt
     ]);
@@ -384,7 +389,11 @@
       h('p', { text: meta.teaser })
     ]));
 
-    var inhalt = h('div', { class: 'kapitel' });
+    /* Ort für persönliche Notizen: das Kapitel (Kernaussagen, Zusammenfassung);
+       die Handbuchteile darin sind eigene Orte. */
+    var kapitelOrt = '#/methode?kapitel=' + encodeURIComponent(meta.id);
+    var kapitelTitel = 'Kapitel ' + meta.nummer + ' ' + meta.titel;
+    var inhalt = h('div', { class: 'kapitel', dataset: { nzOrt: kapitelOrt, nzTitel: kapitelTitel } });
     behaelter.appendChild(inhalt);
     inhalt.appendChild(ladeHinweis('Kapitel wird geladen …'));
 
@@ -454,9 +463,12 @@
         /* Kernaussagen des Kapitels selbst stehen bereits oben. */
         if (meta.id === 'hinweise' && t.nummer === '7') { kernDaten = []; }
         var offen = gewuenscht ? (t.nummer === gewuenscht) : (teile.length === 1 || i === 0);
-        wrapper.appendChild(teilElement(t, kernDaten, offen, teile.length === 1));
+        wrapper.appendChild(teilElement(t, kernDaten, offen, teile.length === 1, meta.id));
       });
       inhalt.appendChild(wrapper);
+
+      if (HT.notizen) { inhalt.appendChild(HT.notizen.panel(kapitelOrt, kapitelTitel)); }
+      inhalt.dataset.nzKomplett = '1';
 
       /* Blättern */
       inhalt.appendChild(h('div', { class: 'btn-reihe kapitel-nav' }, [
