@@ -223,7 +223,7 @@
   /* Alle Popover an einer Stelle: Titel, Inhalt und der Knopf, der sie
      öffnet. */
   var POPS = {
-    alle:        { titel: 'Alle Filter',    inhalt: function () { return alleFilterInhalt(); },  knopf: 'knopfAlle' },
+    alle:        { titel: 'Alle Filter',    inhalt: function () { return alleFilterInhalt(); },  knopf: 'knopfAlle', breit: true },
     filter:      { titel: 'Filter',         inhalt: function () { return filterInhalt(); },      knopf: 'knopfFilter' },
     suche:       { titel: 'Element suchen', inhalt: function () { return sucheInhalt(); },       knopf: 'knopfSuche' },
     quer:        { titel: function () { return zustand.ansicht === 'phasen' ? 'Auf Module einschränken' : 'Auf Phasen einschränken'; },
@@ -254,6 +254,8 @@
     var knopf = refs[meta.knopf];
     var titel = typeof meta.titel === 'function' ? meta.titel() : meta.titel;
     if (knopf) { knopf.setAttribute('aria-expanded', 'true'); }
+    /* «Alle Filter» nutzt die ganze Breite der Fläche — Spalten statt Liste. */
+    refs.pop.classList.toggle('gpop--breit', !!meta.breit);
 
     refs.pop.appendChild(h('div', { class: 'gpop__kopf' }, [
       h('strong', { class: 'gpop__titel', text: titel }),
@@ -291,8 +293,8 @@
     var module = HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
     var zahlen = refs.zahlen || {};
 
-    function abschnitt(titel, rechts, inhalt) {
-      return h('section', { class: 'gaf' }, [
+    function abschnitt(titel, rechts, inhalt, klasse) {
+      return h('section', { class: 'gaf' + (klasse ? ' ' + klasse : '') }, [
         h('div', { class: 'gaf__kopf' }, [h('h3', { class: 'gaf__titel', text: titel }), rechts]),
         inhalt
       ]);
@@ -375,34 +377,44 @@
       }, [
         h('span', { class: 'gaf__szenario-haken', 'aria-hidden': 'true', text: gleich ? '●' : '○' }),
         h('span', { class: 'gaf__szenario-titel', text: sz.begriff }),
-        h('span', { class: 'gs-schalter__extra', text: sz.module.length + ' Module' })
+        h('span', { class: 'gs-schalter__extra', title: sz.module.length + ' Module', text: String(sz.module.length) })
       ]);
     });
 
     var ansichtOptionen = ANSICHTEN.map(function (a) { return { key: a.key, label: a.label }; });
 
+    /* Sechs Spalten über die ganze Breite: kein Scrollen, alles auf einen
+       Blick. Ansicht und Vorgehensweise teilen sich die erste Spalte,
+       Elemente und Verbindungen die fünfte; die zwölf Module stehen in zwei
+       Reihen. */
     var kinder = [
-      h('p', { class: 'gpop__hinweis', text: 'Alles auf einer Seite. Jedes Häkchen wirkt sofort auf den Graphen; die Leiste zeigt dieselbe Auswahl.' }),
-      abschnitt('Ansicht', null, segment(ansichtOptionen, zustand.ansicht, function (key) { ansichtSetzen(key); popOeffnen('alle'); }, 'Ansicht', true)),
-      abschnitt('Vorgehensweise', null, segment(VORGEHENSWEISEN, zustand.umfang.vorgehen, function (key) { vorgehenSetzen(key); popZeichnen(); }, 'Vorgehensweise', true)),
-      abschnitt('Phasen', alleKnopf('phasen', 'Phasen'),
-        h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Phasen' }, phasen.map(function (name) {
-          return haken('phasen', name, phasen, HT.graph.beitrag('phase', name, zustand.umfang));
-        }))),
-      abschnitt('Szenarien', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien)),
-      abschnitt('Module', alleKnopf('module', 'Module'),
-        h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Module' }, module.map(function (name) {
-          return haken('module', name, module, HT.graph.beitrag('modul', name, zustand.umfang));
-        }))),
-      abschnitt('Elemente', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
-      abschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken))),
-      abschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
-        darstellungHaken('Phasenstreifen im Knoten (I K R E U A)', 'phasenstreifen', false),
-        darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
-        darstellungHaken('Nur minimal geforderte Dokumente', 'nurMinimal'),
-        darstellungHaken('Nur Entscheidungsaufgaben', 'nurEntscheide')
-      ])),
+      h('div', { class: 'gaf-raster' }, [
+        h('div', { class: 'gaf-spalte' }, [
+          abschnitt('Ansicht', null, segment(ansichtOptionen, zustand.ansicht, function (key) { ansichtSetzen(key); popOeffnen('alle'); }, 'Ansicht', true)),
+          abschnitt('Vorgehensweise', null, segment(VORGEHENSWEISEN, zustand.umfang.vorgehen, function (key) { vorgehenSetzen(key); popZeichnen(); }, 'Vorgehensweise', true))
+        ]),
+        abschnitt('Phasen', alleKnopf('phasen', 'Phasen'),
+          h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Phasen' }, phasen.map(function (name) {
+            return haken('phasen', name, phasen, HT.graph.beitrag('phase', name, zustand.umfang));
+          }))),
+        abschnitt('Szenarien', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien)),
+        abschnitt('Module', alleKnopf('module', 'Module'),
+          h('div', { class: 'gs-liste gs-liste--zwei', role: 'group', 'aria-label': 'Module' }, module.map(function (name) {
+            return haken('module', name, module, HT.graph.beitrag('modul', name, zustand.umfang));
+          })), 'gaf--module'),
+        h('div', { class: 'gaf-spalte' }, [
+          abschnitt('Elemente', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
+          abschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
+        ]),
+        abschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
+          darstellungHaken('Phasenstreifen im Knoten (I K R E U A)', 'phasenstreifen', false),
+          darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
+          darstellungHaken('Nur minimal geforderte Dokumente', 'nurMinimal'),
+          darstellungHaken('Nur Entscheidungsaufgaben', 'nurEntscheide')
+        ]))
+      ]),
       h('div', { class: 'gaf__fuss' }, [
+        h('p', { class: 'gpop__hinweis gaf__fuss-hinweis', text: 'Jedes Häkchen wirkt sofort auf den Graphen; Leiste und Adresse zeigen dieselbe Auswahl.' }),
         h('button', {
           type: 'button', class: 'btn btn--klein', text: 'Auswahl zurücksetzen',
           disabled: HT.graph.umfangAktiv(zustand.umfang) || zustand.fokusId ? null : 'disabled',
