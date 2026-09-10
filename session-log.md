@@ -2,6 +2,19 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-10 — Graph: graue Verbindungen, grössere Knoten, Phasenmodell im Knoten, grössere Spaltentitel
+
+**Auftrag:** «ändere die Farbe der Linien zu hell- und dunkelgrau; mach die Boxen der Aufgaben und Ergebnisse grösser und die Zuordnung zu den Phasen (die kleinen Rechtecke) sollten wie in der HERMES Übersicht dargestellt werden — Initialisierung in der Mitte, Konzept, Realisierung, Einführung oben, Umsetzung unten und Abschluss wieder in der Mitte. Die Boxen sollten schwarz sein oder hellgrau. Der Text der Überschriften oben ist zu klein.»
+
+**Umsetzung (`js/graph-zeichnen.js`, `css/graph.css`, `js/graph.js`):**
+- **Verbindungen grau:** `--gkante-dunkel` (#3f3c3c) für «verantwortlich» und «erzeugt», `--gkante-hell` (#b3afaf) für «beteiligt» (gestrichelt) und «verantwortet das Ergebnis» (gepunktet); Legende und Icon-Leiste folgen über dieselben Variablen. Rot und Violett der Kanten sind weg, die Knoten behalten ihre Kategorienfarbe.
+- **Knoten grösser:** `KNOTEN_HOEHE` 28 → 36, Beschriftung 12 → 14 px (Messschrift angepasst), Glyph-Radius 8 → 10, Meilenstein-Spitze 10 → 12, Typsymbol 11 → 13 px.
+- **Phasenmodell statt Streifen:** `PHASEN_ZELLEN` bildet die HERMES-Grafik nach — Initialisierung über die volle Höhe (20 px), dann Konzept · Realisierung · Einführung oben und Umsetzung darunter über dieselbe Breite, rechts Abschluss über die volle Höhe. Zelle 7 px, Lücke 1.5 px, Streifen 41 px breit. Inaktiv hellgrau (#d9d6d6), Phasen des Elements schwarz (`--text`). Beschriftung in Darstellung («Phasenmodell im Knoten») und Legende angepasst.
+- **Spaltentitel:** `.gtext--spalte` 12 → 16 px, Bahnname 12 → 14, Zähler 11 → 12, Kopfzeile 6 px höher gesetzt.
+- Versionsmarke `?v=2026-09-10c`.
+
+**Test:** Browser, Phase Initialisierung: keine Konsolenfehler, Auswahl «Projekt steuern» hebt Nachbarn und Kanten in Dunkelgrau hervor, Rest gedimmt.
+
 ## 2026-09-10 — Graph: Popover «Alle Filter» mit allen Filtern untereinander
 
 **Auftrag:** «Auf der Graph Seite: erstelle ein Popup mit allen Filtern auf einer Seite, Phasen, Szenarien, etc. Alle aufgelistet untereinander, so dass man einfach und schnell alle Phasen oder einzelne auswählen kann.» Nachtrag: «Mach das Popup so, das es die gesamte breite der Seite nutzt und die Elemente nebeneinander sind und leichter auswählbar (ohne scrollen zu müssen).»

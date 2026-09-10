@@ -407,7 +407,7 @@
           abschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
         ]),
         abschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
-          darstellungHaken('Phasenstreifen im Knoten (I K R E U A)', 'phasenstreifen', false),
+          darstellungHaken('Phasenmodell im Knoten (Phasen des Elements schwarz)', 'phasenstreifen', false),
           darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
           darstellungHaken('Nur minimal geforderte Dokumente', 'nurMinimal'),
           darstellungHaken('Nur Entscheidungsaufgaben', 'nurEntscheide')
@@ -518,7 +518,7 @@
   function darstellungInhalt() {
     return popInhalt([
       h('div', { class: 'gs-liste' }, [
-        schalter('Phasenstreifen im Knoten (I K R E U A)', zustand.phasenstreifen, function (v) { zustand.phasenstreifen = v; geaendert(false); popZeichnen(); }),
+        schalter('Phasenmodell im Knoten (Phasen des Elements schwarz)', zustand.phasenstreifen, function (v) { zustand.phasenstreifen = v; geaendert(false); popZeichnen(); }),
         schalter('Ergebnisse ohne erzeugende Aufgabe ausblenden', zustand.isolierteAusblenden, function (v) { zustand.isolierteAusblenden = v; geaendert(); popZeichnen(); }),
         schalter('Nur minimal geforderte Dokumente', zustand.nurMinimal, function (v) { zustand.nurMinimal = v; geaendert(); popZeichnen(); }),
         schalter('Nur Entscheidungsaufgaben', zustand.nurEntscheide, function (v) { zustand.nurEntscheide = v; geaendert(); popZeichnen(); })
@@ -548,7 +548,7 @@
           h('span', { text: t })
         ]);
       })),
-      h('p', { class: 'glegende__hinweis', text: 'Meilensteine sind Ergebnisse, stehen als Quality Gate aber im Sechseck mit Raute. Die sechs Kästchen am Knoten sind die Phasen I K R E U A. Jede Verbindung entspricht einem Querverweis in der offiziellen Dokumentation — es werden keine Beziehungen ergänzt.' })
+      h('p', { class: 'glegende__hinweis', text: 'Meilensteine sind Ergebnisse, stehen als Quality Gate aber im Sechseck mit Raute. Das kleine Phasenmodell am Knoten zeigt die Phasen des Elements schwarz: links Initialisierung, in der Mitte oben Konzept, Realisierung und Einführung, darunter Umsetzung (agil), rechts Abschluss. Jede Verbindung entspricht einem Querverweis in der offiziellen Dokumentation — es werden keine Beziehungen ergänzt.' })
     ]);
   }
 

@@ -8,10 +8,25 @@
   var HT = global.HT = global.HT || {};
   var SVG_NS = 'http://www.w3.org/2000/svg';
 
-  var KNOTEN_HOEHE = 28;
-  var GLYPH_R = 8;
-  var GLYPH_KANTE = 12;   /* Kantenlänge des Kategorie-Icons im Knotenkreis */
-  var PHASEN_KURZ = [['Initialisierung', 'I'], ['Konzept', 'K'], ['Realisierung', 'R'], ['Einführung', 'E'], ['Umsetzung', 'U'], ['Abschluss', 'A']];
+  var KNOTEN_HOEHE = 36;
+  var GLYPH_R = 10;
+  var GLYPH_KANTE = 14;   /* Kantenlänge des Kategorie-Icons im Knotenkreis */
+  /* Der Phasenstreifen im Knoten bildet das Phasenmodell der Methode nach,
+     wie es die HERMES-Übersicht zeigt: Initialisierung über die ganze Höhe,
+     dann Konzept, Realisierung und Einführung oben und darunter Umsetzung
+     (agil) über dieselbe Breite, zuletzt Abschluss wieder über die ganze
+     Höhe. Masse in Knotenpixeln, Ursprung links oben des Streifens. */
+  var ZELLE = 7, ZELLE_LUECKE = 1.5, STREIFEN_H = 20;
+  var HALB = (STREIFEN_H - ZELLE_LUECKE) / 2;
+  var PHASEN_ZELLEN = [
+    { name: 'Initialisierung', x: 0, y: 0, w: ZELLE, h: STREIFEN_H },
+    { name: 'Konzept',         x: ZELLE + ZELLE_LUECKE, y: 0, w: ZELLE, h: HALB },
+    { name: 'Realisierung',    x: 2 * (ZELLE + ZELLE_LUECKE), y: 0, w: ZELLE, h: HALB },
+    { name: 'Einführung',      x: 3 * (ZELLE + ZELLE_LUECKE), y: 0, w: ZELLE, h: HALB },
+    { name: 'Umsetzung',       x: ZELLE + ZELLE_LUECKE, y: HALB + ZELLE_LUECKE, w: 3 * ZELLE + 2 * ZELLE_LUECKE, h: HALB },
+    { name: 'Abschluss',       x: 4 * (ZELLE + ZELLE_LUECKE), y: 0, w: ZELLE, h: STREIFEN_H }
+  ];
+  var STREIFEN_B = 5 * ZELLE + 4 * ZELLE_LUECKE;
   var TYP_SYMBOL = { Dokument: '▤', Checkliste: '☑', Zustand: '●', Meilenstein: '◆' };
 
   /* --- SVG-Helfer ---------------------------------------------------------- */
@@ -40,7 +55,7 @@
   /* --- Textbreite messen -------------------------------------------------- */
 
   var messKontext = null;
-  var messSchrift = { normal: '600 12px sans-serif', klein: '700 10px sans-serif' };
+  var messSchrift = { normal: '600 14px sans-serif', klein: '700 10px sans-serif' };
 
   function schriftLesen(container) {
     var probe = document.createElement('span');
@@ -50,7 +65,7 @@
     var stil = global.getComputedStyle(probe);
     var familie = stil.fontFamily || 'sans-serif';
     container.removeChild(probe);
-    messSchrift.normal = '600 12px ' + familie;
+    messSchrift.normal = '600 14px ' + familie;
     messSchrift.klein = '700 10px ' + familie;
   }
 
@@ -72,7 +87,7 @@
   /* Meilensteine sind Ergebnisse — aber die Quality Gates des Phasenmodells.
      Sie bekommen darum eine eigene Form (Sechseck) und ein eigenes Zeichen
      (Raute) statt Dokument, und tragen das Typ-Symbol nicht doppelt. */
-  var MEILENSTEIN_SPITZE = 10;
+  var MEILENSTEIN_SPITZE = 12;
   function istMeilenstein(k) {
     return k.kategorie === 'ergebnis' && k.eintrag && k.eintrag.typ === 'Meilenstein';
   }
@@ -81,7 +96,7 @@
     var w = 12 + GLYPH_R * 2 + 8 + messen(k.begriff, 'normal') + 14;
     if (istMeilenstein(k)) { w += MEILENSTEIN_SPITZE * 2 + 8; }   /* Platz für die beiden Spitzen */
     else if (k.kategorie === 'ergebnis' && k.eintrag && k.eintrag.typ) { w += 20; }
-    if (opt.phasenstreifen && k.kategorie !== 'rolle' && phasenListe(k).length) { w += 6 * 8 + 4; }
+    if (opt.phasenstreifen && k.kategorie !== 'rolle' && phasenListe(k).length) { w += STREIFEN_B + 6; }
     return Math.ceil(w);
   }
 
@@ -161,10 +176,11 @@
         phasen.forEach(function (p) { aktiv[p] = true; });
         var px = tx + 12;
         var streifen = s('g', { class: 'gk__phasen', 'aria-hidden': 'true' });
-        PHASEN_KURZ.forEach(function (p, i) {
+        var py = h / 2 - STREIFEN_H / 2;
+        PHASEN_ZELLEN.forEach(function (z) {
           streifen.appendChild(s('rect', {
-            class: 'gk__phase' + (aktiv[p[0]] ? ' ist-aktiv' : ''),
-            x: px + i * 8, y: h / 2 - 4, width: 6, height: 8, rx: 1.5
+            class: 'gk__phase' + (aktiv[z.name] ? ' ist-aktiv' : ''),
+            x: rund(px + z.x), y: rund(py + z.y), width: z.w, height: z.h
           }));
         });
         g.appendChild(streifen);
@@ -285,10 +301,10 @@
     var alleSpalten = ohneBahn.concat(mitBahn);
     alleSpalten.forEach(function (sp, si) {
       sp.index = si;
-      texte.push({ x: sp.x, y: -26, text: sp.label + ' · ' + sp.knoten.length, klasse: 'gtext gtext--spalte gtext--' + sp.kategorie, anker: 'start' });
+      texte.push({ x: sp.x, y: -32, text: sp.label + ' · ' + sp.knoten.length, klasse: 'gtext gtext--spalte gtext--' + sp.kategorie, anker: 'start' });
     });
     texte.push({
-      x: beschriftungX, y: -26,
+      x: beschriftungX, y: -32,
       text: tg.achse === 'modul' ? 'Module' : 'Phasen',
       klasse: 'gtext gtext--spalte gtext--bahnkopf', anker: 'start'
     });
@@ -357,7 +373,7 @@
       var y = (maxHoehe - (sp.knoten.length * zeile - 8)) / 2;
       sp.x = x;
       sp.index = si;
-      sammler.texte.push({ x: x, y: -26, text: sp.label + ' · ' + sp.knoten.length, klasse: 'gtext gtext--spalte gtext--' + sp.kategorie, anker: 'start' });
+      sammler.texte.push({ x: x, y: -32, text: sp.label + ' · ' + sp.knoten.length, klasse: 'gtext gtext--spalte gtext--' + sp.kategorie, anker: 'start' });
       sp.knoten.forEach(function (n) {
         n.x = x; n.y = y; n.spalte = si;
         sammler.positionen[n.id] = n;
