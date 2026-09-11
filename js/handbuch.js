@@ -266,14 +266,19 @@
     if (warnung) { behaelter.appendChild(warnung); }
     behaelter.appendChild(chipsBauen(meta));
 
+    /* Kapitelkopf und Text liegen auf einem weissen Blatt, zentriert und
+       etwas breiter als die breiteste Abbildung (siehe .hb-blatt). */
+    var blatt = h('div', { class: 'hb-blatt' });
+    behaelter.appendChild(blatt);
+
     var kopf = h('div', { class: 'hb-kapitelkopf' }, [
       h('span', { class: 'detail__label', text: meta.nummer ? 'Kapitel ' + meta.nummer : 'Referenzhandbuch' }),
       h('h2', { class: 'hb-kapitelkopf__titel', text: meta.titel })
     ]);
-    behaelter.appendChild(kopf);
+    blatt.appendChild(kopf);
 
     var inhalt = h('div', { class: 'kapitel' });
-    behaelter.appendChild(inhalt);
+    blatt.appendChild(inhalt);
     inhalt.appendChild(h('p', { class: 'trefferzahl', role: 'status', text: 'Kapitel wird geladen …' }));
 
     Promise.all([HT.daten.rhbIndex(), HT.daten.rhbKapitel(meta.id)]).then(function (res) {

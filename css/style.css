@@ -1228,9 +1228,19 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 
 /* --- Handbuch: Kapitelseite ---------------------------------------------- */
 .hb-kapitelkopf .hb-verweis { margin-top: 2px; }
-/* Das Handbuch nutzt die ganze Breite: keine Spaltenbegrenzung, keine
-   Zeilenlängen-Grenzen für Text und Karten. */
-body[data-route="handbuch"] .view { max-width: none; }
+/* Das Handbuch: Kopf, Chips und Blatt in einer zentrierten Spalte, die etwas
+   breiter ist als die breiteste Abbildung des Referenzhandbuchs (1196 px
+   plus Rahmen); keine Zeilenlängen-Grenzen für Text und Karten. */
+body[data-route="handbuch"] .view { max-width: 1380px; }
+/* Das Blatt: Kapitelkopf und Text auf weissem Grund, wie eine Seite. */
+.hb-blatt {
+  background: var(--weiss);
+  border: 1px solid var(--rand);
+  padding: 28px 44px 40px;
+}
+@media (max-width: 899.98px) {
+  .hb-blatt { padding: 18px 16px 28px; }
+}
 body[data-route="handbuch"] .kopf p,
 body[data-route="handbuch"] .hb-p,
 body[data-route="handbuch"] .hb-liste,
