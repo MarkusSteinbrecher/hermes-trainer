@@ -201,10 +201,13 @@
       Fläche. Ein Klick auf einen Knoten setzt ihn; das fokussierte Element
       nochmals gewählt hebt ihn auf und stellt die Auswahl von vorher wieder
       her — das Element bleibt gewählt, die Inhaltsseite zeigt es weiter. */
+  /* Fokus und Auswahl gehen zusammen: «×», Esc oder ein zweiter Klick auf
+     das fokussierte Element heben beides auf — wie ein zweiter Klick auf
+     den festgehaltenen Kasten in der Abbildung. */
   function fokusSetzen(id) {
     if (!id || zustand.fokusId === id) {
       zustand.fokusId = null;
-      if (id) { zustand.auswahlId = id; }
+      zustand.auswahlId = null;
       if (umfangVorFokus) { zustand.umfang = umfangVorFokus; umfangVorFokus = null; }
       popSchliessen();
       geaendert();
@@ -753,7 +756,7 @@
     refs.fokusText = h('span', { class: 'gfokus-hinweis__text' });
     refs.fokusHinweis = h('div', { class: 'gfokus-hinweis', role: 'status' }, [
       refs.fokusText,
-      h('button', { type: 'button', class: 'btn btn--klein btn--primaer', text: 'Fokus aufheben', title: 'Fokus aufheben (Esc)', on: { click: function () { fokusSetzen(null); } } })
+      h('button', { type: 'button', class: 'btn btn--klein btn--primaer', text: 'Auswahl aufheben', title: 'Auswahl aufheben (Esc)', on: { click: function () { fokusSetzen(null); } } })
     ]);
     refs.fokusHinweis.hidden = true;
 

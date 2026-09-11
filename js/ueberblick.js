@@ -343,6 +343,56 @@
       return phOk && moOk;
     });
   }
+  /* Die eingefärbte Rolle ist die gewählte Rolle: sie hat keinen Kasten in
+     der Abbildung, darum zeigt die Abbildung die Auswahl als Einfärbung
+     ihrer Ergebnisse. */
+  function rolleSetzen(name) {
+    if (zustand.rolle === name) { return; }
+    zustand.rolle = name;
+    malen();
+    suchChipsZeichnen();
+    if (zustand.panel) { panelZeichnen(); }
+  }
+
+  /* Rolle abwählen: ist sie im Graph gewählt, geht die Auswahl dort mit. */
+  function rolleLoesen() {
+    var a = zustand.gehalten ? zustand.aktiv : null;
+    if (graph && a && a.kategorie === 'rolle' && graph.auswahlId() === a.id) {
+      graph.fokus(null);            // meldet die leere Auswahl, das löscht die Rolle
+      if (zustand.rolle) { rolleSetzen(''); }
+      return;
+    }
+    rolleSetzen('');
+  }
+
+  /* Ein einzelnes Modul oder eine einzelne Phase im Filter des Graphen ist
+     dasselbe wie der festgehaltene Modulkopf bzw. Phasenbalken oben — und
+     umgekehrt: fällt der Umfang weg oder wächst er, löst sich der Kasten. */
+  var abgleichLaeuft = false;
+  function umfangAbgleichen() {
+    if (!graph || abgleichLaeuft) { return; }
+    var u = graph.umfang();
+    var einzel = null;
+    if (u.module.length === 1 && !u.phasen.length) { einzel = HT.daten.eintragMitBegriff(u.module[0], 'modul'); }
+    else if (u.phasen.length === 1 && !u.module.length) { einzel = HT.daten.eintragMitBegriff(u.phasen[0], 'phase'); }
+    var a = zustand.gehalten ? zustand.aktiv : null;
+    var aGruppe = !!a && (a.kategorie === 'modul' || a.kategorie === 'phase');
+    abgleichLaeuft = true;
+    try {
+      if (aGruppe && (!einzel || einzel.id !== a.id)) {
+        zustand.gehalten = false;
+        aktivSetzen(null);
+        if (graph.auswahlId() === a.id) { graph.auswaehlen(null); }
+      } else if (einzel && !zustand.gehalten && !graph.fokusId() && !graph.auswahlId()) {
+        zustand.gehalten = true;
+        aktivSetzen(einzel);
+        graph.auswaehlen(einzel.id);
+      }
+    } finally {
+      abgleichLaeuft = false;
+    }
+  }
+
   function filterGeaendert() {
     malen();
     werkzeugAktualisieren();
@@ -403,12 +453,7 @@
       chip('modul', name, 'Modul ' + name + ' entfernen', function () { graph.listeSchalten('module', name); });
     });
     if (zustand.rolle) {
-      chip('rolle', zustand.rolle, 'Einfärbung der Rolle aufheben', function () {
-        zustand.rolle = '';
-        malen();
-        suchChipsZeichnen();
-        if (zustand.panel) { panelZeichnen(); }
-      });
+      chip('rolle', zustand.rolle, 'Auswahl der Rolle aufheben', function () { rolleLoesen(); });
     }
     refs.suchChips.hidden = !refs.suchChips.childNodes.length;
   }
@@ -835,10 +880,8 @@
     zahlSchreiben();
 
     auswahl.addEventListener('change', function () {
-      zustand.rolle = auswahl.value;
-      malen();
-      zahlSchreiben();
-      suchChipsZeichnen();
+      var r = auswahl.value ? HT.daten.eintragMitBegriff(auswahl.value, 'rolle') : null;
+      if (r) { suchtrefferAnwenden(r); } else { rolleLoesen(); }
     });
 
     var haken = h('input', { type: 'checkbox', class: 'ub-haken' });
@@ -1439,13 +1482,18 @@
       sichtbar: function () { return zustand.graphOffen && !!refs.werkbank && document.body.contains(refs.werkbank); },
       beiAuswahl: function (e) {
         /* Der Graph hat ein Element gewählt (oder die Auswahl aufgehoben):
-           die Inhaltsseite folgt. */
+           die Inhaltsseite folgt, der Kasten in der Abbildung wird
+           festgehalten und in Sicht gerollt; eine Rolle färbt die Abbildung. */
+        var neu = !!e && !(zustand.aktiv && zustand.aktiv.id === e.id);
         zustand.gehalten = !!e;
         aktivSetzen(e);
+        rolleSetzen(e && e.kategorie === 'rolle' ? e.begriff : '');
         malen();
+        if (neu) { feldInSichtBringen(e); }
         if (e) { inhaltInSichtBringen(); }
       },
       beiZustand: function () {
+        umfangAbgleichen();
         malen();
         werkzeugAktualisieren();
         suchChipsZeichnen();
