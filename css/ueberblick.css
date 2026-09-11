@@ -80,7 +80,8 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-schweber--sicht { top: 12px; right: 82px; padding: 2px; }
 .ub-werkbank[data-sicht="graph"] .ub-schweber--sicht { right: 72px; }
 .ub-werkbank[data-sicht="graph"] .gfokus-x { right: 152px; }
-.ub-ikonknopf[aria-pressed="true"] { color: var(--ub-tinte); box-shadow: inset 0 -3px 0 var(--ub-akzent); }
+/* Aktive Icons farbig statt mit Strich darunter: Akzentfarbe auf zartem Grund. */
+.ub-ikonknopf[aria-pressed="true"] { color: var(--ub-akzent); background: var(--ub-akzent-hauch); border-radius: 4px; }
 .ub-auswahlchips {
   position: absolute;
   top: 52px; right: 12px;
@@ -96,6 +97,7 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-schweber .graph-werkzeug { width: 28px; height: 28px; color: var(--ub-leise); }
 .ub-schweber .graph-werkzeug:hover { color: var(--ub-tinte); }
 .ub-schweber .graph-werkzeug.ist-aktiv { color: var(--ub-akzent); }
+.ub-schweber .graph-werkzeug[aria-expanded="true"] { color: var(--ub-akzent); background: var(--ub-akzent-hauch); border-radius: 4px; box-shadow: none; }
 .ub-bildunterschrift[hidden] { display: none; }
 
 /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
@@ -136,7 +138,7 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   cursor: pointer;
 }
 .ub-ikonknopf:hover { color: var(--ub-tinte); }
-.ub-ikonknopf[aria-expanded="true"] { color: var(--ub-tinte); box-shadow: inset 0 -3px 0 var(--ub-akzent); }
+.ub-ikonknopf[aria-expanded="true"] { color: var(--ub-akzent); background: var(--ub-akzent-hauch); border-radius: 4px; }
 .ub-schweber__strich {
   width: 1px;
   height: 16px;

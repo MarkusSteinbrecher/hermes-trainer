@@ -581,7 +581,8 @@
   padding: 0;
   flex: 0 0 auto;
 }
-.graph-werkzeug[aria-expanded="true"] { color: var(--text); box-shadow: inset 0 -3px 0 var(--akzent); }
+/* Offener Popover: Icon in Akzentfarbe auf zartem Grund, kein Strich. */
+.graph-werkzeug[aria-expanded="true"] { color: var(--akzent-text); background: var(--akzent-schwach); border-radius: 4px; }
 
 /* --- Icon-Leiste auf der Fläche ------------------------------------------ */
 .graph-flaeche-huelle { position: relative; flex: 1 1 auto; min-height: 0; display: flex; }
