@@ -21,11 +21,13 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die HERMES-Projektmanagementmethode ist ergebnisorientiert, die Ergebnisse als die wichtigsten Methodenelemente stehen im Zentrum."
+"text": "Die HERMES-Projektmanagementmethode ist ergebnisorientiert, die Ergebnisse als die wichtigsten Methodenelemente stehen im Zentrum.",
+"seite": 46
 },
 {
 "t": "p",
-"text": "Es werden zwei Arten von Ergebnissen unterschieden. Ein Ergebnis kann"
+"text": "Es werden zwei Arten von Ergebnissen unterschieden. Ein Ergebnis kann",
+"seite": 46
 },
 {
 "t": "ul",
@@ -36,15 +38,18 @@
 {
 "text": "ein Zustand sein, der neu erreicht wird, wie beispielsweise Betriebsinfrastruktur realisiert oder auch ein Meilenstein, der die direkte Folge eines Entscheids ist."
 }
-]
+],
+"seite": 46
 },
 {
 "t": "p",
-"text": "Abgrenzung"
+"text": "Abgrenzung",
+"seite": 46
 },
 {
 "t": "p",
-"text": "Das Ergebnis eines ganzen Projekts, die eigentliche fertige Lösung, oder auch ein Teil davon, das Inkrement, sind keine HERMES-Methodenelemente. Diese Lösung können beispielsweise Produkte, Dienstleistungen, IT-Anwendungen, Infrastrukturen, geänderte oder neue betriebliche Organisationen, neue oder fusionierte Stammorganisationen oder einzelne Organisationseinheiten sein. Das Projektergebnis kann auch aus ausgebildeten Anwendern und der aktivierten Organisation mit ihren Prozessen bestehen. Am Ende eines erfolgreichen Projekts resultiert also als Ergebnis eine Lösung, ein Gesamtsystem, bestehend aus einem oder mehreren aktivierten Elementen."
+"text": "Das Ergebnis eines ganzen Projekts, die eigentliche fertige Lösung, oder auch ein Teil davon, das Inkrement, sind keine HERMES-Methodenelemente. Diese Lösung können beispielsweise Produkte, Dienstleistungen, IT-Anwendungen, Infrastrukturen, geänderte oder neue betriebliche Organisationen, neue oder fusionierte Stammorganisationen oder einzelne Organisationseinheiten sein. Das Projektergebnis kann auch aus ausgebildeten Anwendern und der aktivierten Organisation mit ihren Prozessen bestehen. Am Ende eines erfolgreichen Projekts resultiert also als Ergebnis eine Lösung, ein Gesamtsystem, bestehend aus einem oder mehreren aktivierten Elementen.",
+"seite": 46
 }
 ]
 },
@@ -70,7 +75,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Dokumente auf. Für jedes der Dokumente stellt HERMES eine entsprechende Dokumentvorlage zur Verfügung."
+"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Dokumente auf. Für jedes der Dokumente stellt HERMES eine entsprechende Dokumentvorlage zur Verfügung.",
+"seite": 46
 },
 {
 "t": "tabelle",
@@ -527,15 +533,18 @@
 ]
 ],
 "titel": "Tabelle 16: Ergebnisübersicht - Dokumente",
-"unten": true
+"unten": true,
+"seite": 46
 },
 {
 "t": "p",
-"text": "Die mit einem X markierten minimal geforderten Dokumente werden benötigt, um die Anforderungen der Governance zu erfüllen. Dazu gehören u. a. nicht nur diejenigen Ergebnisse, die von den Revisionsstellen überprüft werden müssen, sondern als „Muss“ auch all jene, die zwingend in einem Modul zu erstellen sind."
+"text": "Die mit einem X markierten minimal geforderten Dokumente werden benötigt, um die Anforderungen der Governance zu erfüllen. Dazu gehören u. a. nicht nur diejenigen Ergebnisse, die von den Revisionsstellen überprüft werden müssen, sondern als „Muss“ auch all jene, die zwingend in einem Modul zu erstellen sind.",
+"seite": 48
 },
 {
 "t": "p",
-"text": "Die minimal geforderten Dokumente sind die Leitplanken für die Sicherstellung des Projekterfolges und widerspiegeln eine allgemeine Projektsituation, ohne auf die Besonderheiten der einzelnen Projekte einzugehen. Die Erarbeitung der minimal geforderten Dokumente ist obligatorisch. Ist ein Modul für das Projekt nicht relevant, entfallen auch die darin definierten minimal geforderten Dokumente. Sie entfallen ebenso, wenn unter gewissen Umständen ihre Verwendung im Modul nicht vorgesehen ist (z. B. im Fall klassisch/agil). Die minimal geforderten Dokumente können auch stammorganisationsspezifisch gemäss deren Governance-Bestimmungen angepasst werden."
+"text": "Die minimal geforderten Dokumente sind die Leitplanken für die Sicherstellung des Projekterfolges und widerspiegeln eine allgemeine Projektsituation, ohne auf die Besonderheiten der einzelnen Projekte einzugehen. Die Erarbeitung der minimal geforderten Dokumente ist obligatorisch. Ist ein Modul für das Projekt nicht relevant, entfallen auch die darin definierten minimal geforderten Dokumente. Sie entfallen ebenso, wenn unter gewissen Umständen ihre Verwendung im Modul nicht vorgesehen ist (z. B. im Fall klassisch/agil). Die minimal geforderten Dokumente können auch stammorganisationsspezifisch gemäss deren Governance-Bestimmungen angepasst werden.",
+"seite": 48
 }
 ]
 },
@@ -547,7 +556,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Zustände auf."
+"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Zustände auf.",
+"seite": 48
 },
 {
 "t": "tabelle",
@@ -670,7 +680,8 @@
 ]
 ],
 "titel": "Tabelle 17: Ergebnisübersicht - Zustände",
-"unten": true
+"unten": true,
+"seite": 48
 }
 ]
 },
@@ -682,7 +693,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Ergänzend zu den standardmässig bereitgestellten Dokumenten und Zuständen besteht die Möglichkeit, weitere fach-, organisations- oder vorhabenspezifische Ergebnisse in eigenen Modulen zu integrieren. Dies wird durch HERMES Online unterstützt und kommt insbesondere dann zum Tragen, wenn neue Module mit neuen Aufgaben entwickelt werden. Beispiele von individuellen Ergebnissen können stammorganisationsspezifische Berichte und Rapporte oder eine abgeschlossene Konsultation sein."
+"text": "Ergänzend zu den standardmässig bereitgestellten Dokumenten und Zuständen besteht die Möglichkeit, weitere fach-, organisations- oder vorhabenspezifische Ergebnisse in eigenen Modulen zu integrieren. Dies wird durch HERMES Online unterstützt und kommt insbesondere dann zum Tragen, wenn neue Module mit neuen Aufgaben entwickelt werden. Beispiele von individuellen Ergebnissen können stammorganisationsspezifische Berichte und Rapporte oder eine abgeschlossene Konsultation sein.",
+"seite": 49
 }
 ]
 },
@@ -694,7 +706,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Für jedes Ergebnis gibt es eine Ergebnisbeschreibung, die stets gleich strukturiert ist:"
+"text": "Für jedes Ergebnis gibt es eine Ergebnisbeschreibung, die stets gleich strukturiert ist:",
+"seite": 49
 },
 {
 "t": "ul",
@@ -711,7 +724,8 @@
 {
 "text": "Vorlagen (nur online) für alle Dokumente steht eine Dokumentvorlage zur Verfügung. Sie ist ein konkretes Hilfsmittel für ein tieferes Verständnis der Anwendung von HERMES-Dokumenten. Die Dokumentvorlagen können jedoch an die Bedürfnisse der Organisation angepasst oder durch adäquate toolgestützte Lösungen ersetzt werden (vgl. Kapitel „Hinweise zur Anwendung“)."
 }
-]
+],
+"seite": 49
 }
 ]
 },
@@ -739,15 +753,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 50
 },
 {
 "t": "p",
-"text": "Das Abnahmeprotokoll wird bei den Entscheiden Vorabnahme, Abnahme und Abnahme Migration erstellt. Es dokumentiert die Erfüllung der Vereinbarung über die Lösungseigenschaften (Produkt/Dienstleistung/System) und bestehende Mängel. Es ist ein rechtlich verbindliches Dokument."
+"text": "Das Abnahmeprotokoll wird bei den Entscheiden Vorabnahme, Abnahme und Abnahme Migration erstellt. Es dokumentiert die Erfüllung der Vereinbarung über die Lösungseigenschaften (Produkt/Dienstleistung/System) und bestehende Mängel. Es ist ein rechtlich verbindliches Dokument.",
+"seite": 50
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 50
 },
 {
 "t": "ul",
@@ -787,7 +804,8 @@
 {
 "text": "Unterschriften"
 }
-]
+],
+"seite": 50
 }
 ]
 },
@@ -801,19 +819,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 50
 },
 {
 "t": "p",
-"text": "Der Änderungsantrag bei klassisch geführter Lösungsentstehung bildet die Grundlage für eine inhaltliche Änderung. Er umfasst die Änderungsbeschreibung mit dem Antrag, das Vorgehen, um die Änderung durchzuführen, und den Lösungsvorschlag, um die Änderung umzusetzen. Der Änderungsantrag hat Anforderungscharakter und spezifiziert die durchzuführende Änderung im Detail."
+"text": "Der Änderungsantrag bei klassisch geführter Lösungsentstehung bildet die Grundlage für eine inhaltliche Änderung. Er umfasst die Änderungsbeschreibung mit dem Antrag, das Vorgehen, um die Änderung durchzuführen, und den Lösungsvorschlag, um die Änderung umzusetzen. Der Änderungsantrag hat Anforderungscharakter und spezifiziert die durchzuführende Änderung im Detail.",
+"seite": 50
 },
 {
 "t": "p",
-"text": "Bei agil geführter Lösungsentstehung kommt der Änderungsantrag zum Tragen, wenn Änderungen durch die Umsetzungsorganisation erkannt werden, welche die Projektziele, das Budget oder den Zeitrahmen des Gesamtvorhabens tangieren."
+"text": "Bei agil geführter Lösungsentstehung kommt der Änderungsantrag zum Tragen, wenn Änderungen durch die Umsetzungsorganisation erkannt werden, welche die Projektziele, das Budget oder den Zeitrahmen des Gesamtvorhabens tangieren.",
+"seite": 50
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 50
 },
 {
 "t": "ul",
@@ -856,7 +878,8 @@
 }
 ]
 }
-]
+],
+"seite": 50
 }
 ]
 },
@@ -870,23 +893,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 51
 },
 {
 "t": "p",
-"text": "Die Änderungsstatusliste dient zur Aufzählung und Überwachung der Änderungen sowie der Dokumentation aller hinzugefügten, gelöschten oder geänderten Funktionen oder sonstiger durchgeführter Modifikationen. Sie unterstützt die Nachvollziehbarkeit des Projektverlaufs (Governance) und gibt einen Überblick über deren Bearbeitungsstatus und - falls die Änderungen erfolgen - den Status der Änderungen."
+"text": "Die Änderungsstatusliste dient zur Aufzählung und Überwachung der Änderungen sowie der Dokumentation aller hinzugefügten, gelöschten oder geänderten Funktionen oder sonstiger durchgeführter Modifikationen. Sie unterstützt die Nachvollziehbarkeit des Projektverlaufs (Governance) und gibt einen Überblick über deren Bearbeitungsstatus und - falls die Änderungen erfolgen - den Status der Änderungen.",
+"seite": 51
 },
 {
 "t": "p",
-"text": "Ein aus der agilen Lösungsentstehung hervorgegangener Änderungsantrag, welcher die Ziele, Kosten oder Termine des Gesamtvorhabens tangiert, wird klassisch abgewickelt und in der Tabelle „Änderungsstatusliste“ als klassische Änderung erfasst, d. h., es sind alle Angaben gem. Spalte K zu führen."
+"text": "Ein aus der agilen Lösungsentstehung hervorgegangener Änderungsantrag, welcher die Ziele, Kosten oder Termine des Gesamtvorhabens tangiert, wird klassisch abgewickelt und in der Tabelle „Änderungsstatusliste“ als klassische Änderung erfasst, d. h., es sind alle Angaben gem. Spalte K zu führen.",
+"seite": 51
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 51
 },
 {
 "t": "p",
-"text": "Je Änderung: (K=klassisch, A=agil)"
+"text": "Je Änderung: (K=klassisch, A=agil)",
+"seite": 51
 },
 {
 "t": "ul",
@@ -924,7 +952,8 @@
 {
 "text": "Auswirkungen (K)"
 }
-]
+],
+"seite": 51
 }
 ]
 },
@@ -938,19 +967,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 51
 },
 {
 "t": "p",
-"text": "Das Angebot spezifiziert die vom Ersteller/Betreiber angebotene Leistung oder das Produkt. Weiter umfasst das Angebot alle kommerziellen Elemente wie Aufwand, Kosten, Gewährleistungen, Garantien, Rechte an Ergebnissen usw. Das Angebot beschreibt Vorgehen und Verfahren zur Erbringung der Leistung und/oder zur Installation und Integration von Produkten/Systemen."
+"text": "Das Angebot spezifiziert die vom Ersteller/Betreiber angebotene Leistung oder das Produkt. Weiter umfasst das Angebot alle kommerziellen Elemente wie Aufwand, Kosten, Gewährleistungen, Garantien, Rechte an Ergebnissen usw. Das Angebot beschreibt Vorgehen und Verfahren zur Erbringung der Leistung und/oder zur Installation und Integration von Produkten/Systemen.",
+"seite": 51
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 51
 },
 {
 "t": "p",
-"text": "Der Aufbau des Angebots richtet sich nach den Vorgaben der Beschaffungsstelle."
+"text": "Der Aufbau des Angebots richtet sich nach den Vorgaben der Beschaffungsstelle.",
+"seite": 51
 }
 ]
 },
@@ -964,15 +997,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 51
 },
 {
 "t": "p",
-"text": "Bei öffentlichen Beschaffungen wird nach Ablauf der Eingabefrist ein Protokoll der Angebotsöffnung erstellt. Fallweise werden auch alle beschaffungsrechtlichen und bewertungsrelevanten Punkte protokolliert."
+"text": "Bei öffentlichen Beschaffungen wird nach Ablauf der Eingabefrist ein Protokoll der Angebotsöffnung erstellt. Fallweise werden auch alle beschaffungsrechtlichen und bewertungsrelevanten Punkte protokolliert.",
+"seite": 51
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 51
 },
 {
 "t": "ul",
@@ -992,7 +1028,8 @@
 {
 "text": "Öffnungsprotokoll"
 }
-]
+],
+"seite": 51
 }
 ]
 },
@@ -1006,15 +1043,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 52
 },
 {
 "t": "p",
-"text": "Das Anwendungshandbuch enthält alle Informationen, die der Anwender eines Produkts/Systems braucht, um es ordnungsgemäss zu bedienen und im Fall von Problemen richtig reagieren zu können."
+"text": "Das Anwendungshandbuch enthält alle Informationen, die der Anwender eines Produkts/Systems braucht, um es ordnungsgemäss zu bedienen und im Fall von Problemen richtig reagieren zu können.",
+"seite": 52
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 52
 },
 {
 "t": "ul",
@@ -1031,7 +1071,8 @@
 {
 "text": "Mängelbehandlung"
 }
-]
+],
+"seite": 52
 }
 ]
 },
@@ -1045,15 +1086,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 52
 },
 {
 "t": "p",
-"text": "Der Arbeitsauftrag enthält alle relevanten Informationen zur Erledigung einer gestellten Aufgabe. Der Projektleiter verwendet ihn, um den Projektmitarbeitern Aufträge im Rahmen der Projektplanung, -führung, -information und -kontrolle zu erteilen. Arbeitsaufträge können intern oder extern vergeben werden. Allfällige lösungsspezifische Aufträge müssen mit dem Anwendervertreter im Voraus abgestimmt sein."
+"text": "Der Arbeitsauftrag enthält alle relevanten Informationen zur Erledigung einer gestellten Aufgabe. Der Projektleiter verwendet ihn, um den Projektmitarbeitern Aufträge im Rahmen der Projektplanung, -führung, -information und -kontrolle zu erteilen. Arbeitsaufträge können intern oder extern vergeben werden. Allfällige lösungsspezifische Aufträge müssen mit dem Anwendervertreter im Voraus abgestimmt sein.",
+"seite": 52
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 52
 },
 {
 "t": "ul",
@@ -1102,7 +1146,8 @@
 {
 "text": "Qualitätssicherung"
 }
-]
+],
+"seite": 52
 }
 ]
 },
@@ -1116,19 +1161,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 52
 },
 {
 "t": "p",
-"text": "Die Ausschreibungsunterlagen umfassen alle Informationen, die im Rahmen einer Ausschreibung publiziert werden. Dazu gehört in erster Linie das Lastenheft (in der Schweiz auch Pflichtenheft genannt) samt Kriterienkatalog, das ein unabdingbarer Teil der Ausschreibungsunterlagen ist. Oft bestehen organisationsspezifische Ausschreibungsunterlagen der Beschaffungsstelle, welche prioritär zu verwenden sind."
+"text": "Die Ausschreibungsunterlagen umfassen alle Informationen, die im Rahmen einer Ausschreibung publiziert werden. Dazu gehört in erster Linie das Lastenheft (in der Schweiz auch Pflichtenheft genannt) samt Kriterienkatalog, das ein unabdingbarer Teil der Ausschreibungsunterlagen ist. Oft bestehen organisationsspezifische Ausschreibungsunterlagen der Beschaffungsstelle, welche prioritär zu verwenden sind.",
+"seite": 52
 },
 {
 "t": "p",
-"text": "Zu den Ausschreibungsunterlagen gehören weiter der Vertragsentwurf, die allgemeinen Geschäftsbedingungen der Stammorganisation, der Ausschreibungstext und weitere Beilagen zum Lastenheft. Werden in einer öffentlichen Ausschreibung Fragen beantwortet, sind die Fragen und Antworten ebenfalls Teil der Ausschreibungsunterlagen, die anschliessend allen Anbietern zugestellt werden."
+"text": "Zu den Ausschreibungsunterlagen gehören weiter der Vertragsentwurf, die allgemeinen Geschäftsbedingungen der Stammorganisation, der Ausschreibungstext und weitere Beilagen zum Lastenheft. Werden in einer öffentlichen Ausschreibung Fragen beantwortet, sind die Fragen und Antworten ebenfalls Teil der Ausschreibungsunterlagen, die anschliessend allen Anbietern zugestellt werden.",
+"seite": 52
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 53
 },
 {
 "t": "ul",
@@ -1226,7 +1275,8 @@
 }
 ]
 }
-]
+],
+"seite": 53
 }
 ]
 },
@@ -1240,19 +1290,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 53
 },
 {
 "t": "p",
-"text": "Die Beschaffungsanalyse beschreibt u. a. den konkreten Handlungsbedarf, was durch wen und wann beschafft werden soll, wie sich der Markt präsentiert, welche anderen Rahmenbedingungen zu beachten sind und welches Beschaffungsverfahren zum Tragen kommt. Die Analyse wird mit den Controlling- und Vorgabestellen für das Beschaffungswesen abgestimmt."
+"text": "Die Beschaffungsanalyse beschreibt u. a. den konkreten Handlungsbedarf, was durch wen und wann beschafft werden soll, wie sich der Markt präsentiert, welche anderen Rahmenbedingungen zu beachten sind und welches Beschaffungsverfahren zum Tragen kommt. Die Analyse wird mit den Controlling- und Vorgabestellen für das Beschaffungswesen abgestimmt.",
+"seite": 53
 },
 {
 "t": "p",
-"text": "Die Beschaffungsanalyse bildet als Ergänzung zur Studie die Grundlage für die Entscheidung, ob die Projektfortsetzung freigegeben wird oder nicht. Ebenso ist sie die Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags."
+"text": "Die Beschaffungsanalyse bildet als Ergänzung zur Studie die Grundlage für die Entscheidung, ob die Projektfortsetzung freigegeben wird oder nicht. Ebenso ist sie die Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags.",
+"seite": 53
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 53
 },
 {
 "t": "ul",
@@ -1362,7 +1416,8 @@
 {
 "text": "Vorgehen bei Fragen zur Ausschreibung, zu den Unterlagen"
 }
-]
+],
+"seite": 53
 }
 ]
 },
@@ -1376,19 +1431,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 54
 },
 {
 "t": "p",
-"text": "Das Betriebshandbuch liefert alle Informationen, die der Betreiber benötigt, um das System ordnungsgemäss betreiben und im Fall von Problemen richtig reagieren zu können. Alle für den Betreiber betriebsrelevanten Informationen sind im Betriebshandbuch dokumentiert."
+"text": "Das Betriebshandbuch liefert alle Informationen, die der Betreiber benötigt, um das System ordnungsgemäss betreiben und im Fall von Problemen richtig reagieren zu können. Alle für den Betreiber betriebsrelevanten Informationen sind im Betriebshandbuch dokumentiert.",
+"seite": 54
 },
 {
 "t": "p",
-"text": "Während der agilen Lösungsentstehung wird das Betriebshandbuch mehrmals, pro Iteration/Release, entsprechend der Aktivierung eines vollständigen Teils der Lösung aktualisiert."
+"text": "Während der agilen Lösungsentstehung wird das Betriebshandbuch mehrmals, pro Iteration/Release, entsprechend der Aktivierung eines vollständigen Teils der Lösung aktualisiert.",
+"seite": 54
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 54
 },
 {
 "t": "ul",
@@ -1463,7 +1522,8 @@
 }
 ]
 }
-]
+],
+"seite": 54
 }
 ]
 },
@@ -1477,15 +1537,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 55
 },
 {
 "t": "p",
-"text": "Das Betriebskonzept beschreibt die Betriebsorganisation mit der Aufbauorganisation und den Betriebsprozessen des Betreibers. Das Betriebskonzept bildet die Grundlage für die Erarbeitung des Betriebshandbuchs und der Organisation beim Betreiber."
+"text": "Das Betriebskonzept beschreibt die Betriebsorganisation mit der Aufbauorganisation und den Betriebsprozessen des Betreibers. Das Betriebskonzept bildet die Grundlage für die Erarbeitung des Betriebshandbuchs und der Organisation beim Betreiber.",
+"seite": 55
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 55
 },
 {
 "t": "ul",
@@ -1547,7 +1610,8 @@
 {
 "text": "Anforderungsabdeckung"
 }
-]
+],
+"seite": 55
 }
 ]
 },
@@ -1561,23 +1625,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 55
 },
 {
 "t": "p",
-"text": "In klassisch geführter Lösungsentstehung beschreibt die Detailspezifikation die funktionalen und qualitativen Lösungseigenschaften. Sie basiert auf den Lösungsanforderungen und auf dem Produktkonzept bzw. bei IT-Projekten auf dem Systemkonzept und der Lösungsarchitektur. Sie wird inhaltlich und planerisch so detailliert erstellt, dass sie eine verlässliche Grundlage für die Realisierung (Entwicklung und Anpassung bzw. Entwicklung und Parametrisierung) der Lösung bildet. Die Detailspezifikation bildet die Grundlage für die Erstellung von detaillierten Testfallbeschreibungen."
+"text": "In klassisch geführter Lösungsentstehung beschreibt die Detailspezifikation die funktionalen und qualitativen Lösungseigenschaften. Sie basiert auf den Lösungsanforderungen und auf dem Produktkonzept bzw. bei IT-Projekten auf dem Systemkonzept und der Lösungsarchitektur. Sie wird inhaltlich und planerisch so detailliert erstellt, dass sie eine verlässliche Grundlage für die Realisierung (Entwicklung und Anpassung bzw. Entwicklung und Parametrisierung) der Lösung bildet. Die Detailspezifikation bildet die Grundlage für die Erstellung von detaillierten Testfallbeschreibungen.",
+"seite": 55
 },
 {
 "t": "p",
-"text": "In agil geführter Lösungsentstehung entspricht die Detailspezifikation weitgehend einem „Sprint Backlog“, dient jedoch aus Projektmanagementsicht nur der Dokumentation der jeweiligen aktuellen Planung jener Anforderungen, welche die Umsetzungsorganisation ausgewählt hat und die innerhalb der jeweiligen Iteration zu erledigen sind. Sie wird im Rahmen der Aufgabe Projekt führen und kontrollieren iterativ-inkrementell fortgeführt, sodass die bereits im Dokument erledigten Anforderungen vorheriger Iterationen jeweils um ein neues Kapitel ergänzt werden. Alternativ kann lediglich ein Verweis auf die Dokumentation im Entwicklungsframework gesetzt werden."
+"text": "In agil geführter Lösungsentstehung entspricht die Detailspezifikation weitgehend einem „Sprint Backlog“, dient jedoch aus Projektmanagementsicht nur der Dokumentation der jeweiligen aktuellen Planung jener Anforderungen, welche die Umsetzungsorganisation ausgewählt hat und die innerhalb der jeweiligen Iteration zu erledigen sind. Sie wird im Rahmen der Aufgabe Projekt führen und kontrollieren iterativ-inkrementell fortgeführt, sodass die bereits im Dokument erledigten Anforderungen vorheriger Iterationen jeweils um ein neues Kapitel ergänzt werden. Alternativ kann lediglich ein Verweis auf die Dokumentation im Entwicklungsframework gesetzt werden.",
+"seite": 55
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 56
 },
 {
 "t": "p",
-"text": "In klassisch geführter Lösungsentstehung ist der Inhalt der Detailspezifikation abhängig vom Realisierungsgegenstand und der eingesetzten Methode zur Spezifizierung. Ergänzend ist folgende Spezifikation möglich:"
+"text": "In klassisch geführter Lösungsentstehung ist der Inhalt der Detailspezifikation abhängig vom Realisierungsgegenstand und der eingesetzten Methode zur Spezifizierung. Ergänzend ist folgende Spezifikation möglich:",
+"seite": 56
 },
 {
 "t": "ul",
@@ -1593,11 +1662,13 @@
 }
 ]
 }
-]
+],
+"seite": 56
 },
 {
 "t": "p",
-"text": "In agil geführter Lösungsentstehung hingegen ist der Inhalt durch die zum Einsatz kommenden agilen Entwicklungsmethoden geprägt."
+"text": "In agil geführter Lösungsentstehung hingegen ist der Inhalt durch die zum Einsatz kommenden agilen Entwicklungsmethoden geprägt.",
+"seite": 56
 }
 ]
 },
@@ -1611,15 +1682,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 56
 },
 {
 "t": "p",
-"text": "Der Durchführungsauftrag bildet den Rahmen und die verbindliche Grundlage für die Lösungsentstehung sowie den darauffolgenden Projektabschluss und autorisiert die Projektfortsetzung. Er beinhaltet alle wesentlichen lösungsspezifischen Angaben sowie Hinweise betreffend das Vorgehen in den nächsten Phasen. Es handelt sich um eine verbindliche Vereinbarung zwischen dem Auftraggeber und dem Projektleiter."
+"text": "Der Durchführungsauftrag bildet den Rahmen und die verbindliche Grundlage für die Lösungsentstehung sowie den darauffolgenden Projektabschluss und autorisiert die Projektfortsetzung. Er beinhaltet alle wesentlichen lösungsspezifischen Angaben sowie Hinweise betreffend das Vorgehen in den nächsten Phasen. Es handelt sich um eine verbindliche Vereinbarung zwischen dem Auftraggeber und dem Projektleiter.",
+"seite": 56
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 56
 },
 {
 "t": "ul",
@@ -1682,7 +1756,8 @@
 {
 "text": "Verbindlichkeiten"
 }
-]
+],
+"seite": 56
 }
 ]
 },
@@ -1696,15 +1771,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 56
 },
 {
 "t": "p",
-"text": "Das Einführungskonzept beschreibt die Massnahmen für die Lösungseinführung und die Einführungsorganisation. Dazu gehören u. a. die Massnahmen des Organisationschangemanagements zur Unterstützung des Übergangs zum neuen Zustand, das Ausbildungskonzept, die Planung der Abnahmen samt Abnahmekriterien sowie die Freigabekriterien der Betriebsaufnahme."
+"text": "Das Einführungskonzept beschreibt die Massnahmen für die Lösungseinführung und die Einführungsorganisation. Dazu gehören u. a. die Massnahmen des Organisationschangemanagements zur Unterstützung des Übergangs zum neuen Zustand, das Ausbildungskonzept, die Planung der Abnahmen samt Abnahmekriterien sowie die Freigabekriterien der Betriebsaufnahme.",
+"seite": 56
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 57
 },
 {
 "t": "ul",
@@ -1763,7 +1841,8 @@
 {
 "text": "Freigabekriterien der Betriebsaufnahme"
 }
-]
+],
+"seite": 57
 }
 ]
 },
@@ -1777,15 +1856,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 57
 },
 {
 "t": "p",
-"text": "Der Evaluationsbericht fasst die Ergebnisse der Angebotsbewertung zusammen. Er bildet die Grundlage für den Entscheid Zuschlag."
+"text": "Der Evaluationsbericht fasst die Ergebnisse der Angebotsbewertung zusammen. Er bildet die Grundlage für den Entscheid Zuschlag.",
+"seite": 57
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 57
 },
 {
 "t": "ul",
@@ -1867,7 +1949,8 @@
 }
 ]
 }
-]
+],
+"seite": 57
 }
 ]
 },
@@ -1881,19 +1964,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 58
 },
 {
 "t": "p",
-"text": "Die Geschäftsmodellbeschreibung beinhaltet alle organisatorischen Aspekte, die für die Lösung relevant sind und die durch die Lösung beeinflusst werden können und gibt den Rahmen für die Ablauf- und Aufbauorganisation vor. Sie orientiert sich an den Elementen des Geschäftsmodells einer Organisation, verstärkt die ganzheitliche Sichtweise auf die Organisation und umfasst eine Auswahl von Komponenten wie z. B. die Kundensegmentierung oder die Kundenbeziehungen."
+"text": "Die Geschäftsmodellbeschreibung beinhaltet alle organisatorischen Aspekte, die für die Lösung relevant sind und die durch die Lösung beeinflusst werden können und gibt den Rahmen für die Ablauf- und Aufbauorganisation vor. Sie orientiert sich an den Elementen des Geschäftsmodells einer Organisation, verstärkt die ganzheitliche Sichtweise auf die Organisation und umfasst eine Auswahl von Komponenten wie z. B. die Kundensegmentierung oder die Kundenbeziehungen.",
+"seite": 58
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 58
 },
 {
 "t": "p",
-"text": "Der Inhalt ist stark durch das Projekt und die Vorgehensweise sowie durch die Stammorganisation geprägt."
+"text": "Der Inhalt ist stark durch das Projekt und die Vorgehensweise sowie durch die Stammorganisation geprägt.",
+"seite": 58
 },
 {
 "t": "ul",
@@ -1928,7 +2015,8 @@
 {
 "text": "Kostenstruktur"
 }
-]
+],
+"seite": 58
 }
 ]
 },
@@ -1942,15 +2030,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 58
 },
 {
 "t": "p",
-"text": "Die Integrations- und Installationsanleitung beschreibt, wie das System in der Betriebsinfrastruktur integriert und installiert wird."
+"text": "Die Integrations- und Installationsanleitung beschreibt, wie das System in der Betriebsinfrastruktur integriert und installiert wird.",
+"seite": 58
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 58
 },
 {
 "t": "ul",
@@ -1976,7 +2067,8 @@
 {
 "text": "Abnahme"
 }
-]
+],
+"seite": 58
 }
 ]
 },
@@ -1990,15 +2082,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 58
 },
 {
 "t": "p",
-"text": "Das Integrationskonzept beschreibt, wie das System im Umfeld integriert wird. Es beschreibt ebenfalls, wie der Transport von einer Systemumgebung in eine andere erfolgt und wie das Konfigurationsmanagement und die Qualität sichergestellt werden. Bei einer Einführung mit Realisierungseinheiten (klassisch) oder schrittweiser Integration mit Releases (agil) ist die Planung der Realisierungseinheiten bzw. die Releaseplanung gemäss Projektmanagementplan ein Bestandteil des Integrationskonzepts."
+"text": "Das Integrationskonzept beschreibt, wie das System im Umfeld integriert wird. Es beschreibt ebenfalls, wie der Transport von einer Systemumgebung in eine andere erfolgt und wie das Konfigurationsmanagement und die Qualität sichergestellt werden. Bei einer Einführung mit Realisierungseinheiten (klassisch) oder schrittweiser Integration mit Releases (agil) ist die Planung der Realisierungseinheiten bzw. die Releaseplanung gemäss Projektmanagementplan ein Bestandteil des Integrationskonzepts.",
+"seite": 58
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 59
 },
 {
 "t": "ul",
@@ -2030,7 +2125,8 @@
 {
 "text": "Qualitätssicherung"
 }
-]
+],
+"seite": 59
 }
 ]
 },
@@ -2044,19 +2140,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 59
 },
 {
 "t": "p",
-"text": "Das ISDS-Konzept bildet die Grundlage für die Festlegung der Massnahmen für Informationssicherheit und Datenschutz (ISDS). Es zeigt die Restrisiken auf, die mit dem Betrieb des Systems und der Organisation verbunden sind."
+"text": "Das ISDS-Konzept bildet die Grundlage für die Festlegung der Massnahmen für Informationssicherheit und Datenschutz (ISDS). Es zeigt die Restrisiken auf, die mit dem Betrieb des Systems und der Organisation verbunden sind.",
+"seite": 59
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 59
 },
 {
 "t": "p",
-"text": "Der Inhalt richtet sich nach den Vorgaben der Stammorganisation."
+"text": "Der Inhalt richtet sich nach den Vorgaben der Stammorganisation.",
+"seite": 59
 }
 ]
 },
@@ -2070,15 +2170,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 59
 },
 {
 "t": "p",
-"text": "Die Liste Projektentscheide Führung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene Führung. Die Liste wird während der ganzen Dauer eines Projekts verwendet."
+"text": "Die Liste Projektentscheide Führung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene Führung. Die Liste wird während der ganzen Dauer eines Projekts verwendet.",
+"seite": 59
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 59
 },
 {
 "t": "ul",
@@ -2098,7 +2201,8 @@
 {
 "text": "Datum"
 }
-]
+],
+"seite": 59
 }
 ]
 },
@@ -2112,15 +2216,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 59
 },
 {
 "t": "p",
-"text": "Die Liste Projektentscheide Steuerung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene Steuerung. Die Liste wird während der ganzen Dauer eines Projekts verwendet."
+"text": "Die Liste Projektentscheide Steuerung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene Steuerung. Die Liste wird während der ganzen Dauer eines Projekts verwendet.",
+"seite": 59
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 59
 },
 {
 "t": "ul",
@@ -2140,7 +2247,8 @@
 {
 "text": "Datum"
 }
-]
+],
+"seite": 59
 }
 ]
 },
@@ -2154,23 +2262,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 60
 },
 {
 "t": "p",
-"text": "Die Lösungsanforderungen beinhalten sämtliche Anforderungen, die das künftige System oder Produkt erfüllen soll. Dies beinhaltet die fachlichen und technischen Anforderungen, aber auch erwartete Eigenschaften, Funktionen, rechtliche sowie lösungsrelevante und regulatorische Vorgaben, Betriebs-, Support- und Sicherheitsanforderungen wie auch Anforderungen zur Optimierung und Mängelkorrektur an allenfalls schon bestehenden Produkten oder Systemen."
+"text": "Die Lösungsanforderungen beinhalten sämtliche Anforderungen, die das künftige System oder Produkt erfüllen soll. Dies beinhaltet die fachlichen und technischen Anforderungen, aber auch erwartete Eigenschaften, Funktionen, rechtliche sowie lösungsrelevante und regulatorische Vorgaben, Betriebs-, Support- und Sicherheitsanforderungen wie auch Anforderungen zur Optimierung und Mängelkorrektur an allenfalls schon bestehenden Produkten oder Systemen.",
+"seite": 60
 },
 {
 "t": "p",
-"text": "In klassisch geführter Lösungsentstehung werden die Lösungsanforderungen auf der Basis der Studie und der Situationsanalyse im endgültigen Detaillierungsgrad erarbeitet und während der Lösungsentstehung bei Bedarf über das Änderungsmanagement sukzessive nachgeführt."
+"text": "In klassisch geführter Lösungsentstehung werden die Lösungsanforderungen auf der Basis der Studie und der Situationsanalyse im endgültigen Detaillierungsgrad erarbeitet und während der Lösungsentstehung bei Bedarf über das Änderungsmanagement sukzessive nachgeführt.",
+"seite": 60
 },
 {
 "t": "p",
-"text": "In agil geführter Lösungsentstehung werden die Lösungsanforderungen auf der Basis der Studie und der Situationsanalyse in der Phase Umsetzung erstmalig als „Initial Product Backlogs“ erarbeitet. Im Rahmen der selbstorganisierten agilen Umsetzung werden Änderungen in der Änderungsstatusliste dokumentiert und in den Lösungsanforderungen nur über einen Änderungsantrag nachgeführt, wenn Sie Projektziele, das Budget oder den Zeitrahmen des Gesamtvorhabens verändern (siehe Aufgabe Änderungen managen)."
+"text": "In agil geführter Lösungsentstehung werden die Lösungsanforderungen auf der Basis der Studie und der Situationsanalyse in der Phase Umsetzung erstmalig als „Initial Product Backlogs“ erarbeitet. Im Rahmen der selbstorganisierten agilen Umsetzung werden Änderungen in der Änderungsstatusliste dokumentiert und in den Lösungsanforderungen nur über einen Änderungsantrag nachgeführt, wenn Sie Projektziele, das Budget oder den Zeitrahmen des Gesamtvorhabens verändern (siehe Aufgabe Änderungen managen).",
+"seite": 60
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 60
 },
 {
 "t": "ul",
@@ -2184,7 +2297,8 @@
 {
 "text": "Detaillierte Lösungsanforderungen"
 }
-]
+],
+"seite": 60
 }
 ]
 },
@@ -2198,19 +2312,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 60
 },
 {
 "t": "p",
-"text": "Die Lösungsarchitektur basiert auf dem Systemkonzept und gliedert das System in Subsysteme und ihre Komponenten. Sie beschreibt die Systemstruktur und die Schnittstellen. Die Lösungsarchitektur erlaubt eine umfassende Sicht auf das System. Je nach Projektergebnis und Umfang enthält es mehrere Architekturelemente und -modelle, beispielsweise das Geschäftsprozessmodell, das Funktionsmodell (z. B. mit Use Cases / User Stories), die Datenarchitektur/das Datenmodell, die Sicherheitsarchitektur. Sie enthält auch die IT-Dokumentation bzw. verweist auf die Dokumentation des Erstellers. Die Ergebnisse des Systemkonzepts werden in einem Anhang zur Lösungsarchitektur zusammengefasst."
+"text": "Die Lösungsarchitektur basiert auf dem Systemkonzept und gliedert das System in Subsysteme und ihre Komponenten. Sie beschreibt die Systemstruktur und die Schnittstellen. Die Lösungsarchitektur erlaubt eine umfassende Sicht auf das System. Je nach Projektergebnis und Umfang enthält es mehrere Architekturelemente und -modelle, beispielsweise das Geschäftsprozessmodell, das Funktionsmodell (z. B. mit Use Cases / User Stories), die Datenarchitektur/das Datenmodell, die Sicherheitsarchitektur. Sie enthält auch die IT-Dokumentation bzw. verweist auf die Dokumentation des Erstellers. Die Ergebnisse des Systemkonzepts werden in einem Anhang zur Lösungsarchitektur zusammengefasst.",
+"seite": 60
 },
 {
 "t": "p",
-"text": "Die Lösungsarchitektur berücksichtigt die Vorgaben der Controlling- und Vorgabestellen."
+"text": "Die Lösungsarchitektur berücksichtigt die Vorgaben der Controlling- und Vorgabestellen.",
+"seite": 60
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 60
 },
 {
 "t": "ul",
@@ -2255,7 +2373,8 @@
 {
 "text": "Ergebnisse des Systemkonzepts"
 }
-]
+],
+"seite": 60
 }
 ]
 },
@@ -2269,15 +2388,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 61
 },
 {
 "t": "p",
-"text": "Das Migrationskonzept beschreibt die technischen und organisatorischen Anforderungen an die Migration und enthält das Konzept der Migrationsverfahren. Das Migrationskonzept belegt die Machbarkeit und zeigt die Migrationsplanung auf. Neben den technischen und organisatorischen Anforderungen sind auch die Anforderungen der Revision sowie des ISDS berücksichtigt."
+"text": "Das Migrationskonzept beschreibt die technischen und organisatorischen Anforderungen an die Migration und enthält das Konzept der Migrationsverfahren. Das Migrationskonzept belegt die Machbarkeit und zeigt die Migrationsplanung auf. Neben den technischen und organisatorischen Anforderungen sind auch die Anforderungen der Revision sowie des ISDS berücksichtigt.",
+"seite": 61
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 61
 },
 {
 "t": "ul",
@@ -2309,7 +2431,8 @@
 {
 "text": "Anforderungsabdeckung"
 }
-]
+],
+"seite": 61
 }
 ]
 },
@@ -2323,15 +2446,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 61
 },
 {
 "t": "p",
-"text": "Mit der Offertanfrage werden Angebote für verschiedene organisationsinterne und -externe Leistungen eingeholt. Die Angebote bilden die Grundlage für die Leistungsvereinbarung, wie in der Aufgabe Leistungen vereinbaren und steuern beschrieben ist. Die Vorgaben an die Offerte erlauben es, die Angebote zu vergleichen und zu bewerten."
+"text": "Mit der Offertanfrage werden Angebote für verschiedene organisationsinterne und -externe Leistungen eingeholt. Die Angebote bilden die Grundlage für die Leistungsvereinbarung, wie in der Aufgabe Leistungen vereinbaren und steuern beschrieben ist. Die Vorgaben an die Offerte erlauben es, die Angebote zu vergleichen und zu bewerten.",
+"seite": 61
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 61
 },
 {
 "t": "ul",
@@ -2357,7 +2483,8 @@
 {
 "text": "Administrativer Ablauf der Beschaffung"
 }
-]
+],
+"seite": 61
 }
 ]
 },
@@ -2371,23 +2498,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 61
 },
 {
 "t": "p",
-"text": "Die Organisationsanforderungen definieren, ob es ein neues oder aktualisiertes Geschäftsmodell braucht und/oder ob die Aufbau- oder Ablauforganisation ändert. Sie beinhalten jene kontextbezogenen, betriebswirtschaftlichen und organisatorischen Anforderungen, die die interne Organisation im Rahmen der künftigen Lösung stärken und der Lösung selbst einen höheren Wirkungsgrad ermöglichen."
+"text": "Die Organisationsanforderungen definieren, ob es ein neues oder aktualisiertes Geschäftsmodell braucht und/oder ob die Aufbau- oder Ablauforganisation ändert. Sie beinhalten jene kontextbezogenen, betriebswirtschaftlichen und organisatorischen Anforderungen, die die interne Organisation im Rahmen der künftigen Lösung stärken und der Lösung selbst einen höheren Wirkungsgrad ermöglichen.",
+"seite": 61
 },
 {
 "t": "p",
-"text": "Sie umfassen neben den klassischen aufbau- und ablauforganisationsspezifischen Aspekten auch die Anforderungen an die Wirtschaftlichkeit, Effektivität und Effizienz sowie die Ziele der Stammorganisation und die aus den Zielen abgeleitete Organisationsstrategie, oftmals manifestiert in einem Geschäftsmodell, das den Rahmen vorgibt, in den die neue Organisation eingepasst werden muss."
+"text": "Sie umfassen neben den klassischen aufbau- und ablauforganisationsspezifischen Aspekten auch die Anforderungen an die Wirtschaftlichkeit, Effektivität und Effizienz sowie die Ziele der Stammorganisation und die aus den Zielen abgeleitete Organisationsstrategie, oftmals manifestiert in einem Geschäftsmodell, das den Rahmen vorgibt, in den die neue Organisation eingepasst werden muss.",
+"seite": 61
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 62
 },
 {
 "t": "p",
-"text": "Der Inhalt ist stark durch das Projekt und die Vorgehensweise geprägt."
+"text": "Der Inhalt ist stark durch das Projekt und die Vorgehensweise geprägt.",
+"seite": 62
 },
 {
 "t": "ul",
@@ -2407,7 +2539,8 @@
 {
 "text": "Anforderungskatalog"
 }
-]
+],
+"seite": 62
 }
 ]
 },
@@ -2421,15 +2554,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 62
 },
 {
 "t": "p",
-"text": "Die Organisationsbeschreibung beschreibt die Aufbauorganisation mit dem detaillierten Organigramm, den Funktionsbeschreibungen und Personalanforderungen. Sie bildet die Grundlage für Stellenbesetzungen."
+"text": "Die Organisationsbeschreibung beschreibt die Aufbauorganisation mit dem detaillierten Organigramm, den Funktionsbeschreibungen und Personalanforderungen. Sie bildet die Grundlage für Stellenbesetzungen.",
+"seite": 62
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 62
 },
 {
 "t": "ul",
@@ -2446,7 +2582,8 @@
 {
 "text": "Personalanforderungen"
 }
-]
+],
+"seite": 62
 }
 ]
 },
@@ -2460,15 +2597,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 62
 },
 {
 "t": "p",
-"text": "Das Organisationskonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante aus organisatorischer Sicht. Es basiert auf den Organisationsanforderungen, ggfs. ergänzt durch die Erkenntnisse aus den Lösungsanforderungen und beschreibt die relevanten Geschäftsmodellaspekte sowie Aufbau- und Ablauforganisation (Geschäftsprozesse) für die Geschäftsabwicklung und den Support. Es zeigt auf, welche neue Organisation erstellt wird und welche Änderungen an Bestehendem vorgenommen werden."
+"text": "Das Organisationskonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante aus organisatorischer Sicht. Es basiert auf den Organisationsanforderungen, ggfs. ergänzt durch die Erkenntnisse aus den Lösungsanforderungen und beschreibt die relevanten Geschäftsmodellaspekte sowie Aufbau- und Ablauforganisation (Geschäftsprozesse) für die Geschäftsabwicklung und den Support. Es zeigt auf, welche neue Organisation erstellt wird und welche Änderungen an Bestehendem vorgenommen werden.",
+"seite": 62
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 62
 },
 {
 "t": "ul",
@@ -2494,7 +2634,8 @@
 {
 "text": "Anforderungsabdeckung"
 }
-]
+],
+"seite": 62
 }
 ]
 },
@@ -2508,15 +2649,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 62
 },
 {
 "t": "p",
-"text": "Der Phasenbericht bildet die Grundlage für den Entscheid über die Freigabe der nächsten Phase und für die Aktualisierung des Projektstatusberichts. Er fasst die Ergebnisse und Entscheide der aktuellen Phase zusammen und zeigt die Organisation der nächsten Phase auf."
+"text": "Der Phasenbericht bildet die Grundlage für den Entscheid über die Freigabe der nächsten Phase und für die Aktualisierung des Projektstatusberichts. Er fasst die Ergebnisse und Entscheide der aktuellen Phase zusammen und zeigt die Organisation der nächsten Phase auf.",
+"seite": 62
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 63
 },
 {
 "t": "ul",
@@ -2551,7 +2695,8 @@
 {
 "text": "Fazit"
 }
-]
+],
+"seite": 63
 }
 ]
 },
@@ -2565,19 +2710,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 63
 },
 {
 "t": "p",
-"text": "Die Produktdokumentation ist die technische Dokumentation des Produkts. Alle im Entwicklungsprozess definierten Dokumentationen bilden zusammen die Produktdokumentation. Sie ist eine Voraussetzung für die Wartung und Weiterentwicklung des Produkts."
+"text": "Die Produktdokumentation ist die technische Dokumentation des Produkts. Alle im Entwicklungsprozess definierten Dokumentationen bilden zusammen die Produktdokumentation. Sie ist eine Voraussetzung für die Wartung und Weiterentwicklung des Produkts.",
+"seite": 63
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 63
 },
 {
 "t": "p",
-"text": "Der Inhalt der Produktdokumentation ist abhängig von den im Entwicklungsprozess definierten Ergebnissen."
+"text": "Der Inhalt der Produktdokumentation ist abhängig von den im Entwicklungsprozess definierten Ergebnissen.",
+"seite": 63
 }
 ]
 },
@@ -2591,15 +2740,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 63
 },
 {
 "t": "p",
-"text": "Das Produktkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den Lösungsanforderungen, ggfs. ergänzt durch die Erkenntnisse aus den Organisationsanforderungen und beschreibt das zu erstellende Produkt. Je nach Produkt und Komplexität der Lösungsanforderungen variieren die Struktur und der Detaillierungsgrad."
+"text": "Das Produktkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den Lösungsanforderungen, ggfs. ergänzt durch die Erkenntnisse aus den Organisationsanforderungen und beschreibt das zu erstellende Produkt. Je nach Produkt und Komplexität der Lösungsanforderungen variieren die Struktur und der Detaillierungsgrad.",
+"seite": 63
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 63
 },
 {
 "t": "ul",
@@ -2625,7 +2777,8 @@
 {
 "text": "Varianten"
 }
-]
+],
+"seite": 63
 }
 ]
 },
@@ -2639,15 +2792,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 63
 },
 {
 "t": "p",
-"text": "Die Projekterfahrungen werden systematisch gesammelt und als Projekt-Rückblick laufend dokumentiert. Sie unterstützen den kontinuierlichen Verbesserungsprozess im Projekt und in der Stammorganisation. Sie liefern wertvolle Informationen für den weiteren Projektverlauf und mögliche Anhaltspunkte für nachfolgende Projekte, indem positive Aspekte erkannt und übernommen und negative Aspekte möglichst vermieden werden."
+"text": "Die Projekterfahrungen werden systematisch gesammelt und als Projekt-Rückblick laufend dokumentiert. Sie unterstützen den kontinuierlichen Verbesserungsprozess im Projekt und in der Stammorganisation. Sie liefern wertvolle Informationen für den weiteren Projektverlauf und mögliche Anhaltspunkte für nachfolgende Projekte, indem positive Aspekte erkannt und übernommen und negative Aspekte möglichst vermieden werden.",
+"seite": 63
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 64
 },
 {
 "t": "ul",
@@ -2673,7 +2829,8 @@
 {
 "text": "Empfehlung; Hinweise für die Stammorganisation"
 }
-]
+],
+"seite": 64
 }
 ]
 },
@@ -2687,15 +2844,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 64
 },
 {
 "t": "p",
-"text": "Der Projektinitialisierungsauftrag bildet die verbindliche Grundlage für die Freigabe der Phase Initialisierung. Es handelt sich um eine Vereinbarung zwischen dem Auftraggeber und dem Projektleiter für die Phase Initialisierung."
+"text": "Der Projektinitialisierungsauftrag bildet die verbindliche Grundlage für die Freigabe der Phase Initialisierung. Es handelt sich um eine Vereinbarung zwischen dem Auftraggeber und dem Projektleiter für die Phase Initialisierung.",
+"seite": 64
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 64
 },
 {
 "t": "ul",
@@ -2740,7 +2900,8 @@
 {
 "text": "Risiken"
 }
-]
+],
+"seite": 64
 }
 ]
 },
@@ -2754,27 +2915,33 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 64
 },
 {
 "t": "p",
-"text": "Die erstmalige Ausarbeitung des Projektmanagementplans wird durch den Entscheid „Weiteres Vorgehen“ in der Initialisierungsphase geprägt. Insbesondere der Vorgehensentscheid, ob klassisch oder agil, beeinflusst die Ausführung der Aufgaben und die Struktur und Inhalt der Ergebnisse."
+"text": "Die erstmalige Ausarbeitung des Projektmanagementplans wird durch den Entscheid „Weiteres Vorgehen“ in der Initialisierungsphase geprägt. Insbesondere der Vorgehensentscheid, ob klassisch oder agil, beeinflusst die Ausführung der Aufgaben und die Struktur und Inhalt der Ergebnisse.",
+"seite": 64
 },
 {
 "t": "p",
-"text": "Der Projektmanagementplan beinhaltet die Gesamtplanung des Projekts und die wesentlichen Regelungen zu Methoden, Techniken, Rollen und Hilfsmitteln, die projektspezifisch festgelegt werden. Der Projektmanagementplan dient als einheitliche Handlungsgrundlage für alle Projektbeteiligten. Im Rahmen der Projektorganisation stellt er sicher, dass die Verantwortlichkeiten und die Aufgabenteilungen zwischen Leistungsbezügern, internen Leistungserbringern und ggf. externen Lieferanten ausreichend klar geregelt und dokumentiert sind. Er wird im Projektverlauf nach dem Prinzip der rollenden Planung und Steuerung kontinuierlich konkretisiert und nachgeführt."
+"text": "Der Projektmanagementplan beinhaltet die Gesamtplanung des Projekts und die wesentlichen Regelungen zu Methoden, Techniken, Rollen und Hilfsmitteln, die projektspezifisch festgelegt werden. Der Projektmanagementplan dient als einheitliche Handlungsgrundlage für alle Projektbeteiligten. Im Rahmen der Projektorganisation stellt er sicher, dass die Verantwortlichkeiten und die Aufgabenteilungen zwischen Leistungsbezügern, internen Leistungserbringern und ggf. externen Lieferanten ausreichend klar geregelt und dokumentiert sind. Er wird im Projektverlauf nach dem Prinzip der rollenden Planung und Steuerung kontinuierlich konkretisiert und nachgeführt.",
+"seite": 64
 },
 {
 "t": "p",
-"text": "Bei agiler Lösungsentstehung wird der Terminplan für die Phase Umsetzung mit dem (agilen) Releaseplan kombiniert. Dieser Releaseplan gibt an, wann der Betrieb pro Release aktiviert wird. Ferner wird festgehalten, ob der (optionale) Entscheid „Releasefreigabe treffen“ im Projekt vorgeschrieben ist oder nicht."
+"text": "Bei agiler Lösungsentstehung wird der Terminplan für die Phase Umsetzung mit dem (agilen) Releaseplan kombiniert. Dieser Releaseplan gibt an, wann der Betrieb pro Release aktiviert wird. Ferner wird festgehalten, ob der (optionale) Entscheid „Releasefreigabe treffen“ im Projekt vorgeschrieben ist oder nicht.",
+"seite": 64
 },
 {
 "t": "p",
-"text": "Bei Phasenabschluss wird der Projektmanagementplan zur Abwicklung der nächsten Phase den veränderten Bedingungen angepasst. Bevor die Phase Abschluss freigegeben wird, wird der Projektmanagementplan für den Projektabschluss zusätzlich entsprechend vorbereitet und angepasst."
+"text": "Bei Phasenabschluss wird der Projektmanagementplan zur Abwicklung der nächsten Phase den veränderten Bedingungen angepasst. Bevor die Phase Abschluss freigegeben wird, wird der Projektmanagementplan für den Projektabschluss zusätzlich entsprechend vorbereitet und angepasst.",
+"seite": 64
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 65
 },
 {
 "t": "ul",
@@ -2880,7 +3047,8 @@
 {
 "text": "Dokumentenmanagement"
 }
-]
+],
+"seite": 65
 }
 ]
 },
@@ -2894,15 +3062,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 65
 },
 {
 "t": "p",
-"text": "Die Projektschlussbeurteilung bildet die Grundlage für den Entscheid zum Projektabschluss. Sie informiert den Auftraggeber über den Soll-Ist-Vergleich bezüglich der sachlichen, terminlichen und finanziellen Projekt- und Vorgehensziele. Die Inhalte des Ergebnisses Projekterfahrungen sind zusammenfassend dokumentiert. Inhalt und Termine der Projekterfolgskontrolle sind bestimmt."
+"text": "Die Projektschlussbeurteilung bildet die Grundlage für den Entscheid zum Projektabschluss. Sie informiert den Auftraggeber über den Soll-Ist-Vergleich bezüglich der sachlichen, terminlichen und finanziellen Projekt- und Vorgehensziele. Die Inhalte des Ergebnisses Projekterfahrungen sind zusammenfassend dokumentiert. Inhalt und Termine der Projekterfolgskontrolle sind bestimmt.",
+"seite": 65
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 65
 },
 {
 "t": "ul",
@@ -2975,7 +3146,8 @@
 {
 "text": "Antrag"
 }
-]
+],
+"seite": 65
 }
 ]
 },
@@ -2989,15 +3161,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 66
 },
 {
 "t": "p",
-"text": "Der Projektstatusbericht dient zur periodischen Berichterstattung über den Projektstand, den Projektfortschritt und die Prognosen zum weiteren Projektverlauf. Die Art und Weise der Berichterstattung ist im Projektmanagementplan geregelt. Vorgaben der Stammorganisation bezüglich des Inhalts und der Frequenz des Reportings werden berücksichtigt."
+"text": "Der Projektstatusbericht dient zur periodischen Berichterstattung über den Projektstand, den Projektfortschritt und die Prognosen zum weiteren Projektverlauf. Die Art und Weise der Berichterstattung ist im Projektmanagementplan geregelt. Vorgaben der Stammorganisation bezüglich des Inhalts und der Frequenz des Reportings werden berücksichtigt.",
+"seite": 66
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 66
 },
 {
 "t": "ul",
@@ -3034,7 +3209,8 @@
 {
 "text": "Ausblick"
 }
-]
+],
+"seite": 66
 }
 ]
 },
@@ -3048,23 +3224,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 66
 },
 {
 "t": "p",
-"text": "Das Protokoll dokumentiert einerseits die Entscheide und Aufträge, die in einer Besprechung getroffen bzw. erteilt werden, anderseits wichtige Führungs- und Ausführungsprozesse, die später bei Bedarf nachvollzogen werden müssen. Wichtige Diskussions- und Handlungspunkte werden festgehalten. Im Protokoll festgehaltene Aufträge werden in einer Pendenzenliste verwaltet."
+"text": "Das Protokoll dokumentiert einerseits die Entscheide und Aufträge, die in einer Besprechung getroffen bzw. erteilt werden, anderseits wichtige Führungs- und Ausführungsprozesse, die später bei Bedarf nachvollzogen werden müssen. Wichtige Diskussions- und Handlungspunkte werden festgehalten. Im Protokoll festgehaltene Aufträge werden in einer Pendenzenliste verwaltet.",
+"seite": 66
 },
 {
 "t": "p",
-"text": "Generell:"
+"text": "Generell:",
+"seite": 66
 },
 {
 "t": "p",
-"text": "Die Sammlung aller Protokolle dient der Nachvollziehbarkeit von Entscheiden und Abläufen bzw. Prozessen."
+"text": "Die Sammlung aller Protokolle dient der Nachvollziehbarkeit von Entscheiden und Abläufen bzw. Prozessen.",
+"seite": 66
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 67
 },
 {
 "t": "ul",
@@ -3106,7 +3287,8 @@
 {
 "text": "Pendenzenliste (Anhang)"
 }
-]
+],
+"seite": 67
 }
 ]
 },
@@ -3120,15 +3302,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 67
 },
 {
 "t": "p",
-"text": "Die Prototypdokumentation bildet die Grundlage für die Erstellung und Auswertung des Prototyps. Sie hält die Ziele, Anforderungen, Ergebnisse und Schlussfolgerungen des Prototypings fest."
+"text": "Die Prototypdokumentation bildet die Grundlage für die Erstellung und Auswertung des Prototyps. Sie hält die Ziele, Anforderungen, Ergebnisse und Schlussfolgerungen des Prototypings fest.",
+"seite": 67
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 67
 },
 {
 "t": "ul",
@@ -3173,7 +3358,8 @@
 {
 "text": "Empfehlungen"
 }
-]
+],
+"seite": 67
 }
 ]
 },
@@ -3187,15 +3373,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 67
 },
 {
 "t": "p",
-"text": "Die Prozessbeschreibung ist eine bis auf Prozessebene ausdetaillierte Ablauforganisation, sie beschreibt die einzelnen Prozesse mit den eingesetzten Hilfsmitteln."
+"text": "Die Prozessbeschreibung ist eine bis auf Prozessebene ausdetaillierte Ablauforganisation, sie beschreibt die einzelnen Prozesse mit den eingesetzten Hilfsmitteln.",
+"seite": 67
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 67
 },
 {
 "t": "ul",
@@ -3217,7 +3406,8 @@
 }
 ]
 }
-]
+],
+"seite": 67
 }
 ]
 },
@@ -3231,15 +3421,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 68
 },
 {
 "t": "p",
-"text": "Das Prüfprotokoll hält die Befunde aus Prüfungen fest und dokumentiert die Umsetzungsentscheide zu den Befunden sowie den Entscheid zum Status des Ergebnisses."
+"text": "Das Prüfprotokoll hält die Befunde aus Prüfungen fest und dokumentiert die Umsetzungsentscheide zu den Befunden sowie den Entscheid zum Status des Ergebnisses.",
+"seite": 68
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 68
 },
 {
 "t": "ul",
@@ -3262,7 +3455,8 @@
 {
 "text": "Entscheid zum Befund"
 }
-]
+],
+"seite": 68
 }
 ]
 },
@@ -3276,15 +3470,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 68
 },
 {
 "t": "p",
-"text": "Die Publikation informiert über die Zuschlagserteilung in der betreffenden Ausschreibung. Form und Inhalt der Publikation werden durch die Controlling- und Vorgabestellen bzw. die Beschaffungsstelle vorgegeben. In der Schweiz erfolgen Publikationen öffentlicher Ausschreibungen i. d. R. über www.simap.ch."
+"text": "Die Publikation informiert über die Zuschlagserteilung in der betreffenden Ausschreibung. Form und Inhalt der Publikation werden durch die Controlling- und Vorgabestellen bzw. die Beschaffungsstelle vorgegeben. In der Schweiz erfolgen Publikationen öffentlicher Ausschreibungen i. d. R. über www.simap.ch.",
+"seite": 68
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 68
 },
 {
 "t": "ul",
@@ -3301,7 +3498,8 @@
 {
 "text": "Rechtsmittel"
 }
-]
+],
+"seite": 68
 }
 ]
 },
@@ -3315,15 +3513,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 68
 },
 {
 "t": "p",
-"text": "Der QS (Qualitätssicherungs)- und Risikobericht wird durch den Qualitäts- und Risikomanager (QRM) nach Beauftragung durch den Auftraggeber erstellt. Er informiert aus unabhängiger Sicht über die Qualität und die Risikosituation des Projekts. Der Inhalt des QS- und Risikoberichts ist abhängig von Auftrag und Abgrenzung sowie von den eingesetzten Methoden."
+"text": "Der QS (Qualitätssicherungs)- und Risikobericht wird durch den Qualitäts- und Risikomanager (QRM) nach Beauftragung durch den Auftraggeber erstellt. Er informiert aus unabhängiger Sicht über die Qualität und die Risikosituation des Projekts. Der Inhalt des QS- und Risikoberichts ist abhängig von Auftrag und Abgrenzung sowie von den eingesetzten Methoden.",
+"seite": 68
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 68
 },
 {
 "t": "ul",
@@ -3346,7 +3547,8 @@
 {
 "text": "Empfehlungen"
 }
-]
+],
+"seite": 68
 }
 ]
 },
@@ -3360,15 +3562,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 69
 },
 {
 "t": "p",
-"text": "Der Releasebericht liefert im Rahmen der agilen Vorgehensweise die Übersicht über den bisherigen Projekterfolg und bildet die Grundlage für die Erstellung des Projektstatusberichts sowie, je nach Bestimmung im Projektmanagementplan, auch für den Entscheid über die etwaige Freigabe des nächsten Release. Er fasst die Ergebnisse und Entscheide des aktuellen Release zusammen und zeigt eine Übersicht über den noch zu leistenden Aufwand im Projekt."
+"text": "Der Releasebericht liefert im Rahmen der agilen Vorgehensweise die Übersicht über den bisherigen Projekterfolg und bildet die Grundlage für die Erstellung des Projektstatusberichts sowie, je nach Bestimmung im Projektmanagementplan, auch für den Entscheid über die etwaige Freigabe des nächsten Release. Er fasst die Ergebnisse und Entscheide des aktuellen Release zusammen und zeigt eine Übersicht über den noch zu leistenden Aufwand im Projekt.",
+"seite": 69
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 69
 },
 {
 "t": "ul",
@@ -3397,7 +3602,8 @@
 {
 "text": "Fazit"
 }
-]
+],
+"seite": 69
 }
 ]
 },
@@ -3411,15 +3617,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 69
 },
 {
 "t": "p",
-"text": "Die Rechtsgrundlagenanalyse beschreibt die für das Projektergebnis bestehende bzw. geltende Rechtsgrundlagen und den allfälligen Bedarf für deren Änderung. Ein besonderes Augenmerk gilt den kommunalen, kantonalen, nationalen und allenfalls auch den internationalen rechtlichen sowie produktrelevanten und regulatorischen Vorgaben, die die anvisierte Lösung samt ihren Auswirkungen auf die Umsysteme, einhalten muss (Product Compliance)."
+"text": "Die Rechtsgrundlagenanalyse beschreibt die für das Projektergebnis bestehende bzw. geltende Rechtsgrundlagen und den allfälligen Bedarf für deren Änderung. Ein besonderes Augenmerk gilt den kommunalen, kantonalen, nationalen und allenfalls auch den internationalen rechtlichen sowie produktrelevanten und regulatorischen Vorgaben, die die anvisierte Lösung samt ihren Auswirkungen auf die Umsysteme, einhalten muss (Product Compliance).",
+"seite": 69
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 69
 },
 {
 "t": "ul",
@@ -3445,7 +3654,8 @@
 {
 "text": "Empfehlungen"
 }
-]
+],
+"seite": 69
 }
 ]
 },
@@ -3459,19 +3669,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 69
 },
 {
 "t": "p",
-"text": "Die Schutzbedarfsanalyse, auch ISDS-Analyse genannt, dokumentiert die Anforderungen an die Informationssicherheit und den Datenschutz. Diese sind im Rahmen der Vorgaben der Stammorganisation bei der Lösungsentstehung zu berücksichtigen."
+"text": "Die Schutzbedarfsanalyse, auch ISDS-Analyse genannt, dokumentiert die Anforderungen an die Informationssicherheit und den Datenschutz. Diese sind im Rahmen der Vorgaben der Stammorganisation bei der Lösungsentstehung zu berücksichtigen.",
+"seite": 69
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 69
 },
 {
 "t": "p",
-"text": "Der Inhalt richtet sich nach den Vorgaben der Stammorganisation."
+"text": "Der Inhalt richtet sich nach den Vorgaben der Stammorganisation.",
+"seite": 69
 }
 ]
 },
@@ -3485,23 +3699,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 70
 },
 {
 "t": "p",
-"text": "Ein Service Level Agreement (SLA) ist eine vertragliche Vereinbarung zwischen dem Betreiber und dem Anwender, vertreten durch den Auftraggeber und den Anwendervertreter. Das SLA nennt die Dienstleistungen, die der Betreiber zu erbringen hat, definiert deren Service Level (Güte der Dienstleistung) und formuliert etwaige Massnahmen und Sanktionen bei Nichteinhaltung. Die vereinbarten Dienstleistungen und deren Service Level sind in der Regel kostenpflichtig."
+"text": "Ein Service Level Agreement (SLA) ist eine vertragliche Vereinbarung zwischen dem Betreiber und dem Anwender, vertreten durch den Auftraggeber und den Anwendervertreter. Das SLA nennt die Dienstleistungen, die der Betreiber zu erbringen hat, definiert deren Service Level (Güte der Dienstleistung) und formuliert etwaige Massnahmen und Sanktionen bei Nichteinhaltung. Die vereinbarten Dienstleistungen und deren Service Level sind in der Regel kostenpflichtig.",
+"seite": 70
 },
 {
 "t": "p",
-"text": "Wird der Betrieb ausgelagert, können die SLAs ein wichtiger Faktor bei der Evaluation des möglichen Betreibers sein."
+"text": "Wird der Betrieb ausgelagert, können die SLAs ein wichtiger Faktor bei der Evaluation des möglichen Betreibers sein.",
+"seite": 70
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 70
 },
 {
 "t": "p",
-"text": "Der Inhalt eines SLAs wird durch die Stammorganisation vorgegeben. Bei einem externen Provider kann bereits ein vorgefertigtes SLA vorliegen. Das SLA kann unter anderem die folgenden Punkte beinhalten:"
+"text": "Der Inhalt eines SLAs wird durch die Stammorganisation vorgegeben. Bei einem externen Provider kann bereits ein vorgefertigtes SLA vorliegen. Das SLA kann unter anderem die folgenden Punkte beinhalten:",
+"seite": 70
 },
 {
 "t": "ul",
@@ -3596,7 +3815,8 @@
 {
 "text": "Beilagen"
 }
-]
+],
+"seite": 70
 }
 ]
 },
@@ -3610,23 +3830,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 71
 },
 {
 "t": "p",
-"text": "Die Situationsanalyse beschreibt und analysiert die gegenwärtige Situation und die zukünftigen Entwicklungen, indem sie die grobe Standortbestimmung aus der Studie ergänzt bzw. vertieft."
+"text": "Die Situationsanalyse beschreibt und analysiert die gegenwärtige Situation und die zukünftigen Entwicklungen, indem sie die grobe Standortbestimmung aus der Studie ergänzt bzw. vertieft.",
+"seite": 71
 },
 {
 "t": "p",
-"text": "Zur Bestimmung des Untersuchungsbereichs wird der gesamtheitliche Lösungs- und Einflussbereich der in der Phase Initialisierung gewählten Variante herangezogen. Neben der Zusammenstellung der wesentlichen Mengen und Häufigkeiten geht die Situationsanalyse insbesondere auf die Mängel und Schwachstellen ein, die mit der künftigen Lösung möglichst beseitigt werden sollen, und definiert die vorhandenen Stärken, die erhalten werden sollen."
+"text": "Zur Bestimmung des Untersuchungsbereichs wird der gesamtheitliche Lösungs- und Einflussbereich der in der Phase Initialisierung gewählten Variante herangezogen. Neben der Zusammenstellung der wesentlichen Mengen und Häufigkeiten geht die Situationsanalyse insbesondere auf die Mängel und Schwachstellen ein, die mit der künftigen Lösung möglichst beseitigt werden sollen, und definiert die vorhandenen Stärken, die erhalten werden sollen.",
+"seite": 71
 },
 {
 "t": "p",
-"text": "Die Situationsanalyse bildet die fachliche Basis für die Definition der vom Projektergebnis zu erfüllenden Lösungs- und Organisationsanforderungen. Sie ist ziel- und lösungsneutral und umfasst alle für die Lösung relevanten Aspekte."
+"text": "Die Situationsanalyse bildet die fachliche Basis für die Definition der vom Projektergebnis zu erfüllenden Lösungs- und Organisationsanforderungen. Sie ist ziel- und lösungsneutral und umfasst alle für die Lösung relevanten Aspekte.",
+"seite": 71
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 71
 },
 {
 "t": "ul",
@@ -3694,7 +3919,8 @@
 {
 "text": "Fazit und Handlungsbedarf"
 }
-]
+],
+"seite": 71
 }
 ]
 },
@@ -3708,15 +3934,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 71
 },
 {
 "t": "p",
-"text": "Die Stakeholderinteressen bilden die Grundlage für die Information der Stakeholder und für die direkte Zusammenarbeit mit ihnen. Die Analyse der Stakeholderinteressen wird getrennt von der Stakeholderliste geführt. Diese Analyse ist eine subjektive, projektinterne Einschätzung und kein öffentliches Ergebnis. Die Stakeholderinteressen werden für die Kommunikation und für die Zusammenarbeit mit den Stakeholdern benötigt und werden regelmässig nachgeführt."
+"text": "Die Stakeholderinteressen bilden die Grundlage für die Information der Stakeholder und für die direkte Zusammenarbeit mit ihnen. Die Analyse der Stakeholderinteressen wird getrennt von der Stakeholderliste geführt. Diese Analyse ist eine subjektive, projektinterne Einschätzung und kein öffentliches Ergebnis. Die Stakeholderinteressen werden für die Kommunikation und für die Zusammenarbeit mit den Stakeholdern benötigt und werden regelmässig nachgeführt.",
+"seite": 71
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 71
 },
 {
 "t": "ul",
@@ -3730,7 +3959,8 @@
 {
 "text": "Erkannte Interessen- und Zielkonflikte"
 }
-]
+],
+"seite": 71
 }
 ]
 },
@@ -3744,15 +3974,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 72
 },
 {
 "t": "p",
-"text": "Die Stakeholderliste wird erstmals in der Phase Initialisierung erarbeitet und bildet die Grundlage für das Managen der Stakeholder, für die direkte Zusammenarbeit mit ihnen und für die Kommunikationsplanung. Sie wird im Projektablauf kontinuierlich weitergeführt."
+"text": "Die Stakeholderliste wird erstmals in der Phase Initialisierung erarbeitet und bildet die Grundlage für das Managen der Stakeholder, für die direkte Zusammenarbeit mit ihnen und für die Kommunikationsplanung. Sie wird im Projektablauf kontinuierlich weitergeführt.",
+"seite": 72
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 72
 },
 {
 "t": "ul",
@@ -3760,7 +3993,8 @@
 {
 "text": "Stakeholder"
 }
-]
+],
+"seite": 72
 }
 ]
 },
@@ -3774,23 +4008,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 72
 },
 {
 "t": "p",
-"text": "Die Studie beschreibt die angestrebte Lösung, indem sie basierend auf der Standortbestimmung, die die Ziele im Sinne des mit dem Projekt angestrebten Nutzens definiert, mögliche Lösungsvarianten und das vorgeschlagene Vorgehen aufführt und diese anschliessend bewertet. Sie entspricht dem Business-Case und zeigt den Geschäftsnutzen sowie den Bezug zur Strategie und den Zielen der Stammorganisation. Alle Aspekte, die einen Einfluss auf die geplante Lösung haben oder die von der Lösung beeinflusst werden können, werden in der Studie erwähnt. Darüber hinaus wird das passende Szenario (vgl. Kapitel „Szenarien“) ausgewählt, allenfalls ein benutzerdefiniertes Szenario erstellt und es wird geschätzt, welche Wertigkeit das Projekt haben wird."
+"text": "Die Studie beschreibt die angestrebte Lösung, indem sie basierend auf der Standortbestimmung, die die Ziele im Sinne des mit dem Projekt angestrebten Nutzens definiert, mögliche Lösungsvarianten und das vorgeschlagene Vorgehen aufführt und diese anschliessend bewertet. Sie entspricht dem Business-Case und zeigt den Geschäftsnutzen sowie den Bezug zur Strategie und den Zielen der Stammorganisation. Alle Aspekte, die einen Einfluss auf die geplante Lösung haben oder die von der Lösung beeinflusst werden können, werden in der Studie erwähnt. Darüber hinaus wird das passende Szenario (vgl. Kapitel „Szenarien“) ausgewählt, allenfalls ein benutzerdefiniertes Szenario erstellt und es wird geschätzt, welche Wertigkeit das Projekt haben wird.",
+"seite": 72
 },
 {
 "t": "p",
-"text": "Die Studie wird nur soweit detailliert, dass die Stossrichtung des anvisierten Projekts klar ersichtlich ist und der Entscheid Weiteres Vorgehen getroffen werden kann. Die straffe Vorgehensweise trifft insbesondere auf die Standortbestimmung zu, um die Initialisierungsphase nicht unnötig zu verlängern."
+"text": "Die Studie wird nur soweit detailliert, dass die Stossrichtung des anvisierten Projekts klar ersichtlich ist und der Entscheid Weiteres Vorgehen getroffen werden kann. Die straffe Vorgehensweise trifft insbesondere auf die Standortbestimmung zu, um die Initialisierungsphase nicht unnötig zu verlängern.",
+"seite": 72
 },
 {
 "t": "p",
-"text": "Der in der Studie dokumentierte Entscheid über das weitere Vorgehen bildet die Grundlage für die Entscheidungsvorbereitung, ob ein Projekt fortgesetzt wird oder nicht. Die Studie ist die Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags."
+"text": "Der in der Studie dokumentierte Entscheid über das weitere Vorgehen bildet die Grundlage für die Entscheidungsvorbereitung, ob ein Projekt fortgesetzt wird oder nicht. Die Studie ist die Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags.",
+"seite": 72
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 72
 },
 {
 "t": "ul",
@@ -3895,7 +4134,8 @@
 }
 ]
 }
-]
+],
+"seite": 72
 }
 ]
 },
@@ -3909,19 +4149,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 73
 },
 {
 "t": "p",
-"text": "Das Systemkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den Lösungsanforderungen und zeigt auf, wie sie mit der Lösung erfüllt werden. Das Systemkonzept kann mehrere Systemvarianten beschreiben und beurteilen."
+"text": "Das Systemkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den Lösungsanforderungen und zeigt auf, wie sie mit der Lösung erfüllt werden. Das Systemkonzept kann mehrere Systemvarianten beschreiben und beurteilen.",
+"seite": 73
 },
 {
 "t": "p",
-"text": "Es kann mehrere Systemkonzepte zu verschiedenen Themenbereichen geben."
+"text": "Es kann mehrere Systemkonzepte zu verschiedenen Themenbereichen geben.",
+"seite": 73
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 73
 },
 {
 "t": "ul",
@@ -3957,7 +4201,8 @@
 {
 "text": "Empfehlung"
 }
-]
+],
+"seite": 73
 }
 ]
 },
@@ -3971,15 +4216,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 73
 },
 {
 "t": "p",
-"text": "Das Testkonzept beschreibt die Testziele, Testobjekte, Testarten, Testinfrastruktur sowie Testorganisation. Es umfasst ebenfalls die Testplanung und die Testfallbeschreibungen. Für jeden Testfall wird eine detaillierte Testfallbeschreibung erstellt. Diese stellt die Spezifikation des Tests dar. Die Testplanung legt den logischen und zeitlichen Ablauf der Tests fest. Das Testkonzept bildet die Grundlage, auf der die Testorganisation und die Testinfrastruktur bereitgestellt und die Tests durchgeführt werden. Tauchen neue Erkenntnisse auf, wird das Testkonzept nachgeführt."
+"text": "Das Testkonzept beschreibt die Testziele, Testobjekte, Testarten, Testinfrastruktur sowie Testorganisation. Es umfasst ebenfalls die Testplanung und die Testfallbeschreibungen. Für jeden Testfall wird eine detaillierte Testfallbeschreibung erstellt. Diese stellt die Spezifikation des Tests dar. Die Testplanung legt den logischen und zeitlichen Ablauf der Tests fest. Das Testkonzept bildet die Grundlage, auf der die Testorganisation und die Testinfrastruktur bereitgestellt und die Tests durchgeführt werden. Tauchen neue Erkenntnisse auf, wird das Testkonzept nachgeführt.",
+"seite": 73
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 73
 },
 {
 "t": "ul",
@@ -4047,7 +4295,8 @@
 }
 ]
 }
-]
+],
+"seite": 73
 }
 ]
 },
@@ -4061,15 +4310,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 74
 },
 {
 "t": "p",
-"text": "Das Testprotokoll hält die Testergebnisse fest. Die Testergebnisse werden gemäss den im Testkonzept definierten Mängelklassen bewertet."
+"text": "Das Testprotokoll hält die Testergebnisse fest. Die Testergebnisse werden gemäss den im Testkonzept definierten Mängelklassen bewertet.",
+"seite": 74
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 74
 },
 {
 "t": "ul",
@@ -4094,7 +4346,8 @@
 }
 ]
 }
-]
+],
+"seite": 74
 }
 ]
 },
@@ -4108,19 +4361,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 74
 },
 {
 "t": "p",
-"text": "Die Vereinbarung regelt die Zusammenarbeit zwischen den verschiedenen Projektbeteiligten, vorwiegend zwischen Anwender (Auftraggeber) und Ersteller. Die Vereinbarung kann für eine oder mehrere Phasen abgeschlossen werden. Vereinbarungen werden unterschieden nach Projektvereinbarung oder Vertrag."
+"text": "Die Vereinbarung regelt die Zusammenarbeit zwischen den verschiedenen Projektbeteiligten, vorwiegend zwischen Anwender (Auftraggeber) und Ersteller. Die Vereinbarung kann für eine oder mehrere Phasen abgeschlossen werden. Vereinbarungen werden unterschieden nach Projektvereinbarung oder Vertrag.",
+"seite": 74
 },
 {
 "t": "h",
-"text": "Inhalt"
+"text": "Inhalt",
+"seite": 74
 },
 {
 "t": "p",
-"text": "Der Inhalt von Vereinbarungen wird durch die Stammorganisation vorgegeben. Die Vereinbarung kann unter anderem die folgenden Punkte beinhalten:"
+"text": "Der Inhalt von Vereinbarungen wird durch die Stammorganisation vorgegeben. Die Vereinbarung kann unter anderem die folgenden Punkte beinhalten:",
+"seite": 74
 },
 {
 "t": "ul",
@@ -4173,7 +4430,8 @@
 {
 "text": "Weisungen"
 }
-]
+],
+"seite": 74
 }
 ]
 },
@@ -4187,19 +4445,23 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 75
 },
 {
 "t": "p",
-"text": "Checklisten gehören zu den Dokumenten. Sie werden zur Unterstützung bei der Entscheidungsfindung genutzt. Sie stellen Kataloge von Kontroll- und Prüfungsschritten dar, die im Rahmen einer Entscheidungsvorbereitung systematisch und vollständig durchgeführt werden sollen. Dies verringert die Wahrscheinlichkeit von Fehlentscheiden, da so alle wesentlichen Aspekte berücksichtigt werden."
+"text": "Checklisten gehören zu den Dokumenten. Sie werden zur Unterstützung bei der Entscheidungsfindung genutzt. Sie stellen Kataloge von Kontroll- und Prüfungsschritten dar, die im Rahmen einer Entscheidungsvorbereitung systematisch und vollständig durchgeführt werden sollen. Dies verringert die Wahrscheinlichkeit von Fehlentscheiden, da so alle wesentlichen Aspekte berücksichtigt werden.",
+"seite": 75
 },
 {
 "t": "p",
-"text": "Jede Checkliste ist auf einen konkreten Entscheid abgestimmt und nennt die notwendigen Prüfpunkte mit Ergebnis, Freigabekriterien, Bewertung, Verantwortlichen und Prüfungsdatum. Die Checkliste kann im Rahmen der Entscheidungsvorbereitung mit weiteren Kriterien ergänzt werden."
+"text": "Jede Checkliste ist auf einen konkreten Entscheid abgestimmt und nennt die notwendigen Prüfpunkte mit Ergebnis, Freigabekriterien, Bewertung, Verantwortlichen und Prüfungsdatum. Die Checkliste kann im Rahmen der Entscheidungsvorbereitung mit weiteren Kriterien ergänzt werden.",
+"seite": 75
 },
 {
 "t": "p",
-"text": "Alle Checklisten sind dementsprechend in drei Bereiche gegliedert:"
+"text": "Alle Checklisten sind dementsprechend in drei Bereiche gegliedert:",
+"seite": 75
 },
 {
 "t": "ul",
@@ -4213,7 +4475,8 @@
 {
 "text": "Projektspezifische Prüfpunkte"
 }
-]
+],
+"seite": 75
 }
 ]
 },
@@ -4227,11 +4490,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 75
 },
 {
 "t": "p",
-"text": "Die Checkliste Abnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme relevant sind."
+"text": "Die Checkliste Abnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme relevant sind.",
+"seite": 75
 }
 ]
 },
@@ -4245,11 +4510,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 75
 },
 {
 "t": "p",
-"text": "Die Checkliste Abnahme Migration beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme Migration relevant sind."
+"text": "Die Checkliste Abnahme Migration beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme Migration relevant sind.",
+"seite": 75
 }
 ]
 },
@@ -4263,11 +4530,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 75
 },
 {
 "t": "p",
-"text": "Die Checkliste Ausschreibung beschreibt Prüfpunkte und Kriterien, die für den Entscheid Ausschreibung relevant sind."
+"text": "Die Checkliste Ausschreibung beschreibt Prüfpunkte und Kriterien, die für den Entscheid Ausschreibung relevant sind.",
+"seite": 75
 }
 ]
 },
@@ -4281,11 +4550,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 75
 },
 {
 "t": "p",
-"text": "Die Checkliste Betriebsaufnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Betriebsaufnahme relevant sind."
+"text": "Die Checkliste Betriebsaufnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Betriebsaufnahme relevant sind.",
+"seite": 75
 }
 ]
 },
@@ -4299,11 +4570,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 75
 },
 {
 "t": "p",
-"text": "Die Checkliste Durchführungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Durchführungsfreigabe relevant sind."
+"text": "Die Checkliste Durchführungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Durchführungsfreigabe relevant sind.",
+"seite": 75
 }
 ]
 },
@@ -4317,11 +4590,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 76
 },
 {
 "t": "p",
-"text": "Die Checkliste ISDS-Konzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid ISDS-Konzept relevant sind."
+"text": "Die Checkliste ISDS-Konzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid ISDS-Konzept relevant sind.",
+"seite": 76
 }
 ]
 },
@@ -4335,11 +4610,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 76
 },
 {
 "t": "p",
-"text": "Die Checkliste Lösungsarchitektur beschreibt Prüfpunkte und Kriterien, die für den Entscheid Lösungsarchitektur relevant sind."
+"text": "Die Checkliste Lösungsarchitektur beschreibt Prüfpunkte und Kriterien, die für den Entscheid Lösungsarchitektur relevant sind.",
+"seite": 76
 }
 ]
 },
@@ -4353,11 +4630,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 76
 },
 {
 "t": "p",
-"text": "Die Checkliste Phasenfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe relevant sind."
+"text": "Die Checkliste Phasenfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe relevant sind.",
+"seite": 76
 }
 ]
 },
@@ -4371,11 +4650,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 76
 },
 {
 "t": "p",
-"text": "Die Checkliste Phasenfreigabe Abschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe Abschluss relevant sind."
+"text": "Die Checkliste Phasenfreigabe Abschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe Abschluss relevant sind.",
+"seite": 76
 }
 ]
 },
@@ -4389,11 +4670,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 76
 },
 {
 "t": "p",
-"text": "Die Checkliste Produktkonzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid Produktkonzept relevant sind."
+"text": "Die Checkliste Produktkonzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid Produktkonzept relevant sind.",
+"seite": 76
 }
 ]
 },
@@ -4407,11 +4690,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 76
 },
 {
 "t": "p",
-"text": "Die Checkliste Projektabbruch beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabbruch relevant sind."
+"text": "Die Checkliste Projektabbruch beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabbruch relevant sind.",
+"seite": 76
 }
 ]
 },
@@ -4425,11 +4710,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 76
 },
 {
 "t": "p",
-"text": "Die Checkliste Projektabschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabschluss relevant sind."
+"text": "Die Checkliste Projektabschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabschluss relevant sind.",
+"seite": 76
 }
 ]
 },
@@ -4443,11 +4730,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 76
 },
 {
 "t": "p",
-"text": "Die Checkliste Projektinitialisierungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektinitialisierungsfreigabe relevant sind."
+"text": "Die Checkliste Projektinitialisierungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektinitialisierungsfreigabe relevant sind.",
+"seite": 76
 }
 ]
 },
@@ -4461,11 +4750,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 77
 },
 {
 "t": "p",
-"text": "Die Checkliste Releasefreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Releasefreigabe relevant sind."
+"text": "Die Checkliste Releasefreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Releasefreigabe relevant sind.",
+"seite": 77
 }
 ]
 },
@@ -4479,11 +4770,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 77
 },
 {
 "t": "p",
-"text": "Die Checkliste Vorabnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Vorabnahme relevant sind."
+"text": "Die Checkliste Vorabnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Vorabnahme relevant sind.",
+"seite": 77
 }
 ]
 },
@@ -4497,11 +4790,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 77
 },
 {
 "t": "p",
-"text": "Die Checkliste Weiteres Vorgehen beschreibt Prüfpunkte und Kriterien, die für den Entscheid Weiteres Vorgehen relevant sind."
+"text": "Die Checkliste Weiteres Vorgehen beschreibt Prüfpunkte und Kriterien, die für den Entscheid Weiteres Vorgehen relevant sind.",
+"seite": 77
 }
 ]
 },
@@ -4515,11 +4810,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 77
 },
 {
 "t": "p",
-"text": "Die Checkliste Zuschlag beschreibt Prüfpunkte und Kriterien, die für den Entscheid Zuschlag relevant sind."
+"text": "Die Checkliste Zuschlag beschreibt Prüfpunkte und Kriterien, die für den Entscheid Zuschlag relevant sind.",
+"seite": 77
 }
 ]
 },
@@ -4540,11 +4837,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 77
 },
 {
 "t": "p",
-"text": "Die alte Systemversion sowie das Altsystem sind unter Berücksichtigung der Vorgaben abgebaut bzw. entfernt. Die Ausserbetriebssetzung umfasst ebenfalls die Vernichtung oder Archivierung von Daten."
+"text": "Die alte Systemversion sowie das Altsystem sind unter Berücksichtigung der Vorgaben abgebaut bzw. entfernt. Die Ausserbetriebssetzung umfasst ebenfalls die Vernichtung oder Archivierung von Daten.",
+"seite": 77
 }
 ]
 },
@@ -4558,11 +4857,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 77
 },
 {
 "t": "p",
-"text": "Der Betrieb des aktivierten Systems ist aufgenommen und erfolgt mit der im Betriebskonzept definierten Betriebsorganisation. Die im Betriebshandbuch festgelegten Aktivitäten werden ausgeführt. Das Betriebspersonal nimmt die Betriebsaufgaben wahr. Die Voraussetzungen für die Messung und Einhaltung des SLAs sind gegeben."
+"text": "Der Betrieb des aktivierten Systems ist aufgenommen und erfolgt mit der im Betriebskonzept definierten Betriebsorganisation. Die im Betriebshandbuch festgelegten Aktivitäten werden ausgeführt. Das Betriebspersonal nimmt die Betriebsaufgaben wahr. Die Voraussetzungen für die Messung und Einhaltung des SLAs sind gegeben.",
+"seite": 77
 }
 ]
 },
@@ -4576,11 +4877,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 77
 },
 {
 "t": "p",
-"text": "Die Betriebsinfrastruktur umfasst alle für die Erstellung und den Betrieb eines Systems benötigten Infrastrukturen mit den verschiedenen Systemumgebungen (Entwicklung, Test, Produktion usw.) und allen ihren Komponenten. Zur Betriebsinfrastruktur gehören auch die für die Betriebsüberwachung nötigen Komponenten wie Monitoring und Alarmierung, Statistikwerkzeuge usw."
+"text": "Die Betriebsinfrastruktur umfasst alle für die Erstellung und den Betrieb eines Systems benötigten Infrastrukturen mit den verschiedenen Systemumgebungen (Entwicklung, Test, Produktion usw.) und allen ihren Komponenten. Zur Betriebsinfrastruktur gehören auch die für die Betriebsüberwachung nötigen Komponenten wie Monitoring und Alarmierung, Statistikwerkzeuge usw.",
+"seite": 77
 }
 ]
 },
@@ -4594,11 +4897,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 78
 },
 {
 "t": "p",
-"text": "Die im Betriebskonzept definierte Betriebsorganisation mit der Betriebsaufbauorganisation und den Betriebsprozessen des Betreibers sind realisiert. Das Betriebspersonal ist ausgebildet und kann die Betriebsaufgaben wahrnehmen."
+"text": "Die im Betriebskonzept definierte Betriebsorganisation mit der Betriebsaufbauorganisation und den Betriebsprozessen des Betreibers sind realisiert. Das Betriebspersonal ist ausgebildet und kann die Betriebsaufgaben wahrnehmen.",
+"seite": 78
 }
 ]
 },
@@ -4612,11 +4917,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 78
 },
 {
 "t": "p",
-"text": "Die im Einführungskonzept beschriebenen und realisierten Massnahmen sind durchgeführt. Die Umsetzung der Massnahmen ist überprüft und deren Qualitätssicherung durchgeführt. Beispielsweise ist die Anwenderschulung durchgeführt worden und es liegen Kursbeurteilungen der Teilnehmer für die Qualitätssicherung vor."
+"text": "Die im Einführungskonzept beschriebenen und realisierten Massnahmen sind durchgeführt. Die Umsetzung der Massnahmen ist überprüft und deren Qualitätssicherung durchgeführt. Beispielsweise ist die Anwenderschulung durchgeführt worden und es liegen Kursbeurteilungen der Teilnehmer für die Qualitätssicherung vor.",
+"seite": 78
 }
 ]
 },
@@ -4630,11 +4937,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 78
 },
 {
 "t": "p",
-"text": "Die im Einführungskonzept beschriebenen Massnahmen und die für die Einführung nötige Organisation sind realisiert. Beispielsweise sind die Superuser rekrutiert und ausgebildet, die die Anwender bei der Einführung unterstützen, oder die Ausbildungsunterlagen sind realisiert, damit anschliessend Schulungen durchgeführt werden können."
+"text": "Die im Einführungskonzept beschriebenen Massnahmen und die für die Einführung nötige Organisation sind realisiert. Beispielsweise sind die Superuser rekrutiert und ausgebildet, die die Anwender bei der Einführung unterstützen, oder die Ausbildungsunterlagen sind realisiert, damit anschliessend Schulungen durchgeführt werden können.",
+"seite": 78
 }
 ]
 },
@@ -4648,11 +4957,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 78
 },
 {
 "t": "p",
-"text": "Die ISDS-Massnahmen wurden auf der Grundlage des ISDS-Konzepts realisiert. Sie stellen sicher, dass die Anforderungen an den Schutzbedarf gemäss ISDS-Konzept erfüllt werden."
+"text": "Die ISDS-Massnahmen wurden auf der Grundlage des ISDS-Konzepts realisiert. Sie stellen sicher, dass die Anforderungen an den Schutzbedarf gemäss ISDS-Konzept erfüllt werden.",
+"seite": 78
 }
 ]
 },
@@ -4666,11 +4977,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 78
 },
 {
 "t": "p",
-"text": "Das ISDS-Konzept wurde aktualisiert, durch die Controlling- und Vorgabestelle geprüft und von der Projektorganisation in die Stammorganisation überführt."
+"text": "Das ISDS-Konzept wurde aktualisiert, durch die Controlling- und Vorgabestelle geprüft und von der Projektorganisation in die Stammorganisation überführt.",
+"seite": 78
 }
 ]
 },
@@ -4684,11 +4997,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 78
 },
 {
 "t": "p",
-"text": "Die Migration vom alten auf das neue bzw. weiterentwickelte System ist durchgeführt und gemäss den Vorgaben der Controlling- und Koordinationsstellen dokumentiert. Die Nachvollziehbarkeit der Migration wird sichergestellt. Die erfolgreich durchgeführte Migration ist die Voraussetzung für deren Abnahme und den Entscheid Betriebsaufnahme."
+"text": "Die Migration vom alten auf das neue bzw. weiterentwickelte System ist durchgeführt und gemäss den Vorgaben der Controlling- und Koordinationsstellen dokumentiert. Die Nachvollziehbarkeit der Migration wird sichergestellt. Die erfolgreich durchgeführte Migration ist die Voraussetzung für deren Abnahme und den Entscheid Betriebsaufnahme.",
+"seite": 78
 }
 ]
 },
@@ -4702,11 +5017,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 78
 },
 {
 "t": "p",
-"text": "Das realisierte Migrationsverfahren ist durch den Entwickler bzw. den Tester des Erstellers getestet worden. Er erbringt den Nachweis seiner Tests. Sie bilden die Voraussetzung für die Vorabnahme."
+"text": "Das realisierte Migrationsverfahren ist durch den Entwickler bzw. den Tester des Erstellers getestet worden. Er erbringt den Nachweis seiner Tests. Sie bilden die Voraussetzung für die Vorabnahme.",
+"seite": 78
 }
 ]
 },
@@ -4720,15 +5037,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Die neue Organisation ist aktiviert. Sie führt ihre Prozesse gemäss den Prozessbeschreibungen durch."
+"text": "Die neue Organisation ist aktiviert. Sie führt ihre Prozesse gemäss den Prozessbeschreibungen durch.",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Wird die neue Organisation im Rahmen einer klassischen Lösungsentstehung aktiviert, ist dies die Voraussetzung für die Aktivierung des Produkts oder des Systems. Bei agiler Lösungsentstehung wird nur der entsprechende Teil der Organisation aktiviert."
+"text": "Wird die neue Organisation im Rahmen einer klassischen Lösungsentstehung aktiviert, ist dies die Voraussetzung für die Aktivierung des Produkts oder des Systems. Bei agiler Lösungsentstehung wird nur der entsprechende Teil der Organisation aktiviert.",
+"seite": 79
 }
 ]
 },
@@ -4742,15 +5062,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Die im Organisationskonzept definierte Organisation ist umgesetzt."
+"text": "Die im Organisationskonzept definierte Organisation ist umgesetzt.",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Auf Grundlage der Prozessbeschreibung und der Organisationsbeschreibung wurden die Massnahmen realisiert, um die Organisation ins Leben zu rufen (Stellenbesetzungen, Personalanstellungen usw.)."
+"text": "Auf Grundlage der Prozessbeschreibung und der Organisationsbeschreibung wurden die Massnahmen realisiert, um die Organisation ins Leben zu rufen (Stellenbesetzungen, Personalanstellungen usw.).",
+"seite": 79
 }
 ]
 },
@@ -4764,11 +5087,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Das aktivierte Produkt wird den Anwendern für die Nutzung zur Verfügung gestellt."
+"text": "Das aktivierte Produkt wird den Anwendern für die Nutzung zur Verfügung gestellt.",
+"seite": 79
 }
 ]
 },
@@ -4782,11 +5107,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Das entwickelte und/oder angepasste Produkt ist durch den Entwickler bzw. den Tester des Erstellers getestet worden. Es wird für die Tests und die Vorabnahme an den Anwender übergeben."
+"text": "Das entwickelte und/oder angepasste Produkt ist durch den Entwickler bzw. den Tester des Erstellers getestet worden. Es wird für die Tests und die Vorabnahme an den Anwender übergeben.",
+"seite": 79
 }
 ]
 },
@@ -4800,15 +5127,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Mit dem Prototyp wird die Machbarkeit oder das Verhalten eines Systems bzw. eines Produkts in einer bestimmten Situation geprüft. Mit Prototypen werden Risiken bewertet und reduziert."
+"text": "Mit dem Prototyp wird die Machbarkeit oder das Verhalten eines Systems bzw. eines Produkts in einer bestimmten Situation geprüft. Mit Prototypen werden Risiken bewertet und reduziert.",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Im Projektverlauf können zwecks Überprüfung der Machbarkeit mehrere, verschiedene Prototypen realisiert werden. Es kann zwischen Wegwerfprototypen und wiederverwendbaren Prototypen unterschieden werden."
+"text": "Im Projektverlauf können zwecks Überprüfung der Machbarkeit mehrere, verschiedene Prototypen realisiert werden. Es kann zwischen Wegwerfprototypen und wiederverwendbaren Prototypen unterschieden werden.",
+"seite": 79
 }
 ]
 },
@@ -4822,15 +5152,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Die realisierten Schnittstellen stellen den Datenaustausch zwischen dem System und den Umsystemen sicher."
+"text": "Die realisierten Schnittstellen stellen den Datenaustausch zwischen dem System und den Umsystemen sicher.",
+"seite": 79
 },
 {
 "t": "p",
-"text": "Die Schnittstelle ist durch den Entwickler bzw. den Integrator und den Tester des Erstellers getestet worden. Sie wird dem Betreiber für die Integration in die Betriebsinfrastruktur übergeben."
+"text": "Die Schnittstelle ist durch den Entwickler bzw. den Integrator und den Tester des Erstellers getestet worden. Sie wird dem Betreiber für die Integration in die Betriebsinfrastruktur übergeben.",
+"seite": 79
 }
 ]
 },
@@ -4844,11 +5177,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Das aktivierte System wird den Anwendern für die Nutzung zur Verfügung gestellt."
+"text": "Das aktivierte System wird den Anwendern für die Nutzung zur Verfügung gestellt.",
+"seite": 80
 }
 ]
 },
@@ -4862,11 +5197,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Das entwickelte und/oder parametrisierte System ist durch den Entwickler bzw. den Integrator und den Tester des Erstellers getestet worden. Es wurde dem Betreiber für die Integration in die Betriebsinfrastruktur übergeben. Die Entwicklung und die Integration können in mehreren Schritten bzw. Releases erfolgen."
+"text": "Das entwickelte und/oder parametrisierte System ist durch den Entwickler bzw. den Integrator und den Tester des Erstellers getestet worden. Es wurde dem Betreiber für die Integration in die Betriebsinfrastruktur übergeben. Die Entwicklung und die Integration können in mehreren Schritten bzw. Releases erfolgen.",
+"seite": 80
 }
 ]
 },
@@ -4880,15 +5217,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Das integrierte System steht den Testern des Anwenders für die Tests und die Vorabnahme zur Verfügung."
+"text": "Das integrierte System steht den Testern des Anwenders für die Tests und die Vorabnahme zur Verfügung.",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Nach den Entscheiden Vorabnahme und Betriebsaufnahme wird das System aktiviert."
+"text": "Nach den Entscheiden Vorabnahme und Betriebsaufnahme wird das System aktiviert.",
+"seite": 80
 }
 ]
 },
@@ -4902,19 +5242,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Für die Durchführung der Tests wird eine Testinfrastruktur bestehend aus Testsystem (darunter sind alle Systeme zur Testdurchführung zu verstehen), Testdaten und Testhilfsmitteln verwendet. Sie wird gemäss Testkonzept bereitgestellt. Je nach Testmethode werden unterschiedliche Anforderungen an die Testinfrastruktur gestellt. Folgend können auch unterschiedliche Testsysteme benötigt werden."
+"text": "Für die Durchführung der Tests wird eine Testinfrastruktur bestehend aus Testsystem (darunter sind alle Systeme zur Testdurchführung zu verstehen), Testdaten und Testhilfsmitteln verwendet. Sie wird gemäss Testkonzept bereitgestellt. Je nach Testmethode werden unterschiedliche Anforderungen an die Testinfrastruktur gestellt. Folgend können auch unterschiedliche Testsysteme benötigt werden.",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Die Testinfrastruktur richtet sich nach der Infrastruktur des Produktionssystems, also nach der realisierten Betriebsinfrastruktur. Das Testsystem muss soweit dem Produktionssystem entsprechen, dass die Testfallbeschreibungen unter realistischen Bedingungen durchgeführt werden können."
+"text": "Die Testinfrastruktur richtet sich nach der Infrastruktur des Produktionssystems, also nach der realisierten Betriebsinfrastruktur. Das Testsystem muss soweit dem Produktionssystem entsprechen, dass die Testfallbeschreibungen unter realistischen Bedingungen durchgeführt werden können.",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Werden für die Tests als Testdaten nicht anonymisierte Kopien von produktiven Daten verwendet, müssen die Anforderungen an ISDS erfüllt sein."
+"text": "Werden für die Tests als Testdaten nicht anonymisierte Kopien von produktiven Daten verwendet, müssen die Anforderungen an ISDS erfüllt sein.",
+"seite": 80
 }
 ]
 },
@@ -4928,11 +5272,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Die gesamte Testinfrastruktur inklusive des Testkonzepts wurde in die Stammorganisation überführt."
+"text": "Die gesamte Testinfrastruktur inklusive des Testkonzepts wurde in die Stammorganisation überführt.",
+"seite": 80
 }
 ]
 },
@@ -4946,15 +5292,18 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Meilensteine gehören zu den Zuständen und sind immer die Folge eines Entscheides. Sie kennzeichnen und definieren einen erreichten konkreten Zeitpunkt im Projektverlauf."
+"text": "Meilensteine gehören zu den Zuständen und sind immer die Folge eines Entscheides. Sie kennzeichnen und definieren einen erreichten konkreten Zeitpunkt im Projektverlauf.",
+"seite": 80
 },
 {
 "t": "p",
-"text": "Meilensteine dienen als anvisierte und erreichte Entscheidungsergebnisse der Projektsteuerung und -führung, verleihen dem Projekt eine Struktur und markieren im Projektverlauf wichtige Punkte, an denen über die weiteren Projektschritte entschieden wird."
+"text": "Meilensteine dienen als anvisierte und erreichte Entscheidungsergebnisse der Projektsteuerung und -führung, verleihen dem Projekt eine Struktur und markieren im Projektverlauf wichtige Punkte, an denen über die weiteren Projektschritte entschieden wird.",
+"seite": 80
 }
 ]
 },
@@ -4968,11 +5317,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 81
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme getroffen wird. Die Lösung wird definitiv in die Anwendungs- und allenfalls auch in die Betriebsorganisation überführt. Danach beginnt die Gewährleistung und damit der reguläre Betrieb."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme getroffen wird. Die Lösung wird definitiv in die Anwendungs- und allenfalls auch in die Betriebsorganisation überführt. Danach beginnt die Gewährleistung und damit der reguläre Betrieb.",
+"seite": 81
 }
 ]
 },
@@ -4986,11 +5337,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 81
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme Migration getroffen wird. Die Nutzung des neuen Systems kann für die Anwender freigegeben werden (Entscheid Betriebsaufnahme)."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme Migration getroffen wird. Die Nutzung des neuen Systems kann für die Anwender freigegeben werden (Entscheid Betriebsaufnahme).",
+"seite": 81
 }
 ]
 },
@@ -5004,11 +5357,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 81
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Ausschreibung getroffen wird. Die Ausschreibung kann publiziert werden."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Ausschreibung getroffen wird. Die Ausschreibung kann publiziert werden.",
+"seite": 81
 }
 ]
 },
@@ -5022,11 +5377,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 81
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Betriebsaufnahme getroffen wird. Die Lösung kann in Betrieb genommen werden."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Betriebsaufnahme getroffen wird. Die Lösung kann in Betrieb genommen werden.",
+"seite": 81
 }
 ]
 },
@@ -5040,11 +5397,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 81
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Durchführungsfreigabe getroffen wird. Die Arbeiten starten gemäss dem Durchführungsauftrag."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Durchführungsfreigabe getroffen wird. Die Arbeiten starten gemäss dem Durchführungsauftrag.",
+"seite": 81
 }
 ]
 },
@@ -5058,11 +5417,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 81
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid ISDS-Konzept getroffen wird. Die Realisierung der ISDS-Massnahmen kann an die Hand genommen werden."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid ISDS-Konzept getroffen wird. Die Realisierung der ISDS-Massnahmen kann an die Hand genommen werden.",
+"seite": 81
 }
 ]
 },
@@ -5076,11 +5437,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 81
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Lösungsarchitektur getroffen wird. Dies bildet die Voraussetzung für die Entwicklung oder Adaption von Systemen."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Lösungsarchitektur getroffen wird. Dies bildet die Voraussetzung für die Entwicklung oder Adaption von Systemen.",
+"seite": 81
 }
 ]
 },
@@ -5094,11 +5457,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 81
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe getroffen wird. Die Arbeiten in der nächsten Phase können gestartet werden."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe getroffen wird. Die Arbeiten in der nächsten Phase können gestartet werden.",
+"seite": 81
 }
 ]
 },
@@ -5112,11 +5477,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 82
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe Abschluss getroffen wird. Die Leistungserbringung im Rahmen der Lösungsentstehung ist beendet. Die Arbeiten in der in der Phase Abschluss können gestartet werden."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe Abschluss getroffen wird. Die Leistungserbringung im Rahmen der Lösungsentstehung ist beendet. Die Arbeiten in der in der Phase Abschluss können gestartet werden.",
+"seite": 82
 }
 ]
 },
@@ -5130,11 +5497,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 82
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Produktkonzept getroffen wird. Das Konzept ist die Voraussetzung für die Entwicklung oder Adaption von Produkten oder Dienstleistungen."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Produktkonzept getroffen wird. Das Konzept ist die Voraussetzung für die Entwicklung oder Adaption von Produkten oder Dienstleistungen.",
+"seite": 82
 }
 ]
 },
@@ -5148,11 +5517,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 82
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Projektabschluss getroffen wird. Das Projekt ist beendet."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Projektabschluss getroffen wird. Das Projekt ist beendet.",
+"seite": 82
 }
 ]
 },
@@ -5166,11 +5537,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 82
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Projektinitialisierungsfreigabe getroffen wird. Das Projekt wurde formell ins Leben gerufen. Die Arbeiten starten gemäss dem Projektinitialisierungsauftrag."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Projektinitialisierungsfreigabe getroffen wird. Das Projekt wurde formell ins Leben gerufen. Die Arbeiten starten gemäss dem Projektinitialisierungsauftrag.",
+"seite": 82
 }
 ]
 },
@@ -5184,11 +5557,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 82
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Releasefreigabe getroffen wird. Im Rahmen der agilen Vorgehensweise können die Arbeiten am nächsten Release starten."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Releasefreigabe getroffen wird. Im Rahmen der agilen Vorgehensweise können die Arbeiten am nächsten Release starten.",
+"seite": 82
 }
 ]
 },
@@ -5202,11 +5577,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 82
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Vorabnahme getroffen wird. Dies bildet die Grundlage für die Durchführung der Einführungsmassnahmen und die Betriebsaufnahme."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Vorabnahme getroffen wird. Dies bildet die Grundlage für die Durchführung der Einführungsmassnahmen und die Betriebsaufnahme.",
+"seite": 82
 }
 ]
 },
@@ -5220,11 +5597,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 82
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Weiteres Vorgehen getroffen wird. Dies bildet die Grundlage für die Erarbeitung des Projektmanagementplans sowie des Durchführungsauftrags."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Weiteres Vorgehen getroffen wird. Dies bildet die Grundlage für die Erarbeitung des Projektmanagementplans sowie des Durchführungsauftrags.",
+"seite": 82
 }
 ]
 },
@@ -5238,11 +5617,13 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 82
 },
 {
 "t": "p",
-"text": "Der Meilenstein wird erreicht, wenn der Entscheid Zuschlag getroffen wird. Der Entscheid kann publiziert und die Vertragsarbeiten mit dem Zuschlagsempfänger gestartet werden."
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Zuschlag getroffen wird. Der Entscheid kann publiziert und die Vertragsarbeiten mit dem Zuschlagsempfänger gestartet werden.",
+"seite": 82
 }
 ]
 }

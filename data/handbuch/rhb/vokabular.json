@@ -168,7 +168,8 @@
 ]
 ],
 "titel": "Tabelle 30: Vokabular HERMES-Phasen 4-sprachig",
-"unten": true
+"unten": true,
+"seite": 219
 }
 ]
 },
@@ -308,7 +309,8 @@
 ]
 ],
 "titel": "Tabelle 31: Vokabular HERMES-Szenarien 4-sprachig",
-"unten": true
+"unten": true,
+"seite": 219
 }
 ]
 },
@@ -588,7 +590,8 @@
 ]
 ],
 "titel": "Tabelle 32: Vokabular HERMES-Module 4-sprachig",
-"unten": true
+"unten": true,
+"seite": 220
 }
 ]
 },
@@ -2788,7 +2791,8 @@
 ]
 ],
 "titel": "Tabelle 33: Vokabular HERMES-Ergebnisse 4-sprachig",
-"unten": true
+"unten": true,
+"seite": 220
 }
 ]
 },
@@ -4248,7 +4252,8 @@
 ]
 ],
 "titel": "Tabelle 34: Vokabular HERMES-Aufgaben 4-sprachig",
-"unten": true
+"unten": true,
+"seite": 227
 }
 ]
 },
@@ -4608,7 +4613,8 @@
 ]
 ],
 "titel": "Tabelle 35: Vokabular HERMES-Rollen 4-sprachig",
-"unten": true
+"unten": true,
+"seite": 232
 }
 ]
 }

@@ -17,3 +17,5 @@ Lokal starten: `python3 -m http.server 8080` im Projektverzeichnis, dann http://
 - `quiz-pruefen.py [--pdf-text rhb.txt]` — prüft `data/quizfragen.json` formal und verifiziert die Belegzitate gegen den Handbuchtext
 
 Nach Inhaltsänderungen die Versionsangabe `DATEN_VERSION` in `js/data.js` und den `?v=`-Parameter der Asset-Links in `index.html` erhöhen, damit Browser keine veralteten Dateien aus dem Cache verwenden.
+
+Seitenmarken im Handbuch (2026-09-11): `tools/rhb-import.py` schreibt je Block `seite` (die PDF-Seite, auf der er beginnt); `HT.ui.bloecke` setzt vor jeden Block, der auf einer späteren Seite beginnt als der Text davor (Startseite aus `optionen.seite`), eine Marke `.hb-seitenmarke` («S. n», mit `optionen.pdf` als Link auf die Seite im PDF). Keine seitengetreue Wiedergabe: Absätze, Listen und Tabellen über den Umbruch bleiben ein Block.

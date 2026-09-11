@@ -279,7 +279,7 @@
         if (!a.bloecke || !a.bloecke.length) { return; }
         var abschnitt = h('section', { class: 'hb-abschnitt' });
         if (a.titel) { abschnitt.appendChild(h('h3', { class: 'hb-titel', text: a.titel })); }
-        abschnitt.appendChild(HT.ui.bloecke(a.bloecke, { verlinken: true, ebene: 4 }));
+        abschnitt.appendChild(HT.ui.bloecke(a.bloecke, { verlinken: true, ebene: 4, seite: a.seite, pdf: text.pdf || null }));
         behaelter.appendChild(abschnitt);
       });
     }).catch(function () {
@@ -317,7 +317,7 @@
     var handbuch = h('div', { class: 'detail detail--handbuch', id: 'handbuch-' + e.id });
     if (optionen.bloecke) {
       handbuch.dataset.geladen = '1';
-      handbuch.appendChild(HT.ui.bloecke(optionen.bloecke, { verlinken: true, ebene: 5 }));
+      handbuch.appendChild(HT.ui.bloecke(optionen.bloecke, { verlinken: true, ebene: 5, seite: optionen.seite || null, pdf: optionen.pdf && optionen.pdf.url ? optionen.pdf.url : null }));
     }
     var knoepfe = [];
 

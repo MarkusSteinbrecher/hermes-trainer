@@ -21,16 +21,19 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Das Ergebnisdiagramm zeigt den groben Gesamtzusammenhang der Ergebnisse des HERMES-Projektmanagements."
+"text": "Das Ergebnisdiagramm zeigt den groben Gesamtzusammenhang der Ergebnisse des HERMES-Projektmanagements.",
+"seite": 6
 },
 {
 "t": "abb",
 "datei": "assets/abb/f297763a-101-gesamtbild-der-hermes-module-und-der-wesentlichen-ergebnisse-entlang-der-phasen.svg",
-"text": "Abbildung 1: Gesamtbild der HERMES-Module und der wesentlichen Ergebnisse entlang der Phasen"
+"text": "Abbildung 1: Gesamtbild der HERMES-Module und der wesentlichen Ergebnisse entlang der Phasen",
+"seite": 6
 },
 {
 "t": "p",
-"text": "HERMES ist eine ergebnisorientierte Vorgehensmethode; die Ergebnisse stehen im Zentrum. Das Gesamtbild zeigt die wesentlichen Ergebnisse der einzelnen Module entlang der Phasen sowie die groben Abhängigkeiten und Zusammenhänge. Die roten ovalen Iterationspfeile versinnbildlichen den Kern der Iteration, den treibenden Charakter der Module Produkt und IT-System während der agilen Entwicklung. Die Ergebnisse der anderen Module werden im gleichen Takt iterativ-inkrementell miterarbeitet."
+"text": "HERMES ist eine ergebnisorientierte Vorgehensmethode; die Ergebnisse stehen im Zentrum. Das Gesamtbild zeigt die wesentlichen Ergebnisse der einzelnen Module entlang der Phasen sowie die groben Abhängigkeiten und Zusammenhänge. Die roten ovalen Iterationspfeile versinnbildlichen den Kern der Iteration, den treibenden Charakter der Module Produkt und IT-System während der agilen Entwicklung. Die Ergebnisse der anderen Module werden im gleichen Takt iterativ-inkrementell miterarbeitet.",
+"seite": 6
 }
 ]
 },
@@ -42,15 +45,18 @@
 "bloecke": [
 {
 "t": "p",
-"text": "HERMES-Projektmanagement ist die gesamtheitliche Managementmethode für das Durchführen von Projekten und Programmen verschiedener Art in vielen Tätigkeitsfeldern, wie in der Anpassung der Organisation, der Informatik oder der Entwicklung von Dienstleistungen und Produkten."
+"text": "HERMES-Projektmanagement ist die gesamtheitliche Managementmethode für das Durchführen von Projekten und Programmen verschiedener Art in vielen Tätigkeitsfeldern, wie in der Anpassung der Organisation, der Informatik oder der Entwicklung von Dienstleistungen und Produkten.",
+"seite": 6
 },
 {
 "t": "p",
-"text": "HERMES-Projektmanagement unterstützt die Steuerung, Führung und Ausführung von Vorhaben und begleitet die Weiterentwicklung von organisatorischen Strukturen, Produkten und Dienstleistungen, IT- und Logistiksystemen, Infrastrukturen u. ä. unterschiedlicher Charakteristiken und Komplexitäten. Ein Projekt kann in Teilprojekte gegliedert werden, die unterschiedliche Aspekte desselben Projekts bearbeiten (z. B. Teilprojekte Anwender, Ersteller, Betreiber für Organisation, IT, Rechtsgrundlagen). Lange dauernde oder komplexe Vorhaben müssen nicht zwangsläufig als Programm strukturiert werden. Sie können als Projekte mit Realisierungseinheiten durchgeführt werden."
+"text": "HERMES-Projektmanagement unterstützt die Steuerung, Führung und Ausführung von Vorhaben und begleitet die Weiterentwicklung von organisatorischen Strukturen, Produkten und Dienstleistungen, IT- und Logistiksystemen, Infrastrukturen u. ä. unterschiedlicher Charakteristiken und Komplexitäten. Ein Projekt kann in Teilprojekte gegliedert werden, die unterschiedliche Aspekte desselben Projekts bearbeiten (z. B. Teilprojekte Anwender, Ersteller, Betreiber für Organisation, IT, Rechtsgrundlagen). Lange dauernde oder komplexe Vorhaben müssen nicht zwangsläufig als Programm strukturiert werden. Sie können als Projekte mit Realisierungseinheiten durchgeführt werden.",
+"seite": 6
 },
 {
 "t": "p",
-"text": "HERMES-Projektmanagement hat eine klare, einfach verständliche Methodenstruktur mit gemeinsamer Terminologie für alle Beteiligten, ist modular aufgebaut und erweiterbar. Es wird laufend aktualisiert und weiterentwickelt."
+"text": "HERMES-Projektmanagement hat eine klare, einfach verständliche Methodenstruktur mit gemeinsamer Terminologie für alle Beteiligten, ist modular aufgebaut und erweiterbar. Es wird laufend aktualisiert und weiterentwickelt.",
+"seite": 7
 }
 ]
 },
@@ -62,19 +68,23 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Um die Vollständigkeit der Information und der Methode an sich zu gewährleisten, ist der volle Umfang von HERMES-Projektmanagement für grosse Projekte mit hoher Komplexität ausgelegt."
+"text": "Um die Vollständigkeit der Information und der Methode an sich zu gewährleisten, ist der volle Umfang von HERMES-Projektmanagement für grosse Projekte mit hoher Komplexität ausgelegt.",
+"seite": 7
 },
 {
 "t": "p",
-"text": "Dies passt jedoch nicht zu jedem Vorhaben. Mit der in HERMES Online bereitgestellten Funktionalität „Benutzerdefinierte Szenarien“ werden die Standardszenarien in einem ersten Schritt über die Sizing-Funktion gemäss der ermittelten tatsächlichen Projektwertigkeit angepasst. Diese wird aus mehreren Parametern ermittelt, welche durch den Anwender erfasst werden können. Aufgrund der ermittelten Wertigkeit des Vorhabens stellt die Sizing-Funktion dem Projektleiter ein individuell auf die Projektgrösse zugeschnittenes Szenario bereit."
+"text": "Dies passt jedoch nicht zu jedem Vorhaben. Mit der in HERMES Online bereitgestellten Funktionalität „Benutzerdefinierte Szenarien“ werden die Standardszenarien in einem ersten Schritt über die Sizing-Funktion gemäss der ermittelten tatsächlichen Projektwertigkeit angepasst. Diese wird aus mehreren Parametern ermittelt, welche durch den Anwender erfasst werden können. Aufgrund der ermittelten Wertigkeit des Vorhabens stellt die Sizing-Funktion dem Projektleiter ein individuell auf die Projektgrösse zugeschnittenes Szenario bereit.",
+"seite": 7
 },
 {
 "t": "p",
-"text": "In einem zweiten Schritt kann das auf die richtige Grösse geschnittene Szenario optional noch weiter individualisiert werden. Dies geschieht über die Tailoring-Funktion."
+"text": "In einem zweiten Schritt kann das auf die richtige Grösse geschnittene Szenario optional noch weiter individualisiert werden. Dies geschieht über die Tailoring-Funktion.",
+"seite": 7
 },
 {
 "t": "p",
-"text": "Am Ende kann das individualisierte Szenario heruntergeladen werden, inkl. der angepassten Strukturpläne und Vorlagen."
+"text": "Am Ende kann das individualisierte Szenario heruntergeladen werden, inkl. der angepassten Strukturpläne und Vorlagen.",
+"seite": 7
 }
 ]
 },
@@ -86,38 +96,46 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die HERMES-Projektmanagementmethode unterstützt zwei Vorgehensweisen: Das traditionelle klassische phasenweise Vorgehen nach Systems Engineerings¹, nachfolgend „klassisch“ genannt, und das iterativ-inkrementelle Vorgehen², nachfolgend „agil“ genannt. Sie liefert ein Framework, das es erlaubt, unterschiedliche Vorgehensweisen und folglich auch die jeweils projektspezifisch eingesetzten Methoden einheitlich einzubetten."
+"text": "Die HERMES-Projektmanagementmethode unterstützt zwei Vorgehensweisen: Das traditionelle klassische phasenweise Vorgehen nach Systems Engineerings¹, nachfolgend „klassisch“ genannt, und das iterativ-inkrementelle Vorgehen², nachfolgend „agil“ genannt. Sie liefert ein Framework, das es erlaubt, unterschiedliche Vorgehensweisen und folglich auch die jeweils projektspezifisch eingesetzten Methoden einheitlich einzubetten.",
+"seite": 7
 },
 {
 "t": "p",
-"text": "Die nachfolgende Abbildung zeigt den funktionalen Einsatz der HERMES-Projektmanagementmethode, veranschaulicht die Voraussetzungen für die Projektrollen zur Projektbearbeitung und zeigt auf, wie die Anwendung der Methode eine entsprechende, anderweitige methodische Ausbildung oder zumindest fundierte Projektpraxis voraussetzt: Die Projektmanagementmethode kanalisiert verschiedenen Orts erworbenes Wissen, erweitert dieses durch HERMES-spezifische Elemente und Terminologie und bietet allen Vorhaben einen homogenen Rahmen."
+"text": "Die nachfolgende Abbildung zeigt den funktionalen Einsatz der HERMES-Projektmanagementmethode, veranschaulicht die Voraussetzungen für die Projektrollen zur Projektbearbeitung und zeigt auf, wie die Anwendung der Methode eine entsprechende, anderweitige methodische Ausbildung oder zumindest fundierte Projektpraxis voraussetzt: Die Projektmanagementmethode kanalisiert verschiedenen Orts erworbenes Wissen, erweitert dieses durch HERMES-spezifische Elemente und Terminologie und bietet allen Vorhaben einen homogenen Rahmen.",
+"seite": 7
 },
 {
 "t": "p",
 "text": "¹ Das klassische Vorgehensmodell des „Systems Engineerings“, ETHZ, Walter F. Daenzer",
-"art": "fussnote"
+"art": "fussnote",
+"seite": 7
 },
 {
 "t": "p",
 "text": "² In Anlehnung z. B. an Extreme Programming oder SCRUM: Vorwiegend zur agilen Softwareentwicklung genutzte Entwicklungsmethoden. Der Entwicklungsprozess steht im Mittelpunkt, spezifische Projektmanagementaspekte sind nicht vorgesehen.",
-"art": "fussnote"
+"art": "fussnote",
+"seite": 7
 },
 {
 "t": "abb",
 "datei": "assets/abb/af993f24-103-die-funktionalitaet-von-hermes-projektmanagement-in-der-praxis.svg",
-"text": "Abbildung 2: Die Funktionalität von HERMES-Projektmanagement in der Praxis"
+"text": "Abbildung 2: Die Funktionalität von HERMES-Projektmanagement in der Praxis",
+"seite": 8
 },
 {
 "t": "p",
-"text": "HERMES-Kurse und Zertifizierungen festigen die geforderte Kompetenz und das Know-how. Dadurch wird sowohl projektintern wie auch gegenüber der Stammorganisation gleichartig rapportiert und kommuniziert und zeitgleich werden die flankierenden Rahmenanforderungen des HERMES-Projektmanagements (s. Kapitel „Hinweise zur Anwendung“, z. B. Governance) erfüllt. Somit können Projekte aller Art in der Stammorganisation einheitlich verankert werden und weisen unabhängig der gewählten Vorgehensweise die gleiche Integration in die betrieblichen Abläufe auf."
+"text": "HERMES-Kurse und Zertifizierungen festigen die geforderte Kompetenz und das Know-how. Dadurch wird sowohl projektintern wie auch gegenüber der Stammorganisation gleichartig rapportiert und kommuniziert und zeitgleich werden die flankierenden Rahmenanforderungen des HERMES-Projektmanagements (s. Kapitel „Hinweise zur Anwendung“, z. B. Governance) erfüllt. Somit können Projekte aller Art in der Stammorganisation einheitlich verankert werden und weisen unabhängig der gewählten Vorgehensweise die gleiche Integration in die betrieblichen Abläufe auf.",
+"seite": 8
 },
 {
 "t": "p",
-"text": "Die Projektteams werden darin unterstützt, die für das Vorhaben gewählte Vorgehensweise anzuwenden und die von der Projektmanagementmethode verlangten Ergebnisse auf schlanke Art zu liefern. Insofern werden die klassischen und agilen Methoden nicht beschnitten, es werden aber hinsichtlich der Rollen, der Aufgaben oder der Ergebnisse zusätzliche Methodenelemente definiert, die als verbindliche Anforderungen notwendig sind. Das HERMES-Framework legt über die gewählte Vorgehensweise eine Struktur, die extern ein einheitliches Bild aller Projekte liefert und intern allen Projektbeteiligten die gleiche Sprache vermittelt. Dadurch wird das gewählte Projektvorgehen in sich völlig autonom und kann in jede Organisation integriert werden."
+"text": "Die Projektteams werden darin unterstützt, die für das Vorhaben gewählte Vorgehensweise anzuwenden und die von der Projektmanagementmethode verlangten Ergebnisse auf schlanke Art zu liefern. Insofern werden die klassischen und agilen Methoden nicht beschnitten, es werden aber hinsichtlich der Rollen, der Aufgaben oder der Ergebnisse zusätzliche Methodenelemente definiert, die als verbindliche Anforderungen notwendig sind. Das HERMES-Framework legt über die gewählte Vorgehensweise eine Struktur, die extern ein einheitliches Bild aller Projekte liefert und intern allen Projektbeteiligten die gleiche Sprache vermittelt. Dadurch wird das gewählte Projektvorgehen in sich völlig autonom und kann in jede Organisation integriert werden.",
+"seite": 8
 },
 {
 "t": "p",
-"text": "Unabhängig von der Projektart oder der Vorgehensweise erfolgen sowohl die Planung als auch das Controlling weitgehend auf die gleiche Art und Weise."
+"text": "Unabhängig von der Projektart oder der Vorgehensweise erfolgen sowohl die Planung als auch das Controlling weitgehend auf die gleiche Art und Weise.",
+"seite": 8
 }
 ]
 },
@@ -129,15 +147,18 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Das HERMES-Projektmanagement deckt den gesamten Projektlebenszyklus ab und ist ergebnisorientiert. Es garantiert die Kompatibilität seiner standardisierten Schnittstellen innerhalb des Projekts und mit der Stammorganisation, wie z. B. Reporting, unabhängig davon, ob die Entwicklung klassisch oder agil durchgeführt wird."
+"text": "Das HERMES-Projektmanagement deckt den gesamten Projektlebenszyklus ab und ist ergebnisorientiert. Es garantiert die Kompatibilität seiner standardisierten Schnittstellen innerhalb des Projekts und mit der Stammorganisation, wie z. B. Reporting, unabhängig davon, ob die Entwicklung klassisch oder agil durchgeführt wird.",
+"seite": 8
 },
 {
 "t": "p",
-"text": "Die HERMES-Terminologie garantiert die gemeinsame Sprache und ein gemeinsames Verständnis zwischen der Stamm- und Projektorganisation, zwischen dem Projekt und dem Programm, zwischen dem Projekt-, Anwendungs- und Portfoliomanagement."
+"text": "Die HERMES-Terminologie garantiert die gemeinsame Sprache und ein gemeinsames Verständnis zwischen der Stamm- und Projektorganisation, zwischen dem Projekt und dem Programm, zwischen dem Projekt-, Anwendungs- und Portfoliomanagement.",
+"seite": 8
 },
 {
 "t": "p",
-"text": "Innerhalb der Projektorganisation sind der Auftraggeber, Projektleiter und Anwendervertreter jene Rollen, die für das Funktionieren der Schnittstellen, aber auch für das gesamte Projekt unentbehrlich sind:"
+"text": "Innerhalb der Projektorganisation sind der Auftraggeber, Projektleiter und Anwendervertreter jene Rollen, die für das Funktionieren der Schnittstellen, aber auch für das gesamte Projekt unentbehrlich sind:",
+"seite": 8
 },
 {
 "t": "ul",
@@ -151,7 +172,8 @@
 {
 "text": "Der Anwendervertreter verantwortet die fachliche Lösungsentstehung."
 }
-]
+],
+"seite": 9
 }
 ]
 },
@@ -163,27 +185,33 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die HERMES-Projektmanagementmethode ist eine Projektvorgehenshülle, in die eine agile Entwicklungsmethode wie eine Blackbox eingefügt werden kann. Auf das so eingekapselte Entwicklungsvorgehen geht HERMES nicht weiter ein, es definiert aber aus Steuerungs-, Führungs-, Kommunikations- und Reporting-Gründen entsprechende Schnittstellen."
+"text": "Die HERMES-Projektmanagementmethode ist eine Projektvorgehenshülle, in die eine agile Entwicklungsmethode wie eine Blackbox eingefügt werden kann. Auf das so eingekapselte Entwicklungsvorgehen geht HERMES nicht weiter ein, es definiert aber aus Steuerungs-, Führungs-, Kommunikations- und Reporting-Gründen entsprechende Schnittstellen.",
+"seite": 9
 },
 {
 "t": "p",
-"text": "Wenn in der Folge in diesem Handbuch von agiler Umsetzung gesprochen wird, dann ist die Lösungsentstehung in zeitlich begrenzten Vorhaben unter Anwendung von sowohl einfach agilen Methoden (Scrum, Kanban, etc.) wie auch skaliert agilen Methoden (SAFe bis Stufe „Essential“, bzw. „ART Flow“) gemeint."
+"text": "Wenn in der Folge in diesem Handbuch von agiler Umsetzung gesprochen wird, dann ist die Lösungsentstehung in zeitlich begrenzten Vorhaben unter Anwendung von sowohl einfach agilen Methoden (Scrum, Kanban, etc.) wie auch skaliert agilen Methoden (SAFe bis Stufe „Essential“, bzw. „ART Flow“) gemeint.",
+"seite": 9
 },
 {
 "t": "p",
-"text": "Das klassische und das agile Entwicklungsvorgehen haben von der Führung der Rollen der Hierarchieebene Ausführung ein grundsätzlich unterschiedliches Verständnis. Während die klassische Vorgehensweise davon ausgeht, dass der Projektleiter Arbeitsaufträge erteilt, wird bei agiler Vorgehensweise die Arbeit der Umsetzungsorganisation durch den Anwendervertreter über die Lösungsanforderungen gesteuert, und die Teams organisieren ihre Arbeit selbstständig. Der Projektleiter führt sein Projekt, er darf jedoch nicht in die Selbstorganisation der agilen Umsetzungsorganisation eingreifen. Der Anwendervertreter ist als Vertreter der agilen Umsetzungsorganisation der Ansprechpartner für den Projektleiter."
+"text": "Das klassische und das agile Entwicklungsvorgehen haben von der Führung der Rollen der Hierarchieebene Ausführung ein grundsätzlich unterschiedliches Verständnis. Während die klassische Vorgehensweise davon ausgeht, dass der Projektleiter Arbeitsaufträge erteilt, wird bei agiler Vorgehensweise die Arbeit der Umsetzungsorganisation durch den Anwendervertreter über die Lösungsanforderungen gesteuert, und die Teams organisieren ihre Arbeit selbstständig. Der Projektleiter führt sein Projekt, er darf jedoch nicht in die Selbstorganisation der agilen Umsetzungsorganisation eingreifen. Der Anwendervertreter ist als Vertreter der agilen Umsetzungsorganisation der Ansprechpartner für den Projektleiter.",
+"seite": 9
 },
 {
 "t": "p",
-"text": "Die Begriffswelt innerhalb der agilen Entwicklung ist nicht vorgeschrieben, sie richtet sich nach der jeweils eingesetzten Entwicklungsmethode. Festgelegt sind lediglich die Ergebnis-Schnittstellen und die Begrifflichkeiten im Rahmen des Projektmanagements."
+"text": "Die Begriffswelt innerhalb der agilen Entwicklung ist nicht vorgeschrieben, sie richtet sich nach der jeweils eingesetzten Entwicklungsmethode. Festgelegt sind lediglich die Ergebnis-Schnittstellen und die Begrifflichkeiten im Rahmen des Projektmanagements.",
+"seite": 9
 },
 {
 "t": "p",
-"text": "Das HERMES-Projektmanagement gibt dem Vorhaben seine einheitliche Struktur und einen ebensolchen Rahmen. Der Projektlebenszyklus steht im Vordergrund, das jeweilige agile Entwicklungsmanagement bildet als eingekapselte Methode eine Blackbox. Das agile Entwicklungsmanagement regelt die Organisation und die Steuerung der Umsetzungsorganisation und steuert autonom, in einem vorgegebenen Rahmen, die Lösungsentstehung. Die methodenspezifischen Rollenmodelle, Prozesse und Rituale können – Konsens innerhalb der Stamm- und Projektorganisation vorausgesetzt – ungehindert gelebt werden."
+"text": "Das HERMES-Projektmanagement gibt dem Vorhaben seine einheitliche Struktur und einen ebensolchen Rahmen. Der Projektlebenszyklus steht im Vordergrund, das jeweilige agile Entwicklungsmanagement bildet als eingekapselte Methode eine Blackbox. Das agile Entwicklungsmanagement regelt die Organisation und die Steuerung der Umsetzungsorganisation und steuert autonom, in einem vorgegebenen Rahmen, die Lösungsentstehung. Die methodenspezifischen Rollenmodelle, Prozesse und Rituale können – Konsens innerhalb der Stamm- und Projektorganisation vorausgesetzt – ungehindert gelebt werden.",
+"seite": 9
 },
 {
 "t": "p",
-"text": "Weiterführende Informationen zu HERMES und Agilität finden Sie im Dokument „Agiler Leitfaden - Projektmanagement“, welcher eine Erweiterung zum vorliegenden Referenzhandbuch darstellt."
+"text": "Weiterführende Informationen zu HERMES und Agilität finden Sie im Dokument „Agiler Leitfaden - Projektmanagement“, welcher eine Erweiterung zum vorliegenden Referenzhandbuch darstellt.",
+"seite": 9
 }
 ]
 },
@@ -195,20 +223,24 @@
 "bloecke": [
 {
 "t": "p",
-"text": "In Organisationen mit weitreichenden und umfassenden Veränderungen benötigt man ein gesamtheitliches Managementsystem, um die Zielerreichung mit einer Gruppe von zusammenhängenden Projekten schlank und koordiniert erreichen zu können. Dieses Managementsystem heisst Programmmanagement und ist eine Erweiterung des Projektmanagements. Im Programmmanagement werden die Projekte in einem Programm zusammengefasst."
+"text": "In Organisationen mit weitreichenden und umfassenden Veränderungen benötigt man ein gesamtheitliches Managementsystem, um die Zielerreichung mit einer Gruppe von zusammenhängenden Projekten schlank und koordiniert erreichen zu können. Dieses Managementsystem heisst Programmmanagement und ist eine Erweiterung des Projektmanagements. Im Programmmanagement werden die Projekte in einem Programm zusammengefasst.",
+"seite": 9
 },
 {
 "t": "p",
-"text": "In einer Stammorganisation können Projekte und Programme nebeneinander geführt werden. Die nachfolgende Abbildung zeigt beispielhaft ein mögliches Portfolio mit klassisch und agil geführten Projekten und einem Programm, das weitere Projekte beinhaltet. Die Darstellung legt dar, dass ein Projekt eigenständig oder Teil eines Programms sein kann. Ein Programm enthält mehrere Projekte. Projekte und Programme können in einem Portfolio zusammengefasst werden."
+"text": "In einer Stammorganisation können Projekte und Programme nebeneinander geführt werden. Die nachfolgende Abbildung zeigt beispielhaft ein mögliches Portfolio mit klassisch und agil geführten Projekten und einem Programm, das weitere Projekte beinhaltet. Die Darstellung legt dar, dass ein Projekt eigenständig oder Teil eines Programms sein kann. Ein Programm enthält mehrere Projekte. Projekte und Programme können in einem Portfolio zusammengefasst werden.",
+"seite": 9
 },
 {
 "t": "abb",
 "datei": "assets/rhb/abb-3.png",
-"text": "Abbildung 3: Gleichzeitiges Führen von Projekten und Programmen in einer Stammorganisation"
+"text": "Abbildung 3: Gleichzeitiges Führen von Projekten und Programmen in einer Stammorganisation",
+"seite": 10
 },
 {
 "t": "p",
-"text": "HERMES-Projektmanagement schafft ein gemeinsames Verständnis zum Projekt- und Programmmanagement. Es wird jedoch vorausgesetzt, dass die im Programmmanagement eingesetzten Projektpartner über die notwendigen Fähigkeiten verfügen, damit sie ihre Rolle erfolgreich wahrnehmen können. Die Erweiterung des Projektmanagements durch das Programmmanagement wird im Anhang zum vorliegenden Referenzhandbuch thematisiert."
+"text": "HERMES-Projektmanagement schafft ein gemeinsames Verständnis zum Projekt- und Programmmanagement. Es wird jedoch vorausgesetzt, dass die im Programmmanagement eingesetzten Projektpartner über die notwendigen Fähigkeiten verfügen, damit sie ihre Rolle erfolgreich wahrnehmen können. Die Erweiterung des Projektmanagements durch das Programmmanagement wird im Anhang zum vorliegenden Referenzhandbuch thematisiert.",
+"seite": 10
 }
 ]
 },
@@ -220,7 +252,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die Hinweise zur Anwendung beschreiben spezifische Aspekte von HERMES-Projektmanagement. Sie bilden die Basis für ein vertieftes Methodenverständnis, beispielsweise in Bezug auf Governance und Nachhaltigkeit. Sie zeigen zudem auf, wie HERMES in spezifischen Situationen angewendet werden soll und helfen, Interpretationsraum zu reduzieren, beispielsweise bei der agilen Entwicklung oder der Anwendung von Realisierungseinheiten."
+"text": "Die Hinweise zur Anwendung beschreiben spezifische Aspekte von HERMES-Projektmanagement. Sie bilden die Basis für ein vertieftes Methodenverständnis, beispielsweise in Bezug auf Governance und Nachhaltigkeit. Sie zeigen zudem auf, wie HERMES in spezifischen Situationen angewendet werden soll und helfen, Interpretationsraum zu reduzieren, beispielsweise bei der agilen Entwicklung oder der Anwendung von Realisierungseinheiten.",
+"seite": 10
 }
 ]
 }

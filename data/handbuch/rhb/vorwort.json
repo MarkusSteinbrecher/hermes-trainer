@@ -13,23 +13,28 @@
 "bloecke": [
 {
 "t": "p",
-"text": "HERMES"
+"text": "HERMES",
+"seite": 1
 },
 {
 "t": "p",
-"text": "REFERENZHANDBUCH - Projektmanagement"
+"text": "REFERENZHANDBUCH - Projektmanagement",
+"seite": 1
 },
 {
 "t": "p",
-"text": "Ergebnisorientierte Projektmanagementmethode"
+"text": "Ergebnisorientierte Projektmanagementmethode",
+"seite": 1
 },
 {
 "t": "p",
-"text": "für verschiedene Arten von Projekten"
+"text": "für verschiedene Arten von Projekten",
+"seite": 1
 },
 {
 "t": "p",
-"text": "Ausgabe 2022"
+"text": "Ausgabe 2022",
+"seite": 1
 }
 ]
 },
@@ -46,47 +51,58 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die HERMES-Projektmanagementmethode ist ein Erfolgsprodukt, das sich sukzessive dem Zeitgeist anpasst und die jeweils geltende Evolutionsstufe des Projektverständnisses reflektiert. Dies ist mit ein Grund, weshalb sich HERMES bereits über 50 Jahre behaupten konnte."
+"text": "Die HERMES-Projektmanagementmethode ist ein Erfolgsprodukt, das sich sukzessive dem Zeitgeist anpasst und die jeweils geltende Evolutionsstufe des Projektverständnisses reflektiert. Dies ist mit ein Grund, weshalb sich HERMES bereits über 50 Jahre behaupten konnte.",
+"seite": 2
 },
 {
 "t": "p",
-"text": "Ab Version 2022 können mit HERMES sowohl klassische wie auch agil oder skaliert agil umgesetzte Projekte abgewickelt werden."
+"text": "Ab Version 2022 können mit HERMES sowohl klassische wie auch agil oder skaliert agil umgesetzte Projekte abgewickelt werden.",
+"seite": 2
 },
 {
 "t": "p",
-"text": "Das wird durch die Entkoppelung von Projekt- und Entwicklungsmanagement ermöglicht. So kann die Sicherheit eines strukturierten Projektvorgehens mit den vielen Vorteilen des selbstorganisierten agilen oder skaliert agilen Entwicklungsmanagements vereint werden."
+"text": "Das wird durch die Entkoppelung von Projekt- und Entwicklungsmanagement ermöglicht. So kann die Sicherheit eines strukturierten Projektvorgehens mit den vielen Vorteilen des selbstorganisierten agilen oder skaliert agilen Entwicklungsmanagements vereint werden.",
+"seite": 2
 },
 {
 "t": "p",
-"text": "Das Programmmanagement als Anhang zu diesem Referenzhandbuch erlaubt es, agile und klassische Projekte gemeinsam im Rahmen eines Programmes zu führen."
+"text": "Das Programmmanagement als Anhang zu diesem Referenzhandbuch erlaubt es, agile und klassische Projekte gemeinsam im Rahmen eines Programmes zu führen.",
+"seite": 2
 },
 {
 "t": "p",
-"text": "Im Bestreben, die Projektmanagementmethode sehr schnell an veränderte Marktverhältnisse und Anwenderbedürfnisse anpassen zu können, haben wir die Methodenentwicklung optimiert und auf eine digitale Basis transferiert."
+"text": "Im Bestreben, die Projektmanagementmethode sehr schnell an veränderte Marktverhältnisse und Anwenderbedürfnisse anpassen zu können, haben wir die Methodenentwicklung optimiert und auf eine digitale Basis transferiert.",
+"seite": 2
 },
 {
 "t": "p",
-"text": "Damit wird HERMES Online (www.hermes.admin.ch) zur zentralen Informationsplattform für die Methode. Dort können Sie sich auch für den Newsletter anmelden, Änderungswünsche platzieren oder generell Feedback geben."
+"text": "Damit wird HERMES Online (www.hermes.admin.ch) zur zentralen Informationsplattform für die Methode. Dort können Sie sich auch für den Newsletter anmelden, Änderungswünsche platzieren oder generell Feedback geben.",
+"seite": 2
 },
 {
 "t": "p",
-"text": "Wir bedanken uns bei allen, die uns geholfen haben und immer noch helfen, diese Methode weiterhin aktuell, einfach und klar zu gestalten und wünschen viel Erfolg beim Anwenden."
+"text": "Wir bedanken uns bei allen, die uns geholfen haben und immer noch helfen, diese Methode weiterhin aktuell, einfach und klar zu gestalten und wünschen viel Erfolg beim Anwenden.",
+"seite": 2
 },
 {
 "t": "p",
-"text": "HERMES Verantwortlicher"
+"text": "HERMES Verantwortlicher",
+"seite": 2
 },
 {
 "t": "p",
-"text": "Bundeskanzlei BK"
+"text": "Bundeskanzlei BK",
+"seite": 2
 },
 {
 "t": "p",
-"text": "Digitale Transformation und IKT-Lenkung"
+"text": "Digitale Transformation und IKT-Lenkung",
+"seite": 2
 },
 {
 "t": "p",
-"text": "www.bk.admin.ch"
+"text": "www.bk.admin.ch",
+"seite": 2
 }
 ]
 },
@@ -103,7 +119,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Bundeskanzlei BK, Digitale Transformation und IKT-Lenkung DTI"
+"text": "Bundeskanzlei BK, Digitale Transformation und IKT-Lenkung DTI",
+"seite": 3
 }
 ]
 },
@@ -114,7 +131,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Der HERMES-Publikationsprozess folgt dem Prinzip «Digital First». Damit ist www.hermes.admin.ch die führende Quelle; verbindlich und für die Zertifizierung massgeblich ist ausschliesslich der dort veröffentlichte Inhalt."
+"text": "Der HERMES-Publikationsprozess folgt dem Prinzip «Digital First». Damit ist www.hermes.admin.ch die führende Quelle; verbindlich und für die Zertifizierung massgeblich ist ausschliesslich der dort veröffentlichte Inhalt.",
+"seite": 3
 }
 ]
 },
@@ -125,11 +143,13 @@
 "bloecke": [
 {
 "t": "p",
-"text": "HERMES ist ein offener Standard der schweizerischen Bundesverwaltung. Die Schweizerische Eidgenossenschaft, vertreten durch DTI, ist Inhaberin der Urheberrechte. Die Verwendung zum Eigengebrauch richtet sich nach Artikel 19 des Bundesgesetzes über das Urheberrecht und verwandte Schutzrechte (Urheberrechtsgesetz, URG, SR 231.1)."
+"text": "HERMES ist ein offener Standard der schweizerischen Bundesverwaltung. Die Schweizerische Eidgenossenschaft, vertreten durch DTI, ist Inhaberin der Urheberrechte. Die Verwendung zum Eigengebrauch richtet sich nach Artikel 19 des Bundesgesetzes über das Urheberrecht und verwandte Schutzrechte (Urheberrechtsgesetz, URG, SR 231.1).",
+"seite": 3
 },
 {
 "t": "p",
-"text": "Die vorliegende Ausgabe kann Mängel oder Inkonsistenzen enthalten. Die Haftung für Schäden und die Gewährleistung für Mängel seitens der Schweizerischen Eidgenossenschaft ist unter Vorbehalt anderslautender zwingender gesetzlicher Bestimmungen des anwendbaren Rechts ausgeschlossen. Irrtümer, Probleme oder Änderungsvorschläge können dem Herausgeber über HERMES Online hermes.admin.ch mitgeteilt werden."
+"text": "Die vorliegende Ausgabe kann Mängel oder Inkonsistenzen enthalten. Die Haftung für Schäden und die Gewährleistung für Mängel seitens der Schweizerischen Eidgenossenschaft ist unter Vorbehalt anderslautender zwingender gesetzlicher Bestimmungen des anwendbaren Rechts ausgeschlossen. Irrtümer, Probleme oder Änderungsvorschläge können dem Herausgeber über HERMES Online hermes.admin.ch mitgeteilt werden.",
+"seite": 3
 }
 ]
 },
@@ -140,7 +160,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Das vorliegende Handbuch verwendet aus Gründen der besseren Lesbarkeit und Verständlichkeit Rollen- und Personenbezeichnungen, die unabhängig vom Geschlecht einer Person und von Stellen einer Organisation sind. Diese Formulierungen schliessen alle anderen Geschlechter in ihrer jeweiligen Funktion explizit mit ein."
+"text": "Das vorliegende Handbuch verwendet aus Gründen der besseren Lesbarkeit und Verständlichkeit Rollen- und Personenbezeichnungen, die unabhängig vom Geschlecht einer Person und von Stellen einer Organisation sind. Diese Formulierungen schliessen alle anderen Geschlechter in ihrer jeweiligen Funktion explizit mit ein.",
+"seite": 3
 }
 ]
 },
@@ -151,7 +172,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "E-Mail: hermes@bk.admin.ch"
+"text": "E-Mail: hermes@bk.admin.ch",
+"seite": 3
 }
 ]
 },
@@ -162,7 +184,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "eCH Standard 0054"
+"text": "eCH Standard 0054",
+"seite": 3
 }
 ]
 },
@@ -173,7 +196,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Über HERMES Online. Im Rahmen der Nachhaltigkeit werden keine Druckprodukte mehr angeboten."
+"text": "Über HERMES Online. Im Rahmen der Nachhaltigkeit werden keine Druckprodukte mehr angeboten.",
+"seite": 4
 }
 ]
 },
@@ -184,7 +208,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Ausgabe 2022 / 3. Auflage 09.03.2026"
+"text": "Ausgabe 2022 / 3. Auflage 09.03.2026",
+"seite": 4
 }
 ]
 },
@@ -195,72 +220,89 @@
 "bloecke": [
 {
 "t": "p",
-"text": "«Kleine Taten, die man ausführt, sind besser als grosse, die man plant.»"
+"text": "«Kleine Taten, die man ausführt, sind besser als grosse, die man plant.»",
+"seite": 5
 },
 {
 "t": "p",
-"text": "(Peter Marshall)"
+"text": "(Peter Marshall)",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Agile Methoden haben sich in unserer schnelllebigen Zeit vielerorts als den traditionellen Ansätzen überlegen erwiesen. Es ist daher folgerichtig, dass sie auch von den Behörden häufiger eingesetzt werden und in HERMES ihren Niederschlag finden. Die Erfahrungen der Eidgenössischen Finanzkontrolle EFK zeigen allerdings, dass die konsequente Anwendung einer Methode leider kein Garant für eine erfolgreiche Projektdurchführung ist. Wichtig sind auch weitere Aspekte. Wir ermuntern Sie daher, Folgendes im Auge zu behalten:"
+"text": "Agile Methoden haben sich in unserer schnelllebigen Zeit vielerorts als den traditionellen Ansätzen überlegen erwiesen. Es ist daher folgerichtig, dass sie auch von den Behörden häufiger eingesetzt werden und in HERMES ihren Niederschlag finden. Die Erfahrungen der Eidgenössischen Finanzkontrolle EFK zeigen allerdings, dass die konsequente Anwendung einer Methode leider kein Garant für eine erfolgreiche Projektdurchführung ist. Wichtig sind auch weitere Aspekte. Wir ermuntern Sie daher, Folgendes im Auge zu behalten:",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Vergegenwärtigen Sie sich, dass der Kulturwandel bei Veränderungen zentral ist."
+"text": "Vergegenwärtigen Sie sich, dass der Kulturwandel bei Veränderungen zentral ist.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Machen Sie allen Beteiligten von Beginn an bewusst, dass Innovation nicht alleine durch Technologie getrieben wird, sondern beim einzelnen Mitarbeitenden beginnt. Fördern Sie die Dialogbereitschaft, lernen Sie mit Unsicherheiten zu leben, stellen Sie Tabus infrage und lassen Sie Fehler zu. Eine Null-Fehler-Kultur ist - nicht nur, aber vor allem - für die agile Welt fatal."
+"text": "Machen Sie allen Beteiligten von Beginn an bewusst, dass Innovation nicht alleine durch Technologie getrieben wird, sondern beim einzelnen Mitarbeitenden beginnt. Fördern Sie die Dialogbereitschaft, lernen Sie mit Unsicherheiten zu leben, stellen Sie Tabus infrage und lassen Sie Fehler zu. Eine Null-Fehler-Kultur ist - nicht nur, aber vor allem - für die agile Welt fatal.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Stellen Sie das Geschäft und den Endnutzer in den Fokus."
+"text": "Stellen Sie das Geschäft und den Endnutzer in den Fokus.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Steuern Sie als Auftraggeber das Vorhaben, indem Sie den erwarteten Geschäftsnutzen ins Zentrum stellen und die Berichterstattung konsequent danach ausrichten. Definieren Sie z. B. über Meilensteine, wann Sie welchen Nutzen realisiert haben wollen und überlassen Sie die Projektdurchführung primär dem Projektteam."
+"text": "Steuern Sie als Auftraggeber das Vorhaben, indem Sie den erwarteten Geschäftsnutzen ins Zentrum stellen und die Berichterstattung konsequent danach ausrichten. Definieren Sie z. B. über Meilensteine, wann Sie welchen Nutzen realisiert haben wollen und überlassen Sie die Projektdurchführung primär dem Projektteam.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Zögern Sie nicht im Hinblick auf die Transformationsvorhaben der Verwaltung, bestehende Organisationen und Prozesse zu hinterfragen. Motivieren Sie die Beteiligten, die Lösung zusammen mit den Nutzern zu kreieren. Im Falle der Verwaltung sind das beispielsweise Bürger, Unternehmen, Subventionsempfänger aber auch Kantone und Gemeinden. Wagen Sie es, alle Beteiligten zur Zusammenarbeit aufzufordern, sodass am Ende ein durchgängiger End-to-End-Prozess entsteht."
+"text": "Zögern Sie nicht im Hinblick auf die Transformationsvorhaben der Verwaltung, bestehende Organisationen und Prozesse zu hinterfragen. Motivieren Sie die Beteiligten, die Lösung zusammen mit den Nutzern zu kreieren. Im Falle der Verwaltung sind das beispielsweise Bürger, Unternehmen, Subventionsempfänger aber auch Kantone und Gemeinden. Wagen Sie es, alle Beteiligten zur Zusammenarbeit aufzufordern, sodass am Ende ein durchgängiger End-to-End-Prozess entsteht.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Setzen Sie in Ihrem Vorhaben die Puzzleteile lückenlos zusammen."
+"text": "Setzen Sie in Ihrem Vorhaben die Puzzleteile lückenlos zusammen.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Orchestrieren Sie Ihre Vorhaben in einer Weise, dass sie vereint einen wertvollen Beitrag zur Erreichung Ihrer strategischen Ziele leisten. Schicken Sie Architektur-, IKS-¹ und Sicherheits-"
+"text": "Orchestrieren Sie Ihre Vorhaben in einer Weise, dass sie vereint einen wertvollen Beitrag zur Erreichung Ihrer strategischen Ziele leisten. Schicken Sie Architektur-, IKS-¹ und Sicherheits-",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Verantwortliche früh ins Rennen, damit ihre Anforderungen tatsächlich berücksichtigt werden. Und überzeugen Sie sich letztlich davon, dass ausreichend explizite Testfälle für die internen Kontrollen und Sicherheitselemente vorliegen und diese möglichst automatisiert durchgeführt werden."
+"text": "Verantwortliche früh ins Rennen, damit ihre Anforderungen tatsächlich berücksichtigt werden. Und überzeugen Sie sich letztlich davon, dass ausreichend explizite Testfälle für die internen Kontrollen und Sicherheitselemente vorliegen und diese möglichst automatisiert durchgeführt werden.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Statten Sie Ihre Organisation mit Kompetenzen aus."
+"text": "Statten Sie Ihre Organisation mit Kompetenzen aus.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Sichern Sie sich rechtzeitig und nachhaltig die Schlüsselressourcen und bestätigen Sie unmissverständlich deren rollenspezifische Verantwortlichkeiten. Achten Sie darauf, dass der Anwendervertreter (Product Owner) sowohl über das Fachwissen wie auch die nötigen Entscheidungsbefugnisse verfügt und starten Sie nie ohne ein ausgereiftes Qualitäts- und Risikomanagement."
+"text": "Sichern Sie sich rechtzeitig und nachhaltig die Schlüsselressourcen und bestätigen Sie unmissverständlich deren rollenspezifische Verantwortlichkeiten. Achten Sie darauf, dass der Anwendervertreter (Product Owner) sowohl über das Fachwissen wie auch die nötigen Entscheidungsbefugnisse verfügt und starten Sie nie ohne ein ausgereiftes Qualitäts- und Risikomanagement.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Wir werden bei unseren Prüfungen in der Bundesverwaltung auf diese Aspekte achten und freuen uns, zusammen mit allen Anwendern, diese neue Welt zu entdecken. Falls Sie Fragen haben, wenden Sie sich an uns: info@efk.admin.ch."
+"text": "Wir werden bei unseren Prüfungen in der Bundesverwaltung auf diese Aspekte achten und freuen uns, zusammen mit allen Anwendern, diese neue Welt zu entdecken. Falls Sie Fragen haben, wenden Sie sich an uns: info@efk.admin.ch.",
+"seite": 5
 },
 {
 "t": "p",
-"text": "Eidgenössische Finanzkontrolle EFK"
+"text": "Eidgenössische Finanzkontrolle EFK",
+"seite": 5
 },
 {
 "t": "p",
-"text": "www.efk.admin.ch"
+"text": "www.efk.admin.ch",
+"seite": 5
 },
 {
 "t": "p",
 "text": "¹ Das interne Kontrollsystem (IKS) der Bundesverwaltung, das zwischen 2007 und 2008 eingeführt wurde.",
-"art": "fussnote"
+"art": "fussnote",
+"seite": 5
 }
 ]
 }

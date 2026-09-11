@@ -198,7 +198,7 @@
       }
     }
     if (a.bloecke && a.bloecke.length) {
-      kinder.push(HT.ui.bloecke(a.bloecke, { verlinken: true, ebene: ebene + 1 }));
+      kinder.push(HT.ui.bloecke(a.bloecke, { verlinken: true, ebene: ebene + 1, seite: a.seite, pdf: quelle && quelle.pdf }));
     }
     return h('section', { class: 'hb-abschnitt' + (a.ebene === 1 && index > 0 ? ' hb-abschnitt--teil' : '') }, kinder);
   }

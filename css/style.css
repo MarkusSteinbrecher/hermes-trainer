@@ -1254,6 +1254,22 @@ body[data-route="handbuch"] .prosa { max-width: none; }
 .hb-p--fussnote { font-size: 12.5px; color: var(--text-leise); margin: 4px 0; padding-left: 1.1em; text-indent: -1.1em; }
 .hb-p--fussnote + .hb-p:not(.hb-p--fussnote) { margin-top: 12px; }
 .hb-tabelle--unten caption { caption-side: bottom; text-transform: none; letter-spacing: 0; font-size: 11.5px; font-weight: 500; color: var(--text-leise); padding: 6px 0 0; }
+/* Seitenmarke im Text: eine gestrichelte Linie, rechts die Seite des PDF —
+   dort beginnt im Referenzhandbuch eine neue Seite. */
+.hb-seitenmarke {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-leise-hell);
+}
+.hb-seitenmarke::before { content: ''; flex: 1 1 auto; border-top: 1px dashed var(--rand); }
+.hb-seitenmarke a, .hb-seitenmarke span { flex: 0 0 auto; color: inherit; text-decoration: none; }
+.hb-seitenmarke a:hover { color: var(--akzent); }
 a.hb-seite { text-decoration: none; border-bottom: 1px dotted var(--rand); }
 a.hb-seite:hover { color: var(--akzent); border-bottom-color: var(--akzent); }
 .hb-verweis .hb-pdf { font-weight: 700; text-decoration: none; border: 0; }

@@ -435,12 +435,27 @@
    * eine Tabelle mit «unten» zeigt ihren Titel unter der Tabelle (wie im PDF).
    * optionen.verlinken: Begriffe in Listen/Zellen auf ihre Karte verlinken.
    * optionen.ebene: HTML-Überschriftenebene für «h»-Blöcke (Standard 4).
+   * optionen.seite: Seite, auf der der Text beginnt (steht schon im Titel);
+   *   beginnt ein Block auf einer späteren Seite, geht ihm eine Seitenmarke
+   *   «S. n» voraus — mit optionen.pdf (URL des Referenzhandbuchs) als Link
+   *   auf die Seite. Blöcke, die über den Umbruch laufen, bleiben ganz.
    */
+  function seitenmarke(seite, pdf) {
+    var text = 'S. ' + seite;
+    var kern = pdf
+      ? h('a', { href: pdf + '#page=' + seite, target: '_blank', rel: 'noopener', title: 'Seite ' + seite + ' im Referenzhandbuch (PDF, neuer Tab)', text: text })
+      : h('span', { text: text });
+    return h('div', { class: 'hb-seitenmarke', role: 'separator', 'aria-label': 'Seite ' + seite }, kern);
+  }
+
   function bloecke(liste, optionen) {
     optionen = optionen || {};
     var frag = document.createDocumentFragment();
+    var seite = optionen.seite || null;
     (liste || []).forEach(function (b) {
       if (!b || !b.t) { return; }
+      if (b.seite && seite && b.seite > seite) { frag.appendChild(seitenmarke(b.seite, optionen.pdf)); }
+      if (b.seite && (!seite || b.seite > seite)) { seite = b.seite; }
       var el = null;
       if (b.t === 'p') {
         el = h('p', { class: 'hb-p' + (b.art ? ' hb-p--' + b.art : '') }, begriffeText(b.text || '', optionen.verlinken && (b.text || '').length < 60));

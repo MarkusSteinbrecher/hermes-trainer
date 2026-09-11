@@ -21,16 +21,19 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Module enthalten thematisch zusammengehörende Aufgaben und Ergebnisse. Sie sind Bausteine zur Erstellung von Projekten und Szenarien."
+"text": "Module enthalten thematisch zusammengehörende Aufgaben und Ergebnisse. Sie sind Bausteine zur Erstellung von Projekten und Szenarien.",
+"seite": 33
 },
 {
 "t": "p",
-"text": "Die nachfolgende Abbildung zeigt im Gesamtkontext alle Module, die verwendet werden können und teils sogar verwendet werden müssen. Ergänzend können eigene Module erstellt werden."
+"text": "Die nachfolgende Abbildung zeigt im Gesamtkontext alle Module, die verwendet werden können und teils sogar verwendet werden müssen. Ergänzend können eigene Module erstellt werden.",
+"seite": 33
 },
 {
 "t": "abb",
 "datei": "assets/abb/f13aac37-125-standardmaessig-verfuegbare-hermes-module-im-gesamtkontext.svg",
-"text": "Abbildung 23: Standardmässig verfügbare HERMES-Module im Gesamtkontext"
+"text": "Abbildung 23: Standardmässig verfügbare HERMES-Module im Gesamtkontext",
+"seite": 33
 }
 ]
 },
@@ -49,7 +52,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die Tabelle führt alle bereitgestellten Standardmodule kontextgerecht auf und zeigt, in welchen Projektphasen sie vorkommen können."
+"text": "Die Tabelle führt alle bereitgestellten Standardmodule kontextgerecht auf und zeigt, in welchen Projektphasen sie vorkommen können.",
+"seite": 33
 },
 {
 "t": "tabelle",
@@ -362,11 +366,13 @@
 ]
 ],
 "titel": "Tabelle 3: Standardmodule den Projektphasen zugeordnet",
-"unten": true
+"unten": true,
+"seite": 33
 },
 {
 "t": "p",
-"text": "Damit die Projekt-Governance eingehalten werden kann, müssen folgende Module zwingend in jedem Projekt vorkommen:"
+"text": "Damit die Projekt-Governance eingehalten werden kann, müssen folgende Module zwingend in jedem Projekt vorkommen:",
+"seite": 34
 },
 {
 "t": "ul",
@@ -383,7 +389,8 @@
 {
 "text": "Einführungsorganisation."
 }
-]
+],
+"seite": 34
 }
 ]
 },
@@ -395,11 +402,13 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Ergänzend zu den standardmässig verfügbaren Modulen besteht die Möglichkeit, eigene fach-, organisations- oder vorhabenspezifische Module mit bestehenden oder neuen individuellen Aufgaben und Ergebnissen zu entwickeln und diese in eigene Projekte oder Szenarien zu integrieren. Dies wird auch durch HERMES Online unterstützt."
+"text": "Ergänzend zu den standardmässig verfügbaren Modulen besteht die Möglichkeit, eigene fach-, organisations- oder vorhabenspezifische Module mit bestehenden oder neuen individuellen Aufgaben und Ergebnissen zu entwickeln und diese in eigene Projekte oder Szenarien zu integrieren. Dies wird auch durch HERMES Online unterstützt.",
+"seite": 34
 },
 {
 "t": "p",
-"text": "Beispiele von fachspezifischen individuellen Modulen, die selbst entwickelt werden können, sind beispielsweise Marketing, Immobilien, Kommunikation, Personalentwicklung, Rechtsetzung, Ausbildung, Strategieentwicklung oder Einführung einer Geschäftsverwaltung."
+"text": "Beispiele von fachspezifischen individuellen Modulen, die selbst entwickelt werden können, sind beispielsweise Marketing, Immobilien, Kommunikation, Personalentwicklung, Rechtsetzung, Ausbildung, Strategieentwicklung oder Einführung einer Geschäftsverwaltung.",
+"seite": 34
 }
 ]
 },
@@ -411,7 +420,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Für jedes Modul gibt es eine Modulbeschreibung, die stets gleich strukturiert ist:"
+"text": "Für jedes Modul gibt es eine Modulbeschreibung, die stets gleich strukturiert ist:",
+"seite": 34
 },
 {
 "t": "ul",
@@ -433,7 +443,8 @@
 }
 ]
 }
-]
+],
+"seite": 34
 }
 ]
 },
@@ -461,15 +472,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 35
 },
 {
 "t": "p",
-"text": "Das Modul Projektsteuerung sorgt für die gesamthafte und organisationsübergreifende Steuerung des Projekts und stellt die Erreichung der gesetzten Ziele sicher."
+"text": "Das Modul Projektsteuerung sorgt für die gesamthafte und organisationsübergreifende Steuerung des Projekts und stellt die Erreichung der gesetzten Ziele sicher.",
+"seite": 35
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 35
 },
 {
 "t": "ul",
@@ -486,11 +500,13 @@
 {
 "text": "Das Projekt abschliessen, eventuell vorzeitig abbrechen."
 }
-]
+],
+"seite": 35
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 35
 },
 {
 "t": "tabelle",
@@ -1397,7 +1413,8 @@
 ]
 ],
 "titel": "Tabelle 4: Aufgaben und Ergebnisse Modul Projektsteuerung",
-"unten": true
+"unten": true,
+"seite": 35
 }
 ]
 },
@@ -1411,15 +1428,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 36
 },
 {
 "t": "p",
-"text": "Im Rahmen des Moduls Projektführung erfolgt die Planung, Führung und Koordination des Projekts zur Erreichung der Projektergebnisse und der Vorgehensziele sowie die Durchführung aller notwendigen flankierenden Massnahmen."
+"text": "Im Rahmen des Moduls Projektführung erfolgt die Planung, Führung und Koordination des Projekts zur Erreichung der Projektergebnisse und der Vorgehensziele sowie die Durchführung aller notwendigen flankierenden Massnahmen.",
+"seite": 36
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 36
 },
 {
 "t": "ul",
@@ -1436,11 +1456,13 @@
 {
 "text": "Leistungen vereinbaren und steuern, das Änderungsmanagement und die Qualitätssicherung führen."
 }
-]
+],
+"seite": 36
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 36
 },
 {
 "t": "tabelle",
@@ -2373,7 +2395,8 @@
 ]
 ],
 "titel": "Tabelle 5: Aufgaben und Ergebnisse Modul Projektführung",
-"unten": true
+"unten": true,
+"seite": 36
 }
 ]
 },
@@ -2394,15 +2417,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 38
 },
 {
 "t": "p",
-"text": "Das Modul Projektgrundlagen schafft eine konkrete, fundierte Ausgangslage für eine mögliche Lösungsentstehung und den darauffolgenden Projektabschluss."
+"text": "Das Modul Projektgrundlagen schafft eine konkrete, fundierte Ausgangslage für eine mögliche Lösungsentstehung und den darauffolgenden Projektabschluss.",
+"seite": 38
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 38
 },
 {
 "t": "ul",
@@ -2419,11 +2445,13 @@
 {
 "text": "Die Voraussetzungen schaffen, um den Projektmanagementplan und den Durchführungsauftrag zu erarbeiten."
 }
-]
+],
+"seite": 38
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 38
 },
 {
 "t": "tabelle",
@@ -2784,7 +2812,8 @@
 ]
 ],
 "titel": "Tabelle 6: Aufgaben und Ergebnisse Modul Projektgrundlagen",
-"unten": true
+"unten": true,
+"seite": 38
 }
 ]
 },
@@ -2798,15 +2827,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 38
 },
 {
 "t": "p",
-"text": "Das Modul Beschaffung dient der gezielten Beschaffung eines am Markt verfügbaren Systems, Produkts oder einer Dienstleistung mittels offenem oder selektivem Verfahren."
+"text": "Das Modul Beschaffung dient der gezielten Beschaffung eines am Markt verfügbaren Systems, Produkts oder einer Dienstleistung mittels offenem oder selektivem Verfahren.",
+"seite": 38
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 38
 },
 {
 "t": "ul",
@@ -2817,11 +2849,13 @@
 {
 "text": "Abgrenzung: Die Erarbeitung der Beschaffungsgrundlagen wie Bedarfs- und Marktanalyse, Abklärung des korrekten Verfahrens mit Beschaffung/Einkauf, Sicherstellung der rechtlichen Aspekte oder Verfahrenswahl finden bei der Erarbeitung der Beschaffungsanalyse im Modul Projektgrundlagen statt."
 }
-]
+],
+"seite": 38
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 39
 },
 {
 "t": "tabelle",
@@ -3234,7 +3268,8 @@
 ]
 ],
 "titel": "Tabelle 7: Aufgaben und Ergebnisse Modul Beschaffung",
-"unten": true
+"unten": true,
+"seite": 39
 }
 ]
 },
@@ -3248,15 +3283,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 39
 },
 {
 "t": "p",
-"text": "Das Modul Organisation unterstützt den lösungsspezifischen Aufbau oder Anpassung der Organisation und deren Umsetzung oder liefert die organisatorisch-fachlichen Grundlagen für den Aufbau der jeweiligen Lösung."
+"text": "Das Modul Organisation unterstützt den lösungsspezifischen Aufbau oder Anpassung der Organisation und deren Umsetzung oder liefert die organisatorisch-fachlichen Grundlagen für den Aufbau der jeweiligen Lösung.",
+"seite": 39
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 39
 },
 {
 "t": "ul",
@@ -3270,11 +3308,13 @@
 {
 "text": "Die Stakeholder in die Lösungsentstehung einbeziehen."
 }
-]
+],
+"seite": 39
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 39
 },
 {
 "t": "tabelle",
@@ -3661,7 +3701,8 @@
 ]
 ],
 "titel": "Tabelle 8: Aufgaben und Ergebnisse Modul Organisation",
-"unten": true
+"unten": true,
+"seite": 39
 }
 ]
 },
@@ -3675,15 +3716,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 40
 },
 {
 "t": "p",
-"text": "Das Modul Produkt dient der Entwicklung eines Produkts oder einer Dienstleistung."
+"text": "Das Modul Produkt dient der Entwicklung eines Produkts oder einer Dienstleistung.",
+"seite": 40
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 40
 },
 {
 "t": "ul",
@@ -3700,11 +3744,13 @@
 {
 "text": "Die Interessen der Stakeholder kennen und sie ggf. an der Lösungsentstehung mitwirken lassen."
 }
-]
+],
+"seite": 40
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 40
 },
 {
 "t": "tabelle",
@@ -4143,7 +4189,8 @@
 ]
 ],
 "titel": "Tabelle 9: Aufgaben und Ergebnisse Modul Produkt",
-"unten": true
+"unten": true,
+"seite": 40
 }
 ]
 },
@@ -4157,15 +4204,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 41
 },
 {
 "t": "p",
-"text": "Das Modul IT-System dient der Entwicklung eines Systems."
+"text": "Das Modul IT-System dient der Entwicklung eines Systems.",
+"seite": 41
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 41
 },
 {
 "t": "ul",
@@ -4182,11 +4232,13 @@
 {
 "text": "Die Interessen der Stakeholder kennen und sie an der Lösungsentstehung mitwirken lassen."
 }
-]
+],
+"seite": 41
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 41
 },
 {
 "t": "tabelle",
@@ -4807,7 +4859,8 @@
 ]
 ],
 "titel": "Tabelle 10: Aufgaben und Ergebnisse Modul IT-System",
-"unten": true
+"unten": true,
+"seite": 41
 }
 ]
 },
@@ -4821,15 +4874,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 42
 },
 {
 "t": "p",
-"text": "Das Modul Tests dient einer systematischen und effizienten Organisation und Durchführung des Testens von Lösungen."
+"text": "Das Modul Tests dient einer systematischen und effizienten Organisation und Durchführung des Testens von Lösungen.",
+"seite": 42
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 42
 },
 {
 "t": "ul",
@@ -4840,11 +4896,13 @@
 {
 "text": "Die Tests vorbereiten, durchführen und protokollieren."
 }
-]
+],
+"seite": 42
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 42
 },
 {
 "t": "tabelle",
@@ -5101,7 +5159,8 @@
 ]
 ],
 "titel": "Tabelle 11: Aufgaben und Ergebnisse Modul Tests",
-"unten": true
+"unten": true,
+"seite": 42
 }
 ]
 },
@@ -5115,15 +5174,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 42
 },
 {
 "t": "p",
-"text": "Das Modul Einführungsorganisation unterstützt die Schulung und Einführung der neuen Lösung bzw. den Übergang zum neuen Zustand."
+"text": "Das Modul Einführungsorganisation unterstützt die Schulung und Einführung der neuen Lösung bzw. den Übergang zum neuen Zustand.",
+"seite": 42
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 42
 },
 {
 "t": "ul",
@@ -5140,11 +5202,13 @@
 {
 "text": "Organisationschangemanagement durchführen."
 }
-]
+],
+"seite": 42
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 42
 },
 {
 "t": "tabelle",
@@ -5635,7 +5699,8 @@
 ]
 ],
 "titel": "Tabelle 12: Aufgaben und Ergebnisse Modul Einführungsorganisation",
-"unten": true
+"unten": true,
+"seite": 42
 }
 ]
 },
@@ -5649,15 +5714,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 43
 },
 {
 "t": "p",
-"text": "Das Modul IT-Migration dient der Überführung der Daten in das neue System sowie der Ausserbetriebssetzung und Entfernung des Altsystems."
+"text": "Das Modul IT-Migration dient der Überführung der Daten in das neue System sowie der Ausserbetriebssetzung und Entfernung des Altsystems.",
+"seite": 43
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 43
 },
 {
 "t": "ul",
@@ -5671,11 +5739,13 @@
 {
 "text": "Das Altsystem ausser Betrieb setzen."
 }
-]
+],
+"seite": 43
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 43
 },
 {
 "t": "tabelle",
@@ -5984,7 +6054,8 @@
 ]
 ],
 "titel": "Tabelle 13: Aufgaben und Ergebnisse Modul IT-Migration",
-"unten": true
+"unten": true,
+"seite": 43
 }
 ]
 },
@@ -5998,15 +6069,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 44
 },
 {
 "t": "p",
-"text": "Das Modul IT-Betrieb dient der Konzeption und Realisierung der Betriebsorganisation beim Betreiber sowie der Aktivierung des Betriebs."
+"text": "Das Modul IT-Betrieb dient der Konzeption und Realisierung der Betriebsorganisation beim Betreiber sowie der Aktivierung des Betriebs.",
+"seite": 44
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 44
 },
 {
 "t": "ul",
@@ -6020,11 +6094,13 @@
 {
 "text": "Den Betrieb aktivieren."
 }
-]
+],
+"seite": 44
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 44
 },
 {
 "t": "tabelle",
@@ -6333,7 +6409,8 @@
 ]
 ],
 "titel": "Tabelle 14: Aufgaben und Ergebnisse Modul IT-Betrieb",
-"unten": true
+"unten": true,
+"seite": 44
 }
 ]
 },
@@ -6347,15 +6424,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Zweck"
+"text": "Zweck",
+"seite": 44
 },
 {
 "t": "p",
-"text": "Im Modul ISDS (Informationssicherheit und Datenschutz) werden die erforderlichen Schutzmassnahmen betreffend die Informationssicherheit und den Datenschutz bei der Nutzung und beim Betrieb der IT-Lösung definiert."
+"text": "Im Modul ISDS (Informationssicherheit und Datenschutz) werden die erforderlichen Schutzmassnahmen betreffend die Informationssicherheit und den Datenschutz bei der Nutzung und beim Betrieb der IT-Lösung definiert.",
+"seite": 44
 },
 {
 "t": "h",
-"text": "Was ist zu tun"
+"text": "Was ist zu tun",
+"seite": 44
 },
 {
 "t": "ul",
@@ -6366,11 +6446,13 @@
 {
 "text": "Das ISDS-Konzept erarbeiten und die Ergebnisse laufend dokumentieren."
 }
-]
+],
+"seite": 44
 },
 {
 "t": "h",
-"text": "Aufgaben und Ergebnisse"
+"text": "Aufgaben und Ergebnisse",
+"seite": 44
 },
 {
 "t": "tabelle",
@@ -6679,7 +6761,8 @@
 ]
 ],
 "titel": "Tabelle 15: Aufgaben und Ergebnisse Modul ISDS",
-"unten": true
+"unten": true,
+"seite": 44
 }
 ]
 }

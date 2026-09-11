@@ -28,20 +28,24 @@
 "bloecke": [
 {
 "t": "p",
-"text": "HERMES definiert ein Rollenmodell und beschreibt standardisierte Rollen, um ein einheitliches, organisationsübergreifendes Verständnis zu schaffen. Dabei wird unterschieden zwischen eigenständigen Projekten und Projekten, die in einem Programm eingebettet sind. Sämtliche beschriebenen Rollen sind ausschliesslich HERMES-Rollen."
+"text": "HERMES definiert ein Rollenmodell und beschreibt standardisierte Rollen, um ein einheitliches, organisationsübergreifendes Verständnis zu schaffen. Dabei wird unterschieden zwischen eigenständigen Projekten und Projekten, die in einem Programm eingebettet sind. Sämtliche beschriebenen Rollen sind ausschliesslich HERMES-Rollen.",
+"seite": 161
 },
 {
 "t": "p",
-"text": "Das Rollenmodell unterscheidet zwischen den Rollengruppen der Stammorganisation und den Rollen und Rollengruppen der Projektorganisation. Die nachfolgende Abbildung zeigt das Rollenmodell einer Stammorganisation mit den Rollengruppen Leitung, Kompetenzzentrum Projektmanagement sowie Controlling- und Vorgabestellen und einer Projektorganisation (klassisch/agil) mit den minimal erforderlichen Rollen Auftraggeber, Projektleiter und Anwendervertreter (grau schattiert). Nach Bedarf werden weitere Rollen verwendet."
+"text": "Das Rollenmodell unterscheidet zwischen den Rollengruppen der Stammorganisation und den Rollen und Rollengruppen der Projektorganisation. Die nachfolgende Abbildung zeigt das Rollenmodell einer Stammorganisation mit den Rollengruppen Leitung, Kompetenzzentrum Projektmanagement sowie Controlling- und Vorgabestellen und einer Projektorganisation (klassisch/agil) mit den minimal erforderlichen Rollen Auftraggeber, Projektleiter und Anwendervertreter (grau schattiert). Nach Bedarf werden weitere Rollen verwendet.",
+"seite": 161
 },
 {
 "t": "abb",
 "datei": "assets/abb/c2bfa1c5-126-stammorganisation-sowie-projektorganisation-mit-minimal-erforderlichen-rollen--28grau-29.svg",
-"text": "Abbildung 24: Stammorganisation sowie Projektorganisation mit minimal erforderlichen Rollen (grau)"
+"text": "Abbildung 24: Stammorganisation sowie Projektorganisation mit minimal erforderlichen Rollen (grau)",
+"seite": 161
 },
 {
 "t": "p",
-"text": "Die Rolle Anwendervertreter funktioniert in der agilen Projektorganisation als Schnittstelle zur Umsetzungsorganisation. Der Rolleninhaber nimmt durch zusätzliche Übernahme einer entsprechenden Rolle in der Umsetzungsorganisation seine fachliche Verantwortung wahr (gestrichelte Linie)."
+"text": "Die Rolle Anwendervertreter funktioniert in der agilen Projektorganisation als Schnittstelle zur Umsetzungsorganisation. Der Rolleninhaber nimmt durch zusätzliche Übernahme einer entsprechenden Rolle in der Umsetzungsorganisation seine fachliche Verantwortung wahr (gestrichelte Linie).",
+"seite": 161
 }
 ]
 },
@@ -53,15 +57,18 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die Stammorganisation ist die Organisation des Auftraggebers, in der das Projekt angesiedelt ist und des späteren Anwenders, bei dem die Nutzung der Lösung stattfinden wird. Sie ist eine rechtliche Einheit, die Strategien und Vorgaben für Projekte bestimmt. Die Stammorganisation stellt die benötigten Ressourcen wie z. B. Infrastruktur, Finanzen und Personal für das Projekt zur Verfügung."
+"text": "Die Stammorganisation ist die Organisation des Auftraggebers, in der das Projekt angesiedelt ist und des späteren Anwenders, bei dem die Nutzung der Lösung stattfinden wird. Sie ist eine rechtliche Einheit, die Strategien und Vorgaben für Projekte bestimmt. Die Stammorganisation stellt die benötigten Ressourcen wie z. B. Infrastruktur, Finanzen und Personal für das Projekt zur Verfügung.",
+"seite": 161
 },
 {
 "t": "p",
-"text": "Der Begriff der Stammorganisation wird in HERMES weit gefasst. Eine Stammorganisation kann z. B. eine Verwaltung, eine Schule oder ein Institut, ein Verein oder eine Unternehmung sein. Bei staatlichen oder grossen kommunalen Verwaltungen, bei Konzernen, komplexen Firmen usw. können auch einzelne Organisationseinheiten, oder sogar auch einzelne Abteilungen die Rolle einer Stammorganisation bekleiden."
+"text": "Der Begriff der Stammorganisation wird in HERMES weit gefasst. Eine Stammorganisation kann z. B. eine Verwaltung, eine Schule oder ein Institut, ein Verein oder eine Unternehmung sein. Bei staatlichen oder grossen kommunalen Verwaltungen, bei Konzernen, komplexen Firmen usw. können auch einzelne Organisationseinheiten, oder sogar auch einzelne Abteilungen die Rolle einer Stammorganisation bekleiden.",
+"seite": 161
 },
 {
 "t": "p",
-"text": "Wie die obere Abbildung zeigt, sind für alle eigenständigen Projekte in der Stammorganisation drei permanente Rollengruppen relevant:"
+"text": "Wie die obere Abbildung zeigt, sind für alle eigenständigen Projekte in der Stammorganisation drei permanente Rollengruppen relevant:",
+"seite": 162
 },
 {
 "t": "ul",
@@ -75,11 +82,13 @@
 {
 "text": "Controlling- und Vorgabestellen Vorgaben definieren und die Einhaltung aus Sicht der gesamten Organisation prüfen. Solche Stellen sind beispielsweise die Finanzkontrolle, die Revisionsstelle, das IT-Controlling, und die zuständigen Stellen für die Lösungsarchitektur und für ISDS."
 }
-]
+],
+"seite": 162
 },
 {
 "t": "p",
-"text": "Je nach Stammorganisation sind die Rollen der aufgeführten Rollengruppen unterschiedlich ausgeprägt."
+"text": "Je nach Stammorganisation sind die Rollen der aufgeführten Rollengruppen unterschiedlich ausgeprägt.",
+"seite": 162
 }
 ]
 },
@@ -98,19 +107,23 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die Projektorganisation ist eine einmalige, temporäre oft interdisziplinäre Organisation, die in enger Beziehung zur Stammorganisation steht. Sie wird mit dem Projektinitialisierungsauftrag in Kraft gesetzt und spätestens mit dem Entscheid Projektabschluss aufgelöst."
+"text": "Die Projektorganisation ist eine einmalige, temporäre oft interdisziplinäre Organisation, die in enger Beziehung zur Stammorganisation steht. Sie wird mit dem Projektinitialisierungsauftrag in Kraft gesetzt und spätestens mit dem Entscheid Projektabschluss aufgelöst.",
+"seite": 162
 },
 {
 "t": "p",
-"text": "Im Verlauf der Projektabwicklung, insbesondere mit dem Durchführungsauftrag, wird die Projektorganisation kontinuierlich an die Bedürfnisse des Projekts angepasst. Je nach Projektablauf stossen weitere Projektbeteiligte dazu. Beispielsweise steht ein externer Anbieter eines Produkts erst nach der Beschaffung fest und wird dann Teil der Projektorganisation."
+"text": "Im Verlauf der Projektabwicklung, insbesondere mit dem Durchführungsauftrag, wird die Projektorganisation kontinuierlich an die Bedürfnisse des Projekts angepasst. Je nach Projektablauf stossen weitere Projektbeteiligte dazu. Beispielsweise steht ein externer Anbieter eines Produkts erst nach der Beschaffung fest und wird dann Teil der Projektorganisation.",
+"seite": 162
 },
 {
 "t": "p",
-"text": "Die agile Umsetzungsorganisation ist nur während der Phase Umsetzung Teil der Projektorganisation. In den Phasen Initialisierung und Abschluss bleibt die Projektorganisation klassisch, was das Projektteam nicht daran hindert, für geeignete Aufgaben agile Techniken einzusetzen."
+"text": "Die agile Umsetzungsorganisation ist nur während der Phase Umsetzung Teil der Projektorganisation. In den Phasen Initialisierung und Abschluss bleibt die Projektorganisation klassisch, was das Projektteam nicht daran hindert, für geeignete Aufgaben agile Techniken einzusetzen.",
+"seite": 162
 },
 {
 "t": "p",
-"text": "Die Projektorganisation besteht aus verschiedenen Rollen. Sie regeln Aufgaben, Kompetenzen und Verantwortung der Projektbeteiligten. Jede Rolle ist mit einer Rollenbeschreibung spezifiziert."
+"text": "Die Projektorganisation besteht aus verschiedenen Rollen. Sie regeln Aufgaben, Kompetenzen und Verantwortung der Projektbeteiligten. Jede Rolle ist mit einer Rollenbeschreibung spezifiziert.",
+"seite": 162
 }
 ]
 },
@@ -122,7 +135,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Jede Rolle ist einer oder mehreren Partnergruppen zugeordnet. In der HERMES-Projektorganisation kommen die Partnergruppen Anwender, Ersteller und Betreiber vor:"
+"text": "Jede Rolle ist einer oder mehreren Partnergruppen zugeordnet. In der HERMES-Projektorganisation kommen die Partnergruppen Anwender, Ersteller und Betreiber vor:",
+"seite": 162
 },
 {
 "t": "ul",
@@ -136,19 +150,23 @@
 {
 "text": "Betreiber Der Betreiber als Dienstleistungserbringer integriert die technische Lösung in die Betriebsumgebung, stellt die Betriebsorganisation sicher und betreibt das System. Er ist verantwortlich für die Bereitstellung der Betriebsinfrastruktur, die Betriebsintegration, die Betriebsorganisation und den Betrieb gemäss den Vereinbarungen."
 }
-]
+],
+"seite": 162
 },
 {
 "t": "p",
-"text": "Die Projekte werden in der Praxis oft durch Lieferanten oder externe Dienstleister unterstützt. Insbesondere die Rollen der Partnergruppe Ersteller werden oft durch externe Dienstleister besetzt. Werden diverse Dienstleistungen der Stammorganisation outgesourct, können z. B. auch die Betreiber, immer öfters sogar die Anwender (z. B. mittels Projektleiterpools), externe Dienstleister sein."
+"text": "Die Projekte werden in der Praxis oft durch Lieferanten oder externe Dienstleister unterstützt. Insbesondere die Rollen der Partnergruppe Ersteller werden oft durch externe Dienstleister besetzt. Werden diverse Dienstleistungen der Stammorganisation outgesourct, können z. B. auch die Betreiber, immer öfters sogar die Anwender (z. B. mittels Projektleiterpools), externe Dienstleister sein.",
+"seite": 163
 },
 {
 "t": "p",
-"text": "Dessen ungeachtet haben die Rolleninhaber stets und ausschliesslich die Rollensicht der Partnergruppe zu vertreten, für welche sie Leistungen erbringen, um jegliche Interessenkonflikte auszuschliessen."
+"text": "Dessen ungeachtet haben die Rolleninhaber stets und ausschliesslich die Rollensicht der Partnergruppe zu vertreten, für welche sie Leistungen erbringen, um jegliche Interessenkonflikte auszuschliessen.",
+"seite": 163
 },
 {
 "t": "p",
-"text": "Die Vertretung im Projekt durch partnergruppenfremde Dienstleistungserbringer erfolgt in eigener Kompetenz und Verantwortung der jeweiligen Partnergruppe der Anwender, Ersteller oder Betreiber."
+"text": "Die Vertretung im Projekt durch partnergruppenfremde Dienstleistungserbringer erfolgt in eigener Kompetenz und Verantwortung der jeweiligen Partnergruppe der Anwender, Ersteller oder Betreiber.",
+"seite": 163
 }
 ]
 },
@@ -160,7 +178,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Jede Rolle ist einer der Hierarchieebenen Steuerung, Führung oder Ausführung zugeordnet:"
+"text": "Jede Rolle ist einer der Hierarchieebenen Steuerung, Führung oder Ausführung zugeordnet:",
+"seite": 163
 },
 {
 "t": "ul",
@@ -174,16 +193,19 @@
 {
 "text": "Ausführungsrollen Lösung erarbeiten und qualitätssichernde Massnahmen durchführen."
 }
-]
+],
+"seite": 163
 },
 {
 "t": "p",
-"text": "Die nachfolgende Abbildung zeigt die Zuordnung der Rollen zu den gelb dargestellten Hierarchieebenen in einer typischen klassischen und agilen Projektorganisation."
+"text": "Die nachfolgende Abbildung zeigt die Zuordnung der Rollen zu den gelb dargestellten Hierarchieebenen in einer typischen klassischen und agilen Projektorganisation.",
+"seite": 163
 },
 {
 "t": "abb",
 "datei": "assets/abb/752d4818-127-rollenzuordnung-zu-hierarchieebenen-einer-klassischen-oder-agilen-projektorganisation.svg",
-"text": "Abbildung 25: Rollenzuordnung zu Hierarchieebenen einer klassischen oder agilen Projektorganisation"
+"text": "Abbildung 25: Rollenzuordnung zu Hierarchieebenen einer klassischen oder agilen Projektorganisation",
+"seite": 163
 }
 ]
 },
@@ -195,73 +217,90 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Projektsicht"
+"text": "Projektsicht",
+"seite": 163
 },
 {
 "t": "p",
-"text": "Das Programmmanagement wird im Anhang zum vorliegenden Referenzhandbuch beschrieben. Die nachfolgenden Ausführungen betrachten das Programmmanagement aus der Projektperspektive."
+"text": "Das Programmmanagement wird im Anhang zum vorliegenden Referenzhandbuch beschrieben. Die nachfolgenden Ausführungen betrachten das Programmmanagement aus der Projektperspektive.",
+"seite": 163
 },
 {
 "t": "h",
-"text": "Programme"
+"text": "Programme",
+"seite": 164
 },
 {
 "t": "p",
-"text": "Das (dreiphasige) HERMES-Phasenmodell für Programme ist eine Voraussetzung für die Integration der Projekte im Programm (s. nachfolgende Abbildung). Programme umfassen mehrere Projekte, die ein gemeinsames Ziel verfolgen und zeitlich überlappt durchgeführt werden. Das Programm sichert die projektübergreifende Steuerung und Führung der Projekte. Das Phasenmodell für Projekte erleichtert die Koordination und Steuerung der Projekte in einem Programm."
+"text": "Das (dreiphasige) HERMES-Phasenmodell für Programme ist eine Voraussetzung für die Integration der Projekte im Programm (s. nachfolgende Abbildung). Programme umfassen mehrere Projekte, die ein gemeinsames Ziel verfolgen und zeitlich überlappt durchgeführt werden. Das Programm sichert die projektübergreifende Steuerung und Führung der Projekte. Das Phasenmodell für Projekte erleichtert die Koordination und Steuerung der Projekte in einem Programm.",
+"seite": 164
 },
 {
 "t": "abb",
 "datei": "assets/rhb/abb-26.png",
-"text": "Abbildung 26: Projekte zu Programmen zusammengefasst"
+"text": "Abbildung 26: Projekte zu Programmen zusammengefasst",
+"seite": 164
 },
 {
 "t": "p",
-"text": "Der Programmauftraggeber steuert das Programm. Je nach Programmorganisationsform (vgl. nachfolgende Abbildung) führt der Programmleiter das Programm und koordiniert die projektübergreifenden Aspekte und die Abhängigkeiten zwischen den Projekten. Der Projektleiter führt sein Projekt. Der Anwendervertreter definiert die Lösung."
+"text": "Der Programmauftraggeber steuert das Programm. Je nach Programmorganisationsform (vgl. nachfolgende Abbildung) führt der Programmleiter das Programm und koordiniert die projektübergreifenden Aspekte und die Abhängigkeiten zwischen den Projekten. Der Projektleiter führt sein Projekt. Der Anwendervertreter definiert die Lösung.",
+"seite": 164
 },
 {
 "t": "p",
-"text": "Die Steuerung des Projekts kann durch einen Projektausschuss (unter Leitung des Auftraggebers) und/oder übergeordnet durch einen Programmausschuss (unter Leitung des Programmauftraggebers) unterstützt werden. Aus Sicht der Controlling- und Vorgabestellen ist jedes einzelne Projekt ein eigenständiges Controlling-Objekt mit Vorgaben bezüglich Kosten, Zeit und Ergebnissen."
+"text": "Die Steuerung des Projekts kann durch einen Projektausschuss (unter Leitung des Auftraggebers) und/oder übergeordnet durch einen Programmausschuss (unter Leitung des Programmauftraggebers) unterstützt werden. Aus Sicht der Controlling- und Vorgabestellen ist jedes einzelne Projekt ein eigenständiges Controlling-Objekt mit Vorgaben bezüglich Kosten, Zeit und Ergebnissen.",
+"seite": 164
 },
 {
 "t": "p",
-"text": "Die Programmphase Programmabschluss kann erst dann freigegeben werden, wenn alle Projekte abgeschlossen sind."
+"text": "Die Programmphase Programmabschluss kann erst dann freigegeben werden, wenn alle Projekte abgeschlossen sind.",
+"seite": 164
 },
 {
 "t": "h",
-"text": "Organisationsformen"
+"text": "Organisationsformen",
+"seite": 164
 },
 {
 "t": "p",
-"text": "Wird ein Projekt Teil eines Programms, muss die Projektorganisation in die Programmorganisation integriert und verschiedene Rollen der Projektorganisation angepasst oder ersetzt werden. Betroffen sind primär die Rollen des Auftraggebers und des Projektleiters. Je nach gewählter Organisationsform für das Programm sind die Anpassungen unterschiedlich. Die Auswirkungen spielen sich vorwiegend im Steuerungs-, Führungs- und Kontrollbereich ab."
+"text": "Wird ein Projekt Teil eines Programms, muss die Projektorganisation in die Programmorganisation integriert und verschiedene Rollen der Projektorganisation angepasst oder ersetzt werden. Betroffen sind primär die Rollen des Auftraggebers und des Projektleiters. Je nach gewählter Organisationsform für das Programm sind die Anpassungen unterschiedlich. Die Auswirkungen spielen sich vorwiegend im Steuerungs-, Führungs- und Kontrollbereich ab.",
+"seite": 164
 },
 {
 "t": "p",
-"text": "Die für das Programm angepassten Rollenbeschreibungen werden im Projektmanagementplan aufgeführt."
+"text": "Die für das Programm angepassten Rollenbeschreibungen werden im Projektmanagementplan aufgeführt.",
+"seite": 164
 },
 {
 "t": "p",
-"text": "Die Darstellung in der nachfolgenden Abbildung zeigt schematisch drei denkbare Organisationsformen: eine als eigenständiges Projekt und zwei als Teile eines Programms."
+"text": "Die Darstellung in der nachfolgenden Abbildung zeigt schematisch drei denkbare Organisationsformen: eine als eigenständiges Projekt und zwei als Teile eines Programms.",
+"seite": 164
 },
 {
 "t": "abb",
 "datei": "assets/abb/d1aecc09-129-drei-moegliche-grundvarianten-der-projektorganisation.svg",
-"text": "Abbildung 27: Drei mögliche Grundvarianten der Projektorganisation"
+"text": "Abbildung 27: Drei mögliche Grundvarianten der Projektorganisation",
+"seite": 165
 },
 {
 "t": "p",
-"text": "Die minimal zu besetzenden Rollen im Projekt sind grau dargestellt. Programmspezifische Rollen sind blau umrandet und werden hier nicht weiter erläutert."
+"text": "Die minimal zu besetzenden Rollen im Projekt sind grau dargestellt. Programmspezifische Rollen sind blau umrandet und werden hier nicht weiter erläutert.",
+"seite": 165
 },
 {
 "t": "p",
-"text": "Die nachfolgende Beschreibung erläutert die drei in der oberen Abbildung dargestellten Organisationsformen aus Projektsicht. Sie ist rudimentär und dient lediglich dem Allgemeinverständnis."
+"text": "Die nachfolgende Beschreibung erläutert die drei in der oberen Abbildung dargestellten Organisationsformen aus Projektsicht. Sie ist rudimentär und dient lediglich dem Allgemeinverständnis.",
+"seite": 165
 },
 {
 "t": "h",
-"text": "Projektorganisation"
+"text": "Projektorganisation",
+"seite": 165
 },
 {
 "t": "p",
-"text": "Eine bestimmte Stammorganisation verantwortet den Erfolg des Projekts:"
+"text": "Eine bestimmte Stammorganisation verantwortet den Erfolg des Projekts:",
+"seite": 165
 },
 {
 "t": "ul",
@@ -275,15 +314,18 @@
 {
 "text": "der Anwendervertreter verantwortet die Lösung."
 }
-]
+],
+"seite": 165
 },
 {
 "t": "h",
-"text": "Programmorganisation 1"
+"text": "Programmorganisation 1",
+"seite": 165
 },
 {
 "t": "p",
-"text": "Mehrere Stammorganisationen verantworten den Erfolg der ihnen zugeordneten Projekte:"
+"text": "Mehrere Stammorganisationen verantworten den Erfolg der ihnen zugeordneten Projekte:",
+"seite": 165
 },
 {
 "t": "ul",
@@ -300,19 +342,23 @@
 {
 "text": "der Anwendervertreter verantwortet die Lösung."
 }
-]
+],
+"seite": 165
 },
 {
 "t": "p",
-"text": "Diese Art der Programmorganisation verändert die Rollen des Auftraggebers und des Projektleiters. Der Auftraggeber rapportiert sowohl der eigenen Stammorganisation als auch dem Programmauftraggeber und muss im Rahmen seiner Entscheide beide Instanzen entsprechend berücksichtigen. Der Projektleiter wird durch den Programmleiter koordiniert."
+"text": "Diese Art der Programmorganisation verändert die Rollen des Auftraggebers und des Projektleiters. Der Auftraggeber rapportiert sowohl der eigenen Stammorganisation als auch dem Programmauftraggeber und muss im Rahmen seiner Entscheide beide Instanzen entsprechend berücksichtigen. Der Projektleiter wird durch den Programmleiter koordiniert.",
+"seite": 165
 },
 {
 "t": "h",
-"text": "Programmorganisation 2"
+"text": "Programmorganisation 2",
+"seite": 165
 },
 {
 "t": "p",
-"text": "Eine bestimmte Stammorganisation verantwortet den Erfolg des Programms und aller daran beteiligten Projekte:"
+"text": "Eine bestimmte Stammorganisation verantwortet den Erfolg des Programms und aller daran beteiligten Projekte:",
+"seite": 165
 },
 {
 "t": "ul",
@@ -326,11 +372,13 @@
 {
 "text": "der Anwendervertreter verantwortet die Lösung."
 }
-]
+],
+"seite": 165
 },
 {
 "t": "p",
-"text": "Diese Art der Programmorganisation verzichtet auf der Projektebene auf den Auftraggeber und ersetzt ihn durch den Programmleiter. Er übernimmt alle Aufgaben und Pflichten des Auftraggebers innerhalb eines Projekts. Der Projektleiter ist somit einem Programmleiter unterstellt, der in der Projektorganisation der Hierarchieebene Steuerung, in der Programmorganisation der Ebene Führung zugeordnet ist."
+"text": "Diese Art der Programmorganisation verzichtet auf der Projektebene auf den Auftraggeber und ersetzt ihn durch den Programmleiter. Er übernimmt alle Aufgaben und Pflichten des Auftraggebers innerhalb eines Projekts. Der Projektleiter ist somit einem Programmleiter unterstellt, der in der Projektorganisation der Hierarchieebene Steuerung, in der Programmorganisation der Ebene Führung zugeordnet ist.",
+"seite": 166
 }
 ]
 },
@@ -349,7 +397,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Rollen auf und zeigt deren Zuordnung zur Hierarchieebene und zur Partnergruppe."
+"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Rollen auf und zeigt deren Zuordnung zur Hierarchieebene und zur Partnergruppe.",
+"seite": 166
 },
 {
 "t": "tabelle",
@@ -706,11 +755,13 @@
 ]
 ],
 "titel": "Tabelle 19: Rollen und deren Zuordnung zur Hierarchieebene und zur Partnergruppe",
-"unten": true
+"unten": true,
+"seite": 166
 },
 {
 "t": "p",
-"text": "Die mit einem Stern (*) markierten minimal zu besetzenden Rollen werden benötigt, um die Anforderungen der Governance zu erfüllen. Die drei markierten Rollen sind für das Projekt, ungeachtet der gewählten Vorgehensweise (klassisch oder agil), unentbehrlich und sind zwingend in der Partnergruppe Anwender angesiedelt. Sie müssen in jedem Projekt besetzt sein:"
+"text": "Die mit einem Stern (*) markierten minimal zu besetzenden Rollen werden benötigt, um die Anforderungen der Governance zu erfüllen. Die drei markierten Rollen sind für das Projekt, ungeachtet der gewählten Vorgehensweise (klassisch oder agil), unentbehrlich und sind zwingend in der Partnergruppe Anwender angesiedelt. Sie müssen in jedem Projekt besetzt sein:",
+"seite": 166
 },
 {
 "t": "ul",
@@ -724,19 +775,23 @@
 {
 "text": "Der Anwendervertreter verantwortet die Produkt- beziehungsweise die fachliche Lösungsentstehung."
 }
-]
+],
+"seite": 166
 },
 {
 "t": "p",
-"text": "Weitere zu besetzende Rollen werden abhängig von den Projektanforderungen zugewiesen."
+"text": "Weitere zu besetzende Rollen werden abhängig von den Projektanforderungen zugewiesen.",
+"seite": 167
 },
 {
 "t": "p",
-"text": "Die Ausführungsrollen, in Organigrammen mit Ausnahme des Anwendervertreters summarisch auch als Fachspezialisten bezeichnet, sind zahlreich und nicht abschliessend aufgeführt. Je nach Stammorganisation, oder der Art eines Vorhabens können weitere projektspezifische Ausführungsrollen dazukommen."
+"text": "Die Ausführungsrollen, in Organigrammen mit Ausnahme des Anwendervertreters summarisch auch als Fachspezialisten bezeichnet, sind zahlreich und nicht abschliessend aufgeführt. Je nach Stammorganisation, oder der Art eines Vorhabens können weitere projektspezifische Ausführungsrollen dazukommen.",
+"seite": 167
 },
 {
 "t": "p",
-"text": "Bei agiler Vorgehensweise werden während der Phase Umsetzung alle am Vorhaben beteiligten Ausführungsrollen in der Umsetzungsorganisation zusammengefasst. Die Rolle Umsetzungsorganisation ist eine Rollengruppe."
+"text": "Bei agiler Vorgehensweise werden während der Phase Umsetzung alle am Vorhaben beteiligten Ausführungsrollen in der Umsetzungsorganisation zusammengefasst. Die Rolle Umsetzungsorganisation ist eine Rollengruppe.",
+"seite": 167
 }
 ]
 },
@@ -748,7 +803,8 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Ergänzend zu den standardmässig bereitgestellten Rollen besteht die Möglichkeit, eigene fach-, organisations- oder vorhabenspezifische Rollen in eigene Projekte zu integrieren. Dies wird durch HERMES Online unterstützt und kommt insbesondere dann zum Tragen, wenn neue Module entwickelt und mit neuen Aufgaben und Ergebnissen versehen werden. Beispiele von individuellen Rollen sind Integrationsmanager, Logistiker, Immobilienverwalter, Einkäufer oder Facility Manager."
+"text": "Ergänzend zu den standardmässig bereitgestellten Rollen besteht die Möglichkeit, eigene fach-, organisations- oder vorhabenspezifische Rollen in eigene Projekte zu integrieren. Dies wird durch HERMES Online unterstützt und kommt insbesondere dann zum Tragen, wenn neue Module entwickelt und mit neuen Aufgaben und Ergebnissen versehen werden. Beispiele von individuellen Rollen sind Integrationsmanager, Logistiker, Immobilienverwalter, Einkäufer oder Facility Manager.",
+"seite": 167
 }
 ]
 },
@@ -767,15 +823,18 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Für jede im Projekt benötigte Rolle wird die Rollenbesetzung festgelegt."
+"text": "Für jede im Projekt benötigte Rolle wird die Rollenbesetzung festgelegt.",
+"seite": 167
 },
 {
 "t": "p",
-"text": "Die Rollenbesetzung erfolgt gemäss den Projektanforderungen. Sie berücksichtigt die im Projekt erforderliche Erfahrung, die benötigte Kapazität und die Verfügbarkeit der Rolleninhaber. Die konkrete Projektorganisation und die Rollenbesetzung werden im Projektmanagementplan festgehalten."
+"text": "Die Rollenbesetzung erfolgt gemäss den Projektanforderungen. Sie berücksichtigt die im Projekt erforderliche Erfahrung, die benötigte Kapazität und die Verfügbarkeit der Rolleninhaber. Die konkrete Projektorganisation und die Rollenbesetzung werden im Projektmanagementplan festgehalten.",
+"seite": 167
 },
 {
 "t": "p",
-"text": "Bei der Rollenbesetzung müssen die folgenden Grundsätze beachtet werden, damit die Projekt-Governance eingehalten werden kann:"
+"text": "Bei der Rollenbesetzung müssen die folgenden Grundsätze beachtet werden, damit die Projekt-Governance eingehalten werden kann:",
+"seite": 167
 },
 {
 "t": "ul",
@@ -786,11 +845,13 @@
 {
 "text": "Eine Rolle kann von mehreren Personen wahrgenommen werden, sofern die Rolle eine Mehrfachbesetzung zulässt. Es gibt z. B. meistens mehrere Tester in einem Projekt, jedoch nur einen Auftraggeber."
 }
-]
+],
+"seite": 167
 },
 {
 "t": "p",
-"text": "Nachfolgend sind Hinweise zur Rollenbesetzung einiger Rollen der Hierarchieebenen Steuerung, Führung und Ausführung aufgeführt."
+"text": "Nachfolgend sind Hinweise zur Rollenbesetzung einiger Rollen der Hierarchieebenen Steuerung, Führung und Ausführung aufgeführt.",
+"seite": 167
 }
 ]
 },
@@ -802,7 +863,8 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Auftraggeber"
+"text": "Auftraggeber",
+"seite": 167
 },
 {
 "t": "ul",
@@ -825,11 +887,13 @@
 {
 "text": "Die Rollen Auftraggeber und Projektleiter dürfen nicht durch dieselbe Person besetzt werden."
 }
-]
+],
+"seite": 167
 },
 {
 "t": "h",
-"text": "Projektausschuss"
+"text": "Projektausschuss",
+"seite": 168
 },
 {
 "t": "ul",
@@ -843,11 +907,13 @@
 {
 "text": "Der Auftraggeber legt das Stimmrecht der Mitglieder des Projektausschusses fest."
 }
-]
+],
+"seite": 168
 },
 {
 "t": "h",
-"text": "Qualitäts- und Risikomanager"
+"text": "Qualitäts- und Risikomanager",
+"seite": 168
 },
 {
 "t": "ul",
@@ -858,7 +924,8 @@
 {
 "text": "Die unabhängige Organisation, die den Qualitäts- und Risikomanager stellt, übernimmt keine weiteren Rollen im Projekt und muss die Unabhängigkeit des Mandats sicherstellen."
 }
-]
+],
+"seite": 168
 }
 ]
 },
@@ -870,7 +937,8 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Projektleiter"
+"text": "Projektleiter",
+"seite": 168
 },
 {
 "t": "ul",
@@ -890,11 +958,13 @@
 {
 "text": "Übernimmt der Projektleiter zusätzlich eine Ausführungsrolle, muss durch den Auftraggeber sichergestellt werden, dass genügend Kapazität für die Projektleitung zur Verfügung steht."
 }
-]
+],
+"seite": 168
 },
 {
 "t": "h",
-"text": "Teilprojektleiter"
+"text": "Teilprojektleiter",
+"seite": 168
 },
 {
 "t": "ul",
@@ -911,7 +981,8 @@
 {
 "text": "Übernimmt der Teilprojektleiter zusätzlich eine Ausführungsrolle, muss durch den Projektleiter sichergestellt werden, dass genügend Kapazität für die Teilprojektleitung zur Verfügung steht."
 }
-]
+],
+"seite": 168
 }
 ]
 },
@@ -923,15 +994,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Generell"
+"text": "Generell",
+"seite": 169
 },
 {
 "t": "p",
-"text": "Die Verantwortung, Kompetenzen und Fähigkeiten aller Ausführungsrollen bleiben unabhängig davon, ob die Rollen in einem Projektteam, oder in einem Teilprojektteam mitwirken, stets unverändert."
+"text": "Die Verantwortung, Kompetenzen und Fähigkeiten aller Ausführungsrollen bleiben unabhängig davon, ob die Rollen in einem Projektteam, oder in einem Teilprojektteam mitwirken, stets unverändert.",
+"seite": 169
 },
 {
 "t": "h",
-"text": "Anwendervertreter"
+"text": "Anwendervertreter",
+"seite": 169
 },
 {
 "t": "ul",
@@ -951,11 +1025,13 @@
 {
 "text": "Richtet sich bei der Erarbeitung der Lösung nach den zugeteilten Ressourcen aus."
 }
-]
+],
+"seite": 169
 },
 {
 "t": "h",
-"text": "Business Analyst"
+"text": "Business Analyst",
+"seite": 169
 },
 {
 "t": "ul",
@@ -963,11 +1039,13 @@
 {
 "text": "Der Business Analyst kann aufgrund seiner Kenntnisse zusätzlich die Rolle des Anwendervertreters übernehmen. Dies setzt jedoch fundierte Kenntnisse des betreffenden Fachbereichs voraus, für den die Lösung erarbeitet wird."
 }
-]
+],
+"seite": 169
 },
 {
 "t": "h",
-"text": "Tester"
+"text": "Tester",
+"seite": 169
 },
 {
 "t": "ul",
@@ -975,11 +1053,13 @@
 {
 "text": "Jede im Projekt vertretene Partnergruppe (Anwender, Ersteller, Betreiber) testet in ihrem Verantwortungsbereich."
 }
-]
+],
+"seite": 169
 },
 {
 "t": "h",
-"text": "Testverantwortlicher"
+"text": "Testverantwortlicher",
+"seite": 169
 },
 {
 "t": "ul",
@@ -987,7 +1067,8 @@
 {
 "text": "Jede im Projekt vertretene Partnergruppe (Anwender, Ersteller, Betreiber) kann in ihrem Verantwortungsbereich einen Testverantwortlichen einsetzen."
 }
-]
+],
+"seite": 169
 }
 ]
 },
@@ -999,11 +1080,13 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die Rollen beschreiben die Verantwortung, die Kompetenz und die benötigten Fähigkeiten der Projektbeteiligten. Sie bilden die Grundlage für ein gemeinsames Verständnis. Die Rollen sind bestimmten Aufgaben und Ergebnissen zugeordnet."
+"text": "Die Rollen beschreiben die Verantwortung, die Kompetenz und die benötigten Fähigkeiten der Projektbeteiligten. Sie bilden die Grundlage für ein gemeinsames Verständnis. Die Rollen sind bestimmten Aufgaben und Ergebnissen zugeordnet.",
+"seite": 169
 },
 {
 "t": "p",
-"text": "Für jede Rolle gibt es eine Rollenbeschreibung, die stets gleich strukturiert ist:"
+"text": "Für jede Rolle gibt es eine Rollenbeschreibung, die stets gleich strukturiert ist:",
+"seite": 169
 },
 {
 "t": "ul",
@@ -1031,7 +1114,8 @@
 }
 ]
 }
-]
+],
+"seite": 169
 }
 ]
 },
@@ -1059,15 +1143,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 170
 },
 {
 "t": "p",
-"text": "Der Auftraggeber ist verantwortlich für die Ergebnisse des Projekts und die Erreichung der gesetzten Ziele innerhalb der gesetzten Rahmenbedingungen."
+"text": "Der Auftraggeber ist verantwortlich für die Ergebnisse des Projekts und die Erreichung der gesetzten Ziele innerhalb der gesetzten Rahmenbedingungen.",
+"seite": 170
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 170
 },
 {
 "t": "ul",
@@ -1096,11 +1183,13 @@
 {
 "text": "Ausreichende Mitwirkung des Fachbereichs sicherstellen"
 }
-]
+],
+"seite": 170
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 170
 },
 {
 "t": "ul",
@@ -1114,11 +1203,13 @@
 {
 "text": "Eskalation zur Stammorganisation"
 }
-]
+],
+"seite": 170
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 170
 },
 {
 "t": "ul",
@@ -1144,11 +1235,13 @@
 {
 "text": "Entscheidungsfreudigkeit und Durchsetzungsvermögen"
 }
-]
+],
+"seite": 170
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 171
 },
 {
 "t": "tabelle",
@@ -1874,7 +1967,8 @@
 ]
 ],
 "titel": "Tabelle 20: Aufgaben, die der Auftraggeber verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 171
 }
 ]
 },
@@ -1888,15 +1982,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 174
 },
 {
 "t": "p",
-"text": "Der Projektausschuss ist eine Rollengruppe. Die Mitglieder des Projektausschusses unterstützen den Auftraggeber in seinen Aufgaben und bringen die Anliegen der Organisation, die sie vertreten, in den Ausschuss ein. Der Auftraggeber organisiert und leitet die Sitzungen des Projektausschusses."
+"text": "Der Projektausschuss ist eine Rollengruppe. Die Mitglieder des Projektausschusses unterstützen den Auftraggeber in seinen Aufgaben und bringen die Anliegen der Organisation, die sie vertreten, in den Ausschuss ein. Der Auftraggeber organisiert und leitet die Sitzungen des Projektausschusses.",
+"seite": 174
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 174
 },
 {
 "t": "ul",
@@ -1913,11 +2010,13 @@
 {
 "text": "Mitwirkung bei der Erarbeitung von Problemlösungen"
 }
-]
+],
+"seite": 174
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 174
 },
 {
 "t": "ul",
@@ -1942,11 +2041,13 @@
 {
 "text": "Kann an Abstimmungen mitwirken, sofern er stimmberechtigt ist"
 }
-]
+],
+"seite": 174
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 175
 },
 {
 "t": "ul",
@@ -1969,7 +2070,8 @@
 {
 "text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
 }
-]
+],
+"seite": 175
 }
 ]
 },
@@ -1983,15 +2085,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 175
 },
 {
 "t": "p",
-"text": "Der Qualitäts- und Risikomanager unterstützt den Auftraggeber mit einer unabhängigen Beurteilung des Projekts. Er gibt Empfehlungen für Massnahmen zur Erreichung der Ziele ab."
+"text": "Der Qualitäts- und Risikomanager unterstützt den Auftraggeber mit einer unabhängigen Beurteilung des Projekts. Er gibt Empfehlungen für Massnahmen zur Erreichung der Ziele ab.",
+"seite": 175
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 175
 },
 {
 "t": "ul",
@@ -2020,11 +2125,13 @@
 {
 "text": "Transparente Berichterstattung an den Auftraggeber"
 }
-]
+],
+"seite": 175
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 175
 },
 {
 "t": "ul",
@@ -2038,11 +2145,13 @@
 {
 "text": "Kann alle für die Beurteilung des Projekts benötigten Informationen einholen (mit direktem Zugang zu allen Projektbeteiligten, inkl. Umsetzungsorganisation)"
 }
-]
+],
+"seite": 175
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 175
 },
 {
 "t": "ul",
@@ -2065,7 +2174,8 @@
 {
 "text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Berichte zu erstellen"
 }
-]
+],
+"seite": 175
 }
 ]
 },
@@ -2086,19 +2196,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 176
 },
 {
 "t": "p",
-"text": "Der Fachausschuss ist eine Rollengruppe, die beim klassischen Vorgehen den Projektleiter durch die Beurteilung von Ergebnissen unterstützt."
+"text": "Der Fachausschuss ist eine Rollengruppe, die beim klassischen Vorgehen den Projektleiter durch die Beurteilung von Ergebnissen unterstützt.",
+"seite": 176
 },
 {
 "t": "p",
-"text": "Die Mitglieder des Fachausschusses bringen die Anliegen der Organisationseinheit ein, die sie vertreten. Der Projektleiter organisiert und leitet die Sitzungen des Fachausschusses."
+"text": "Die Mitglieder des Fachausschusses bringen die Anliegen der Organisationseinheit ein, die sie vertreten. Der Projektleiter organisiert und leitet die Sitzungen des Fachausschusses.",
+"seite": 176
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 176
 },
 {
 "t": "ul",
@@ -2112,11 +2226,13 @@
 {
 "text": "Frühzeitiges Einbringen von Anliegen der vertretenen Organisation"
 }
-]
+],
+"seite": 176
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 176
 },
 {
 "t": "ul",
@@ -2130,11 +2246,13 @@
 {
 "text": "Kann auf alle benötigten Informationen zugreifen"
 }
-]
+],
+"seite": 176
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 176
 },
 {
 "t": "ul",
@@ -2148,7 +2266,8 @@
 {
 "text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
 }
-]
+],
+"seite": 176
 }
 ]
 },
@@ -2162,15 +2281,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 176
 },
 {
 "t": "p",
-"text": "Der Projektleiter führt das Projekt im Auftrag des Auftraggebers. Er führt und koordiniert das Projekt unabhängig von der fachlichen Ausrichtung der Lösung und des gewählten Entwicklungsvorgehens."
+"text": "Der Projektleiter führt das Projekt im Auftrag des Auftraggebers. Er führt und koordiniert das Projekt unabhängig von der fachlichen Ausrichtung der Lösung und des gewählten Entwicklungsvorgehens.",
+"seite": 176
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 176
 },
 {
 "t": "ul",
@@ -2208,11 +2330,13 @@
 {
 "text": "Überprüfung der Einhaltung des SLAs (Dienstleistungsniveau Vereinbarung) durch die Vertragspartner im Projekt"
 }
-]
+],
+"seite": 176
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 177
 },
 {
 "t": "ul",
@@ -2243,11 +2367,13 @@
 }
 ]
 }
-]
+],
+"seite": 177
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 177
 },
 {
 "t": "ul",
@@ -2293,11 +2419,13 @@
 {
 "text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Projektberichte zu erstellen"
 }
-]
+],
+"seite": 177
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 177
 },
 {
 "t": "tabelle",
@@ -3397,7 +3525,8 @@
 ]
 ],
 "titel": "Tabelle 21: Aufgaben, die der Projektleiter verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 177
 }
 ]
 },
@@ -3411,15 +3540,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 183
 },
 {
 "t": "p",
-"text": "Die Projektunterstützung hilft dem Projektleiter in organisatorischen und administrativen Belangen. Die Rolle wird auch als Project Office (PO) bezeichnet."
+"text": "Die Projektunterstützung hilft dem Projektleiter in organisatorischen und administrativen Belangen. Die Rolle wird auch als Project Office (PO) bezeichnet.",
+"seite": 183
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 183
 },
 {
 "t": "ul",
@@ -3427,11 +3559,13 @@
 {
 "text": "Verantwortung der an die Rolle delegierten Aktivitäten"
 }
-]
+],
+"seite": 183
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 183
 },
 {
 "t": "ul",
@@ -3447,11 +3581,13 @@
 }
 ]
 }
-]
+],
+"seite": 183
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 183
 },
 {
 "t": "ul",
@@ -3477,7 +3613,8 @@
 {
 "text": "Gute schriftliche Ausdrucksfähigkeit und Fähigkeit zur Erstellung von Dokumentationen"
 }
-]
+],
+"seite": 183
 }
 ]
 },
@@ -3491,15 +3628,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 183
 },
 {
 "t": "p",
-"text": "Der Teilprojektleiter trägt die Verantwortung für das Teilprojekt im Auftrag des Projektleiters. Er verfügt dabei über alle Kompetenzen, um die vom Projektleiter delegierten Tätigkeiten wahrzunehmen."
+"text": "Der Teilprojektleiter trägt die Verantwortung für das Teilprojekt im Auftrag des Projektleiters. Er verfügt dabei über alle Kompetenzen, um die vom Projektleiter delegierten Tätigkeiten wahrzunehmen.",
+"seite": 183
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 183
 },
 {
 "t": "ul",
@@ -3519,11 +3659,13 @@
 {
 "text": "Umsetzen der Entscheide Steuerung und Führung"
 }
-]
+],
+"seite": 183
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 183
 },
 {
 "t": "ul",
@@ -3540,11 +3682,13 @@
 {
 "text": "Entscheidungskompetenz im mit dem Projektleiter definierten Umfang (im Rahmen der Kompetenzen des Projektleiters)"
 }
-]
+],
+"seite": 183
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 184
 },
 {
 "t": "ul",
@@ -3579,7 +3723,8 @@
 {
 "text": "Angemessene schriftliche Ausdrucksfähigkeit"
 }
-]
+],
+"seite": 184
 }
 ]
 },
@@ -3600,19 +3745,23 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 184
 },
 {
 "t": "p",
-"text": "Der Anwendervertreter vertritt im Projekt die Anwender und deren Interessen. Er verantwortet die mit den Fachbereichen abgestimmten und eindeutigen fachlichen Lösungsanforderungen als stabile Basis für die Realisierung sowie den fachlichen Erfolg der Lösungsentstehung. Er ist sowohl für die Umsetzungsorganisation als auch für die Stakeholder der Ansprechpartner und bildet damit in der Projektorganisation einen verbindlichen Kommunikationskanal. Er wird vom Auftraggeber ernannt, vom Projektleiter geführt, ist jedoch während der Lösungsentstehung in fach- und lösungsspezifischen Fragen und Entscheidungen im Rahmen des Durchführungsauftrages eigenständig."
+"text": "Der Anwendervertreter vertritt im Projekt die Anwender und deren Interessen. Er verantwortet die mit den Fachbereichen abgestimmten und eindeutigen fachlichen Lösungsanforderungen als stabile Basis für die Realisierung sowie den fachlichen Erfolg der Lösungsentstehung. Er ist sowohl für die Umsetzungsorganisation als auch für die Stakeholder der Ansprechpartner und bildet damit in der Projektorganisation einen verbindlichen Kommunikationskanal. Er wird vom Auftraggeber ernannt, vom Projektleiter geführt, ist jedoch während der Lösungsentstehung in fach- und lösungsspezifischen Fragen und Entscheidungen im Rahmen des Durchführungsauftrages eigenständig.",
+"seite": 184
 },
 {
 "t": "p",
-"text": "Bei agiler Vorgehensweise fungiert er als Schnittstelle zur Umsetzungsorganisation. Der Rolleninhaber nimmt in diesem Fall durch zusätzliche Übernahme der aus dem im agilen Umfeld bekannten Rolle „Product Owner“ seine fachliche Verantwortung wahr. Alle Detailaufgaben und Verantwortlichkeiten innerhalb der agilen Umsetzungsorganisation sind durch die zur Anwendung kommende agile Methode definiert."
+"text": "Bei agiler Vorgehensweise fungiert er als Schnittstelle zur Umsetzungsorganisation. Der Rolleninhaber nimmt in diesem Fall durch zusätzliche Übernahme der aus dem im agilen Umfeld bekannten Rolle „Product Owner“ seine fachliche Verantwortung wahr. Alle Detailaufgaben und Verantwortlichkeiten innerhalb der agilen Umsetzungsorganisation sind durch die zur Anwendung kommende agile Methode definiert.",
+"seite": 184
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 184
 },
 {
 "t": "ul",
@@ -3644,11 +3793,13 @@
 {
 "text": "Bei agiler Umsetzung Schnittstelle zur Umsetzungsorganisation"
 }
-]
+],
+"seite": 184
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 185
 },
 {
 "t": "ul",
@@ -3668,11 +3819,13 @@
 {
 "text": "Mitsprache bei der Festlegung von Anforderungen an und beim Abschluss der SLAs"
 }
-]
+],
+"seite": 185
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 185
 },
 {
 "t": "ul",
@@ -3719,11 +3872,13 @@
 {
 "text": "Natürliche Autorität"
 }
-]
+],
+"seite": 185
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 185
 },
 {
 "t": "tabelle",
@@ -4058,7 +4213,8 @@
 ]
 ],
 "titel": "Tabelle 22: Aufgaben, die der Anwendervertreter verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 185
 }
 ]
 },
@@ -4072,15 +4228,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 187
 },
 {
 "t": "p",
-"text": "Der Betriebsverantwortliche vertritt im Projekt die Partnergruppe Betreiber und ist für den Aufbau des Betriebs mit den Betriebsplattformen und der Betriebsorganisation zuständig. Er stellt die technische und organisatorische Integration und den Betrieb des Systems auf den verschiedenen Systemplattformen während der Projektphasen und des Betriebs sicher."
+"text": "Der Betriebsverantwortliche vertritt im Projekt die Partnergruppe Betreiber und ist für den Aufbau des Betriebs mit den Betriebsplattformen und der Betriebsorganisation zuständig. Er stellt die technische und organisatorische Integration und den Betrieb des Systems auf den verschiedenen Systemplattformen während der Projektphasen und des Betriebs sicher.",
+"seite": 187
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 187
 },
 {
 "t": "ul",
@@ -4094,11 +4253,13 @@
 {
 "text": "Einhaltung der Anforderungen an ISDS des Betreibers"
 }
-]
+],
+"seite": 187
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 187
 },
 {
 "t": "ul",
@@ -4109,11 +4270,13 @@
 {
 "text": "Anordnungskompetenzen für die eigenen Spezialbereiche beim Betreiber"
 }
-]
+],
+"seite": 187
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 187
 },
 {
 "t": "ul",
@@ -4142,11 +4305,13 @@
 {
 "text": "Führung von Fachspezialisten im eigenen Verantwortungsbereich"
 }
-]
+],
+"seite": 187
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 187
 },
 {
 "t": "tabelle",
@@ -4345,7 +4510,8 @@
 ]
 ],
 "titel": "Tabelle 23: Aufgaben, die der Betriebsverantwortliche verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 187
 }
 ]
 },
@@ -4359,15 +4525,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 188
 },
 {
 "t": "p",
-"text": "Der Business Analyst, oft auch Betriebsorganisator genannt, bildet die Schnittstelle zwischen den Partnergruppen Anwender und Ersteller/Betreiber. Er erhebt, hinterfragt, analysiert und priorisiert die Bedürfnisse und Anforderungen der Anwender auf der Basis der Geschäftsabläufe und -strukturen und transformiert sie in Organisationsanforderungen. Diese dienen Ersteller und Betreiber als Grundlage für die Konzipierung und für den Betrieb des Produkts oder des Systems. Umgekehrt berücksichtigt er lösungsspezifische Aspekte in der Konzipierung der angestrebten Organisation."
+"text": "Der Business Analyst, oft auch Betriebsorganisator genannt, bildet die Schnittstelle zwischen den Partnergruppen Anwender und Ersteller/Betreiber. Er erhebt, hinterfragt, analysiert und priorisiert die Bedürfnisse und Anforderungen der Anwender auf der Basis der Geschäftsabläufe und -strukturen und transformiert sie in Organisationsanforderungen. Diese dienen Ersteller und Betreiber als Grundlage für die Konzipierung und für den Betrieb des Produkts oder des Systems. Umgekehrt berücksichtigt er lösungsspezifische Aspekte in der Konzipierung der angestrebten Organisation.",
+"seite": 188
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 188
 },
 {
 "t": "ul",
@@ -4384,11 +4553,13 @@
 {
 "text": "Sicherstellung des Einbezugs von diversen Spezialisten"
 }
-]
+],
+"seite": 188
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 188
 },
 {
 "t": "ul",
@@ -4402,11 +4573,13 @@
 {
 "text": "Konzipierung, Umsetzung und Aktivierung der Organisation"
 }
-]
+],
+"seite": 188
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 188
 },
 {
 "t": "ul",
@@ -4441,11 +4614,13 @@
 {
 "text": "Führung von Spezialisten im eigenen Verantwortungsbereich"
 }
-]
+],
+"seite": 188
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 189
 },
 {
 "t": "tabelle",
@@ -4644,7 +4819,8 @@
 ]
 ],
 "titel": "Tabelle 24: Aufgaben, die der Business Analyst verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 189
 }
 ]
 },
@@ -4658,15 +4834,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 190
 },
 {
 "t": "p",
-"text": "Die Rolle Entwickler ist umfassend und bezeichnet den Produktentwickler und den IT-Entwickler in einem. Der Entwickler realisiert das Produkt bzw. das System gemäss den Lösungsanforderungen und den vorangehenden Konzepten. Er aktiviert das Produkt bzw. das System."
+"text": "Die Rolle Entwickler ist umfassend und bezeichnet den Produktentwickler und den IT-Entwickler in einem. Der Entwickler realisiert das Produkt bzw. das System gemäss den Lösungsanforderungen und den vorangehenden Konzepten. Er aktiviert das Produkt bzw. das System.",
+"seite": 190
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 190
 },
 {
 "t": "ul",
@@ -4674,11 +4853,13 @@
 {
 "text": "Verantwortung für die Realisierung des Produkts oder des Systems"
 }
-]
+],
+"seite": 190
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 190
 },
 {
 "t": "ul",
@@ -4686,11 +4867,13 @@
 {
 "text": "Kann auf alle benötigten Informationen zugreifen"
 }
-]
+],
+"seite": 190
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 190
 },
 {
 "t": "ul",
@@ -4707,11 +4890,13 @@
 {
 "text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
 }
-]
+],
+"seite": 190
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 190
 },
 {
 "t": "tabelle",
@@ -5148,7 +5333,8 @@
 ]
 ],
 "titel": "Tabelle 25: Aufgaben, die der Entwickler verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 190
 }
 ]
 },
@@ -5162,23 +5348,28 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 192
 },
 {
 "t": "p",
-"text": "Die Umsetzungsorganisation ist eine interdisziplinäre Rollengruppe, die ausschliesslich während der agilen Vorgehensweise in der Phase Umsetzung zum Tragen kommt. Die Zusammensetzung der Rollengruppe richtet sich nach der Art des Vorhabens, den zu erarbeitenden Ergebnissen sowie der angewendeten Entwicklungsmethode. Bei der Etablierung der Projektorganisation ist bei agilen Umsetzungen die fachliche Verantwortung des Anwendervertreters durch Wahrnehmung einer entsprechenden Rolle in der Umsetzungsorganisation Rechnung zu tragen."
+"text": "Die Umsetzungsorganisation ist eine interdisziplinäre Rollengruppe, die ausschliesslich während der agilen Vorgehensweise in der Phase Umsetzung zum Tragen kommt. Die Zusammensetzung der Rollengruppe richtet sich nach der Art des Vorhabens, den zu erarbeitenden Ergebnissen sowie der angewendeten Entwicklungsmethode. Bei der Etablierung der Projektorganisation ist bei agilen Umsetzungen die fachliche Verantwortung des Anwendervertreters durch Wahrnehmung einer entsprechenden Rolle in der Umsetzungsorganisation Rechnung zu tragen.",
+"seite": 192
 },
 {
 "t": "p",
-"text": "Die Projektführungsverantwortung liegt beim Projektleiter, er darf dennoch nicht in die Hoheit der Umsetzungsorganisation eingreifen. Die Umsetzungsorganisation organisiert sich selbst."
+"text": "Die Projektführungsverantwortung liegt beim Projektleiter, er darf dennoch nicht in die Hoheit der Umsetzungsorganisation eingreifen. Die Umsetzungsorganisation organisiert sich selbst.",
+"seite": 192
 },
 {
 "t": "p",
-"text": "Für die Umsetzungsorganisation werden daher keine Verantwortung, Kompetenzen, Fähigkeiten oder Beziehungen definiert."
+"text": "Für die Umsetzungsorganisation werden daher keine Verantwortung, Kompetenzen, Fähigkeiten oder Beziehungen definiert.",
+"seite": 192
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 192
 },
 {
 "t": "ul",
@@ -5186,11 +5377,13 @@
 {
 "text": "Wird durch die eingesetzte agile Umsetzungsmethode definiert"
 }
-]
+],
+"seite": 192
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 192
 },
 {
 "t": "ul",
@@ -5198,11 +5391,13 @@
 {
 "text": "Werden durch die eingesetzte agile Umsetzungsmethode definiert"
 }
-]
+],
+"seite": 192
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 192
 },
 {
 "t": "ul",
@@ -5210,7 +5405,8 @@
 {
 "text": "Werden durch die eingesetzte agile Umsetzungsmethode definiert"
 }
-]
+],
+"seite": 192
 }
 ]
 },
@@ -5224,15 +5420,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 192
 },
 {
 "t": "p",
-"text": "Der ISDS-Verantwortliche nimmt die Aspekte der Informationssicherheit und des Datenschutzes im Projekt wahr."
+"text": "Der ISDS-Verantwortliche nimmt die Aspekte der Informationssicherheit und des Datenschutzes im Projekt wahr.",
+"seite": 192
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 193
 },
 {
 "t": "ul",
@@ -5243,11 +5442,13 @@
 {
 "text": "Förderung des ISDS-Verständnisses/-Bewusstseins im Projekt"
 }
-]
+],
+"seite": 193
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 193
 },
 {
 "t": "ul",
@@ -5258,11 +5459,13 @@
 {
 "text": "Erlassen von sicherheitsrelevanten Vorgaben zum Umgang mit Daten und Informationen während der Projektabwicklung"
 }
-]
+],
+"seite": 193
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 193
 },
 {
 "t": "ul",
@@ -5294,11 +5497,13 @@
 {
 "text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Berichte zu erstellen"
 }
-]
+],
+"seite": 193
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 193
 },
 {
 "t": "tabelle",
@@ -5395,7 +5600,8 @@
 ]
 ],
 "titel": "Tabelle 26: Aufgaben, die der ISDS-Verantwortliche verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 194
 }
 ]
 },
@@ -5409,15 +5615,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 194
 },
 {
 "t": "p",
-"text": "Der IT-Architekt entwirft die Lösungsarchitektur des zu erstellenden Systems. Er definiert die Lösungskomponenten des Systems und ihre Schnittstellen mit den Umsystemen."
+"text": "Der IT-Architekt entwirft die Lösungsarchitektur des zu erstellenden Systems. Er definiert die Lösungskomponenten des Systems und ihre Schnittstellen mit den Umsystemen.",
+"seite": 194
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 194
 },
 {
 "t": "ul",
@@ -5428,11 +5637,13 @@
 {
 "text": "Sicherstellung der Konformität mit den vorhandenen Standards und Architekturvorgaben und Durchführen von Prüfungen"
 }
-]
+],
+"seite": 194
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 194
 },
 {
 "t": "ul",
@@ -5443,11 +5654,13 @@
 {
 "text": "Entscheidungskompetenz bezüglich der Lösungsarchitektur"
 }
-]
+],
+"seite": 194
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 194
 },
 {
 "t": "ul",
@@ -5476,11 +5689,13 @@
 {
 "text": "Sehr gute schriftliche Ausdrucksfähigkeit, um z. B. Lösungsarchitekturdokumentationen zu erstellen"
 }
-]
+],
+"seite": 194
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 195
 },
 {
 "t": "tabelle",
@@ -5594,7 +5809,8 @@
 ]
 ],
 "titel": "Tabelle 27: Aufgaben, die der IT-Architekt verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 195
 }
 ]
 },
@@ -5608,15 +5824,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 195
 },
 {
 "t": "p",
-"text": "Der Tester arbeitet bei der Erstellung der Testfallbeschreibungen mit, führt Tests durch und beurteilt und protokolliert die Ergebnisse."
+"text": "Der Tester arbeitet bei der Erstellung der Testfallbeschreibungen mit, führt Tests durch und beurteilt und protokolliert die Ergebnisse.",
+"seite": 195
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 195
 },
 {
 "t": "ul",
@@ -5630,11 +5849,13 @@
 {
 "text": "Beurteilung der Testergebnisse und Festhalten der Ergebnisse in Form von Testprotokollen"
 }
-]
+],
+"seite": 195
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 196
 },
 {
 "t": "ul",
@@ -5645,11 +5866,13 @@
 {
 "text": "Entscheidungskompetenz zur Einstufung der Testergebnisse gemäss den im Testplan festgelegten Mängelklassen"
 }
-]
+],
+"seite": 196
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 196
 },
 {
 "t": "ul",
@@ -5669,7 +5892,8 @@
 {
 "text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
 }
-]
+],
+"seite": 196
 }
 ]
 },
@@ -5683,15 +5907,18 @@
 "bloecke": [
 {
 "t": "h",
-"text": "Beschreibung"
+"text": "Beschreibung",
+"seite": 196
 },
 {
 "t": "p",
-"text": "Der Testverantwortliche konzipiert, plant und koordiniert das Testen. Er stellt sicher, dass die Testgrundlagen in Form des Testkonzepts erarbeitet werden, und überführt das Testen in den anschliessenden Betrieb."
+"text": "Der Testverantwortliche konzipiert, plant und koordiniert das Testen. Er stellt sicher, dass die Testgrundlagen in Form des Testkonzepts erarbeitet werden, und überführt das Testen in den anschliessenden Betrieb.",
+"seite": 196
 },
 {
 "t": "h",
-"text": "Verantwortung"
+"text": "Verantwortung",
+"seite": 196
 },
 {
 "t": "ul",
@@ -5699,11 +5926,13 @@
 {
 "text": "Sicherstellung der Erfüllung der verschiedenen Anforderungen wie z. B. Organisationsanforderungen und Lösungsanforderungen in Bezug auf die Qualität des Systems"
 }
-]
+],
+"seite": 196
 },
 {
 "t": "h",
-"text": "Kompetenz"
+"text": "Kompetenz",
+"seite": 196
 },
 {
 "t": "ul",
@@ -5714,11 +5943,13 @@
 {
 "text": "Legt Mitarbeitereinsatz und Systemeinsatz für das Testen fest und ordnet Tests an"
 }
-]
+],
+"seite": 196
 },
 {
 "t": "h",
-"text": "Fähigkeiten"
+"text": "Fähigkeiten",
+"seite": 196
 },
 {
 "t": "ul",
@@ -5753,11 +5984,13 @@
 {
 "text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Testkonzepte und Testberichte zu erstellen"
 }
-]
+],
+"seite": 196
 },
 {
 "t": "h",
-"text": "Beziehungen"
+"text": "Beziehungen",
+"seite": 196
 },
 {
 "t": "tabelle",
@@ -5888,7 +6121,8 @@
 ]
 ],
 "titel": "Tabelle 28: Aufgaben, die der Testverantwortliche verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
-"unten": true
+"unten": true,
+"seite": 196
 }
 ]
 }

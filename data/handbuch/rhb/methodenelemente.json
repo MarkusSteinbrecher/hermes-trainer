@@ -21,33 +21,40 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Das HERMES-Phasenmodell für Projekte bildet das Rückgrat jedes Projekts. Es schafft die Voraussetzung für das gemeinsame Verständnis aller Projektbeteiligten. Dies ist eine wichtige Voraussetzung für die erfolgreiche organisationsübergreifende Abwicklung der Projekte."
+"text": "Das HERMES-Phasenmodell für Projekte bildet das Rückgrat jedes Projekts. Es schafft die Voraussetzung für das gemeinsame Verständnis aller Projektbeteiligten. Dies ist eine wichtige Voraussetzung für die erfolgreiche organisationsübergreifende Abwicklung der Projekte.",
+"seite": 11
 },
 {
 "t": "p",
-"text": "Das Phasenmodell baut auf dem Lebenszyklus eines Projekts auf. Die nachfolgende Abbildung zeigt den HERMES-Projektlebenszyklus sowie das Phasenmodell für die klassische und agile Vorgehensweise; die Phase Initialisierung am Anfang und die Phase Abschluss am Ende des Projekts sind beiden Vorgehensweisen gemeinsam, sie schliessen die Phasen der Lösungsentstehung ein."
+"text": "Das Phasenmodell baut auf dem Lebenszyklus eines Projekts auf. Die nachfolgende Abbildung zeigt den HERMES-Projektlebenszyklus sowie das Phasenmodell für die klassische und agile Vorgehensweise; die Phase Initialisierung am Anfang und die Phase Abschluss am Ende des Projekts sind beiden Vorgehensweisen gemeinsam, sie schliessen die Phasen der Lösungsentstehung ein.",
+"seite": 11
 },
 {
 "t": "abb",
 "datei": "assets/abb/24a64aff-105-hermes-projektlebenszyklus-mit-phasenmodell-fuer-klassische-und-agile-vorgehensweise.svg",
-"text": "Abbildung 4: HERMES-Projektlebenszyklus mit Phasenmodell für klassische und agile Vorgehensweise"
+"text": "Abbildung 4: HERMES-Projektlebenszyklus mit Phasenmodell für klassische und agile Vorgehensweise",
+"seite": 11
 },
 {
 "t": "p",
-"text": "Die Projekte werden somit entweder in fünf oder in drei Phasen abgewickelt. Das Projekt beginnt mit der Phase Initialisierung und endet am Schluss der Phase Abschluss. Die Phase Initialisierung entspricht einer strukturierten Orientierung für ein fokussiertes Vorhaben. Sie formuliert, welche möglichen Lösungen es gibt und welcher Weg zu nehmen ist. Die Phase Abschluss beendet das Vorhaben und regelt organisatorisch und administrativ den Übergang von der Projektzur Anwendungsorganisation¹."
+"text": "Die Projekte werden somit entweder in fünf oder in drei Phasen abgewickelt. Das Projekt beginnt mit der Phase Initialisierung und endet am Schluss der Phase Abschluss. Die Phase Initialisierung entspricht einer strukturierten Orientierung für ein fokussiertes Vorhaben. Sie formuliert, welche möglichen Lösungen es gibt und welcher Weg zu nehmen ist. Die Phase Abschluss beendet das Vorhaben und regelt organisatorisch und administrativ den Übergang von der Projektzur Anwendungsorganisation¹.",
+"seite": 11
 },
 {
 "t": "p",
-"text": "Die zwischen der Initialisierung und Abschluss eingeschlossenen Phasen sind in der klassischen Vorgehensweise die drei Phasen Konzept, Realisierung und Einführung, in der agilen Vorgehensweise hingegen nur die Phase Umsetzung."
+"text": "Die zwischen der Initialisierung und Abschluss eingeschlossenen Phasen sind in der klassischen Vorgehensweise die drei Phasen Konzept, Realisierung und Einführung, in der agilen Vorgehensweise hingegen nur die Phase Umsetzung.",
+"seite": 11
 },
 {
 "t": "p",
-"text": "Will die Stammorganisation eine mögliche Lösungsvision prüfen, startet sie das Vorhaben mit der Phase Initialisierung, deren Ergebnisse auch darüber entscheiden sollen, ob das Entwicklungsvorgehen mit klassischer oder agiler Vorgehensweise angegangen wird. Diese Entscheidung muss fachlich und vorgehenstechnisch begründet sein. Es ist möglich, dass im Rahmen eines Programmes einige Projekte klassisch, andere agil abgewickelt werden."
+"text": "Will die Stammorganisation eine mögliche Lösungsvision prüfen, startet sie das Vorhaben mit der Phase Initialisierung, deren Ergebnisse auch darüber entscheiden sollen, ob das Entwicklungsvorgehen mit klassischer oder agiler Vorgehensweise angegangen wird. Diese Entscheidung muss fachlich und vorgehenstechnisch begründet sein. Es ist möglich, dass im Rahmen eines Programmes einige Projekte klassisch, andere agil abgewickelt werden.",
+"seite": 11
 },
 {
 "t": "p",
 "text": "¹ Die Anwendungsorganisation ist analog der Projektorganisation eine temporäre Organisation, die in enger Beziehung zur Stammorganisation steht. Sie ist system - oder produktspezifisch und endet am Ende des Life-Cycles eines Produkts oder eines Systems (der Anwendung).",
-"art": "fussnote"
+"art": "fussnote",
+"seite": 11
 }
 ]
 },
@@ -59,24 +66,29 @@
 "bloecke": [
 {
 "t": "p",
-"text": "In einer Stammorganisation werden unterschiedliche Projekte durchgeführt. Die Projekte können sich bezüglich ihres Inhalts und der Komplexität stark unterscheiden. Um der Vielfalt der Projekte gerecht zu werden, bietet HERMES-Projektmanagement Szenarien an. Ein Szenario wird im Projekt für das zwischen der Initialisierung und Abschluss eingeschlossene Entwicklungsvorgehen bestimmt, also bei der klassischen Vorgehensweise für die Phasen Konzept, Realisierung und Einführung und bei der agilen Vorgehensweise für die Phase Umsetzung."
+"text": "In einer Stammorganisation werden unterschiedliche Projekte durchgeführt. Die Projekte können sich bezüglich ihres Inhalts und der Komplexität stark unterscheiden. Um der Vielfalt der Projekte gerecht zu werden, bietet HERMES-Projektmanagement Szenarien an. Ein Szenario wird im Projekt für das zwischen der Initialisierung und Abschluss eingeschlossene Entwicklungsvorgehen bestimmt, also bei der klassischen Vorgehensweise für die Phasen Konzept, Realisierung und Einführung und bei der agilen Vorgehensweise für die Phase Umsetzung.",
+"seite": 12
 },
 {
 "t": "p",
-"text": "Ein Szenario ist auf die Durchführung von Projekten mit einer spezifischen Charakteristik ausgerichtet. Das Szenario beinhaltet diejenigen Methodenelemente von HERMES, die für die Entwicklung der Lösung von Bedeutung sind. Dadurch ist HERMES-Projektmanagement rasch und einfach anwendbar. Die nachfolgende Abbildung zeigt beispielhaft mehrere Vorhaben einer Stammorganisation mit den dazu passenden Projekten samt Szenarien. Vorhaben Projekte einer Stammorganisation mit Szenarien"
+"text": "Ein Szenario ist auf die Durchführung von Projekten mit einer spezifischen Charakteristik ausgerichtet. Das Szenario beinhaltet diejenigen Methodenelemente von HERMES, die für die Entwicklung der Lösung von Bedeutung sind. Dadurch ist HERMES-Projektmanagement rasch und einfach anwendbar. Die nachfolgende Abbildung zeigt beispielhaft mehrere Vorhaben einer Stammorganisation mit den dazu passenden Projekten samt Szenarien. Vorhaben Projekte einer Stammorganisation mit Szenarien",
+"seite": 12
 },
 {
 "t": "abb",
 "datei": "assets/rhb/abb-5.png",
-"text": "Abbildung 5: Projekte einer Stammorganisation mit Szenarien"
+"text": "Abbildung 5: Projekte einer Stammorganisation mit Szenarien",
+"seite": 12
 },
 {
 "t": "p",
-"text": "In der Phase Initialisierung wählt der Projektleiter die geeignete Lösungsvariante und mit ihr auch das für das Entwicklungsvorgehen passende Szenario aus. Auf seiner Grundlage plant er das konkrete Vorgehen und die Entwicklung der Lösung. HERMES bietet eine Auswahl von möglichen Standardszenarien an, beispielsweise für eine Organisationsanpassung oder für die Entwicklung einer Dienstleistung/eines Produkts."
+"text": "In der Phase Initialisierung wählt der Projektleiter die geeignete Lösungsvariante und mit ihr auch das für das Entwicklungsvorgehen passende Szenario aus. Auf seiner Grundlage plant er das konkrete Vorgehen und die Entwicklung der Lösung. HERMES bietet eine Auswahl von möglichen Standardszenarien an, beispielsweise für eine Organisationsanpassung oder für die Entwicklung einer Dienstleistung/eines Produkts.",
+"seite": 12
 },
 {
 "t": "p",
-"text": "Die Anwender von HERMES können Standardszenarien an die Bedürfnisse ihrer Organisation anpassen und so eigene, benutzerdefinierte Szenarien erstellen."
+"text": "Die Anwender von HERMES können Standardszenarien an die Bedürfnisse ihrer Organisation anpassen und so eigene, benutzerdefinierte Szenarien erstellen.",
+"seite": 12
 }
 ]
 },
@@ -88,16 +100,19 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Module sind wiederverwendbare, den Phasen zugeordnete Bausteine zur Erstellung von Projekten und Szenarien. Thematisch zusammengehörende Ergebnisse und die mit ihnen verknüpften Aufgaben bilden ein Modul (s. nachfolgende Abbildung). Projekt"
+"text": "Module sind wiederverwendbare, den Phasen zugeordnete Bausteine zur Erstellung von Projekten und Szenarien. Thematisch zusammengehörende Ergebnisse und die mit ihnen verknüpften Aufgaben bilden ein Modul (s. nachfolgende Abbildung). Projekt",
+"seite": 12
 },
 {
 "t": "abb",
 "datei": "assets/abb/d097930f-107-modul-setzt-sich-aus-ergebnissen-und-aufgaben-zusammen.svg",
-"text": "Abbildung 6: Modul setzt sich aus Ergebnissen und Aufgaben zusammen"
+"text": "Abbildung 6: Modul setzt sich aus Ergebnissen und Aufgaben zusammen",
+"seite": 12
 },
 {
 "t": "p",
-"text": "Der Projektleiter kann zusätzliche Module erstellen und in benutzerdefinierte Szenarien integrieren."
+"text": "Der Projektleiter kann zusätzliche Module erstellen und in benutzerdefinierte Szenarien integrieren.",
+"seite": 13
 }
 ]
 },
@@ -109,33 +124,40 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Wie die nachfolgende Abbildung mit Auswahl von einigen Ergebnissen je Phase zeigt, stehen sie im HERMES-Projektmanagement im Zentrum."
+"text": "Wie die nachfolgende Abbildung mit Auswahl von einigen Ergebnissen je Phase zeigt, stehen sie im HERMES-Projektmanagement im Zentrum.",
+"seite": 13
 },
 {
 "t": "p",
-"text": "Für jedes Ergebnis gibt es eine Ergebnisbeschreibung. Für alle Dokumente gibt es Dokumentvorlagen, die den in den Ergebnissen aufgeführten Inhalt detaillierter beschreiben. Jedem Ergebnis sind Aufgaben und Rollen zugeordnet. Die Rollen geben einen Hinweis darauf, wie die Verantwortung für Ergebnisse und die Beteiligung bei der Ergebniserstellung geregelt ist."
+"text": "Für jedes Ergebnis gibt es eine Ergebnisbeschreibung. Für alle Dokumente gibt es Dokumentvorlagen, die den in den Ergebnissen aufgeführten Inhalt detaillierter beschreiben. Jedem Ergebnis sind Aufgaben und Rollen zugeordnet. Die Rollen geben einen Hinweis darauf, wie die Verantwortung für Ergebnisse und die Beteiligung bei der Ergebniserstellung geregelt ist.",
+"seite": 13
 },
 {
 "t": "p",
-"text": "HERMES definiert minimal geforderte Dokumente (Ergebnisse), um die Anforderungen an die Projekt-Governance zu erfüllen."
+"text": "HERMES definiert minimal geforderte Dokumente (Ergebnisse), um die Anforderungen an die Projekt-Governance zu erfüllen.",
+"seite": 13
 },
 {
 "t": "abb",
 "datei": "assets/abb/9a47815d-108-ergebnisse-stehen-im-zentrum-von-hermes.svg",
-"text": "Abbildung 7: Ergebnisse stehen im Zentrum von HERMES"
+"text": "Abbildung 7: Ergebnisse stehen im Zentrum von HERMES",
+"seite": 13
 },
 {
 "t": "p",
-"text": "Die nachfolgende Abbildung zeigt, dass zu Beginn und am Ende der Phasen Meilensteine stehen. Sie entsprechen Quality Gates, an denen über Ergebnisse und das Vorgehen entschieden wird. Dabei erfolgt auch die Abstimmung mit den strategischen Zielen und Vorgaben der Stammorganisation. Analog zur Phasenfreigabe kann bei agiler Vorgehensweise optional eine Releasefreigabe als erforderlich verlangt werden, was zu zusätzlichen Meilensteinen führt. Durchführungs- Phasen- Phasen- Phasenfreigabe Projektfreigabe freigabe freigabe Abschluss Projektinitialisierungs-"
+"text": "Die nachfolgende Abbildung zeigt, dass zu Beginn und am Ende der Phasen Meilensteine stehen. Sie entsprechen Quality Gates, an denen über Ergebnisse und das Vorgehen entschieden wird. Dabei erfolgt auch die Abstimmung mit den strategischen Zielen und Vorgaben der Stammorganisation. Analog zur Phasenfreigabe kann bei agiler Vorgehensweise optional eine Releasefreigabe als erforderlich verlangt werden, was zu zusätzlichen Meilensteinen führt. Durchführungs- Phasen- Phasen- Phasenfreigabe Projektfreigabe freigabe freigabe Abschluss Projektinitialisierungs-",
+"seite": 13
 },
 {
 "t": "abb",
 "datei": "assets/abb/404c51e0-109-phasen-und-releases-mit-meilensteinen-als-quality-gates.svg",
-"text": "Abbildung 8: Phasen und Releases mit Meilensteinen als Quality Gates"
+"text": "Abbildung 8: Phasen und Releases mit Meilensteinen als Quality Gates",
+"seite": 13
 },
 {
 "t": "p",
-"text": "Alle Meilensteine sind Ergebnisse, die im Projektverlauf die Entscheidungspunkte markieren. Jede Entscheidungsaufgabe endet somit mit einem Meilenstein. Je nach Modul gibt es verschiedene Entscheide und folglich auch verschiedene weitere Meilensteine."
+"text": "Alle Meilensteine sind Ergebnisse, die im Projektverlauf die Entscheidungspunkte markieren. Jede Entscheidungsaufgabe endet somit mit einem Meilenstein. Je nach Modul gibt es verschiedene Entscheide und folglich auch verschiedene weitere Meilensteine.",
+"seite": 13
 }
 ]
 },
@@ -147,11 +169,13 @@
 "bloecke": [
 {
 "t": "p",
-"text": "Die Aufgaben dienen der Erarbeitung von Ergebnissen. Thematisch zusammengehörende Ergebnisse samt zugeordneten Aufgaben bilden Module."
+"text": "Die Aufgaben dienen der Erarbeitung von Ergebnissen. Thematisch zusammengehörende Ergebnisse samt zugeordneten Aufgaben bilden Module.",
+"seite": 14
 },
 {
 "t": "p",
-"text": "Für jede Aufgabe gibt es eine Aufgabenbeschreibung. Sie definiert das generelle Vorgehen und die Aktivitäten, die unternommen werden, um die Ergebnisse zu erarbeiten. Die Rollen geben einen Hinweis darauf, welcher Rolle die Verantwortung für eine Aufgabe zugeordnet ist."
+"text": "Für jede Aufgabe gibt es eine Aufgabenbeschreibung. Sie definiert das generelle Vorgehen und die Aktivitäten, die unternommen werden, um die Ergebnisse zu erarbeiten. Die Rollen geben einen Hinweis darauf, welcher Rolle die Verantwortung für eine Aufgabe zugeordnet ist.",
+"seite": 14
 }
 ]
 },
@@ -163,20 +187,24 @@
 "bloecke": [
 {
 "t": "p",
-"text": "HERMES-Projektmanagement unterscheidet zwischen den Rollen der Stammorganisation und Rollen der Projektorganisation, beschreibt jedoch ausschliesslich die HERMES-Rollen der Projektorganisation. Für jede Rolle gibt es eine Rollenbeschreibung mit Verantwortung, den Kompetenzen und den benötigten Fähigkeiten sowie mit ihren Beziehungen. Jede Rolle ist einer der Hierarchieebenen Steuerung, Führung oder Ausführung zugeordnet. Es sind unterschiedliche Rollen definiert, die nach Bedarf verwendet werden können."
+"text": "HERMES-Projektmanagement unterscheidet zwischen den Rollen der Stammorganisation und Rollen der Projektorganisation, beschreibt jedoch ausschliesslich die HERMES-Rollen der Projektorganisation. Für jede Rolle gibt es eine Rollenbeschreibung mit Verantwortung, den Kompetenzen und den benötigten Fähigkeiten sowie mit ihren Beziehungen. Jede Rolle ist einer der Hierarchieebenen Steuerung, Führung oder Ausführung zugeordnet. Es sind unterschiedliche Rollen definiert, die nach Bedarf verwendet werden können.",
+"seite": 14
 },
 {
 "t": "p",
-"text": "In der Projektorganisation sind die Partnergruppen Anwender, Ersteller und Betreiber vertreten. Jede Rolle ist einer oder mehreren Partnergruppen zugeordnet."
+"text": "In der Projektorganisation sind die Partnergruppen Anwender, Ersteller und Betreiber vertreten. Jede Rolle ist einer oder mehreren Partnergruppen zugeordnet.",
+"seite": 14
 },
 {
 "t": "p",
-"text": "Die nachfolgende Abbildung zeigt eine Projektorganisation mit den minimal zu besetzenden, grau dargestellten Rollen Auftraggeber, Projektleiter und Anwendervertreter."
+"text": "Die nachfolgende Abbildung zeigt eine Projektorganisation mit den minimal zu besetzenden, grau dargestellten Rollen Auftraggeber, Projektleiter und Anwendervertreter.",
+"seite": 14
 },
 {
 "t": "abb",
 "datei": "assets/abb/9c0d8fb4-110-minimal-zu-besetzenden-rollen-auftraggeber-projektleiter-und-anwendervertreter.svg",
-"text": "Abbildung 9: Minimal zu besetzenden Rollen Auftraggeber, Projektleiter und Anwendervertreter"
+"text": "Abbildung 9: Minimal zu besetzenden Rollen Auftraggeber, Projektleiter und Anwendervertreter",
+"seite": 14
 }
 ]
 }

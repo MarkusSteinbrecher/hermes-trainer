@@ -499,6 +499,7 @@ class Bau(object):
         self.w = Woerter(ref['woerter'])
         self.kapitel = OrderedDict((k[0], {'id': k[0], 'nummer': k[1], 'titel': k[2], 'kategorie': k[3], 'seite': None, 'url': ref['url'].get(k[1]) if k[1] else None, 'abschnitte': []}) for k in KAPITEL)
         self.aktuell = None          # aktueller Abschnitt
+        self.seite_nr = None         # Seite, die gerade gelesen wird (Startseite neuer Blöcke)
         self.kap_id = 'vorwort'
         self.offen = None            # {'art': 'p'|'ul'|'ol'|'h', ...} letzter Block für Fortsetzung
         self.letzte_zeile = None     # letzte Fliesstextzeile (für Abstände)
@@ -547,6 +548,10 @@ class Bau(object):
     def block(self, b):
         if self.aktuell is None:
             self.abschnitt_neu(None, 'Titelseite', 1, 1)
+        # Die Seite, auf der der Block beginnt — auch wenn er (Absatz, Liste,
+        # Tabelle) auf der nächsten Seite weiterläuft; die Seite zeigt eine
+        # Seitenmarke im Text.
+        b.setdefault('_start', self.seite_nr)
         self.aktuell['bloecke'].append(b)
         self.offen = b
         return b
@@ -707,6 +712,7 @@ class Bau(object):
 
     def seite_verarbeiten(self, seite_nr):
         fitz = self.fitz
+        self.seite_nr = seite_nr
         seite = self.doc[seite_nr - 1]
         zeilen = zeilen_lesen(fitz, seite)
         bereiche = [] if seite_nr == 1 else bereiche_lesen(fitz, seite, zeilen)
@@ -863,6 +869,8 @@ class Bau(object):
             for a in kap['abschnitte']:
                 a.pop('_ebene', None)
                 for b in a['bloecke']:
+                    if b.get('_start'):
+                        b['seite'] = b['_start']
                     for k in list(b.keys()):
                         if k.startswith('_'):
                             del b[k]
