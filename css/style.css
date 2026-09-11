@@ -1225,6 +1225,15 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 
 /* --- Handbuch: Kapitelseite ---------------------------------------------- */
 .hb-kapitelkopf .hb-verweis { margin-top: 2px; }
+/* Das Handbuch nutzt die ganze Breite: keine Spaltenbegrenzung, keine
+   Zeilenlängen-Grenzen für Text und Karten. */
+body[data-route="handbuch"] .view { max-width: none; }
+body[data-route="handbuch"] .kopf p,
+body[data-route="handbuch"] .hb-p,
+body[data-route="handbuch"] .hb-liste,
+body[data-route="handbuch"] .eintrag__def,
+body[data-route="handbuch"] .detail__text,
+body[data-route="handbuch"] .prosa { max-width: none; }
 
 .kapitel-nav { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--rand); }
 

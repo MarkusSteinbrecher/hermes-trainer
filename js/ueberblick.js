@@ -1326,7 +1326,6 @@
     } else {
       delete refs.inhalt.dataset.markOrt;
     }
-    delete refs.inhalt.dataset.markKomplett;
     if (!e) {
       refs.inhalt.appendChild(leerseite());
       refs.inhalt.scrollTop = 0;
@@ -1336,8 +1335,6 @@
 
     handbuchHolen(e);
     var text = hbTexte[e.id] || null;
-    /* Mit Handbuchtext ist die Seite vollständig (siehe js/markieren.js). */
-    if (text) { refs.inhalt.dataset.markKomplett = '1'; }
     var lead = leadQuelle(text);
     var marker = markerVon(e);
     var vorlage = vorlageVon(text);

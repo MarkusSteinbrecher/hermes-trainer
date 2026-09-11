@@ -10,8 +10,14 @@
    paar Zeichen davor und danach, dazu den Ort — den nächsten Block mit
    `data-mark-ort`. Beim Rendern sucht das Modul das Zitat im Block wieder;
    ein MutationObserver auf #view legt die Markierungen nach jedem Aufbau und
-   Nachladen neu — die Ansichten setzen nur das Attribut (und
-   `data-mark-komplett`, sobald der ganze Text da ist). */
+   Nachladen neu — die Ansichten setzen nur das Attribut.
+
+   Der Ort ist die Adresse des Elements im Handbuch; die Inhaltsseite des
+   Überblicks und die Karte im Handbuch tragen denselben Ort und zeigen
+   denselben Handbuchtext — eine Markierung hier erscheint auch dort. Was
+   ein Block gerade nicht enthält (Karte in der Stufe «Kurz», Text noch
+   nicht nachgeladen), bleibt gespeichert und erscheint, sobald der Text
+   da ist. */
 (function (global) {
   'use strict';
 
@@ -185,19 +191,12 @@
     entfernen(block);
     var liste = fuerOrt(ort);
     if (!liste.length) { return; }
-    /* Was ein vollständig geladener Block (data-mark-komplett) nicht mehr
-       findet, ist weg — der Text hat sich geändert. Eine Lexikonkarte in
-       der Stufe «Kurz» oder ein Kapitel vor dem Nachladen enthält den Text
-       schlicht noch nicht. */
-    var komplett = block.hasAttribute('data-mark-komplett');
-    var verloren = [];
     liste.forEach(function (e) {
       var m = modell(block);
       var start = finden(m, e.zitat);
-      if (start === -1) { if (komplett) { verloren.push(e.id); } return; }
+      if (start === -1) { return; }          // Text (noch) nicht in diesem Block
       umhuellen(m, start, start + e.zitat.exact.length, e.id);
     });
-    verloren.forEach(loeschen);
   }
 
   function anwenden(wurzel) {

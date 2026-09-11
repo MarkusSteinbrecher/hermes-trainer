@@ -107,8 +107,13 @@
 
   /* --- Karten -------------------------------------------------------------- */
 
+  /* Stufe einer Karte: ausdrücklich gewählt, sonst die Standardstufe — und
+     «Handbuch», wenn Markierungen zu diesem Element gespeichert sind, damit
+     eine Markierung aus dem Überblick hier auch zu sehen ist. */
   function stufeVon(e) {
-    return zustand.stufe.hasOwnProperty(e.id) ? zustand.stufe[e.id] : zustand.standardStufe;
+    if (zustand.stufe.hasOwnProperty(e.id)) { return zustand.stufe[e.id]; }
+    if (HT.markieren && HT.markieren.fuerOrt('#/handbuch?id=' + encodeURIComponent(e.id)).length) { return 2; }
+    return zustand.standardStufe;
   }
 
   /* Grundbegriffe kommen im Graphen nicht vor — dort führt der Knopf ins Leere. */
@@ -242,7 +247,7 @@
       if (verweis) { kinder.push(verweis); }
     }
     (teil.abschnitte || []).forEach(function (a) { kinder.push(abschnittElement(a, ctx)); });
-    var ort = teil.nummer ? { markOrt: kapitelAdresse(ctx.meta.id, teil.nummer), markKomplett: '1' } : null;
+    var ort = teil.nummer ? { markOrt: kapitelAdresse(ctx.meta.id, teil.nummer) } : null;
     return h('section', { class: 'hb-teil', id: teil.nummer ? 'teil-' + teil.nummer : null, dataset: ort }, kinder);
   }
 

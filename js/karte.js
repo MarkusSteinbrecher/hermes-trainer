@@ -266,12 +266,8 @@
     HT.ui.leeren(behaelter);
     behaelter.appendChild(h('p', { class: 'trefferzahl', text: 'Handbuchtext wird geladen …' }));
 
-    var block = behaelter.closest ? behaelter.closest('[data-mark-ort]') : null;
     HT.daten.handbuchElement(e).then(function (text) {
       HT.ui.leeren(behaelter);
-      /* Ab jetzt ist der Text der Karte vollständig — Markierungen, die
-         sich nicht mehr finden, dürfen wegfallen. */
-      if (block) { block.setAttribute('data-mark-komplett', '1'); }
       if (!text) {
         handbuchFallback(e).forEach(function (k) { behaelter.appendChild(k); });
         return;
