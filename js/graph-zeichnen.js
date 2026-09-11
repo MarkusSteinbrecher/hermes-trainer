@@ -525,20 +525,35 @@
       }).observe(svg);
     }
 
-    /* Zeiger: Verschieben mit einem Finger/Maus, Zoomen mit zwei Fingern. */
+    /* Zeiger: Verschieben mit einem Finger/Maus, Zoomen mit zwei Fingern.
+       Kein setPointerCapture: WebKit (Safari, alle iOS-Browser) schickt den
+       folgenden click dann an die Fläche statt an den Knoten — der Klick auf
+       ein Element kam dort als Leerklick an. Damit ein Zug auch ausserhalb
+       der Fläche weiterläuft, hängen move/up während des Zugs am Dokument. */
     var zeiger = {};
     var bewegt = false;
     var start = null;
     var pinch = null;
+    var gedrueckt = null;   // Knoten unter dem Zeiger beim Drücken — Rückfall für click
+    var dokumentGebunden = false;
 
     function zeigerListe() { return Object.keys(zeiger).map(function (id) { return zeiger[id]; }); }
+
+    function dokumentBinden(an) {
+      if (an === dokumentGebunden) { return; }
+      dokumentGebunden = an;
+      var m = an ? 'addEventListener' : 'removeEventListener';
+      document[m]('pointermove', zeigerBewegt);
+      document[m]('pointerup', zeigerEnde);
+      document[m]('pointercancel', zeigerEnde);
+    }
 
     svg.addEventListener('pointerdown', function (ev) {
       if (ev.button !== undefined && ev.button !== 0) { return; }
       zeiger[ev.pointerId] = { x: ev.clientX, y: ev.clientY };
-      try { svg.setPointerCapture(ev.pointerId); } catch (e) { /* egal */ }
       var liste = zeigerListe();
       bewegt = false;
+      gedrueckt = liste.length === 1 ? knotenAusEreignis(ev) : null;
       if (liste.length === 1) {
         start = { x: ev.clientX, y: ev.clientY, sx: sicht.x, sy: sicht.y };
         pinch = null;
@@ -546,9 +561,10 @@
         pinch = { d: Math.hypot(liste[0].x - liste[1].x, liste[0].y - liste[1].y) };
         start = null;
       }
+      dokumentBinden(true);
     });
 
-    svg.addEventListener('pointermove', function (ev) {
+    function zeigerBewegt(ev) {
       if (!zeiger[ev.pointerId]) { return; }
       zeiger[ev.pointerId] = { x: ev.clientX, y: ev.clientY };
       var liste = zeigerListe();
@@ -571,23 +587,25 @@
           bewegt = true;
         }
       }
-    });
+    }
 
     function zeigerEnde(ev) {
+      if (!zeiger[ev.pointerId]) { return; }
       delete zeiger[ev.pointerId];
       var liste = zeigerListe();
       if (!liste.length) {
         start = null; pinch = null;
         svg.classList.remove('ist-am-ziehen');
-        /* «bewegt» bleibt bis zum click-Ereignis gesetzt, damit ein Zug keinen Klick auslöst. */
-        global.setTimeout(function () { bewegt = false; }, 0);
+        dokumentBinden(false);
+        /* «bewegt» und der gedrückte Knoten bleiben bis zum click-Ereignis
+           stehen: ein Zug löst keinen Klick aus, ein Klick findet seinen
+           Knoten auch dann, wenn der Browser ihn an die Fläche adressiert. */
+        global.setTimeout(function () { bewegt = false; gedrueckt = null; }, 0);
       } else if (liste.length === 1) {
         start = { x: liste[0].x, y: liste[0].y, sx: sicht.x, sy: sicht.y };
         pinch = null;
       }
     }
-    svg.addEventListener('pointerup', zeigerEnde);
-    svg.addEventListener('pointercancel', zeigerEnde);
 
     svg.addEventListener('wheel', function (ev) {
       ev.preventDefault();
@@ -605,7 +623,7 @@
 
     svg.addEventListener('click', function (ev) {
       if (bewegt) { return; }
-      var g = knotenAusEreignis(ev);
+      var g = knotenAusEreignis(ev) || gedrueckt;
       if (g) {
         if (rueckrufe.beiKlick) { rueckrufe.beiKlick(g.getAttribute('data-id'), ev); }
       } else if (rueckrufe.beiLeerklick) {
