@@ -2,6 +2,16 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Graph: Fokus zeigt nur direkte Verbindungen, kompakt
+
+**Auftrag:** «Wenn ich auf eine Rolle klicke, sollten nur die Elemente angezeigt werden, die mit der Rolle eine Verbindung haben. Diese Elemente sollten auf die Seite zusammengezogen werden. Und ich muss das wieder deaktivieren können.»
+
+**Befund:** Der Fokus vom Vortag nahm eine zweite Stufe mit (bei einer Rolle auch die Ergebnisse ihrer Aufgaben), liess die Modul-/Phasenbahnen des ganzen Graphen stehen und dimmte beim Überfahren des geklickten Elements alles Übrige — das sah nach «alles noch da, nur ausgegraut» aus.
+
+**Umsetzung:** `fokusMenge()` in `js/graph-modell.js` liefert nur noch das Element und seine direkten Nachbarn. Im Fokus geben die Spalten keine `gruppeVon` mehr zurück, darum fällt `layoutSpalten()` auf `einfacheSpalten()` zurück: drei schlichte, vertikal zentrierte Spalten ohne Bahnen. Einpassen im Fokus mit `minZoom` 0,35 (statt 0,6), damit auch 24 Ergebnisse untereinander in die Fläche passen. Über dem fokussierten Element wird nichts mehr gedimmt. Neuer Hinweis unten mittig auf der Fläche (`gfokus-hinweis`) mit Text und Knopf «Fokus aufheben»; er wird beim Einpassen wie die Icon-Leisten freigehalten. Escape hebt den Fokus auf (wenn kein Popover offen ist). Nach dem Aufheben bleibt das Element nur umrandet (`auswahlZeigen()`), der Rest wird nicht mehr gedimmt — Dimmen gibt es nur noch beim Überfahren.
+
+**Geprüft** lokal: Fokus «Auftraggeber» zeigt 1 Rolle, 19 Aufgaben, 24 Ergebnisse in drei Spalten, vollständig eingepasst; Aufheben per Banner, Chip, Detailknopf oder Escape bringt den ganzen Graphen ungedimmt zurück. Keine Konsolenfehler. Live: nach dem Push mit `curl` und im Browser bestätigt.
+
 ## 2026-09-10 — Graph: farbige Verbindungen, Klick fokussiert und passt ein
 
 **Auftrag:** «Mach die Linien doch wieder farbig, so wie wir es vorher hatten. Die kleinen Phasen-Kästchen in den Elementen machen wir dunkelgrau und nicht schwarz. Und wenn wir ein Element anklicken: alles andere ausblenden, die verlinkten Elemente zeigen und die Ansicht passend zoomen.»

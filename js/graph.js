@@ -152,10 +152,18 @@
     geaendert();
   }
 
+  /* Ruhezustand ohne Maus: nichts gedimmt, das gewählte Element nur umrandet.
+     Dimmen gibt es beim Überfahren; das Ausblenden macht der Fokus. */
+  function auswahlZeigen() {
+    if (!zeichner) { return; }
+    zeichner.hervorheben(null, false);
+    zeichner.markieren(zustand.auswahlId);
+  }
+
   function auswaehlen(id) {
     zustand.auswahlId = id || null;
     detailZeigen(zustand.auswahlId);
-    if (zeichner) { zeichner.hervorheben(zustand.fokusId ? null : zustand.auswahlId, true); }
+    if (zeichner) { auswahlZeigen(); }
     urlSetzen();
   }
 
@@ -757,6 +765,11 @@
       refs.fokusChip.setAttribute('aria-label', 'Fokus auf ' + fokus.begriff + ' aufheben');
     }
     refs.knopfFilter.classList.toggle('ist-aktiv', !!fokus);
+    refs.fokusHinweis.hidden = !fokus;
+    if (fokus) {
+      var meta = HT.graph.KAT[fokus.kategorie];
+      refs.fokusText.textContent = 'Nur «' + fokus.begriff + '» (' + meta.singular + ') und die direkt verbundenen Elemente.';
+    }
 
     refs.knopfReset.hidden = !HT.graph.umfangAktiv(zustand.umfang) && !fokus;
     refs.knopfAlle.classList.toggle('ist-aktiv', HT.graph.umfangAktiv(zustand.umfang));
@@ -888,24 +901,33 @@
     refs.pop.hidden = true;
     refs.leer = h('div', { class: 'graph-leer' });
     refs.leer.hidden = true;
+    refs.fokusText = h('span', { class: 'gfokus-hinweis__text' });
+    refs.fokusHinweis = h('div', { class: 'gfokus-hinweis', role: 'status' }, [
+      refs.fokusText,
+      h('button', { type: 'button', class: 'btn btn--klein btn--primaer', text: 'Fokus aufheben', title: 'Fokus aufheben (Esc)', on: { click: function () { fokusSetzen(null); } } })
+    ]);
+    refs.fokusHinweis.hidden = true;
 
     refs.buehne = h('div', { class: 'graph-buehne' }, leisteBauen().concat([
-      h('div', { class: 'graph-flaeche-huelle' }, [refs.flaeche, railBauen(), railRechtsBauen(), refs.leer, refs.pop, refs.tooltip])
+      h('div', { class: 'graph-flaeche-huelle' }, [refs.flaeche, railBauen(), railRechtsBauen(), refs.leer, refs.fokusHinweis, refs.pop, refs.tooltip])
     ]));
 
     zeichner = HT.graphZeichnen.erstellen(refs.flaeche, {
-      freihalten: function () { return [refs.rail, refs.railRechts]; },
+      freihalten: function () { return [refs.rail, refs.railRechts, refs.fokusHinweis]; },
       beiKlick: function (id) { fokusSetzen(id); },
       beiDoppelklick: einschraenken,
       beiLeerklick: function () { tooltipVerbergen(); popSchliessen(); },
       beiHover: function (id) {
         if (!zeichner) { return; }
+        /* Über dem fokussierten Element nichts dimmen: alles Sichtbare
+           gehört zu ihm, ein Grauschleier sähe nach «alles noch da» aus. */
+        if (id && id === zustand.fokusId) { zeichner.hervorheben(null, false); tooltipZeigen(id); return; }
         if (id) {
           zeichner.hervorheben(id, false);
           if (zustand.auswahlId) { zeichner.markieren(zustand.auswahlId); }
           tooltipZeigen(id);
         } else {
-          zeichner.hervorheben(zustand.fokusId ? null : zustand.auswahlId, true);
+          auswahlZeigen();
           tooltipVerbergen();
         }
       }
@@ -923,7 +945,7 @@
     HT.ui.leeren(refs.tooltip);
     refs.tooltip.appendChild(h('div', { class: 'graph-tooltip__kopf' }, [HT.ui.badge(k.kategorie), h('b', { text: k.begriff })]));
     refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__text', text: HT.ui.kuerzen(k.eintrag.kurz || k.eintrag.definition, 160) }));
-    refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__tipp', text: meta.singular + ' · Klick: nur dieses Element mit seinen Verbindungen' + (k.eintrag.module && k.eintrag.module.length ? ' · Doppelklick: auf Modul einschränken' : '') }));
+    refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__tipp', text: meta.singular + ' · Klick: nur dieses Element mit seinen direkten Verbindungen' + (k.eintrag.module && k.eintrag.module.length ? ' · Doppelklick: auf Modul einschränken' : '') }));
     refs.tooltip.hidden = false;
 
     var b = refs.buehne.getBoundingClientRect();
@@ -991,7 +1013,7 @@
          aber im Detailfeld darauf hinweisen. */
       zeichner.hervorheben(null, false);
     } else if (zustand.auswahlId) {
-      zeichner.hervorheben(zustand.fokusId ? null : zustand.auswahlId, true);
+      auswahlZeigen();
     }
   }
 
@@ -1125,7 +1147,7 @@
 
   /* Im Fokus sind es wenige Knoten — sie dürfen die Fläche füllen. */
   function einpassOptionen() {
-    return { maxZoom: zustand.fokusId ? 1.6 : undefined };
+    return zustand.fokusId ? { maxZoom: 1.6, minZoom: 0.35 } : {};
   }
 
   /* Nach dem Öffnen oder Schliessen des Detailfelds (Übergang .2s) neu einpassen. */
@@ -1255,7 +1277,8 @@
         popSchliessen();
       });
       document.addEventListener('keydown', function (ev) {
-        if (ev.key === 'Escape' && zustand.pop && document.body.contains(refs.seite)) { popSchliessen(); }
+        if (ev.key !== 'Escape' || !document.body.contains(refs.seite)) { return; }
+        if (zustand.pop) { popSchliessen(); } else if (zustand.fokusId) { fokusSetzen(null); }
       });
       /* Im Hintergrund aufgebaut: beim Sichtbarwerden neu einpassen. */
       document.addEventListener('visibilitychange', function () {

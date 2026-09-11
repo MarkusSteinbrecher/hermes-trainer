@@ -647,6 +647,24 @@ body[data-route="graph"] .fusszeile { display: none; }
 .grail--rechts .graph-werkzeug:hover,
 .grail--rechts .graph-zoom__knopf:hover { background: var(--flaeche-2); }
 
+/* --- Hinweis im Fokus: unten mittig auf der Fläche ------------------------ */
+.gfokus-hinweis {
+  position: absolute;
+  left: 50%; bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex; align-items: center; gap: .75rem;
+  max-width: calc(100% - 9rem);
+  padding: 6px 8px 6px 14px;
+  background: var(--graph-bg);
+  border: 1px solid var(--rand);
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+}
+.gfokus-hinweis[hidden] { display: none; }
+.gfokus-hinweis__text { overflow: hidden; text-overflow: ellipsis; }
+
 /* --- Leerer Zustand auf der Fläche --------------------------------------- */
 .graph-leer {
   position: absolute;
@@ -767,6 +785,7 @@ body[data-route="graph"] .fusszeile { display: none; }
   .grail { flex-direction: row; left: .5rem; right: .5rem; top: .5rem; overflow-x: auto; scrollbar-width: none; }
   /* Werkzeuge auf dem Telefon als zweite Reihe unten, der Zoom liegend. */
   .grail--rechts { top: auto; bottom: .5rem; left: .5rem; right: .5rem; justify-content: flex-end; }
+  .gfokus-hinweis { bottom: 4rem; max-width: calc(100% - 1rem); white-space: normal; }
   .grail--rechts .graph-zoom { flex-direction: row; }
   .grail--rechts .graph-werkzeug, .grail--rechts .graph-zoom__knopf { width: 40px; height: 40px; }
   .grail__gruppe { flex-direction: row; }

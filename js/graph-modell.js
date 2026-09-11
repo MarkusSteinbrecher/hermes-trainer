@@ -388,8 +388,11 @@
     return {
       spalten: [
         { kategorie: 'rolle', knoten: rollen },
-        { kategorie: 'aufgabe', knoten: aufgaben, gruppeVon: gruppeVon },
-        { kategorie: 'ergebnis', knoten: ergebnisse, gruppeVon: gruppeVonErgebnis }
+        /* Im Fokus ohne Bahnen: die wenigen Elemente rücken zu drei
+           schlichten Spalten zusammen statt über die Modul- oder
+           Phasenbahnen des ganzen Graphen verteilt zu bleiben. */
+        { kategorie: 'aufgabe', knoten: aufgaben, gruppeVon: fokus ? null : gruppeVon },
+        { kategorie: 'ergebnis', knoten: ergebnisse, gruppeVon: fokus ? null : gruppeVonErgebnis }
       ].filter(function (sp) { return kat[sp.kategorie]; }),
       /* Bahnen des Swimlane-Layouts, in der Reihenfolge der Methode. */
       bahnen: gruppenNamen,
@@ -404,11 +407,12 @@
   /* --- Fokus: ein Element mit seiner Nachbarschaft ------------------------- */
 
   /**
-   * Menge der Knoten-IDs, die zum Fokus auf `id` gehören — dieselbe
-   * Nachbarschaft wie im Beziehungsbild des Überblicks: eine Rolle mit ihren
-   * Aufgaben und deren Ergebnissen (und den Ergebnissen, die sie direkt
-   * verantwortet), eine Aufgabe mit ihren Rollen und Ergebnissen, ein
-   * Ergebnis mit den Aufgaben, die es erzeugen, und deren Rollen.
+   * Menge der Knoten-IDs, die zum Fokus auf `id` gehören: das Element und
+   * alles, was mit ihm direkt verbunden ist (eine Rolle mit ihren Aufgaben
+   * und den Ergebnissen, die sie verantwortet; eine Aufgabe mit ihren Rollen
+   * und Ergebnissen; ein Ergebnis mit den Aufgaben, die es erzeugen, und den
+   * Rollen, die es verantworten). Keine zweite Stufe — sonst sieht ein Fokus
+   * auf eine Rolle nach dem ganzen Graphen aus.
    */
   function fokusMenge(id) {
     var m = bauen();
@@ -416,29 +420,9 @@
     if (!k) { return null; }
     var menge = {};
     menge[id] = true;
-    function nachbarnVon(kid, rels) {
-      var raus = [];
-      (m.knoten[kid] ? m.knoten[kid].kanten : []).forEach(function (kante) {
-        if (rels && rels.indexOf(kante.rel) === -1) { return; }
-        raus.push(kante.von === kid ? kante.nach : kante.von);
-      });
-      return raus;
-    }
-    var direkt = nachbarnVon(id, null);
-    direkt.forEach(function (x) { menge[x] = true; });
-    if (k.kategorie === 'rolle') {
-      direkt.forEach(function (x) {
-        if (m.knoten[x].kategorie === 'aufgabe') {
-          nachbarnVon(x, ['erzeugt']).forEach(function (y) { menge[y] = true; });
-        }
-      });
-    } else if (k.kategorie === 'ergebnis') {
-      direkt.forEach(function (x) {
-        if (m.knoten[x].kategorie === 'aufgabe') {
-          nachbarnVon(x, ['verantwortlich', 'beteiligt']).forEach(function (y) { menge[y] = true; });
-        }
-      });
-    }
+    k.kanten.forEach(function (kante) {
+      menge[kante.von === id ? kante.nach : kante.von] = true;
+    });
     return menge;
   }
 
