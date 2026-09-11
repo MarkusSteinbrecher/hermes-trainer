@@ -9,15 +9,17 @@
    ========================================================================== */
 
 :root {
-  --gk-phase: #2a78d6;        --gk-phase-bg: #dce9fa;        --gk-phase-fg: #164a8a;
+  /* Phase in Ocker, Ergebnis im Blau der Originalabbildung (#DCEBFA), damit
+     ein Ergebnis im Graph aussieht wie sein Kasten in der Abbildung darüber. */
+  --gk-phase: #e2a000;        --gk-phase-bg: #fbeecb;        --gk-phase-fg: #7a5300;
   --gk-szenario: #5d3aa8;     --gk-szenario-bg: #e7dff7;     --gk-szenario-fg: #3f2680;
   --gk-modul: #14a58f;        --gk-modul-bg: #d4f0ea;        --gk-modul-fg: #0b5e52;
   --gk-aufgabe: #d9541a;      --gk-aufgabe-bg: #fbe3d6;      --gk-aufgabe-fg: #8a3208;
-  --gk-ergebnis: #e2a000;     --gk-ergebnis-bg: #fbeecb;     --gk-ergebnis-fg: #7a5300;
+  --gk-ergebnis: #2a78d6;     --gk-ergebnis-bg: #dcebfa;     --gk-ergebnis-fg: #164a8a;
   --gk-rolle: #a8266a;        --gk-rolle-bg: #f6dbe8;        --gk-rolle-fg: #6f1546;
   --gk-grundbegriff: #556474; --gk-grundbegriff-bg: #e3e8ee; --gk-grundbegriff-fg: #384652;
   --gk-glyph-auf: #ffffff;
-  --gk-ergebnis-glyph-auf: #3a2a00;
+  --gk-phase-glyph-auf: #3a2a00;
 
   --gkante: #9aa7b4;
   --gkante-stark: #55636f;
@@ -29,8 +31,8 @@
   /* Phasenmodell im Knoten: Grundfläche hell, Phasen des Elements dunkelgrau. */
   --gk-phase-leer: #d9d6d6;
   --gk-phase-aktiv: #5a5656;
-  --gkante-phase: #2a78d6;
-  --gkante-meilenstein: #7a5300;
+  --gkante-phase: #e2a000;
+  --gkante-meilenstein: #164a8a;
   --gkante-grundbegriff: #556474;
 
   /* Die Fläche ist weiss wie die Bühne der Originalabbildung im Überblick;
@@ -150,11 +152,11 @@
   background: var(--gk-grundbegriff);
 }
 .gswatch svg { width: 65%; height: 65%; stroke-width: 2.2; }
-.gswatch--phase { background: var(--gk-phase); }
+.gswatch--phase { background: var(--gk-phase); color: var(--gk-phase-glyph-auf); }
 .gswatch--szenario { background: var(--gk-szenario); }
 .gswatch--modul { background: var(--gk-modul); }
 .gswatch--aufgabe { background: var(--gk-aufgabe); }
-.gswatch--ergebnis { background: var(--gk-ergebnis); color: var(--gk-ergebnis-glyph-auf); }
+.gswatch--ergebnis { background: var(--gk-ergebnis); }
 .gswatch--rolle { background: var(--gk-rolle); }
 .gswatch--grundbegriff { background: var(--gk-grundbegriff); }
 
@@ -309,6 +311,7 @@
 .gk--phase .gk__form { fill: var(--gk-phase-bg); stroke: var(--gk-phase); }
 .gk--phase .gk__label { fill: var(--gk-phase-fg); }
 .gk--phase .gk__glyph { fill: var(--gk-phase); }
+.gk--phase .gk__ikone { stroke: var(--gk-phase-glyph-auf); }
 .gk--szenario .gk__form { fill: var(--gk-szenario-bg); stroke: var(--gk-szenario); }
 .gk--szenario .gk__label { fill: var(--gk-szenario-fg); }
 .gk--szenario .gk__glyph { fill: var(--gk-szenario); }
@@ -321,7 +324,6 @@
 .gk--ergebnis .gk__form { fill: var(--gk-ergebnis-bg); stroke: var(--gk-ergebnis); }
 .gk--ergebnis .gk__label { fill: var(--gk-ergebnis-fg); }
 .gk--ergebnis .gk__glyph { fill: var(--gk-ergebnis); }
-.gk--ergebnis .gk__ikone { stroke: var(--gk-ergebnis-glyph-auf); }
 /* Rollen ohne Kasten: Glyph und Name genügen — so heben sie sich von Aufgaben
    und Ergebnissen deutlicher ab. Die Form bleibt transparent als Trefffläche. */
 .gk--rolle .gk__form { fill: transparent; stroke: none; }

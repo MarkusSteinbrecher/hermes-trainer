@@ -133,7 +133,6 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-schweber .graph-werkzeug:hover { color: var(--ub-tinte); }
 .ub-schweber .graph-werkzeug.ist-aktiv { color: var(--ub-akzent); }
 .ub-schweber .graph-werkzeug[aria-expanded="true"] { color: var(--ub-akzent); background: var(--ub-akzent-hauch); border-radius: 4px; box-shadow: none; }
-.ub-bildunterschrift[hidden] { display: none; }
 
 /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
 
@@ -527,15 +526,6 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   gap: 7px;
 }
 .ub-zeichen { display: block; flex: 0 0 auto; }
-
-.ub-bildunterschrift {
-  flex: 0 0 auto;
-  margin: 0;
-  padding: 8px 16px;
-  border-top: 1px solid var(--ub-linie);
-  font-size: 11.5px;
-  color: var(--ub-leise);
-}
 
 body[data-route="ueberblick"] .datenwarnung {
   flex: 0 0 auto;

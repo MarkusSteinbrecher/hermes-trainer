@@ -38,7 +38,6 @@
   /* Abbildung, Farben und Kastenerkennung liegen in js/abbildung.js — der
      Trainer nutzt dieselbe Grafik und dieselbe Zuordnung zum Lexikon. */
   var BILDUNTERSCHRIFT = HT.abbildung.BILDUNTERSCHRIFT;
-  var QUELLE_ABB = HT.abbildung.QUELLE;
   var QUELLE_ALLGEMEIN = 'https://www.hermes.admin.ch/de/projektmanagement.html';
   var FARBEN = HT.abbildung.FARBEN;
 
@@ -668,7 +667,6 @@
       b.knopf.setAttribute('aria-expanded', String(offen));
       b.knopf.title = offen ? BEREICHE[name].label + ' zuklappen' : BEREICHE[name].label + ' aufklappen';
     });
-    if (refs.bildunterschrift) { refs.bildunterschrift.hidden = !zustand.abbildungOffen; }
   }
 
   function bereichKopf(name, rechts) {
@@ -1419,18 +1417,14 @@
 
     /* Oben: Kopfzeile mit den Chips der Auswahl, die Hülle mit Icons,
        Legende und Steuerung (die Bühne darin scrollt — läge das Schwebende
-       in der Bühne, scrollte es mit), darunter die Bildunterschrift. */
+       in der Bühne, scrollte es mit). */
     refs.suchChips = h('div', { class: 'gumfang ub-auswahlchips', role: 'group', 'aria-label': 'Auswahl' });
     refs.suchChips.hidden = true;
     var kopfAbb = bereichKopf('abbildung', refs.suchChips);
     refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle' },
       [refs.buehne].concat(schweberBauen(), [abbLegendeBauen(), refs.panelHuelle]));
-    refs.bildunterschrift = h('p', { class: 'ub-bildunterschrift' }, [
-      BILDUNTERSCHRIFT + ' — Originalgrafik, ',
-      h('a', { href: QUELLE_ABB, target: '_blank', rel: 'noopener', text: 'hermes.admin.ch ↗' })
-    ]);
     var bereichAbb = h('section', { class: 'ub-bereich ub-bereich--abbildung', 'aria-label': 'Abbildung' },
-      [kopfAbb.kopf, refs.buehneHuelle, refs.bildunterschrift]);
+      [kopfAbb.kopf, refs.buehneHuelle]);
     bereichAbb.knopf = kopfAbb.knopf;
     refs.bereiche.abbildung = bereichAbb;
 
