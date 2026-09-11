@@ -211,7 +211,7 @@
     behaelter.appendChild(h('section', { class: 'abschnitt hinweisbox' }, [
       h('span', { class: 'detail__label', text: 'Empfohlener Lernweg' }),
       h('ol', { class: 'lernweg' }, [
-        h('li', {}, ['Im ', h('a', { href: '#/graph', text: 'Graph' }), ' sehen, wer welche Aufgabe verantwortet und welches Ergebnis dabei entsteht — je Phase oder Modul.']),
+        h('li', {}, ['Im ', h('a', { href: '#/ueberblick?sicht=graph', text: 'Graph' }), ' sehen, wer welche Aufgabe verantwortet und welches Ergebnis dabei entsteht — je Phase oder Modul.']),
         h('li', {}, ['Je Kapitel zuerst die ', h('b', { text: 'Kernaussagen' }), ' und Prüfungsfallen lesen.']),
         h('li', {}, ['Dann die ', h('b', { text: 'Zusammenfassung' }), ' — und bei Bedarf den vollständigen Handbuchtext.']),
         h('li', {}, ['Die Elemente im ', h('a', { href: '#/lexikon', text: 'Lexikon' }), ' nachschlagen (Kurz → Kernpunkte → Handbuch).']),
@@ -492,10 +492,10 @@
   /* Der Graph zeigt Aufgaben, Ergebnisse und Rollen; Phasen, Module und
      Szenarien setzen dort den Umfang statt eigener Knoten. */
   function graphZiel(kategorie) {
-    if (kategorie === 'phase') { return '#/graph?ansicht=phasen'; }
-    if (kategorie === 'modul' || kategorie === 'szenario') { return '#/graph?ansicht=module'; }
-    if (HT.graph && HT.graph.KAT[kategorie]) { return '#/graph?kat=' + encodeURIComponent(kategorie); }
-    return '#/graph';
+    if (kategorie === 'phase') { return '#/ueberblick?sicht=graph&ansicht=phasen'; }
+    if (kategorie === 'modul' || kategorie === 'szenario') { return '#/ueberblick?sicht=graph&ansicht=module'; }
+    if (HT.graph && HT.graph.KAT[kategorie]) { return '#/ueberblick?sicht=graph&kat=' + encodeURIComponent(kategorie); }
+    return '#/ueberblick?sicht=graph';
   }
 
   function render(behaelter, params) {

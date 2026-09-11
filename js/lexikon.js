@@ -36,7 +36,7 @@
     if (e.kategorie === 'grundbegriff') { return null; }
     return h('a', {
       class: 'btn btn--klein btn--graph',
-      href: '#/graph?id=' + encodeURIComponent(e.id),
+      href: '#/ueberblick?sicht=graph&id=' + encodeURIComponent(e.id),
       title: e.kategorie === 'phase' || e.kategorie === 'modul' || e.kategorie === 'szenario'
         ? 'Aufgaben, Ergebnisse und Rollen dazu im Graph zeigen'
         : 'Zusammenhänge dieses Elements im Graph anzeigen'

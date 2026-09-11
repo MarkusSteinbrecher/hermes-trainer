@@ -244,6 +244,21 @@ main:focus { outline: none; }
 .kofi:hover { background: var(--flaeche-2); }
 .kofi img { width: 24px; height: auto; display: block; }
 
+/* Suche in der Kopfzeile: eine kleine Pille «Suchen» rechts neben der
+   Marke, die beim Anklicken breit wird; die Treffer liegen darunter. */
+.kopf-suche { display: flex; align-items: center; padding: 0 4px; }
+.kopf-suche .gleiste-suche { width: 7.25rem; transition: width .2s ease; }
+.kopf-suche .gleiste-suche:focus-within { width: 22rem; }
+.kopf-suche .gleiste-suche__feld { height: 30px; min-height: 30px; font-size: 13px; padding-right: 10px; }
+.kopf-suche .gleiste-suche__treffer { min-width: 20rem; }
+@media (max-width: 699.98px) {
+  .kopf-suche .gleiste-suche { width: 34px; }
+  .kopf-suche .gleiste-suche__feld { padding-left: 32px; }
+  .kopf-suche .gleiste-suche__feld::placeholder { color: transparent; }
+  .kopf-suche .gleiste-suche:focus-within { width: min(22rem, 70vw); }
+  .kopf-suche .gleiste-suche:focus-within .gleiste-suche__feld::placeholder { color: var(--text-leise-hell); }
+}
+
 .nav-top {
   display: none;
   flex: 1 1 auto;

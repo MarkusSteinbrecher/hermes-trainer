@@ -47,7 +47,7 @@
 }
 
 /* Gemeinsame Form der Text-Knöpfe in Leiste, Popover und Detailfeld. */
-.graph-seite .btn--klein,
+.graph-wirt .btn--klein,
 .segment__knopf,
 .chip--auswahl,
 .gauswahl__reset,
@@ -72,13 +72,13 @@
   white-space: nowrap;
   cursor: pointer;
 }
-.graph-seite .btn--klein:hover,
+.graph-wirt .btn--klein:hover,
 .segment__knopf:hover,
 .chip--auswahl:hover,
 .graph-werkzeug:hover,
 .graph-zoom__knopf:hover,
 .graph-schliessen:hover { color: var(--text); background: transparent; }
-.graph-seite .btn--klein.btn--primaer {
+.graph-wirt .btn--klein.btn--primaer {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -88,26 +88,9 @@
   border: 2px solid var(--akzent);
   color: #fff;
 }
-.graph-seite .btn--klein.btn--primaer:hover { background: var(--akzent-hover); border-color: var(--akzent-hover); color: #fff; }
+.graph-wirt .btn--klein.btn--primaer:hover { background: var(--akzent-hover); border-color: var(--akzent-hover); color: #fff; }
 
 /* --- Seite: drei Bereiche -------------------------------------------------- */
-body[data-route="graph"] .view { max-width: none; padding: 0; }
-body[data-route="graph"] .fusszeile { display: none; }
-
-.graph-seite {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto;
-  /* Die Leiste liegt als eigene Zeile über Bühne und Detailfeld — über die
-     ganze Breite der Seite. */
-  grid-template-areas: 'leiste' 'buehne' 'detail';
-  /* Die Kopfzeile der Anwendung steht auch hier; unter ihr und über der
-     Fussnavigation bleibt der Rest für die Leinwand. */
-  min-height: calc(100vh - var(--kopf) - 64px);
-  background: var(--graph-bg);
-}
-
 .segment { display: inline-flex; align-items: center; gap: 2px; }
 .segment__knopf { flex: 0 0 auto; }
 /* Ansicht als Icon: der Name steht in aria-label und Titel. */
@@ -120,7 +103,7 @@ body[data-route="graph"] .fusszeile { display: none; }
 .segment__knopf:focus-visible { outline-offset: -2px; }
 
 .gs-suche { position: relative; }
-.graph-seite .suche__feld--klein {
+.gpop .suche__feld--klein {
   width: 100%;
   min-height: 36px;
   padding: 0 10px;
@@ -131,7 +114,7 @@ body[data-route="graph"] .fusszeile { display: none; }
   font-size: 14px;
   box-shadow: none;
 }
-.graph-seite .suche__feld--klein::placeholder { color: var(--text-leise-hell); }
+.gpop .suche__feld--klein::placeholder { color: var(--text-leise-hell); }
 .gs-treffer {
   margin: 0; padding: 0;
   list-style: none;
@@ -254,40 +237,17 @@ body[data-route="graph"] .fusszeile { display: none; }
 
 /* --- Bühne --------------------------------------------------------------- */
 .graph-buehne {
-  grid-area: buehne;
   position: relative;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   min-width: 0;
   min-height: 0;
 }
-/* Die Leiste des Graphen unter der Kopfzeile: Ansicht, Auswahl, Werkzeuge.
-   Was nicht hineinpasst, liegt in einem Popover. */
-.graph-leiste {
-  grid-area: leiste;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 34rem) minmax(0, 1fr);
-  align-items: center;
-  gap: 4px 12px;
-  padding: 7px 16px;
-  background: var(--bg);
-  border-bottom: 1px solid var(--rand);
-}
-.graph-leiste__links, .graph-leiste__rechts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 2px; min-width: 0; }
-.graph-leiste__mitte { min-width: 0; }
-.graph-werkzeuge { display: flex; align-items: center; gap: 2px; margin-left: auto; flex: 0 0 auto; }
-/* Hairlines zwischen den Gruppen der Leiste: 1 × 16 px, wie im Überblick.
-   Die Auswahl-Chips scrollen in sich, deshalb kein Pseudo-Element, sondern
-   ein Hintergrundstrich am linken Rand. */
-.gauswahl__vorgehen:not([hidden]),
-.graph-werkzeuge {
-  margin-left: 8px;
-  padding-left: 11px;
-  background-image: linear-gradient(var(--rand), var(--rand));
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 1px 16px;
-}
+.graph-buehne[hidden] { display: none; }
+/* Eingebettet im Überblick: oben links steht der Sichtwechsel, die linke
+   Icon-Leiste rückt darunter. */
+.ub-sichten .grail:not(.grail--rechts) { top: 56px; }
 .graph-zoom { margin-left: 8px; padding-left: 9px; }
 .graph-zoom::before { content: ""; width: 1px; height: 16px; margin-right: 2px; background: var(--rand); }
 
@@ -585,7 +545,6 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gumfang[hidden] { display: none; }
 .gfokus--umfang { margin-left: 0; border-color: var(--rand-stark); background: var(--flaeche-2); color: var(--text); }
 .gfokus--umfang:hover { background: var(--flaeche-3, var(--flaeche-2)); border-color: var(--text); }
-.gumfang .gfokus--umfang:first-child { margin-left: 8px; }
 
 /* Fokus-Chip in der Leiste: das Element, auf das der Graph eingeschränkt
    ist; Klick hebt den Fokus auf. */
@@ -759,75 +718,10 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gpop .chips--klein { display: flex; flex-wrap: wrap; gap: 2px; margin: 0; padding: 0; list-style: none; }
 .graph-schliessen { width: 28px; padding: 0; display: grid; place-items: center; font-size: 14px; }
 
-/* --- Detailfeld ---------------------------------------------------------- */
-.graph-detail {
-  grid-area: detail;
-  background: var(--bg);
-  border-left: 1px solid var(--rand);
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-.graph-detail__kopf {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 8px 8px 8px 20px;
-  border-bottom: 1px solid var(--linie-stark);
-}
-.graph-detail__titel { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
-.graph-detail__inhalt { flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 20px 24px; }
-.graph-detail__hinweis {
-  margin: 0 0 12px;
-  padding: 10px 12px;
-  background: var(--akzent-schwach);
-  font-size: 13px;
-  color: var(--text-weich);
-}
-.graph-detail__hinweis .gauswahl__reset { padding: 0; height: auto; }
-.graph-detail__aktionen { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-bottom: 12px; }
-.graph-detail .btn--klein:not(.btn--primaer) { padding: 0; box-shadow: inset 0 -2px 0 var(--rand); }
-.graph-detail .btn--klein:not(.btn--primaer):hover { box-shadow: inset 0 -2px 0 var(--akzent); }
-.graph-detail .eintrag { box-shadow: none; }
-.graph-detail .eintrag__titel { font-size: 20px; }
-
-/* Verbindungen: Gruppen mit Linien statt Kästen, Ziele als Textlinks. */
-.gv { margin-top: 20px; }
-.gv__titel { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); margin: 0 0 4px; }
-.gv__gruppe { padding: 10px 0; border-top: 1px solid var(--rand); }
-.gv__kat { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; margin: 0 0 4px; }
-.gv__rel { margin: 4px 0 8px; }
-.gv__rel.ist-ausgeblendet { opacity: .6; }
-.gv__rel-label { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-leise); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
-.gv__liste { display: flex; flex-wrap: wrap; gap: 4px 14px; list-style: none; margin: 0; padding: 0; }
-.gv__link { display: inline-block; padding: 1px 0; font-size: 13.5px; text-decoration: none; color: var(--text); box-shadow: inset 0 -1px 0 var(--rand); }
-.gv__link:hover { color: var(--akzent-text); box-shadow: inset 0 -2px 0 var(--akzent); }
-
 .btn--graph { gap: 6px; }
 
-/* --- Schmale Viewports: Detail als Blatt von unten ---------------------- */
-@media (max-width: 1099px) {
-  .graph-detail {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 58;
-    max-height: 72vh;
-    border-left: 0;
-    border-top: 1px solid var(--linie-stark);
-    box-shadow: var(--schatten-stark);
-    transform: translateY(104%);
-    transition: transform .22s ease;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  .graph-detail:not(.ist-offen) { visibility: hidden; }
-  .graph-detail.ist-offen { transform: translateY(0); }
-  .graph-flaeche { min-height: 58vh; }
-}
-
 @media (max-width: 699px) {
-  .graph-flaeche { min-height: calc(100vh - var(--kopf) - 64px - 100px); }
-  .graph-detail { max-height: 78vh; bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
+  .graph-buehne { min-height: 60vh; }
   /* Icon-Leiste liegend, damit die Fläche in der Breite frei bleibt. */
   .grail { flex-direction: row; left: .5rem; right: .5rem; top: .5rem; overflow-x: auto; scrollbar-width: none; }
   /* Werkzeuge auf dem Telefon als zweite Reihe unten, der Zoom liegend. */
@@ -841,61 +735,15 @@ body[data-route="graph"] .fusszeile { display: none; }
   .grail__trenner { width: 1px; height: auto; margin: .3rem; }
   .grail__knopf--linie { min-height: 44px; width: 34px; }
   .gpop { left: .5rem; right: .5rem; top: auto; bottom: .5rem; width: auto; max-height: 70%; }
-  /* Schmal: drei kurze Zeilen — oben Ansicht und Werkzeuge, darunter die
-     Auswahl-Chips, zuunterst die Filter. */
-  .graph-leiste { display: flex; flex-wrap: wrap; gap: 4px 2px; padding: 6px 10px; }
-  .graph-leiste__links, .graph-leiste__mitte, .graph-leiste__rechts { display: contents; }
-  .graph-leiste .segment__knopf { padding: 0 6px; }
   /* Zoomstufen weg: auf dem Touchgerät zoomt man mit zwei Fingern.
      «Einpassen» bleibt — dafür gibt es keine Geste. */
   .graph-zoom__knopf--stufe { display: none; }
-  .segment--ansicht { order: 2; }
-  .graph-werkzeuge { order: 3; }
-  .gleiste-suche { order: 4; flex-basis: 100%; }
-  .gumfang { order: 4; flex-basis: 100%; }
-  .gumfang .gfokus--umfang:first-child { margin-left: 0; }
-  .gauswahl__vorgehen { order: 5; margin-left: 0; padding-left: 0; background-image: none; }
-  .gauswahl__reset { order: 7; margin-left: auto; }
-}
-
-/* Ab Tablettbreite füllt die Seite den Schirm: die Kopfzeile oben, darunter
-   die Leinwand mit dem Rest der Höhe. Die Flexkette braucht keine Zahl für
-   die Kopfzeile und hält auch, wenn deren Navigation umbricht. */
-@media (min-width: 700px) {
-  body[data-route="graph"] {
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  body[data-route="graph"] .topbar { position: static; flex: 0 0 auto; }
-  body[data-route="graph"] main { flex: 1 1 auto; min-width: 0; min-height: 0; display: flex; }
-  body[data-route="graph"] .view { flex: 1 1 auto; min-width: 0; min-height: 0; display: flex; }
-
-  .graph-seite { flex: 1 1 auto; min-width: 0; min-height: 0; }
-  .graph-detail { bottom: 0; }
-}
-
-/* Breite Viewports: Bühne und Detail nebeneinander */
-@media (min-width: 1100px) {
-  .graph-seite {
-    grid-template-columns: minmax(0, 1fr) 0;
-    grid-template-rows: auto minmax(0, 1fr);
-    grid-template-areas: 'leiste leiste' 'buehne detail';
-    min-height: 0;
-    transition: grid-template-columns .2s ease;
-  }
-  .graph-seite.detail-offen { grid-template-columns: minmax(0, 1fr) var(--detail-breite); }
-  .graph-buehne { height: 100%; }
-  .graph-flaeche { min-height: 0; }
-  .graph-detail { height: 100%; overflow: hidden; visibility: hidden; }
-  .graph-detail.ist-offen { visibility: visible; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .graph-detail, .graph-seite, .gk__form, .gkante { transition: none; }
+  .gk__form, .gkante { transition: none; }
 }
 
 @media print {
-  .graph-leiste, .grail, .gpop, .graph-detail { display: none !important; }
+  .grail, .gpop, .gfokus-x, .gfokus-hinweis { display: none !important; }
 }

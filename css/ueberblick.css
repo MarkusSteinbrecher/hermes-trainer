@@ -43,13 +43,12 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
     min-height: 0;
     display: grid;
     grid-template-columns: minmax(0, 1fr) 9px var(--ub-inhalt, 420px);
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
   }
-  /* Die Suchleiste liegt als eigene Zeile über Abbildung und Inhaltsseite. */
-  .ub-suchleiste { grid-column: 1 / -1; }
   .ub-werkbank[data-breit="true"] { grid-template-columns: minmax(0, 1fr) 0 0; }
 
   .ub-seite { min-height: 0; }
+  .ub-sichten { flex: 1 1 auto; min-height: 0; }
   .ub-buehne-huelle { flex: 1 1 auto; min-height: 0; }
   .ub-buehne { height: 100%; }
   .ub-inhalt { min-height: 0; }
@@ -65,21 +64,29 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   background: var(--ub-grund);
 }
 
-/* Suchleiste über der Abbildung: die Suchpille mittig, daneben die Chips der
-   Auswahl (Phasen, Module, eingefärbte Rolle). */
-.ub-suchleiste {
+/* Rahmen der beiden Sichten: Abbildung und Graph liegen darin, dazu der
+   Sichtwechsel oben links, die Auswahl-Chips und die Popover des Graphen. */
+.ub-sichten {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 6px 8px;
-  padding: 8px 16px;
-  background: var(--ub-grund);
-  border-bottom: 1px solid var(--ub-linie);
+  flex-direction: column;
+  min-width: 0;
 }
-.ub-suchleiste .gleiste-suche { flex: 0 1 34rem; min-width: 12rem; }
-.ub-suchleiste .gumfang { display: flex; flex-wrap: wrap; gap: 4px; }
-.ub-suchleiste .gumfang[hidden] { display: none; }
+.ub-buehne-huelle[hidden] { display: none; }
+.ub-schweber--sicht { top: 12px; left: 12px; padding: 2px; }
+.ub-ikonknopf[aria-pressed="true"] { color: var(--ub-tinte); box-shadow: inset 0 -3px 0 var(--ub-akzent); }
+.ub-auswahlchips {
+  position: absolute;
+  top: 12px; left: 82px;
+  z-index: 5;
+  max-width: min(50%, 40rem);
+}
+.ub-auswahlchips[hidden] { display: none; }
+/* Der Filterknopf des Graphen neben der Steuerung, im Mass der Icons hier. */
+.ub-schweber .graph-werkzeug { width: 28px; height: 28px; color: var(--ub-leise); }
+.ub-schweber .graph-werkzeug:hover { color: var(--ub-tinte); }
+.ub-schweber .graph-werkzeug.ist-aktiv { color: var(--ub-akzent); }
+.ub-bildunterschrift[hidden] { display: none; }
 
 /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
 
@@ -826,6 +833,9 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   /* Höhe nach der Abbildung, gedeckelt — sonst steht unter der auf die Breite
      gepassten Grafik eine grosse weisse Fläche. */
   .ub-buehne { max-height: 72vh; min-height: 200px; }
+  .ub-sichten .graph-buehne { min-height: 60vh; }
+  .ub-schweber--sicht { top: 8px; left: 8px; }
+  .ub-auswahlchips { top: 8px; left: 78px; max-width: calc(100% - 86px); }
   /* «Inhaltsseite einklappen» gibt es gestapelt nicht — es gibt keine
      Spalte, die sich einklappen liesse. */
   .ub-panel__nurbreit, .ub-panel__block--nurbreit { display: none; }

@@ -7,8 +7,9 @@
   var HT = global.HT = global.HT || {};
   var h = HT.ui.h;
 
+  /* Der Graph ist seit 2026-09-11 eine Sicht des Überblicks (#/graph leitet
+     dorthin weiter). */
   var ROUTEN = [
-    { name: 'graph',      label: 'Graph',      kurz: 'Graph',    pfade: ['M12 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M5 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M19 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M12 8v3', 'M12 11 6.5 16', 'M12 11l5.5 5'] },
     { name: 'ueberblick', label: 'Überblick',  kurz: 'Überblick', pfade: ['M3.5 4.5h17v15h-17Z', 'M3.5 9h17', 'M9 9v10.5', 'M14.5 9v10.5'] },
     { name: 'trainer',    label: 'Trainer',    kurz: 'Trainer',  pfade: ['M4 5h7v6H4Z', 'M13 13h7v6h-7Z', 'M13 5h7v6h-7Z', 'M4 13h7v6H4Z', 'M6 16l1.6 1.6L10 14.8'] },
     { name: 'methode',    label: 'Methode',    kurz: 'Methode',  pfade: ['M4 5h6v6H4Z', 'M14 5h6v6h-6Z', 'M4 15h6v4H4Z', 'M14 15h6v4h-6Z'] },
@@ -19,9 +20,37 @@
     { name: 'ueber',      label: 'Über',       kurz: 'Über',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.8h.01'] }
   ];
 
-  var STARTROUTE = 'graph';
+  var STARTROUTE = 'ueberblick';
   var ALIASE = { uebersicht: 'methode' };   // alte Links bleiben gültig
   var ersterAufruf = true;
+
+  /* --- Suche in der Kopfzeile --------------------------------------------- */
+
+  /* Rechts neben der Marke: eine kleine Pille «Suchen», die beim Anklicken
+     breit wird. Sie findet Ergebnisse, Aufgaben, Rollen, Module, Phasen und
+     Szenarien. Ist der Überblick offen, wendet er den Treffer selbst an
+     (Umfang, Einfärbung, Fokus); sonst führt der Treffer in den Überblick. */
+  function sucheBauen() {
+    var inner = document.querySelector('.topbar__inner');
+    var marke = document.querySelector('.marke');
+    if (!inner || !marke || !HT.ui.suchpille) { return; }
+    var pille = HT.ui.suchpille({
+      platzhalter: 'Suchen',
+      label: 'Element, Modul, Phase oder Szenario suchen',
+      treffer: function (text) {
+        return HT.ui.suchtreffer(text, ['modul', 'phase', 'szenario'], function (t) {
+          return HT.daten.suchen(t, ['ergebnis', 'aufgabe', 'rolle']);
+        });
+      },
+      beiWahl: function (e) {
+        var ub = HT.views.ueberblick;
+        if (routeLesen().name === 'ueberblick' && ub && ub.suchtreffer && ub.suchtreffer(e)) { return; }
+        global.location.hash = '#/ueberblick?id=' + encodeURIComponent(e.id);
+      }
+    });
+    var huelle = h('div', { class: 'kopf-suche' }, [pille]);
+    inner.insertBefore(huelle, marke.nextSibling);
+  }
 
   /* --- Navigation --------------------------------------------------------- */
 
@@ -161,6 +190,7 @@
 
   function starten() {
     navBauen();
+    sucheBauen();
     gleicheRouteAbfangen();
 
     HT.daten.laden().then(function () {

@@ -518,7 +518,7 @@
     behaelter.appendChild(h('p', { class: 'feld-weiter feld-weiter--fuss' }, [
       h('a', {
         class: 'btn btn--klein',
-        href: '#/graph?phase=' + encodeURIComponent(feld.phase.begriff)
+        href: '#/ueberblick?sicht=graph&phase=' + encodeURIComponent(feld.phase.begriff)
           + '&modul=' + encodeURIComponent(feld.namen.join(',')),
         text: 'Dieses Feld als Graph'
       }),

@@ -10,8 +10,8 @@ Die Anwendung ist eine **Beta-Version**. Rückmeldungen und Fehlerberichte sind 
 
 ## Was drin ist
 
-- **Graph** — Rollen, Aufgaben und Ergebnisse und ihre Verbindungen, nach Phasen oder Modulen geordnet. Ein Klick auf ein Element zeigt nur noch, was direkt damit zusammenhängt. Die Suche findet jedes Element, jedes Modul und jede Phase.
-- **Überblick** — das Gesamtbild der Methode (Abbildung 1 des Referenzhandbuchs) als Originalgrafik. Zeigen auf einen Kasten erklärt ihn; im Abfragemodus sind die Kästen verdeckt, und Sie suchen den richtigen Ort.
+- **Überblick** — das Gesamtbild der Methode (Abbildung 1 des Referenzhandbuchs) als Originalgrafik oder, mit einem Klick umgeschaltet, als Graph: Rollen, Aufgaben und Ergebnisse mit ihren Verbindungen, nach Phasen oder Modulen geordnet. Zeigen auf einen Kasten erklärt ihn; ein Klick auf ein Element im Graph zeigt nur noch, was direkt damit zusammenhängt. Ein Filter für Phasen, Szenarien und Module gilt für beide Sichten; im Abfragemodus sind die Kästen der Abbildung verdeckt, und Sie suchen den richtigen Ort.
+- **Suche** — oben in der Kopfzeile, auf jeder Seite: findet jedes Element, jedes Modul, jede Phase und jedes Szenario und zeigt es im Überblick.
 - **Trainer** — Ergebnisse per Drag-and-drop in die leeren Kästen des Gesamtbilds legen, je Phase, je Modul oder das ganze Bild; «Prüfen» zeigt, was stimmt.
 - **Methode** — die Kapitel des Referenzhandbuchs in drei Stufen: Kernaussagen und Prüfungsfallen, Zusammenfassung, vollständiger Text.
 - **Lexikon** — alle Phasen, Szenarien, Module, Aufgaben, Ergebnisse, Rollen und Grundbegriffe, durchsuchbar, mit Link auf die offizielle Seite.
