@@ -2,6 +2,14 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Graph: Suchleiste statt Modul-Chips
+
+**Auftrag:** «Entferne die Module in der Navigationsleiste auf der Graph-Seite und ergänze eine Searchbar. Wenn ich nach einem Element, einem Modul oder einer Phase suche, werden nur diese Elemente und die mit einer Verbindung dazu angezeigt.»
+
+**Umsetzung:** Die Modul-Chips (in der Phasenansicht das Phasenband) sind aus der Leiste weg; an ihrer Stelle steht ein Suchfeld (`gleiste-suche`) mit Trefferliste als Ausklappmenü. Die Suche (`leisteTrefferZeichnen()` in `js/graph.js`) findet Module und Phasen (zuerst, höchstens vier) und Elemente; Namenstreffer haben Vorrang, der Volltext über Definitionen greift nur, wenn kein Name passt — sonst stand «Abschluss» unter «Projektf». Ein Treffer wirkt so (`suchtrefferAnwenden()`): Modul → Umfang nur dieses Modul; Phase → Umfang nur diese Phase, die Vorgehensweise wechselt bei Bedarf (Umsetzung ist agil); Element → Fokus wie beim Klick. Enter nimmt den ersten Treffer, Escape leert das Feld, Klick daneben schliesst die Liste. Gewählte Module und Phasen erscheinen als Chips mit × neben dem Suchfeld (`gumfang`, Stil des Fokus-Chips in Neutralfarben); «Alle Filter» und «Phasen/Module: … ▾» bleiben für Mehrfachauswahl. Schmal (< 700 px) nimmt das Suchfeld die ganze Zeile.
+
+**Geprüft** lokal: «Projektf» → nur Projektführung als Treffer, Enter zeigt 5 Rollen, 11 Aufgaben, 19 Ergebnisse mit Chip; «Konz» → Phase Konzept zuerst, dann Konzept-Elemente; «Auftragg» → Fokus auf die Rolle. Keine Konsolenfehler.
+
 ## 2026-09-11 — Graph: Fokus zeigt nur direkte Verbindungen, kompakt
 
 **Auftrag:** «Wenn ich auf eine Rolle klicke, sollten nur die Elemente angezeigt werden, die mit der Rolle eine Verbindung haben. Diese Elemente sollten auf die Seite zusammengezogen werden. Und ich muss das wieder deaktivieren können.»

@@ -694,7 +694,36 @@
       type: 'button', class: 'btn btn--klein gauswahl__szenario', 'aria-expanded': 'false', 'aria-haspopup': 'dialog',
       on: { click: function () { popOeffnen('szenario'); } }
     }, [h('span', { text: 'Szenario' }), h('span', { 'aria-hidden': 'true', text: ' ▾' })]);
-    refs.chips = h('div', { class: 'chips chips--auswahl', role: 'group', 'aria-label': 'Auswahl' });
+    /* Suchfeld in der Leiste: findet Elemente, Module und Phasen. Ein
+       Element setzt den Fokus, ein Modul oder eine Phase den Umfang — in
+       beiden Fällen bleibt nur, was dazugehört oder damit verbunden ist. */
+    refs.leisteFeld = h('input', {
+      type: 'search', class: 'suche__feld suche__feld--klein gleiste-suche__feld',
+      placeholder: 'Element, Modul oder Phase suchen …',
+      autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': 'Element, Modul oder Phase suchen'
+    });
+    refs.leisteListe = h('ul', { class: 'gs-treffer gleiste-suche__treffer', role: 'listbox', 'aria-label': 'Suchtreffer' });
+    refs.leisteListe.hidden = true;
+    refs.leisteSuche = h('div', { class: 'gleiste-suche' }, [refs.leisteFeld, refs.leisteListe]);
+    var leisteTimer = null;
+    refs.leisteFeld.addEventListener('input', function () {
+      if (leisteTimer) { clearTimeout(leisteTimer); }
+      leisteTimer = setTimeout(leisteTrefferZeichnen, 120);
+    });
+    refs.leisteFeld.addEventListener('focus', function () { if (refs.leisteFeld.value.trim().length >= 2) { leisteTrefferZeichnen(); } });
+    refs.leisteFeld.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') {
+        ev.preventDefault();
+        var erster = refs.leisteListe.querySelector('button');
+        if (erster) { erster.click(); }
+      } else if (ev.key === 'Escape') {
+        ev.stopPropagation();
+        refs.leisteFeld.value = '';
+        refs.leisteListe.hidden = true;
+      }
+    });
+    /* Gewählte Module und Phasen als Chips, jeder mit × zum Entfernen. */
+    refs.umfangChips = h('div', { class: 'gumfang', role: 'group', 'aria-label': 'Gewählte Module und Phasen' });
     refs.knopfQuer = h('button', {
       type: 'button', class: 'btn btn--klein gauswahl__quer', 'aria-expanded': 'false', 'aria-haspopup': 'dialog',
       on: { click: function () { popOeffnen('quer'); } }
@@ -709,7 +738,8 @@
       refs.knopfAlle,
       refs.vorgehenSegment,
       refs.knopfSzenario,
-      refs.chips,
+      refs.leisteSuche,
+      refs.umfangChips,
       refs.knopfQuer,
       refs.fokusChip,
       refs.knopfReset,
@@ -734,20 +764,21 @@
     }
     refs.knopfSzenario.hidden = istPhasen;
 
-    HT.ui.leeren(refs.chips);
-    /* Phasen laufen in der Reihenfolge der Vorgehensweise — als Chevron-Band,
-       das die Abfolge zeigt. Module sind keine Folge und bleiben Chips. */
-    refs.chips.classList.toggle('chips--phasen', istPhasen);
-    var liste = istPhasen
-      ? HT.graph.phasenDerVorgehensweise(zustand.umfang.vorgehen)
-      : HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
-    var feld = istPhasen ? 'phasen' : 'module';
-    var art = istPhasen ? 'phase' : 'modul';
-    liste.forEach(function (name) {
-      refs.chips.appendChild(chip(name, HT.graph.beitrag(art, name, zustand.umfang),
-        zustand.umfang[feld].indexOf(name) !== -1, function () { listeSchalten(feld, name); },
-        istPhasen ? 'chip--phase' : null));
+    HT.ui.leeren(refs.umfangChips);
+    [['phasen', 'phase', 'Phase'], ['module', 'modul', 'Modul']].forEach(function (f) {
+      zustand.umfang[f[0]].forEach(function (name) {
+        refs.umfangChips.appendChild(h('button', {
+          type: 'button', class: 'gfokus gfokus--umfang', title: f[2] + ' ' + name + ' entfernen',
+          'aria-label': f[2] + ' ' + name + ' entfernen',
+          on: { click: function () { listeSchalten(f[0], name); } }
+        }, [
+          h('span', { class: 'gswatch gswatch--' + f[1], 'aria-hidden': 'true' }, HT.ui.katSymbol(f[1], 13)),
+          h('span', { text: name }),
+          h('span', { class: 'gfokus__x', 'aria-hidden': 'true', text: '×' })
+        ]));
+      });
     });
+    refs.umfangChips.hidden = !refs.umfangChips.childNodes.length;
 
     var querAnzahl = istPhasen ? zustand.umfang.module.length : zustand.umfang.phasen.length;
     HT.ui.leeren(refs.knopfQuer);
@@ -871,6 +902,64 @@
       ])));
     });
     refs.sucheListe.hidden = false;
+  }
+
+  /* Leistensuche: Module und Phasen zuerst (es sind wenige), dann Elemente. */
+  function leisteTrefferZeichnen() {
+    var text = refs.leisteFeld.value.trim();
+    HT.ui.leeren(refs.leisteListe);
+    if (text.length < 2) { refs.leisteListe.hidden = true; return; }
+    /* Namenstreffer zuerst — der Volltext (Definition, Details) nur, wenn
+       kein Name passt: sonst steht «Abschluss» unter «Projektf». */
+    var abfrage = HT.daten.normalisieren(text);
+    function imNamen(e) { return HT.daten.normalisieren(e.begriff).indexOf(abfrage) !== -1; }
+    var gruppen = HT.daten.suchen(text, ['modul', 'phase']);
+    var elemente = HT.graph.suchen(text, 40).map(function (k) { return k.eintrag; });
+    var gruppenName = gruppen.filter(imNamen), elementeName = elemente.filter(imNamen);
+    var treffer = (gruppenName.length || elementeName.length)
+      ? gruppenName.slice(0, 4).concat(elementeName.slice(0, 8))
+      : gruppen.slice(0, 3).concat(elemente.slice(0, 7));
+    treffer = treffer.slice(0, 10);
+    if (!treffer.length) {
+      refs.leisteListe.appendChild(h('li', { class: 'gs-treffer__leer', text: 'Keine Treffer' }));
+      refs.leisteListe.hidden = false;
+      return;
+    }
+    treffer.forEach(function (e) {
+      var meta = HT.daten.kategorieMeta ? HT.daten.kategorieMeta(e.kategorie) : null;
+      refs.leisteListe.appendChild(h('li', {}, h('button', {
+        type: 'button', class: 'gs-treffer__knopf', on: { click: function () {
+          refs.leisteFeld.value = '';
+          refs.leisteListe.hidden = true;
+          suchtrefferAnwenden(e);
+        } }
+      }, [
+        h('span', { class: 'gswatch gswatch--' + e.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(e.kategorie, 13)),
+        h('span', { class: 'gs-treffer__text', text: e.begriff }),
+        h('span', { class: 'gs-treffer__art', text: meta ? meta.singular : '' })
+      ])));
+    });
+    refs.leisteListe.hidden = false;
+  }
+
+  /* Ein Modul oder eine Phase wird zum Umfang (allein), ein Element zum Fokus. */
+  function suchtrefferAnwenden(e) {
+    if (e.kategorie === 'modul') {
+      zustand.fokusId = null; umfangVorFokus = null;
+      zustand.umfang.module = [e.begriff];
+      zustand.umfang.phasen = [];
+      geaendert();
+    } else if (e.kategorie === 'phase') {
+      zustand.fokusId = null; umfangVorFokus = null;
+      if (HT.graph.phasenDerVorgehensweise(zustand.umfang.vorgehen).indexOf(e.begriff) === -1) {
+        zustand.umfang.vorgehen = zustand.umfang.vorgehen === 'agil' ? 'klassisch' : 'agil';
+      }
+      zustand.umfang.phasen = [e.begriff];
+      zustand.umfang.module = [];
+      geaendert();
+    } else {
+      fokusSetzen(e.id);
+    }
   }
 
   /** Element auswählen und, falls es ausserhalb des Umfangs liegt, den Umfang erweitern. */
@@ -1275,6 +1364,10 @@
           if (pfad[i] === refs.pop || ausloeser.indexOf(pfad[i]) !== -1) { return; }
         }
         popSchliessen();
+      });
+      document.addEventListener('pointerdown', function (ev) {
+        if (!refs.leisteSuche || refs.leisteListe.hidden) { return; }
+        if (!refs.leisteSuche.contains(ev.target)) { refs.leisteListe.hidden = true; }
       });
       document.addEventListener('keydown', function (ev) {
         if (ev.key !== 'Escape' || !document.body.contains(refs.seite)) { return; }

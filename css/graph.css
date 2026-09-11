@@ -557,6 +557,28 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gaf .gs-schalter__label { overflow-wrap: break-word; }
 .gauswahl__reset { color: var(--akzent-text); padding: 0 4px; }
 
+/* Suchfeld in der Leiste mit Trefferliste als Ausklappmenü darunter. */
+.gleiste-suche { position: relative; flex: 1 1 14rem; min-width: 10rem; max-width: 30rem; margin-left: 8px; }
+.graph-seite .gleiste-suche__feld { min-height: 30px; height: 30px; font-size: 13px; }
+.gleiste-suche__treffer {
+  position: absolute; left: 0; right: 0; top: calc(100% + 2px);
+  z-index: 7;
+  padding: 2px 6px;
+  background: var(--bg);
+  border: 1px solid var(--rand-stark);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+}
+.gleiste-suche__treffer[hidden] { display: none; }
+.gs-treffer__text { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gs-treffer__art { flex: 0 0 auto; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-leise); }
+
+/* Gewählte Module und Phasen als Chips neben dem Suchfeld. */
+.gumfang { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.gumfang[hidden] { display: none; }
+.gfokus--umfang { margin-left: 0; border-color: var(--rand-stark); background: var(--flaeche-2); color: var(--text); }
+.gfokus--umfang:hover { background: var(--flaeche-3, var(--flaeche-2)); border-color: var(--text); }
+.gumfang .gfokus--umfang:first-child { margin-left: 8px; }
+
 /* Fokus-Chip in der Leiste: das Element, auf das der Graph eingeschränkt
    ist; Klick hebt den Fokus auf. */
 .gfokus {
@@ -801,7 +823,9 @@ body[data-route="graph"] .fusszeile { display: none; }
   .graph-zoom__knopf--stufe { display: none; }
   .segment--ansicht { order: 2; }
   .graph-werkzeuge { order: 3; }
-  .chips--auswahl { order: 4; flex-basis: 100%; margin-left: 0; padding-left: 0; background-image: none; }
+  .gleiste-suche { order: 4; flex-basis: 100%; max-width: none; margin-left: 0; }
+  .gumfang { order: 4; flex-basis: 100%; }
+  .gumfang .gfokus--umfang:first-child { margin-left: 0; }
   .gauswahl__vorgehen, .gauswahl__szenario { order: 5; margin-left: 0; padding-left: 0; background-image: none; }
   .gauswahl__alle { order: 6; }
   .gauswahl__quer { order: 6; }
