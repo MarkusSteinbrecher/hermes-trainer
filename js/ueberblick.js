@@ -1,15 +1,15 @@
 /* meinHERMES — Ansicht «Überblick» (Methodenüberblick).
 
-   Eine Werkbank aus zwei Bereichen: links die Bühne mit zwei Sichten —
-   Abbildung 1 des Referenzhandbuchs («Gesamtbild der HERMES-Module und der
-   wesentlichen Ergebnisse entlang der Phasen») unverändert als Originalgrafik
-   von hermes.admin.ch mit einer unsichtbaren Trefferschicht darüber, oder
-   der Graph der Methodenelemente (js/graph.js, über HT.graphSicht
-   eingebettet); ein Icon oben links schaltet um. Rechts eine Inhaltsseite,
-   die zu jedem Element immer dieselben Abschnitte in derselben Reihenfolge
-   zeigt; das Bild der Beziehungen eines Elements ist die Graph-Sicht (beim
-   Wechsel steht das festgehaltene Element im Fokus). Dazwischen eine
-   ziehbare Trennlinie. Der Filter (Phasen, Szenarien,
+   Eine Werkbank aus zwei Spalten: links die Bühne mit zwei Bereichen
+   untereinander — oben Abbildung 1 des Referenzhandbuchs («Gesamtbild der
+   HERMES-Module und der wesentlichen Ergebnisse entlang der Phasen»)
+   unverändert als Originalgrafik von hermes.admin.ch mit einer unsichtbaren
+   Trefferschicht darüber, unten der Graph der Methodenelemente
+   (js/graph.js, über HT.graphSicht eingebettet); jeder Bereich lässt sich
+   über seine Kopfzeile zu- und aufklappen. Rechts eine Inhaltsseite, die zu
+   jedem Element immer dieselben Abschnitte in derselben Reihenfolge zeigt;
+   der Graph zeigt das oben festgehaltene Element mit seinen Beziehungen.
+   Dazwischen eine ziehbare Trennlinie. Der Filter (Phasen, Szenarien,
    Module) ist der des Graphen und gilt für beide Sichten; die Suche steht in
    der Kopfzeile der Anwendung.
 
@@ -83,7 +83,8 @@
 
   var zustand = {
     modus: 'erkunden',        // 'erkunden' | 'abfragen'
-    sicht: 'abbildung',       // 'abbildung' | 'graph' — was die Bühne zeigt
+    abbildungOffen: true,     // oberer Bereich der Bühne (Abbildung) aufgeklappt
+    graphOffen: true,         // unterer Bereich der Bühne (Graph) aufgeklappt
     rolle: '',                // eingefärbte Rolle (Begriff) oder ''
     nurMinimal: false,        // alles ausblassen, was nicht minimal gefordert ist
     zoom: 1,
@@ -120,7 +121,8 @@
       fehler: zustand.fehler,
       besteSerie: zustand.besteSerie,
       legende: zustand.legende,
-      sicht: zustand.sicht
+      abbildungOffen: zustand.abbildungOffen,
+      graphOffen: zustand.graphOffen
     });
   }
 
@@ -130,13 +132,14 @@
     if (g.fehler && typeof g.fehler === 'object') { zustand.fehler = g.fehler; }
     if (typeof g.besteSerie === 'number' && g.besteSerie >= 0) { zustand.besteSerie = g.besteSerie; }
     if (typeof g.legende === 'boolean') { zustand.legende = g.legende; }
-    if (g.sicht === 'graph' || g.sicht === 'abbildung') { zustand.sicht = g.sicht; }
+    if (typeof g.abbildungOffen === 'boolean') { zustand.abbildungOffen = g.abbildungOffen; }
+    if (typeof g.graphOffen === 'boolean') { zustand.graphOffen = g.graphOffen; }
   }
 
   /* Die Adresse trägt Sicht, Umfang und Auswahl — als Deep-Link teilbar. */
   function urlSetzen() {
     if (!graph) { return; }
-    var teile = ['sicht=' + zustand.sicht].concat(graph.urlTeile());
+    var teile = graph.urlTeile();
     var neu = '#/ueberblick?' + teile.join('&');
     if (global.location.hash !== neu) {
       try { global.history.replaceState(null, '', neu); } catch (e) { /* egal */ }
@@ -206,8 +209,33 @@
     zustand.gehalten = !(gleich && zustand.gehalten);
     aktivSetzen(feld.eintraege[0]);
     malen();
-    if (graph) { graph.auswaehlen(zustand.gehalten ? feld.eintraege[0].id : null); }
+    graphFolgen(feld.eintraege[0], zustand.gehalten);
     if (zustand.gehalten) { inhaltInSichtBringen(); }
+  }
+
+  /* Der Graph unten zeigt, was oben festgehalten ist: Aufgabe, Ergebnis,
+     Rolle im Fokus mit den direkten Verbindungen; Modul, Phase, Szenario als
+     Umfang. Wird das Element wieder gelöst, geht auch der Fokus bzw. die
+     Auswahl im Umfang. */
+  function graphFolgen(e, halten) {
+    if (!graph) { return; }
+    var gruppe = e.kategorie === 'modul' || e.kategorie === 'phase' || e.kategorie === 'szenario';
+    if (halten) {
+      if (gruppe || graph.fokusId() !== e.id) { graph.suchtreffer(e); }
+      graph.auswaehlen(e.id);
+      return;
+    }
+    if (gruppe) {
+      var u = graph.umfang();
+      if (e.kategorie === 'modul' && u.module.length === 1 && u.module[0] === e.begriff) { graph.listeSchalten('module', e.begriff); }
+      if (e.kategorie === 'phase' && u.phasen.length === 1 && u.phasen[0] === e.begriff) { graph.listeSchalten('phasen', e.begriff); }
+      graph.auswaehlen(null);
+    } else if (graph.fokusId() === e.id) {
+      graph.fokus(null);
+      graph.auswaehlen(null);
+    } else {
+      graph.auswaehlen(null);
+    }
   }
 
   /* Auf schmalen Schirmen steht die Inhaltsseite unter der Abbildung; ohne
@@ -325,29 +353,18 @@
 
   /* --- Suche (Kopfzeile der Anwendung) --------------------------------------- */
 
-  /* Ein Treffer der Suche: Modul, Phase oder Szenario werden zur Auswahl
-     (allein), der Rest blasst ab bzw. der Graph zeigt nur sie; eine Rolle
-     wird in der Abbildung eingefärbt, im Graphen fokussiert; jedes andere
-     Element wird auf der Inhaltsseite festgehalten, in der Abbildung in
-     Sicht gerollt, im Graphen fokussiert. */
+  /* Ein Treffer der Suche: das Element wird festgehalten (Inhaltsseite),
+     in der Abbildung in Sicht gerollt und im Graphen gezeigt — Modul, Phase,
+     Szenario als Umfang (der Rest der Abbildung blasst ab), alles andere im
+     Fokus; eine Rolle wird zusätzlich in der Abbildung eingefärbt. */
   function suchtrefferAnwenden(e) {
     if (!graph) { return; }
     if (zustand.modus !== 'erkunden') { modusSetzen('erkunden'); }
-    var gruppe = e.kategorie === 'modul' || e.kategorie === 'phase' || e.kategorie === 'szenario';
-    if (gruppe) {
-      graph.suchtreffer(e);
-      zustand.gehalten = true;
-      aktivSetzen(e);
-      graph.auswaehlen(e.id);
-    } else if (zustand.sicht === 'graph') {
-      graph.suchtreffer(e);
-    } else {
-      if (e.kategorie === 'rolle') { zustand.rolle = e.begriff; }
-      zustand.gehalten = true;
-      aktivSetzen(e);
-      graph.auswaehlen(e.id);
-      feldInSichtBringen(e);
-    }
+    if (e.kategorie === 'rolle') { zustand.rolle = e.begriff; }
+    zustand.gehalten = true;
+    aktivSetzen(e);
+    graphFolgen(e, true);
+    feldInSichtBringen(e);
     filterGeaendert();
     if (zustand.panel) { panelZeichnen(); }
     inhaltInSichtBringen();
@@ -386,7 +403,7 @@
     u.module.forEach(function (name) {
       chip('modul', name, 'Modul ' + name + ' entfernen', function () { graph.listeSchalten('module', name); });
     });
-    if (zustand.rolle && zustand.sicht === 'abbildung') {
+    if (zustand.rolle) {
       chip('rolle', zustand.rolle, 'Einfärbung der Rolle aufheben', function () {
         zustand.rolle = '';
         malen();
@@ -471,7 +488,7 @@
     if (nachLadenZeigen) {
       var e = nachLadenZeigen;
       nachLadenZeigen = null;
-      if (zustand.sicht === 'abbildung') { feldInSichtBringen(e); }
+      feldInSichtBringen(e);
     }
   }
 
@@ -614,72 +631,67 @@
     if (refs.abblegende) { refs.abblegende.hidden = !zustand.legende; }
     refs.werkbank.dataset.breit = zustand.nurAbb ? 'true' : 'false';
     refs.werkbank.dataset.modus = zustand.modus;
-    refs.werkbank.dataset.sicht = zustand.sicht;
-    if (refs.knopfSichtAbb) {
-      refs.knopfSichtAbb.setAttribute('aria-pressed', zustand.sicht === 'abbildung' ? 'true' : 'false');
-      refs.knopfSichtGraph.setAttribute('aria-pressed', zustand.sicht === 'graph' ? 'true' : 'false');
-    }
-    if (refs.bildunterschrift) { refs.bildunterschrift.hidden = zustand.sicht !== 'abbildung'; }
+    bereicheAnwenden();
   }
 
-  /* --- Sichtwechsel: Abbildung oder Graph ---------------------------------- */
+  /* --- Zwei Bereiche der Bühne: Abbildung oben, Graph unten ---------------- */
 
-  function sichtSetzen(sicht) {
-    if (zustand.sicht === sicht) { return; }
-    zustand.sicht = sicht;
+  /* Jeder Bereich hat eine Kopfzeile mit Dreieck, die ihn zu- und aufklappt;
+     offen teilen sie sich die Höhe, zugeklappt bleibt nur die Kopfzeile. */
+  var BEREICHE = {
+    abbildung: { feld: 'abbildungOffen', label: 'Abbildung' },
+    graph:     { feld: 'graphOffen',     label: 'Graph' }
+  };
+
+  function bereichSchalten(name) {
+    var feld = BEREICHE[name].feld;
+    zustand[feld] = !zustand[feld];
     zustand.panel = false;
     panelZeichnen();
     if (graph) { graph.popSchliessen(); }
-    sichtAnwenden();
-    /* In der Graph-Sicht steht das festgehaltene Element im Fokus — genau
-       das Bild seiner Beziehungen; Modul, Phase, Szenario werden zum Umfang. */
-    if (sicht === 'graph' && graph && zustand.gehalten && zustand.aktiv && graph.fokusId() !== zustand.aktiv.id) {
-      graph.suchtreffer(zustand.aktiv);
+    bereicheAnwenden();
+    /* Der Graph holt verborgen Versäumtes nach bzw. passt sich der neuen Höhe
+       an; die Abbildung wird neu auf die Breite gepasst. */
+    if (graph) {
+      if (zustand.graphOffen) { graph.sichtbarGeworden(); } else { graph.verborgen(); }
     }
-    inhaltZeichnen();
+    if (zustand.abbildungOffen) { zoomPassendSpaeter(40); }
     speichern();
-    suchChipsZeichnen();
-    urlSetzen();
   }
 
-  function sichtAnwenden() {
-    var istGraph = zustand.sicht === 'graph';
-    refs.buehneHuelle.hidden = istGraph;
-    if (graph) { graph.buehne.hidden = !istGraph; }
-    werkzeugAktualisieren();
-    if (istGraph) {
-      if (graph) { graph.sichtbarGeworden(); }
-    } else {
-      if (graph) { graph.verborgen(); }
-      zoomPassendSpaeter(40);
-    }
+  function bereicheAnwenden() {
+    if (!refs.bereiche) { return; }
+    Object.keys(BEREICHE).forEach(function (name) {
+      var offen = !!zustand[BEREICHE[name].feld];
+      var b = refs.bereiche[name];
+      b.dataset.offen = offen ? 'auf' : 'zu';
+      b.knopf.setAttribute('aria-expanded', String(offen));
+      b.knopf.title = offen ? BEREICHE[name].label + ' zuklappen' : BEREICHE[name].label + ' aufklappen';
+    });
+    if (refs.bildunterschrift) { refs.bildunterschrift.hidden = !zustand.abbildungOffen; }
   }
 
-  /* Der Knopf «Im Graph» der Inhaltsseite: in die Graph-Sicht wechseln und
-     das Element dort zeigen — Aufgabe, Ergebnis, Rolle im Fokus; Modul,
-     Phase, Szenario als Umfang. */
+  function bereichKopf(name, rechts) {
+    var knopf = h('button', {
+      type: 'button', class: 'ub-bereich__knopf', 'aria-expanded': 'true',
+      on: { click: function () { bereichSchalten(name); } }
+    }, [
+      h('span', { class: 'ub-bereich__pfeil', 'aria-hidden': 'true' }),
+      h('span', { text: BEREICHE[name].label })
+    ]);
+    var kopf = h('div', { class: 'ub-bereich__kopf' }, [knopf, rechts || null]);
+    return { kopf: kopf, knopf: knopf };
+  }
+
+  /* Der Knopf «Im Graph» der Inhaltsseite: den Graphen aufklappen, falls
+     zu, und das Element dort zeigen — Aufgabe, Ergebnis, Rolle im Fokus;
+     Modul, Phase, Szenario als Umfang. */
   function imGraphZeigen(e) {
     if (!graph) { return; }
     zustand.gehalten = true;
     aktivSetzen(e);
-    if (zustand.sicht === 'graph') { graph.suchtreffer(e); } else { sichtSetzen('graph'); }
-  }
-
-  var IKONE_ABBILDUNG = ['M3.5 4.5h17v15h-17Z', 'M3.5 9h17', 'M9 9v10.5', 'M14.5 9v10.5'];
-  var IKONE_GRAPH = ['M12 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M5 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M19 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z', 'M12 8v3', 'M12 11 6.5 16', 'M12 11l5.5 5'];
-
-  /* Oben links auf der Bühne: der Sichtwechsel als zwei Icons, daneben die
-     Chips der Auswahl. */
-  function sichtWahlBauen() {
-    refs.knopfSichtAbb = ikonKnopf('Abbildung des Methodenüberblicks', IKONE_ABBILDUNG,
-      function () { sichtSetzen('abbildung'); }, { 'aria-pressed': 'true' });
-    refs.knopfSichtGraph = ikonKnopf('Graph der Methodenelemente', IKONE_GRAPH,
-      function () { sichtSetzen('graph'); }, { 'aria-pressed': 'false' });
-    refs.suchChips = h('div', { class: 'gumfang ub-auswahlchips', role: 'group', 'aria-label': 'Auswahl' });
-    refs.suchChips.hidden = true;
-    refs.sichtWahl = h('div', { class: 'ub-schweber ub-schweber--sicht', role: 'group', 'aria-label': 'Sicht' },
-      [refs.knopfSichtAbb, refs.knopfSichtGraph]);
-    return [refs.sichtWahl, refs.suchChips];
+    if (!zustand.graphOffen) { bereichSchalten('graph'); }
+    graphFolgen(e, true);
   }
 
   function legendeSchalten() {
@@ -726,11 +738,12 @@
     refs.knopfLegende = ikonKnopf('Zeichen der Abbildung', IKONE_LEGENDE, legendeSchalten,
       { 'aria-expanded': 'false', 'aria-controls': 'ub-abblegende' });
 
-    refs.knopfFilter = graph ? graph.filterKnopf() : null;
-    refs.knopfFilter.classList.add('ub-ikonknopf--filter');
+    /* Der Filterknopf kommt vom Graphen, der erst danach eingebettet wird —
+       er wird in abbildungSeiteBauen() nachgereicht. */
+    refs.steuerungKachel = h('div', { class: 'ub-schweber ub-schweber--steuerung' }, [refs.knopfPanel]);
 
     return [
-      h('div', { class: 'ub-schweber ub-schweber--steuerung' }, [refs.knopfFilter, refs.knopfPanel]),
+      refs.steuerungKachel,
       h('div', { class: 'ub-schweber ub-schweber--legende' }, [refs.knopfLegende]),
       h('div', { class: 'ub-schweber ub-schweber--zoom', role: 'group', 'aria-label': 'Zoom' }, [
         werkzeugKnopf('−', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom / ZOOM_SCHRITT); },
@@ -1319,7 +1332,7 @@
     /* «Im Graph»: die Graph-Sicht der Bühne zeigt das Element mit allem,
        was direkt daran hängt — in der Graph-Sicht selbst überflüssig. */
     refs.inhalt.appendChild(h('section', { class: 'ub-verweise' }, [
-      zustand.sicht === 'graph' ? null : h('button', {
+      h('button', {
         type: 'button', class: 'ub-verweis ub-verweis--knopf', text: 'Im Graph',
         on: { click: function () { imGraphZeigen(e); } }
       }),
@@ -1397,22 +1410,46 @@
 
     var warnung = HT.app.datenWarnung();
 
-    /* Die Sichten liegen nebeneinander in einem Rahmen; der Graph wird über
-       HT.graphSicht eingebettet und legt seine Popover in den Rahmen, damit
-       «Alle Filter» auch über der Abbildung aufgeht. */
+    /* Die Bühne hat zwei Bereiche untereinander: oben die Abbildung, unten
+       der Graph (über HT.graphSicht eingebettet). Der Graph legt seine
+       Popover in den gemeinsamen Rahmen, damit «Alle Filter» über beiden
+       Bereichen aufgeht. */
     refs.sichten = h('div', { class: 'ub-sichten graph-wirt' });
-    graph = HT.graphSicht.einbetten(refs.sichten, {
+    refs.bereiche = {};
+
+    /* Oben: Kopfzeile mit den Chips der Auswahl, die Hülle mit Icons,
+       Legende und Steuerung (die Bühne darin scrollt — läge das Schwebende
+       in der Bühne, scrollte es mit), darunter die Bildunterschrift. */
+    refs.suchChips = h('div', { class: 'gumfang ub-auswahlchips', role: 'group', 'aria-label': 'Auswahl' });
+    refs.suchChips.hidden = true;
+    var kopfAbb = bereichKopf('abbildung', refs.suchChips);
+    refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle' },
+      [refs.buehne].concat(schweberBauen(), [abbLegendeBauen(), refs.panelHuelle]));
+    refs.bildunterschrift = h('p', { class: 'ub-bildunterschrift' }, [
+      BILDUNTERSCHRIFT + ' — Originalgrafik, ',
+      h('a', { href: QUELLE_ABB, target: '_blank', rel: 'noopener', text: 'hermes.admin.ch ↗' })
+    ]);
+    var bereichAbb = h('section', { class: 'ub-bereich ub-bereich--abbildung', 'aria-label': 'Abbildung' },
+      [kopfAbb.kopf, refs.buehneHuelle, refs.bildunterschrift]);
+    bereichAbb.knopf = kopfAbb.knopf;
+    refs.bereiche.abbildung = bereichAbb;
+
+    /* Unten: Kopfzeile und der Graph. */
+    var kopfGraph = bereichKopf('graph', null);
+    var bereichGraph = h('section', { class: 'ub-bereich ub-bereich--graph', 'aria-label': 'Graph' }, [kopfGraph.kopf]);
+    bereichGraph.knopf = kopfGraph.knopf;
+    refs.bereiche.graph = bereichGraph;
+    graph = HT.graphSicht.einbetten(bereichGraph, {
       params: graphParams,
       popEltern: refs.sichten,
-      sichtbar: function () { return zustand.sicht === 'graph' && !!refs.werkbank && document.body.contains(refs.werkbank); },
-      freihalten: function () { return [refs.sichtWahl, refs.suchChips]; },
+      sichtbar: function () { return zustand.graphOffen && !!refs.werkbank && document.body.contains(refs.werkbank); },
       beiAuswahl: function (e) {
         /* Der Graph hat ein Element gewählt (oder die Auswahl aufgehoben):
            die Inhaltsseite folgt. */
         zustand.gehalten = !!e;
         aktivSetzen(e);
         malen();
-        if (e && zustand.sicht === 'graph') { inhaltInSichtBringen(); }
+        if (e) { inhaltInSichtBringen(); }
       },
       beiZustand: function () {
         malen();
@@ -1421,27 +1458,18 @@
         urlSetzen();
       }
     });
-    graph.buehne.hidden = zustand.sicht !== 'graph';
 
-    /* Die Hülle trägt die Icons, die Legende und die Steuerung, die Bühne
-       darin scrollt — läge das Schwebende in der Bühne, scrollte es mit. */
-    refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle' },
-      [refs.buehne].concat(schweberBauen(), [abbLegendeBauen(), refs.panelHuelle]));
-    refs.buehneHuelle.hidden = zustand.sicht === 'graph';
-    refs.sichten.insertBefore(refs.buehneHuelle, refs.sichten.firstChild);
-    sichtWahlBauen().forEach(function (el) { refs.sichten.appendChild(el); });
+    refs.knopfFilter = graph.filterKnopf();
+    refs.steuerungKachel.insertBefore(refs.knopfFilter, refs.steuerungKachel.firstChild);
 
-    refs.bildunterschrift = h('p', { class: 'ub-bildunterschrift' }, [
-      BILDUNTERSCHRIFT + ' — Originalgrafik, ',
-      h('a', { href: QUELLE_ABB, target: '_blank', rel: 'noopener', text: 'hermes.admin.ch ↗' })
-    ]);
-    refs.bildunterschrift.hidden = zustand.sicht !== 'abbildung';
+    refs.sichten.appendChild(bereichAbb);
+    refs.sichten.appendChild(bereichGraph);
+    bereicheAnwenden();
 
     return h('section', { class: 'ub-seite' }, [
       warnung || null,
       refs.prompt,
-      refs.sichten,
-      refs.bildunterschrift
+      refs.sichten
     ]);
   }
 
@@ -1529,23 +1557,24 @@
 
     /* Ältere Links auf ein Feld der Abbildung: die Feldseite ist eine eigene
        Route geworden. */
-    if (params.phase && params.modul && !params.sicht) {
+    if (params.phase && params.modul && !params.sicht && !params.ansicht) {
       global.location.hash = '#/feld?phase=' + encodeURIComponent(params.phase)
         + '&modul=' + encodeURIComponent(params.modul);
       return;
     }
 
-    if (params.sicht === 'graph' || params.sicht === 'abbildung') { zustand.sicht = params.sicht; }
+    /* Alte Links: ?sicht=graph — den Graphen jedenfalls aufklappen. */
+    if (params.sicht === 'graph') { zustand.graphOffen = true; }
 
     /* ?id=: ein Element zeigen — Modul, Phase, Szenario als Umfang, alles
-       andere festgehalten auf der Inhaltsseite; in der Graph-Sicht im
-       Fokus. Unbekannte Kennungen führen auf die leere Werkbank. */
+       andere festgehalten auf der Inhaltsseite und im Graphen im Fokus.
+       Unbekannte Kennungen führen auf die leere Werkbank. */
     var gewuenscht = params.id ? HT.daten.eintragMitId(params.id) : null;
     var graphP = {};
     Object.keys(params).forEach(function (k) { if (k !== 'sicht' && k !== 'id') { graphP[k] = params[k]; } });
     if (gewuenscht) {
       var gruppe = gewuenscht.kategorie === 'modul' || gewuenscht.kategorie === 'phase' || gewuenscht.kategorie === 'szenario';
-      if (gruppe || zustand.sicht !== 'graph') { graphP.id = params.id; } else { graphP.fokus = params.id; }
+      if (gruppe) { graphP.id = params.id; } else { graphP.fokus = params.id; }
       zustand.gehalten = true;
       zustand.aktiv = gewuenscht;
       nachLadenZeigen = gruppe ? null : gewuenscht;

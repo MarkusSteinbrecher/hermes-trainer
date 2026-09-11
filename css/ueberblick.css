@@ -49,6 +49,7 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 
   .ub-seite { min-height: 0; }
   .ub-sichten { flex: 1 1 auto; min-height: 0; }
+  .ub-bereich--abbildung .ub-buehne-huelle { flex: 1 1 auto; min-height: 0; }
   .ub-buehne-huelle { flex: 1 1 auto; min-height: 0; }
   .ub-buehne { height: 100%; }
   .ub-inhalt { min-height: 0; }
@@ -64,35 +65,69 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   background: var(--ub-grund);
 }
 
-/* Rahmen der beiden Sichten: Abbildung und Graph liegen darin, dazu der
-   Sichtwechsel oben links, die Auswahl-Chips und die Popover des Graphen. */
+/* Rahmen der Bühne: oben die Abbildung, unten der Graph, jeder Bereich mit
+   Kopfzeile zum Zu- und Aufklappen; offen teilen sie sich die Höhe. Die
+   Popover des Graphen liegen im Rahmen. */
 .ub-sichten {
   position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
-.ub-buehne-huelle[hidden] { display: none; }
-/* Der Sichtwechsel steht rechts oben, links neben Filter und Steuerung
-   (62 px breit) bzw. in der Graph-Sicht links neben der Werkzeugleiste
-   (54 px); die Grafik links bleibt frei. Das «×» des Graphen rückt dafür
-   weiter nach links, die Auswahl-Chips stehen unter den Kacheln. */
-.ub-schweber--sicht { top: 12px; right: 82px; padding: 2px; }
-.ub-werkbank[data-sicht="graph"] .ub-schweber--sicht { right: 72px; }
-.ub-werkbank[data-sicht="graph"] .gfokus-x { right: 152px; }
-/* Aktive Icons farbig statt mit Strich darunter: Akzentfarbe auf zartem Grund. */
-.ub-ikonknopf[aria-pressed="true"] { color: var(--ub-akzent); background: var(--ub-akzent-hauch); border-radius: 4px; }
-.ub-auswahlchips {
-  position: absolute;
-  top: 52px; right: 12px;
-  z-index: 5;
-  justify-content: flex-end;
-  max-width: min(50%, 40rem);
+.ub-bereich {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 0;
 }
-.ub-werkbank[data-sicht="graph"] .ub-auswahlchips { top: 66px; right: 72px; }
+.ub-bereich[data-offen="zu"] { flex: 0 0 auto; }
+.ub-bereich[data-offen="zu"] > :not(.ub-bereich__kopf) { display: none; }
+.ub-bereich--graph { border-top: 1px solid var(--ub-linie); }
+.ub-bereich__kopf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 0 12px 0 0;
+  background: var(--ub-flaeche);
+  border-bottom: 1px solid var(--ub-linie);
+}
+.ub-bereich[data-offen="zu"] .ub-bereich__kopf { border-bottom: 0; }
+.ub-bereich__knopf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ub-leise);
+}
+.ub-bereich__knopf:hover { color: var(--ub-tinte); }
+/* Dreieck statt Zeichensatz-Pfeil: dreht sich beim Zuklappen. */
+.ub-bereich__pfeil {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid currentColor;
+  transition: transform .12s ease;
+}
+.ub-bereich[data-offen="zu"] .ub-bereich__pfeil { transform: rotate(-90deg); }
+/* Die Chips der Auswahl stehen rechts in der Kopfzeile der Abbildung. */
+.ub-auswahlchips { margin-left: auto; justify-content: flex-end; min-width: 0; }
+.ub-auswahlchips[hidden] { display: none; }
+.ub-ikonknopf[aria-pressed="true"] { color: var(--ub-akzent); background: var(--ub-akzent-hauch); border-radius: 4px; }
 /* Leicht abgerundete Kacheln für die schwebenden Icons. */
 .ub-schweber, .ub-sichten .grail, .ub-sichten .gfokus-x { border-radius: 6px; }
-.ub-auswahlchips[hidden] { display: none; }
 /* Der Filterknopf des Graphen neben der Steuerung, im Mass der Icons hier. */
 .ub-schweber .graph-werkzeug { width: 28px; height: 28px; color: var(--ub-leise); }
 .ub-schweber .graph-werkzeug:hover { color: var(--ub-tinte); }
@@ -750,12 +785,8 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   /* Höhe nach der Abbildung, gedeckelt — sonst steht unter der auf die Breite
      gepassten Grafik eine grosse weisse Fläche. */
   .ub-buehne { max-height: 72vh; min-height: 200px; }
-  .ub-sichten .graph-buehne { min-height: 60vh; }
-  .ub-schweber--sicht { top: 8px; right: 8px; }
-  .ub-werkbank[data-sicht="graph"] .ub-schweber--sicht { right: 8px; }
-  .ub-werkbank[data-sicht="graph"] .ub-sichten .grail:not(.grail--rechts) { right: 76px; }
-  .ub-auswahlchips { top: 46px; right: 8px; max-width: calc(100% - 16px); }
-  .ub-werkbank[data-sicht="graph"] .ub-auswahlchips { top: 46px; right: 8px; }
+  .ub-bereich--graph[data-offen="auf"] .graph-buehne { min-height: 60vh; }
+  .ub-bereich__knopf { padding-left: 12px; }
   /* «Inhaltsseite einklappen» gibt es gestapelt nicht — es gibt keine
      Spalte, die sich einklappen liesse. */
   .ub-panel__nurbreit, .ub-panel__block--nurbreit { display: none; }
