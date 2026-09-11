@@ -650,32 +650,15 @@
     /* Suchfeld in der Leiste: findet Elemente, Module und Phasen. Ein
        Element setzt den Fokus, ein Modul oder eine Phase den Umfang — in
        beiden Fällen bleibt nur, was dazugehört oder damit verbunden ist. */
-    refs.leisteFeld = h('input', {
-      type: 'search', class: 'suche__feld suche__feld--klein gleiste-suche__feld',
-      placeholder: 'Element, Modul oder Phase suchen …',
-      autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': 'Element, Modul oder Phase suchen'
-    });
-    refs.leisteListe = h('ul', { class: 'gs-treffer gleiste-suche__treffer', role: 'listbox', 'aria-label': 'Suchtreffer' });
-    refs.leisteListe.hidden = true;
-    var lupe = h('span', { class: 'gleiste-suche__ikone', 'aria-hidden': 'true' },
-      HT.ui.symbol(['M10.6 3.6a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z', 'M15.6 15.6 20.4 20.4'], 16));
-    refs.leisteSuche = h('div', { class: 'gleiste-suche' }, [lupe, refs.leisteFeld, refs.leisteListe]);
-    var leisteTimer = null;
-    refs.leisteFeld.addEventListener('input', function () {
-      if (leisteTimer) { clearTimeout(leisteTimer); }
-      leisteTimer = setTimeout(leisteTrefferZeichnen, 120);
-    });
-    refs.leisteFeld.addEventListener('focus', function () { if (refs.leisteFeld.value.trim().length >= 2) { leisteTrefferZeichnen(); } });
-    refs.leisteFeld.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Enter') {
-        ev.preventDefault();
-        var erster = refs.leisteListe.querySelector('button');
-        if (erster) { erster.click(); }
-      } else if (ev.key === 'Escape') {
-        ev.stopPropagation();
-        refs.leisteFeld.value = '';
-        refs.leisteListe.hidden = true;
-      }
+    refs.leisteSuche = HT.ui.suchpille({
+      platzhalter: 'Element, Modul oder Phase suchen …',
+      label: 'Element, Modul oder Phase suchen',
+      treffer: function (text) {
+        return HT.ui.suchtreffer(text, ['modul', 'phase'], function (t) {
+          return HT.graph.suchen(t, 40).map(function (k) { return k.eintrag; });
+        });
+      },
+      beiWahl: suchtrefferAnwenden
     });
     /* Gewählte Module und Phasen als Chips, jeder mit × zum Entfernen. */
     refs.umfangChips = h('div', { class: 'gumfang', role: 'group', 'aria-label': 'Gewählte Module und Phasen' });
@@ -841,44 +824,6 @@
       ])));
     });
     refs.sucheListe.hidden = false;
-  }
-
-  /* Leistensuche: Module und Phasen zuerst (es sind wenige), dann Elemente. */
-  function leisteTrefferZeichnen() {
-    var text = refs.leisteFeld.value.trim();
-    HT.ui.leeren(refs.leisteListe);
-    if (text.length < 2) { refs.leisteListe.hidden = true; return; }
-    /* Namenstreffer zuerst — der Volltext (Definition, Details) nur, wenn
-       kein Name passt: sonst steht «Abschluss» unter «Projektf». */
-    var abfrage = HT.daten.normalisieren(text);
-    function imNamen(e) { return HT.daten.normalisieren(e.begriff).indexOf(abfrage) !== -1; }
-    var gruppen = HT.daten.suchen(text, ['modul', 'phase']);
-    var elemente = HT.graph.suchen(text, 40).map(function (k) { return k.eintrag; });
-    var gruppenName = gruppen.filter(imNamen), elementeName = elemente.filter(imNamen);
-    var treffer = (gruppenName.length || elementeName.length)
-      ? gruppenName.slice(0, 4).concat(elementeName.slice(0, 8))
-      : gruppen.slice(0, 3).concat(elemente.slice(0, 7));
-    treffer = treffer.slice(0, 10);
-    if (!treffer.length) {
-      refs.leisteListe.appendChild(h('li', { class: 'gs-treffer__leer', text: 'Keine Treffer' }));
-      refs.leisteListe.hidden = false;
-      return;
-    }
-    treffer.forEach(function (e) {
-      var meta = HT.daten.kategorieMeta ? HT.daten.kategorieMeta(e.kategorie) : null;
-      refs.leisteListe.appendChild(h('li', {}, h('button', {
-        type: 'button', class: 'gs-treffer__knopf', on: { click: function () {
-          refs.leisteFeld.value = '';
-          refs.leisteListe.hidden = true;
-          suchtrefferAnwenden(e);
-        } }
-      }, [
-        h('span', { class: 'gswatch gswatch--' + e.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(e.kategorie, 13)),
-        h('span', { class: 'gs-treffer__text', text: e.begriff }),
-        h('span', { class: 'gs-treffer__art', text: meta ? meta.singular : '' })
-      ])));
-    });
-    refs.leisteListe.hidden = false;
   }
 
   /* Ein Modul oder eine Phase wird zum Umfang (allein), ein Element zum Fokus. */
@@ -1303,10 +1248,6 @@
           if (pfad[i] === refs.pop || ausloeser.indexOf(pfad[i]) !== -1) { return; }
         }
         popSchliessen();
-      });
-      document.addEventListener('pointerdown', function (ev) {
-        if (!refs.leisteSuche || refs.leisteListe.hidden) { return; }
-        if (!refs.leisteSuche.contains(ev.target)) { refs.leisteListe.hidden = true; }
       });
       document.addEventListener('keydown', function (ev) {
         if (ev.key !== 'Escape' || !document.body.contains(refs.seite)) { return; }

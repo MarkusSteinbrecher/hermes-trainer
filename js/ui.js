@@ -556,8 +556,98 @@
   }
 
 
+  /* --- Suchpille ----------------------------------------------------------- */
+
+  /* Rundes Suchfeld mit Lupe und Trefferliste als Ausklappmenü — in der
+     Leiste des Graphen und über der Abbildung des Überblicks. opt.treffer(text)
+     liefert die Einträge, opt.beiWahl(eintrag) bekommt den gewählten. Enter
+     nimmt den ersten Treffer, Escape leert das Feld, ein Klick daneben
+     schliesst die Liste. */
+  function suchpille(opt) {
+    var feld = h('input', {
+      type: 'search', class: 'suche__feld gleiste-suche__feld',
+      placeholder: opt.platzhalter || 'Suchen …',
+      autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false',
+      'aria-label': opt.label || opt.platzhalter || 'Suchen'
+    });
+    var liste = h('ul', { class: 'gs-treffer gleiste-suche__treffer', role: 'listbox', 'aria-label': 'Suchtreffer' });
+    liste.hidden = true;
+    var lupe = h('span', { class: 'gleiste-suche__ikone', 'aria-hidden': 'true' },
+      symbol(['M10.6 3.6a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z', 'M15.6 15.6 20.4 20.4'], 16));
+    var el = h('div', { class: 'gleiste-suche' }, [lupe, feld, liste]);
+    var timer = null;
+
+    function zeichnen() {
+      var text = feld.value.trim();
+      leeren(liste);
+      if (text.length < 2) { liste.hidden = true; return; }
+      var treffer = opt.treffer(text) || [];
+      if (!treffer.length) {
+        liste.appendChild(h('li', { class: 'gs-treffer__leer', text: 'Keine Treffer' }));
+        liste.hidden = false;
+        return;
+      }
+      treffer.forEach(function (e) {
+        var meta = HT.daten && HT.daten.kategorieMeta ? HT.daten.kategorieMeta(e.kategorie) : null;
+        liste.appendChild(h('li', {}, h('button', {
+          type: 'button', class: 'gs-treffer__knopf', on: { click: function () {
+            feld.value = '';
+            liste.hidden = true;
+            opt.beiWahl(e);
+          } }
+        }, [
+          h('span', { class: 'gswatch gswatch--' + e.kategorie, 'aria-hidden': 'true' }, katSymbol(e.kategorie, 13)),
+          h('span', { class: 'gs-treffer__text', text: e.begriff }),
+          h('span', { class: 'gs-treffer__art', text: meta ? meta.singular : '' })
+        ])));
+      });
+      liste.hidden = false;
+    }
+
+    feld.addEventListener('input', function () {
+      if (timer) { clearTimeout(timer); }
+      timer = setTimeout(zeichnen, 120);
+    });
+    feld.addEventListener('focus', function () { if (feld.value.trim().length >= 2) { zeichnen(); } });
+    feld.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') {
+        ev.preventDefault();
+        var erster = liste.querySelector('button');
+        if (erster) { erster.click(); }
+      } else if (ev.key === 'Escape') {
+        ev.stopPropagation();
+        feld.value = '';
+        liste.hidden = true;
+      }
+    });
+    function daneben(ev) {
+      if (!document.body.contains(el)) { document.removeEventListener('pointerdown', daneben); return; }
+      if (!liste.hidden && !el.contains(ev.target)) { liste.hidden = true; }
+    }
+    document.addEventListener('pointerdown', daneben);
+    return el;
+  }
+
+  /* Treffer für die Suchpille: Gruppen (Module, Phasen) zuerst, dann
+     Elemente. Namenstreffer haben Vorrang — der Volltext über Definitionen
+     greift nur, wenn kein Name passt, sonst stünde «Abschluss» unter
+     «Projektf». elementeSuchen(text) liefert die Elementeinträge. */
+  function suchtreffer(text, gruppenKategorien, elementeSuchen) {
+    var abfrage = HT.daten.normalisieren(text);
+    function imNamen(e) { return HT.daten.normalisieren(e.begriff).indexOf(abfrage) !== -1; }
+    var gruppen = gruppenKategorien && gruppenKategorien.length ? HT.daten.suchen(text, gruppenKategorien) : [];
+    var elemente = elementeSuchen(text) || [];
+    var gruppenName = gruppen.filter(imNamen), elementeName = elemente.filter(imNamen);
+    var treffer = (gruppenName.length || elementeName.length)
+      ? gruppenName.slice(0, 4).concat(elementeName.slice(0, 8))
+      : gruppen.slice(0, 3).concat(elemente.slice(0, 7));
+    return treffer.slice(0, 10);
+  }
+
   HT.ui = {
     h: h,
+    suchpille: suchpille,
+    suchtreffer: suchtreffer,
     symbol: symbol,
     katSymbol: katSymbol,
     katPfade: katPfade,

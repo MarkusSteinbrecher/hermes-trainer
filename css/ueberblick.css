@@ -62,6 +62,22 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   background: var(--ub-grund);
 }
 
+/* Suchleiste über der Abbildung: die Suchpille mittig, daneben die Chips der
+   Auswahl (Phasen, Module, eingefärbte Rolle). */
+.ub-suchleiste {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 8px;
+  padding: 8px 16px;
+  background: var(--ub-grund);
+  border-bottom: 1px solid var(--ub-linie);
+}
+.ub-suchleiste .gleiste-suche { flex: 0 1 34rem; min-width: 12rem; }
+.ub-suchleiste .gumfang { display: flex; flex-wrap: wrap; gap: 4px; }
+.ub-suchleiste .gumfang[hidden] { display: none; }
+
 /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
 
 /* Auf der weissen Bühne liegen nur Icons: Steuerung oben rechts, Legende

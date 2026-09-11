@@ -556,8 +556,12 @@ body[data-route="graph"] .fusszeile { display: none; }
   display: flex; color: var(--text-leise); pointer-events: none;
 }
 .gleiste-suche__ikone svg { width: 16px; height: 16px; }
-.graph-seite .gleiste-suche__feld {
+.gleiste-suche__feld {
+  box-sizing: border-box;
+  width: 100%;
   min-height: 34px; height: 34px;
+  border: 1px solid var(--rand);
+  color: var(--text);
   padding: 0 14px 0 36px;
   border-radius: 999px;
   border-color: var(--rand);
@@ -565,8 +569,8 @@ body[data-route="graph"] .fusszeile { display: none; }
   font-size: 14px;
   transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
-.graph-seite .gleiste-suche__feld:hover { border-color: var(--rand-stark); }
-.graph-seite .gleiste-suche__feld:focus {
+.gleiste-suche__feld:hover { border-color: var(--rand-stark); }
+.gleiste-suche__feld:focus {
   outline: none;
   background: var(--bg);
   border-color: var(--akzent);

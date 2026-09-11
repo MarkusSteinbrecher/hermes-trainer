@@ -316,6 +316,91 @@
   function filterGeaendert() {
     malen();
     werkzeugAktualisieren();
+    suchChipsZeichnen();
+  }
+
+  /* --- Suche über der Abbildung -------------------------------------------- */
+
+  /* Ein Treffer der Suche: Modul oder Phase werden zur Auswahl (allein), der
+     Rest blasst ab; eine Rolle wird eingefärbt; jedes Element wird auf der
+     Inhaltsseite festgehalten und sein Kasten in Sicht gebracht. */
+  function suchtrefferAnwenden(e) {
+    if (zustand.modus !== 'erkunden') { modusSetzen('erkunden'); }
+    if (e.kategorie === 'modul') { zustand.module.splice(0, zustand.module.length, e.begriff); zustand.phasen.splice(0); }
+    else if (e.kategorie === 'phase') { zustand.phasen.splice(0, zustand.phasen.length, e.begriff); zustand.module.splice(0); }
+    else if (e.kategorie === 'rolle') { zustand.rolle = e.begriff; }
+    zustand.gehalten = true;
+    aktivSetzen(e);
+    filterGeaendert();
+    if (zustand.panel) { panelZeichnen(); }
+    feldInSichtBringen(e);
+    inhaltInSichtBringen();
+  }
+
+  /* Den Kasten des Eintrags in die Mitte der Bühne rollen. */
+  function feldInSichtBringen(e) {
+    if (!refs.buehne || !refs.felder) { return; }
+    var feld = null;
+    refs.felder.forEach(function (f) { if (!feld && istGleich(f, e)) { feld = f; } });
+    if (!feld) { return; }
+    var r = feld.flaeche.getBoundingClientRect(), b = refs.buehne.getBoundingClientRect();
+    refs.buehne.scrollLeft += (r.left + r.width / 2) - (b.left + b.width / 2);
+    refs.buehne.scrollTop += (r.top + r.height / 2) - (b.top + b.height / 2);
+  }
+
+  /* Chips neben der Suche: gewählte Phasen und Module, die eingefärbte Rolle. */
+  function suchChipsZeichnen() {
+    if (!refs.suchChips) { return; }
+    HT.ui.leeren(refs.suchChips);
+    function chip(kat, name, titel, beiKlick) {
+      refs.suchChips.appendChild(h('button', {
+        type: 'button', class: 'gfokus gfokus--umfang', title: titel, 'aria-label': titel,
+        on: { click: beiKlick }
+      }, [
+        h('span', { class: 'gswatch gswatch--' + kat, 'aria-hidden': 'true' }, HT.ui.katSymbol(kat, 13)),
+        h('span', { text: name }),
+        h('span', { class: 'gfokus__x', 'aria-hidden': 'true', text: '×' })
+      ]));
+    }
+    zustand.phasen.forEach(function (name) {
+      chip('phase', name, 'Phase ' + name + ' entfernen', function () {
+        zustand.phasen.splice(zustand.phasen.indexOf(name), 1);
+        filterGeaendert();
+        if (zustand.panel) { panelZeichnen(); }
+      });
+    });
+    zustand.module.forEach(function (name) {
+      chip('modul', name, 'Modul ' + name + ' entfernen', function () {
+        zustand.module.splice(zustand.module.indexOf(name), 1);
+        filterGeaendert();
+        if (zustand.panel) { panelZeichnen(); }
+      });
+    });
+    if (zustand.rolle) {
+      chip('rolle', zustand.rolle, 'Einfärbung der Rolle aufheben', function () {
+        zustand.rolle = '';
+        malen();
+        suchChipsZeichnen();
+        if (zustand.panel) { panelZeichnen(); }
+      });
+    }
+    refs.suchChips.hidden = !refs.suchChips.childNodes.length;
+  }
+
+  function suchleisteBauen() {
+    refs.suchChips = h('div', { class: 'gumfang', role: 'group', 'aria-label': 'Auswahl' });
+    refs.suchChips.hidden = true;
+    var suche = HT.ui.suchpille({
+      platzhalter: 'Ergebnis, Modul, Phase oder Rolle suchen …',
+      label: 'Ergebnis, Modul, Phase oder Rolle suchen',
+      treffer: function (text) {
+        return HT.ui.suchtreffer(text, ['modul', 'phase'], function (t) {
+          return HT.daten.suchen(t, ['ergebnis', 'aufgabe', 'rolle']);
+        });
+      },
+      beiWahl: suchtrefferAnwenden
+    });
+    return h('div', { class: 'ub-suchleiste' }, [suche, refs.suchChips]);
   }
 
   function istGleich(feld, eintrag) {
@@ -748,6 +833,7 @@
       zustand.rolle = auswahl.value;
       malen();
       zahlSchreiben();
+      suchChipsZeichnen();
     });
 
     var haken = h('input', { type: 'checkbox', class: 'ub-haken' });
@@ -1715,6 +1801,7 @@
 
     return h('section', { class: 'ub-seite' }, [
       warnung || null,
+      suchleisteBauen(),
       refs.prompt,
       refs.buehneHuelle,
       h('p', { class: 'ub-bildunterschrift' }, [
@@ -1886,6 +1973,7 @@
     inhaltZeichnen();
     panelZeichnen();
     promptZeichnen();
+    suchChipsZeichnen();
     groesseAnmelden();
 
     /* Escape schliesst die Steuerung auch dann, wenn der Fokus ausserhalb liegt. */

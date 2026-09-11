@@ -2,6 +2,14 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Überblick: Suchleiste über der Abbildung, Suchpille als gemeinsame Komponente
+
+**Auftrag:** «Ergänze die Searchbar auch auf der Übersichtsseite.»
+
+**Umsetzung:** Die Suchpille ist jetzt eine Komponente in `js/ui.js` (`HT.ui.suchpille({platzhalter, treffer, beiWahl})` und `HT.ui.suchtreffer(text, gruppenKategorien, elementeSuchen)` mit dem Vorrang der Namenstreffer); `js/graph.js` nutzt sie statt eigener Feld- und Listenlogik, die CSS-Regeln der Pille in `css/graph.css` sind nicht mehr an `.graph-seite` gebunden. Im Überblick steht sie zentriert in einer Leiste über der Abbildung (`ub-suchleiste`, `suchleisteBauen()` in `js/ueberblick.js`) und findet Ergebnisse, Aufgaben, Rollen, Module und Phasen. Ein Treffer (`suchtrefferAnwenden()`): Modul oder Phase werden zur alleinigen Auswahl (der Rest blasst ab wie über die Steuerung), eine Rolle wird eingefärbt, jedes Element wird auf der Inhaltsseite festgehalten und sein Kasten in die Mitte der Bühne gerollt (`feldInSichtBringen()`); im Abfragemodus wechselt die Seite zuerst nach Erkunden. Neben der Pille stehen Chips mit × für gewählte Phasen, Module und die eingefärbte Rolle (`suchChipsZeichnen()`, auch nach Änderungen in der Steuerung aktuell). 
+
+**Geprüft** lokal: Überblick «Testkonz» → Testkonzept gehalten, alle drei Kästen markiert, Inhaltsseite gefüllt; «Organisa» → Modul Organisation mit Chip, Rest abgeblasst; Graph «Beschaff» → Modul Beschaffung als Umfang. Keine Konsolenfehler.
+
 ## 2026-09-11 — Graph: Suchleiste zentriert
 
 **Auftrag:** «Zentriere die Searchbar auf der Graph-Seite.»
