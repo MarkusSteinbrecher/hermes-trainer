@@ -450,8 +450,8 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 
 .ub-abb { display: block; height: auto; max-width: none; }
 /* Rad zoomt, Ziehen verschiebt — während des Zugs greift die Hand. */
-.ub-buehne.ist-am-ziehen, .ub-graph.ist-am-ziehen { cursor: grabbing; }
-.ub-buehne.ist-am-ziehen *, .ub-graph.ist-am-ziehen * { cursor: grabbing; }
+.ub-buehne.ist-am-ziehen { cursor: grabbing; }
+.ub-buehne.ist-am-ziehen * { cursor: grabbing; }
 
 /* Legende der Zeichen, aus denen die Originalgrafik besteht — eine kleine
    Karte über dem Info-Icon unten links, per Icon ein- und ausblendbar. */
@@ -545,92 +545,12 @@ body[data-route="ueberblick"] .datenwarnung {
 }
 .ub-inhalt__text { display: flex; flex-direction: column; }
 
-/* Ab 700 px ist die Inhaltsseite zweigeteilt: oben der Text, unten der Graph.
-   Beide scrollen für sich, die Höhe der unteren Zeile steuert `--ub-graph`.
-   Die Regel steht bewusst hier und nicht im Block weiter oben — dort käme sie
-   vor `display:flex` und würde davon überschrieben. */
+/* Ab 700 px scrollt die Inhaltsseite in sich. Die Regel steht bewusst hier
+   und nicht im Block weiter oben — dort käme sie vor `display:flex` und
+   würde davon überschrieben. */
 @media (min-width: 700px) {
-  .ub-inhalt {
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) 9px auto minmax(0, var(--ub-graph, 260px));
-  }
-  .ub-inhalt[data-graph="zu"] { grid-template-rows: minmax(0, 1fr) 0 auto 0; }
-  .ub-inhalt__text { min-height: 0; overflow: auto; }
-  .ub-graph { min-height: 0; overflow: auto; }
+  .ub-inhalt__text { flex: 1 1 auto; min-height: 0; overflow: auto; }
 }
-
-/* --- Unterer Bereich: Graph ---------------------------------------------- */
-
-/* Ziehstreifen zwischen Text und Graph — waagrechtes Gegenstück zu
-   .ub-trenner, dieselbe Bedienung (ziehen, Pfeiltasten, Doppelklick). */
-.ub-hgriff {
-  display: flex;
-  align-items: center;
-  justify-content: stretch;
-  cursor: row-resize;
-  background: transparent;
-}
-.ub-hgriff:hover { background: var(--ub-akzent-hauch-2); }
-.ub-hgriff__strich { width: 100%; height: 1px; background: var(--ub-linie); }
-/* Zugeklappt bleibt der Griff ein Rasterelement — nur unsichtbar. Mit
-   `display:none` fiele er aus der Platzierung, die Kopfzeile rutschte in die
-   0-px-Zeile des Griffs und wäre nicht mehr zu sehen: kein Knopf zum Aufklappen. */
-.ub-inhalt[data-graph="zu"] .ub-hgriff { visibility: hidden; }
-
-.ub-graphkopf {
-  display: flex;
-  align-items: stretch;
-  border-top: 1px solid var(--ub-linie);
-  background: var(--ub-flaeche);
-}
-/* Rechts das Expand-Icon: öffnet den Graph im Fokus auf das Element. */
-.ub-graphkopf__link {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  flex: 0 0 auto;
-  color: var(--ub-leise);
-}
-.ub-graphkopf__link:hover { color: var(--ub-akzent); }
-.ub-graphkopf__link:focus-visible { outline: 2px solid var(--ub-akzent); outline-offset: -2px; }
-.ub-inhalt[data-graph="auf"] .ub-graphkopf { border-top: 0; }
-.ub-graphkopf__knopf {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1 1 auto;
-  min-width: 0;
-  padding: 9px 32px;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ub-leise);
-  text-align: left;
-}
-.ub-graphkopf__knopf:hover { color: var(--ub-tinte); }
-/* Dreieck statt Zeichensatz-Pfeil: dreht sich beim Zuklappen. */
-.ub-graphkopf__pfeil {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid currentColor;
-  transition: transform .12s ease;
-}
-.ub-inhalt[data-graph="zu"] .ub-graphkopf__pfeil { transform: rotate(-90deg); }
-
-.ub-graph { padding: 4px 32px 20px; }
-.ub-graph__hinweis {
-  margin: 6px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ub-leise);
-}
-.ub-inhalt[data-graph="zu"] .ub-graph { display: none; }
 
 .ub-kopf { padding: 26px 32px 0; }
 .ub-kopf__zeile { display: flex; align-items: center; gap: 10px; }
@@ -742,23 +662,6 @@ body[data-route="ueberblick"] .datenwarnung {
 .ub-bez__ziel { font-size: 14.5px; font-weight: 600; }
 .ub-bez__zusatz { font-size: 12px; color: var(--ub-leise); }
 
-/* Beziehungsbild: Rolle → Aufgabe → Ergebnis. Knoten und Kanten kommen aus
-   css/graph.css (.gk, .gkante, .gpfeil) — dieselbe Zeichnung wie im grossen
-   Graph. Die Breite setzt das Skript in Pixeln auf das natürliche Mass:
-   schmaler als die Spalte wird verkleinert, breiter nicht, sonst wüchse die
-   Schrift mit der Spalte und die Höhe des Bereichs wäre nicht verlässlich. */
-.ub-gb { display: block; max-width: 100%; height: auto; }
-/* Das Modulbild hat drei Spalten — es scrollt seitwärts, statt zu schrumpfen. */
-.ub-gb--breit { max-width: none; }
-/* Hervorhebung beim Zeigen — dieselben Regeln wie für .graph-svg in graph.css. */
-.ub-gb.ist-hervorhebung .gk:not(.ist-aktiv) { opacity: .28; }
-.ub-gb.ist-hervorhebung .gkante:not(.ist-aktiv) { opacity: .12; }
-.ub-gb.ist-hervorhebung .gkante.ist-aktiv { stroke-width: 2.6; opacity: 1; }
-.ub-gb.ist-hervorhebung .gkante--verantwortlich.ist-aktiv { stroke-width: 3.2; }
-.ub-gb .gk, .ub-gb .gkante { transition: opacity .15s ease; }
-.ub-gb__link { cursor: pointer; }
-.ub-gb__link:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
-
 .ub-fakten { margin: 0; }
 .ub-fakt {
   display: grid;
@@ -796,6 +699,8 @@ body[data-route="ueberblick"] .datenwarnung {
   text-transform: uppercase;
   color: var(--ub-tinte);
 }
+/* «Im Graph» ist ein Knopf im Kleid der Verweise. */
+.ub-verweis--knopf { border: 0; border-bottom: 2px solid var(--ub-linie); background: none; padding: 0 0 2px; font-family: inherit; cursor: pointer; }
 .ub-verweis--akzent { border-bottom-color: var(--ub-auswahl); color: var(--ub-akzent-text); }
 .ub-verweis:hover { color: var(--ub-akzent); border-bottom-color: var(--ub-akzent); }
 
@@ -857,12 +762,6 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   .ub-kopf, .ub-abschnitt, .ub-leerseite { padding-left: 16px; padding-right: 16px; }
   .ub-verweise { padding: 18px 16px 24px; }
   .ub-inhalt { border-top: 1px solid var(--ub-linie); }
-  /* Gestapelt gibt es nichts zu ziehen — der Graph steht einfach darunter
-     und lässt sich weiterhin zuklappen. */
-  .ub-hgriff { display: none; }
-  .ub-graphkopf__knopf { padding-left: 16px; padding-right: 16px; }
-  .ub-graph { padding-left: 16px; padding-right: 16px; }
-  .ub-graphkopf { border-top: 1px solid var(--ub-linie); }
   .ub-kopf__titel { font-size: 26px; }
   .ub-prompt__titel { font-size: 22px; }
   .ub-prompt__zahlen { margin-left: 0; }

@@ -7,7 +7,9 @@
    der Graph der Methodenelemente (js/graph.js, über HT.graphSicht
    eingebettet); ein Icon oben links schaltet um. Rechts eine Inhaltsseite,
    die zu jedem Element immer dieselben Abschnitte in derselben Reihenfolge
-   zeigt. Dazwischen eine ziehbare Trennlinie. Der Filter (Phasen, Szenarien,
+   zeigt; das Bild der Beziehungen eines Elements ist die Graph-Sicht (beim
+   Wechsel steht das festgehaltene Element im Fokus). Dazwischen eine
+   ziehbare Trennlinie. Der Filter (Phasen, Szenarien,
    Module) ist der des Graphen und gilt für beide Sichten; die Suche steht in
    der Kopfzeile der Anwendung.
 
@@ -53,9 +55,6 @@
   var INHALT_MIN = 280;
   var ABB_MIN = 380;           // so viel bleibt der Abbildung mindestens
 
-  var GRAPH_STANDARD = 260;    // Höhe des Graphbereichs unten in px
-  var GRAPH_MIN = 120;
-  var TEXT_MIN = 160;          // so viel bleibt dem Text darüber mindestens
 
   var RUNDEN_LAENGE = 12;
   var SPEICHER = 'ueberblick-drill';
@@ -95,8 +94,6 @@
     panel: false,             // Steuerung offen
     legende: false,           // Zeichen der Abbildung eingeblendet
     inhaltBreite: INHALT_STANDARD,
-    graphHoehe: GRAPH_STANDARD,
-    graphOffen: true,         // unterer Bereich der Inhaltsseite aufgeklappt
     runde: null,              // { aufgaben, i, phase, falschesFeld }
     punkte: 0,
     versuche: 0,
@@ -122,8 +119,6 @@
     HT.store.schreib(SPEICHER, {
       fehler: zustand.fehler,
       besteSerie: zustand.besteSerie,
-      graphHoehe: zustand.graphHoehe,
-      graphOffen: zustand.graphOffen,
       legende: zustand.legende,
       sicht: zustand.sicht
     });
@@ -134,8 +129,6 @@
     if (!g || typeof g !== 'object') { return; }
     if (g.fehler && typeof g.fehler === 'object') { zustand.fehler = g.fehler; }
     if (typeof g.besteSerie === 'number' && g.besteSerie >= 0) { zustand.besteSerie = g.besteSerie; }
-    if (typeof g.graphHoehe === 'number' && g.graphHoehe >= GRAPH_MIN) { zustand.graphHoehe = g.graphHoehe; }
-    if (typeof g.graphOffen === 'boolean') { zustand.graphOffen = g.graphOffen; }
     if (typeof g.legende === 'boolean') { zustand.legende = g.legende; }
     if (g.sicht === 'graph' || g.sicht === 'abbildung') { zustand.sicht = g.sicht; }
   }
@@ -535,18 +528,6 @@
   /* Massstab des Beziehungsbilds: die Breite wächst oder schrumpft um den
      Faktor, begrenzt auf das 0,4- bis 3-Fache der Zeichnungsbreite. Ab dem
      ersten Zoomen gilt die CSS-Grenze «höchstens Spaltenbreite» nicht mehr. */
-  function gbSkalieren(faktor) {
-    var svg = refs.graph && refs.graph.querySelector('svg.ub-gb');
-    if (!svg) { return 1; }
-    var alt = svg.getBoundingClientRect().width;
-    if (!alt) { return 1; }
-    var natur = parseFloat(svg.getAttribute('data-breite')) || alt;
-    var neu = Math.max(natur * 0.4, Math.min(natur * 3, alt * faktor));
-    svg.style.width = Math.round(neu) + 'px';
-    svg.style.maxWidth = 'none';
-    return neu / alt;
-  }
-
   /* --- Breite der Inhaltsseite --------------------------------------------- */
 
   function inhaltBreiteSetzen(px) {
@@ -650,6 +631,12 @@
     panelZeichnen();
     if (graph) { graph.popSchliessen(); }
     sichtAnwenden();
+    /* In der Graph-Sicht steht das festgehaltene Element im Fokus — genau
+       das Bild seiner Beziehungen; Modul, Phase, Szenario werden zum Umfang. */
+    if (sicht === 'graph' && graph && zustand.gehalten && zustand.aktiv && graph.fokusId() !== zustand.aktiv.id) {
+      graph.suchtreffer(zustand.aktiv);
+    }
+    inhaltZeichnen();
     speichern();
     suchChipsZeichnen();
     urlSetzen();
@@ -673,8 +660,9 @@
      Phase, Szenario als Umfang. */
   function imGraphZeigen(e) {
     if (!graph) { return; }
-    sichtSetzen('graph');
-    graph.suchtreffer(e);
+    zustand.gehalten = true;
+    aktivSetzen(e);
+    if (zustand.sicht === 'graph') { graph.suchtreffer(e); } else { sichtSetzen('graph'); }
   }
 
   var IKONE_ABBILDUNG = ['M3.5 4.5h17v15h-17Z', 'M3.5 9h17', 'M9 9v10.5', 'M14.5 9v10.5'];
@@ -1183,12 +1171,6 @@
 
   /* --- Handbuchabschnitte --------------------------------------------------- */
 
-  /* Die Inhaltsseite folgt dem Aufbau der Seite auf hermes.admin.ch:
-     Beschreibung, Inhalt, Dokumentenvorlage. «Beziehungen» wird nicht als
-     Tabelle übernommen, sondern aus dem Graphmodell gezeichnet — dieselben
-     Daten, aber verlinkt und in der Breite der Inhaltsseite lesbar. */
-  var AUS_GRAPH = ['Beziehungen', 'Aufgaben und Ergebnisse'];
-
   function hbAbschnitt(text, titel) {
     if (!text || !text.abschnitte) { return null; }
     for (var i = 0; i < text.abschnitte.length; i++) {
@@ -1229,371 +1211,6 @@
     return ersatz ? [h('p', { text: ersatz })] : [];
   }
 
-  /* Eine Gruppe der Beziehungsliste: Überschrift und verlinkte Einträge,
-     je Eintrag eine Beizeile aus Modul, Verantwortung oder Ergebnistyp. */
-  function bezGruppe(label, eintraege, linkZiel) {
-    if (!eintraege.length) { return null; }
-    eintraege.sort(function (a, b) { return a.begriff.localeCompare(b.begriff, 'de'); });
-    return h('div', { class: 'ub-bez' }, [
-      h('span', { class: 'ub-bez__label', text: label }),
-      h('ul', { class: 'ub-bez__liste' }, eintraege.map(function (x) {
-        var zusatz = [];
-        if (x.kategorie === 'ergebnis' && x.typ) { zusatz.push(x.typ); }
-        if (x.kategorie === 'aufgabe' && x.module && x.module.length) { zusatz.push(x.module.join(', ')); }
-        if (x.verantwortlich) { zusatz.push(x.verantwortlich); }
-        return h('li', {}, [
-          h('a', { class: 'ub-bez__ziel', href: linkZiel(x), text: x.begriff }),
-          zusatz.length ? h('span', { class: 'ub-bez__zusatz', text: zusatz.join(' · ') }) : null
-        ]);
-      }))
-    ]);
-  }
-
-  /* --- Beziehungsbild: Rolle → Aufgabe → Ergebnis -------------------------- */
-
-  /* Dieselbe Darstellung wie im grossen Graph — Knoten und Kanten kommen aus
-     js/graph-zeichnen.js und css/graph.css, nur die Anordnung ist enger:
-     links die Rollen, rechts die Aufgaben, mit S-Kurven dazwischen wie im
-     Graph (durchgezogen verantwortlich, gestrichelt beteiligt); darunter,
-     in der Aufgabenspalte, das Ergebnis, zu dem «erzeugt» am rechten Rand
-     mit Pfeil hinführt. Gepunktet, wenn eine Rolle das Ergebnis selbst
-     verantwortet. Gezeigt wird genau, was das Graphmodell kennt — nicht mehr
-     und nicht weniger als im grossen Graph. */
-  var GB = {
-    rand: 6,        // Luft oben, unten und links
-    spalte: 40,     // Abstand zwischen Rollen- und Aufgabenspalte (Platz für die Kurven)
-    zeile: 34,      // Zeilenabstand (Knoten 28 + 6)
-    stufe: 18,      // Abstand zwischen Aufgaben und Ergebnis
-    minBreite: 360
-  };
-
-  function gbKnotenFuer(k) {
-    return { id: k.id, kategorie: k.kategorie, begriff: k.begriff, eintrag: k.eintrag, h: HT.graphZeichnen.KNOTEN_HOEHE };
-  }
-
-  function graphBild(e, linkZiel) {
-    var Z = HT.graphZeichnen;
-    if (!HT.graph || !HT.graph.knoten(e.id) || !Z || !Z.knotenElement) { return null; }
-    Z.schriftLesen(refs.graph || document.body);
-
-    var rollen = [], aufgaben = [], kanten = [], gesehen = {}, kanteGesehen = {};
-    function merken(liste, k) {
-      if (gesehen[k.id]) { return; }
-      gesehen[k.id] = true;
-      liste.push(gbKnotenFuer(k));
-    }
-    function kante(k) {
-      if (kanteGesehen[k.id]) { return; }
-      kanteGesehen[k.id] = true;
-      kanten.push(k);
-    }
-    HT.graph.nachbarn(e.id).forEach(function (n) {
-      n.relationen.forEach(function (r) {
-        if (r.rel === 'erzeugt') { merken(aufgaben, n.knoten); kante(r.kante); }
-        if (r.rel === 'ergebnisrolle') { merken(rollen, n.knoten); kante(r.kante); }
-      });
-    });
-    aufgaben.forEach(function (a) {
-      HT.graph.nachbarn(a.id).forEach(function (n) {
-        n.relationen.forEach(function (r) {
-          if (r.rel === 'verantwortlich' || r.rel === 'beteiligt') { merken(rollen, n.knoten); kante(r.kante); }
-        });
-      });
-    });
-    if (!aufgaben.length && !rollen.length) { return null; }
-
-    function sortieren(a, b) { return a.begriff.localeCompare(b.begriff, 'de'); }
-    rollen.sort(sortieren);
-    aufgaben.sort(sortieren);
-    var mitte = gbKnotenFuer(HT.graph.knoten(e.id));
-
-    /* Anordnung: zwei Spalten wie im Graph, das Ergebnis unter den Aufgaben. */
-    var alle = rollen.concat(aufgaben, [mitte]);
-    var position = {};
-    alle.forEach(function (k) { k.w = Z.knotenBreite(k, {}); position[k.id] = k; });
-    var rollenBreite = rollen.reduce(function (m, k) { return Math.max(m, k.w); }, 0);
-    var aufgabenX = rollen.length ? GB.rand + rollenBreite + GB.spalte : GB.rand;
-    var aufgabenHoehe = aufgaben.length * GB.zeile - (GB.zeile - mitte.h);
-    var rollenHoehe = rollen.length * GB.zeile - (GB.zeile - mitte.h);
-    /* Rollen mittig zur Aufgabenspalte, damit die Kurven flach bleiben. */
-    var y = GB.rand + Math.max(0, (aufgabenHoehe - rollenHoehe) / 2);
-    rollen.forEach(function (k) { k.x = GB.rand; k.y = y; y += GB.zeile; });
-    y = GB.rand + Math.max(0, (rollenHoehe - aufgabenHoehe) / 2);
-    aufgaben.forEach(function (k) { k.x = aufgabenX; k.y = y; y += GB.zeile; });
-    mitte.x = aufgabenX;
-    mitte.y = GB.rand + Math.max(aufgabenHoehe, rollenHoehe) + GB.stufe;
-    var hoehe = mitte.y + mitte.h + GB.rand;
-    var rechts = alle.reduce(function (m, k) { return Math.max(m, k.x + k.w); }, 0);
-    var schieneRechts = rechts + 14;
-    var breite = Math.max(GB.minBreite, schieneRechts + 6);
-
-    return bildRendern(e, alle, kanten, {
-      breite: breite, hoehe: hoehe, schieneRechts: schieneRechts,
-      label: 'Beziehungen von ' + e.begriff + ': Rolle, Aufgabe, Ergebnis'
-    }, linkZiel);
-  }
-
-  /* Modul oder Phase: alles, was dazugehört, in drei Spalten wie im grossen
-     Graph — links die Rollen, in der Mitte die Aufgaben in der Reihenfolge
-     der Methode, rechts die Ergebnisse. Kanten wie dort: verantwortlich und
-     beteiligt (Rolle → Aufgabe), erzeugt (Aufgabe → Ergebnis, mit Pfeil),
-     Rolle verantwortet Ergebnis (gepunktet). Rollen und Ergebnisse stehen
-     nach dem Schwerpunkt ihrer Aufgaben, damit die Kurven flach bleiben.
-     gehoertDazu(eintrag) entscheidet über die Zugehörigkeit — beim Modul
-     das Feld `module`, bei der Phase das Feld `phasen`. Die Aufgaben stehen
-     wie im grossen Graph gruppiert: gruppen ist die Folge der Gruppennamen
-     (Phasen der Vorgehensweise bzw. Module der Methode), gruppeFeld das
-     Feld der Aufgabe, in dem sie stehen; innerhalb der Gruppe alphabetisch. */
-  function graphBildMenge(e, gehoertDazu, gruppen, gruppeFeld, linkZiel) {
-    var Z = HT.graphZeichnen;
-    if (!HT.graph || !Z || !Z.knotenElement) { return null; }
-    Z.schriftLesen(refs.graph || document.body);
-
-    var rollen = [], aufgaben = [], ergebnisse = [], kanten = [], gesehen = {}, kanteGesehen = {};
-    function merken(liste, k) {
-      if (gesehen[k.id]) { return; }
-      gesehen[k.id] = true;
-      liste.push(gbKnotenFuer(k));
-    }
-    function kante(k) {
-      if (kanteGesehen[k.id]) { return; }
-      kanteGesehen[k.id] = true;
-      kanten.push(k);
-    }
-    HT.daten.alleEintraege().forEach(function (x) {
-      if (!gehoertDazu(x)) { return; }
-      var k = HT.graph.knoten(x.id);
-      if (!k) { return; }
-      if (x.kategorie === 'aufgabe') { merken(aufgaben, k); }
-      else if (x.kategorie === 'ergebnis') { merken(ergebnisse, k); }
-    });
-    aufgaben.forEach(function (a) {
-      HT.graph.nachbarn(a.id).forEach(function (n) {
-        n.relationen.forEach(function (r) {
-          if (r.rel === 'verantwortlich' || r.rel === 'beteiligt') { merken(rollen, n.knoten); kante(r.kante); }
-          if (r.rel === 'erzeugt') { merken(ergebnisse, n.knoten); kante(r.kante); }
-        });
-      });
-    });
-    ergebnisse.forEach(function (x) {
-      HT.graph.nachbarn(x.id).forEach(function (n) {
-        n.relationen.forEach(function (r) {
-          if (r.rel === 'ergebnisrolle') { merken(rollen, n.knoten); kante(r.kante); }
-        });
-      });
-    });
-    if (!aufgaben.length && !ergebnisse.length) { return null; }
-
-    function gruppe(k) {
-      var werte = k.eintrag[gruppeFeld] || [];
-      for (var i = 0; i < gruppen.length; i++) {
-        if (werte.indexOf(gruppen[i]) !== -1) { return i; }
-      }
-      return gruppen.length;
-    }
-    aufgaben.sort(function (a, b) {
-      return (gruppe(a) - gruppe(b)) || a.begriff.localeCompare(b.begriff, 'de');
-    });
-    var zeileVon = {};
-    aufgaben.forEach(function (k, i) { zeileVon[k.id] = i; });
-
-    /* Schwerpunkt: mittlere Zeile der verbundenen Aufgaben; ohne Aufgabe ans Ende. */
-    function schwerpunkt(k) {
-      var summe = 0, zahl = 0;
-      kanten.forEach(function (x) {
-        var anderer = x.von === k.id ? x.nach : (x.nach === k.id ? x.von : null);
-        if (anderer !== null && zeileVon[anderer] !== undefined) { summe += zeileVon[anderer]; zahl++; }
-      });
-      return zahl ? summe / zahl : aufgaben.length;
-    }
-    function nachSchwerpunkt(a, b) {
-      return (a.sp - b.sp) || a.begriff.localeCompare(b.begriff, 'de');
-    }
-    rollen.forEach(function (k) { k.sp = schwerpunkt(k); });
-    ergebnisse.forEach(function (k) { k.sp = schwerpunkt(k); });
-    rollen.sort(nachSchwerpunkt);
-    ergebnisse.sort(nachSchwerpunkt);
-
-    var alle = rollen.concat(aufgaben, ergebnisse);
-    alle.forEach(function (k) { k.w = Z.knotenBreite(k, {}); });
-    function spaltenBreite(liste) { return liste.reduce(function (m, k) { return Math.max(m, k.w); }, 0); }
-    var hoeheVon = function (liste) { return liste.length ? liste.length * GB.zeile - (GB.zeile - Z.KNOTEN_HOEHE) : 0; };
-    var hoechste = Math.max(hoeheVon(rollen), hoeheVon(aufgaben), hoeheVon(ergebnisse));
-    var x = GB.rand;
-    /* Alle Spalten beginnen oben — die Reihenfolge der Methode liest sich
-       von oben nach unten, und der Bereich zeigt zuerst den Anfang. */
-    [rollen, aufgaben, ergebnisse].forEach(function (liste) {
-      if (!liste.length) { return; }
-      var y = GB.rand;
-      liste.forEach(function (k) { k.x = x; k.y = y; y += GB.zeile; });
-      x += spaltenBreite(liste) + GB.spalte;
-    });
-    var breite = Math.max(GB.minBreite, x - GB.spalte + GB.rand);
-    var hoehe = GB.rand + hoechste + GB.rand;
-
-    return bildRendern(e, alle, kanten, {
-      breite: breite, hoehe: hoehe, breit: true,
-      label: 'Beziehungen in ' + (e.kategorie === 'phase' ? 'der Phase ' : 'dem Modul ') + e.begriff + ': Rollen, Aufgaben, Ergebnisse'
-    }, linkZiel);
-  }
-
-  /* Zeichnet ein fertig angeordnetes Bild: Kanten zuerst, darüber die
-     verlinkten Knoten, dazu die Hervorhebung beim Zeigen und der Verweis
-     in den vollen Graph. masse: breite, hoehe, label; schieneRechts lässt
-     «erzeugt» über eine rechte Schiene laufen (Ergebnis unter den Aufgaben),
-     breit lässt das Bild seitwärts scrollen statt es zu verkleinern. */
-  function bildRendern(e, alle, kanten, masse, linkZiel) {
-    var Z = HT.graphZeichnen;
-    var position = {};
-    alle.forEach(function (k) { position[k.id] = k; });
-    var breite = masse.breite, hoehe = masse.hoehe, schieneRechts = masse.schieneRechts;
-
-    var svg = svgEl('svg', {
-      'class': 'ub-gb' + (masse.breit ? ' ub-gb--breit' : ''), viewBox: '0 0 ' + breite + ' ' + hoehe,
-      role: 'img', 'aria-label': masse.label
-    });
-    svg.style.width = breite + 'px';
-    svg.setAttribute('data-breite', String(breite));
-    var defs = svgEl('defs', {});
-    var marker = svgEl('marker', { id: 'ub-gpfeil', viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto-start-reverse' });
-    marker.appendChild(svgEl('path', { d: 'M0 0L10 5L0 10Z', 'class': 'gpfeil' }));
-    defs.appendChild(marker);
-    svg.appendChild(defs);
-
-    /* Kanten zuerst, damit die Knoten darüber liegen. «erzeugt» läuft über
-       die rechte Schiene zum Ergebnis, alles mit Rollen über die linke. */
-    var ebeneKanten = svgEl('g', { 'class': 'ub-gb__kanten' });
-    var nachbarschaft = {};   // id -> { knoten: {id:true}, kanten: {id:true} }
-    var elemente = { knoten: {}, kanten: {} };
-    function nachbar(id) {
-      if (!nachbarschaft[id]) { nachbarschaft[id] = { knoten: {}, kanten: {} }; }
-      return nachbarschaft[id];
-    }
-    kanten.forEach(function (k) {
-      var von = position[k.von], nach = position[k.nach];
-      if (!von || !nach) { return; }
-      nachbar(k.von).kanten[k.id] = true; nachbar(k.von).knoten[k.nach] = true;
-      nachbar(k.nach).kanten[k.id] = true; nachbar(k.nach).knoten[k.von] = true;
-      var y1 = von.y + von.h / 2, y2 = nach.y + nach.h / 2;
-      var stil = HT.graph.REL[k.rel] ? HT.graph.REL[k.rel].stil : 'struktur';
-      var d, attrs = { 'class': 'gkante gkante--' + stil, 'data-id': k.id };
-      if (k.rel === 'erzeugt' && schieneRechts) {
-        d = 'M' + (von.x + von.w) + ' ' + y1
-          + 'C' + schieneRechts + ' ' + y1 + ',' + schieneRechts + ' ' + y2 + ',' + (nach.x + nach.w) + ' ' + y2;
-        attrs['marker-end'] = 'url(#ub-gpfeil)';
-      } else {
-        if (k.rel === 'erzeugt') { attrs['marker-end'] = 'url(#ub-gpfeil)'; }
-        /* S-Kurve von der Rolle zur Aufgabe bzw. zum Ergebnis, wie im Graph. */
-        var x1 = von.x + von.w, x2 = nach.x, mx = (x1 + x2) / 2;
-        d = 'M' + x1 + ' ' + y1 + 'C' + mx + ' ' + y1 + ',' + mx + ' ' + y2 + ',' + x2 + ' ' + y2;
-      }
-      attrs.d = d;
-      var pfad = svgEl('path', attrs);
-      elemente.kanten[k.id] = pfad;
-      ebeneKanten.appendChild(pfad);
-    });
-    svg.appendChild(ebeneKanten);
-
-    /* Hervorhebung beim Zeigen und beim Fokus — wie im grossen Graph: der
-       Knoten samt Nachbarn und Kanten bleibt, alles andere wird gedimmt. */
-    function hervorheben(id) {
-      svg.classList.toggle('ist-hervorhebung', !!id);
-      Object.keys(elemente.knoten).forEach(function (x) { elemente.knoten[x].classList.remove('ist-aktiv'); });
-      Object.keys(elemente.kanten).forEach(function (x) { elemente.kanten[x].classList.remove('ist-aktiv'); });
-      if (!id || !elemente.knoten[id]) { return; }
-      elemente.knoten[id].classList.add('ist-aktiv');
-      var n = nachbarschaft[id];
-      if (!n) { return; }
-      Object.keys(n.knoten).forEach(function (x) { if (elemente.knoten[x]) { elemente.knoten[x].classList.add('ist-aktiv'); } });
-      Object.keys(n.kanten).forEach(function (x) { if (elemente.kanten[x]) { elemente.kanten[x].classList.add('ist-aktiv'); } });
-    }
-
-    var ebeneKnoten = svgEl('g', { 'class': 'ub-gb__knoten' });
-    alle.forEach(function (k) {
-      var el = Z.knotenElement(k, {});
-      el.removeAttribute('tabindex');
-      el.removeAttribute('role');
-      if (k.id === e.id) { el.classList.add('ist-gewaehlt'); }
-      var a = svgEl('a', { 'class': 'ub-gb__link', href: linkZiel(k.eintrag), 'aria-label': el.getAttribute('aria-label') + ' — im Lexikon öffnen' });
-      a.appendChild(el);
-      elemente.knoten[k.id] = el;
-      a.addEventListener('mouseenter', function () { hervorheben(k.id); });
-      a.addEventListener('mouseleave', function () { hervorheben(null); });
-      a.addEventListener('focus', function () { hervorheben(k.id); });
-      a.addEventListener('blur', function () { hervorheben(null); });
-      ebeneKnoten.appendChild(a);
-    });
-    svg.appendChild(ebeneKnoten);
-
-    return [svg];
-  }
-
-
-  /* Eine Gruppe von Beziehungen als Liste — für Module, die im Graphmodell
-     keine Knoten sind (es kennt nur Rolle → Aufgabe → Ergebnis). */
-  function graphBeziehungen(e, linkZiel) {
-    if (!HT.graph || !HT.graph.knoten(e.id)) { return null; }
-    var gruppen = [];
-    var nachLabel = {};
-    HT.graph.nachbarn(e.id).forEach(function (n) {
-      n.relationen.forEach(function (r) {
-        /* «verantwortet» wiederholt nur den Steckbrief. */
-        if (r.rel === 'ergebnisrolle') { return; }
-        var g = nachLabel[r.label];
-        if (!g) {
-          g = { label: r.label, eintraege: [] };
-          nachLabel[r.label] = g;
-          gruppen.push(g);
-        }
-        g.eintraege.push(n.knoten.eintrag);
-      });
-    });
-    var raus = gruppen.map(function (g) { return bezGruppe(g.label, g.eintraege, linkZiel); })
-      .filter(function (x) { return !!x; });
-    return raus.length ? raus : null;
-  }
-
-  /* Rückfall ohne Graphmodell: alles, was das Modul führt, als zwei Listen. */
-  function modulBeziehungen(e, linkZiel) {
-    var aufgaben = [];
-    var ergebnisse = [];
-    HT.daten.alleEintraege().forEach(function (x) {
-      if (!x.module || x.module.indexOf(e.begriff) === -1) { return; }
-      if (x.kategorie === 'aufgabe') { aufgaben.push(x); }
-      else if (x.kategorie === 'ergebnis') { ergebnisse.push(x); }
-    });
-    var raus = [
-      bezGruppe('umfasst die Aufgaben', aufgaben, linkZiel),
-      bezGruppe('erzeugt die Ergebnisse', ergebnisse, linkZiel)
-    ].filter(function (x) { return !!x; });
-    return raus.length ? raus : null;
-  }
-
-  function namen(kategorie) {
-    return HT.daten.eintraegeDerKategorie(kategorie).map(function (x) { return x.begriff; });
-  }
-
-  /* Modul: Aufgaben nach Phasen gruppiert (Reihenfolge der Vorgehensweise). */
-  function graphBildModul(e, linkZiel) {
-    return graphBildMenge(e,
-      function (x) { return x.module && x.module.indexOf(e.begriff) !== -1; },
-      HT.daten.phasenSortiert(namen('phase')), 'phasen', linkZiel);
-  }
-
-  /* Phase: Aufgaben nach Modulen gruppiert (Reihenfolge der Methode). */
-  function graphBildPhase(e, linkZiel) {
-    return graphBildMenge(e,
-      function (x) { return x.phasen && x.phasen.indexOf(e.begriff) !== -1; },
-      namen('modul'), 'module', linkZiel);
-  }
-
-  /* Ergebnisse, Module und Phasen bekommen das Bild; die Listen bleiben Rückfall. */
-  function beziehungenVon(e, linkZiel) {
-    if (e.kategorie === 'modul') { return graphBildModul(e, linkZiel) || modulBeziehungen(e, linkZiel); }
-    if (e.kategorie === 'phase') { return graphBildPhase(e, linkZiel); }
-    return graphBild(e, linkZiel) || graphBeziehungen(e, linkZiel);
-  }
-
   function leerseite() {
     return h('div', { class: 'ub-leerseite' }, [
       h('h2', { class: 'ub-leerseite__titel', text: 'Noch nichts ausgewählt' }),
@@ -1629,16 +1246,9 @@
   function inhaltZeichnen() {
     if (!refs.inhalt) { return; }
     var vorher = refs.inhalt.scrollTop;
-    var gbAlt = refs.graph && refs.graph.querySelector('svg.ub-gb');
-    var gbBreite = gbAlt && gbAlt.style.maxWidth === 'none' ? gbAlt.style.width : '';
     HT.ui.leeren(refs.inhalt);
-    HT.ui.leeren(refs.graph);
 
     var e = zustand.aktiv;
-    if (refs.graphLink) {
-      refs.graphLink.hidden = !e || zustand.sicht === 'graph';
-      if (e) { refs.graphLink.title = 'Im Graph zeigen: ' + e.begriff; }
-    }
     if (e) {
       /* Ort für persönliche Notizen — derselbe wie die Lexikonkarte, damit
          eine Markierung hier auch dort erscheint. */
@@ -1653,9 +1263,6 @@
       refs.inhalt.appendChild(leerseite());
       refs.inhalt.scrollTop = 0;
       zustand.gezeichnet = null;
-      refs.graph.appendChild(graphHinweis(
-        'Ein Ergebnis, ein Modul oder eine Phase wählen — hier stehen dann die Beziehungen dazu.'));
-      graphBereichSetzen();
       return;
     }
 
@@ -1685,14 +1292,13 @@
        Beziehungsbild unten. */
 
     /* Die übrigen Abschnitte der Quellseite in ihrer Reihenfolge — «Inhalt»
-       also genau so, wie er auf hermes.admin.ch steht. Der Vorlagenverweis
-       hängt als Icon im Kopf; bleibt vom Abschnitt «Dokumentenvorlage» sonst
-       nichts übrig, entfällt er. Die Beziehungen stehen im unteren Bereich. */
-    var beziehungen = beziehungenVon(e, lexikonZiel);
+       und «Beziehungen» also genau so, wie sie auf hermes.admin.ch stehen.
+       Der Vorlagenverweis hängt als Icon im Kopf; bleibt vom Abschnitt
+       «Dokumentenvorlage» sonst nichts übrig, entfällt er. Das Bild der
+       Beziehungen ist die Graph-Sicht der Bühne («Im Graph»). */
     (text && text.abschnitte ? text.abschnitte : []).forEach(function (a) {
       if (a === lead.abschnitt) { return; }                     // steht im Lead
       var titel = (a.titel || '').trim();
-      if (AUS_GRAPH.indexOf(titel) !== -1 && beziehungen) { return; }
       var bs = (a.bloecke || []).filter(function (b) {
         return lead.bloecke.indexOf(b) === -1 && b.t !== 'download';
       });
@@ -1700,17 +1306,6 @@
       refs.inhalt.appendChild(abschnitt(titel || 'Aus dem Handbuch',
         [HT.ui.bloecke(bs, { verlinken: false, ebene: 4 })], 'ub-abschnitt--regel'));
     });
-
-    if (beziehungen) {
-      beziehungen.forEach(function (k) { refs.graph.appendChild(k); });
-      /* Das Nachzeichnen mit dem Handbuchtext darf den Zoom nicht verlieren. */
-      var gb = zustand.gezeichnet === e.id && gbBreite && refs.graph.querySelector('svg.ub-gb');
-      if (gb) { gb.style.width = gbBreite; gb.style.maxWidth = 'none'; }
-    } else {
-      refs.graph.appendChild(graphHinweis(
-        'Für ' + HT.ui.zitat(e.begriff) + ' führt das Handbuch keine Beziehungen zu Aufgaben oder Rollen.'));
-    }
-    graphBereichSetzen();
 
     /* Ohne Handbuchtext bleibt die kuratierte Fassung die einzige Quelle. */
     if (!text && e.details) {
@@ -1721,7 +1316,13 @@
 
     if (HT.notizen) { refs.inhalt.appendChild(HT.notizen.panel('#/lexikon?id=' + encodeURIComponent(e.id), e.begriff)); }
 
+    /* «Im Graph»: die Graph-Sicht der Bühne zeigt das Element mit allem,
+       was direkt daran hängt — in der Graph-Sicht selbst überflüssig. */
     refs.inhalt.appendChild(h('section', { class: 'ub-verweise' }, [
+      zustand.sicht === 'graph' ? null : h('button', {
+        type: 'button', class: 'ub-verweis ub-verweis--knopf', text: 'Im Graph',
+        on: { click: function () { imGraphZeigen(e); } }
+      }),
       h('a', { class: 'ub-verweis', href: '#/lexikon?id=' + encodeURIComponent(e.id), text: 'Im Lexikon' }),
       h('a', {
         class: 'ub-verweis ub-verweis--akzent',
@@ -1844,117 +1445,6 @@
     ]);
   }
 
-  /* --- Unterer Bereich der Inhaltsseite: Graph ----------------------------- */
-
-  /* Die Inhaltsseite ist zweigeteilt: oben der Text, unten der Graph. Beide
-     scrollen für sich, dazwischen liegt eine ziehbare Linie; die Kopfzeile
-     des unteren Bereichs klappt ihn zu und wieder auf. */
-
-  function graphHoeheSetzen(px) {
-    var raum = refs.seite ? refs.seite.clientHeight : 0;
-    var grenze = raum ? Math.max(GRAPH_MIN, raum - TEXT_MIN) : 640;
-    zustand.graphHoehe = Math.round(Math.max(GRAPH_MIN, Math.min(px, grenze)));
-    if (refs.seite) { refs.seite.style.setProperty('--ub-graph', zustand.graphHoehe + 'px'); }
-  }
-
-  /* Der untere Bereich bleibt immer sichtbar — auch ohne Auswahl und bei
-     Einträgen ohne Beziehungen. Verschwände er, sähe die geteilte Seite je
-     nach Auswahl anders aus und der Graph wirkte verschwunden. */
-  function graphBereichSetzen() {
-    if (!refs.seite) { return; }
-    refs.seite.dataset.graph = zustand.graphOffen ? 'auf' : 'zu';
-    if (refs.graphKnopf) {
-      refs.graphKnopf.setAttribute('aria-expanded', String(zustand.graphOffen));
-      refs.graphKnopf.title = zustand.graphOffen ? 'Graph zuklappen' : 'Graph aufklappen';
-    }
-  }
-
-  function graphHinweis(text) {
-    return h('p', { class: 'ub-graph__hinweis', text: text });
-  }
-
-  function graphUmschalten() {
-    zustand.graphOffen = !zustand.graphOffen;
-    graphBereichSetzen();
-    speichern();
-  }
-
-  function graphZiehenStarten(ev) {
-    if (ev.button !== undefined && ev.button !== 0) { return; }
-    if (!zustand.graphOffen) { return; }
-    ev.preventDefault();
-
-    var startY = ev.clientY;
-    var startHoehe = zustand.graphHoehe;
-
-    function bewegen(e) { graphHoeheSetzen(startHoehe - (e.clientY - startY)); }
-    function beenden() {
-      global.removeEventListener('mousemove', bewegen);
-      global.removeEventListener('mouseup', beenden);
-      document.body.style.cursor = '';
-      document.body.style.userSelect = '';
-      speichern();
-    }
-
-    document.body.style.cursor = 'row-resize';
-    document.body.style.userSelect = 'none';
-    global.addEventListener('mousemove', bewegen);
-    global.addEventListener('mouseup', beenden);
-  }
-
-  function graphGriffTaste(ev) {
-    if (ev.key !== 'ArrowUp' && ev.key !== 'ArrowDown') { return; }
-    ev.preventDefault();
-    graphHoeheSetzen(zustand.graphHoehe + (ev.key === 'ArrowUp' ? 24 : -24));
-    speichern();
-  }
-
-  function graphBereichBauen() {
-    var griff = h('div', {
-      class: 'ub-hgriff',
-      role: 'separator',
-      'aria-orientation': 'horizontal',
-      'aria-label': 'Höhe des Graphbereichs',
-      tabindex: '0',
-      title: 'Ziehen ändert die Höhe · Doppelklick setzt zurück'
-    }, [h('span', { class: 'ub-hgriff__strich', 'aria-hidden': 'true' })]);
-    griff.addEventListener('mousedown', graphZiehenStarten);
-    griff.addEventListener('keydown', graphGriffTaste);
-    griff.addEventListener('dblclick', function () {
-      graphHoeheSetzen(GRAPH_STANDARD);
-      speichern();
-    });
-
-    refs.graphKnopf = h('button', {
-      type: 'button',
-      class: 'ub-graphkopf__knopf',
-      'aria-controls': 'ub-graphbereich',
-      'aria-expanded': 'true',
-      on: { click: graphUmschalten }
-    }, [
-      h('span', { class: 'ub-graphkopf__pfeil', 'aria-hidden': 'true' }),
-      h('span', { text: 'Beziehungen' })
-    ]);
-
-    /* Rechts in der Kopfzeile: in die Graph-Sicht, im Fokus auf das Element
-       (Modul und Phase setzen dort den Umfang). */
-    refs.graphLink = h('button', {
-      type: 'button', class: 'ub-graphkopf__link',
-      title: 'Im Graph zeigen', 'aria-label': 'Im Graph zeigen',
-      on: { click: function () { if (zustand.aktiv) { imGraphZeigen(zustand.aktiv); } } }
-    }, HT.ui.symbol(IKONE_GRAPH, 18));
-    refs.graphLink.hidden = true;
-
-    refs.graph = h('div', {
-      class: 'ub-graph',
-      id: 'ub-graphbereich',
-      'aria-label': 'Beziehungen des gewählten Elements'
-    });
-    HT.ui.radZoomAnbinden(refs.graph, function () { return refs.graph.querySelector('svg.ub-gb'); }, gbSkalieren);
-
-    return [griff, h('div', { class: 'ub-graphkopf' }, [refs.graphKnopf, refs.graphLink]), refs.graph];
-  }
-
   function trennerBauen() {
     var trenner = h('div', {
       class: 'ub-trenner',
@@ -1988,8 +1478,7 @@
     refs.felder = [];
 
     refs.inhalt = h('div', { class: 'ub-inhalt__text' });
-    refs.seite = h('aside', { class: 'ub-inhalt', 'aria-label': 'Inhaltsseite zum gewählten Element' },
-      [refs.inhalt].concat(graphBereichBauen()));
+    refs.seite = h('aside', { class: 'ub-inhalt', 'aria-label': 'Inhaltsseite zum gewählten Element' }, [refs.inhalt]);
 
     refs.werkbank = h('div', { class: 'ub-werkbank' }, [
       h('h1', { class: 'nur-sr', text: 'Methodenüberblick' }),
@@ -2002,7 +1491,6 @@
 
     werkzeugAktualisieren();
     inhaltBreiteSetzen(zustand.inhaltBreite);
-    graphHoeheSetzen(zustand.graphHoehe);
     inhaltZeichnen();
     panelZeichnen();
     promptZeichnen();
