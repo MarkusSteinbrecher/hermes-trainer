@@ -243,9 +243,6 @@
     alle:        { titel: 'Alle Filter',    inhalt: function () { return alleFilterInhalt(); },  knopf: 'knopfAlle', breit: true },
     filter:      { titel: 'Filter',         inhalt: function () { return filterInhalt(); },      knopf: 'knopfFilter' },
     suche:       { titel: 'Element suchen', inhalt: function () { return sucheInhalt(); },       knopf: 'knopfSuche' },
-    quer:        { titel: function () { return zustand.ansicht === 'phasen' ? 'Auf Module einschränken' : 'Auf Phasen einschränken'; },
-                   inhalt: function () { return querInhalt(); },        knopf: 'knopfQuer' },
-    szenario:    { titel: 'Szenario',       inhalt: function () { return szenarioInhalt(); },    knopf: 'knopfSzenario' },
     darstellung: { titel: 'Darstellung',    inhalt: function () { return darstellungInhalt(); }, knopf: 'knopfDarstellung' },
     legende:     { titel: 'Legende',        inhalt: function () { return legendeInhalt(); },     knopf: 'knopfLegende' }
   };
@@ -485,46 +482,6 @@
     ]);
   }
 
-  function querInhalt() {
-    var istPhasen = zustand.ansicht === 'phasen';
-    var liste = istPhasen
-      ? HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; })
-      : HT.graph.phasenDerVorgehensweise(zustand.umfang.vorgehen);
-    var feld = istPhasen ? 'module' : 'phasen';
-    var art = istPhasen ? 'modul' : 'phase';
-    return popInhalt([
-      h('p', { class: 'gpop__hinweis', text: istPhasen
-        ? 'Zusätzlich zur Phasenauswahl: nur Aufgaben und Ergebnisse dieser Module zeigen.'
-        : 'Zusätzlich zur Modulauswahl: nur Aufgaben und Ergebnisse dieser Phasen zeigen.' }),
-      h('div', { class: 'chips chips--klein' }, liste.map(function (name) {
-        return chip(name, HT.graph.beitrag(art, name, zustand.umfang), zustand.umfang[feld].indexOf(name) !== -1,
-          function () { listeSchalten(feld, name); popZeichnen(); });
-      }))
-    ]);
-  }
-
-  function szenarioInhalt() {
-    var aktuell = zustand.umfang.module;
-    return popInhalt([
-      h('p', { class: 'gpop__hinweis', text: 'Wählt die Module des Szenarios aus. Danach lässt sich die Auswahl von Hand ergänzen.' }),
-      h('div', { class: 'gs-liste' }, HT.daten.eintraegeDerKategorie('szenario').map(function (s) {
-        var gleich = s.module.length === aktuell.length && s.module.every(function (m) { return aktuell.indexOf(m) !== -1; });
-        return h('button', {
-          type: 'button', class: 'gs-beispiel', 'aria-pressed': gleich ? 'true' : 'false',
-          on: { click: function () {
-            zustand.umfang.module = s.module.slice();
-            zustand.ansicht = 'module';
-            popSchliessen();
-            geaendert();
-          } }
-        }, [
-          h('span', { class: 'gs-beispiel__titel', text: s.begriff }),
-          h('span', { class: 'gs-beispiel__hinweis', text: s.module.length + ' Module' })
-        ]);
-      }))
-    ]);
-  }
-
   function schalter(label, aktiv, beiWechsel) {
     var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe' });
     kasten.checked = !!aktiv;
@@ -690,10 +647,6 @@
       h('span', { 'aria-hidden': 'true', text: ' ▾' })
     ]);
     refs.vorgehenSegment = h('span', { class: 'gauswahl__vorgehen' });
-    refs.knopfSzenario = h('button', {
-      type: 'button', class: 'btn btn--klein gauswahl__szenario', 'aria-expanded': 'false', 'aria-haspopup': 'dialog',
-      on: { click: function () { popOeffnen('szenario'); } }
-    }, [h('span', { text: 'Szenario' }), h('span', { 'aria-hidden': 'true', text: ' ▾' })]);
     /* Suchfeld in der Leiste: findet Elemente, Module und Phasen. Ein
        Element setzt den Fokus, ein Modul oder eine Phase den Umfang — in
        beiden Fällen bleibt nur, was dazugehört oder damit verbunden ist. */
@@ -704,7 +657,9 @@
     });
     refs.leisteListe = h('ul', { class: 'gs-treffer gleiste-suche__treffer', role: 'listbox', 'aria-label': 'Suchtreffer' });
     refs.leisteListe.hidden = true;
-    refs.leisteSuche = h('div', { class: 'gleiste-suche' }, [refs.leisteFeld, refs.leisteListe]);
+    var lupe = h('span', { class: 'gleiste-suche__ikone', 'aria-hidden': 'true' },
+      HT.ui.symbol(['M10.6 3.6a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z', 'M15.6 15.6 20.4 20.4'], 16));
+    refs.leisteSuche = h('div', { class: 'gleiste-suche' }, [lupe, refs.leisteFeld, refs.leisteListe]);
     var leisteTimer = null;
     refs.leisteFeld.addEventListener('input', function () {
       if (leisteTimer) { clearTimeout(leisteTimer); }
@@ -724,10 +679,6 @@
     });
     /* Gewählte Module und Phasen als Chips, jeder mit × zum Entfernen. */
     refs.umfangChips = h('div', { class: 'gumfang', role: 'group', 'aria-label': 'Gewählte Module und Phasen' });
-    refs.knopfQuer = h('button', {
-      type: 'button', class: 'btn btn--klein gauswahl__quer', 'aria-expanded': 'false', 'aria-haspopup': 'dialog',
-      on: { click: function () { popOeffnen('quer'); } }
-    });
     refs.knopfReset = h('button', {
       type: 'button', class: 'gauswahl__reset', text: 'Zurücksetzen',
       on: { click: alleZuruecksetzen }
@@ -737,10 +688,8 @@
       refs.ansichtSegment,
       refs.knopfAlle,
       refs.vorgehenSegment,
-      refs.knopfSzenario,
       refs.leisteSuche,
       refs.umfangChips,
-      refs.knopfQuer,
       refs.fokusChip,
       refs.knopfReset,
       refs.status
@@ -762,7 +711,6 @@
     if (istPhasen) {
       refs.vorgehenSegment.appendChild(segment(VORGEHENSWEISEN, zustand.umfang.vorgehen, vorgehenSetzen, 'Vorgehensweise', true));
     }
-    refs.knopfSzenario.hidden = istPhasen;
 
     HT.ui.leeren(refs.umfangChips);
     [['phasen', 'phase', 'Phase'], ['module', 'modul', 'Modul']].forEach(function (f) {
@@ -779,12 +727,6 @@
       });
     });
     refs.umfangChips.hidden = !refs.umfangChips.childNodes.length;
-
-    var querAnzahl = istPhasen ? zustand.umfang.module.length : zustand.umfang.phasen.length;
-    HT.ui.leeren(refs.knopfQuer);
-    refs.knopfQuer.appendChild(h('span', { text: (istPhasen ? 'Module' : 'Phasen') + ': ' + (querAnzahl ? querAnzahl + ' gewählt' : 'alle') }));
-    refs.knopfQuer.appendChild(h('span', { 'aria-hidden': 'true', text: ' ▾' }));
-    refs.knopfQuer.classList.toggle('ist-aktiv', querAnzahl > 0);
 
     var fokus = zustand.fokusId ? HT.daten.eintragMitId(zustand.fokusId) : null;
     HT.ui.leeren(refs.fokusChip);

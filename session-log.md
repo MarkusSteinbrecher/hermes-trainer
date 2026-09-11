@@ -2,6 +2,14 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Graph: Leiste ohne «Phasen» und «Szenario», runde Suchleiste
+
+**Auftrag:** «Entferne den Phasen- und Szenario-Filter, wir haben ja den allgemeinen Filter links, und mach eine schöne Searchbar mit abgerundeten Ecken.»
+
+**Umsetzung:** Die Knöpfe «Szenario ▾» und «Phasen/Module: … ▾» samt ihren Popovern (`querInhalt`, `szenarioInhalt`, POPS-Einträge) sind weg; Szenarien und die Querauswahl bleiben in «Alle Filter». Die Leiste besteht jetzt aus Ansicht, «Alle Filter», Suchfeld, Umfang-Chips, Fokus-Chip und «Zurücksetzen» (in der Phasenansicht zusätzlich klassisch/agil). Suchfeld als Pille (`border-radius: 999px`) mit Lupe links, leicht getönt, beim Fokus weiss mit Akzentring; Trefferliste mit 14 px Radius, Schatten und abgerundeten Zeilen. CSS der entfernten Knöpfe bereinigt.
+
+**Geprüft** lokal: Leiste, Suche «Steuer» (Modul zuerst, dann Aufgaben/Ergebnisse) mit aufgeklappter Liste, keine Konsolenfehler.
+
 ## 2026-09-11 — Graph: Suchleiste statt Modul-Chips
 
 **Auftrag:** «Entferne die Module in der Navigationsleiste auf der Graph-Seite und ergänze eine Searchbar. Wenn ich nach einem Element, einem Modul oder einer Phase suche, werden nur diese Elemente und die mit einer Verbindung dazu angezeigt.»

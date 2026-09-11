@@ -274,9 +274,6 @@ body[data-route="graph"] .fusszeile { display: none; }
    ein Hintergrundstrich am linken Rand. */
 .gauswahl__alle,
 .gauswahl__vorgehen:not([hidden]),
-.gauswahl__szenario:not([hidden]),
-.chips--auswahl,
-.gauswahl__quer,
 .graph-werkzeuge {
   margin-left: 8px;
   padding-left: 11px;
@@ -445,7 +442,7 @@ body[data-route="graph"] .fusszeile { display: none; }
 .graph-tooltip__tipp { margin: 6px 0 0; font-size: 11.5px; color: var(--text-leise); }
 
 /* --- Auswahl in der Leiste: welche Phasen bzw. Module -------------------- */
-.gauswahl__vorgehen[hidden], .gauswahl__szenario[hidden], .gauswahl__reset[hidden] { display: none; }
+.gauswahl__vorgehen[hidden], .gauswahl__reset[hidden] { display: none; }
 /* Die Chips laufen in einer Zeile und scrollen seitwärts — bei zwölf Modulen
    bliebe sonst von der Leiste nichts übrig. */
 .chips--auswahl {
@@ -478,9 +475,7 @@ body[data-route="graph"] .fusszeile { display: none; }
 .chips--phasen { gap: 2px; }
 .chip--phase:focus-visible { outline-offset: -2px; }
 
-/* «Module: alle ▾» und «Alle Filter ▾» — Auswahl mit Rahmen: ein Select ohne Radius. */
-.graph-seite .gauswahl__quer,
-.graph-seite .gauswahl__szenario,
+/* «Alle Filter ▾» — Auswahl mit Rahmen: ein Select ohne Radius. */
 .graph-seite .gauswahl__alle {
   display: inline-flex;
   align-items: center;
@@ -490,13 +485,8 @@ body[data-route="graph"] .fusszeile { display: none; }
   color: var(--text);
 }
 .graph-seite .gauswahl__alle svg { width: 15px; height: 15px; margin-right: 2px; }
-.graph-seite .gauswahl__quer:hover,
-.graph-seite .gauswahl__szenario:hover,
 .graph-seite .gauswahl__alle:hover { border-color: var(--text); }
-.graph-seite .gauswahl__quer.ist-aktiv,
 .graph-seite .gauswahl__alle.ist-aktiv { border-color: var(--akzent); color: var(--akzent-text); }
-.graph-seite .gauswahl__quer[aria-expanded="true"],
-.graph-seite .gauswahl__szenario[aria-expanded="true"],
 .graph-seite .gauswahl__alle[aria-expanded="true"] { border-color: var(--text); color: var(--text); }
 
 /* Popover «Alle Filter»: über die ganze Breite der Fläche, die Abschnitte
@@ -558,16 +548,38 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gauswahl__reset { color: var(--akzent-text); padding: 0 4px; }
 
 /* Suchfeld in der Leiste mit Trefferliste als Ausklappmenü darunter. */
-.gleiste-suche { position: relative; flex: 1 1 14rem; min-width: 10rem; max-width: 30rem; margin-left: 8px; }
-.graph-seite .gleiste-suche__feld { min-height: 30px; height: 30px; font-size: 13px; }
-.gleiste-suche__treffer {
-  position: absolute; left: 0; right: 0; top: calc(100% + 2px);
-  z-index: 7;
-  padding: 2px 6px;
-  background: var(--bg);
-  border: 1px solid var(--rand-stark);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+.gleiste-suche { position: relative; flex: 1 1 16rem; min-width: 10rem; max-width: 34rem; margin-left: 10px; }
+.gleiste-suche__ikone {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  display: flex; color: var(--text-leise); pointer-events: none;
 }
+.gleiste-suche__ikone svg { width: 16px; height: 16px; }
+.graph-seite .gleiste-suche__feld {
+  min-height: 34px; height: 34px;
+  padding: 0 14px 0 36px;
+  border-radius: 999px;
+  border-color: var(--rand);
+  background: var(--flaeche-2);
+  font-size: 14px;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.graph-seite .gleiste-suche__feld:hover { border-color: var(--rand-stark); }
+.graph-seite .gleiste-suche__feld:focus {
+  outline: none;
+  background: var(--bg);
+  border-color: var(--akzent);
+  box-shadow: 0 0 0 3px var(--akzent-schwach);
+}
+.gleiste-suche__treffer {
+  position: absolute; left: 0; right: 0; top: calc(100% + 6px);
+  z-index: 7;
+  padding: 6px 8px;
+  background: var(--bg);
+  border: 1px solid var(--rand);
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .12);
+}
+.gleiste-suche__treffer .gs-treffer__knopf { border-radius: 8px; padding: 7px 8px; }
 .gleiste-suche__treffer[hidden] { display: none; }
 .gs-treffer__text { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .gs-treffer__art { flex: 0 0 auto; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-leise); }
@@ -826,9 +838,8 @@ body[data-route="graph"] .fusszeile { display: none; }
   .gleiste-suche { order: 4; flex-basis: 100%; max-width: none; margin-left: 0; }
   .gumfang { order: 4; flex-basis: 100%; }
   .gumfang .gfokus--umfang:first-child { margin-left: 0; }
-  .gauswahl__vorgehen, .gauswahl__szenario { order: 5; margin-left: 0; padding-left: 0; background-image: none; }
+  .gauswahl__vorgehen { order: 5; margin-left: 0; padding-left: 0; background-image: none; }
   .gauswahl__alle { order: 6; }
-  .gauswahl__quer { order: 6; }
   .gauswahl__reset { order: 7; margin-left: auto; }
 }
 
