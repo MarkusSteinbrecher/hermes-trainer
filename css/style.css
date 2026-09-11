@@ -204,6 +204,25 @@ main:focus { outline: none; }
   white-space: nowrap;
 }
 
+/* Beta-Pille neben der Marke: klein, rund, im Akzent — sagt, dass die
+   Anwendung noch in Entwicklung ist. */
+.marke__beta {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--akzent-schwach);
+  border: 1px solid var(--akzent);
+  color: var(--akzent-text);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
 /* Ko-fi: der offizielle Becher als Bild, rechts in der Kopfzeile — auch auf
    dem Telefon, wo die Hauptnavigation unten liegt. */
 .kofi {

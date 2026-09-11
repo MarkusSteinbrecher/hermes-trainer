@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Kopfzeile: Beta-Pille
+
+**Auftrag:** «Ergänze auch noch eine Beta-Version-Pille in der Top-Navigation.»
+
+**Umsetzung:** `marke__beta` in `index.html` neben dem Schriftzug meinHERMES: runde Pille, 18 px hoch, Akzentrahmen auf hellem Akzentgrund, «BETA» in Versalien; Tooltip «Diese Anwendung ist noch in Entwicklung — Rückmeldungen sind willkommen.» Stil in `css/style.css`. Geprüft lokal, keine Konsolenfehler.
+
 ## 2026-09-11 — Graph: Leiste ohne «Phasen» und «Szenario», runde Suchleiste
 
 **Auftrag:** «Entferne den Phasen- und Szenario-Filter, wir haben ja den allgemeinen Filter links, und mach eine schöne Searchbar mit abgerundeten Ecken.»
