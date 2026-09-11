@@ -20,7 +20,7 @@
      liefert Seiten und Inhaltsverzeichnis. */
   var KAPITEL = [
     { id: 'vorwort', nummer: '', titel: 'Vorwort', kategorie: null },
-    { id: 'methodenueberblick', nummer: 'A', titel: 'Methodenüberblick', kategorie: 'grundbegriff' },
+    { id: 'methodenueberblick', nummer: 'A', titel: 'Methodenüberblick', kategorie: null },
     { id: 'methodenelemente', nummer: 'B', titel: 'Methodenelemente', kategorie: null },
     { id: 'phasen', nummer: '1', titel: 'Phasen', kategorie: 'phase' },
     { id: 'szenarien', nummer: '2', titel: 'Szenarien', kategorie: 'szenario' },
@@ -104,7 +104,7 @@
   function chipsBauen(aktiv) {
     var liste = h('ul', { class: 'chips chips--streifen hb-kapitel', 'aria-label': 'Kapitel' });
     KAPITEL.forEach(function (k) {
-      var anzahl = k.kategorie && k.kategorie !== 'grundbegriff' ? HT.daten.eintraegeDerKategorie(k.kategorie).length : 0;
+      var anzahl = k.kategorie ? HT.daten.eintraegeDerKategorie(k.kategorie).length : 0;
       liste.appendChild(h('li', {}, h('button', {
         type: 'button', class: 'chip', 'aria-pressed': k === aktiv ? 'true' : 'false',
         title: (k.nummer ? 'Kapitel ' + k.nummer + ' ' : '') + k.titel,
@@ -120,9 +120,7 @@
 
   /* --- Karten -------------------------------------------------------------- */
 
-  /* Grundbegriffe kommen im Graphen nicht vor — dort führt der Knopf ins Leere. */
   function graphLink(e) {
-    if (e.kategorie === 'grundbegriff') { return null; }
     return h('a', {
       class: 'btn btn--klein btn--graph',
       href: '#/ueberblick?sicht=graph&id=' + encodeURIComponent(e.id),
@@ -253,23 +251,6 @@
     ]);
   }
 
-  /* Grundbegriffe haben keine Nummer im Handbuch: sie stehen am Ende des
-     Methodenüberblicks, alphabetisch, mit Verweis auf HERMES online. */
-  function grundbegriffeBlock() {
-    var gruppe = HT.daten.eintraegeDerKategorie('grundbegriff').slice();
-    if (!gruppe.length) { return null; }
-    gruppe.sort(function (a, b) { return a.begriff.localeCompare(b.begriff, 'de'); });
-    var liste = h('div', { class: 'eintraege hb-karten' });
-    gruppe.forEach(function (e) {
-      liste.appendChild(HT.karte.bauen(e, { nurHandbuch: true, zusatz: graphLink(e), titelEbene: 'h4' }));
-    });
-    return h('section', { class: 'hb-abschnitt hb-abschnitt--karten', id: 'hb-grundbegriffe' }, [
-      h('h2', { class: 'hb-teil__titel', text: 'Grundbegriffe' }),
-      h('p', { class: 'hb-p', text: 'Begriffe, die das Referenzhandbuch durchgehend verwendet — mit Verweis auf die Stelle bei HERMES online. Kein Teil des PDF.' }),
-      liste
-    ]);
-  }
-
   /* --- Kapitelseite ------------------------------------------------------- */
 
   function renderKapitel(behaelter, meta, params, zielId) {
@@ -313,10 +294,6 @@
       var toc = inhaltsverzeichnis(kap, idx);
       if (toc) { inhalt.appendChild(toc); }
       inhalt.appendChild(kapitelKoerper(kap, meta));
-      if (meta.kategorie === 'grundbegriff') {
-        var gb = grundbegriffeBlock();
-        if (gb) { inhalt.appendChild(gb); }
-      }
 
       /* Blättern */
       function blaetterText(k, pfeil) {

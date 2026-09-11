@@ -461,7 +461,7 @@
    * Umfang, der einen Lexikoneintrag im Graphen sichtbar macht.
    * Aufgaben, Ergebnisse und Rollen werden ausgewählt; Phasen, Module und
    * Szenarien setzen den Umfang. Rückgabe null, wenn der Eintrag im Graphen
-   * nicht vorkommt (Grundbegriffe).
+   * nicht vorkommt.
    */
   function einstieg(id) {
     var e = HT.daten.eintragMitId(id);

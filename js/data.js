@@ -15,8 +15,7 @@
     { key: 'modul',        datei: 'module',        label: 'Module',        singular: 'Modul',        kapitel: 'module' },
     { key: 'aufgabe',      datei: 'aufgaben',      label: 'Aufgaben',      singular: 'Aufgabe',      kapitel: 'aufgaben' },
     { key: 'ergebnis',     datei: 'ergebnisse',    label: 'Ergebnisse',    singular: 'Ergebnis',     kapitel: 'ergebnisse' },
-    { key: 'rolle',        datei: 'rollen',        label: 'Rollen',        singular: 'Rolle',        kapitel: 'rollen' },
-    { key: 'grundbegriff', datei: 'grundbegriffe', label: 'Grundbegriffe', singular: 'Grundbegriff', kapitel: null }
+    { key: 'rolle',        datei: 'rollen',        label: 'Rollen',        singular: 'Rolle',        kapitel: 'rollen' }
   ];
 
   var QUIZ_DATEI = 'quizfragen';
@@ -24,7 +23,7 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-11c';
+  var DATEN_VERSION = '2026-09-11d';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });

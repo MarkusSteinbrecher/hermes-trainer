@@ -59,7 +59,6 @@ KAPITEL = [
 ELEMENT_DATEIEN = [
     ('phase', 'phasen'), ('szenario', 'szenarien'), ('modul', 'module'),
     ('ergebnis', 'ergebnisse'), ('aufgabe', 'aufgaben'), ('rolle', 'rollen'),
-    ('grundbegriff', 'grundbegriffe'),
 ]
 
 
@@ -597,9 +596,6 @@ def main():
         for e in eintraege:
             url = (e.get('quelle') or {}).get('url')
             if not url:
-                continue
-            # Grundbegriffe verweisen auf Kapitel-/Übersichtsseiten; die sind schon in kapitel.json
-            if kat == 'grundbegriff':
                 continue
             print(kat, '←', e['begriff'])
             try:

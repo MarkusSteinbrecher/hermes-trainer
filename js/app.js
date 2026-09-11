@@ -27,7 +27,7 @@
 
   /* Rechts neben der Marke: eine kleine Pille «Suchen», die beim Anklicken
      breit wird. Sie findet Ergebnisse, Aufgaben, Rollen, Module, Phasen und
-     Szenarien sowie Grundbegriffe. Ist der Überblick offen, wendet er den Treffer selbst an
+     Szenarien. Ist der Überblick offen, wendet er den Treffer selbst an
      (Umfang, Einfärbung, Fokus); sonst führt der Treffer in den Überblick. */
   function sucheBauen() {
     var inner = document.querySelector('.topbar__inner');
@@ -38,12 +38,10 @@
       label: 'Element, Modul, Phase oder Szenario suchen',
       treffer: function (text) {
         return HT.ui.suchtreffer(text, ['modul', 'phase', 'szenario'], function (t) {
-          return HT.daten.suchen(t, ['ergebnis', 'aufgabe', 'rolle', 'grundbegriff']);
+          return HT.daten.suchen(t, ['ergebnis', 'aufgabe', 'rolle']);
         });
       },
       beiWahl: function (e) {
-        /* Grundbegriffe haben weder Kasten noch Knoten — sie stehen im Handbuch. */
-        if (e.kategorie === 'grundbegriff') { global.location.hash = '#/handbuch?id=' + encodeURIComponent(e.id); return; }
         var ub = HT.views.ueberblick;
         if (routeLesen().name === 'ueberblick' && ub && ub.suchtreffer && ub.suchtreffer(e)) { return; }
         global.location.hash = '#/ueberblick?id=' + encodeURIComponent(e.id);

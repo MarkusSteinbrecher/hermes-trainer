@@ -454,7 +454,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilensteine.html",
       "bezeichnung": "HERMES online · Ergebnisse «Meilensteine»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Alle Meilensteine sind Ergebnisse, die im Projektverlauf die Entscheidungspunkte markieren. Jede Entscheidungsaufgabe endet somit mit einem Meilenstein.",
       "kapitel": "B.4 Ergebnisse",
@@ -476,7 +475,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
       "bezeichnung": "HERMES online · Phasen"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die Projekte werden somit entweder in fünf oder in drei Phasen abgewickelt. Das Projekt beginnt mit der Phase Initialisierung und endet am Schluss der Phase Abschluss.",
       "kapitel": "B.1 Phasen",
@@ -498,7 +496,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
       "bezeichnung": "HERMES online · Rollen"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Jede Rolle ist einer der Hierarchieebenen Steuerung, Führung oder Ausführung zugeordnet. In der HERMES-Projektorganisation kommen die Partnergruppen Anwender, Ersteller und Betreiber vor.",
       "kapitel": "6.1.3.3 Hierarchieebenen",
@@ -520,7 +517,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
       "bezeichnung": "HERMES online · Rollen"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die mit einem Stern (*) markierten minimal zu besetzenden Rollen werden benötigt, um die Anforderungen der Governance zu erfüllen. Die drei markierten Rollen sind für das Projekt, ungeachtet der gewählten Vorgehensweise (klassisch oder agil), unentbehrlich und sind zwingend in der Partnergruppe Anwender angesiedelt.",
       "kapitel": "6.2.1 Standardrollen (Tabelle 19)",
@@ -542,7 +538,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
       "bezeichnung": "HERMES online · Szenarien"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Anschliessend kann das resultierende benutzerdefinierte Szenario optional über die Tailoring-Funktion an die jeweiligen Projektbedürfnisse angepasst werden.",
       "kapitel": "2.2.3.2 Sizing",
@@ -564,7 +559,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html",
       "bezeichnung": "HERMES online · Ergebnisse"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die Erarbeitung der minimal geforderten Dokumente ist obligatorisch. Ist ein Modul für das Projekt nicht relevant, entfallen auch die darin definierten minimal geforderten Dokumente.",
       "kapitel": "4.2.1.1 Standarddokumente",
@@ -586,7 +580,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/projektmanagement-und-entwicklungsmanagement.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Projektmanagement und Entwicklungsmanagement»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die Lösungsentstehung im Projekt kann entweder klassisch oder agil erfolgen. Dennoch gibt es in der Praxis Fälle, in denen ein Projekt mit einer Kombination aus beiden Vorgehensweisen abgewickelt wird. Dies setzt ein entsprechendes Tailoring in der Initialisierungsphase voraus.",
       "kapitel": "7.4.3.3 Entwicklungsmanagement klassisch/agil",
@@ -608,7 +601,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
       "bezeichnung": "HERMES online · Phasen"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Der HERMES-Projektlebenszyklus wird unterteilt in Projektbeginn, Lösungsentstehung und Projektende.",
       "kapitel": "1.1.1 Projektlebenszyklus",
@@ -630,7 +622,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick/hermes-projektmanagement-methodenelemente.html",
       "bezeichnung": "HERMES online · HERMES-Projektmanagement-Methodenelemente"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "B HERMES-Projektmanagement-Methodenelemente: B.1 Phasen, B.2 Szenarien, B.3 Module, B.4 Ergebnisse, B.5 Aufgaben, B.6 Rollen.",
       "kapitel": "B HERMES-Projektmanagement-Methodenelemente",
@@ -652,7 +643,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html",
       "bezeichnung": "HERMES online · Ergebnisse"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Das Ergebnis eines ganzen Projekts, die eigentliche fertige Lösung, oder auch ein Teil davon, das Inkrement, sind keine HERMES-Methodenelemente.",
       "kapitel": "4.1 Einleitung (Abgrenzung)",
@@ -674,7 +664,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
       "bezeichnung": "HERMES online · Szenarien"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Ein Szenario wird im Projekt für das zwischen der Initialisierung und Abschluss eingeschlossene Entwicklungsvorgehen bestimmt, also bei der klassischen Vorgehensweise für die Phasen Konzept, Realisierung und Einführung und bei der agilen Vorgehensweise für die Phase Umsetzung.",
       "kapitel": "B.2 Szenarien",
@@ -696,7 +685,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
       "bezeichnung": "HERMES online · Rollen"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die Projektorganisation ist eine einmalige, temporäre oft interdisziplinäre Organisation, die in enger Beziehung zur Stammorganisation steht. Sie wird mit dem Projektinitialisierungsauftrag in Kraft gesetzt und spätestens mit dem Entscheid Projektabschluss aufgelöst.",
       "kapitel": "6.1.3.1 Projektorganisation – Übersicht",
@@ -1334,7 +1322,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
       "bezeichnung": "HERMES online · Methodenüberblick"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "HERMES-Projektmanagement ist die gesamtheitliche Managementmethode für das Durchführen von Projekten und Programmen verschiedener Art in vielen Tätigkeitsfeldern, wie in der Anpassung der Organisation, der Informatik oder der Entwicklung von Dienstleistungen und Produkten.",
       "kapitel": "A.2 Was ist HERMES-Projektmanagement?",
@@ -1356,7 +1343,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
       "bezeichnung": "HERMES online · Methodenüberblick"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die HERMES-Projektmanagementmethode unterstützt zwei Vorgehensweisen: Das traditionelle klassische phasenweise Vorgehen nach Systems Engineerings, nachfolgend „klassisch“ genannt, und das iterativ-inkrementelle Vorgehen, nachfolgend „agil“ genannt.",
       "kapitel": "A.4 Nutzung des HERMES-Projektmanagements in der Praxis",
@@ -1378,7 +1364,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
       "bezeichnung": "HERMES online · Methodenüberblick"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Lange dauernde oder komplexe Vorhaben müssen nicht zwangsläufig als Programm strukturiert werden. Sie können als Projekte mit Realisierungseinheiten durchgeführt werden.",
       "kapitel": "A.2 Was ist HERMES-Projektmanagement?",
@@ -1400,7 +1385,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
       "bezeichnung": "HERMES online · Szenarien"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Aufgrund der ermittelten Wertigkeit des Vorhabens stellt die Sizing-Funktion dem Projektleiter ein individuell auf die Projektgrösse zugeschnittenes Szenario bereit. In einem zweiten Schritt kann das auf die richtige Grösse geschnittene Szenario optional noch weiter individualisiert werden. Dies geschieht über die Tailoring-Funktion.",
       "kapitel": "A.3 Durch HERMES unterstützte Projektgrössen",
@@ -2412,7 +2396,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/governance.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Governance»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die folgenden Kennzeichen guter Projekt-Governance stellen Anforderungen an die Projektsteuerung und Projektführung dar: Effektive und funktionsfähige Projektplanung, -steuerung und -führung; Konstruktive Zusammenarbeit von Projektorganisation und Stammorganisation; Berücksichtigung der Stakeholderinteressen; Abstimmung der gesetzten Ziele mit Vorgaben der Stammorganisation; Solide Basis für richtige, effiziente und transparente Entscheidungen; Institutionalisierter und zeitgerechter Informationsfluss, Transparenz in der Projektkommunikation",
       "kapitel": "7.4.1.1 Projekt-Governance",
@@ -2434,7 +2417,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/governance.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Governance»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die Stammorganisation bzw. die Partnergruppe Anwender stellt als Inhaberin des Projekts und als Nutzerin der Lösung die finanziellen Ressourcen für das Projekt zur Verfügung. Dies gibt ihr das Recht, frei und ohne Einschränkung anderer Partnergruppen über die Projektstruktur, die angewandte Managementmethode und die Vorgehensweise zu entscheiden und auch die minimal zu besetzenden Rollen zwingend mit eigenen oder von ihr engagierten Personen zu besetzen.",
       "kapitel": "7.4.1.1 Projekt-Governance – Selbstbestimmung der Anwender über das Projekt",
@@ -2456,7 +2438,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/nachhaltigkeit.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Nachhaltigkeit»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Das Fundament der Nachhaltigkeit bildet das Nachhaltigkeitsverständnis der Weltkommission für Umwelt und Entwicklung („Brundtland-Kommission“). Diese definiert, dass die nachhaltige Entwicklung zwar die Bedürfnisse der Gegenwart befriedigen soll, jedoch die Bedürfnisse der künftigen Generationen nicht gefährden darf.",
       "kapitel": "7.4.2.1 Nachhaltigkeitsverständnis",
@@ -2478,7 +2459,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/projektmanagement-und-entwicklungsmanagement.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Projektmanagement und Entwicklungsmanagement»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Agile Entwicklungsmethoden gehören nicht zu den Projektmanagementmethoden, sondern zu Entwicklungsmanagementmethoden. Projekte unter HERMES müssen bestimmte Rahmenbedingungen erfüllen, wie z. B. die Einhaltung der Governance, die reibungslose Einbettung des Vorhabens in die bestehenden Planungs- und Controlling Prozesse der Stammorganisation (Grundmission von HERMES) oder die gemeinsame Sprache bzw. einheitliche Terminologie.",
       "kapitel": "7.4.3.2 Entwicklungsmanagement agil",
@@ -2500,7 +2480,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/projektmanagement-und-entwicklungsmanagement.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Projektmanagement und Entwicklungsmanagement»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Dennoch gibt es in der Praxis Fälle, in denen ein Projekt mit einer Kombination aus beiden Vorgehensweisen abgewickelt wird. Dies setzt ein entsprechendes Tailoring in der Initialisierungsphase voraus, da das gewählte Szenario und der Durchführungsstrukturplan angepasst werden müssen.",
       "kapitel": "7.4.3.3 Entwicklungsmanagement klassisch/agil",
@@ -2522,7 +2501,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/finanzielle-steuerung-und-fuehrung.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Finanzielle Steuerung und Führung»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Bei der agilen Vorgehensweise erübrigt sich eine stufenweise Freigabe von Finanzen. Diese sind für die Lösungsentstehung fix oder als Kostendach definiert und werden einmalig mit dem Durchführungsauftrag freigegeben.",
       "kapitel": "7.4.4.3 Steuerung",
@@ -2544,7 +2522,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/planung.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Planung»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Nach dem Entscheid Durchführungsfreigabe trennen sich die Wege, in dem die Planung klassisch bzw. agil angegangen wird. In der klassischen Lösungsentstehung wird durch den Projektleiter nach dem Prinzip der rollenden Planung geplant, in der agilen Lösungsentstehung erfolgt die weitere Planung autonom durch die Umsetzungsorganisation.",
       "kapitel": "7.4.5.1 Planungsbasis und das Vorgehen",
@@ -2566,7 +2543,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/planung.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Planung»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Ein Verantwortlicher wird mit einem Arbeitspaket beauftragt. In einem Arbeitspaket können mehrere Personen mitarbeiten. Typischerweise dauert ein Arbeitspaket zwischen zwei und sechs Wochen.",
       "kapitel": "7.4.5.3 Planung der klassischen Lösungsentstehung",
@@ -2588,7 +2564,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/realisierungseinheiten-bei-klassischer-vorgehensweise.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Realisierungseinheiten bei klassischer Vorgehensweise»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die Freigabe der ersten Realisierungseinheit ist die Phasenfreigabe Realisierung, die den regulären Abschluss der Phase Konzept voraussetzt. Jede Realisierungseinheit erstreckt sich über die beiden Phasen Realisierung und Einführung.",
       "kapitel": "7.4.6 Realisierungseinheiten bei klassischer Vorgehensweise",
@@ -2610,7 +2585,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/anwendung-mit-anderen-methoden-und-praktiken.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Anwendung mit anderen Methoden und Praktiken»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die Aufgaben, Ergebnisse und Rollen der Projektsteuerung und Projektführung basieren immer auf HERMES und können nicht durch andere Methoden ersetzt werden. Das HERMES-Phasenmodell bleibt bestehen. Die Meilensteine sind gesetzt und können nicht verändert werden.",
       "kapitel": "7.4.7 Anwendung mit anderen Methoden und Praktiken",
@@ -2632,7 +2606,6 @@
       "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/integration-von-hermes-in-die-stammorganisation.html",
       "bezeichnung": "HERMES online · Hinweise zur Anwendung «Integration von HERMES in die Stammorganisation»"
     },
-    "kategorie": "grundbegriff",
     "beleg": {
       "zitat": "Die Integration von HERMES in die Stammorganisation erfolgt am besten über ein Projekt. Das Projekt kann auf der Grundlage des Szenarios Dienstleistung/Produkt Adaption durchgeführt werden.",
       "kapitel": "7.4.8.2 Vorgehen",

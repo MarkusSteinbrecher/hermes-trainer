@@ -2,7 +2,7 @@
 """Prüft data/quizfragen.json formal und gegen das Referenzhandbuch.
 
 Formal: eindeutige IDs, genau vier Antworten, «richtig» im Bereich, keine
-doppelten Antworten, Pflichtfelder, Kategorie gültig, Beleg mit Zitat,
+doppelten Antworten, Pflichtfelder, Kategorie gültig oder fehlend (Methodenfragen), Beleg mit Zitat,
 Kapitel und Seite, Quellen-URL auf hermes.admin.ch.
 
 Inhaltlich (mit --pdf-text): jedes Belegzitat muss im Handbuchtext
@@ -20,7 +20,7 @@ import re
 import sys
 from collections import Counter
 
-KATEGORIEN = {'phase', 'szenario', 'modul', 'grundbegriff', 'aufgabe', 'ergebnis', 'rolle'}
+KATEGORIEN = {'phase', 'szenario', 'modul', 'aufgabe', 'ergebnis', 'rolle'}
 
 
 def normtext(t):
@@ -76,7 +76,7 @@ def main():
             fehler.append(f'{qid}: richtig={r!r} ungültig')
         if not q.get('erklaerung', '').strip():
             fehler.append(f'{qid}: Erklärung fehlt')
-        if q.get('kategorie') not in KATEGORIEN:
+        if q.get('kategorie') is not None and q.get('kategorie') not in KATEGORIEN:   # ohne Kategorie: immer im Pool
             fehler.append(f'{qid}: Kategorie {q.get("kategorie")!r} ungültig')
         url = (q.get('quelle') or {}).get('url', '')
         if not url.startswith('https://www.hermes.admin.ch/'):

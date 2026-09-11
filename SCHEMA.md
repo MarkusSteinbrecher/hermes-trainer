@@ -9,7 +9,6 @@ Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSO
 | `data/phasen.json` | `phase` | Alle sechs definierten Phasen (fünf klassisch: Initialisierung, Konzept, Realisierung, Einführung, Abschluss; agil: Initialisierung, Umsetzung, Abschluss) inkl. Meilensteine je Phase |
 | `data/szenarien.json` | `szenario` | Standardszenarien (inkl. agile Varianten) |
 | `data/module.json` | `modul` | Alle Module |
-| `data/grundbegriffe.json` | `grundbegriff` | Methodenverständnis: Governance, Tailoring, Ergebnisorientierung, Meilenstein, Entscheidungspunkt, minimale Vorgaben, Anwendungsgebiet, Programm, Vorhaben, Projektsteuerung/-führung/-ausführung usw. |
 | `data/aufgaben.json` | `aufgabe` | Alle Aufgaben |
 | `data/ergebnisse.json` | `ergebnis` | Alle Ergebnisse |
 | `data/rollen.json` | `rolle` | Alle Rollen |
@@ -98,7 +97,7 @@ Blöcke wie oben, dazu `{ t: "p", art: "kursiv"|"fussnote", text }` (Fussnoten m
 
 ## Graph (abgeleitet, keine eigene Datei)
 
-`js/graph-modell.js` baut zur Laufzeit einen Graphen aus den Einträgen. Knoten sind **nur** Aufgaben, Ergebnisse und Rollen — sie beschreiben zusammen den Ablauf: wer tut was, und was entsteht dabei. Phasen, Module und Szenarien sind keine Knoten, sondern der **Umfang**: sie wählen aus, welche Aufgaben und Ergebnisse gezeigt werden (Grundbegriffe kommen im Graphen nicht vor). Jede Kante ist auf ein Feld eines Eintrags zurückführbar; es werden keine Beziehungen ergänzt:
+`js/graph-modell.js` baut zur Laufzeit einen Graphen aus den Einträgen. Knoten sind **nur** Aufgaben, Ergebnisse und Rollen — sie beschreiben zusammen den Ablauf: wer tut was, und was entsteht dabei. Phasen, Module und Szenarien sind keine Knoten, sondern der **Umfang**: sie wählen aus, welche Aufgaben und Ergebnisse gezeigt werden (Grundbegriffe gibt es seit 2026-09-11 nicht mehr; die 27 kuratierten Quizfragen dazu tragen keine `kategorie` und stehen immer im Pool). Jede Kante ist auf ein Feld eines Eintrags zurückführbar; es werden keine Beziehungen ergänzt:
 
 | Beziehung | Quelle (Feld) | Richtung |
 |---|---|---|

@@ -129,7 +129,7 @@
     if (e.kategorie === 'aufgabe' || e.kategorie === 'ergebnis') {
       chips.push(listenChip(e.module.length === 1 ? 'Modul' : 'Module', e.module, 'modul', 2, linkZiel));
     }
-    if (e.kategorie !== 'phase' && e.kategorie !== 'grundbegriff') {
+    if (e.kategorie !== 'phase') {
       chips.push(phasenStreifen(e.phasen));
     }
     if (e.kategorie === 'szenario') {
