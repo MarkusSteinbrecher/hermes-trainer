@@ -552,14 +552,6 @@
        sichtbar; hier bleibt er für Screenreader als Live-Bereich. */
     refs.status = h('p', { class: 'graph-status nur-sr', role: 'status', 'aria-live': 'polite' });
 
-    /* «×» auf der Fläche, links neben der rechten Icon-Leiste: hebt den
-       Fokus auf. */
-    refs.fokusX = h('button', {
-      type: 'button', class: 'gfokus-x', title: 'Auswahl aufheben (Esc)', 'aria-label': 'Auswahl aufheben',
-      on: { click: function () { fokusSetzen(null); } }
-    }, [h('span', { 'aria-hidden': 'true', text: '×' })]);
-    refs.fokusX.hidden = true;
-
     refs.knopfAlle = werkzeugKnopf('graph-werkzeug--filter', 'Alle Filter: Phasen, Szenarien, Module, Elemente',
       IKONE_FILTER, function () { popOeffnen('alle'); });
     refs.knopfSuche = werkzeugKnopf('graph-werkzeug--suche', 'Element suchen',
@@ -594,13 +586,6 @@
 
   function werkzeugeAktualisieren() {
     var fokus = zustand.fokusId ? HT.daten.eintragMitId(zustand.fokusId) : null;
-    refs.fokusX.hidden = !fokus;
-    if (fokus) { refs.fokusX.title = 'Auswahl «' + fokus.begriff + '» aufheben (Esc)'; }
-    refs.fokusHinweis.hidden = !fokus;
-    if (fokus) {
-      var meta = HT.graph.KAT[fokus.kategorie];
-      refs.fokusText.textContent = 'Nur «' + fokus.begriff + '» (' + meta.singular + ') und die direkt verbundenen Elemente.';
-    }
     var aktiv = HT.graph.umfangAktiv(zustand.umfang);
     [refs.knopfAlle].concat(refs.filterKnoepfe || []).forEach(function (b) {
       if (b) { b.classList.toggle('ist-aktiv', aktiv); }
@@ -753,15 +738,9 @@
     refs.pop.hidden = true;
     refs.leer = h('div', { class: 'graph-leer' });
     refs.leer.hidden = true;
-    refs.fokusText = h('span', { class: 'gfokus-hinweis__text' });
-    refs.fokusHinweis = h('div', { class: 'gfokus-hinweis', role: 'status' }, [
-      refs.fokusText,
-      h('button', { type: 'button', class: 'btn btn--klein btn--primaer', text: 'Auswahl aufheben', title: 'Auswahl aufheben (Esc)', on: { click: function () { fokusSetzen(null); } } })
-    ]);
-    refs.fokusHinweis.hidden = true;
 
     werkzeugeBauen();
-    var kinder = [refs.flaeche, railBauen(), railRechtsBauen(), refs.fokusX, refs.leer, refs.fokusHinweis, refs.tooltip, refs.status];
+    var kinder = [refs.flaeche, railBauen(), railRechtsBauen(), refs.leer, refs.tooltip, refs.status];
     /* Der Popover liegt beim Gastgeber, damit «Alle Filter» auch über der
        Abbildung erscheint, wenn der Graph verborgen ist. */
     if (wirt.popEltern) { wirt.popEltern.appendChild(refs.pop); } else { kinder.push(refs.pop); }
@@ -771,7 +750,7 @@
 
     zeichner = HT.graphZeichnen.erstellen(refs.flaeche, {
       freihalten: function () {
-        return [refs.rail, refs.railRechts, refs.fokusX, refs.fokusHinweis].concat(wirt.freihalten ? wirt.freihalten() : []);
+        return [refs.rail, refs.railRechts].concat(wirt.freihalten ? wirt.freihalten() : []);
       },
       beiKlick: function (id) { fokusSetzen(id); },
       beiDoppelklick: einschraenken,
@@ -880,9 +859,10 @@
     }
   }
 
-  /* Im Fokus sind es wenige Knoten — sie dürfen die Fläche füllen. */
+  /* Beim Einpassen werden die Knoten nie grösser als ihre natürliche Grösse —
+     auch im Fokus mit wenigen Knoten; kleiner dürfen sie dort deutlich werden. */
   function einpassOptionen() {
-    return zustand.fokusId ? { maxZoom: 1.6, minZoom: 0.35 } : {};
+    return zustand.fokusId ? { maxZoom: 1, minZoom: 0.35 } : { maxZoom: 1 };
   }
 
   /* Dem Gastgeber sagen, was sich geändert hat: die Auswahl (nur bei

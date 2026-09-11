@@ -432,19 +432,35 @@
 
   /* Chips oben links neben dem Sichtwechsel: gewählte Phasen und Module,
      die eingefärbte Rolle — jeder mit × zum Entfernen. */
+  function chipBauen(kat, name, titel, beiKlick) {
+    return h('button', {
+      type: 'button', class: 'gfokus gfokus--umfang', title: titel, 'aria-label': titel,
+      on: { click: beiKlick }
+    }, [
+      h('span', { class: 'gswatch gswatch--' + kat, 'aria-hidden': 'true' }, HT.ui.katSymbol(kat, 13)),
+      h('span', { text: name }),
+      h('span', { class: 'gfokus__x', 'aria-hidden': 'true', text: '×' })
+    ]);
+  }
+
+  /* Chip rechts in der Kopfzeile des Graphen: das dort gewählte Element
+     (Aufgabe, Ergebnis, Rolle) mit × zum Aufheben — Module und Phasen stehen
+     als Umfang oben. */
+  function graphChipsZeichnen() {
+    if (!refs.graphChips || !graph) { return; }
+    HT.ui.leeren(refs.graphChips);
+    var id = graph.auswahlId();
+    var e = id ? HT.daten.eintragMitId(id) : null;
+    if (e && (e.kategorie === 'aufgabe' || e.kategorie === 'ergebnis' || e.kategorie === 'rolle')) {
+      refs.graphChips.appendChild(chipBauen(e.kategorie, e.begriff, 'Auswahl «' + e.begriff + '» aufheben (Esc)', function () { graph.fokus(null); }));
+    }
+    refs.graphChips.hidden = !refs.graphChips.childNodes.length;
+  }
+
   function suchChipsZeichnen() {
     if (!refs.suchChips) { return; }
     HT.ui.leeren(refs.suchChips);
-    function chip(kat, name, titel, beiKlick) {
-      refs.suchChips.appendChild(h('button', {
-        type: 'button', class: 'gfokus gfokus--umfang', title: titel, 'aria-label': titel,
-        on: { click: beiKlick }
-      }, [
-        h('span', { class: 'gswatch gswatch--' + kat, 'aria-hidden': 'true' }, HT.ui.katSymbol(kat, 13)),
-        h('span', { text: name }),
-        h('span', { class: 'gfokus__x', 'aria-hidden': 'true', text: '×' })
-      ]));
-    }
+    function chip(kat, name, titel, beiKlick) { refs.suchChips.appendChild(chipBauen(kat, name, titel, beiKlick)); }
     var u = umfang();
     u.phasen.forEach(function (name) {
       chip('phase', name, 'Phase ' + name + ' entfernen', function () { graph.listeSchalten('phasen', name); });
@@ -1471,8 +1487,11 @@
     bereichAbb.knopf = kopfAbb.knopf;
     refs.bereiche.abbildung = bereichAbb;
 
-    /* Unten: Kopfzeile und der Graph. */
-    var kopfGraph = bereichKopf('graph', null);
+    /* Unten: Kopfzeile mit dem Chip des gewählten Elements (wie oben die
+       Chips des Umfangs — gleiches «×» für beide Bereiche), darunter der Graph. */
+    refs.graphChips = h('div', { class: 'gumfang ub-auswahlchips', role: 'group', 'aria-label': 'Auswahl im Graph' });
+    refs.graphChips.hidden = true;
+    var kopfGraph = bereichKopf('graph', refs.graphChips);
     var bereichGraph = h('section', { class: 'ub-bereich ub-bereich--graph', 'aria-label': 'Graph' }, [kopfGraph.kopf]);
     bereichGraph.knopf = kopfGraph.knopf;
     refs.bereiche.graph = bereichGraph;
@@ -1497,6 +1516,7 @@
         malen();
         werkzeugAktualisieren();
         suchChipsZeichnen();
+        graphChipsZeichnen();
         urlSetzen();
       }
     });

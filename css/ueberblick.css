@@ -127,7 +127,7 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-auswahlchips[hidden] { display: none; }
 .ub-ikonknopf[aria-pressed="true"] { color: var(--ub-akzent); background: var(--ub-akzent-hauch); border-radius: 4px; }
 /* Leicht abgerundete Kacheln für die schwebenden Icons. */
-.ub-schweber, .ub-sichten .grail, .ub-sichten .gfokus-x { border-radius: 6px; }
+.ub-schweber, .ub-sichten .grail { border-radius: 6px; }
 /* Der Filterknopf des Graphen neben der Steuerung, im Mass der Icons hier. */
 .ub-schweber .graph-werkzeug { width: 28px; height: 28px; color: var(--ub-leise); }
 .ub-schweber .graph-werkzeug:hover { color: var(--ub-tinte); }
