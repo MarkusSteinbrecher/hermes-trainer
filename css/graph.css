@@ -672,6 +672,27 @@ body[data-route="graph"] .fusszeile { display: none; }
 .grail--rechts .graph-werkzeug:hover,
 .grail--rechts .graph-zoom__knopf:hover { background: var(--flaeche-2); }
 
+/* «×» links neben der rechten Leiste: hebt die Auswahl auf. Gleiche Kachel
+   wie die Leiste (44 × 40 plus 4 px Rand), Akzentfarbe als Zeichen, dass
+   eine Auswahl aktiv ist. Die Leiste ist 54 px breit. */
+.gfokus-x {
+  position: absolute;
+  top: .75rem; right: calc(.75rem + 54px + 6px);
+  z-index: 4;
+  display: grid; place-items: center;
+  width: 52px; height: 48px;
+  padding: 0;
+  background: var(--graph-bg);
+  border: 1px solid var(--akzent);
+  color: var(--akzent-text);
+  font-family: inherit;
+  font-size: 26px; font-weight: 300; line-height: 1;
+  cursor: pointer;
+}
+.gfokus-x[hidden] { display: none; }
+.gfokus-x:hover { background: var(--akzent-schwach); }
+.gfokus-x:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+
 /* --- Hinweis im Fokus: unten mittig auf der Fläche ------------------------ */
 .gfokus-hinweis {
   position: absolute;
@@ -811,6 +832,8 @@ body[data-route="graph"] .fusszeile { display: none; }
   .grail { flex-direction: row; left: .5rem; right: .5rem; top: .5rem; overflow-x: auto; scrollbar-width: none; }
   /* Werkzeuge auf dem Telefon als zweite Reihe unten, der Zoom liegend. */
   .grail--rechts { top: auto; bottom: .5rem; left: .5rem; right: .5rem; justify-content: flex-end; }
+  /* Das × liegt links in derselben Reihe wie die Werkzeuge. */
+  .gfokus-x { top: auto; bottom: .5rem; left: .5rem; right: auto; z-index: 5; width: 48px; height: 48px; }
   .gfokus-hinweis { bottom: 4rem; max-width: calc(100% - 1rem); white-space: normal; }
   .grail--rechts .graph-zoom { flex-direction: row; }
   .grail--rechts .graph-werkzeug, .grail--rechts .graph-zoom__knopf { width: 40px; height: 40px; }

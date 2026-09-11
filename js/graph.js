@@ -558,11 +558,14 @@
        Screenreader als Live-Bereich. */
     refs.status = h('p', { class: 'graph-status nur-sr', role: 'status', 'aria-live': 'polite' });
 
-    refs.fokusChip = h('button', {
-      type: 'button', class: 'gfokus', title: 'Fokus aufheben',
+    /* «×» auf der Fläche, links neben der rechten Icon-Leiste: hebt die
+       Auswahl (den Fokus) auf. Ersetzt den Chip mit dem Elementnamen, der
+       rechts neben der Suche stand. */
+    refs.fokusX = h('button', {
+      type: 'button', class: 'gfokus-x', title: 'Auswahl aufheben (Esc)', 'aria-label': 'Auswahl aufheben',
       on: { click: function () { fokusSetzen(null); } }
-    });
-    refs.fokusChip.hidden = true;
+    }, [h('span', { 'aria-hidden': 'true', text: '×' })]);
+    refs.fokusX.hidden = true;
 
     refs.knopfSuche = werkzeugKnopf('graph-werkzeug--suche', 'Element suchen',
       ['M10.6 3.6a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z', 'M15.6 15.6 20.4 20.4'],
@@ -615,7 +618,7 @@
     refs.werkzeugleiste = h('div', { class: 'graph-leiste' }, [
       h('div', { class: 'graph-leiste__links' }, [refs.ansichtSegment, refs.vorgehenSegment]),
       h('div', { class: 'graph-leiste__mitte' }, [refs.leisteSuche]),
-      h('div', { class: 'graph-leiste__rechts' }, [refs.umfangChips, refs.fokusChip, refs.knopfReset, refs.status])
+      h('div', { class: 'graph-leiste__rechts' }, [refs.umfangChips, refs.knopfReset, refs.status])
     ]);
 
     return [refs.werkzeugleiste];
@@ -652,21 +655,16 @@
     refs.umfangChips.hidden = !refs.umfangChips.childNodes.length;
 
     var fokus = zustand.fokusId ? HT.daten.eintragMitId(zustand.fokusId) : null;
-    HT.ui.leeren(refs.fokusChip);
-    refs.fokusChip.hidden = !fokus;
-    if (fokus) {
-      refs.fokusChip.appendChild(h('span', { class: 'gswatch gswatch--' + fokus.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(fokus.kategorie, 13)));
-      refs.fokusChip.appendChild(h('span', { text: fokus.begriff }));
-      refs.fokusChip.appendChild(h('span', { class: 'gfokus__x', 'aria-hidden': 'true', text: '×' }));
-      refs.fokusChip.setAttribute('aria-label', 'Fokus auf ' + fokus.begriff + ' aufheben');
-    }
+    refs.fokusX.hidden = !fokus;
+    if (fokus) { refs.fokusX.title = 'Auswahl «' + fokus.begriff + '» aufheben (Esc)'; }
     refs.fokusHinweis.hidden = !fokus;
     if (fokus) {
       var meta = HT.graph.KAT[fokus.kategorie];
       refs.fokusText.textContent = 'Nur «' + fokus.begriff + '» (' + meta.singular + ') und die direkt verbundenen Elemente.';
     }
 
-    refs.knopfReset.hidden = !HT.graph.umfangAktiv(zustand.umfang) && !fokus;
+    /* «Zurücksetzen» gilt der Phasen-/Modulauswahl; den Fokus hebt das × auf. */
+    refs.knopfReset.hidden = !HT.graph.umfangAktiv(zustand.umfang);
     refs.knopfAlle.classList.toggle('ist-aktiv', HT.graph.umfangAktiv(zustand.umfang));
   }
 
@@ -827,11 +825,11 @@
        liegt aber als eigene Zeile über Bühne und Detailfeld. */
     leisteBauen();
     refs.buehne = h('div', { class: 'graph-buehne' }, [
-      h('div', { class: 'graph-flaeche-huelle' }, [refs.flaeche, railBauen(), railRechtsBauen(), refs.leer, refs.fokusHinweis, refs.pop, refs.tooltip])
+      h('div', { class: 'graph-flaeche-huelle' }, [refs.flaeche, railBauen(), railRechtsBauen(), refs.fokusX, refs.leer, refs.fokusHinweis, refs.pop, refs.tooltip])
     ]);
 
     zeichner = HT.graphZeichnen.erstellen(refs.flaeche, {
-      freihalten: function () { return [refs.rail, refs.railRechts, refs.fokusHinweis]; },
+      freihalten: function () { return [refs.rail, refs.railRechts, refs.fokusX, refs.fokusHinweis]; },
       beiKlick: function (id) { fokusSetzen(id); },
       beiDoppelklick: einschraenken,
       beiLeerklick: function () { tooltipVerbergen(); popSchliessen(); },
