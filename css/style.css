@@ -223,13 +223,22 @@ main:focus { outline: none; }
   white-space: nowrap;
 }
 
-/* Ko-fi: der offizielle Becher als Bild, rechts in der Kopfzeile — auch auf
-   dem Telefon, wo die Hauptnavigation unten liegt. */
-.kofi {
+/* Rechts in der Kopfzeile — auch auf dem Telefon, wo die Hauptnavigation
+   unten liegt: das GitHub-Zeichen und der offizielle Ko-fi-Becher als Bild. */
+.github {
   display: flex;
   align-items: center;
   margin-left: auto;
-  padding: 0 16px;
+  padding: 0 10px 0 16px;
+  flex: 0 0 auto;
+  color: var(--text);
+}
+.github svg { display: block; }
+.github:hover { background: var(--flaeche-2); color: var(--text); }
+.kofi {
+  display: flex;
+  align-items: center;
+  padding: 0 16px 0 10px;
   flex: 0 0 auto;
 }
 .kofi:hover { background: var(--flaeche-2); }

@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — README für Nutzende, GitHub-Link in der Kopfzeile
+
+**Auftrag:** «Schau in die README auf GitHub und schreib sie um: wesentlich kürzer, an potenzielle User gerichtet. Ergänze einen Link auf GitHub neben dem Ko-fi-Logo.»
+
+**Umsetzung:** `README.md` von 40 langen auf 34 kurze Zeilen: Link zur Live-Seite, was meinHERMES ist und für wen, die acht Bereiche in je einem Satz, Beta-Hinweis mit Link auf die Issues, Hinweis auf lokalen Lernstand ohne Konto, Ko-fi, Quellen und Rechtliches, ein Absatz «Für Entwickler». Der bisherige technische Teil (Aufbau von Graph, Überblick, Trainer, Notizen, Feld; Werkzeuge in `tools/`; lokales Starten; Cache-Marken) ist unverändert nach `design/technik.md` gewandert, aus der README verlinkt. Kopfzeile: GitHub-Zeichen (offizieller Mark als Inline-SVG, `.github` in `css/style.css`) links neben dem Ko-fi-Becher, beide rechts aussen; Link auf das Repository in neuem Tab. Lokal geprüft, keine Konsolenfehler.
+
 ## 2026-09-11 — Zweite Leiste über die ganze Breite (Graph und Überblick)
 
 **Auftrag:** «Die zweite Top-Navigation sollte immer über die ganze Seite gehen.»
