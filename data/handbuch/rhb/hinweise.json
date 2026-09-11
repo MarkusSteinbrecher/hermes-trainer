@@ -1,0 +1,1796 @@
+{
+"id": "hinweise",
+"nummer": "7",
+"titel": "Hinweise zur Anwendung",
+"kategorie": null,
+"seite": 198,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung.html",
+"abschnitte": [
+{
+"nummer": "7",
+"titel": "Hinweise zur Anwendung",
+"ebene": 1,
+"seite": 198,
+"bloecke": []
+},
+{
+"nummer": "7.1",
+"titel": "Einleitung",
+"ebene": 2,
+"seite": 198,
+"bloecke": [
+{
+"t": "p",
+"text": "Dieses Kapitel hilft HERMES-Projektmanagement richtig anzuwenden. Um die Anwender zu unterstützen, wurden in diesem Kapitel Hinweise zusammengestellt, die z. B. ein vertieftes Verständnis für HERMES ermöglichen, Anwendungsfälle erläutern oder fallspezifisch auch eine Art Leitfaden liefern."
+}
+]
+},
+{
+"nummer": "7.2",
+"titel": "Übersicht der Hinweise",
+"ebene": 2,
+"seite": 198,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Hinweise zur Anwendung von HERMES werden in zwei Kategorien zusammengefasst:"
+},
+{
+"t": "ol",
+"items": [
+{
+"text": "Erläuterungen Die Erläuterungen betreffend HERMES zeigen auf, wie spezifische Themen in HERMES integriert sind. Sie vermitteln Zusammenhänge und ermöglichen ein vertieftes Methodenverständnis."
+},
+{
+"text": "Anwendungsfälle Die Hinweise zu Anwendungsfällen zeigen auf, wie HERMES in spezifischen Situationen umgesetzt werden soll. Sie schaffen Sicherheit in der Anwendung und helfen, den Interpretationsspielraum zu reduzieren."
+}
+]
+},
+{
+"t": "p",
+"text": "Die Tabelle zeigt die Hinweise pro Kategorie."
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Kategorie",
+"kopf": true
+},
+{
+"text": "Hinweis",
+"kopf": true
+}
+],
+[
+{
+"text": "Erläuterungen"
+},
+{
+"text": "Governance"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Nachhaltigkeit"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektmanagement und Entwicklungsmanagement"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Finanzielle Steuerung und Führung"
+}
+],
+[
+{
+"text": "Hinweise"
+},
+{
+"text": "Planung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Realisierungseinheiten bei klassischer Vorgehensweise"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Anwendung mit anderen Methoden und Praktiken"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Integration von HERMES in die Stammorganisation"
+}
+]
+],
+"titel": "Tabelle 29: Hinweise zur Anwendung pro Kategorie",
+"unten": true
+}
+]
+},
+{
+"nummer": "7.3",
+"titel": "Erläuterung der Hinweise-Beschreibung",
+"ebene": 2,
+"seite": 199,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Beschreibung der Hinweise folgt keiner festen oder einheitlichen Struktur. Jeder Hinweis ist bedarfsgerecht gegliedert und bildet für sich eine unabhängige Themeneinheit."
+}
+]
+},
+{
+"nummer": "7.4",
+"titel": "Beschreibung der Hinweise",
+"ebene": 2,
+"seite": 199,
+"bloecke": []
+},
+{
+"nummer": "7.4.1",
+"titel": "Governance",
+"ebene": 3,
+"seite": 199,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/governance.html",
+"bloecke": []
+},
+{
+"nummer": "7.4.1.1",
+"titel": "Projekt-Governance",
+"ebene": 4,
+"seite": 199,
+"bloecke": [
+{
+"t": "p",
+"text": "Unter Governance wird allgemein die „verantwortungsvolle Unternehmungsführung und -kontrolle“ verstanden. Sie muss insbesondere durch das Management der Stammorganisation umgesetzt werden."
+},
+{
+"t": "p",
+"text": "Die Projekt-Governance ist ein Teil der Unternehmens-Governance. Die folgenden Kennzeichen guter Projekt-Governance stellen Anforderungen an die Projektsteuerung und Projektführung dar:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Effektive und funktionsfähige Projektplanung, -steuerung und -führung"
+},
+{
+"text": "Konstruktive Zusammenarbeit von Projektorganisation und Stammorganisation"
+},
+{
+"text": "Berücksichtigung der Stakeholderinteressen"
+},
+{
+"text": "Abstimmung der gesetzten Ziele mit Vorgaben der Stammorganisation"
+},
+{
+"text": "Solide Basis für richtige, effiziente und transparente Entscheidungen"
+},
+{
+"text": "Institutionalisierter und zeitgerechter Informationsfluss, Transparenz in der Projektkommunikation"
+},
+{
+"text": "Nachvollziehbarkeit der Projektdurchführung und etwaiger Zieländerungen"
+},
+{
+"text": "Angemessener Umgang mit Risiken"
+},
+{
+"text": "Funktionale und adäquate Projektorganisation und Projektinfrastruktur"
+},
+{
+"text": "Effizienter und nachhaltiger Ressourceneinsatz"
+}
+]
+},
+{
+"t": "p",
+"text": "HERMES-Projektmanagement ist darauf ausgerichtet, eine gute Projekt-Governance zu gewährleisten."
+},
+{
+"t": "h",
+"text": "Umsetzung von bedeutenden Veränderungen"
+},
+{
+"t": "p",
+"text": "® Erstellung der Lösung"
+},
+{
+"t": "p",
+"text": "Bei der durch HERMES-Projektmanagement unterstützten Umsetzung der Unternehmensplanung werden mittels Projekten bedeutende Veränderungen realisiert."
+},
+{
+"t": "p",
+"text": "Während der Phase Initialisierung werden die Skizzen der Unternehmensplanung vertieft. Am Ende der Phase wird ein Durchführungsauftrag erarbeitet, damit der Auftraggeber in Abstimmung mit der Stammorganisation entscheiden kann, ob die Projektfortsetzung freigegeben und wie die Lösungsentstehung angegangen wird."
+},
+{
+"t": "p",
+"text": "Die Stammorganisation ernennt und besetzt die entscheidenden Rollen des Projekts aus ihren eigenen Reihen bzw., aus der Partnergruppe Anwender. Zuerst den Auftraggeber und durch den Auftraggeber den Projektleiter und den Anwendervertreter. Die Leitung sowie die Controlling- und Vorgabestellen werden über Entscheidungsaufgaben und das Reporting in das Projekt eingebunden. Der Auftraggeber sorgt für die ständige Kommunikation zwischen Stamm- und Projektorganisation, der Projektleiter für die Identifizierung und u.U. für die Gewinnung der Stakeholder für das Projekt und deren Information und der Anwendervertreter für deren Einbindung in die Projektdurchführung. Im Rahmen des Projekts ist der Auftraggeber die oberste Entscheidungsinstanz."
+},
+{
+"t": "p",
+"text": "® Nutzung der Lösung"
+},
+{
+"t": "p",
+"text": "Die Nutzung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "des erstellten Produkts oder der Dienstleistung beginnt mit der Aktivierung des Produkts und der Organisation,"
+},
+{
+"text": "des erstellten Systems mit der Aktivierung des Betriebs und"
+},
+{
+"text": "der erstellten Organisation mit der Aktivierung der Organisation."
+}
+]
+},
+{
+"t": "p",
+"text": "Die Voraussetzungen für die nachhaltige Nutzung werden im Projekt geschaffen. Das Projekt wird abgeschlossen, wenn der Betrieb stabil erfolgt, die Lösung abgenommen und alle notwendigen Schlussaufgaben erledigt sind. Beim Übergang von der Projekt- zur Anwendungsorganisation wird sichergestellt, dass die für die Nutzung benötigten Rollen besetzt sind. Dazu gehören oft die Rollen des Anwendervertreters und des Betriebsverantwortlichen. Das Projekt wandelt sich zur Anwendung. Führt die Stammorganisation sowohl für Projekte als auch für Anwendungen das gleiche Portfolio, wie es auch im HERMES-Portfoliomanagement vorgesehen ist, ändert lediglich der Status von Projekt zu Anwendung. Es ist allerdings zu berücksichtigen, dass sich das Projekt und die Anwendung im Portfolio überlappen. Dies kommt insbesondere bei der agilen Lösungsentstehung zum Tragen. Die Leitung des Anwenders und die des Erstellers bzw. Betreibers bleiben auch während der Periode der Nutzung in Verbindung. Die Erfolgskontrolle, ob die ursprünglich gesetzten Ziele letztlich erreicht wurden, geschieht während der Nutzung."
+},
+{
+"t": "h",
+"text": "Nachvollziehbarkeit der gewählten Vorgehensweise"
+},
+{
+"t": "p",
+"text": "Zur verantwortungsvollen Projektdurchführung gehört auch die Wahl der geeigneten Vorgehensweise. Die Entscheidung, ob Projekte klassisch oder agil angegangen werden, muss auf Projektebene erfolgen, da jedes Vorhaben individuelle Charakteristiken aufweist. Dies gilt auch für Projekte in einem Programm. Auch mehrere IT-Projekte, die parallel abgewickelt werden, können durchaus unterschiedliche Rahmenbedingungen haben, die unterschiedliche Vorgehensweisen erfordern."
+},
+{
+"t": "p",
+"text": "Für die Wahl der Vorgehensweise können verschiedene Methoden und Techniken verwendet werden. Die Anforderungen von Controlling- und Vorgabestellen müssen erfüllt werden. Die Wahl der Vorgehensweise muss nachvollziehbar sein."
+},
+{
+"t": "h",
+"text": "Selbstbestimmung der Anwender über das Projekt"
+},
+{
+"t": "p",
+"text": "Manchenorts hat es sich eingebürgert, dass die Dienstleistungserbringer bzw. die Partnergruppen Ersteller oder Betreiber das Projektgeschehen massgeblich beeinflussen, teilweise nahezu dominieren. Dies widerspricht einerseits dem Rollen- und Partnerverständnis von HERMES. Anderseits können so die Anwender ihre Verantwortung im Projekt nicht vollumfänglich wahrnehmen und somit auch ihre Interessen nicht wahren."
+},
+{
+"t": "p",
+"text": "Die Stammorganisation bzw. die Partnergruppe Anwender stellt als Inhaberin des Projekts und als Nutzerin der Lösung die finanziellen Ressourcen für das Projekt zur Verfügung. Dies gibt ihr das Recht, frei und ohne Einschränkung anderer Partnergruppen über die Projektstruktur, die angewandte Managementmethode und die Vorgehensweise zu entscheiden und auch die minimal zu besetzenden Rollen zwingend mit eigenen oder von ihr engagierten Personen zu besetzen. Allerdings muss sie von ihrem Recht auch Gebrauch machen und dies/sich konsequent durchsetzen. Dies wiederum gehört zu ihrer Pflicht."
+},
+{
+"t": "p",
+"text": "In Bezug auf die Selbstbestimmung der Anwender über das Projekt sind die folgenden Projektrollen besonders relevant:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Auftraggeber",
+"items": [
+{
+"text": "Legt den Rahmen für die Projektinitialisierung und für die Lösungsentstehung fest."
+},
+{
+"text": "Bestimmt die Rollenbesetzung, insbesondere der Partnergruppe Anwender."
+},
+{
+"text": "Entscheidet über die Art des Entwicklungsvorgehens."
+},
+{
+"text": "Setzt die Interessen seiner Stammorganisation durch."
+}
+]
+},
+{
+"text": "Projektleiter",
+"items": [
+{
+"text": "Bereitet die Entscheide der Steuerung vor."
+},
+{
+"text": "Wahrt die Interessen der Stammorganisation."
+},
+{
+"text": "Führt die Rollen aller Partnergruppen."
+},
+{
+"text": "Setzt das gewählte Vorgehen durch."
+},
+{
+"text": "Sichert das Reporting."
+}
+]
+},
+{
+"text": "Anwendervertreter",
+"items": [
+{
+"text": "Bereitet die Entscheide der Steuerung und der Führung vor."
+},
+{
+"text": "Bewertet Varianten im Interesse der Stammorganisation."
+},
+{
+"text": "Unterstützt den Projektleiter bei der Wahrung der Interessen der Stammorganisation und beim Reporting."
+}
+]
+}
+]
+},
+{
+"t": "p",
+"text": "In der Stammorganisation sind im Speziellen die folgenden Rollengruppen mit der Selbstbestimmung konfrontiert:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Controlling- und Vorgabestellen",
+"items": [
+{
+"text": "Beurteilen die Einhaltung der Vorgaben in Bezug auf die Vorgehensweise im Durchführungsauftrag."
+}
+]
+},
+{
+"text": "Leitung",
+"items": [
+{
+"text": "Prüft, ob die Vorgaben und Ziele der Stammorganisation in Bezug auf das Projekt erfüllt sind."
+}
+]
+}
+]
+},
+{
+"t": "h",
+"text": "Integration in das Portfolio"
+},
+{
+"t": "p",
+"text": "Die nachfolgende Abbildung stellt eine mögliche Unterstellung des Portfolios in der Stammorganisation dar. Es ist oft"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "im Kompetenzzentrum Projektmanagement oder"
+},
+{
+"text": "bei den Controlling- und Vorgabestellen"
+}
+]
+},
+{
+"t": "p",
+"text": "angesiedelt. Die Verantwortung obliegt in der Regel jedoch der Leitung."
+},
+{
+"t": "p",
+"text": "Die Governance-Anforderung eines effizienten und nachhaltigen Ressourceneinsatzes bedingt, dass beurteilt wird, ob ein Projekt gestartet und seine Durchführung später freigegeben werden soll. Eine Aufgabe der Stammorganisation ist es, die Gesamtheit der Projekte der Organisation übergeordnet zu steuern und zu kontrollieren. Dies erfolgt mit dem Projektportfoliomanagement. Es umfasst die übergeordnete Priorisierung und Koordination der Projekte, die Ressourcenzuweisung zu Projekten und die Entscheide darüber, welche Projekte initialisiert, umgesetzt, angehalten und beendet werden. Aus Unternehmenssicht werden mit Vorteil Projektportfolio und Anwendungsportfolio in einem übergeordneten Produktportfolio zusammengeführt."
+},
+{
+"t": "abb",
+"datei": "assets/rhb/abb-28.png",
+"text": "Abbildung 28: Zwei übliche Möglichkeiten der organisatorischen Zuordnung des Portfolios"
+},
+{
+"t": "p",
+"text": "HERMES unterstützt die Integration der Projekte - sowie der Anwendungen - in das Portfoliomanagement unter anderem mit dem Phasenmodell (übereinstimmende Projektstruktur), mit den Phasen und den Releases sowie mit Meilensteinen und mit Reporting."
+}
+]
+},
+{
+"nummer": "7.4.1.2",
+"titel": "Reporting",
+"ebene": 4,
+"seite": 202,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Forderung der Projekt-Governance nach einer transparenten Kommunikation bedingt ein Reporting. Das Reporting unterstützt ebenfalls die Anforderung der Projekt-Governance an die Nachvollziehbarkeit des Projektverlaufs. Das Reporting erfolgt periodisch entlang den Phasen gemäss den Vorgaben der Stammorganisation."
+},
+{
+"t": "p",
+"text": "Mit dem Reporting wird der Informationsfluss in der Projektorganisation und gegenüber der Stammorganisation formell geregelt. Das zeitnahe Reporting ist eine Voraussetzung dafür, dass die verantwortlichen Stellen in der Projekt- und der Stammorganisation ihre Aufgaben verantwortungsvoll ausführen können."
+},
+{
+"t": "p",
+"text": "Die mit dem Reporting erzielte Transparenz ist nicht nur für die Stammorganisation und den Auftraggeber, sondern auch für den Projektleiter von Nutzen, da es die Qualität der Projektdurchführung dokumentiert. Die folgenden Ergebnisse fallen beim Reporting an:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Projektstatusbericht Projektstatusberichte werden periodisch ab Projektbeginn bis Projektabschluss erstellt. In von der Stammorganisation definierten Zeitperioden informiert die Projektleitung mit dem Projektstatusbericht den Auftraggeber und die Stammorganisation über den Projektstand (Vergleich Plan/Ist) und den voraussichtlichen weiteren Verlauf (Prognose)."
+},
+{
+"text": "Phasenbericht Am Ende der Phasen Konzept, Realisierung, Einführung und Umsetzung werden die Ergebnisse der Phase und die Planung des weiteren Projektverlaufs für den Auftraggeber so aufbereitet, dass er den Entscheid zum weiteren Projektvorgehen (in der Regel zur Phasenfreigabe) treffen kann."
+},
+{
+"text": "Releasebericht (agil) Während der Phase Umsetzung werden am Ende jedes Release die Ergebnisse des Release für den Auftraggeber so aufbereitet, dass er über den Releaseerfolg sowie den Fortschritt und die gesamte Entwicklung informiert ist. Wurde in der Initialisierungsphase festgelegt, dass der Entscheid Releasefreigabe jeweils getroffen werden muss, dient der Releasebericht der Entscheidungsfindung."
+},
+{
+"text": "Projektschlussbeurteilung Am Ende der Phase Abschluss wird die Projektschlussbeurteilung erarbeitet. Sie dient der kontinuierlichen Verbesserung in der Stammorganisation aufgrund der gemachten Erfahrungen."
+}
+]
+},
+{
+"t": "p",
+"text": "Wie die nachfolgende Abbildung zeigt, bleibt das Reporting innerhalb der Projektorganisation und gegenüber der Stammorganisation einheitlich, gleichgültig, welches Entwicklungsvorgehen gewählt wird. Dadurch bleibt im Reportingbereich die Governance sowohl beim klassischen als auch beim agilen Entwicklungsvorgehen gewahrt."
+},
+{
+"t": "abb",
+"datei": "assets/abb/17387869-131-gekapselte-gegenueber-der-stammorganisation-einheitliche-reporting-struktur.svg",
+"text": "Abbildung 29: Gekapselte, gegenüber der Stammorganisation einheitliche Reporting Struktur"
+},
+{
+"t": "p",
+"text": "Ergänzend zum Reporting werden definierte fachliche Ergebnisse den Controlling- und Vorgabestellen zur Prüfung zugestellt (Beispiel: Lösungsarchitektur)."
+},
+{
+"t": "h",
+"text": "Erfüllung der Anforderungen der Projekt-Governance"
+},
+{
+"t": "p",
+"text": "® Prüfungsgegenstand"
+},
+{
+"t": "p",
+"text": "Bei der Beurteilung eines Projekts wird unter anderem geprüft, ob es die Anforderungen an die gute Projekt-Governance erfüllt."
+},
+{
+"t": "p",
+"text": "Nachfolgend ist für jede Anforderung beschrieben, wie die einzelnen HERMES Methodenelemente deren Erfüllung unterstützen."
+},
+{
+"t": "p",
+"text": "® Funktionsfähige Projektsteuerung und -führung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Rollen Die Rollen sind ein zentrales Methodenelement, um die Anforderung an die funktionsfähige Projektsteuerung und Führung erfüllen zu können:",
+"items": [
+{
+"text": "Die Verantwortung für Aufgaben und Ergebnisse ist den definierten Rollen im Projekt zugewiesen."
+},
+{
+"text": "Die Rollen sind den Hierarchieebenen Steuerung, Führung und Ausführung zugeordnet. Damit wird die Verantwortlichkeit der Rollen zusätzlich sichtbar gemacht."
+},
+{
+"text": "Die Rollen sind mit Rollenbeschreibungen konkretisiert. Dabei sind die Aufgaben, Kompetenzen und die Verantwortung sowie die benötigten Fähigkeiten zur Ausübung der Rolle beschrieben."
+},
+{
+"text": "Zur Unterstützung der Rolle des Auftraggebers ist eine Rolle Qualitäts- und Risikomanager definiert. Dieser nimmt unabhängige Beurteilungen der Projektdurchführung vor und gibt Empfehlungen ab."
+},
+{
+"text": "Zur Unterstützung der Rolle des Auftraggebers ist eine Rollegruppe Projektausschuss definiert. Sie ermöglicht die Integration der Stakeholder in die Projektorganisation, auf der Hierarchieebene Steuerung."
+},
+{
+"text": "Zur Unterstützung der Rolle des Projektleiters ist beim klassischen Vorgehen eine Rollegruppe Fachausschuss definiert. Dadurch können die Stakeholder sowohl im Führungsbereich als auch auf der fachlichen Ebene in die Projektorganisation eingebunden werden."
+},
+{
+"text": "Im Kapitel Projektorganisation ist beschrieben, welche Aspekte bei der Rollenbesetzung berücksichtigt werden sollen, damit eine funktionsfähige Projektsteuerung und -führung sichergestellt ist."
+}
+]
+},
+{
+"text": "Module und Aufgaben Die Aufgaben der Steuerung und der Führung sind umfassend beschrieben. Sie sind in den Modulen Projektsteuerung und Projektführung gruppiert und damit für Auftraggeber, Projektleiter und weitere Projektbeteiligte klar ersichtlich. Dadurch besteht eine hohe Transparenz bezüglich der Aufgaben und Ergebnisse, die in die Verantwortung von Auftraggeber und Projektleiter fallen."
+},
+{
+"text": "Ergebnisse In jedem Projekt müssen bestimmte Ergebnisse, die minimal geforderten Dokumente, erarbeitet werden, damit ein Projekt gesteuert und geführt werden kann. Dazu gehören beispielsweise der Durchführungsauftrag oder der Projektmanagementplan. Sie sind aus Sicht der Governance im Kapitel „Ergebnisse“ definiert."
+},
+{
+"text": "Reporting Die Projektsteuerung erfordert verlässliche Informationen über Planung, Projektstand und Prognosen. Diese werden über das Reporting bereitgestellt."
+}
+]
+},
+{
+"t": "p",
+"text": "® Berücksichtigung der Stakeholderinteressen"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Rollen Die Rollen der Projektsteuerung (Auftraggeber), der Projektführung (Projektleiter) und der fachlichen Lösungsentstehung (Anwendervertreter) sind verantwortlich für die entsprechenden Aufgaben."
+},
+{
+"text": "Aufgaben",
+"items": [
+{
+"text": "Mit der Aufgabe Stakeholder managen und informieren wird sichergestellt, dass die Stakeholder identifiziert und ihre Interessen analysiert werden."
+},
+{
+"text": "Mit der Aufgabe Stakeholderinteressen vertreten wird sichergestellt, dass die Stakeholder ihre Ideen und Forderungen in das Projekt einbringen können und bei Bedarf in die Lösungsentstehung eingebunden werden."
+}
+]
+},
+{
+"text": "Ergebnisse Die Stakeholderliste und die Stakeholderinteressen werden erstmals in der Phase Initialisierung erstellt und im Projektablauf kontinuierlich weitergeführt."
+}
+]
+},
+{
+"t": "p",
+"text": "® Zusammenarbeit von Projektorganisation und Stammorganisation"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "HERMES und Portfoliomanagement HERMES unterstützt die Integration der Projekte in das Portfoliomanagement."
+},
+{
+"text": "Phasen und Meilensteine Die Phasen und Meilensteine (mit Quality Gates) unterstützen die Zusammenarbeit (z. B. hinsichtlich klarer Schnittstellen)."
+},
+{
+"text": "Rollen Das Rollenmodell schafft eine klare Beziehung zwischen der Projektorganisation und der Stammorganisation mit ihren Controlling- und Vorgabestellen."
+},
+{
+"text": "Aufgaben Mehrere Aufgaben unterstützen die Zusammenarbeit von Projektorganisation und Stammorganisation. Beispielsweise:",
+"items": [
+{
+"text": "die Entscheidungsaufgaben zu Projektinitialisierungsfreigabe, Durchführungsfreigabe, Phasenfreigabe, Releasefreigabe und Projektabschluss;"
+},
+{
+"text": "die Aufgabe Leistungen vereinbaren und steuern;"
+},
+{
+"text": "die Aufgabe Entscheid Lösungsarchitektur treffen;"
+},
+{
+"text": "die Aufgabe Entscheid ISDS-Konzept treffen."
+}
+]
+}
+]
+},
+{
+"t": "p",
+"text": "® Abstimmung der gesetzten Ziele mit Vorgaben der Stammorganisation"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Phasen bzw. Releases Vor der Durchführungsfreigabe am Ende der Phase Initialisierung und der jeweiligen Phasenfreigabe bzw. der Releasefreigabe werden die Ziele im Rahmen der jeweiligen Entscheidungsaufgaben mit der Strategie und den Zielen der Stammorganisation abgestimmt."
+}
+]
+},
+{
+"t": "p",
+"text": "® Transparenz in der Projektkommunikation"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Aufgaben Mit der Aufgabe Stakeholder managen und informieren wird die Kommunikationsplanung erarbeitet. Die Kommunikation wird zielgruppenorientiert geführt."
+},
+{
+"text": "Reporting Das Reporting stellt die projektinterne Kommunikation zwischen Projektleitung und Auftraggeber sowie eine realistische und zeitnahe Gesamtbetrachtung und -bewertung gegenüber der Stammorganisation sicher."
+}
+]
+},
+{
+"t": "p",
+"text": "® Nachvollziehbarkeit des Projektverlaufs"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ergebnisse Die im Projektverlauf anfallenden Ergebnisse dokumentieren den Projektverlauf.",
+"items": [
+{
+"text": "Mit dem periodischen Reporting, das den Projektstatusbericht und den Phasenbericht umfasst, wird der Projektablauf dokumentiert:"
+},
+{
+"text": "Projektentscheide werden festgehalten und Sitzungen protokolliert."
+},
+{
+"text": "Projekterfahrungen werden laufend festgehalten."
+},
+{
+"text": "In der Projektschlussbeurteilung werden die Plan- und Ist-Werte verglichen (Soll-Ist-Vergleich) und wesentliche Erkenntnisse festgehalten."
+},
+{
+"text": "Der Projektmanagementplan wird laufend nachgeführt und dokumentiert den jeweiligen Planungsstand."
+},
+{
+"text": "Beschaffungen werden mit einem Evaluationsbericht dokumentiert."
+},
+{
+"text": "Änderungen werden in der Änderungsstatusliste geführt und festgehalten."
+}
+]
+}
+]
+},
+{
+"t": "p",
+"text": "® Angemessener Umgang mit Risiken"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ergebnisse Der Projektstatusbericht enthält die aktuelle Risikobeurteilung und informiert die Empfänger über die Beurteilung des Projektleiters."
+},
+{
+"text": "Aufgaben Mit der Aufgabe Risiken managen wird das Risikomanagement kontinuierlich geführt."
+},
+{
+"text": "Rollen Auf Hierarchieebene Projektsteuerung unterstützt die Rolle des Qualitäts- und Risikomanagers den Auftraggeber mit einer unabhängigen Beurteilung des Projekts."
+},
+{
+"text": "Phasen bzw. Releases Werden am Ende einer Phase oder eines Release die Risiken als nicht tragbar beurteilt, muss über das weitere Vorgehen befunden und das Projekt eventuell abgebrochen werden."
+},
+{
+"text": "Module und Szenarien Module und Szenarien unterstützen alle Projektbeteiligten und die Stammorganisation im gemeinsamen Verständnis, wie ein Projekt einer spezifischen Charakteristik abgewickelt wird. Dadurch können Missverständnisse vermieden und die Projektrisiken insgesamt gesenkt werden."
+}
+]
+},
+{
+"t": "p",
+"text": "® Effizienter und nachhaltiger Ressourceneinsatz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Module und Szenarien Module und Szenarien ermöglichen die effiziente Planung."
+},
+{
+"text": "Phase Initialisierung Am Ende der Phase Initialisierung wird geprüft, ob es sinnvoll ist, mittels eines Durchführungsauftrags das Projekt fortzusetzen. Mögliche Gründe, dies nicht zu tun, sind fehlende Wirtschaftlichkeit, zu hohe Risiken, fehlende Realisierbarkeit, fehlende Übereinstimmung mit den Zielen und Strategien der Organisation."
+},
+{
+"text": "Phasen, Releases und Meilensteine Am Ende der Phasen oder am Ende der Release wird im Rahmen der Lösungsentstehung geprüft, ob es sinnvoll ist, das Projekt weiterzuführen. Die möglichen Gründe für einen Abbruch sind z. B. zu hohe Risiken, ausbleibender Nutzen, ausufernde Kosten, usw."
+},
+{
+"text": "Hinweise zur Anwendung Das Kapitel „Nachhaltigkeit“ beschreibt, wie Projekte nachhaltig durchgeführt bzw. wie nachhaltige Ergebnisse erzielt und welche Kriterien zur Beurteilung der Nachhaltigkeit herangezogen werden."
+}
+]
+}
+]
+},
+{
+"nummer": "7.4.2",
+"titel": "Nachhaltigkeit",
+"ebene": 3,
+"seite": 206,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/nachhaltigkeit.html",
+"bloecke": []
+},
+{
+"nummer": "7.4.2.1",
+"titel": "Nachhaltigkeitsverständnis",
+"ebene": 4,
+"seite": 206,
+"bloecke": [
+{
+"t": "p",
+"text": "Das Fundament der Nachhaltigkeit bildet das Nachhaltigkeitsverständnis der Weltkommission für Umwelt und Entwicklung („Brundtland-Kommission“). Diese definiert, dass die nachhaltige Entwicklung zwar die Bedürfnisse der Gegenwart befriedigen soll, jedoch die Bedürfnisse der künftigen Generationen nicht gefährden darf. Dabei sollen die wirtschaftlichen, gesellschaftlichen und ökologischen Vorgänge miteinander in Einklang gebracht werden. Eine nachhaltige Entwicklung strebt ein auf Dauer ausgewogenes Verhältnis zwischen der Natur und ihrer Erneuerungsfähigkeit und ihrer Beanspruchung durch den Menschen an."
+},
+{
+"t": "p",
+"text": "Die Auswirkungen des heutigen Handelns auf die Zukunft müssen folglich einberechnet werden. So soll z. B. auch der Umwelt- und Ressourcenverbrauch unter Wahrung der wirtschaftlichen Leistungsfähigkeit und des sozialen Zusammenhalts auf ein dauerhaft tragbares Niveau gesenkt werden. Alle diese Nachhaltigkeitsforderungen betreffen auch die Projekte. Diese dürfen sich bei der Definition der zu erreichenden Ziele nicht lediglich auf die Wirtschaftlichkeit beschränken, sondern müssen auch die Gesellschaft und die Umwelt einbeziehen. Insofern hat ein erfolgreiches Projektmanagement auch positive Auswirkungen im Bereich der nachhaltigen Entwicklung."
+},
+{
+"t": "p",
+"text": "Im Bereich der Informations- und Kommunikationstechnologien stehen aus Nachhaltigkeitssicht in einer Lebenszyklusbetrachtung vor allem die Energie- und Ressourceneffizienz sowie die Arbeitsbedingungen in den Produktionsländern im Vordergrund. Ein besonderes Augenmerk gilt dabei dem Beschaffungswesen durch das Definieren von ökologischen und sozialen Zuschlagskriterien. Für Informationstechnologien spielen zusätzlich die langfristige Sicherung der Daten, der Datenschutz und die Datenintegrität sowie der Zugang zu Wissen eine wichtige Rolle."
+}
+]
+},
+{
+"nummer": "7.4.2.2",
+"titel": "Nachhaltigkeit mit HERMES",
+"ebene": 4,
+"seite": 207,
+"bloecke": [
+{
+"t": "h",
+"text": "HERMES als Gesamtprodukt"
+},
+{
+"t": "p",
+"text": "HERMES unterstützt die Nachhaltigkeit der Lösung. Nachfolgend sind die Methodenelemente im Hinblick auf Nachhaltigkeitsaspekte beschrieben."
+},
+{
+"t": "h",
+"text": "Phasen"
+},
+{
+"t": "p",
+"text": "Wichtig ist die Verankerung von Nachhaltigkeitszielen bei der Definition der strategischen Ziele. Diese fliessen in der Phase Initialisierung als Vorgabe in das Projekt ein:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Für den Auftraggeber ist eines der Entscheidungskriterien bei der Durchführungsfreigabe, ob und wie die Vorgaben und Ziele zur Nachhaltigkeit durch das Projekt erfüllt werden. Nicht nachhaltige Projekte werden dadurch gar nicht erst zur Fortsetzung freigegeben."
+},
+{
+"text": "Bei jedem Entscheid zur Phasen- bzw. Releasefreigabe wird nebst der Einhaltung der Vorgaben sowie der Übereinstimmung mit den strategischen Zielen auch die Erreichung der Nachhaltigkeitsziele als Bewertungskriterium mitberücksichtigt."
+}
+]
+},
+{
+"t": "h",
+"text": "Ergebnisse"
+},
+{
+"t": "p",
+"text": "Im Projekt werden alle Ergebnisse erarbeitet, die für einen nachhaltigen Betrieb benötigt werden. Dazu gehören die Organisation mit den Prozessen sowie die Ergebnisse für Wartung und Weiterentwicklung mit Anwendungshandbuch, Betriebshandbuch, Produktkonzept, Lösungsarchitektur und Detailspezifikation. Für die Weiterentwicklung nach Projektabschluss werden Testinfrastruktur und Testhilfsmittel vom Projekt an die Stammorganisation übergeben."
+},
+{
+"t": "p",
+"text": "Die folgenden Ergebnisse unterstützen die Nachhaltigkeit von Entscheiden:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Studie Bewertungskriterien für den Entscheid Weiteres Vorgehen (Wahl der Lösungsvariante)"
+},
+{
+"text": "Ausschreibungsunterlagen (Lastenheft) Kriterienkatalog für Bewertung der Lösung und Bewertung der Anbieter"
+},
+{
+"text": "Checklisten Prüfpunkte und Kriterien im Entscheidungsprozess"
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben"
+},
+{
+"t": "p",
+"text": "Mehrere Aufgaben unterstützen die Nachhaltigkeit im Projekt konkret, beispielsweise:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "die Entscheidungsaufgaben wie:",
+"items": [
+{
+"text": "Entscheide Durchführungsfreigabe, Phasenfreigabe, Releasefreigabe und Projektabschluss;"
+},
+{
+"text": "Entscheid Weiteres Vorgehen;"
+},
+{
+"text": "Entscheid Lösungsarchitektur;"
+}
+]
+},
+{
+"text": "die Aufgabe Leistungen vereinbaren und steuern;"
+},
+{
+"text": "die Aufgabe Stakeholder managen und informieren;"
+},
+{
+"text": "die Aufgabe Beschaffungsanalyse erarbeiten;"
+},
+{
+"text": "die Aufgaben des Modules Beschaffung."
+}
+]
+},
+{
+"t": "h",
+"text": "Module"
+},
+{
+"t": "p",
+"text": "Im Modul Beschaffung werden die Ziele und Anforderungen der Nachhaltigkeit in den Kriterienkatalog für die Beschaffung von Dienstleistungen und Produkten aufgenommen und fliessen in die Bewertung ein."
+},
+{
+"t": "h",
+"text": "Rollen"
+},
+{
+"t": "p",
+"text": "Die Rollen können mit ihren Kompetenzen und ihrer Verantwortung einen bewussten Umgang mit den Ressourcen fördern. Das dazu nötige Verständnis wird bei den Beteiligten bereits anlässlich der Zieldefinition geschaffen. Entsprechend sind für die Nachhaltigkeit des Projekts alle Rollen mit ihren Aufgaben massgebend."
+},
+{
+"t": "p",
+"text": "In Bezug auf Nachhaltigkeitsziele sind die folgenden drei Rollen besonders relevant:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Auftraggeber",
+"items": [
+{
+"text": "Legt die Ziele in Übereinstimmung mit der Strategie und den Vorgaben zur Nachhaltigkeit fest."
+},
+{
+"text": "Priorisiert die Lösungsziele, bereinigt Zielkonflikte und lässt diese in die Lösungsanforderungen und Organisationsanforderungen einfliessen."
+},
+{
+"text": "Überprüft die Umsetzung der Vorgaben und die Zielerreichung regelmässig."
+},
+{
+"text": "Stellt den Einbezug der Stakeholder mit ihren Ansprüchen sicher."
+},
+{
+"text": "Stellt die langfristig benötigten Ressourcen für den Betrieb sicher."
+}
+]
+},
+{
+"text": "Projektleiter",
+"items": [
+{
+"text": "Verankert das Bewusstsein zur Nachhaltigkeit im Projekt."
+},
+{
+"text": "Berücksichtigt bei Entscheiden die Nachhaltigkeitskriterien."
+},
+{
+"text": "Stellt den schonenden Umgang mit Ressourcen sicher."
+},
+{
+"text": "Stellt bei der Rollenbesetzung sicher, dass die Fachspezialisten über die notwendigen Fähigkeiten verfügen, und sorgt für die Schliessung vorhandener Fähigkeitslücken (bei agiler Vorgehensweise erfolgt dies in eigener Kompetenz der Umsetzungsorganisation)."
+}
+]
+},
+{
+"text": "Anwendervertreter",
+"items": [
+{
+"text": "Integriert die Nachhaltigkeitsziele in den Lösungsanforderungen und priorisiert sie."
+},
+{
+"text": "Verankert das Bewusstsein zur Nachhaltigkeit bei der Lösungsentstehung."
+},
+{
+"text": "Versteht unter der Wertschöpfung der Entwicklungsarbeit auch die Nachhaltigkeit."
+},
+{
+"text": "Berücksichtigt die Interessen der Stakeholder."
+},
+{
+"text": "Unterstützt den Auftraggeber bei der Definition der Nachhaltigkeitsziele."
+},
+{
+"text": "Bringt die Nachhaltigkeit in den Beschaffungsprozess ein."
+},
+{
+"text": "Stellt sicher, dass bei der Anforderungsdefinition die Anforderungen auch aus Sicht der Nachhaltigkeit erhoben werden."
+},
+{
+"text": "Nimmt eine werteorientierte Priorisierung der Anforderungen vor.",
+"items": [
+{
+"text": "In die Bewertung der Anforderungen fliessen die Nachhaltigkeitsziele ein."
+}
+]
+},
+{
+"text": "Bewertet Varianten auch unter dem Gesichtspunkt der Nachhaltigkeit."
+}
+]
+}
+]
+},
+{
+"t": "p",
+"text": "In der Projektorganisation befassen sich speziell folgende Ausführungsrollen mit der Nachhaltigkeit:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Business Analyst",
+"items": [
+{
+"text": "Ermittelt die Vorgaben der Stammorganisation bezüglich der Nachhaltigkeit."
+},
+{
+"text": "Integriert die Nachhaltigkeitsziele in die Organisationsanforderungen."
+},
+{
+"text": "Berücksichtigt die Aspekte der Nachhaltigkeit bei der Erarbeitung des Organisationskonzepts."
+},
+{
+"text": "Begleitet den Anwendervertreter bei der Formulierung der Nachhaltigkeitsziele."
+}
+]
+},
+{
+"text": "Betriebsverantwortlicher",
+"items": [
+{
+"text": "Berücksichtigt die Aspekte der Nachhaltigkeit bei der Anforderungsdefinition aus Sicht des Betriebs."
+},
+{
+"text": "Berücksichtigt die Aspekte der Nachhaltigkeit bei der Erarbeitung des Betriebskonzepts."
+},
+{
+"text": "Stellt einen nachhaltigen Betrieb sicher."
+}
+]
+}
+]
+},
+{
+"t": "p",
+"text": "In der Stammorganisation sind im Speziellen die folgenden Rollengruppen mit der Nachhaltigkeit konfrontiert:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Controlling- und Vorgabestellen",
+"items": [
+{
+"text": "Beurteilen die Einhaltung der Vorgaben und die Erreichung der Nachhaltigkeitsziele."
+},
+{
+"text": "Prüfen das Produktkonzept."
+},
+{
+"text": "Prüfen die Lösungsarchitektur.",
+"items": [
+{
+"text": "Homogene Architekturen sollen ermöglichen, den Betrieb und die Weiterentwicklung von Systemen langfristig zu sichern."
+}
+]
+}
+]
+},
+{
+"text": "Leitung",
+"items": [
+{
+"text": "Priorisiert die Projekte im Portfolio auch mittels Kriterien, die die Nachhaltigkeit berücksichtigen."
+},
+{
+"text": "Prüft, ob die Vorgaben und Ziele der Nachhaltigkeit mit dem Projekt realistisch erreicht werden können."
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "7.4.3",
+"titel": "Projektmanagement und Entwicklungsmanagement",
+"ebene": 3,
+"seite": 209,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/projektmanagement-und-entwicklungsmanagement.html",
+"bloecke": []
+},
+{
+"nummer": "7.4.3.1",
+"titel": "Projektmanagement",
+"ebene": 4,
+"seite": 209,
+"bloecke": [
+{
+"t": "p",
+"text": "Wie die nachfolgende Abbildung zeigt, unterscheidet HERMES zwischen klassischem Projektmanagement und Projektmanagement mit agiler Umsetzung."
+},
+{
+"t": "abb",
+"datei": "assets/abb/c98e6dc7-132-hermes-bietet-projektmanagement-mit-klassischer-und-agiler-umsetzung-an.svg",
+"text": "Abbildung 30: HERMES bietet Projektmanagement mit klassischer und agiler Umsetzung an"
+},
+{
+"t": "p",
+"text": "Die Lösungsentstehung kann klassisch oder agil erfolgen:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Das klassische Projektmanagement unterstützt das klassische Entwicklungsmanagement;"
+},
+{
+"text": "Das Projektmanagement mit agiler Umsetzung unterstützt agiles Entwicklungsmanagement."
+}
+]
+}
+]
+},
+{
+"nummer": "7.4.3.2",
+"titel": "Entwicklungsmanagement agil",
+"ebene": 4,
+"seite": 209,
+"bloecke": [
+{
+"t": "p",
+"text": "Agile Entwicklungsmethoden gehören nicht zu den Projektmanagementmethoden, sondern zu Entwicklungsmanagementmethoden. Projekte unter HERMES müssen bestimmte Rahmenbedingungen erfüllen, wie z. B. die Einhaltung der Governance, die reibungslose Einbettung des Vorhabens in die bestehenden Planungs- und Controlling Prozesse der Stammorganisation (Grundmission von HERMES) oder die gemeinsame Sprache bzw. einheitliche Terminologie. Agile Entwicklungen ohne entsprechenden Projektmanagement-Rahmen erfüllen diese Anforderungen nicht. Daher werden agile Methoden und Frameworks in HERMES Projektmanagement eingebettet."
+},
+{
+"t": "p",
+"text": "Die nachfolgende Abbildung zeigt das HERMES-Phasenmodell mit agilem Entwicklungsmanagement. Projektmanagement"
+},
+{
+"t": "abb",
+"datei": "assets/abb/8eae1c5d-133-phasenmodell-mit-agiler-entwicklung.svg",
+"text": "Abbildung 31: Phasenmodell mit agiler Entwicklung"
+},
+{
+"t": "p",
+"text": "Das Rollenverständnis im Projektmanagement mit agiler Umsetzung lehnt sich sowohl an das klassische Projektmanagement als auch an die agilen Entwicklungsmethoden an. Die Projektorganisation arbeitet entsprechend dem klassischen Projektmanagement; die Umsetzungsorganisation entsprechend der gewählten agilen Methode. Der Anwendervertreter nimmt eine Schnittstellenfunktion zwischen der Projekt- und Umsetzungsorganisation ein."
+},
+{
+"t": "p",
+"text": "Weiterführende Informationen zu HERMES und Agilität finden Sie im Dokument „Agiler Leitfaden - Projektmanagement“, welches eine Erweiterung zum vorliegenden Referenzhandbuch darstellt."
+}
+]
+},
+{
+"nummer": "7.4.3.3",
+"titel": "Entwicklungsmanagement klassisch/agil",
+"ebene": 4,
+"seite": 210,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Lösungsentstehung im Projekt kann entweder klassisch oder agil erfolgen. Dennoch gibt es in der Praxis Fälle, in denen ein Projekt mit einer Kombination aus beiden Vorgehensweisen abgewickelt wird."
+},
+{
+"t": "p",
+"text": "Dies setzt ein entsprechendes Tailoring in der Initialisierungsphase voraus, da das gewählte Szenario und der Durchführungsstrukturplan angepasst werden müssen. Nachfolgende Abbildung zeigt zwei Beispiele solcher Kombinationen."
+},
+{
+"t": "abb",
+"datei": "assets/abb/34223545-134-entwicklungsmanagement-klassisch-agil-beispielvarianten.svg",
+"text": "Abbildung 32: Entwicklungsmanagement klassisch/agil - Beispielvarianten"
+}
+]
+},
+{
+"nummer": "7.4.4",
+"titel": "Finanzielle Steuerung und Führung",
+"ebene": 3,
+"seite": 210,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/finanzielle-steuerung-und-fuehrung.html",
+"bloecke": []
+},
+{
+"nummer": "7.4.4.1",
+"titel": "Allgemeines",
+"ebene": 4,
+"seite": 210,
+"bloecke": [
+{
+"t": "p",
+"text": "Die finanzielle Steuerung und Führung des Projekts beginnt mit dem Entscheid Projektinitialisierungsfreigabe und endet mit dem Entscheid Projektabschluss, allenfalls mit dem Entscheid Projektabbruch."
+}
+]
+},
+{
+"nummer": "7.4.4.2",
+"titel": "Finanzierung",
+"ebene": 4,
+"seite": 210,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Stammorganisation stellt als Inhaberin des Projekts die finanziellen Ressourcen für das Projekt zur Verfügung. Die Phase Initialisierung stellt eine Vorleistung für das gesamte Vorhaben dar und wird durch das Projekt- oder über das Linienbudget finanziert. In die Wirtschaftlichkeitsbetrachtung des Projekts fliessen die Aufwände der Phase Initialisierung als Vorleistung ein."
+},
+{
+"t": "p",
+"text": "Die Planung des Ressourcenbedarfs und der Finanzierung erfolgt für das Gesamtprojekt. In der Phase Initialisierung wird eine Gesamtplanung erstellt, die laufend überprüft und angepasst wird. Bei klassischer Vorgehensweise sollen am Ende der Konzeptphase die Investitions- und Betriebskosten verbindlich bekannt sein. Dabei werden auch die Kosten für die Deckung von Projektrisiken berücksichtigt."
+},
+{
+"t": "p",
+"text": "Bei agiler Vorgehensweise hingegen werden Kennzahlen zu den Betriebskosten von Release zu Release sukzessive konkretisiert und releaseweise rapportiert. Die zu erwartenden Investitionskosten bzw. das gesamte Budget für die Lösungsentstehung zuzüglich jenes für die Abschlussphase sind im Durchführungsauftrag grundsätzlich fix definiert."
+},
+{
+"t": "p",
+"text": "Die Betriebskosten werden während der Projektabwicklung über das Projektbudget finanziert, anschliessend über das Linienbudget."
+}
+]
+},
+{
+"nummer": "7.4.4.3",
+"titel": "Steuerung",
+"ebene": 4,
+"seite": 211,
+"bloecke": [
+{
+"t": "p",
+"text": "Mit dem Entscheid Durchführungsfreigabe wird das für die Durchführung benötigte Investitionsbudget durch die Stammorganisation bewilligt. Der Auftraggeber übernimmt hierfür die Verantwortung und gibt bei der klassischen Vorgehensweise die finanziellen Ressourcen phasenweise frei. Diese Freigabe wird über die Entscheidungsaufgaben zur Phasenfreigabe gesteuert."
+},
+{
+"t": "p",
+"text": "Bei der agilen Vorgehensweise erübrigt sich eine stufenweise Freigabe von Finanzen. Diese sind für die Lösungsentstehung fix oder als Kostendach definiert und werden einmalig mit dem Durchführungsauftrag freigegeben. Im Rahmen der agilen Entwicklung wird mittels Burn-Down-Diagramm der geschätzte restliche Aufwand dem tatsächlich verbleibenden Aufwand gegenübergestellt und mittels Releasebericht kommuniziert."
+},
+{
+"t": "p",
+"text": "Der Auftraggeber ist für die finanzielle Steuerung verantwortlich und stellt die Wirtschaftlichkeit des Projekts sicher. Entsprechend steuert er die Projektkosten und die zukünftigen Betriebskosten. Er erhält über das Reporting alle notwendigen Informationen, um den Projektstand und die Kostenentwicklung beurteilen zu können. Da im agilen Umfeld das Budget fix definiert ist, wird die finanzielle Kontrolle und Projekterfolg durch andere Instrumente gemessen und gesichert."
+},
+{
+"t": "p",
+"text": "Zur Unterstützung der Steuerung beauftragt der Auftraggeber bei Bedarf einen unabhängigen Qualitäts- und Risikomanager."
+},
+{
+"t": "p",
+"text": "Die finanzielle Führung des Projekts obliegt dem Projektleiter. Er führt eine Projektbuchhaltung und liefert Informationen an die Steuerung."
+},
+{
+"t": "p",
+"text": "Mit der Aufgabe Änderungen managen stellt der Projektleiter sicher, dass Änderungen von Anforderungen und des Umfangs sowie ihre Auswirkungen auf Kosten, Personalbedarf und Termine rechtzeitig identifiziert, analysiert, beantragt und entschieden werden. Die Planung wird entsprechend angepasst."
+}
+]
+},
+{
+"nummer": "7.4.5",
+"titel": "Planung",
+"ebene": 3,
+"seite": 211,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/planung.html",
+"bloecke": []
+},
+{
+"nummer": "7.4.5.1",
+"titel": "Planungsbasis und das Vorgehen",
+"ebene": 4,
+"seite": 211,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Planung bildet die Grundlage für den effektiven und effizienten Einsatz der im Projekt benötigten Ressourcen. Sie ist die Voraussetzung für die Führung und Steuerung des Projekts. Sie unterstützt die Kommunikation und die Abstimmung der Aktivitäten unter den Projektbeteiligten."
+},
+{
+"t": "p",
+"text": "Nach der Erarbeitung der Studie mit den Zielen und dem Entscheid Weiteres Vorgehen in der Phase Initialisierung ist der erste Schritt in der Durchführungsplanung die Durchführungsstrukturierung. Der Projektleiter wählt dazu das passende Szenario gemäss Entscheid Weiteres Vorgehen in HERMES Online aus. Das Szenario mit seinen Methodenelementen gibt eine grundlegende Struktur vor, die für die Lösungsentstehung übernommen und an die projektspezifische Realität angepasst wird."
+},
+{
+"t": "p",
+"text": "Die Ergebnisse der Planung werden im Projektmanagementplan festgehalten. Er ist das zentrale Instrument für die Führung des Projekts und umfasst alle Pläne, die im Projekt anfallen. Er wird in der Phase Initialisierung erstellt und in nachfolgenden Phasen laufend nachgeführt."
+},
+{
+"t": "p",
+"text": "Nach dem Entscheid Durchführungsfreigabe trennen sich die Wege, in dem die Planung klassisch bzw. agil angegangen wird. In der klassischen Lösungsentstehung wird durch den Projektleiter nach dem Prinzip der rollenden Planung geplant, in der agilen Lösungsentstehung erfolgt die weitere Planung autonom durch die Umsetzungsorganisation."
+}
+]
+},
+{
+"nummer": "7.4.5.2",
+"titel": "Initiale Planung der Lösungsentstehung",
+"ebene": 4,
+"seite": 212,
+"bloecke": [
+{
+"t": "p",
+"text": "In der Phase Initialisierung wird die Fortsetzung des Projekts geplant. Die Durchführungsstrukturierung wird erstellt und die Ergebnisse des weiteren Projektverlaufs werden auf der Grundlage der Studie definiert. Die personellen und finanziellen Ressourcen werden nur so detailliert geplant, dass die Verfügbarkeit für das gesamte Projekt sichergestellt werden kann."
+},
+{
+"t": "p",
+"text": "Zuerst wird nach dem folgenden Vorgehen der Durchführungsstrukturplan erarbeitet:"
+},
+{
+"t": "ol",
+"items": [
+{
+"text": "Studie erarbeiten, für die Lösungsentstehung den Umfang und die Abgrenzung festhalten."
+},
+{
+"text": "In HERMES Online:",
+"items": [
+{
+"text": "Szenario wählen und bei Bedarf anpassen (im Rahmen der Studie)."
+},
+{
+"text": "Durchführungsstrukturplan erstellen und exportieren."
+},
+{
+"text": "Durchführungsstrukturplan in den Projektmanagementplan integrieren."
+}
+]
+},
+{
+"text": "Lösungsspezifische Ergebnisse und Aufgaben ergänzen."
+},
+{
+"text": "Rollen im Projektmanagementplan an das Szenario anpassen."
+}
+]
+},
+{
+"t": "p",
+"text": "Anschliessend wird der Projektmanagementplan mit den folgend aufgeführten Schritten erarbeitet - sie müssen nicht zwingend in dieser Reihenfolge unternommen und können mehrmals durchlaufen werden:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Risikomanagement festlegen;"
+},
+{
+"text": "QS-Plan und Prüfplan erarbeiten;"
+},
+{
+"text": "Aufwandschätzungen für Ergebnisse vornehmen;"
+},
+{
+"text": "Abhängigkeiten ermitteln;"
+},
+{
+"text": "Terminplan erarbeiten (ggf. auch Releaseplan vorsehen (agil));",
+"items": [
+{
+"text": "Ressourcen mit der Aufgabe Leistungen vereinbaren und steuern für die Dauer des gesamten Projekts sicherstellen;"
+},
+{
+"text": "Qualifikation und Verfügbarkeit der Ressourcen bei Schätzungen von Aufwand und Dauer berücksichtigen;"
+},
+{
+"text": "Dauer der Aufgaben schätzen;"
+}
+]
+},
+{
+"text": "Einsatz von Ressourcen planen;"
+},
+{
+"text": "Kommunikationsplan erarbeiten;"
+},
+{
+"text": "Kostenplan erarbeiten;"
+},
+{
+"text": "Projektmanagementplan mit QS-Massnahme prüfen;"
+},
+{
+"text": "Projektmanagementplan mit Stakeholdern abstimmen und als Grundlage für Durchführungsauftrag verifizieren."
+}
+]
+}
+]
+},
+{
+"nummer": "7.4.5.3",
+"titel": "Planung der klassischen Lösungsentstehung",
+"ebene": 4,
+"seite": 212,
+"bloecke": [
+{
+"t": "h",
+"text": "Vom Groben zum Detail"
+},
+{
+"t": "p",
+"text": "Die Unterscheidung nach Phasen und die Konkretisierung und Erweiterung der Vorgehenskomponente „vom Groben zum Detail“ kommt aus dem Systems Engineering und ist eine der Grundlagen der klassischen phasenweisen Vorgehensweise von HERMES. In der klassischen Lösungsentstehung wird nach dem Prinzip der rollenden Planung geplant, gesteuert und geführt. Gegen Ende der Phasen Konzept und Realisierung wird jeweils die nächste Phase vor dem Entscheid zur Phasenfreigabe detailliert geplant, und die grobe Planung wird überprüft."
+},
+{
+"t": "h",
+"text": "Detailplanung der nächsten Phase"
+},
+{
+"t": "p",
+"text": "Die folgenden Aktivitäten werden ausgeführt:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Durchführungsstrukturplan überprüfen und Aufgaben und Ergebnisse vervollständigen;"
+},
+{
+"text": "Aufgaben und Ergebnisse konkretisieren;"
+},
+{
+"text": "Arbeitspakete der nächsten Phase definieren und Verantwortliche pro Arbeitspaket festlegen;"
+},
+{
+"text": "Aktivitäten und Ergebnisse der Arbeitspakete konkretisieren;"
+},
+{
+"text": "Aufwandschätzungen auf der Grundlage der Arbeitspakete verifizieren;"
+},
+{
+"text": "Ressourcenplanung konkretisieren;"
+},
+{
+"text": "Terminplan der Phase konkretisieren;"
+},
+{
+"text": "Entscheidungsplan erarbeiten;"
+},
+{
+"text": "Prüfplan konkretisieren;"
+},
+{
+"text": "Kommunikationsplan konkretisieren;"
+},
+{
+"text": "Risikoliste und Massnahmen nachführen;"
+},
+{
+"text": "Gesamtplan verifizieren;"
+},
+{
+"text": "Projektmanagementplan mit QS-Massnahme prüfen;"
+},
+{
+"text": "Projektmanagementplan mit Stakeholdern abstimmen."
+}
+]
+},
+{
+"t": "h",
+"text": "Planung und Steuerung mit Arbeitspaketen"
+},
+{
+"t": "p",
+"text": "Die Detailplanung einer klassischen Phase erfolgt auf der Grundlage von Arbeitspaketen. Sie sind eine Voraussetzung für die Kontrolle und Steuerung des Projekts. Für Arbeitspakete gelten die folgenden Hinweise:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Aus einer Aufgabe können mehrere Arbeitspakete gebildet werden."
+},
+{
+"text": "Aus einem Arbeitspaket resultieren ein oder mehrere Ergebnisse. Sie werden in Aktivitäten erarbeitet. Bei der Erstellung eines Arbeitspaketauftrags werden die beschriebenen Aktivitäten weiter verfeinert."
+},
+{
+"text": "Die Ergebnisse sind bei Abschluss des Arbeitspakets den im Prüfplan oder im Testkonzept definierten QS-Massnahmen unterzogen worden und sind abgenommen."
+},
+{
+"text": "Ein Verantwortlicher wird mit einem Arbeitspaket beauftragt. In einem Arbeitspaket können mehrere Personen mitarbeiten."
+},
+{
+"text": "Typischerweise dauert ein Arbeitspaket zwischen zwei und sechs Wochen."
+}
+]
+},
+{
+"t": "h",
+"text": "Planungsgenauigkeit im Projektablauf"
+},
+{
+"t": "p",
+"text": "Am Anfang des Projekts sind die Kenntnisse einer potenziellen Lösung keinesfalls gleich Null. Bereits zu Anfang der Initialisierungsphase ist eine Planung mit nur geringer Genauigkeit möglich. Mit dem phasenweisen Vorgehen bzw. dem Vorgehen vom Groben zum Detail werden die Ergebnisse laufend konkretisiert. Entsprechend steigen die Kenntnisse, die Unsicherheit im weiteren Projektverlauf sinkt und die Planungsgenauigkeit steigt. Die steigenden Kenntnisse (mit der Detaillierung der Ergebnisse) und die Planungsgenauigkeit stehen in einem direkten Zusammenhang. Die zu einem bestimmten Zeitpunkt zu erreichende Planungsgenauigkeit gibt vor, wie detailliert die Ergebnisse erarbeitet werden sollen."
+},
+{
+"t": "p",
+"text": "Die nachfolgende Abbildung zeigt die mit dem Projektverlauf steigenden Kenntnisse über die Lösung sowie die abnehmende Ungenauigkeit der Planung."
+},
+{
+"t": "abb",
+"datei": "assets/abb/051d68f4-135-steigende-kenntnisse-abnehmende-planungsungenauigkeit.svg",
+"text": "Abbildung 33: Steigende Kenntnisse / abnehmende Planungsungenauigkeit"
+},
+{
+"t": "p",
+"text": "HERMES kann nicht vorgeben, wie detailliert die Planung zu einem bestimmten Zeitpunkt im Projektverlauf sein soll, weil dies stark von der jeweiligen Situation, der Charakteristik des Projekts und seiner Komplexität abhängt. Diese Vorgabe soll durch den Auftraggeber und die Controlling- und Vorgabestellen der Stammorganisation geleistet werden."
+},
+{
+"t": "p",
+"text": "Grundsätzlich sollen Schätzungen mit Angabe der Planungsgenauigkeit und darauf basierend mit Reserven im Durchführungsauftrag sowie im Projektmanagementplan ausgewiesen werden. Dazu müssen die Annahmen zu den Schätzungen dokumentiert sein, um die Anforderung der Governance an die transparente Kommunikation zu erfüllen."
+}
+]
+},
+{
+"nummer": "7.4.5.4",
+"titel": "Planung der agilen Lösungsentstehung",
+"ebene": 4,
+"seite": 214,
+"bloecke": [
+{
+"t": "p",
+"text": "In der agilen Lösungsentstehung kommen andere Mechanismen zum Tragen, der Aspekt vom Groben zum Detail spielt sich im Rahmen der iterativen Abwicklung ab und erfolgt auf der Hierarchieebene Ausführung autonom durch die Umsetzungsorganisation. Die agile Releaseplanung ist mit dem Terminplan im Projektmanagementplan verknüpft. Projektseitig beschränkt sich die Planung auf der Führungsebene auf koordinierende Aspekte und wird erst wieder in der Phase Abschluss aktiviert."
+}
+]
+},
+{
+"nummer": "7.4.6",
+"titel": "Realisierungseinheiten bei klassischer Vorgehensweise",
+"ebene": 3,
+"seite": 214,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/realisierungseinheiten-bei-klassischer-vorgehensweise.html",
+"bloecke": [
+{
+"t": "p",
+"text": "Wenn die klassisch abgewickelte Lösungsentstehung eines IT-Vorhabens so komplex wird, dass die Realisierung des ganzen Umfangs fraglich erscheint, oder wenn möglichst schnell erste Ergebnisse für die Nutzung geliefert werden sollen, können die Phasen Realisierung und Einführung in mehreren Realisierungseinheiten abgewickelt werden."
+},
+{
+"t": "p",
+"text": "Die klassische Vorgehensweise von HERMES-Projektmanagement ermöglicht sowohl die sequenzielle wie auch die zeitlich überlappte oder parallele Entwicklung in Realisierungseinheiten. Die Freigabe der ersten Realisierungseinheit ist die Phasenfreigabe Realisierung, die den regulären Abschluss der Phase Konzept voraussetzt. Jede Realisierungseinheit erstreckt sich über die beiden Phasen Realisierung und Einführung."
+},
+{
+"t": "p",
+"text": "Eine Realisierungseinheit umfasst alle technischen und organisatorischen Ergebnisse des Projekts, die für die Einführung des Systems oder eines Teils davon benötigt werden. Am Ende einer Realisierungseinheit wird das Produkt bzw. das System produktiv genutzt."
+},
+{
+"t": "p",
+"text": "Die nachfolgende Abbildung zeigt schematisch zeitlich verschobene Realisierungseinheiten als eigenständige Kontrolleinheiten mit jeweils der Phase Realisierung und Einführung."
+},
+{
+"t": "abb",
+"datei": "assets/abb/705c2722-136-zeitlich-verschobene-realisierungseinheiten-bei-klassischer-vorgehensweise.svg",
+"text": "Abbildung 34: Zeitlich verschobene Realisierungseinheiten bei klassischer Vorgehensweise"
+},
+{
+"t": "p",
+"text": "Bei Realisierungseinheiten müssen die folgenden Punkte beachtet werden:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die Phasen Initialisierung und Konzept werden vollständig durchlaufen. Nach der Phase Konzept können Realisierungseinheiten gestartet werden. Ab diesem Zeitpunkt spielt sich das Projekt in den Phasen und Meilensteinen der jeweiligen Realisierungseinheit ab. Es gibt kein übergeordnetes Phasenmodell."
+},
+{
+"text": "Die Anzahl der Realisierungseinheiten ist durch HERMES nicht begrenzt, aber die Dauer des Projekts soll nicht unbegrenzt sein. Deshalb werden die Realisierungseinheiten in der Phase Konzept gesamthaft geplant."
+},
+{
+"text": "Jede Realisierungseinheit umfasst die Phasen Realisierung und Einführung. Jede Realisierungseinheit durchläuft die Entscheidungsaufgaben der Steuerung und Führung."
+},
+{
+"text": "Der Start einer Realisierungseinheit muss durch die Projektsteuerung freigegeben werden. Dazu muss ein aktualisierter Projektmanagementplan vorliegen."
+},
+{
+"text": "Realisierungseinheiten werden aus Sicht des Controllings bezüglich Kosten, Terminen und Ergebnissen separat geplant und kontrolliert. Sie bilden eigenständige Kontrolleinheiten. Entsprechend soll das Reporting auf die Realisierungseinheiten ausgerichtet sein."
+},
+{
+"text": "Sinnvollerweise können am Ende jeder Realisierungseinheit eine Schlussbeurteilung der Realisierungseinheit erstellt und die Erfahrungen dokumentiert und genutzt werden."
+}
+]
+},
+{
+"t": "p",
+"text": "Vorausgesetzt, dass jede Realisierungseinheit mit einer formellen Phasenfreigabe beendet werden konnte, wird am Ende der letzten Realisierungseinheit über die effektive Freigabe der nächsten Phase Abschluss entschieden. In der Phase Abschluss werden entsprechende Aufgaben durchgeführt und Ergebnisse erstellt. Dies umfasst auch die Projektschlussbeurteilung sämtlicher Realisierungseinheiten."
+}
+]
+},
+{
+"nummer": "7.4.7",
+"titel": "Anwendung mit anderen Methoden und Praktiken",
+"ebene": 3,
+"seite": 215,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/anwendung-mit-anderen-methoden-und-praktiken.html",
+"bloecke": [
+{
+"t": "p",
+"text": "HERMES definiert die Ergebnisse und den generellen Ablauf des Projektes. Es gibt nicht vor, welche Methoden und Praktiken für die Erarbeitung der Ergebnisse eingesetzt werden sollen."
+},
+{
+"t": "p",
+"text": "Im Projektverlauf kommen somit ergänzend zu HERMES fachspezifische Methoden und Praktiken zum Einsatz (vgl. nachfolgende Abbildung). Anwender, Ersteller und Betreiber legen diese fest und stimmen sie mit den Aufgaben, Ergebnissen und Rollen gemäss HERMES ab."
+},
+{
+"t": "abb",
+"datei": "assets/abb/82e51d1b-137-einsatz-von-ergaenzenden-methoden-und-praktiken.svg",
+"text": "Abbildung 35: Einsatz von ergänzenden Methoden und Praktiken"
+},
+{
+"t": "p",
+"text": "Insofern ergeben sich für die Akteure, insbesondere im Rahmen der Lösungsentstehung, neue Dimensionen, die die An- und Verwendbarkeit von HERMES universalisieren und dennoch den einzelnen Methodenprotagonisten voll entgegenkommen. So kann z. B. der Anwender spezifizieren, dass er für die konzeptionelle Datenmodellierung ein Opensourcetool nutzt, oder der Entwickler für den Entwicklungsprozess die in seiner Stammorganisation favorisierte agile Entwicklungsmethode zum Einsatz bringt."
+},
+{
+"t": "p",
+"text": "Beim Einsatz von ergänzenden Methoden und Praktiken müssen die folgenden Punkte beachtet werden:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die Aufgaben, Ergebnisse und Rollen der Projektsteuerung und Projektführung basieren immer auf HERMES und können nicht durch andere Methoden ersetzt werden."
+},
+{
+"text": "Das HERMES-Phasenmodell bleibt bestehen."
+},
+{
+"text": "Die Meilensteine sind gesetzt und können nicht verändert werden."
+},
+{
+"text": "Festlegungen zum Einsatz von Methoden und Praktiken werden im Projektmanagementplan festgehalten."
+}
+]
+}
+]
+},
+{
+"nummer": "7.4.8",
+"titel": "Integration von HERMES in die Stammorganisation",
+"ebene": 3,
+"seite": 216,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung/integration-von-hermes-in-die-stammorganisation.html",
+"bloecke": []
+},
+{
+"nummer": "7.4.8.1",
+"titel": "Allgemeines",
+"ebene": 4,
+"seite": 216,
+"bloecke": [
+{
+"t": "p",
+"text": "Da jede Stammorganisation ihre spezifischen Eigenheiten hat, ist die Anpassung der Methode an ihre Bedürfnisse oft unerlässlich und vorteilhaft für eine effiziente Projektabwicklung."
+},
+{
+"t": "p",
+"text": "Mit der Integration von HERMES in die Stammorganisation werden folgende Ziele verfolgt:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Spezifische Prozesse und Vorgaben der Stammorganisation, die HERMES nicht kennt, sind berücksichtigt."
+},
+{
+"text": "Projektleiter, Anwendervertreter und weitere Projektbeteiligte werden noch besser unterstützt. Sie verfügen über einen organisationsspezifisch definierten Rahmen."
+},
+{
+"text": "Die Effizienz in der Projektabwicklung ist erhöht, da Prozesse und Vorgaben nicht mit jedem Projekt neu erfunden werden müssen."
+},
+{
+"text": "Mit der weitergehenden Integration von Praktiken in die Methode, von anderen Methoden sowie von Hilfsmitteln wird die Qualität erhöht. Insbesondere die breit eingesetzten agilen Entwicklungsmethoden werden ihrer Projektmanagementdefizite beraubt. Sie passen sich dank HERMES voll der Organisation an."
+},
+{
+"text": "Die Schulung von HERMES kann mit den organisationsspezifischen Anpassungen erfolgen und ist entsprechend wirksamer. In Bezug auf die Zertifizierung empfiehlt es sich, insbesondere die Terminologie von HERMES nicht übermässig zu verändern."
+}
+]
+}
+]
+},
+{
+"nummer": "7.4.8.2",
+"titel": "Vorgehen",
+"ebene": 4,
+"seite": 217,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Integration von HERMES in die Stammorganisation erfolgt am besten über ein Projekt."
+},
+{
+"t": "p",
+"text": "Das Projekt kann auf der Grundlage des Szenarios Dienstleistung/Produkt Adaption durchgeführt werden. Dabei werden auch die Aspekte der Einführungsorganisation mit der Ausbildung beachtet sowie die Organisation mit den Prozessen für Betrieb und Weiterentwicklung des Projektmanagements erstellt und aktiviert."
+},
+{
+"t": "p",
+"text": "Die Anpassung erfolgt durch das Kompetenzzentrum Projektmanagement."
+}
+]
+},
+{
+"nummer": "7.4.8.3",
+"titel": "Anpassung der Methode",
+"ebene": 4,
+"seite": 217,
+"bloecke": [
+{
+"t": "h",
+"text": "Integration wichtiger Elemente in die Methode"
+},
+{
+"t": "p",
+"text": "Die Vorgaben der Stammorganisation werden in die Methode integriert, z. B.:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vorgaben aus organisationsspezifischen Prozessen"
+},
+{
+"text": "Entscheidungsprozess klassisch/agil, notwendige Entscheidungsgrundlagen"
+},
+{
+"text": "Vorgaben sonstiger Entscheidungsprozesse"
+},
+{
+"text": "Vorgaben des Reportings (Projektstatusbericht, Phasenbericht, Releasebericht)"
+},
+{
+"text": "Vorgaben zu SLAs, Verträgen und Vereinbarungen"
+},
+{
+"text": "Aspekte der Sicherheit und des Datenschutzes"
+},
+{
+"text": "Aspekte der Lösungsarchitektur"
+}
+]
+},
+{
+"t": "p",
+"text": "Die spezifischen Methoden und Praktiken zur Ergebniserarbeitung werden in die Methode integriert, z. B.:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ergebnisdarstellungen des Requirement Engineerings"
+},
+{
+"text": "Ergebnisdarstellungen der Datenmodellierung (z. B. mit INTERLIS, UML¹)"
+},
+{
+"text": "Ergebnisdarstellungen der Geschäftsprozessmodellierung (z. B. mit BPMN²)"
+},
+{
+"text": "Einbettung der agilen Entwicklungsmethode (z. B. mit SCRUM)"
+},
+{
+"text": "Praktiken zur Integration in den Betrieb (z. B. mit Hilfe von ITIL³)"
+}
+]
+},
+{
+"t": "p",
+"text": "Die Methodenelemente werden bei Bedarf angepasst. Dabei sollen die folgenden Punkte beachtet werden:"
+},
+{
+"t": "h",
+"text": "Phasen und Meilensteine"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die definierten Phasen dürfen nicht entfallen, sie können aber unterteilt werden."
+},
+{
+"text": "Die Meilensteine dürfen nicht entfallen, richten sich aber nach der Vorgehensweise und nach einer allfälligen Unterteilung der Phasen."
+},
+{
+"text": "Die Bezeichnungen der Methodenelemente sollen nicht geändert werden."
+}
+]
+},
+{
+"t": "h",
+"text": "Ergebnisse mit Dokumentvorlagen und Aufgaben"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Minimal geforderte Dokumente (Ergebnisse) dürfen nicht entfallen."
+},
+{
+"text": "Mehrere Einzelergebnisse können zusammen in ein gemeinsames Dokument integriert werden."
+},
+{
+"text": "Ergebnisse können aufgeteilt werden."
+},
+{
+"text": "Zusätzliche Ergebnisse können definiert werden."
+},
+{
+"text": "HERMES-Dokumentvorlagen können durch organisationsspezifische Dokumentvorlagen, durch Dokumentvorlagen aus GEVER-Systemen⁴ oder durch andere Lösungen ersetzt werden."
+},
+{
+"text": "Ergebnisse können in der Dokumentvorlage differenzierter beschrieben werden."
+},
+{
+"text": "Für ein Ergebnis können mehrere Dokumentvorlagen erstellt werden."
+},
+{
+"text": "Dokumentvorlagen sollen den in der Ergebnisbeschreibung der Methode definierten Inhalt umfassen, können aber erweitert und konkretisiert werden."
+},
+{
+"text": "Die zur Erarbeitung der Ergebnisse notwendigen neuen Aufgaben müssen beschrieben werden."
+}
+]
+},
+{
+"t": "p",
+"text": "¹ Unified Modeling Language (UML), entworfen von der Object Management Group für die objektorientierte Modellierung, ist eine grafische Beschreibungssprache zur Darstellung von Softwaresystemen wie Datenbankanwendungen, Echtzeitsystemen oder Workflowanwendungen.",
+"art": "fussnote"
+},
+{
+"t": "p",
+"text": "² Business Process Model and Notation (BPMN), entworfen von der Object Management Group, ist eine grafische Beschreibungssprache zur Erstellung von Geschäftsprozessmodellen, Flussdiagrammen und Workflows.",
+"art": "fussnote"
+},
+{
+"t": "p",
+"text": "³ Information Technology Infrastructure Library (ITIL) ist ein IT-Service Management Framework bestehend aus Best Practice-Prozessen zur Bereitstellung von IT-Services.",
+"art": "fussnote"
+},
+{
+"t": "p",
+"text": "⁴ Abkürzung für „Geschäftsverwaltung“, wird im Verwaltungswesen für Workflow-Systeme mit elektronischer Geschäfts- oder Aktenführung verwendet.",
+"art": "fussnote"
+},
+{
+"t": "h",
+"text": "Module, Szenarien"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Es können neue Module und Szenarien erstellt werden."
+},
+{
+"text": "Die definierten HERMES-Szenarien und -Module können mit Ergebnissen und den dazugehörigen Aufgaben erweitert, aber nicht reduziert werden. Wenn Ergebnisse oder Aufgaben aus einem Szenario oder Modul entfernt werden, ergibt sich daraus ein benutzerdefiniertes Szenario."
+}
+]
+},
+{
+"t": "h",
+"text": "Rollen"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Rollen können differenzierter beschrieben werden, solange der wesentliche Aufgabenbereich identisch ist."
+},
+{
+"text": "Weitere Rollen können definiert werden. Für jede neue Rolle ist eine Rollenbeschreibung zwingend."
+},
+{
+"text": "Neue Rollen müssen einer der Hierarchieebenen und einer Partnergruppe zugeordnet werden."
+},
+{
+"text": "Minimal zu besetzende Rollen sowie deren Zugehörigkeit zur Partnergruppe Anwender dürfen nicht verändert werden."
+}
+]
+},
+{
+"t": "h",
+"text": "Checklisten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Inhalt aller Checklisten kann beliebig angepasst und erweitert werden."
+},
+{
+"text": "Checklisten, die in Entscheidungsaufgaben beschrieben sind, können nicht entfallen."
+},
+{
+"text": "Es können zusätzlich auch separate individuelle Checklisten definiert werden."
+}
+]
+},
+{
+"t": "p",
+"text": "Nachdem organisationsspezifische Anpassungen durchgeführt wurden, werden Szenarien für Projekte mit gleicher Charakteristik erstellt."
+}
+]
+}
+]
+}

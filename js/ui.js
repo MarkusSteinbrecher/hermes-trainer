@@ -373,7 +373,7 @@
   }
 
   function tabelleElement(block, optionen) {
-    var tabelle = h('table', { class: 'hb-tabelle' });
+    var tabelle = h('table', { class: 'hb-tabelle' + (block.unten ? ' hb-tabelle--unten' : '') });
     if (block.titel) { tabelle.appendChild(h('caption', { text: block.titel })); }
     var koerper = h('tbody');
     (block.zeilen || []).forEach(function (zeile) {
@@ -431,6 +431,8 @@
 
   /**
    * Rendert eine Blockliste (p, ul/ol, tabelle, abb, download, h).
+   * p/h mit «art» (kursiv, fussnote) bekommen die Klasse hb-p--<art> bzw. hb-h--<art>;
+   * eine Tabelle mit «unten» zeigt ihren Titel unter der Tabelle (wie im PDF).
    * optionen.verlinken: Begriffe in Listen/Zellen auf ihre Karte verlinken.
    * optionen.ebene: HTML-Überschriftenebene für «h»-Blöcke (Standard 4).
    */
@@ -441,7 +443,7 @@
       if (!b || !b.t) { return; }
       var el = null;
       if (b.t === 'p') {
-        el = h('p', { class: 'hb-p' }, begriffeText(b.text || '', optionen.verlinken && (b.text || '').length < 60));
+        el = h('p', { class: 'hb-p' + (b.art ? ' hb-p--' + b.art : '') }, begriffeText(b.text || '', optionen.verlinken && (b.text || '').length < 60));
       } else if (b.t === 'ul' || b.t === 'ol') {
         el = listeElement(b, optionen);
       } else if (b.t === 'tabelle') {
@@ -452,7 +454,7 @@
         el = downloadElement(b);
       } else if (b.t === 'h') {
         var n = Math.min(6, Math.max(2, (optionen.ebene || 4) + Math.max(0, (b.n || 2) - 2)));
-        el = h('h' + n, { class: 'hb-h', text: b.text || '' });
+        el = h('h' + n, { class: 'hb-h' + (b.art ? ' hb-h--' + b.art : ''), text: b.text || '' });
       }
       if (el) { frag.appendChild(el); }
     });

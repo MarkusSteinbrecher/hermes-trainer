@@ -24,7 +24,7 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-11b';
+  var DATEN_VERSION = '2026-09-11c';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
@@ -347,6 +347,29 @@
   }
 
 
+  /* --- Referenzhandbuch (PDF) als Text: data/handbuch/rhb/ ---------------- */
+
+  /** index.json: Quelle (PDF-Adresse, Auflage) und Kapitelliste; null bei Fehler. */
+  function rhbIndex() {
+    if (!zustand.rhbIndex) {
+      zustand.rhbIndex = ladeJson('data/handbuch/rhb/index.json')
+        .then(function (json) { return (json && typeof json === 'object') ? json : null; })
+        .catch(function () { return null; });
+    }
+    return zustand.rhbIndex;
+  }
+
+  /** Ein Kapitel des Referenzhandbuchs ({id, titel, seite, url, abschnitte}); null bei Fehler. */
+  function rhbKapitel(id) {
+    zustand.rhb = zustand.rhb || {};
+    if (!zustand.rhb[id]) {
+      zustand.rhb[id] = ladeJson('data/handbuch/rhb/' + encodeURIComponent(id) + '.json')
+        .then(function (json) { return (json && typeof json === 'object') ? json : null; })
+        .catch(function () { return null; });
+    }
+    return zustand.rhb[id];
+  }
+
   /* --- Zugriff ------------------------------------------------------------ */
 
   function kategorien() {
@@ -528,6 +551,8 @@
     ersterSatz: ersterSatz,
     handbuchElement: handbuchElement,
     handbuchKapitel: handbuchKapitel,
-    handbuchIndex: handbuchIndex
+    handbuchIndex: handbuchIndex,
+    rhbIndex: rhbIndex,
+    rhbKapitel: rhbKapitel
   };
 }(window));

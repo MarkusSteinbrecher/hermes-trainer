@@ -1,0 +1,4616 @@
+{
+"id": "vokabular",
+"nummer": "",
+"titel": "Vokabular",
+"kategorie": null,
+"seite": 219,
+"url": null,
+"abschnitte": [
+{
+"titel": "Vokabular",
+"ebene": 1,
+"seite": 219,
+"bloecke": []
+},
+{
+"titel": "Phasen",
+"ebene": 2,
+"seite": 219,
+"bloecke": [
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Deutsch Phasen",
+"kopf": true
+},
+{
+"text": "Französisch Phases",
+"kopf": true
+},
+{
+"text": "Italienisch Fasi",
+"kopf": true
+},
+{
+"text": "Englisch Phases",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "1.4.4.1"
+},
+{
+"text": "Abschluss"
+},
+{
+"text": "Clôture"
+},
+{
+"text": "Conclusione"
+},
+{
+"text": "Closure"
+},
+{
+"text": "23"
+}
+],
+[
+{
+"text": "1.4.2.3"
+},
+{
+"text": "Einführung"
+},
+{
+"text": "Déploiement"
+},
+{
+"text": "Introduzione"
+},
+{
+"text": "Deployment"
+},
+{
+"text": "22"
+}
+],
+[
+{
+"text": "1.4.1.1"
+},
+{
+"text": "Initialisierung"
+},
+{
+"text": "Initialisation"
+},
+{
+"text": "Avvio"
+},
+{
+"text": "Initiation"
+},
+{
+"text": "20"
+}
+],
+[
+{
+"text": "1.4.2.1"
+},
+{
+"text": "Konzept"
+},
+{
+"text": "Conception"
+},
+{
+"text": "Progettazione"
+},
+{
+"text": "Concept"
+},
+{
+"text": "21"
+}
+],
+[
+{
+"text": "1.4.2.2"
+},
+{
+"text": "Realisierung"
+},
+{
+"text": "Réalisation"
+},
+{
+"text": "Realizzazione"
+},
+{
+"text": "Implementation"
+},
+{
+"text": "21"
+}
+],
+[
+{
+"text": "1.4.3.1"
+},
+{
+"text": "Umsetzung"
+},
+{
+"text": "Mise en œuvre"
+},
+{
+"text": "Attuazione"
+},
+{
+"text": "Execution"
+},
+{
+"text": "22"
+}
+]
+],
+"titel": "Tabelle 30: Vokabular HERMES-Phasen 4-sprachig",
+"unten": true
+}
+]
+},
+{
+"titel": "Szenarien",
+"ebene": 2,
+"seite": 219,
+"bloecke": [
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Deutsch Szenarien",
+"kopf": true
+},
+{
+"text": "Französisch Scénarios",
+"kopf": true
+},
+{
+"text": "Italienisch Scenari",
+"kopf": true
+},
+{
+"text": "Englisch Scenarios",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "2.4.1.2"
+},
+{
+"text": "Dienstleistung/Produkt Adaption"
+},
+{
+"text": "Adaptation de la prestation/du produit"
+},
+{
+"text": "Adeguamento del servizio / prodotto"
+},
+{
+"text": "Service/product adaptation"
+},
+{
+"text": "29"
+}
+],
+[
+{
+"text": "2.4.1.1"
+},
+{
+"text": "Dienstleistung/Produkt Entwicklung"
+},
+{
+"text": "Développement de la prestation/du produit"
+},
+{
+"text": "Sviluppo del servizio / prodotto"
+},
+{
+"text": "Service/product development"
+},
+{
+"text": "28"
+}
+],
+[
+{
+"text": "2.4.2.2"
+},
+{
+"text": "IT-Adaption"
+},
+{
+"text": "Adaptation IT"
+},
+{
+"text": "Adeguamento IT"
+},
+{
+"text": "IT adaptation"
+},
+{
+"text": "30"
+}
+],
+[
+{
+"text": "2.4.2.1"
+},
+{
+"text": "IT-Entwicklung"
+},
+{
+"text": "Développement IT"
+},
+{
+"text": "Sviluppo IT"
+},
+{
+"text": "IT development"
+},
+{
+"text": "30"
+}
+],
+[
+{
+"text": "2.4.3.1"
+},
+{
+"text": "Organisationsanpassung"
+},
+{
+"text": "Adaptation de l’organisation"
+},
+{
+"text": "Adeguamento dell’organizzazione"
+},
+{
+"text": "Organizational adjustment"
+},
+{
+"text": "31"
+}
+]
+],
+"titel": "Tabelle 31: Vokabular HERMES-Szenarien 4-sprachig",
+"unten": true
+}
+]
+},
+{
+"titel": "Module",
+"ebene": 2,
+"seite": 220,
+"bloecke": [
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Deutsch Module",
+"kopf": true
+},
+{
+"text": "Französisch Modules",
+"kopf": true
+},
+{
+"text": "Italienisch Moduli",
+"kopf": true
+},
+{
+"text": "Englisch Modules",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "3.4.2.2"
+},
+{
+"text": "Beschaffung"
+},
+{
+"text": "Achat"
+},
+{
+"text": "Acquisto"
+},
+{
+"text": "Procurement"
+},
+{
+"text": "38"
+}
+],
+[
+{
+"text": "3.4.2.7"
+},
+{
+"text": "Einführungsorganisation"
+},
+{
+"text": "Organisation du déploiement"
+},
+{
+"text": "Organizzazione dell’introduzione"
+},
+{
+"text": "Deployment organization"
+},
+{
+"text": "42"
+}
+],
+[
+{
+"text": "3.4.2.10"
+},
+{
+"text": "ISDS"
+},
+{
+"text": "SIPD"
+},
+{
+"text": "SIPD"
+},
+{
+"text": "ISDP"
+},
+{
+"text": "44"
+}
+],
+[
+{
+"text": "3.4.2.9"
+},
+{
+"text": "IT-Betrieb"
+},
+{
+"text": "Exploitation informatique"
+},
+{
+"text": "Esercizio IT"
+},
+{
+"text": "IT operation"
+},
+{
+"text": "44"
+}
+],
+[
+{
+"text": "3.4.2.8"
+},
+{
+"text": "IT-Migration"
+},
+{
+"text": "Migration informatique"
+},
+{
+"text": "Migrazione IT"
+},
+{
+"text": "IT migration"
+},
+{
+"text": "43"
+}
+],
+[
+{
+"text": "3.4.2.5"
+},
+{
+"text": "IT-System"
+},
+{
+"text": "Système informatique"
+},
+{
+"text": "Sistema IT"
+},
+{
+"text": "IT system"
+},
+{
+"text": "41"
+}
+],
+[
+{
+"text": "3.4.2.3"
+},
+{
+"text": "Organisation"
+},
+{
+"text": "Organisation"
+},
+{
+"text": "Organizzazione"
+},
+{
+"text": "Organization"
+},
+{
+"text": "39"
+}
+],
+[
+{
+"text": "3.4.2.4"
+},
+{
+"text": "Produkt"
+},
+{
+"text": "Produit"
+},
+{
+"text": "Prodotto"
+},
+{
+"text": "Product"
+},
+{
+"text": "40"
+}
+],
+[
+{
+"text": "3.4.1.2"
+},
+{
+"text": "Projektführung"
+},
+{
+"text": "Conduite du projet"
+},
+{
+"text": "Gestione del progetto"
+},
+{
+"text": "Project management"
+},
+{
+"text": "36"
+}
+],
+[
+{
+"text": "3.4.2.1"
+},
+{
+"text": "Projektgrundlagen"
+},
+{
+"text": "Bases du projet"
+},
+{
+"text": "Basi del progetto"
+},
+{
+"text": "Project foundations"
+},
+{
+"text": "38"
+}
+],
+[
+{
+"text": "3.4.1.1"
+},
+{
+"text": "Projektsteuerung"
+},
+{
+"text": "Pilotage du projet"
+},
+{
+"text": "Conduzione del progetto"
+},
+{
+"text": "Project steering"
+},
+{
+"text": "35"
+}
+],
+[
+{
+"text": "3.4.2.6"
+},
+{
+"text": "Tests"
+},
+{
+"text": "Tests"
+},
+{
+"text": "Test"
+},
+{
+"text": "Tests"
+},
+{
+"text": "42"
+}
+]
+],
+"titel": "Tabelle 32: Vokabular HERMES-Module 4-sprachig",
+"unten": true
+}
+]
+},
+{
+"titel": "Ergebnisse",
+"ebene": 2,
+"seite": 220,
+"bloecke": [
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Deutsch Ergebnisse",
+"kopf": true
+},
+{
+"text": "Französisch Résultats",
+"kopf": true
+},
+{
+"text": "Italienisch Risultati",
+"kopf": true
+},
+{
+"text": "Englisch Outcomes",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "4.4.1.1"
+},
+{
+"text": "Abnahmeprotokoll"
+},
+{
+"text": "Procès-verbal de réception"
+},
+{
+"text": "Verbale di accettazione"
+},
+{
+"text": "Acceptance report"
+},
+{
+"text": "50"
+}
+],
+[
+{
+"text": "4.4.1.2"
+},
+{
+"text": "Änderungsantrag"
+},
+{
+"text": "Demande de modification"
+},
+{
+"text": "Domanda di modifica"
+},
+{
+"text": "Change request"
+},
+{
+"text": "50"
+}
+],
+[
+{
+"text": "4.4.1.3"
+},
+{
+"text": "Änderungsstatusliste"
+},
+{
+"text": "Liste de l’état des modifications"
+},
+{
+"text": "Lista Stato delle modifiche"
+},
+{
+"text": "Change status list"
+},
+{
+"text": "51"
+}
+],
+[
+{
+"text": "4.4.3.1"
+},
+{
+"text": "Altsystem entfernt"
+},
+{
+"text": "Ancien système mis hors service"
+},
+{
+"text": "Vecchio sistema disinstallato"
+},
+{
+"text": "Legacy system removed"
+},
+{
+"text": "77"
+}
+],
+[
+{
+"text": "4.4.1.4"
+},
+{
+"text": "Angebot"
+},
+{
+"text": "Offre"
+},
+{
+"text": "Offerta"
+},
+{
+"text": "Offer"
+},
+{
+"text": "51"
+}
+],
+[
+{
+"text": "4.4.1.5"
+},
+{
+"text": "Angebotsprotokoll"
+},
+{
+"text": "Procès-verbal des offres"
+},
+{
+"text": "Verbale dell’offerta"
+},
+{
+"text": "Tender report"
+},
+{
+"text": "51"
+}
+],
+[
+{
+"text": "4.4.1.6"
+},
+{
+"text": "Anwendungshandbuch"
+},
+{
+"text": "Manuel d’utilisation"
+},
+{
+"text": "Manuale d’uso"
+},
+{
+"text": "User manual"
+},
+{
+"text": "52"
+}
+],
+[
+{
+"text": "4.4.1.7"
+},
+{
+"text": "Arbeitsauftrag"
+},
+{
+"text": "Mandat de travail"
+},
+{
+"text": "Mandato di lavoro"
+},
+{
+"text": "Work order"
+},
+{
+"text": "52"
+}
+],
+[
+{
+"text": "4.4.1.8"
+},
+{
+"text": "Ausschreibungsunterlagen"
+},
+{
+"text": "Dossier d’appel d’offres"
+},
+{
+"text": "Documentazione del bando di concorso"
+},
+{
+"text": "Tender documentation"
+},
+{
+"text": "52"
+}
+],
+[
+{
+"text": "4.4.1.9"
+},
+{
+"text": "Beschaffungsanalyse"
+},
+{
+"text": "Analyse de l’appel d’offres"
+},
+{
+"text": "Analisi dell’acquisto"
+},
+{
+"text": "Procurement analysis"
+},
+{
+"text": "53"
+}
+],
+[
+{
+"text": "4.4.3.2"
+},
+{
+"text": "Betrieb aktiviert"
+},
+{
+"text": "Exploitation activée"
+},
+{
+"text": "Esercizio attivato"
+},
+{
+"text": "Operation activated"
+},
+{
+"text": "77"
+}
+],
+[
+{
+"text": "4.4.1.10"
+},
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": "Manuel d’exploitation"
+},
+{
+"text": "Manuale di esercizio"
+},
+{
+"text": "Operating manual"
+},
+{
+"text": "54"
+}
+],
+[
+{
+"text": "4.4.3.3"
+},
+{
+"text": "Betriebsinfrastruktur realisiert"
+},
+{
+"text": "Infrastructure d’exploitation réalisée"
+},
+{
+"text": "Infrastruttura di esercizio realizzata"
+},
+{
+"text": "Operating infrastructure realized"
+},
+{
+"text": "77"
+}
+],
+[
+{
+"text": "4.4.1.11"
+},
+{
+"text": "Betriebskonzept"
+},
+{
+"text": "Concept d’exploitation"
+},
+{
+"text": "Piano di esercizio"
+},
+{
+"text": "Operating concept"
+},
+{
+"text": "55"
+}
+],
+[
+{
+"text": "4.4.3.4"
+},
+{
+"text": "Betriebsorganisation realisiert"
+},
+{
+"text": "Organisation de l’exploitation réalisée"
+},
+{
+"text": "Organizzazione di esercizio realizzata"
+},
+{
+"text": "Operating organization realized"
+},
+{
+"text": "78"
+}
+],
+[
+{
+"text": "4.4.2.1"
+},
+{
+"text": "Checkliste Abnahme"
+},
+{
+"text": "Liste de contrôle Réception"
+},
+{
+"text": "Lista di controllo Accettazione"
+},
+{
+"text": "Acceptance checklist"
+},
+{
+"text": "75"
+}
+],
+[
+{
+"text": "4.4.2.2"
+},
+{
+"text": "Checkliste Abnahme Migration"
+},
+{
+"text": "Liste de contrôle Réception de la migration"
+},
+{
+"text": "Lista di controllo Accettazione della migrazione"
+},
+{
+"text": "Migration acceptance checklist"
+},
+{
+"text": "75"
+}
+],
+[
+{
+"text": "4.4.2.3"
+},
+{
+"text": "Checkliste Ausschreibung"
+},
+{
+"text": "Liste de contrôle Appel d’offres"
+},
+{
+"text": "Lista di controllo Bando di concorso"
+},
+{
+"text": "Tender checklist"
+},
+{
+"text": "75"
+}
+],
+[
+{
+"text": "4.4.2.4"
+},
+{
+"text": "Checkliste Betriebsaufnahme"
+},
+{
+"text": "Liste de contrôle Mise en service"
+},
+{
+"text": "Lista di controllo Messa in esercizio"
+},
+{
+"text": "Launch of operation checklist"
+},
+{
+"text": "75"
+}
+],
+[
+{
+"text": "4.4.2.5"
+},
+{
+"text": "Checkliste Durchführungsfreigabe"
+},
+{
+"text": "Liste de contrôle Libération de l’exécution"
+},
+{
+"text": "Lista di controllo Avvio dell’esecuzione"
+},
+{
+"text": "Execution release checklist"
+},
+{
+"text": "75"
+}
+],
+[
+{
+"text": "4.4.2.6"
+},
+{
+"text": "Checkliste ISDS-Konzept"
+},
+{
+"text": "Liste de contrôle Concept SIPD"
+},
+{
+"text": "Lista di controllo Piano SIPD"
+},
+{
+"text": "ISDP concept checklist"
+},
+{
+"text": "76"
+}
+],
+[
+{
+"text": "4.4.2.7"
+},
+{
+"text": "Checkliste Lösungsarchitektur"
+},
+{
+"text": "Liste de contrôle Architecture de la solution"
+},
+{
+"text": "Lista di controllo Architettura della soluzione"
+},
+{
+"text": "Solution architecture checklist"
+},
+{
+"text": "76"
+}
+],
+[
+{
+"text": "4.4.2.8"
+},
+{
+"text": "Checkliste Phasenfreigabe"
+},
+{
+"text": "Liste de contrôle Libération de la phase"
+},
+{
+"text": "Lista di controllo Avvio della fase"
+},
+{
+"text": "Phase release checklist"
+},
+{
+"text": "76"
+}
+],
+[
+{
+"text": "4.4.2.9"
+},
+{
+"text": "Checkliste Phasenfreigabe Abschluss"
+},
+{
+"text": "Liste de contrôle Libération de la phase de clôture"
+},
+{
+"text": "Lista di controllo Avvio della fase Conclusione"
+},
+{
+"text": "Closure phase release checklist"
+},
+{
+"text": "76"
+}
+],
+[
+{
+"text": "4.4.2.10"
+},
+{
+"text": "Checkliste Produktkonzept"
+},
+{
+"text": "Liste de contrôle Concept du produit"
+},
+{
+"text": "Lista di controllo Progettazione del prodotto"
+},
+{
+"text": "Product concept checklist"
+},
+{
+"text": "76"
+}
+],
+[
+{
+"text": "4.4.2.11"
+},
+{
+"text": "Checkliste Projektabbruch"
+},
+{
+"text": "Liste de contrôle Interruption du projet"
+},
+{
+"text": "Lista di controllo Interruzione del progetto"
+},
+{
+"text": "Project discontinuation checklist"
+},
+{
+"text": "76"
+}
+],
+[
+{
+"text": "4.4.2.12"
+},
+{
+"text": "Checkliste Projektabschluss"
+},
+{
+"text": "Liste de contrôle Clôture du projet"
+},
+{
+"text": "Lista di controllo Conclusione del progetto"
+},
+{
+"text": "Project closure checklist"
+},
+{
+"text": "76"
+}
+],
+[
+{
+"text": "4.4.2.13"
+},
+{
+"text": "Checkliste Projektinitialisierungsfreigabe"
+},
+{
+"text": "Liste de contrôle Libération de l’initialisation du projet"
+},
+{
+"text": "Lista di controllo Avvio del progetto"
+},
+{
+"text": "Project initiation release checklist"
+},
+{
+"text": "76"
+}
+],
+[
+{
+"text": "4.4.2.14"
+},
+{
+"text": "Checkliste Releasefreigabe"
+},
+{
+"text": "Liste de contrôle Libération du release"
+},
+{
+"text": "Lista di controllo Avvio del rilascio"
+},
+{
+"text": "Release checklist"
+},
+{
+"text": "77"
+}
+],
+[
+{
+"text": "4.4.2.15"
+},
+{
+"text": "Checkliste Vorabnahme"
+},
+{
+"text": "Liste de contrôle Préréception"
+},
+{
+"text": "Lista di controllo Accettazione preliminare"
+},
+{
+"text": "Preliminary acceptance checklist"
+},
+{
+"text": "77"
+}
+],
+[
+{
+"text": "4.4.2.16"
+},
+{
+"text": "Checkliste Weiteres Vorgehen"
+},
+{
+"text": "Liste de contrôle Suite du projet"
+},
+{
+"text": "Lista di controllo Continuazione"
+},
+{
+"text": "Next steps checklist"
+},
+{
+"text": "77"
+}
+],
+[
+{
+"text": "4.4.2.17"
+},
+{
+"text": "Checkliste Zuschlag"
+},
+{
+"text": "Liste de contrôle Adjudication"
+},
+{
+"text": "Lista di controllo Aggiudicazione"
+},
+{
+"text": "Contract award checklist"
+},
+{
+"text": "77"
+}
+],
+[
+{
+"text": "4.4.1.12"
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": "Spécification détaillée"
+},
+{
+"text": "Specifica dettagliata"
+},
+{
+"text": "Detailed specifications"
+},
+{
+"text": "55"
+}
+],
+[
+{
+"text": "4.4.1.13"
+},
+{
+"text": "Durchführungsauftrag"
+},
+{
+"text": "Mandat d’exécution"
+},
+{
+"text": "Mandato di esecuzione"
+},
+{
+"text": "Execution order"
+},
+{
+"text": "56"
+}
+],
+[
+{
+"text": "4.4.1.14"
+},
+{
+"text": "Einführungskonzept"
+},
+{
+"text": "Concept de déploiement"
+},
+{
+"text": "Progettazione dell’introduzione"
+},
+{
+"text": "Deployment concept"
+},
+{
+"text": "56"
+}
+],
+[
+{
+"text": "4.4.3.5"
+},
+{
+"text": "Einführungsmassnahmen durchgeführt"
+},
+{
+"text": "Mesures de déploiement effectuées"
+},
+{
+"text": "Misure d’introduzione attuate"
+},
+{
+"text": "Deployment measures carried out"
+},
+{
+"text": "78"
+}
+],
+[
+{
+"text": "4.4.3.6"
+},
+{
+"text": "Einführungsmassnahmen realisiert"
+},
+{
+"text": "Mesures de déploiement réalisées"
+},
+{
+"text": "Misure d’introduzione realizzate"
+},
+{
+"text": "Deployment measures realized"
+},
+{
+"text": "78"
+}
+],
+[
+{
+"text": "4.4.1.15"
+},
+{
+"text": "Evaluationsbericht"
+},
+{
+"text": "Rapport d’évaluation"
+},
+{
+"text": "Rapporto di valutazione"
+},
+{
+"text": "Evaluation report"
+},
+{
+"text": "57"
+}
+],
+[
+{
+"text": "4.4.1.16"
+},
+{
+"text": "Geschäftsmodellbeschreibung"
+},
+{
+"text": "Description du modèle d’affaires"
+},
+{
+"text": "Descrizione del modello operativo"
+},
+{
+"text": "Business model description"
+},
+{
+"text": "58"
+}
+],
+[
+{
+"text": "4.4.1.17"
+},
+{
+"text": "Integrations- und Installationsanleitung"
+},
+{
+"text": "Guide d’intégration et d’installation"
+},
+{
+"text": "Guida per l’integrazione e l’installazione"
+},
+{
+"text": "Integration and installation instructions"
+},
+{
+"text": "58"
+}
+],
+[
+{
+"text": "4.4.1.18"
+},
+{
+"text": "Integrationskonzept"
+},
+{
+"text": "Concept d’intégration"
+},
+{
+"text": "Progettazione dell’integrazione"
+},
+{
+"text": "Integration concept"
+},
+{
+"text": "58"
+}
+],
+[
+{
+"text": "4.4.1.19"
+},
+{
+"text": "ISDS-Konzept"
+},
+{
+"text": "Concept SIPD"
+},
+{
+"text": "Piano SIPD"
+},
+{
+"text": "ISDP concept"
+},
+{
+"text": "59"
+}
+],
+[
+{
+"text": "4.4.3.8"
+},
+{
+"text": "ISDS-Konzept überführt"
+},
+{
+"text": "Concept SIPD transféré"
+},
+{
+"text": "Piano SIPD trasferito"
+},
+{
+"text": "ISDP concept transferred"
+},
+{
+"text": "78"
+}
+],
+[
+{
+"text": "4.4.3.7"
+},
+{
+"text": "ISDS-Massnahmen realisiert"
+},
+{
+"text": "Mesures SIPD réalisées"
+},
+{
+"text": "Misure SIPD realizzate"
+},
+{
+"text": "ISDP measures realized"
+},
+{
+"text": "78"
+}
+],
+[
+{
+"text": "4.4.1.20"
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "Liste Décisions de conduite"
+},
+{
+"text": "Lista Decisioni della gestione"
+},
+{
+"text": "List of management project decisions"
+},
+{
+"text": "59"
+}
+],
+[
+{
+"text": "4.4.1.21"
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Liste Décisions de pilotage"
+},
+{
+"text": "Lista Decisioni della conduzione"
+},
+{
+"text": "List of steering project decisions"
+},
+{
+"text": "59"
+}
+],
+[
+{
+"text": "4.4.1.22"
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": "Exigences envers la solution"
+},
+{
+"text": "Requisiti della soluzione"
+},
+{
+"text": "Solution requirements"
+},
+{
+"text": "60"
+}
+],
+[
+{
+"text": "4.4.1.23"
+},
+{
+"text": "Lösungsarchitektur"
+},
+{
+"text": "Architecture de la solution"
+},
+{
+"text": "Architettura della soluzione"
+},
+{
+"text": "Solution architecture"
+},
+{
+"text": "60"
+}
+],
+[
+{
+"text": "4.4.4.1"
+},
+{
+"text": "Meilenstein Abnahme"
+},
+{
+"text": "Jalon Réception"
+},
+{
+"text": "Pietra miliare Accettazione"
+},
+{
+"text": "Acceptance milestone"
+},
+{
+"text": "81"
+}
+],
+[
+{
+"text": "4.4.4.2"
+},
+{
+"text": "Meilenstein Abnahme Migration"
+},
+{
+"text": "Jalon Réception de la migration"
+},
+{
+"text": "Pietra miliare Accettazione della migrazione"
+},
+{
+"text": "Migration acceptance milestone"
+},
+{
+"text": "81"
+}
+],
+[
+{
+"text": "4.4.4.3"
+},
+{
+"text": "Meilenstein Ausschreibung"
+},
+{
+"text": "Jalon Appel d’offres"
+},
+{
+"text": "Pietra miliare Bando di concorso"
+},
+{
+"text": "Tender milestone"
+},
+{
+"text": "81"
+}
+],
+[
+{
+"text": "4.4.4.4"
+},
+{
+"text": "Meilenstein Betriebsaufnahme"
+},
+{
+"text": "Jalon Mise en service"
+},
+{
+"text": "Pietra miliare Messa in esercizio"
+},
+{
+"text": "Launch of operation milestone"
+},
+{
+"text": "81"
+}
+],
+[
+{
+"text": "4.4.4.5"
+},
+{
+"text": "Meilenstein Durchführungsfreigabe"
+},
+{
+"text": "Jalon Libération de l’exécution"
+},
+{
+"text": "Pietra miliare Avvio dell’esecuzione"
+},
+{
+"text": "Execution release milestone"
+},
+{
+"text": "81"
+}
+],
+[
+{
+"text": "4.4.4.6"
+},
+{
+"text": "Meilenstein ISDS-Konzept"
+},
+{
+"text": "Jalon Concept SIPD"
+},
+{
+"text": "Pietra miliare Piano SIPD"
+},
+{
+"text": "ISDP concept milestone"
+},
+{
+"text": "81"
+}
+],
+[
+{
+"text": "4.4.4.7"
+},
+{
+"text": "Meilenstein Lösungsarchitektur"
+},
+{
+"text": "Jalon Architecture de la solution"
+},
+{
+"text": "Pietra miliare Architettura della soluzione"
+},
+{
+"text": "Solution architecture milestone"
+},
+{
+"text": "81"
+}
+],
+[
+{
+"text": "4.4.4.8"
+},
+{
+"text": "Meilenstein Phasenfreigabe"
+},
+{
+"text": "Jalon Libération de la phase"
+},
+{
+"text": "Pietra miliare Avvio della fase"
+},
+{
+"text": "Phase release milestone"
+},
+{
+"text": "81"
+}
+],
+[
+{
+"text": "4.4.4.9"
+},
+{
+"text": "Meilenstein Phasenfreigabe Abschluss"
+},
+{
+"text": "Jalon Libération de la phase de clôture"
+},
+{
+"text": "Pietra miliare Avvio della fase Conclusione"
+},
+{
+"text": "Closure phase release milestone"
+},
+{
+"text": "82"
+}
+],
+[
+{
+"text": "4.4.4.10"
+},
+{
+"text": "Meilenstein Produktkonzept"
+},
+{
+"text": "Jalon Concept du produit"
+},
+{
+"text": "Pietra miliare Progettazione del prodotto"
+},
+{
+"text": "Product concept milestone"
+},
+{
+"text": "82"
+}
+],
+[
+{
+"text": "4.4.4.11"
+},
+{
+"text": "Meilenstein Projektabschluss"
+},
+{
+"text": "Jalon Clôture du projet"
+},
+{
+"text": "Pietra miliare Conclusione del progetto"
+},
+{
+"text": "Project closure milestone"
+},
+{
+"text": "82"
+}
+],
+[
+{
+"text": "4.4.4.12"
+},
+{
+"text": "Meilenstein Projektinitialisierungsfreigabe"
+},
+{
+"text": "Jalon Libération de l’initialisation du projet"
+},
+{
+"text": "Pietra miliare Avvio del progetto"
+},
+{
+"text": "Project initiation release milestone"
+},
+{
+"text": "82"
+}
+],
+[
+{
+"text": "4.4.4.13"
+},
+{
+"text": "Meilenstein Releasefreigabe"
+},
+{
+"text": "Jalon Libération du release"
+},
+{
+"text": "Pietra miliare Avvio del rilascio"
+},
+{
+"text": "Release milestone"
+},
+{
+"text": "82"
+}
+],
+[
+{
+"text": "4.4.4.14"
+},
+{
+"text": "Meilenstein Vorabnahme"
+},
+{
+"text": "Jalon Préréception"
+},
+{
+"text": "Pietra miliare Accettazione preliminare"
+},
+{
+"text": "Preliminary acceptance milestone"
+},
+{
+"text": "82"
+}
+],
+[
+{
+"text": "4.4.4.15"
+},
+{
+"text": "Meilenstein Weiteres Vorgehen"
+},
+{
+"text": "Jalon Suite du projet"
+},
+{
+"text": "Pietra miliare Continuazione"
+},
+{
+"text": "Next steps milestone"
+},
+{
+"text": "82"
+}
+],
+[
+{
+"text": "4.4.4.16"
+},
+{
+"text": "Meilenstein Zuschlag"
+},
+{
+"text": "Jalon Adjudication"
+},
+{
+"text": "Pietra miliare Aggiudicazione"
+},
+{
+"text": "Contract award milestone"
+},
+{
+"text": "82"
+}
+],
+[
+{
+"text": "4.4.3.9"
+},
+{
+"text": "Migration durchgeführt"
+},
+{
+"text": "Migration effectuée"
+},
+{
+"text": "Migrazione effettuata"
+},
+{
+"text": "Migration carried out"
+},
+{
+"text": "78"
+}
+],
+[
+{
+"text": "4.4.1.24"
+},
+{
+"text": "Migrationskonzept"
+},
+{
+"text": "Concept de migration"
+},
+{
+"text": "Progettazione della migrazione"
+},
+{
+"text": "Migration concept"
+},
+{
+"text": "61"
+}
+],
+[
+{
+"text": "4.4.3.10"
+},
+{
+"text": "Migrationsverfahren realisiert"
+},
+{
+"text": "Procédure de migration réalisée"
+},
+{
+"text": "Procedura di migrazione realizzata"
+},
+{
+"text": "Migration procedure realized"
+},
+{
+"text": "78"
+}
+],
+[
+{
+"text": "4.4.1.25"
+},
+{
+"text": "Offertanfrage"
+},
+{
+"text": "Demande d’offres"
+},
+{
+"text": "Domanda di offerta"
+},
+{
+"text": "Quote request"
+},
+{
+"text": "61"
+}
+],
+[
+{
+"text": "4.4.3.11"
+},
+{
+"text": "Organisation aktiviert"
+},
+{
+"text": "Organisation activée"
+},
+{
+"text": "Organizzazione attivata"
+},
+{
+"text": "Organization activated"
+},
+{
+"text": "79"
+}
+],
+[
+{
+"text": "4.4.3.12"
+},
+{
+"text": "Organisation umgesetzt"
+},
+{
+"text": "Organisation mise en æuvre"
+},
+{
+"text": "Organizzazione attuata"
+},
+{
+"text": "Organization implemented"
+},
+{
+"text": "79"
+}
+],
+[
+{
+"text": "4.4.1.26"
+},
+{
+"text": "Organisationsanforderungen"
+},
+{
+"text": "Exigences organisationnelles"
+},
+{
+"text": "Requisiti dell’organizzazione"
+},
+{
+"text": "Organizational requirements"
+},
+{
+"text": "61"
+}
+],
+[
+{
+"text": "4.4.1.27"
+},
+{
+"text": "Organisationsbeschreibung"
+},
+{
+"text": "Description de l’organisation"
+},
+{
+"text": "Descrizione dell’organizzazione"
+},
+{
+"text": "Organization description"
+},
+{
+"text": "62"
+}
+],
+[
+{
+"text": "4.4.1.28"
+},
+{
+"text": "Organisationskonzept"
+},
+{
+"text": "Concept d’organisation"
+},
+{
+"text": "Progettazione dell’organizzazione"
+},
+{
+"text": "Organization concept"
+},
+{
+"text": "62"
+}
+],
+[
+{
+"text": "4.4.1.29"
+},
+{
+"text": "Phasenbericht"
+},
+{
+"text": "Rapport de phase"
+},
+{
+"text": "Rapporto di fase"
+},
+{
+"text": "Phase report"
+},
+{
+"text": "62"
+}
+],
+[
+{
+"text": "4.4.3.13"
+},
+{
+"text": "Produkt aktiviert"
+},
+{
+"text": "Produit activé"
+},
+{
+"text": "Prodotto attivato"
+},
+{
+"text": "Product activated"
+},
+{
+"text": "79"
+}
+],
+[
+{
+"text": "4.4.3.14"
+},
+{
+"text": "Produkt entwickelt oder angepasst"
+},
+{
+"text": "Produit développé ou adapté"
+},
+{
+"text": "Prodotto sviluppato o adeguato"
+},
+{
+"text": "Product developed or adapted"
+},
+{
+"text": "79"
+}
+],
+[
+{
+"text": "4.4.1.30"
+},
+{
+"text": "Produktdokumentation"
+},
+{
+"text": "Documentation du produit"
+},
+{
+"text": "Documentazione del prodotto"
+},
+{
+"text": "Product documentation"
+},
+{
+"text": "63"
+}
+],
+[
+{
+"text": "4.4.1.31"
+},
+{
+"text": "Produktkonzept"
+},
+{
+"text": "Concept du produit"
+},
+{
+"text": "Progettazione del prodotto"
+},
+{
+"text": "Product concept"
+},
+{
+"text": "63"
+}
+],
+[
+{
+"text": "4.4.1.32"
+},
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": "Expériences acquises"
+},
+{
+"text": "Esperienze del progetto"
+},
+{
+"text": "Lessons learned"
+},
+{
+"text": "63"
+}
+],
+[
+{
+"text": "4.4.1.33"
+},
+{
+"text": "Projektinitialisierungsauftrag"
+},
+{
+"text": "Mandat d’initialisation du projet"
+},
+{
+"text": "Mandato di avvio del progetto"
+},
+{
+"text": "Project initiation order"
+},
+{
+"text": "64"
+}
+],
+[
+{
+"text": "4.4.1.34"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Plan de gestion du projet"
+},
+{
+"text": "Piano di gestione progettuale"
+},
+{
+"text": "Project management plan"
+},
+{
+"text": "64"
+}
+],
+[
+{
+"text": "4.4.1.35"
+},
+{
+"text": "Projektschlussbeurteilung"
+},
+{
+"text": "Evaluation finale du projet"
+},
+{
+"text": "Valutazione finale del progetto"
+},
+{
+"text": "Final project evaluation"
+},
+{
+"text": "65"
+}
+],
+[
+{
+"text": "4.4.1.36"
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": "Rapport sur l’état du projet"
+},
+{
+"text": "Rapporto sullo stato del progetto"
+},
+{
+"text": "Project status report"
+},
+{
+"text": "66"
+}
+],
+[
+{
+"text": "4.4.1.37"
+},
+{
+"text": "Protokoll"
+},
+{
+"text": "Procès-verbal"
+},
+{
+"text": "Verbale"
+},
+{
+"text": "Minutes"
+},
+{
+"text": "66"
+}
+],
+[
+{
+"text": "4.4.3.15"
+},
+{
+"text": "Prototyp realisiert"
+},
+{
+"text": "Prototype réalisé"
+},
+{
+"text": "Prototipo realizzato"
+},
+{
+"text": "Prototype realized"
+},
+{
+"text": "79"
+}
+],
+[
+{
+"text": "4.4.1.38"
+},
+{
+"text": "Prototypdokumentation"
+},
+{
+"text": "Documentation du prototype"
+},
+{
+"text": "Documentazione del prototipo"
+},
+{
+"text": "Prototype documentation"
+},
+{
+"text": "67"
+}
+],
+[
+{
+"text": "4.4.1.39"
+},
+{
+"text": "Prozessbeschreibung"
+},
+{
+"text": "Description de processus"
+},
+{
+"text": "Descrizione del processo"
+},
+{
+"text": "Process description"
+},
+{
+"text": "67"
+}
+],
+[
+{
+"text": "4.4.1.40"
+},
+{
+"text": "Prüfprotokoll"
+},
+{
+"text": "Procès-verbal de vérification"
+},
+{
+"text": "Rapporto di verifica"
+},
+{
+"text": "Review report"
+},
+{
+"text": "68"
+}
+],
+[
+{
+"text": "4.4.1.41"
+},
+{
+"text": "Publikation"
+},
+{
+"text": "Publication"
+},
+{
+"text": "Pubblicazione"
+},
+{
+"text": "Publication"
+},
+{
+"text": "68"
+}
+],
+[
+{
+"text": "4.4.1.42"
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": "Rapport sur la qualité et les risques"
+},
+{
+"text": "Rapporto Controllo qualità e rischi"
+},
+{
+"text": "QA and risk report"
+},
+{
+"text": "68"
+}
+],
+[
+{
+"text": "4.4.1.44"
+},
+{
+"text": "Rechtsgrundlagenanalyse"
+},
+{
+"text": "Analyse des bases légales"
+},
+{
+"text": "Analisi delle basi legali"
+},
+{
+"text": "Legal basis analysis"
+},
+{
+"text": "69"
+}
+],
+[
+{
+"text": "4.4.1.43"
+},
+{
+"text": "Releasebericht"
+},
+{
+"text": "Rapport de release"
+},
+{
+"text": "Rapporto di rilascio"
+},
+{
+"text": "Release report"
+},
+{
+"text": "69"
+}
+],
+[
+{
+"text": "4.4.3.16"
+},
+{
+"text": "Schnittstellen realisiert"
+},
+{
+"text": "Interfaces réalisées"
+},
+{
+"text": "Interfacce realizzate"
+},
+{
+"text": "Interfaces realized"
+},
+{
+"text": "79"
+}
+],
+[
+{
+"text": "4.4.1.45"
+},
+{
+"text": "Schutzbedarfsanalyse"
+},
+{
+"text": "Analyse des besoins de protection"
+},
+{
+"text": "Analisi delle esigenze di protezione"
+},
+{
+"text": "Protection needs analysis"
+},
+{
+"text": "69"
+}
+],
+[
+{
+"text": "4.4.1.46"
+},
+{
+"text": "Service Level Agreement"
+},
+{
+"text": "Accord sur le niveau de service"
+},
+{
+"text": "Accordo sui livelli di servizio"
+},
+{
+"text": "Service level agreement"
+},
+{
+"text": "70"
+}
+],
+[
+{
+"text": "4.4.1.47"
+},
+{
+"text": "Situationsanalyse"
+},
+{
+"text": "Analyse de la situation"
+},
+{
+"text": "Analisi della situazione"
+},
+{
+"text": "Situation analysis"
+},
+{
+"text": "71"
+}
+],
+[
+{
+"text": "4.4.1.48"
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": "Intérêts des parties prenantes"
+},
+{
+"text": "Interessi degli stakeholder"
+},
+{
+"text": "Stakeholder interests"
+},
+{
+"text": "71"
+}
+],
+[
+{
+"text": "4.4.1.49"
+},
+{
+"text": "Stakeholderliste"
+},
+{
+"text": "Liste des parties prenantes"
+},
+{
+"text": "Lista Stakeholder"
+},
+{
+"text": "Stakeholder list"
+},
+{
+"text": "72"
+}
+],
+[
+{
+"text": "4.4.1.50"
+},
+{
+"text": "Studie"
+},
+{
+"text": "Étude"
+},
+{
+"text": "Studio"
+},
+{
+"text": "Study"
+},
+{
+"text": "72"
+}
+],
+[
+{
+"text": "4.4.3.17"
+},
+{
+"text": "System aktiviert"
+},
+{
+"text": "Système activé"
+},
+{
+"text": "Sistema attivato"
+},
+{
+"text": "System activated"
+},
+{
+"text": "80"
+}
+],
+[
+{
+"text": "4.4.3.18"
+},
+{
+"text": "System entwickelt oder parametrisiert"
+},
+{
+"text": "Système développé ou paramétré"
+},
+{
+"text": "Sistema sviluppato o parametrizzato"
+},
+{
+"text": "System developed or parameterized"
+},
+{
+"text": "80"
+}
+],
+[
+{
+"text": "4.4.3.19"
+},
+{
+"text": "System integriert"
+},
+{
+"text": "Système intégré"
+},
+{
+"text": "Sistema integrato"
+},
+{
+"text": "System integrated"
+},
+{
+"text": "80"
+}
+],
+[
+{
+"text": "4.4.1.51"
+},
+{
+"text": "Systemkonzept"
+},
+{
+"text": "Concept du système"
+},
+{
+"text": "Piano del sistema"
+},
+{
+"text": "System concept"
+},
+{
+"text": "73"
+}
+],
+[
+{
+"text": "4.4.3.20"
+},
+{
+"text": "Testinfrastruktur realisiert"
+},
+{
+"text": "Infrastructure de test réalisée"
+},
+{
+"text": "Infrastruttura di test realizzata"
+},
+{
+"text": "Test infrastructure realized"
+},
+{
+"text": "80"
+}
+],
+[
+{
+"text": "4.4.3.21"
+},
+{
+"text": "Testinfrastruktur überführt"
+},
+{
+"text": "Infrastructure de test transférée"
+},
+{
+"text": "Infrastruttura di test trasferita"
+},
+{
+"text": "Test infrastructure transferred"
+},
+{
+"text": "80"
+}
+],
+[
+{
+"text": "4.4.1.52"
+},
+{
+"text": "Testkonzept"
+},
+{
+"text": "Concept de test"
+},
+{
+"text": "Progettazione dei test"
+},
+{
+"text": "Test concept"
+},
+{
+"text": "73"
+}
+],
+[
+{
+"text": "4.4.1.53"
+},
+{
+"text": "Testprotokoll"
+},
+{
+"text": "Procès-verbal de test"
+},
+{
+"text": "Verbale dei test"
+},
+{
+"text": "Test report"
+},
+{
+"text": "74"
+}
+],
+[
+{
+"text": "4.4.1.54"
+},
+{
+"text": "Vereinbarung"
+},
+{
+"text": "Accord"
+},
+{
+"text": "Accordo"
+},
+{
+"text": "Agreement"
+},
+{
+"text": "74"
+}
+]
+],
+"titel": "Tabelle 33: Vokabular HERMES-Ergebnisse 4-sprachig",
+"unten": true
+}
+]
+},
+{
+"titel": "Aufgaben",
+"ebene": 2,
+"seite": 227,
+"bloecke": [
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Deutsch Aufgaben",
+"kopf": true
+},
+{
+"text": "Französisch Tâches",
+"kopf": true
+},
+{
+"text": "Italienisch Compiti",
+"kopf": true
+},
+{
+"text": "Englisch Tasks",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "5.4.3.2"
+},
+{
+"text": "Änderungen managen"
+},
+{
+"text": "Gérer les modifications"
+},
+{
+"text": "Gestire le modifiche"
+},
+{
+"text": "Manage changes"
+},
+{
+"text": "108"
+}
+],
+[
+{
+"text": "5.4.3.1"
+},
+{
+"text": "Altsystem ausser Betrieb setzen"
+},
+{
+"text": "Mettre l’ancien système hors service"
+},
+{
+"text": "Disattivare il vecchio sistema"
+},
+{
+"text": "Decommission the legacy system"
+},
+{
+"text": "108"
+}
+],
+[
+{
+"text": "5.4.3.3"
+},
+{
+"text": "Angebote bewerten"
+},
+{
+"text": "Évaluer les offres"
+},
+{
+"text": "Valutare le offerte"
+},
+{
+"text": "Evaluate tenders"
+},
+{
+"text": "110"
+}
+],
+[
+{
+"text": "5.4.3.4"
+},
+{
+"text": "Ausschreibung durchführen"
+},
+{
+"text": "Effectuer l’appel d’offres"
+},
+{
+"text": "Pubblicare il bando di concorso"
+},
+{
+"text": "Issue call for tenders"
+},
+{
+"text": "111"
+}
+],
+[
+{
+"text": "5.4.3.5"
+},
+{
+"text": "Ausschreibung erarbeiten"
+},
+{
+"text": "Élaborer l’appel d’offres"
+},
+{
+"text": "Elaborare il bando di concorso"
+},
+{
+"text": "Prepare call for tenders"
+},
+{
+"text": "111"
+}
+],
+[
+{
+"text": "5.4.3.6"
+},
+{
+"text": "Beschaffungsanalyse erarbeiten"
+},
+{
+"text": "Élaborer l’analyse de l’appel d’offres"
+},
+{
+"text": "Elaborare l’analisi dell’acquisto"
+},
+{
+"text": "Prepare procurement analysis"
+},
+{
+"text": "113"
+}
+],
+[
+{
+"text": "5.4.3.7"
+},
+{
+"text": "Betrieb aktivieren"
+},
+{
+"text": "Activer l’exploitation"
+},
+{
+"text": "Attivare l’esercizio"
+},
+{
+"text": "Activate operation"
+},
+{
+"text": "114"
+}
+],
+[
+{
+"text": "5.4.3.8"
+},
+{
+"text": "Betrieb realisieren"
+},
+{
+"text": "Réaliser l’environnement d’exploitation"
+},
+{
+"text": "Realizzare l’esercizio"
+},
+{
+"text": "Realize operation"
+},
+{
+"text": "115"
+}
+],
+[
+{
+"text": "5.4.3.9"
+},
+{
+"text": "Betriebskonzept erarbeiten"
+},
+{
+"text": "Élaborer le concept d’exploitation"
+},
+{
+"text": "Elaborare il piano di esercizio"
+},
+{
+"text": "Design operating concept"
+},
+{
+"text": "116"
+}
+],
+[
+{
+"text": "5.4.3.10"
+},
+{
+"text": "Durchführungsauftrag erarbeiten"
+},
+{
+"text": "Élaborer le mandat d’exécution"
+},
+{
+"text": "Elaborare il mandato di esecuzione del progetto"
+},
+{
+"text": "Draw up project execution order"
+},
+{
+"text": "117"
+}
+],
+[
+{
+"text": "5.4.3.11"
+},
+{
+"text": "Einführungskonzept erarbeiten"
+},
+{
+"text": "Élaborer le concept de déploiement"
+},
+{
+"text": "Elaborare la progettazione dell’introduzione"
+},
+{
+"text": "Design deployment concept"
+},
+{
+"text": "118"
+}
+],
+[
+{
+"text": "5.4.3.12"
+},
+{
+"text": "Einführungsmassnahmen durchführen"
+},
+{
+"text": "Effectuer les mesures de déploiement"
+},
+{
+"text": "Eseguire le misure d’introduzione"
+},
+{
+"text": "Execute deployment measures"
+},
+{
+"text": "119"
+}
+],
+[
+{
+"text": "5.4.3.13"
+},
+{
+"text": "Einführungsmassnahmen realisieren"
+},
+{
+"text": "Réaliser les mesures de déploiement"
+},
+{
+"text": "Realizzare le misure d’introduzione"
+},
+{
+"text": "Realize deployment measures"
+},
+{
+"text": "120"
+}
+],
+[
+{
+"text": "5.4.2.1"
+},
+{
+"text": "Entscheid Abnahme Migration treffen"
+},
+{
+"text": "Décider de la réception de la migration"
+},
+{
+"text": "Decisione Accettazione della migrazione"
+},
+{
+"text": "Decide on acceptance of migration"
+},
+{
+"text": "101"
+}
+],
+[
+{
+"text": "5.4.2.2"
+},
+{
+"text": "Entscheid Abnahme treffen"
+},
+{
+"text": "Décider de la réception"
+},
+{
+"text": "Decisione Accettazione"
+},
+{
+"text": "Decide on acceptance"
+},
+{
+"text": "102"
+}
+],
+[
+{
+"text": "5.4.1.1"
+},
+{
+"text": "Entscheid Ausschreibung treffen"
+},
+{
+"text": "Décider de l’appel d’offres"
+},
+{
+"text": "Decisione Bando di concorso"
+},
+{
+"text": "Decide on call for tenders"
+},
+{
+"text": "90"
+}
+],
+[
+{
+"text": "5.4.1.2"
+},
+{
+"text": "Entscheid Betriebsaufnahme treffen"
+},
+{
+"text": "Décider de la mise en service"
+},
+{
+"text": "Decisione Messa in esercizio"
+},
+{
+"text": "Decide on launch of operation"
+},
+{
+"text": "91"
+}
+],
+[
+{
+"text": "5.4.1.3"
+},
+{
+"text": "Entscheid Durchführungsfreigabe treffen"
+},
+{
+"text": "Décider de la libération de l’exécution"
+},
+{
+"text": "Decisione Avvio dell’esecuzione"
+},
+{
+"text": "Decide on execution release"
+},
+{
+"text": "91"
+}
+],
+[
+{
+"text": "5.4.2.3"
+},
+{
+"text": "Entscheid ISDS-Konzept treffen"
+},
+{
+"text": "Décider du concept SIPD"
+},
+{
+"text": "Decisione Piano SIPD"
+},
+{
+"text": "Decide on ISDP concept"
+},
+{
+"text": "103"
+}
+],
+[
+{
+"text": "5.4.2.4"
+},
+{
+"text": "Entscheid Lösungsarchitektur treffen"
+},
+{
+"text": "Décider de l’architecture de la solution"
+},
+{
+"text": "Decisione Architettura della soluzione"
+},
+{
+"text": "Decide on solution architecture"
+},
+{
+"text": "104"
+}
+],
+[
+{
+"text": "5.4.1.4"
+},
+{
+"text": "Entscheid Phasenfreigabe Abschluss treffen"
+},
+{
+"text": "Décider de la libération de la phase de clôture"
+},
+{
+"text": "Decisione Avvio della fase Conclusione"
+},
+{
+"text": "Decide on closure phase release"
+},
+{
+"text": "93"
+}
+],
+[
+{
+"text": "5.4.1.5"
+},
+{
+"text": "Entscheid Phasenfreigabe treffen"
+},
+{
+"text": "Décider de la libération de la phase"
+},
+{
+"text": "Decisione Avvio della fase"
+},
+{
+"text": "Decide on phase release"
+},
+{
+"text": "94"
+}
+],
+[
+{
+"text": "5.4.2.5"
+},
+{
+"text": "Entscheid Produktkonzept treffen"
+},
+{
+"text": "Décider du concept du produit"
+},
+{
+"text": "Decisione Progettazione del prodotto"
+},
+{
+"text": "Decide on product concept"
+},
+{
+"text": "105"
+}
+],
+[
+{
+"text": "5.4.1.6"
+},
+{
+"text": "Entscheid Projektabbruch treffen"
+},
+{
+"text": "Décider l’interruption du projet"
+},
+{
+"text": "Decisione Interruzione del progetto"
+},
+{
+"text": "Decide on project discontinuation"
+},
+{
+"text": "95"
+}
+],
+[
+{
+"text": "5.4.1.7"
+},
+{
+"text": "Entscheid Projektabschluss treffen"
+},
+{
+"text": "Décider de la clôture du projet"
+},
+{
+"text": "Decisione Conclusione del progetto"
+},
+{
+"text": "Decide on project closure"
+},
+{
+"text": "97"
+}
+],
+[
+{
+"text": "5.4.1.8"
+},
+{
+"text": "Entscheid Projektinitialisierungsfreigabe treffen"
+},
+{
+"text": "Décider de la libération de l’initialisation du projet"
+},
+{
+"text": "Decisione Avvio del progetto"
+},
+{
+"text": "Decide on project initiation release"
+},
+{
+"text": "98"
+}
+],
+[
+{
+"text": "5.4.1.9"
+},
+{
+"text": "Entscheid Releasefreigabe treffen"
+},
+{
+"text": "Décider de la libération du release"
+},
+{
+"text": "Decisione Avvio del rilascio"
+},
+{
+"text": "Decide on release"
+},
+{
+"text": "99"
+}
+],
+[
+{
+"text": "5.4.2.6"
+},
+{
+"text": "Entscheid Vorabnahme treffen"
+},
+{
+"text": "Décider de la préréception"
+},
+{
+"text": "Decisione Accettazione preliminare"
+},
+{
+"text": "Decide on preliminary acceptance"
+},
+{
+"text": "105"
+}
+],
+[
+{
+"text": "5.4.2.7"
+},
+{
+"text": "Entscheid Weiteres Vorgehen treffen"
+},
+{
+"text": "Décider de la suite du projet"
+},
+{
+"text": "Decisione Continuazione"
+},
+{
+"text": "Decide on next steps"
+},
+{
+"text": "106"
+}
+],
+[
+{
+"text": "5.4.1.10"
+},
+{
+"text": "Entscheid Zuschlag treffen"
+},
+{
+"text": "Décider de l’adjudication"
+},
+{
+"text": "Decisione Aggiudicazione"
+},
+{
+"text": "Decide on contract award"
+},
+{
+"text": "100"
+}
+],
+[
+{
+"text": "5.4.3.14"
+},
+{
+"text": "Integrationskonzept erarbeiten"
+},
+{
+"text": "Élaborer le concept d’intégration"
+},
+{
+"text": "Elaborare la progettazione dell’integrazione"
+},
+{
+"text": "Design integration concept"
+},
+{
+"text": "121"
+}
+],
+[
+{
+"text": "5.4.3.15"
+},
+{
+"text": "ISDS-Konzept erarbeiten"
+},
+{
+"text": "Élaborer le concept SIPD"
+},
+{
+"text": "Elaborare il piano SIPD"
+},
+{
+"text": "Design ISDP concept"
+},
+{
+"text": "121"
+}
+],
+[
+{
+"text": "5.4.3.16"
+},
+{
+"text": "ISDS-Konzept realisieren"
+},
+{
+"text": "Réaliser le concept SIPD"
+},
+{
+"text": "Realizzare il piano SIPD"
+},
+{
+"text": "Implement ISDP concept"
+},
+{
+"text": "122"
+}
+],
+[
+{
+"text": "5.4.3.17"
+},
+{
+"text": "ISDS-Konzept überführen"
+},
+{
+"text": "Transférer le concept SIPD"
+},
+{
+"text": "Trasferire il piano SIPD"
+},
+{
+"text": "Transfer ISDP concept"
+},
+{
+"text": "123"
+}
+],
+[
+{
+"text": "5.4.3.18"
+},
+{
+"text": "Leistungen vereinbaren und steuern"
+},
+{
+"text": "Définir et piloter les prestations"
+},
+{
+"text": "Concordare e gestire le prestazioni"
+},
+{
+"text": "Agree on and steer goods/services"
+},
+{
+"text": "124"
+}
+],
+[
+{
+"text": "5.4.3.19"
+},
+{
+"text": "Lösungsanforderungen erarbeiten"
+},
+{
+"text": "Élaborer les exigences envers la solution"
+},
+{
+"text": "Elaborare i requisiti della soluzione"
+},
+{
+"text": "Prepare solution requirements"
+},
+{
+"text": "126"
+}
+],
+[
+{
+"text": "5.4.3.20"
+},
+{
+"text": "Lösungsarchitektur erarbeiten"
+},
+{
+"text": "Élaborer l’architecture de la solution"
+},
+{
+"text": "Elaborare l’architettura della soluzione"
+},
+{
+"text": "Prepare solution architecture"
+},
+{
+"text": "127"
+}
+],
+[
+{
+"text": "5.4.3.21"
+},
+{
+"text": "Migration durchführen"
+},
+{
+"text": "Effectuer la migration"
+},
+{
+"text": "Eseguire la migrazione"
+},
+{
+"text": "Conduct migration"
+},
+{
+"text": "128"
+}
+],
+[
+{
+"text": "5.4.3.22"
+},
+{
+"text": "Migrationskonzept erarbeiten"
+},
+{
+"text": "Élaborer le concept de migration"
+},
+{
+"text": "Elaborare la progettazione della migrazione"
+},
+{
+"text": "Design migration concept"
+},
+{
+"text": "128"
+}
+],
+[
+{
+"text": "5.4.3.23"
+},
+{
+"text": "Migrationsverfahren realisieren"
+},
+{
+"text": "Réaliser la procédure de migration"
+},
+{
+"text": "Realizzare la procedura di migrazione"
+},
+{
+"text": "Realize migration procedure"
+},
+{
+"text": "129"
+}
+],
+[
+{
+"text": "5.4.3.24"
+},
+{
+"text": "Organisation aktivieren"
+},
+{
+"text": "Activer l’organisation"
+},
+{
+"text": "Attivare l’organizzazione"
+},
+{
+"text": "Activate organization"
+},
+{
+"text": "130"
+}
+],
+[
+{
+"text": "5.4.3.25"
+},
+{
+"text": "Organisation umsetzen"
+},
+{
+"text": "Réaliser l’organisation"
+},
+{
+"text": "Attuare l’organizzazione"
+},
+{
+"text": "Implement organization"
+},
+{
+"text": "131"
+}
+],
+[
+{
+"text": "5.4.3.26"
+},
+{
+"text": "Organisationsanforderungen erarbeiten"
+},
+{
+"text": "Élaborer les exigences organisationnelles"
+},
+{
+"text": "Elaborare i requisiti dell’organizzazione"
+},
+{
+"text": "Establish organizational requirements"
+},
+{
+"text": "132"
+}
+],
+[
+{
+"text": "5.4.3.27"
+},
+{
+"text": "Organisationskonzept erarbeiten"
+},
+{
+"text": "Élaborer le concept d’organisation"
+},
+{
+"text": "Elaborare la progettazione dell’organizzazione"
+},
+{
+"text": "Draw up organization concept"
+},
+{
+"text": "133"
+}
+],
+[
+{
+"text": "5.4.3.28"
+},
+{
+"text": "Phasenfreigabe vorbereiten"
+},
+{
+"text": "Préparer la libération de la phase"
+},
+{
+"text": "Preparare l’avvio della fase"
+},
+{
+"text": "Prepare phase release"
+},
+{
+"text": "134"
+}
+],
+[
+{
+"text": "5.4.3.29"
+},
+{
+"text": "Probleme behandeln und Erfahrungen nutzen"
+},
+{
+"text": "Traiter les problèmes et mettre à profit les expériences"
+},
+{
+"text": "Trattare i problemi e valorizzare le esperienze"
+},
+{
+"text": "Deal with problems and benefit from lessons learned"
+},
+{
+"text": "135"
+}
+],
+[
+{
+"text": "5.4.3.30"
+},
+{
+"text": "Produkt aktivieren"
+},
+{
+"text": "Activer le produit"
+},
+{
+"text": "Attivare il prodotto"
+},
+{
+"text": "Activate product"
+},
+{
+"text": "136"
+}
+],
+[
+{
+"text": "5.4.3.31"
+},
+{
+"text": "Produkt realisieren"
+},
+{
+"text": "Réaliser le produit"
+},
+{
+"text": "Realizzare il prodotto"
+},
+{
+"text": "Realize product"
+},
+{
+"text": "137"
+}
+],
+[
+{
+"text": "5.4.3.32"
+},
+{
+"text": "Produktkonzept erarbeiten"
+},
+{
+"text": "Élaborer le concept du produit"
+},
+{
+"text": "Elaborare la progettazione del prodotto"
+},
+{
+"text": "Design product concept"
+},
+{
+"text": "138"
+}
+],
+[
+{
+"text": "5.4.3.33"
+},
+{
+"text": "Projekt führen und kontrollieren"
+},
+{
+"text": "Conduire et contrôler le projet"
+},
+{
+"text": "Gestire e controllare il progetto"
+},
+{
+"text": "Manage and control project"
+},
+{
+"text": "138"
+}
+],
+[
+{
+"text": "5.4.3.34"
+},
+{
+"text": "Projekt steuern"
+},
+{
+"text": "Piloter le projet"
+},
+{
+"text": "Condurre il progetto"
+},
+{
+"text": "Steer project"
+},
+{
+"text": "140"
+}
+],
+[
+{
+"text": "5.4.3.35"
+},
+{
+"text": "Projektabschluss vorbereiten"
+},
+{
+"text": "Préparer la clôture du projet"
+},
+{
+"text": "Preparare la conclusione del progetto"
+},
+{
+"text": "Prepare project closure"
+},
+{
+"text": "142"
+}
+],
+[
+{
+"text": "5.4.3.36"
+},
+{
+"text": "Projektmanagementplan erarbeiten"
+},
+{
+"text": "Élaborer le plan de gestion du projet"
+},
+{
+"text": "Elaborare il piano di gestione progettuale"
+},
+{
+"text": "Draw up project management plan"
+},
+{
+"text": "143"
+}
+],
+[
+{
+"text": "5.4.3.37"
+},
+{
+"text": "Prototyping durchführen"
+},
+{
+"text": "Effectuer le prototypage"
+},
+{
+"text": "Eseguire la prototipazione"
+},
+{
+"text": "Carry out prototyping"
+},
+{
+"text": "144"
+}
+],
+[
+{
+"text": "5.4.3.38"
+},
+{
+"text": "Qualitätssicherung führen"
+},
+{
+"text": "Conduire l’assurance de la qualité"
+},
+{
+"text": "Gestire la garanzia della qualità"
+},
+{
+"text": "Perform quality assurance"
+},
+{
+"text": "145"
+}
+],
+[
+{
+"text": "5.4.3.39"
+},
+{
+"text": "Rechtsgrundlagenanalyse erarbeiten"
+},
+{
+"text": "Élaborer l’analyse des bases légales"
+},
+{
+"text": "Elaborare l’analisi delle basi legali"
+},
+{
+"text": "Analyze legal basis"
+},
+{
+"text": "146"
+}
+],
+[
+{
+"text": "5.4.3.40"
+},
+{
+"text": "Releaseabschluss vorbereiten"
+},
+{
+"text": "Préparer la clôture du release"
+},
+{
+"text": "Preparare la conclusione del rilascio"
+},
+{
+"text": "Prepare release closure"
+},
+{
+"text": "147"
+}
+],
+[
+{
+"text": "5.4.3.41"
+},
+{
+"text": "Risiken managen"
+},
+{
+"text": "Gérer les risques"
+},
+{
+"text": "Gestire i rischi"
+},
+{
+"text": "Manage risks"
+},
+{
+"text": "148"
+}
+],
+[
+{
+"text": "5.4.3.42"
+},
+{
+"text": "Schutzbedarfsanalyse erarbeiten"
+},
+{
+"text": "Élaborer l’analyse des besoins de protection"
+},
+{
+"text": "Elaborare l’analisi delle esigenze di protezione"
+},
+{
+"text": "Analyze protection needs"
+},
+{
+"text": "149"
+}
+],
+[
+{
+"text": "5.4.3.43"
+},
+{
+"text": "Stakeholder managen und informieren"
+},
+{
+"text": "Gérer et informer les parties prenantes"
+},
+{
+"text": "Gestire e informare gli stakeholder"
+},
+{
+"text": "Manage and inform stakeholders"
+},
+{
+"text": "150"
+}
+],
+[
+{
+"text": "5.4.3.44"
+},
+{
+"text": "Stakeholderinteressen vertreten"
+},
+{
+"text": "Représenter les intérêts des parties prenantes"
+},
+{
+"text": "Rappresentare gli interessi degli stakeholder"
+},
+{
+"text": "Advocate stakeholder interests"
+},
+{
+"text": "151"
+}
+],
+[
+{
+"text": "5.4.3.45"
+},
+{
+"text": "Studie erarbeiten"
+},
+{
+"text": "Élaborer l’étude"
+},
+{
+"text": "Elaborare lo studio"
+},
+{
+"text": "Prepare study"
+},
+{
+"text": "152"
+}
+],
+[
+{
+"text": "5.4.3.46"
+},
+{
+"text": "System aktivieren"
+},
+{
+"text": "Activer le système"
+},
+{
+"text": "Attivare il sistema"
+},
+{
+"text": "Activate system"
+},
+{
+"text": "153"
+}
+],
+[
+{
+"text": "5.4.3.47"
+},
+{
+"text": "System in Betrieb integrieren"
+},
+{
+"text": "Intégrer le système en fonctionnement"
+},
+{
+"text": "Integrare il sistema nell’esercizio"
+},
+{
+"text": "Integrate the system into operation"
+},
+{
+"text": "154"
+}
+],
+[
+{
+"text": "5.4.3.48"
+},
+{
+"text": "System realisieren"
+},
+{
+"text": "Réaliser le système"
+},
+{
+"text": "Realizzare il sistema"
+},
+{
+"text": "Realize system"
+},
+{
+"text": "155"
+}
+],
+[
+{
+"text": "5.4.3.49"
+},
+{
+"text": "Systemintegration vorbereiten"
+},
+{
+"text": "Préparer l’intégration du système"
+},
+{
+"text": "Preparare l’integrazione del sistema"
+},
+{
+"text": "Prepare system integration"
+},
+{
+"text": "156"
+}
+],
+[
+{
+"text": "5.4.3.50"
+},
+{
+"text": "Test durchführen"
+},
+{
+"text": "Effectuer les tests"
+},
+{
+"text": "Eseguire i test"
+},
+{
+"text": "Conduct test"
+},
+{
+"text": "156"
+}
+],
+[
+{
+"text": "5.4.3.51"
+},
+{
+"text": "Testinfrastruktur realisieren"
+},
+{
+"text": "Réaliser l’infrastructure de test"
+},
+{
+"text": "Realizzare l’infrastruttura per i test"
+},
+{
+"text": "Realize test infrastructure"
+},
+{
+"text": "157"
+}
+],
+[
+{
+"text": "5.4.3.52"
+},
+{
+"text": "Testinfrastruktur überführen"
+},
+{
+"text": "Transférer l’infrastructure de test"
+},
+{
+"text": "Trasferire l’infrastruttura per i test"
+},
+{
+"text": "Transfer test infrastructure"
+},
+{
+"text": "158"
+}
+],
+[
+{
+"text": "5.4.3.53"
+},
+{
+"text": "Testkonzept erarbeiten"
+},
+{
+"text": "Élaborer le concept de test"
+},
+{
+"text": "Elaborare la progettazione dei test"
+},
+{
+"text": "Design test concept"
+},
+{
+"text": "159"
+}
+],
+[
+{
+"text": "5.4.3.54"
+},
+{
+"text": "Vereinbarung erarbeiten"
+},
+{
+"text": "Élaborer l’accord"
+},
+{
+"text": "Elaborare l’accordo"
+},
+{
+"text": "Draw up agreement"
+},
+{
+"text": "160"
+}
+]
+],
+"titel": "Tabelle 34: Vokabular HERMES-Aufgaben 4-sprachig",
+"unten": true
+}
+]
+},
+{
+"titel": "Rollen",
+"ebene": 2,
+"seite": 232,
+"bloecke": [
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Deutsch Rollen",
+"kopf": true
+},
+{
+"text": "Französisch Rôles",
+"kopf": true
+},
+{
+"text": "Italienisch Ruoli",
+"kopf": true
+},
+{
+"text": "Englisch Roles",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "6.4.3.1"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Représentant des utilisateurs"
+},
+{
+"text": "Rappresentante degli utenti"
+},
+{
+"text": "User representative"
+},
+{
+"text": "184"
+}
+],
+[
+{
+"text": "6.4.1.1"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Mandant"
+},
+{
+"text": "Committente"
+},
+{
+"text": "Project sponsor"
+},
+{
+"text": "170"
+}
+],
+[
+{
+"text": "6.4.3.2"
+},
+{
+"text": "Betriebsverantwortlicher"
+},
+{
+"text": "Responsable de l’exploitation"
+},
+{
+"text": "Responsabile dell’esercizio"
+},
+{
+"text": "Operations manager"
+},
+{
+"text": "187"
+}
+],
+[
+{
+"text": "6.4.3.3"
+},
+{
+"text": "Business Analyst"
+},
+{
+"text": "Business analyst"
+},
+{
+"text": "Business Analyst"
+},
+{
+"text": "Business analyst"
+},
+{
+"text": "188"
+}
+],
+[
+{
+"text": "6.4.3.4"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Développeur"
+},
+{
+"text": "Sviluppatore"
+},
+{
+"text": "Developer"
+},
+{
+"text": "190"
+}
+],
+[
+{
+"text": "6.4.2.1"
+},
+{
+"text": "Fachausschuss"
+},
+{
+"text": "Comité spécialisé"
+},
+{
+"text": "Comitato esperti"
+},
+{
+"text": "Technical committee"
+},
+{
+"text": "176"
+}
+],
+[
+{
+"text": "6.4.3.6"
+},
+{
+"text": "ISDS-Verantwortlicher"
+},
+{
+"text": "Responsable SIPD"
+},
+{
+"text": "Responsabile SIPD"
+},
+{
+"text": "ISDP manager"
+},
+{
+"text": "192"
+}
+],
+[
+{
+"text": "6.4.3.7"
+},
+{
+"text": "IT-Architekt"
+},
+{
+"text": "Architecte informatique"
+},
+{
+"text": "Architetto IT"
+},
+{
+"text": "IT architect"
+},
+{
+"text": "194"
+}
+],
+[
+{
+"text": "6.4.1.2"
+},
+{
+"text": "Projektausschuss"
+},
+{
+"text": "Comité de pilotage"
+},
+{
+"text": "Comitato di progetto"
+},
+{
+"text": "Project committee"
+},
+{
+"text": "174"
+}
+],
+[
+{
+"text": "6.4.2.2"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Chef de projet"
+},
+{
+"text": "Capoprogetto"
+},
+{
+"text": "Project management"
+},
+{
+"text": "176"
+}
+],
+[
+{
+"text": "6.4.2.3"
+},
+{
+"text": "Projektunterstützung"
+},
+{
+"text": "Assistance de projet"
+},
+{
+"text": "Supporto di progetto"
+},
+{
+"text": "Project support"
+},
+{
+"text": "183"
+}
+],
+[
+{
+"text": "6.4.1.3"
+},
+{
+"text": "Qualitäts- und Risikomanager"
+},
+{
+"text": "Gestionnaire de la qualité et des risques"
+},
+{
+"text": "Gestore della qualità e dei rischi"
+},
+{
+"text": "Quality and risk manager"
+},
+{
+"text": "175"
+}
+],
+[
+{
+"text": "6.4.2.4"
+},
+{
+"text": "Teilprojektleiter"
+},
+{
+"text": "Chef de sous-projet"
+},
+{
+"text": "Responsabile di sottoprogetto"
+},
+{
+"text": "Sub-project manager"
+},
+{
+"text": "183"
+}
+],
+[
+{
+"text": "6.4.3.8"
+},
+{
+"text": "Tester"
+},
+{
+"text": "Testeur"
+},
+{
+"text": "Collaudatore"
+},
+{
+"text": "Tester"
+},
+{
+"text": "195"
+}
+],
+[
+{
+"text": "6.4.3.9"
+},
+{
+"text": "Testverantwortlicher"
+},
+{
+"text": "Responsable des tests"
+},
+{
+"text": "Responsabile dei test"
+},
+{
+"text": "Test manager"
+},
+{
+"text": "196"
+}
+],
+[
+{
+"text": "6.4.3.5"
+},
+{
+"text": "Umsetzungsorganisation"
+},
+{
+"text": "Organisation de mise en oeuvre"
+},
+{
+"text": "Organizzazione di attuazione"
+},
+{
+"text": "Execution organization"
+},
+{
+"text": "192"
+}
+]
+],
+"titel": "Tabelle 35: Vokabular HERMES-Rollen 4-sprachig",
+"unten": true
+}
+]
+}
+]
+}

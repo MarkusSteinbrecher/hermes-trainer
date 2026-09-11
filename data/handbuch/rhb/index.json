@@ -1,0 +1,844 @@
+{
+ "quelle": {
+  "titel": "HERMES Referenzhandbuch Projektmanagement",
+  "ausgabe": "Ausgabe 2022, 3. Auflage vom 9. März 2026",
+  "seiten": 248,
+  "pdf": "https://www.hermes.admin.ch/_Resources/Persistent/c/7/1/6/c7166cbb014fffc5a7ebb4697ba59ef63edb0de3/HERMES-Projektmanagement.pdf",
+  "online": "https://www.hermes.admin.ch/de/projektmanagement.html",
+  "downloads": "https://www.hermes.admin.ch/de/downloads.html"
+ },
+ "kapitel": [
+  {
+   "id": "vorwort",
+   "nummer": "",
+   "titel": "Vorwort",
+   "kategorie": null,
+   "seite": 1,
+   "url": null,
+   "datei": "data/handbuch/rhb/vorwort.json",
+   "abschnitte": 13,
+   "inhalt": [
+    {
+     "titel": "Titelseite",
+     "ebene": 1,
+     "seite": 1
+    },
+    {
+     "titel": "Vorwort",
+     "ebene": 1,
+     "seite": 2
+    },
+    {
+     "titel": "HERMES-Evolution",
+     "ebene": 2,
+     "seite": 2
+    },
+    {
+     "titel": "Impressum",
+     "ebene": 1,
+     "seite": 3
+    },
+    {
+     "titel": "Herausgeber und Gesamtverantwortung",
+     "ebene": 2,
+     "seite": 3
+    },
+    {
+     "titel": "Prinzip „Digital First“",
+     "ebene": 2,
+     "seite": 3
+    },
+    {
+     "titel": "Urheberrechte und Vorbehalt",
+     "ebene": 2,
+     "seite": 3
+    },
+    {
+     "titel": "Hinweis zur sprachlichen Gleichbehandlung",
+     "ebene": 2,
+     "seite": 3
+    },
+    {
+     "titel": "Support und Unterstützung",
+     "ebene": 2,
+     "seite": 3
+    },
+    {
+     "titel": "E-Government Standards",
+     "ebene": 2,
+     "seite": 3
+    },
+    {
+     "titel": "Bezugsquelle",
+     "ebene": 2,
+     "seite": 4
+    },
+    {
+     "titel": "Ausgabe / Auflage",
+     "ebene": 2,
+     "seite": 4
+    },
+    {
+     "titel": "Prolog",
+     "ebene": 1,
+     "seite": 5
+    }
+   ]
+  },
+  {
+   "id": "methodenueberblick",
+   "nummer": "A",
+   "titel": "Methodenüberblick",
+   "kategorie": "grundbegriff",
+   "seite": 6,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
+   "datei": "data/handbuch/rhb/methodenueberblick.json",
+   "abschnitte": 9,
+   "inhalt": [
+    {
+     "nummer": "A",
+     "titel": "Methodenüberblick",
+     "ebene": 1,
+     "seite": 6
+    },
+    {
+     "nummer": "A.1",
+     "titel": "HERMES-Projektmanagement - Big Picture",
+     "ebene": 2,
+     "seite": 6
+    },
+    {
+     "nummer": "A.2",
+     "titel": "Was ist HERMES-Projektmanagement?",
+     "ebene": 2,
+     "seite": 6
+    },
+    {
+     "nummer": "A.3",
+     "titel": "Durch HERMES unterstützte Projektgrössen",
+     "ebene": 2,
+     "seite": 7
+    },
+    {
+     "nummer": "A.4",
+     "titel": "Nutzung des HERMES-Projektmanagements in der Praxis",
+     "ebene": 2,
+     "seite": 7
+    },
+    {
+     "nummer": "A.5",
+     "titel": "Die Schnittstellen des HERMES-Projektmanagements",
+     "ebene": 2,
+     "seite": 8
+    },
+    {
+     "nummer": "A.6",
+     "titel": "Agiles Entwicklungsmanagement mit HERMES",
+     "ebene": 2,
+     "seite": 9
+    },
+    {
+     "nummer": "A.7",
+     "titel": "Positionierung Programmmanagement",
+     "ebene": 2,
+     "seite": 9
+    },
+    {
+     "nummer": "A.8",
+     "titel": "Hinweise zur Anwendung",
+     "ebene": 2,
+     "seite": 10
+    }
+   ]
+  },
+  {
+   "id": "methodenelemente",
+   "nummer": "B",
+   "titel": "HERMES-Projektmanagement-Methodenelemente",
+   "kategorie": null,
+   "seite": 11,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html",
+   "datei": "data/handbuch/rhb/methodenelemente.json",
+   "abschnitte": 7,
+   "inhalt": [
+    {
+     "nummer": "B",
+     "titel": "HERMES-Projektmanagement-Methodenelemente",
+     "ebene": 1,
+     "seite": 11
+    },
+    {
+     "nummer": "B.1",
+     "titel": "Phasen",
+     "ebene": 2,
+     "seite": 11
+    },
+    {
+     "nummer": "B.2",
+     "titel": "Szenarien",
+     "ebene": 2,
+     "seite": 12
+    },
+    {
+     "nummer": "B.3",
+     "titel": "Module",
+     "ebene": 2,
+     "seite": 12
+    },
+    {
+     "nummer": "B.4",
+     "titel": "Ergebnisse",
+     "ebene": 2,
+     "seite": 13
+    },
+    {
+     "nummer": "B.5",
+     "titel": "Aufgaben",
+     "ebene": 2,
+     "seite": 14
+    },
+    {
+     "nummer": "B.6",
+     "titel": "Rollen",
+     "ebene": 2,
+     "seite": 14
+    }
+   ]
+  },
+  {
+   "id": "phasen",
+   "nummer": "1",
+   "titel": "Phasen",
+   "kategorie": "phase",
+   "seite": 15,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
+   "datei": "data/handbuch/rhb/phasen.json",
+   "abschnitte": 22,
+   "inhalt": [
+    {
+     "nummer": "1",
+     "titel": "Phasen",
+     "ebene": 1,
+     "seite": 15
+    },
+    {
+     "nummer": "1.1",
+     "titel": "Einleitung",
+     "ebene": 2,
+     "seite": 15
+    },
+    {
+     "nummer": "1.1.1",
+     "titel": "Projektlebenszyklus",
+     "ebene": 3,
+     "seite": 15
+    },
+    {
+     "nummer": "1.1.2",
+     "titel": "Projektbeginn",
+     "ebene": 3,
+     "seite": 15
+    },
+    {
+     "nummer": "1.1.3",
+     "titel": "Lösungsentstehung",
+     "ebene": 3,
+     "seite": 16
+    },
+    {
+     "nummer": "1.1.4",
+     "titel": "Projektende",
+     "ebene": 3,
+     "seite": 17
+    },
+    {
+     "nummer": "1.2",
+     "titel": "Übersicht der Phasen",
+     "ebene": 2,
+     "seite": 17
+    },
+    {
+     "nummer": "1.2.1",
+     "titel": "HERMES-Phasenmodell",
+     "ebene": 3,
+     "seite": 17
+    },
+    {
+     "nummer": "1.2.2",
+     "titel": "Einheitliche Projektstruktur",
+     "ebene": 3,
+     "seite": 18
+    },
+    {
+     "nummer": "1.2.3",
+     "titel": "Phasenverlauf",
+     "ebene": 3,
+     "seite": 18
+    },
+    {
+     "nummer": "1.3",
+     "titel": "Erläuterung der Phasenbeschreibung",
+     "ebene": 2,
+     "seite": 19
+    },
+    {
+     "nummer": "1.4",
+     "titel": "Beschreibung der Phasen",
+     "ebene": 2,
+     "seite": 19
+    },
+    {
+     "nummer": "1.4.1",
+     "titel": "Projektbeginn",
+     "ebene": 3,
+     "seite": 20
+    },
+    {
+     "nummer": "1.4.2",
+     "titel": "Lösungsentstehung klassisch",
+     "ebene": 3,
+     "seite": 21
+    },
+    {
+     "nummer": "1.4.3",
+     "titel": "Lösungsentstehung agil",
+     "ebene": 3,
+     "seite": 22
+    },
+    {
+     "nummer": "1.4.4",
+     "titel": "Projektende",
+     "ebene": 3,
+     "seite": 23
+    }
+   ]
+  },
+  {
+   "id": "szenarien",
+   "nummer": "2",
+   "titel": "Szenarien",
+   "kategorie": "szenario",
+   "seite": 25,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+   "datei": "data/handbuch/rhb/szenarien.json",
+   "abschnitte": 19,
+   "inhalt": [
+    {
+     "nummer": "2",
+     "titel": "Szenarien",
+     "ebene": 1,
+     "seite": 25
+    },
+    {
+     "nummer": "2.1",
+     "titel": "Einleitung",
+     "ebene": 2,
+     "seite": 25
+    },
+    {
+     "nummer": "2.2",
+     "titel": "Übersicht der Szenarien",
+     "ebene": 2,
+     "seite": 25
+    },
+    {
+     "nummer": "2.2.1",
+     "titel": "Aufbau der Szenarien",
+     "ebene": 3,
+     "seite": 25
+    },
+    {
+     "nummer": "2.2.2",
+     "titel": "Standardszenarien",
+     "ebene": 3,
+     "seite": 26
+    },
+    {
+     "nummer": "2.2.3",
+     "titel": "Benutzerdefinierte Szenarien",
+     "ebene": 3,
+     "seite": 27
+    },
+    {
+     "nummer": "2.3",
+     "titel": "Erläuterung der Szenario-Beschreibung",
+     "ebene": 2,
+     "seite": 28
+    },
+    {
+     "nummer": "2.4",
+     "titel": "Szenarien-Verzeichnis",
+     "ebene": 2,
+     "seite": 28
+    },
+    {
+     "nummer": "2.4.1",
+     "titel": "Dienstleistung/Produkt-Szenarien",
+     "ebene": 3,
+     "seite": 28
+    },
+    {
+     "nummer": "2.4.2",
+     "titel": "Informatik-Szenarien",
+     "ebene": 3,
+     "seite": 30
+    },
+    {
+     "nummer": "2.4.3",
+     "titel": "Organisation-Szenarien",
+     "ebene": 3,
+     "seite": 31
+    }
+   ]
+  },
+  {
+   "id": "module",
+   "nummer": "3",
+   "titel": "Module",
+   "kategorie": "modul",
+   "seite": 33,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/module.html",
+   "datei": "data/handbuch/rhb/module.json",
+   "abschnitte": 21,
+   "inhalt": [
+    {
+     "nummer": "3",
+     "titel": "Module",
+     "ebene": 1,
+     "seite": 33
+    },
+    {
+     "nummer": "3.1",
+     "titel": "Einleitung",
+     "ebene": 2,
+     "seite": 33
+    },
+    {
+     "nummer": "3.2",
+     "titel": "Übersicht der Module",
+     "ebene": 2,
+     "seite": 33
+    },
+    {
+     "nummer": "3.2.1",
+     "titel": "Standardmodule",
+     "ebene": 3,
+     "seite": 33
+    },
+    {
+     "nummer": "3.2.2",
+     "titel": "Individuelle Module",
+     "ebene": 3,
+     "seite": 34
+    },
+    {
+     "nummer": "3.3",
+     "titel": "Erläuterung der Modulbeschreibung",
+     "ebene": 2,
+     "seite": 34
+    },
+    {
+     "nummer": "3.4",
+     "titel": "Beschreibung der Module",
+     "ebene": 2,
+     "seite": 35
+    },
+    {
+     "nummer": "3.4.1",
+     "titel": "Module zur Steuerung und Führung",
+     "ebene": 3,
+     "seite": 35
+    },
+    {
+     "nummer": "3.4.2",
+     "titel": "Module zur Ausführung",
+     "ebene": 3,
+     "seite": 38
+    }
+   ]
+  },
+  {
+   "id": "ergebnisse",
+   "nummer": "4",
+   "titel": "Ergebnisse",
+   "kategorie": "ergebnis",
+   "seite": 46,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html",
+   "datei": "data/handbuch/rhb/ergebnisse.json",
+   "abschnitte": 121,
+   "inhalt": [
+    {
+     "nummer": "4",
+     "titel": "Ergebnisse",
+     "ebene": 1,
+     "seite": 46
+    },
+    {
+     "nummer": "4.1",
+     "titel": "Einleitung",
+     "ebene": 2,
+     "seite": 46
+    },
+    {
+     "nummer": "4.2",
+     "titel": "Übersicht der Ergebnisse",
+     "ebene": 2,
+     "seite": 46
+    },
+    {
+     "nummer": "4.2.1",
+     "titel": "Standardergebnisse",
+     "ebene": 3,
+     "seite": 46
+    },
+    {
+     "nummer": "4.2.2",
+     "titel": "Individuelle Ergebnisse",
+     "ebene": 3,
+     "seite": 49
+    },
+    {
+     "nummer": "4.3",
+     "titel": "Erläuterung der Ergebnisbeschreibung",
+     "ebene": 2,
+     "seite": 49
+    },
+    {
+     "nummer": "4.4",
+     "titel": "Beschreibung der Ergebnisse",
+     "ebene": 2,
+     "seite": 50
+    },
+    {
+     "nummer": "4.4.1",
+     "titel": "Dokumente",
+     "ebene": 3,
+     "seite": 50
+    },
+    {
+     "nummer": "4.4.3",
+     "titel": "Zustände",
+     "ebene": 3,
+     "seite": 77
+    }
+   ]
+  },
+  {
+   "id": "aufgaben",
+   "nummer": "5",
+   "titel": "Aufgaben",
+   "kategorie": "aufgabe",
+   "seite": 83,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben.html",
+   "datei": "data/handbuch/rhb/aufgaben.json",
+   "abschnitte": 86,
+   "inhalt": [
+    {
+     "nummer": "5",
+     "titel": "Aufgaben",
+     "ebene": 1,
+     "seite": 83
+    },
+    {
+     "nummer": "5.1",
+     "titel": "Einleitung",
+     "ebene": 2,
+     "seite": 83
+    },
+    {
+     "nummer": "5.1.1",
+     "titel": "Aufgabenpositionierung",
+     "ebene": 3,
+     "seite": 83
+    },
+    {
+     "nummer": "5.1.2",
+     "titel": "Entscheidungsaufgaben",
+     "ebene": 3,
+     "seite": 83
+    },
+    {
+     "nummer": "5.2",
+     "titel": "Übersicht der Aufgaben",
+     "ebene": 2,
+     "seite": 84
+    },
+    {
+     "nummer": "5.2.1",
+     "titel": "Standardaufgaben",
+     "ebene": 3,
+     "seite": 84
+    },
+    {
+     "nummer": "5.2.2",
+     "titel": "Individuelle Aufgaben",
+     "ebene": 3,
+     "seite": 89
+    },
+    {
+     "nummer": "5.3",
+     "titel": "Erläuterung der Aufgabenbeschreibung",
+     "ebene": 2,
+     "seite": 89
+    },
+    {
+     "nummer": "5.4",
+     "titel": "Beschreibung der Aufgaben",
+     "ebene": 2,
+     "seite": 90
+    },
+    {
+     "nummer": "5.4.1",
+     "titel": "Entscheidungsaufgaben der Steuerung",
+     "ebene": 3,
+     "seite": 90
+    },
+    {
+     "nummer": "5.4.2",
+     "titel": "Entscheidungsaufgaben der Führung",
+     "ebene": 3,
+     "seite": 101
+    },
+    {
+     "nummer": "5.4.3",
+     "titel": "Sonstige Aufgaben",
+     "ebene": 3,
+     "seite": 108
+    }
+   ]
+  },
+  {
+   "id": "rollen",
+   "nummer": "6",
+   "titel": "Rollen",
+   "kategorie": "rolle",
+   "seite": 161,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+   "datei": "data/handbuch/rhb/rollen.json",
+   "abschnitte": 38,
+   "inhalt": [
+    {
+     "nummer": "6",
+     "titel": "Rollen",
+     "ebene": 1,
+     "seite": 161
+    },
+    {
+     "nummer": "6.1",
+     "titel": "Einleitung",
+     "ebene": 2,
+     "seite": 161
+    },
+    {
+     "nummer": "6.1.1",
+     "titel": "Rollenmodell",
+     "ebene": 3,
+     "seite": 161
+    },
+    {
+     "nummer": "6.1.2",
+     "titel": "Stammorganisation",
+     "ebene": 3,
+     "seite": 161
+    },
+    {
+     "nummer": "6.1.3",
+     "titel": "Projektorganisation",
+     "ebene": 3,
+     "seite": 162
+    },
+    {
+     "nummer": "6.2",
+     "titel": "Übersicht der Rollen",
+     "ebene": 2,
+     "seite": 166
+    },
+    {
+     "nummer": "6.2.1",
+     "titel": "Standardrollen",
+     "ebene": 3,
+     "seite": 166
+    },
+    {
+     "nummer": "6.2.2",
+     "titel": "Individuelle Rollen",
+     "ebene": 3,
+     "seite": 167
+    },
+    {
+     "nummer": "6.2.3",
+     "titel": "Rollenbesetzung",
+     "ebene": 3,
+     "seite": 167
+    },
+    {
+     "nummer": "6.3",
+     "titel": "Erläuterung der Rollenbeschreibung",
+     "ebene": 2,
+     "seite": 169
+    },
+    {
+     "nummer": "6.4",
+     "titel": "Beschreibung der Rollen",
+     "ebene": 2,
+     "seite": 170
+    },
+    {
+     "nummer": "6.4.1",
+     "titel": "Steuerungsrollen",
+     "ebene": 3,
+     "seite": 170
+    },
+    {
+     "nummer": "6.4.2",
+     "titel": "Führungsrollen",
+     "ebene": 3,
+     "seite": 176
+    },
+    {
+     "nummer": "6.4.3",
+     "titel": "Ausführungsrollen",
+     "ebene": 3,
+     "seite": 184
+    }
+   ]
+  },
+  {
+   "id": "hinweise",
+   "nummer": "7",
+   "titel": "Hinweise zur Anwendung",
+   "kategorie": null,
+   "seite": 198,
+   "url": "https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung.html",
+   "datei": "data/handbuch/rhb/hinweise.json",
+   "abschnitte": 30,
+   "inhalt": [
+    {
+     "nummer": "7",
+     "titel": "Hinweise zur Anwendung",
+     "ebene": 1,
+     "seite": 198
+    },
+    {
+     "nummer": "7.1",
+     "titel": "Einleitung",
+     "ebene": 2,
+     "seite": 198
+    },
+    {
+     "nummer": "7.2",
+     "titel": "Übersicht der Hinweise",
+     "ebene": 2,
+     "seite": 198
+    },
+    {
+     "nummer": "7.3",
+     "titel": "Erläuterung der Hinweise-Beschreibung",
+     "ebene": 2,
+     "seite": 199
+    },
+    {
+     "nummer": "7.4",
+     "titel": "Beschreibung der Hinweise",
+     "ebene": 2,
+     "seite": 199
+    },
+    {
+     "nummer": "7.4.1",
+     "titel": "Governance",
+     "ebene": 3,
+     "seite": 199
+    },
+    {
+     "nummer": "7.4.2",
+     "titel": "Nachhaltigkeit",
+     "ebene": 3,
+     "seite": 206
+    },
+    {
+     "nummer": "7.4.3",
+     "titel": "Projektmanagement und Entwicklungsmanagement",
+     "ebene": 3,
+     "seite": 209
+    },
+    {
+     "nummer": "7.4.4",
+     "titel": "Finanzielle Steuerung und Führung",
+     "ebene": 3,
+     "seite": 210
+    },
+    {
+     "nummer": "7.4.5",
+     "titel": "Planung",
+     "ebene": 3,
+     "seite": 211
+    },
+    {
+     "nummer": "7.4.6",
+     "titel": "Realisierungseinheiten bei klassischer Vorgehensweise",
+     "ebene": 3,
+     "seite": 214
+    },
+    {
+     "nummer": "7.4.7",
+     "titel": "Anwendung mit anderen Methoden und Praktiken",
+     "ebene": 3,
+     "seite": 215
+    },
+    {
+     "nummer": "7.4.8",
+     "titel": "Integration von HERMES in die Stammorganisation",
+     "ebene": 3,
+     "seite": 216
+    }
+   ]
+  },
+  {
+   "id": "vokabular",
+   "nummer": "",
+   "titel": "Vokabular",
+   "kategorie": null,
+   "seite": 219,
+   "url": null,
+   "datei": "data/handbuch/rhb/vokabular.json",
+   "abschnitte": 7,
+   "inhalt": [
+    {
+     "titel": "Vokabular",
+     "ebene": 1,
+     "seite": 219
+    },
+    {
+     "titel": "Phasen",
+     "ebene": 2,
+     "seite": 219
+    },
+    {
+     "titel": "Szenarien",
+     "ebene": 2,
+     "seite": 219
+    },
+    {
+     "titel": "Module",
+     "ebene": 2,
+     "seite": 220
+    },
+    {
+     "titel": "Ergebnisse",
+     "ebene": 2,
+     "seite": 220
+    },
+    {
+     "titel": "Aufgaben",
+     "ebene": 2,
+     "seite": 227
+    },
+    {
+     "titel": "Rollen",
+     "ebene": 2,
+     "seite": 232
+    }
+   ]
+  }
+ ]
+}

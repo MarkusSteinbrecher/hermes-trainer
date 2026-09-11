@@ -1,12 +1,13 @@
 /* meinHERMES — Ansicht «Handbuch».
-   Folgt dem Referenzhandbuch: Methodenüberblick (A/B), 1 Phasen, 2 Szenarien,
-   3 Module, 4 Ergebnisse, 5 Aufgaben, 6 Rollen, 7 Hinweise zur Anwendung.
-   Die Kapitel sind Chips in der Kopfzeile; ein Kapitel zeigt seinen Text in
-   der Gliederung des Handbuchs (Nummern, Seiten), und an der Stelle
-   «Beschreibung der …» stehen die Elemente als Karten mit ihrem vollen
-   Handbuchtext (siehe js/karte.js) unter den Zwischentiteln des Handbuchs
-   — Abnahmeprotokoll etwa als 4.4.1.1 unter 4.4.1 Dokumente. Gesucht wird in der
-   Kopfzeile der Anwendung; die Seite hat kein eigenes Suchfeld. */
+   Das Referenzhandbuch Projektmanagement (PDF, Ausgabe 2022) 1:1 als Text
+   in seiner Gliederung: Vorwort · A Methodenüberblick · B Methodenelemente ·
+   1 Phasen · 2 Szenarien · 3 Module · 4 Ergebnisse · 5 Aufgaben · 6 Rollen ·
+   7 Hinweise zur Anwendung · Vokabular. Die Daten kommen aus
+   data/handbuch/rhb/ (tools/rhb-import.py); jeder Abschnitt trägt Nummer und
+   Seite des PDF, Seitenzahlen sind Links auf die Seite im PDF. Abschnitte, die
+   ein Element beschreiben (4.4.1.1 Abnahmeprotokoll), stehen als Karte mit
+   Faktenzeile, Link auf HERMES online und ins PDF (siehe js/karte.js).
+   Gesucht wird in der Kopfzeile der Anwendung; die Seite hat kein Suchfeld. */
 (function (global) {
   'use strict';
 
@@ -15,15 +16,20 @@
 
   var h = HT.ui.h;
 
+  /* Kapitel in Handbuchreihenfolge — dieselbe Liste wie im Import; index.json
+     liefert Seiten und Inhaltsverzeichnis. */
   var KAPITEL = [
-    { id: 'methodenueberblick', nummer: 'A/B', titel: 'Methodenüberblick', kategorie: 'grundbegriff' },
+    { id: 'vorwort', nummer: '', titel: 'Vorwort', kategorie: null },
+    { id: 'methodenueberblick', nummer: 'A', titel: 'Methodenüberblick', kategorie: 'grundbegriff' },
+    { id: 'methodenelemente', nummer: 'B', titel: 'Methodenelemente', kategorie: null },
     { id: 'phasen', nummer: '1', titel: 'Phasen', kategorie: 'phase' },
     { id: 'szenarien', nummer: '2', titel: 'Szenarien', kategorie: 'szenario' },
     { id: 'module', nummer: '3', titel: 'Module', kategorie: 'modul' },
     { id: 'ergebnisse', nummer: '4', titel: 'Ergebnisse', kategorie: 'ergebnis' },
     { id: 'aufgaben', nummer: '5', titel: 'Aufgaben', kategorie: 'aufgabe' },
     { id: 'rollen', nummer: '6', titel: 'Rollen', kategorie: 'rolle' },
-    { id: 'hinweise', nummer: '7', titel: 'Hinweise zur Anwendung', kategorie: null }
+    { id: 'hinweise', nummer: '7', titel: 'Hinweise zur Anwendung', kategorie: null },
+    { id: 'vokabular', nummer: '', titel: 'Vokabular', kategorie: null }
   ];
 
   var zustand = {
@@ -45,27 +51,20 @@
     return '#/handbuch?kapitel=' + encodeURIComponent(id) + (teil ? '&teil=' + encodeURIComponent(teil) : '');
   }
 
+  /* Ort für Markierungen (js/markieren.js). Kapitel B hiess früher Teil B des
+     Methodenüberblicks — der alte Ort bleibt, damit Markierungen dort bleiben. */
+  function markOrt(meta, teil) {
+    if (meta.id === 'methodenelemente') { return kapitelAdresse('methodenueberblick', 'B'); }
+    return kapitelAdresse(meta.id, teil || meta.nummer || meta.id);
+  }
+
   function cssId(id) {
     if (global.CSS && typeof global.CSS.escape === 'function') { return global.CSS.escape(id); }
     return String(id).replace(/[^a-zA-Z0-9_-]/g, '\\$&');
   }
 
-  /* Handbuchnummern vergleichen: 4.4.1.10 kommt nach 4.4.1.9. */
-  function nummerTeile(n) {
-    return String(n || '').split('.').map(function (x) { var z = parseInt(x, 10); return isNaN(z) ? x : z; });
-  }
-  function nummerVergleich(a, b) {
-    var ta = nummerTeile(a), tb = nummerTeile(b);
-    for (var i = 0; i < Math.max(ta.length, tb.length); i++) {
-      if (ta[i] === undefined) { return -1; }
-      if (tb[i] === undefined) { return 1; }
-      if (ta[i] !== tb[i]) { return ta[i] < tb[i] ? -1 : 1; }
-    }
-    return 0;
-  }
-  function elternNummer(n) {
-    var t = String(n || '').split('.');
-    return t.length > 1 ? t.slice(0, -1).join('.') : '';
+  function ankerId(a, index) {
+    return a.nummer ? 'hb-' + a.nummer : 'hb-t' + index;
   }
 
   /* --- Persistenz ---------------------------------------------------------- */
@@ -81,18 +80,37 @@
     }
   }
 
+  /* --- PDF-Verweise -------------------------------------------------------- */
+
+  var quelle = null;   // aus index.json: { pdf, online, ausgabe, ... }
+
+  function pdfSeite(seite) {
+    return quelle && quelle.pdf && seite ? quelle.pdf + '#page=' + seite : null;
+  }
+
+  /* «S. 50» — als Link auf die Seite im PDF, wenn das PDF bekannt ist. */
+  function seiteElement(seite) {
+    if (!seite) { return null; }
+    var url = pdfSeite(seite);
+    if (!url) { return h('span', { class: 'hb-seite', text: ' S. ' + seite }); }
+    return h('a', {
+      class: 'hb-seite', href: url, target: '_blank', rel: 'noopener',
+      title: 'Seite ' + seite + ' im Referenzhandbuch (PDF, neuer Tab)'
+    }, ' S. ' + seite);
+  }
+
   /* --- Kapitel-Chips ------------------------------------------------------- */
 
   function chipsBauen(aktiv) {
     var liste = h('ul', { class: 'chips chips--streifen hb-kapitel', 'aria-label': 'Kapitel' });
     KAPITEL.forEach(function (k) {
-      var anzahl = k.kategorie ? HT.daten.eintraegeDerKategorie(k.kategorie).length : 0;
+      var anzahl = k.kategorie && k.kategorie !== 'grundbegriff' ? HT.daten.eintraegeDerKategorie(k.kategorie).length : 0;
       liste.appendChild(h('li', {}, h('button', {
         type: 'button', class: 'chip', 'aria-pressed': k === aktiv ? 'true' : 'false',
-        title: 'Kapitel ' + k.nummer + ' ' + k.titel,
+        title: (k.nummer ? 'Kapitel ' + k.nummer + ' ' : '') + k.titel,
         on: { click: function () { global.location.hash = kapitelAdresse(k.id); } }
       }, [
-        h('span', { class: 'hb-kapitel__nr', text: k.nummer }),
+        k.nummer ? h('span', { class: 'hb-kapitel__nr', text: k.nummer }) : null,
         h('span', { text: k.titel }),
         anzahl ? h('span', { class: 'chip__zahl', text: String(anzahl) }) : null
       ])));
@@ -114,46 +132,17 @@
     }, [h('span', { 'aria-hidden': 'true', text: '◎ ' }), 'Im Graph']);
   }
 
-  /* Die Karte zeigt hier nur den Handbuchtext — Kurzfassung und Kernpunkte
-     sind eigene Texte und gehören nicht ins Handbuch. */
-  function karte(e, hb) {
+  /* Karte eines Elements mit dem Text seines Abschnitts im PDF. */
+  function karte(e, a) {
     return HT.karte.bauen(e, {
       nurHandbuch: true,
+      bloecke: a.bloecke || [],
       zusatz: graphLink(e),
-      titelEbene: 'h4',
-      nummer: hb ? hb.nummer : null,
-      seite: hb ? hb.seite : null
+      titelEbene: a.ebene <= 3 ? 'h3' : 'h4',
+      nummer: a.nummer || null,
+      seite: a.seite || null,
+      pdf: quelle && quelle.pdf ? { url: quelle.pdf, seite: a.seite } : null
     });
-  }
-
-  /* Die Elemente eines Kapitels nach ihrem Zwischentitel im Handbuch:
-     Eltern-Nummer (z. B. 4.4.1) -> Einträge in Handbuchreihenfolge. Ein
-     Sammeleintrag, dessen Nummer der Zwischentitel selbst ist (4.4.2
-     Checklisten), steht dort als erste Karte. */
-  function elementeNachEltern(meta, index) {
-    var nachEltern = {};
-    HT.daten.eintraegeDerKategorie(meta.kategorie).forEach(function (e) {
-      var hb = index[e.id] || null;
-      var eltern = '';
-      if (hb && hb.nummer) { eltern = nummerTeile(hb.nummer).length < 4 ? String(hb.nummer) : elternNummer(hb.nummer); }
-      if (!nachEltern[eltern]) { nachEltern[eltern] = []; }
-      nachEltern[eltern].push({ eintrag: e, hb: hb });
-    });
-    Object.keys(nachEltern).forEach(function (k) {
-      nachEltern[k].sort(function (a, b) {
-        if (a.hb && b.hb && a.hb.nummer && b.hb.nummer) { return nummerVergleich(a.hb.nummer, b.hb.nummer); }
-        return a.eintrag.begriff.localeCompare(b.eintrag.begriff, 'de');
-      });
-    });
-    return nachEltern;
-  }
-
-  function kartenListe(gruppe) {
-    var liste = h('div', { class: 'eintraege hb-karten' });
-    var fragment = document.createDocumentFragment();
-    gruppe.forEach(function (x) { fragment.appendChild(karte(x.eintrag, x.hb)); });
-    liste.appendChild(fragment);
-    return liste;
   }
 
   /* --- Kapiteltext in Handbuchgliederung ------------------------------------ */
@@ -162,56 +151,92 @@
     return [
       a.nummer ? h('span', { class: 'hb-nr', text: a.nummer + ' ' }) : null,
       a.titel,
-      a.seite ? h('span', { class: 'hb-seite', text: ' S. ' + a.seite }) : null
+      seiteElement(a.seite)
     ];
   }
 
-  /* Der Handbuchtext listet unter «Beschreibung der …» nur die Namen der
-     Elemente — an ihrer Stelle stehen hier die Karten. */
-  function ohneNamensliste(bloecke, namen) {
-    return (bloecke || []).filter(function (b) {
-      if (b.t !== 'ul' || !b.items || !b.items.length) { return true; }
-      /* Im Handbuch tragen manche Namen ein Sternchen («Auftraggeber*»). */
-      return !b.items.every(function (it) { return namen[HT.daten.normalisieren(String(it.text || '').replace(/[\s*]+$/, ''))]; });
+  function verweisZeile(a, mitKapitel) {
+    var teile = [];
+    if (mitKapitel) {
+      teile.push(h('span', { text: 'Referenzhandbuch' + (a.nummer ? ' Kap. ' + a.nummer : '') + (a.seite ? ', S. ' + a.seite : '') }));
+    }
+    if (a.url) {
+      teile.push(h('a', {
+        href: a.url, target: '_blank', rel: 'noopener', class: 'hb-online',
+        'aria-label': 'Diesen Abschnitt auf HERMES online öffnen (neuer Tab)'
+      }, 'HERMES online ↗'));
+    }
+    var pdf = pdfSeite(a.seite);
+    if (pdf) {
+      teile.push(h('a', {
+        href: pdf, target: '_blank', rel: 'noopener', class: 'hb-online hb-pdf',
+        'aria-label': 'Seite ' + a.seite + ' im Referenzhandbuch als PDF öffnen (neuer Tab)'
+      }, 'PDF ↗'));
+    }
+    if (!teile.length) { return null; }
+    return h('p', { class: 'hb-verweis' }, teile);
+  }
+
+  /* Ein Abschnitt: Titel seiner Ebene und seine Blöcke — oder die Karte, wenn
+     er ein Element beschreibt. */
+  function abschnittElement(a, index, meta) {
+    var e = a.element ? HT.daten.eintragMitId(a.element) : null;
+    if (e) {
+      return h('div', { class: 'eintraege hb-karten hb-karten--einzeln', id: ankerId(a, index) }, karte(e, a));
+    }
+    var ebene = Math.min(6, Math.max(2, a.ebene || 2));
+    var kinder = [];
+    if (a.ebene === 1) {
+      /* Kapiteltitel steht im Kapitelkopf; weitere Ebene-1-Titel (Impressum,
+         Prolog) als Teiltitel. */
+      if (index > 0 || !meta.nummer && a.titel !== meta.titel) {
+        kinder.push(h('h2', { class: 'hb-teil__titel', id: ankerId(a, index) }, titelKinder(a)));
+      }
+    } else {
+      kinder.push(h('h' + ebene, { class: 'hb-titel hb-titel--' + ebene, id: ankerId(a, index) }, titelKinder(a)));
+      if (a.url) {
+        var verweis = verweisZeile(a, false);
+        if (verweis) { kinder.push(verweis); }
+      }
+    }
+    if (a.bloecke && a.bloecke.length) {
+      kinder.push(HT.ui.bloecke(a.bloecke, { verlinken: true, ebene: ebene + 1 }));
+    }
+    return h('section', { class: 'hb-abschnitt' + (a.ebene === 1 && index > 0 ? ' hb-abschnitt--teil' : '') }, kinder);
+  }
+
+  /* Der Kapiteltext als ein Ort für Markierungen; Abschnitte mit eigener
+     Online-Seite (7.4.1 Governance …) sind eigene Orte — wie bisher. */
+  function kapitelKoerper(kap, meta) {
+    var wurzel = h('section', { class: 'hb-teil', id: 'teil-' + (meta.nummer || meta.id), dataset: { markOrt: markOrt(meta) } });
+    var ziel = wurzel;
+    var abschnitte = kap.abschnitte || [];
+    var offenEbene = 0;
+    abschnitte.forEach(function (a, i) {
+      if (ziel !== wurzel && (a.ebene || 2) <= offenEbene) { ziel = wurzel; offenEbene = 0; }
+      var el = abschnittElement(a, i, meta);
+      if (a.url && a.nummer && (a.ebene || 2) >= 2 && !a.element && meta.id === 'hinweise') {
+        var teil = h('section', { class: 'hb-teil hb-teil--innen', id: 'teil-' + a.nummer, dataset: { markOrt: markOrt(meta, a.nummer) } }, el);
+        wurzel.appendChild(teil);
+        ziel = teil;
+        offenEbene = a.ebene || 2;
+        return;
+      }
+      ziel.appendChild(el);
     });
+    return wurzel;
   }
 
-  function abschnittElement(a, ctx) {
-    var ebene = Math.min(6, Math.max(2, (a.ebene || 2) + ctx.versatz));
-    var kinder = [];
-    if (a.titel) {
-      kinder.push(h('h' + ebene, { class: 'hb-titel hb-titel--' + ebene, id: a.nummer ? 'hb-' + a.nummer : null }, titelKinder(a)));
-    }
-    var gruppe = a.nummer ? ctx.nachEltern[a.nummer] : null;
-    var bloecke = gruppe ? ohneNamensliste(a.bloecke, ctx.namen) : (a.bloecke || []);
-    if (bloecke.length) { kinder.push(HT.ui.bloecke(bloecke, { verlinken: true, ebene: ebene + 1 })); }
-    if (gruppe) { kinder.push(kartenListe(gruppe)); }
-    return h('section', { class: 'hb-abschnitt' + (gruppe ? ' hb-abschnitt--karten' : '') }, kinder);
-  }
-
-  /* Ein Teil des Kapitels (im Handbuch ein Kapitel oder Unterkapitel); Ort
-     für Markierungen mit seinem Direktlink. */
-  function teilElement(teil, ctx, mitTitel) {
-    var kinder = [];
-    if (mitTitel) {
-      kinder.push(h('h2', { class: 'hb-teil__titel', id: teil.nummer ? 'hb-' + teil.nummer : null }, titelKinder(teil)));
-      var verweis = HT.ui.handbuchVerweis(teil, { url: teil.url });
-      if (verweis) { kinder.push(verweis); }
-    }
-    (teil.abschnitte || []).forEach(function (a) { kinder.push(abschnittElement(a, ctx)); });
-    var ort = teil.nummer ? { markOrt: kapitelAdresse(ctx.meta.id, teil.nummer) } : null;
-    return h('section', { class: 'hb-teil', id: teil.nummer ? 'teil-' + teil.nummer : null, dataset: ort }, kinder);
-  }
-
-  /* Inhaltsverzeichnis des Kapitels: Teile und Abschnitte der Ebene 2, zum
-     Springen — als Knöpfe, weil «#…»-Links die Route wechseln würden. */
-  function inhaltsverzeichnis(kap, mehrereTeile) {
+  /* Inhaltsverzeichnis des Kapitels: Ebene 2 und 3 (auch Sammelkarten wie
+     4.4.2 Checklisten), bei
+     mehreren Ebene-1-Teilen (Vorwort, Impressum, Prolog) auch diese — als
+     Knöpfe, weil «#…»-Links die Route wechseln würden. */
+  function inhaltsverzeichnis(kap, indexEintrag) {
     var eintraege = [];
-    (kap.teile || []).forEach(function (t) {
-      if (mehrereTeile && t.nummer) { eintraege.push({ nummer: t.nummer, titel: t.titel, ebene: 1 }); }
-      (t.abschnitte || []).forEach(function (a) {
-        if (a.nummer && a.titel && (a.ebene || 2) <= 2) { eintraege.push({ nummer: a.nummer, titel: a.titel, ebene: 2 }); }
-      });
+    var ebene1 = (kap.abschnitte || []).filter(function (a) { return a.ebene === 1; }).length;
+    (kap.abschnitte || []).forEach(function (a, i) {
+      if (a.ebene === 1 && ebene1 > 1 && i > 0) { eintraege.push({ ziel: ankerId(a, i), nummer: a.nummer, titel: a.titel, ebene: 1 }); }
+      if (a.ebene === 2 || a.ebene === 3) { eintraege.push({ ziel: ankerId(a, i), nummer: a.nummer, titel: a.titel, ebene: a.ebene }); }
     });
     if (!eintraege.length) { return null; }
     return h('nav', { class: 'hb-inhalt', 'aria-label': 'Inhalt des Kapitels' }, [
@@ -220,24 +245,28 @@
         return h('li', { class: 'hb-inhalt__eintrag hb-inhalt__eintrag--' + x.ebene }, h('button', {
           type: 'button', class: 'hb-inhalt__knopf',
           on: { click: function () {
-            var ziel = document.getElementById('hb-' + x.nummer);
+            var ziel = document.getElementById(x.ziel);
             if (ziel) { try { ziel.scrollIntoView({ block: 'start' }); } catch (e) { ziel.scrollIntoView(); } }
           } }
-        }, [h('span', { class: 'hb-nr', text: x.nummer + ' ' }), x.titel]));
+        }, [x.nummer ? h('span', { class: 'hb-nr', text: x.nummer + ' ' }) : null, x.titel]));
       }))
     ]);
   }
 
   /* Grundbegriffe haben keine Nummer im Handbuch: sie stehen am Ende des
-     Methodenüberblicks, alphabetisch. */
-  function grundbegriffeBlock(ctx) {
-    var gruppe = ctx.nachEltern[''] || [];
+     Methodenüberblicks, alphabetisch, mit Verweis auf HERMES online. */
+  function grundbegriffeBlock() {
+    var gruppe = HT.daten.eintraegeDerKategorie('grundbegriff').slice();
     if (!gruppe.length) { return null; }
-    gruppe.sort(function (a, b) { return a.eintrag.begriff.localeCompare(b.eintrag.begriff, 'de'); });
+    gruppe.sort(function (a, b) { return a.begriff.localeCompare(b.begriff, 'de'); });
+    var liste = h('div', { class: 'eintraege hb-karten' });
+    gruppe.forEach(function (e) {
+      liste.appendChild(HT.karte.bauen(e, { nurHandbuch: true, zusatz: graphLink(e), titelEbene: 'h4' }));
+    });
     return h('section', { class: 'hb-abschnitt hb-abschnitt--karten', id: 'hb-grundbegriffe' }, [
       h('h2', { class: 'hb-teil__titel', text: 'Grundbegriffe' }),
-      h('p', { class: 'hb-p', text: 'Begriffe, die das Referenzhandbuch durchgehend verwendet — mit Verweis auf die Stelle bei HERMES online.' }),
-      kartenListe(gruppe)
+      h('p', { class: 'hb-p', text: 'Begriffe, die das Referenzhandbuch durchgehend verwendet — mit Verweis auf die Stelle bei HERMES online. Kein Teil des PDF.' }),
+      liste
     ]);
   }
 
@@ -250,14 +279,14 @@
 
     behaelter.appendChild(h('div', { class: 'kopf kopf--handbuch' }, [
       h('h1', { text: 'Handbuch' }),
-      h('p', { text: 'HERMES 2022 — das Referenzhandbuch in seiner Gliederung, Kapitel für Kapitel; die Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen stehen als Karten an ihrer Stelle im Text.' })
+      h('p', { text: 'HERMES 2022 — das Referenzhandbuch Projektmanagement (PDF) als Text, Kapitel für Kapitel in seiner Gliederung mit Nummern und Seiten; Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen als Karten an ihrer Stelle.' })
     ]));
     var warnung = HT.app.datenWarnung();
     if (warnung) { behaelter.appendChild(warnung); }
     behaelter.appendChild(chipsBauen(meta));
 
     var kopf = h('div', { class: 'hb-kapitelkopf' }, [
-      h('span', { class: 'detail__label', text: 'Kapitel ' + meta.nummer }),
+      h('span', { class: 'detail__label', text: meta.nummer ? 'Kapitel ' + meta.nummer : 'Referenzhandbuch' }),
       h('h2', { class: 'hb-kapitelkopf__titel', text: meta.titel })
     ]);
     behaelter.appendChild(kopf);
@@ -266,42 +295,37 @@
     behaelter.appendChild(inhalt);
     inhalt.appendChild(h('p', { class: 'trefferzahl', role: 'status', text: 'Kapitel wird geladen …' }));
 
-    var indexLaden = meta.kategorie ? HT.daten.handbuchIndex(meta.kategorie) : Promise.resolve({});
-    Promise.all([HT.daten.handbuchKapitel(), indexLaden]).then(function (res) {
+    Promise.all([HT.daten.rhbIndex(), HT.daten.rhbKapitel(meta.id)]).then(function (res) {
       if (!document.body.contains(inhalt)) { return; }   // inzwischen weitergeblättert
-      var kap = null;
-      res[0].forEach(function (k) { if (k.id === meta.id) { kap = k; } });
+      var idx = res[0], kap = res[1];
+      quelle = idx && idx.quelle ? idx.quelle : quelle;
       HT.ui.leeren(inhalt);
 
       if (!kap) {
-        inhalt.appendChild(HT.ui.leerZustand('Handbuchtext nicht verfügbar', 'Die Datei data/handbuch/kapitel.json konnte nicht geladen werden.'));
+        inhalt.appendChild(HT.ui.leerZustand('Handbuchtext nicht verfügbar', 'Die Datei data/handbuch/rhb/' + meta.id + '.json konnte nicht geladen werden.'));
         return;
       }
 
-      var verweis = HT.ui.handbuchVerweis(kap, { url: kap.url });
+      var kopfInfo = { nummer: meta.nummer || null, seite: kap.seite, url: kap.url };
+      var verweis = verweisZeile(kopfInfo, true);
       if (verweis) { kopf.appendChild(verweis); }
 
-      /* Elemente nach Zwischentitel des Handbuchs. */
-      var ctx = { meta: meta, nachEltern: {}, namen: {}, versatz: 0 };
-      if (meta.kategorie) {
-        ctx.nachEltern = elementeNachEltern(meta, res[1] || {});
-        HT.daten.eintraegeDerKategorie(meta.kategorie).forEach(function (e) { ctx.namen[HT.daten.normalisieren(e.begriff)] = true; });
-      }
-
-      var teile = kap.teile || [];
-      var mehrereTeile = teile.length > 1;
-      var toc = inhaltsverzeichnis(kap, mehrereTeile);
+      var toc = inhaltsverzeichnis(kap, idx);
       if (toc) { inhalt.appendChild(toc); }
-      teile.forEach(function (t) { inhalt.appendChild(teilElement(t, ctx, mehrereTeile)); });
+      inhalt.appendChild(kapitelKoerper(kap, meta));
       if (meta.kategorie === 'grundbegriff') {
-        var gb = grundbegriffeBlock(ctx);
+        var gb = grundbegriffeBlock();
         if (gb) { inhalt.appendChild(gb); }
       }
 
       /* Blättern */
+      function blaetterText(k, pfeil) {
+        var t = (k.nummer ? 'Kapitel ' + k.nummer + ' ' : '') + k.titel;
+        return pfeil === 'links' ? '← ' + t : t + ' →';
+      }
       inhalt.appendChild(h('div', { class: 'btn-reihe kapitel-nav' }, [
-        vorher ? h('a', { class: 'btn', href: kapitelAdresse(vorher.id), text: '← Kapitel ' + vorher.nummer + ' ' + vorher.titel }) : null,
-        nachher ? h('a', { class: 'btn', href: kapitelAdresse(nachher.id), text: 'Kapitel ' + nachher.nummer + ' ' + nachher.titel + ' →' }) : null
+        vorher ? h('a', { class: 'btn', href: kapitelAdresse(vorher.id), text: blaetterText(vorher, 'links') }) : null,
+        nachher ? h('a', { class: 'btn', href: kapitelAdresse(nachher.id), text: blaetterText(nachher, 'rechts') }) : null
       ]));
 
       /* Erst nach dem Einfügen scrollen — sonst verschiebt der nachgeladene
@@ -313,7 +337,7 @@
           ziel = inhalt.querySelector('#eintrag-' + cssId(zielId));
           if (ziel) { ziel.classList.add('ist-hervorgehoben'); }
         } else if (gewuenscht) {
-          ziel = inhalt.querySelector('#teil-' + cssId(gewuenscht));
+          ziel = inhalt.querySelector('#hb-' + cssId(gewuenscht)) || inhalt.querySelector('#teil-' + cssId(gewuenscht));
         }
         if (ziel) {
           try { ziel.scrollIntoView({ block: 'start' }); } catch (e) { ziel.scrollIntoView(); }
@@ -334,6 +358,9 @@
     params = params || {};
     var meta = null, zielId = null;
     if (params.kapitel) { meta = kapitelMeta(params.kapitel); }
+    if (meta && meta.id === 'methodenueberblick' && params.teil && /^B(\.|$)/.test(String(params.teil))) {
+      meta = kapitelMeta('methodenelemente');   // alter Teil B des Methodenüberblicks
+    }
     if (!meta && params.id) {
       var e = HT.daten.eintragMitId(params.id);
       if (e) {
@@ -342,7 +369,7 @@
       }
     }
     if (!meta && params.kat) { meta = kapitelDerKategorie(params.kat); }
-    if (!meta) { meta = kapitelMeta(zustand.kapitel) || KAPITEL[0]; }
+    if (!meta) { meta = kapitelMeta(zustand.kapitel) || KAPITEL[1]; }
     zustand.kapitel = meta.id;
     speichern();
     renderKapitel(behaelter, meta, params, zielId);

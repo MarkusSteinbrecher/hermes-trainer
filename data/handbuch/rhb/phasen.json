@@ -1,0 +1,771 @@
+{
+"id": "phasen",
+"nummer": "1",
+"titel": "Phasen",
+"kategorie": "phase",
+"seite": 15,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/phasen.html",
+"abschnitte": [
+{
+"nummer": "1",
+"titel": "Phasen",
+"ebene": 1,
+"seite": 15,
+"bloecke": []
+},
+{
+"nummer": "1.1",
+"titel": "Einleitung",
+"ebene": 2,
+"seite": 15,
+"bloecke": []
+},
+{
+"nummer": "1.1.1",
+"titel": "Projektlebenszyklus",
+"ebene": 3,
+"seite": 15,
+"bloecke": [
+{
+"t": "p",
+"text": "Die HERMES-Projektmanagementmethode unterstützt mit ihrem Phasenmodell sowohl die klassische als auch die agile Vorgehensweise. Das Phasenmodell für Projekte beruht auf dem Lebenszyklus des Projekts. Für alle Projektbeteiligten schafft es die Voraussetzung für das gemeinsame Verständnis des Projektablaufs. Die Phasen bestimmen die Projektstruktur."
+},
+{
+"t": "p",
+"text": "Die nachfolgende Abbildung zeigt den HERMES-Projektlebenszyklus."
+},
+{
+"t": "abb",
+"datei": "assets/abb/14aa1d5e-112-hermes-projektlebenszyklus.svg",
+"text": "Abbildung 10: HERMES-Projektlebenszyklus"
+},
+{
+"t": "p",
+"text": "Der HERMES-Projektlebenszyklus wird unterteilt in Projektbeginn, Lösungsentstehung und Projektende:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Projektbeginn gilt der Ausrichtung des anvisierten Vorhabens nach Visionen, Bedürfnissen und Zielvorstellungen. Nicht selten stehen sowohl dringender Handlungsbedarf als auch der Einfluss externer Einflüsse (Gesetzgeber, Politik, Staatsverträge, Verbandsregeln usw.) oder übergeordneter Instanzen (Stammorganisation, Programm oder Portfolio) im Fokus."
+},
+{
+"text": "Die Lösungsentstehung nach klassischer oder agiler Vorgehensweise erfolgt basierend auf der Durchführungsfreigabe."
+},
+{
+"text": "Das Projektende schliesst das laufende Projekt organisatorisch und formell ab und bereitet den Übergang zur Anwendungsorganisation vor."
+}
+]
+}
+]
+},
+{
+"nummer": "1.1.2",
+"titel": "Projektbeginn",
+"ebene": 3,
+"seite": 15,
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/2019adb8-phase-hl-initialisierung.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "Im Projektbeginn ist stets die Phase Initialisierung angesiedelt. Die nachfolgende Abbildung zeigt den Ablauf der Initialisierung mit den wichtigsten Ergebnissen."
+},
+{
+"t": "abb",
+"datei": "assets/abb/6c72b8e7-113_ergebnisdiagramm_der_phase_initialisierung.svg",
+"text": "Abbildung 11: Ergebnisdiagramm der Phase Initialisierung"
+},
+{
+"t": "p",
+"text": "In der Initialisierung werden die notwendigen projektspezifischen Grundlagen und die möglichen Lösungsvarianten erarbeitet, verglichen und evaluiert. Die Wahl der Lösungsvariante beinhaltet auch den Entscheid, ob das Entwicklungsvorgehen agil oder klassisch abgewickelt werden soll. Diese Entscheidung muss fachlich und vorgehenstechnisch begründet sein und soll nicht bloss aktuellen Trends folgen. Der Vorgehensvorschlag wird aus den dem Projekt vorliegenden Prämissen abgeleitet und durch die gewählte Lösungsvariante geprägt."
+}
+]
+},
+{
+"nummer": "1.1.3",
+"titel": "Lösungsentstehung",
+"ebene": 3,
+"seite": 16,
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/237290ce-phase-hl-konzept-realisierung-einfuehrung-umsetzung.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "Die klassische und die agile Vorgehensweise unterscheiden sich im Bereich der Lösungsentstehung durch das Entwicklungsvorgehen. Die Mehrzahl aller Methodenelemente ist in beiden Vorgehensweisen annähernd identisch; unterschiedlich sind die Projektorganisation sowie die Struktur des Projekts, folglich auch das Entwicklungsvorgehen und letztlich teilweise auch der fachliche und formelle Inhalt der erarbeiteten Ergebnisse."
+},
+{
+"t": "p",
+"text": "Im agilen Entwicklungsmanagement sind Änderungen ein fundamentaler Teil des Entwicklungsprozesses. Die Umsetzungsorganisation folgt der vorgegebenen und gewünschten Wirkung und reagiert proaktiv auf die sich ändernden Anforderungen, anstatt einen fixen Plan zu verfolgen. Die Entwicklung und die Einführung erfolgen iterativ-inkrementell. Eine Phasenstruktur macht in diesem Vorgehen keinen Sinn. Deshalb kann die Phase Umsetzung auch nicht weiter unterteilt werden."
+},
+{
+"t": "p",
+"text": "Je nachdem, welche Vorgehensweise gewählt wird, wird nach einer Durchführungsfreigabe die Lösungsentstehung des Projekts entweder"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "klassisch mit den Phasen Konzept, Realisierung und Einführung, oder"
+},
+{
+"text": "agil mit der Phase Umsetzung fortgesetzt"
+}
+]
+},
+{
+"t": "p",
+"text": "und unabhängig der Vorgehensweise mit der Phase Abschluss beendet."
+},
+{
+"t": "p",
+"text": "Die Schnittstellen zur Stammorganisation bleiben weitgehend die gleichen, ebenfalls die beim Projektabschluss benötigten Unterlagen."
+}
+]
+},
+{
+"nummer": "1.1.4",
+"titel": "Projektende",
+"ebene": 3,
+"seite": 17,
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/2297baf6-phase-hl-abschluss.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "Im Projektende ist stets die Phase Abschluss angesiedelt. Es ist die letzte Phase jedes Projekts in der das Projekt endgültig beendet wird. Das wichtigste Augenmerk gilt der Projektdokumentation, die entsprechend geprüft und insbesondere aus formeller Sicht, sofern angebracht, ergänzt und geordnet wird. Zudem werden in dieser Phase der organisatorische und administrative Übergang von der Projektorganisation zur Anwendungsorganisation geregelt, die alten Systeme werden deaktiviert oder entfernt, sämtliche Projektdaten gemäss Bestimmungen der Stammorganisation der Archivierung zugeführt und ggf. die Verantwortung für die Lösung weitergegeben."
+},
+{
+"t": "p",
+"text": "Die Phase Abschluss verfolgt insbesondere den Zweck sicherzustellen, dass die organisatorischen und administrativen Übergabe- und Übergangsschnittstellen des Projekts (gegenüber der Stammorganisation, dem Programm, dem Portfolio, der Anwendungsorganisation, allenfalls der Betriebsorganisation usw.) unabhängig der gewählten Vorgehensweise identisch bleiben."
+}
+]
+},
+{
+"nummer": "1.2",
+"titel": "Übersicht der Phasen",
+"ebene": 2,
+"seite": 17,
+"bloecke": []
+},
+{
+"nummer": "1.2.1",
+"titel": "HERMES-Phasenmodell",
+"ebene": 3,
+"seite": 17,
+"bloecke": [
+{
+"t": "p",
+"text": "Da verschiedene Arten von Projekten in unterschiedlichen Stammorganisationen auf diversen Hierarchie- und Entscheidungsebenen mit klassischer und agiler Vorgehensweise zum Einsatz kommen, ist das HERMES-Phasenmodell auf entsprechend hohe Anforderungen ausgerichtet. Die nachfolgende Abbildung stellt das Phasenmodell für Projekte mit klassischer und agiler Vorgehensweise grafisch dar."
+},
+{
+"t": "abb",
+"datei": "assets/abb/24a64aff-105-hermes-projektlebenszyklus-mit-phasenmodell-fuer-klassische-und-agile-vorgehensweise.svg",
+"text": "Abbildung 12: HERMES-Projektlebenszyklus mit Phasenmodell für klassische und agile Vorgehensweise"
+},
+{
+"t": "p",
+"text": "Das Phasenmodell"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "reflektiert gegenüber der Stammorganisation stets die gleiche Projektstruktur und ermöglicht einheitliche Schnittstellen,"
+},
+{
+"text": "deckt die gängigen Controlling- und Reportinganforderungen des Managements,"
+},
+{
+"text": "fügt sich unabhängig der gewählten Vorgehensweise vollständig in eine klassisch oder agil organisierte Stammorganisation ein,"
+},
+{
+"text": "nutzt Synergien und vermeidet jegliche Redundanzen und"
+},
+{
+"text": "ist einfach anwendbar."
+}
+]
+},
+{
+"t": "p",
+"text": "Die Tabelle zeigt das Phasenmodell mit klassischem und agilem Entwicklungsvorgehen:"
+},
+{
+"t": "tabelle",
+"titel": "Tabelle 1: HERMES-Phasen für Projekte mit klassischer und agiler Lösungsentstehung",
+"zeilen": [
+[
+{
+"text": "HERMES Phasen klassische Entwicklung",
+"kopf": true
+},
+{
+"text": "Projektlebenszyklus",
+"kopf": true
+},
+{
+"text": "HERMES Phasen agile Entwicklung",
+"kopf": true
+}
+],
+[
+{
+"text": "Initialisierung"
+},
+{
+"text": "Projektbeginn"
+},
+{
+"text": "Initialisierung"
+}
+],
+[
+{
+"text": "Konzept"
+},
+{
+"text": "Lösungsentstehung"
+},
+{
+"text": "Umsetzung"
+}
+],
+[
+{
+"text": "Realisierung"
+}
+],
+[
+{
+"text": "Einführung"
+}
+],
+[
+{
+"text": "Abschluss"
+},
+{
+"text": "Projektende"
+},
+{
+"text": "Abschluss"
+}
+]
+],
+"unten": true,
+"quelle": "online"
+}
+]
+},
+{
+"nummer": "1.2.2",
+"titel": "Einheitliche Projektstruktur",
+"ebene": 3,
+"seite": 18,
+"bloecke": [
+{
+"t": "p",
+"text": "Die erste und die letzte Phase des Projekts haben alle Vorhaben stets gemeinsam. Ein Projekt beginnt mit der Phase Initialisierung und endet mit der Phase Abschluss. Dadurch wird die Einheitlichkeit der Projektstruktur und des Projektlebenszyklus gewährleistet. Die Projektschnittstellen zur Stammorganisation, Controlling, Programm, Portfolio usw. werden ungeachtet der Vorgehensweise gleichgeschaltet. Die Übergänge zur Anwendungs- und Betriebsorganisation werden einheitlich kanalisiert."
+},
+{
+"t": "p",
+"text": "Die Projektstruktur wird zusätzlich durch die im Kapitel „Ergebnisse“ beschriebenen Meilensteine unterstützt. Sie markieren im Projektverlauf wichtige Entscheidungsergebnisse der Projektsteuerung und -führung. Wie in nachfolgender Abbildung ersichtlich, stehen am Anfang und am Ende jeder Phase Meilensteine. Bei jeder Freigabe werden die Ressourcen (finanziell, personell, Infrastruktur) für die nächste Phase durch den Auftraggeber freigegeben. Optional können für die agile Phase Umsetzung weitere Meilensteine für die Releasefreigabe festgelegt werden. Durchführungs- Phasen- Phasen- Phasenfreigabe Projektfreigabe freigabe freigabe Abschluss Projektinitialisierungs-"
+},
+{
+"t": "abb",
+"datei": "assets/abb/404c51e0-109-phasen-und-releases-mit-meilensteinen-als-quality-gates.svg",
+"text": "Abbildung 13: Meilensteine am Beginn und am Ende jeder Phase und bei der Releasefreigabe"
+},
+{
+"t": "p",
+"text": "Diese projektstrukturbezogenen Meilensteine entsprechen Quality Gates, vor deren Erreichung über Ergebnisse und das Vorgehen entschieden wird. Dabei werden die Einhaltung der Vorgaben sowie die Übereinstimmung des Projekts mit den strategischen Zielen der Stammorganisation überprüft."
+}
+]
+},
+{
+"nummer": "1.2.3",
+"titel": "Phasenverlauf",
+"ebene": 3,
+"seite": 18,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Phase Initialisierung bildet eine Grundlage für die Planung und Steuerung des Projekts. Im Anschluss an die Phase Initialisierung folgt die Lösungsentstehung, entweder mit den klassischen Phasen Konzept, Realisierung und Einführung oder mit der agilen Phase Umsetzung. Die Phase Umsetzung umfasst das agile Entwicklungsvorgehen und dient der Einbettung einer beliebigen agilen Entwicklungsmethode in das HERMES-Framework."
+},
+{
+"t": "p",
+"text": "Die Phase Abschluss bietet Raum für alle notwendigen Massnahmen in Verbindung mit der Entfernung der alten abgelösten Produkt- oder Systemumgebung inklusive der nicht mehr benötigten Infrastruktur und für das systematische Herunterfahren des Projekts samt allen administrativen und organisatorischen Massnahmen."
+},
+{
+"t": "p",
+"text": "Entlang der Phasen gibt es weitere, einen erfolgreichen Verlauf bestimmende Entscheide mit entsprechenden spezifischen Meilensteinen. Diese Meilensteine variieren je nach der Art des Vorhabens. Die nachfolgende Abbildung zeigt als Beispiel die Meilensteine der Steuerung sowie der Führung für klassische und agile IT-Entwicklungsprojekte."
+},
+{
+"t": "abb",
+"datei": "assets/abb/57038225-116-meilensteine-fuer-klassische-und-agile-it-entwicklungsprojekte.svg",
+"text": "Abbildung 14: Meilensteine für klassische und agile IT-Entwicklungsprojekte"
+},
+{
+"t": "p",
+"text": "Beim Meilenstein Weiteres Vorgehen, aber auch bei weiteren Meilensteinen, wird die Erreichung der Nachhaltigkeitsziele (vgl. „Hinweise zur Anwendung“) als Bewertungskriterium mitberücksichtigt."
+},
+{
+"t": "p",
+"text": "Entlang des gesamten Projektverlaufs erfolgt das Reporting im Einklang mit den Vorgaben der Stammorganisation bezüglich des Inhalts und soweit machbar auch bezüglich der Frequenz der Rapporte (vgl. „Hinweise zur Anwendung“)."
+}
+]
+},
+{
+"nummer": "1.3",
+"titel": "Erläuterung der Phasenbeschreibung",
+"ebene": 2,
+"seite": 19,
+"bloecke": [
+{
+"t": "p",
+"text": "Für jede Phase gibt es eine Phasenbeschreibung, die stets gleich aufgebaut ist:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Umschreibung der Phase, hervorgehobene Schrift"
+},
+{
+"text": "Aufzählung wichtiger Punkte und grobe Beschreibung dessen, was im Verlauf der Phase zu erledigen ist"
+},
+{
+"text": "Umschreibung des Phasenabschlusses, hervorgehobene Schrift"
+}
+]
+}
+]
+},
+{
+"nummer": "1.4",
+"titel": "Beschreibung der Phasen",
+"ebene": 2,
+"seite": 19,
+"bloecke": []
+},
+{
+"nummer": "1.4.1",
+"titel": "Projektbeginn",
+"ebene": 3,
+"seite": 20,
+"bloecke": []
+},
+{
+"nummer": "1.4.1.1",
+"titel": "Initialisierung",
+"ebene": 4,
+"seite": 20,
+"element": "phase-initialisierung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/initialisierung.html",
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/739304ab-phase-initialisierung.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "Die Phase Initialisierung wird unabhängig von der späteren Vorgehensweise in jedem Fall durchgeführt. Sie schafft eine definierte Ausgangslage für eine mögliche Lösungsentstehung und den darauffolgenden Projektabschluss. Sie stellt sicher, dass die gesetzten Ziele mit den Vorgaben der Organisation abgestimmt sind. Die Projektgrundlagen und der Durchführungsauftrag werden erarbeitet."
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Auf der Grundlage des Projektinitialisierungsauftrags gibt der Auftraggeber die Ressourcen für die Phase Initialisierung frei. Er beauftragt den Projektleiter mit der Durchführung der Phase Initialisierung."
+},
+{
+"text": "Die Phase Initialisierung wird aus Projektmanagementsicht stets klassisch abgewickelt. Dennoch können auch agile Werkzeuge zum Einsatz kommen."
+},
+{
+"text": "Die Studie wird erarbeitet.",
+"items": [
+{
+"text": "Die Arbeiten starten mit einer ersten Standortbestimmung, Zielen und groben Anforderungen."
+},
+{
+"text": "Die Lösungsvarianten werden erarbeitet. Die Beschreibung der Lösungsvarianten erfolgt so detailliert, dass sie nachvollziehbar und transparent bewertet werden können."
+},
+{
+"text": "Unter anderem werden auch die Projekt- und Betriebsrisiken ermittelt."
+},
+{
+"text": "Parallel zur Studie werden die Rechtsgrundlagenanalyse und die Schutzbedarfsanalyse erarbeitet und in die Entscheidung einbezogen."
+},
+{
+"text": "Zusätzlich wird festgelegt und nachvollziehbar dokumentiert, wie im Rahmen jeder Lösungsvariante weiter vorgegangen wird: entweder klassisch oder agil."
+},
+{
+"text": "Der Entscheid Weiteres Vorgehen wird getroffen."
+}
+]
+},
+{
+"text": "Für die allfällige Beschaffung eines Produkts bzw. eines Systems wird parallel zur Studie eine Beschaffungsanalyse durchgeführt."
+},
+{
+"text": "Das für die Lösungsentstehung passende Szenario wird ausgewählt und bei Bedarf individualisiert."
+},
+{
+"text": "Auf der Basis der gewählten Variante und des Vorgehens werden der Projektmanagementplan und der Durchführungsauftrag erarbeitet und mit den Strategien, Vorgaben und übergeordneten Zielen der Stammorganisation abgeglichen. Die Stakeholderinteressen werden analysiert und Zielkonflikte bereinigt."
+},
+{
+"text": "Bei anvisierter agiler Vorgehensweise wird festgelegt, ob der optionale Entscheid Releasefreigabe treffen im Projekt als erforderlich vorgeschrieben ist."
+},
+{
+"text": "Der Entscheid Durchführungsfreigabe wird getroffen und der Durchführungsauftrag unterschrieben. Die Freigabe erfolgt durch die Stammorganisation und den Auftraggeber."
+}
+]
+},
+{
+"t": "p",
+"text": "Am Ende der Phase Initialisierung wird geprüft, ob es sinnvoll ist, die Fortsetzung des Projekts freizugeben und sofern ja, wird der Entscheid Durchführungsfreigabe getroffen. Mögliche Gründe für eine Beendigung sind fehlende Wirtschaftlichkeit, zu hohe Risiken, keine Realisierbarkeit, rechtliche oder politische Bedenken, fehlende Übereinstimmung mit den Zielen, Strategien und Prioritäten der Organisation."
+}
+]
+},
+{
+"nummer": "1.4.2",
+"titel": "Lösungsentstehung klassisch",
+"ebene": 3,
+"seite": 21,
+"bloecke": []
+},
+{
+"nummer": "1.4.2.1",
+"titel": "Konzept",
+"ebene": 4,
+"seite": 21,
+"element": "phase-konzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/konzept.html",
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/0e60764a-phase-hl-konzept.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "Die in der Phase Initialisierung gewählte Variante wird konkretisiert. Die Ergebnisse werden so detailliert erarbeitet, dass die Projektbeteiligten die Lösung auf einer verlässlichen Grundlage planen, offerieren und realisieren können."
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Basierend auf der gewählten Variante sowie der ersten Standortbestimmung aus der Studie werden die Situationsanalysen durchgeführt."
+},
+{
+"text": "Gestützt auf die Erkenntnisse aus den Situationsanalysen werden die Anforderungen aus der Studie konkretisiert und vervollständigt und neu als Lösungsanforderungen festgelegt."
+},
+{
+"text": "Bei Organisations- und IT-Projekten oder wenn durch die Lösung Geschäftsabläufe oder -strukturen tangiert werden, sind in jedem Fall die Organisationsanforderungen und anschliessend das Organisationskonzept zu erarbeiten."
+},
+{
+"text": "Die Lösung wird konzeptionell erarbeitet. Die Machbarkeit, allenfalls nur einzelner Lösungskomponenten, wird z. B. mit Prototypen überprüft."
+},
+{
+"text": "Zur Vorbereitung der Einführung wird das Einführungskonzept erarbeitet."
+},
+{
+"text": "Je nach Szenario werden Testkonzept und Migrationskonzept erarbeitet."
+},
+{
+"text": "In IT-Projekten werden zudem die Lösungsarchitektur und das Betriebskonzept erarbeitet. Der Entscheid Lösungsarchitektur wird getroffen."
+},
+{
+"text": "Ist eine Lösung zu beschaffen, werden die Ausschreibung durchgeführt, die Angebote bewertet sowie das ausgewählte Produkt oder System beschafft."
+},
+{
+"text": "Bei Systemen wird das Integrationskonzept erarbeitet."
+},
+{
+"text": "Der Entscheid über die Freigabe der Realisierung wird getroffen (Entscheid Phasenfreigabe treffen).",
+"items": [
+{
+"text": "Die Projekt- und Betriebsrisiken müssen identifiziert, analysiert und bewertet sein."
+},
+{
+"text": "Die Realisierbarkeit der Lösungsentstehung muss weiterhin nachgewiesen bzw. bestätigt sein."
+},
+{
+"text": "Die Ressourcen für die nächste Phase werden aufgrund des konkretisierten Projektmanagementplans und der vorliegenden Angebote freigegeben."
+}
+]
+}
+]
+},
+{
+"t": "p",
+"text": "Am Ende der Phase Konzept wird geprüft, ob es sinnvoll ist, das Projekt zu realisieren. Mögliche Gründe für eine Beendigung sind Unwirtschaftlichkeit, zu hohe Risiken, fehlende Realisierbarkeit, fehlende Übereinstimmung mit den Zielen und Strategien der Organisation."
+}
+]
+},
+{
+"nummer": "1.4.2.2",
+"titel": "Realisierung",
+"ebene": 4,
+"seite": 21,
+"element": "phase-realisierung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/realisierung.html",
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/e42cb49a-phase-hl-realisierung.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "Das Produkt bzw. das System wird realisiert und getestet. Die nötigen Vorarbeiten werden geleistet, um die Einführungsrisiken zu minimieren."
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Das Produkt bzw. das System wird entwickelt oder, sofern es beschafft wurde, parametrisiert bzw. angepasst."
+},
+{
+"text": "Die Organisation wird umgesetzt."
+},
+{
+"text": "In IT-Projekten wird das System in die Betriebsinfrastruktur integriert."
+},
+{
+"text": "Die Vorabnahme wird durchgeführt."
+},
+{
+"text": "Die Betriebsorganisation wird realisiert und die Dokumentationen erarbeitet."
+},
+{
+"text": "Die Einführung wird auf der Grundlage des Einführungskonzepts vorbereitet."
+},
+{
+"text": "Je nach Szenario werden Tests durchgeführt und die Migration vorbereitet."
+},
+{
+"text": "Der Entscheid über die Freigabe der Einführung wird getroffen (Entscheid Phasenfreigabe treffen). Er basiert auf dem Entscheid Vorabnahme. Die Ressourcen für die nächste Phase werden aufgrund des konkretisierten Projektmanagementplans freigegeben."
+}
+]
+},
+{
+"t": "p",
+"text": "Am Ende der Phase Realisierung müssen die Einführungsrisiken beurteilt werden und vertretbar sein. Andernfalls kann die Einführung nicht erfolgen."
+}
+]
+},
+{
+"nummer": "1.4.2.3",
+"titel": "Einführung",
+"ebene": 4,
+"seite": 22,
+"element": "phase-einfuehrung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/einfuehrung.html",
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/88f87c3c-phase-hl-einfuehrung.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "In der Phase Einführung wird der sichere Übergang zum neuen Zustand gewährleistet. Der Betrieb wird aufgenommen."
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die Einführungsmassnahmen wie Anwenderschulung usw. werden durchgeführt."
+},
+{
+"text": "Je nach Szenario wird eine Migration durchgeführt."
+},
+{
+"text": "Das Produkt bzw. das System sowie die Organisation werden aktiviert."
+},
+{
+"text": "Der Betrieb wird aktiviert."
+},
+{
+"text": "ISDS-Konzept wird überführt."
+},
+{
+"text": "Während der ersten Betriebszeit zwischen der Betriebsaufnahme und der Abnahme des vollständigen Systems oder Produkts unterstützt das Projekt die Problemanalyse und die Problembehebung (danach beginnt die Gewährleistung und damit der reguläre Betrieb)."
+},
+{
+"text": "Der Entscheid Phasenfreigabe Abschluss wird getroffen. Die Ressourcen für die Phase Abschluss werden aufgrund des nachgeführten Projektmanagementplans freigegeben."
+}
+]
+},
+{
+"t": "p",
+"text": "Am Ende der Phase Einführung wird nach erfolgreicher Betriebsaufnahme der Entscheid Abnahme getroffen und die Phase wird abgeschlossen."
+}
+]
+},
+{
+"nummer": "1.4.3",
+"titel": "Lösungsentstehung agil",
+"ebene": 3,
+"seite": 22,
+"bloecke": []
+},
+{
+"nummer": "1.4.3.1",
+"titel": "Umsetzung",
+"ebene": 4,
+"seite": 22,
+"element": "phase-umsetzung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/umsetzung.html",
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/d309bc7b-phase-hl-umsetzung.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "Die in der Phase Initialisierung gewählte Variante wird iterativ-inkrementell umgesetzt. Die Projektorganisation wird inklusive Umsetzungsorganisation etabliert. Die Lösungsanforderungen werden weiter aufgeteilt, verfeinert und konkretisiert. Die Anforderungen werden aktualisiert und priorisiert und nach absteigender Priorität abgearbeitet (entwickelt, realisiert und in Betrieb genommen), wobei die Prioritäten kontinuierlich aktualisiert und den Projekterkenntnissen entsprechend angepasst werden."
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Basierend auf der gewählten Variante sowie der Standortbestimmung aus der Studie werden die Situationsanalysen durchgeführt."
+},
+{
+"text": "Mit den Erkenntnissen aus den Situationsanalysen werden die Anforderungen aus der Studie konkretisiert und vervollständigt und neu als priorisierte initiale Lösungsanforderungen festgelegt."
+},
+{
+"text": "Werden durch die angestrebte Lösung Geschäftsabläufe oder -strukturen tangiert, sind zwingend die Organisationsanforderungen zu erarbeiten."
+},
+{
+"text": "Ist eine Lösung zu beschaffen, werden die Ausschreibung durchgeführt, die Angebote bewertet sowie das ausgewählte Produkt oder System beschafft."
+},
+{
+"text": "Mit jeder Iteration wird ein weiterer Teil der Lösung - das Inkrement - erstellt, das sich mit dem bereits erstellten Umfang der Umsetzungsergebnisse nahtlos verbinden lässt."
+}
+]
+},
+{
+"t": "p",
+"text": "Iterativ-inkrementelle Durchführung:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die einzelnen Anforderungen der Lösungsanforderungen werden laufend konkretisiert, verfeinert, vervollständigt und soweit aufgeteilt und priorisiert, dass sie in absteigender Priorität abgearbeitet werden können.",
+"items": [
+{
+"text": "Es wird das Organisationskonzept erarbeitet und die sukzessive entstehende Organisation realisiert und dokumentiert."
+},
+{
+"text": "Die Projekt-, Betriebs- und Einführungsrisiken werden identifiziert, analysiert, bewertet und beurteilt. Die Realisierbarkeit wird überprüft."
+},
+{
+"text": "Das Produkt wird entwickelt oder angepasst bzw. das System entwickelt oder parametrisiert."
+},
+{
+"text": "Begleitend werden die Betriebsorganisation und alle anderen Ergebnisse der restlichen Module sukzessive erarbeitet, realisiert und dokumentiert."
+},
+{
+"text": "Bei Systemen wird das Integrationskonzept erarbeitet und der Entscheid Lösungsarchitektur getroffen."
+},
+{
+"text": "Bei Systemen werden Tests konzipiert und durchgeführt, die Migration vorbereitet und durchgeführt und das System in die Betriebsinfrastruktur integriert."
+},
+{
+"text": "Das Einführungskonzept wird erarbeitet sowie die Vorabnahme, die Einführungsmassnahmen wie Anwenderschulung usw. und die Betriebsaufnahme durchgeführt."
+},
+{
+"text": "Die Organisation, der betreffende Teil der Lösung (ein oder mehrere Inkremente) sowie der Betrieb werden aktiviert."
+}
+]
+},
+{
+"text": "Während der ersten Betriebszeit bis zu der Abnahme des Teils der Lösung unterstützt das Projekt die Problemanalyse und die Problembehebung (danach beginnt die Gewährleistung und damit der reguläre Betrieb)."
+},
+{
+"text": "Falls im Projektmanagementplan so festgelegt, wird der Entscheid über die Freigabe des nächsten Release getroffen (Entscheid Releasefreigabe treffen)."
+},
+{
+"text": "Der Entscheid Phasenfreigabe Abschluss wird getroffen. Die Ressourcen für die Phase Abschluss werden aufgrund des nachgeführten Projektmanagementplans freigegeben."
+}
+]
+},
+{
+"t": "p",
+"text": "Nach abgeschlossener Betriebsaufnahme inklusive der Abnahme des letzten Release werden der agile Teil des Projekts und somit die Phase Umsetzung abgeschlossen und die Umsetzungsorganisation innerhalb der Projektorganisation aufgelöst."
+}
+]
+},
+{
+"nummer": "1.4.4",
+"titel": "Projektende",
+"ebene": 3,
+"seite": 23,
+"bloecke": []
+},
+{
+"nummer": "1.4.4.1",
+"titel": "Abschluss",
+"ebene": 4,
+"seite": 23,
+"element": "phase-abschluss",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/phasen/abschluss.html",
+"bloecke": [
+{
+"t": "abb",
+"datei": "assets/abb/ee4b865d-phase-abschluss.svg",
+"text": ""
+},
+{
+"t": "p",
+"text": "Die Phase Abschluss bietet eine Struktur für das systematische Herunterfahren eines Projektes. Die Projektdokumentation wird geprüft und je nach Bedarf ergänzt. Der Projektabschluss wird vorbereitet."
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die Phase Abschluss wird aus Projektmanagementsicht stets klassisch abgewickelt. Dennoch können auch agile Werkzeuge zum Einsatz kommen."
+},
+{
+"text": "Die Ergebnisse werden auf Vollständigkeit geprüft und insbesondere aus formeller Sicht ergänzt."
+},
+{
+"text": "Die Projektschlussbeurteilung wird geprüft und ggf. genehmigt."
+},
+{
+"text": "Die Projektorganisation wird aufgelöst. Vor der Auflösung kann geprüft werden, ob Teile der Projektorganisation sinngemäss in die Anwendungsorganisation übernommen werden können."
+},
+{
+"text": "Die Ergebnisse, Dokumentationen usw. werden an die Stammorganisation z.H. der Anwendungs-, Betriebs- und Wartungsorganisation übergeben. In IT-Projekten betrifft dies beispielsweise auch die Testinfrastruktur samt Testkonzept und die Hilfsmittel."
+},
+{
+"text": "Die Dokumentation der Projektabwicklung inklusive der Vorgehensergebnisse usw. wird gemäss den Ablagevorschriften der Stammorganisation archiviert."
+},
+{
+"text": "Das Altsystem wird je nach Szenario ausser Betrieb gesetzt und unter Berücksichtigung der Vorgaben inklusive der alten, nicht mehr benötigten Infrastruktur entfernt, die alten Daten werden archiviert oder vernichtet."
+}
+]
+},
+{
+"t": "p",
+"text": "Am Ende der Phase Abschluss wird der Projektabschluss durchgeführt. Die Projektschlussbeurteilung wird erarbeitet. Offene Punkte werden an die Stammorganisation sowie an die Anwendungsorganisation übergeben. Das Projekt wird abgeschlossen und die Projektorganisation aufgelöst."
+}
+]
+}
+]
+}

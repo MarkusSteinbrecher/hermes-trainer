@@ -1209,6 +1209,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .hb-inhalt__liste { list-style: none; margin: 4px 0 0; padding: 0; columns: 2; column-gap: 28px; }
 .hb-inhalt__eintrag { break-inside: avoid; }
 .hb-inhalt__eintrag--2 { padding-left: 14px; }
+.hb-inhalt__eintrag--3 { padding-left: 28px; }
 .hb-inhalt__knopf { padding: 2px 0; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 13.5px; text-align: left; cursor: pointer; }
 .hb-inhalt__knopf:hover { color: var(--akzent); }
 .hb-inhalt__eintrag--1 .hb-inhalt__knopf { font-weight: 700; }
@@ -1235,6 +1236,17 @@ body[data-route="handbuch"] .detail__text,
 body[data-route="handbuch"] .prosa { max-width: none; }
 
 .kapitel-nav { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--rand); }
+/* Referenzhandbuch (PDF) als Text: Absatzarten, Tabellentitel unten, Seitenlinks. */
+.hb-p--kursiv, .hb-h--kursiv { font-style: italic; }
+.hb-p--fussnote { font-size: 12.5px; color: var(--text-leise); margin: 4px 0; padding-left: 1.1em; text-indent: -1.1em; }
+.hb-p--fussnote + .hb-p:not(.hb-p--fussnote) { margin-top: 12px; }
+.hb-tabelle--unten caption { caption-side: bottom; text-transform: none; letter-spacing: 0; font-size: 11.5px; font-weight: 500; color: var(--text-leise); padding: 6px 0 0; }
+a.hb-seite { text-decoration: none; border-bottom: 1px dotted var(--rand); }
+a.hb-seite:hover { color: var(--akzent); border-bottom-color: var(--akzent); }
+.hb-verweis .hb-pdf { font-weight: 700; text-decoration: none; border: 0; }
+.hb-abschnitt--teil { margin-top: 26px; padding-top: 12px; border-top: 1px solid var(--linie-stark); }
+.hb-karten--einzeln { margin: 10px 0 14px; }
+.hb-teil--innen { margin-top: 0; }
 
 /* --- Quiz: Beleg ---------------------------------------------------------- */
 .beleg {

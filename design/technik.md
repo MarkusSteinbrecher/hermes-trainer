@@ -11,6 +11,7 @@ Lokal starten: `python3 -m http.server 8080` im Projektverzeichnis, dann http://
 ## Werkzeuge (`tools/`)
 
 - `handbuch-import.py [--pdf-text rhb.txt]` — importiert die offizielle Dokumentation von hermes.admin.ch nach `data/handbuch/` und `assets/abb/`, samt der Verweise auf die Dokumentvorlagen (`.dotx`); Kapitelnummern und Seitenzahlen stammen aus dem Inhaltsverzeichnis des Referenzhandbuchs (`pdftotext -layout HERMES-Projektmanagement.pdf rhb.txt`). Ohne `--pdf-text` wird das zuletzt gesicherte `data/handbuch/inhaltsverzeichnis.json` weiterverwendet, damit Nummern und Seiten erhalten bleiben
+- `rhb-import.py --pdf HERMES-Projektmanagement.pdf [--lib …]` — liest das Referenzhandbuch (PDF) mit PyMuPDF und schreibt es 1:1 als Text nach `data/handbuch/rhb/` (ein Kapitel je Datei, Nummern und Seiten des PDF, Tabellen als Tabellen, Abbildungen über ihre Nummer auf die SVGs aus `assets/abb/`, sonst PNG in `assets/rhb/`); die Seite «Handbuch» zeigt nur diese Dateien (Schema in SCHEMA.md). Meldet Abweichungen gegen `inhaltsverzeichnis.json` und nicht zugeordnete Elemente
 - `ergebnis-typen.py` — ergänzt `data/ergebnisse.json` um Ergebnistyp und «minimal gefordert» (Tabellen 16/17 des Handbuchs)
 - `ergebnis-inhalt.py` — schreibt den Abschnitt «Inhalt gemäss Dokumentvorlage» in `data/ergebnisse.json` aus `data/handbuch/elemente-ergebnis.json` neu, samt aller Gliederungsebenen
 - `quiz-pruefen.py [--pdf-text rhb.txt]` — prüft `data/quizfragen.json` formal und verifiziert die Belegzitate gegen den Handbuchtext

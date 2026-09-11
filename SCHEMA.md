@@ -14,7 +14,8 @@ Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSO
 | `data/ergebnisse.json` | `ergebnis` | Alle Ergebnisse |
 | `data/rollen.json` | `rolle` | Alle Rollen |
 | `data/quizfragen.json` | — | Kuratierte Prüfungsfragen (eigenes Schema, siehe unten) |
-| `data/handbuch/*.json` | — | Importierte Handbuchtexte (generiert von `tools/handbuch-import.py`, nicht von Hand pflegen) |
+| `data/handbuch/*.json` | — | Importierte Handbuchtexte von hermes.admin.ch (generiert von `tools/handbuch-import.py`, nicht von Hand pflegen) |
+| `data/handbuch/rhb/*.json` | — | Das Referenzhandbuch (PDF) als Text, ein Kapitel je Datei (generiert von `tools/rhb-import.py`, nicht von Hand pflegen) |
 
 ## Pflichtfelder je Eintrag
 
@@ -86,6 +87,14 @@ Umlaute im Slug: ä→ae, ö→oe, ü→ue. Übersichtsseiten: `…/de/projektma
 `kapitel.json`: Array der Kapitel `{ id, titel, nummer, seite, url, teile: [{ titel, url, nummer, seite, abschnitte: [{ titel, ebene, nummer?, seite?, bloecke }] }] }`.
 `elemente-<kategorie>.json`: Objekt `id → { titel, url, nummer, seite, abschnitte }`.
 Blöcke: `{ t: "p", text }`, `{ t: "ul"|"ol", items: [{ text, items? }] }`, `{ t: "tabelle", titel, zeilen: [[{ text, kopf? }]] }`, `{ t: "abb", src, datei?, text }`, `{ t: "download", titel, datei, groesse, url }` (Dokumentvorlage `.dotx`), `{ t: "h", n, text }`. Begriffe in Listen und Zellen werden im Frontend über den exakten Wortlaut auf Lexikoneinträge verlinkt.
+
+## Referenzhandbuch als Text (`data/handbuch/rhb/`, generiert)
+
+Quelle ist das PDF «Referenzhandbuch Projektmanagement, Ausgabe 2022, 3. Auflage 09.03.2026»; `tools/rhb-import.py` liest es mit PyMuPDF (Schriftgrössen und Fettdruck ergeben die Titelebenen, Zeichnungsflächen die Tabellen und Abbildungen) und legt den Text 1:1 in der Gliederung des PDF ab. Die Seite «Handbuch» zeigt ausschliesslich diese Dateien; `kapitel.json` und `elemente-*.json` (Online-Import) bleiben für den Überblick, die Abbildung 1 und die Karten ausserhalb des Handbuchs.
+
+`index.json`: `{ quelle: { titel, ausgabe, seiten, pdf, online, downloads }, kapitel: [{ id, nummer, titel, kategorie, seite, url, datei, abschnitte, inhalt: [{ nummer?, titel, ebene, seite }] }] }` — `pdf` ist die Adresse des PDF; `…#page=<seite>` öffnet die Seite im Browser.
+`<kapitel>.json` (vorwort, methodenueberblick = A, methodenelemente = B, phasen … hinweise = 1–7, vokabular): `{ id, nummer, titel, kategorie, seite, url, abschnitte: [{ nummer?, titel, ebene, seite, url?, element?, bloecke }] }`. Die Abschnitte stehen flach in Leserichtung; `ebene` 1 = Kapiteltitel, 2 = x.y, 3 = x.y.z, 4 = x.y.z.w. `url` ist die eigene Seite auf HERMES online (Kapitel, 7.4.x, Elemente), `element` die `id` des Eintrags aus `data/`, dessen Beschreibung der Abschnitt ist (über die Nummer aus `elemente-<kategorie>.json` zugeordnet; alle 220 Elemente). Nicht übernommen: Inhalts-, Tabellen- und Abbildungsverzeichnis, Index (Seiten 234–248).
+Blöcke wie oben, dazu `{ t: "p", art: "kursiv"|"fussnote", text }` (Fussnoten mit Hochzahl, am Ende des Abschnitts der Seite), `{ t: "h", text, art? }` für fette Zwischentitel ohne Nummer («Beschreibung», «Inhalt») und `{ t: "tabelle", titel, unten: true, zeilen }` — die Beschriftung steht wie im PDF unter der Tabelle; `quelle: "online"` markiert Tabelle 1, die im PDF als Grafik gesetzt ist und deren Zeilen von HERMES online stammen. Abbildungen: nummerierte über die Abbildungsnummer den SVGs aus `assets/abb/` zugeordnet (35 von 35; fünf ohne SVG als PNG aus dem PDF in `assets/rhb/`), Phasenstreifen der Elemente über das Element. Silbentrennung wird am Zeilenende aufgelöst (Wortschatz aus dem Online-Import entscheidet «Projekt-Governance» gegen «Dokument»); Blocksatzzeilen unter 505 pt Breite beenden einen Absatz.
 
 ## Graph (abgeleitet, keine eigene Datei)
 

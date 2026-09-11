@@ -305,6 +305,9 @@
    * optionen.nummer, optionen.seite: Nummer und Seite im Referenzhandbuch, vor bzw. nach dem Titel
    * optionen.nurHandbuch: nur Titel, Fakten und der Handbuchtext — ohne Kurzfassung,
    *   Kernpunkte und Stufenwahl (Seite «Handbuch»)
+   * optionen.bloecke: Handbuchtext als Blöcke (Seite «Handbuch», aus dem PDF) — dann
+   *   wird nichts nachgeladen
+   * optionen.pdf: { url, seite } — Link auf die Seite im Referenzhandbuch (PDF)
    */
   function bauen(e, optionen) {
     optionen = optionen || {};
@@ -312,6 +315,10 @@
 
     var kern = h('div', { class: 'detail detail--kern', id: 'kern-' + e.id }, kernpunkte(e, linkZiel));
     var handbuch = h('div', { class: 'detail detail--handbuch', id: 'handbuch-' + e.id });
+    if (optionen.bloecke) {
+      handbuch.dataset.geladen = '1';
+      handbuch.appendChild(HT.ui.bloecke(optionen.bloecke, { verlinken: true, ebene: 5 }));
+    }
     var knoepfe = [];
 
     function anwenden(stufe) {
@@ -338,6 +345,14 @@
 
     var stufen = optionen.nurHandbuch ? null : h('div', { class: 'stufen', role: 'group', 'aria-label': 'Detailtiefe für ' + e.begriff }, knoepfe);
     var quelle = HT.ui.quellenLink(e.quelle);
+    var pdf = optionen.pdf && optionen.pdf.url && optionen.pdf.seite ? optionen.pdf : null;
+    var pdfLink = pdf ? h('a', {
+      class: 'quelle-link quelle-link--pdf',
+      href: pdf.url + '#page=' + pdf.seite,
+      target: '_blank', rel: 'noopener',
+      title: 'Seite ' + pdf.seite + ' im Referenzhandbuch (PDF)',
+      'aria-label': 'Referenzhandbuch als PDF, Seite ' + pdf.seite + ' (öffnet in neuem Tab)'
+    }, [h('span', { text: 'PDF S. ' + pdf.seite }), h('span', { class: 'quelle-link__pfeil', 'aria-hidden': 'true', text: '↗' })]) : null;
     var titelTag = optionen.titelEbene || 'h2';
 
     /* Ort für Markierungen (js/markieren.js): die Karte ist der Block, in
@@ -352,7 +367,9 @@
           h(titelTag, { class: 'eintrag__titel' }, [
             optionen.nummer ? h('span', { class: 'hb-nr', text: optionen.nummer + ' ' }) : null,
             e.begriff,
-            optionen.seite ? h('span', { class: 'hb-seite', text: ' S. ' + optionen.seite }) : null
+            optionen.seite ? (pdf
+              ? h('a', { class: 'hb-seite', href: pdf.url + '#page=' + optionen.seite, target: '_blank', rel: 'noopener', title: 'Seite ' + optionen.seite + ' im Referenzhandbuch (PDF, neuer Tab)' }, ' S. ' + optionen.seite)
+              : h('span', { class: 'hb-seite', text: ' S. ' + optionen.seite })) : null
           ]),
           HT.ui.badge(e.kategorie)
         ]),
@@ -362,6 +379,7 @@
       h('div', { class: 'eintrag__fuss' }, [
         stufen,
         quelle || h('span', { class: 'chip__zahl', text: 'Kein Quellenlink hinterlegt' }),
+        pdfLink,
         optionen.zusatz || null
       ]),
       optionen.nurHandbuch ? null : kern,

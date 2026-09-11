@@ -1,0 +1,5896 @@
+{
+"id": "rollen",
+"nummer": "6",
+"titel": "Rollen",
+"kategorie": "rolle",
+"seite": 161,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen.html",
+"abschnitte": [
+{
+"nummer": "6",
+"titel": "Rollen",
+"ebene": 1,
+"seite": 161,
+"bloecke": []
+},
+{
+"nummer": "6.1",
+"titel": "Einleitung",
+"ebene": 2,
+"seite": 161,
+"bloecke": []
+},
+{
+"nummer": "6.1.1",
+"titel": "Rollenmodell",
+"ebene": 3,
+"seite": 161,
+"bloecke": [
+{
+"t": "p",
+"text": "HERMES definiert ein Rollenmodell und beschreibt standardisierte Rollen, um ein einheitliches, organisationsübergreifendes Verständnis zu schaffen. Dabei wird unterschieden zwischen eigenständigen Projekten und Projekten, die in einem Programm eingebettet sind. Sämtliche beschriebenen Rollen sind ausschliesslich HERMES-Rollen."
+},
+{
+"t": "p",
+"text": "Das Rollenmodell unterscheidet zwischen den Rollengruppen der Stammorganisation und den Rollen und Rollengruppen der Projektorganisation. Die nachfolgende Abbildung zeigt das Rollenmodell einer Stammorganisation mit den Rollengruppen Leitung, Kompetenzzentrum Projektmanagement sowie Controlling- und Vorgabestellen und einer Projektorganisation (klassisch/agil) mit den minimal erforderlichen Rollen Auftraggeber, Projektleiter und Anwendervertreter (grau schattiert). Nach Bedarf werden weitere Rollen verwendet."
+},
+{
+"t": "abb",
+"datei": "assets/abb/c2bfa1c5-126-stammorganisation-sowie-projektorganisation-mit-minimal-erforderlichen-rollen--28grau-29.svg",
+"text": "Abbildung 24: Stammorganisation sowie Projektorganisation mit minimal erforderlichen Rollen (grau)"
+},
+{
+"t": "p",
+"text": "Die Rolle Anwendervertreter funktioniert in der agilen Projektorganisation als Schnittstelle zur Umsetzungsorganisation. Der Rolleninhaber nimmt durch zusätzliche Übernahme einer entsprechenden Rolle in der Umsetzungsorganisation seine fachliche Verantwortung wahr (gestrichelte Linie)."
+}
+]
+},
+{
+"nummer": "6.1.2",
+"titel": "Stammorganisation",
+"ebene": 3,
+"seite": 161,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Stammorganisation ist die Organisation des Auftraggebers, in der das Projekt angesiedelt ist und des späteren Anwenders, bei dem die Nutzung der Lösung stattfinden wird. Sie ist eine rechtliche Einheit, die Strategien und Vorgaben für Projekte bestimmt. Die Stammorganisation stellt die benötigten Ressourcen wie z. B. Infrastruktur, Finanzen und Personal für das Projekt zur Verfügung."
+},
+{
+"t": "p",
+"text": "Der Begriff der Stammorganisation wird in HERMES weit gefasst. Eine Stammorganisation kann z. B. eine Verwaltung, eine Schule oder ein Institut, ein Verein oder eine Unternehmung sein. Bei staatlichen oder grossen kommunalen Verwaltungen, bei Konzernen, komplexen Firmen usw. können auch einzelne Organisationseinheiten, oder sogar auch einzelne Abteilungen die Rolle einer Stammorganisation bekleiden."
+},
+{
+"t": "p",
+"text": "Wie die obere Abbildung zeigt, sind für alle eigenständigen Projekte in der Stammorganisation drei permanente Rollengruppen relevant:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Leitung Portfolio aus strategischer Sicht steuern, Projekte priorisieren und Infrastruktur sowie personelle und finanzielle Ressourcen dem konkreten Projekt zuweisen."
+},
+{
+"text": "Kompetenzzentrum Projektmanagement Oft auch als Projektmanagement-Office (PMO) der Stammorganisation benannt. Methoden, Hilfsmittel, Coaching und weitere Leistungen für das Projekt- und Programmmanagement bereitstellen und weiterentwickeln sowie oft auch das Portfolio operativ bewirtschaften.."
+},
+{
+"text": "Controlling- und Vorgabestellen Vorgaben definieren und die Einhaltung aus Sicht der gesamten Organisation prüfen. Solche Stellen sind beispielsweise die Finanzkontrolle, die Revisionsstelle, das IT-Controlling, und die zuständigen Stellen für die Lösungsarchitektur und für ISDS."
+}
+]
+},
+{
+"t": "p",
+"text": "Je nach Stammorganisation sind die Rollen der aufgeführten Rollengruppen unterschiedlich ausgeprägt."
+}
+]
+},
+{
+"nummer": "6.1.3",
+"titel": "Projektorganisation",
+"ebene": 3,
+"seite": 162,
+"bloecke": []
+},
+{
+"nummer": "6.1.3.1",
+"titel": "Übersicht",
+"ebene": 4,
+"seite": 162,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Projektorganisation ist eine einmalige, temporäre oft interdisziplinäre Organisation, die in enger Beziehung zur Stammorganisation steht. Sie wird mit dem Projektinitialisierungsauftrag in Kraft gesetzt und spätestens mit dem Entscheid Projektabschluss aufgelöst."
+},
+{
+"t": "p",
+"text": "Im Verlauf der Projektabwicklung, insbesondere mit dem Durchführungsauftrag, wird die Projektorganisation kontinuierlich an die Bedürfnisse des Projekts angepasst. Je nach Projektablauf stossen weitere Projektbeteiligte dazu. Beispielsweise steht ein externer Anbieter eines Produkts erst nach der Beschaffung fest und wird dann Teil der Projektorganisation."
+},
+{
+"t": "p",
+"text": "Die agile Umsetzungsorganisation ist nur während der Phase Umsetzung Teil der Projektorganisation. In den Phasen Initialisierung und Abschluss bleibt die Projektorganisation klassisch, was das Projektteam nicht daran hindert, für geeignete Aufgaben agile Techniken einzusetzen."
+},
+{
+"t": "p",
+"text": "Die Projektorganisation besteht aus verschiedenen Rollen. Sie regeln Aufgaben, Kompetenzen und Verantwortung der Projektbeteiligten. Jede Rolle ist mit einer Rollenbeschreibung spezifiziert."
+}
+]
+},
+{
+"nummer": "6.1.3.2",
+"titel": "Partnergruppen",
+"ebene": 4,
+"seite": 162,
+"bloecke": [
+{
+"t": "p",
+"text": "Jede Rolle ist einer oder mehreren Partnergruppen zugeordnet. In der HERMES-Projektorganisation kommen die Partnergruppen Anwender, Ersteller und Betreiber vor:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Anwender Der Anwender ist der Eigner des Projekts sowie der Nutzer der Lösung und wickelt damit seine Geschäftsprozesse ab. Er ist verantwortlich für die Definition seiner Anforderungen an die Lösung, testet und nimmt das Produkt/System bzw. die Lösung ab."
+},
+{
+"text": "Ersteller Der Ersteller als Dienstleistungserbringer entwickelt oder liefert und integriert die Lösung. Er ist verantwortlich für die Entwicklung bzw. Lieferung und Integration gemäss den Vorgaben bezüglich Qualität, Zeit und Kosten."
+},
+{
+"text": "Betreiber Der Betreiber als Dienstleistungserbringer integriert die technische Lösung in die Betriebsumgebung, stellt die Betriebsorganisation sicher und betreibt das System. Er ist verantwortlich für die Bereitstellung der Betriebsinfrastruktur, die Betriebsintegration, die Betriebsorganisation und den Betrieb gemäss den Vereinbarungen."
+}
+]
+},
+{
+"t": "p",
+"text": "Die Projekte werden in der Praxis oft durch Lieferanten oder externe Dienstleister unterstützt. Insbesondere die Rollen der Partnergruppe Ersteller werden oft durch externe Dienstleister besetzt. Werden diverse Dienstleistungen der Stammorganisation outgesourct, können z. B. auch die Betreiber, immer öfters sogar die Anwender (z. B. mittels Projektleiterpools), externe Dienstleister sein."
+},
+{
+"t": "p",
+"text": "Dessen ungeachtet haben die Rolleninhaber stets und ausschliesslich die Rollensicht der Partnergruppe zu vertreten, für welche sie Leistungen erbringen, um jegliche Interessenkonflikte auszuschliessen."
+},
+{
+"t": "p",
+"text": "Die Vertretung im Projekt durch partnergruppenfremde Dienstleistungserbringer erfolgt in eigener Kompetenz und Verantwortung der jeweiligen Partnergruppe der Anwender, Ersteller oder Betreiber."
+}
+]
+},
+{
+"nummer": "6.1.3.3",
+"titel": "Hierarchieebenen",
+"ebene": 4,
+"seite": 163,
+"bloecke": [
+{
+"t": "p",
+"text": "Jede Rolle ist einer der Hierarchieebenen Steuerung, Führung oder Ausführung zugeordnet:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Steuerungsrollen Projekt gesamthaft, organisationsübergreifend steuern und sicherstellen, dass die gesetzten Ziele erreicht werden."
+},
+{
+"text": "Führungsrollen Projektgrundlagen erarbeiten, Projekt und Mitarbeitende führen."
+},
+{
+"text": "Ausführungsrollen Lösung erarbeiten und qualitätssichernde Massnahmen durchführen."
+}
+]
+},
+{
+"t": "p",
+"text": "Die nachfolgende Abbildung zeigt die Zuordnung der Rollen zu den gelb dargestellten Hierarchieebenen in einer typischen klassischen und agilen Projektorganisation."
+},
+{
+"t": "abb",
+"datei": "assets/abb/752d4818-127-rollenzuordnung-zu-hierarchieebenen-einer-klassischen-oder-agilen-projektorganisation.svg",
+"text": "Abbildung 25: Rollenzuordnung zu Hierarchieebenen einer klassischen oder agilen Projektorganisation"
+}
+]
+},
+{
+"nummer": "6.1.3.4",
+"titel": "Projektrollen in Programmen",
+"ebene": 4,
+"seite": 163,
+"bloecke": [
+{
+"t": "h",
+"text": "Projektsicht"
+},
+{
+"t": "p",
+"text": "Das Programmmanagement wird im Anhang zum vorliegenden Referenzhandbuch beschrieben. Die nachfolgenden Ausführungen betrachten das Programmmanagement aus der Projektperspektive."
+},
+{
+"t": "h",
+"text": "Programme"
+},
+{
+"t": "p",
+"text": "Das (dreiphasige) HERMES-Phasenmodell für Programme ist eine Voraussetzung für die Integration der Projekte im Programm (s. nachfolgende Abbildung). Programme umfassen mehrere Projekte, die ein gemeinsames Ziel verfolgen und zeitlich überlappt durchgeführt werden. Das Programm sichert die projektübergreifende Steuerung und Führung der Projekte. Das Phasenmodell für Projekte erleichtert die Koordination und Steuerung der Projekte in einem Programm."
+},
+{
+"t": "abb",
+"datei": "assets/rhb/abb-26.png",
+"text": "Abbildung 26: Projekte zu Programmen zusammengefasst"
+},
+{
+"t": "p",
+"text": "Der Programmauftraggeber steuert das Programm. Je nach Programmorganisationsform (vgl. nachfolgende Abbildung) führt der Programmleiter das Programm und koordiniert die projektübergreifenden Aspekte und die Abhängigkeiten zwischen den Projekten. Der Projektleiter führt sein Projekt. Der Anwendervertreter definiert die Lösung."
+},
+{
+"t": "p",
+"text": "Die Steuerung des Projekts kann durch einen Projektausschuss (unter Leitung des Auftraggebers) und/oder übergeordnet durch einen Programmausschuss (unter Leitung des Programmauftraggebers) unterstützt werden. Aus Sicht der Controlling- und Vorgabestellen ist jedes einzelne Projekt ein eigenständiges Controlling-Objekt mit Vorgaben bezüglich Kosten, Zeit und Ergebnissen."
+},
+{
+"t": "p",
+"text": "Die Programmphase Programmabschluss kann erst dann freigegeben werden, wenn alle Projekte abgeschlossen sind."
+},
+{
+"t": "h",
+"text": "Organisationsformen"
+},
+{
+"t": "p",
+"text": "Wird ein Projekt Teil eines Programms, muss die Projektorganisation in die Programmorganisation integriert und verschiedene Rollen der Projektorganisation angepasst oder ersetzt werden. Betroffen sind primär die Rollen des Auftraggebers und des Projektleiters. Je nach gewählter Organisationsform für das Programm sind die Anpassungen unterschiedlich. Die Auswirkungen spielen sich vorwiegend im Steuerungs-, Führungs- und Kontrollbereich ab."
+},
+{
+"t": "p",
+"text": "Die für das Programm angepassten Rollenbeschreibungen werden im Projektmanagementplan aufgeführt."
+},
+{
+"t": "p",
+"text": "Die Darstellung in der nachfolgenden Abbildung zeigt schematisch drei denkbare Organisationsformen: eine als eigenständiges Projekt und zwei als Teile eines Programms."
+},
+{
+"t": "abb",
+"datei": "assets/abb/d1aecc09-129-drei-moegliche-grundvarianten-der-projektorganisation.svg",
+"text": "Abbildung 27: Drei mögliche Grundvarianten der Projektorganisation"
+},
+{
+"t": "p",
+"text": "Die minimal zu besetzenden Rollen im Projekt sind grau dargestellt. Programmspezifische Rollen sind blau umrandet und werden hier nicht weiter erläutert."
+},
+{
+"t": "p",
+"text": "Die nachfolgende Beschreibung erläutert die drei in der oberen Abbildung dargestellten Organisationsformen aus Projektsicht. Sie ist rudimentär und dient lediglich dem Allgemeinverständnis."
+},
+{
+"t": "h",
+"text": "Projektorganisation"
+},
+{
+"t": "p",
+"text": "Eine bestimmte Stammorganisation verantwortet den Erfolg des Projekts:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "der Auftraggeber ist verantwortlich für den Erfolg des Projekts und steuert das Projekt;"
+},
+{
+"text": "der Projektleiter führt das Projekt im Auftrag des Auftraggebers;"
+},
+{
+"text": "der Anwendervertreter verantwortet die Lösung."
+}
+]
+},
+{
+"t": "h",
+"text": "Programmorganisation 1"
+},
+{
+"t": "p",
+"text": "Mehrere Stammorganisationen verantworten den Erfolg der ihnen zugeordneten Projekte:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "der Programmleiter führt und koordiniert das Projekt und den Projektleiter aus der übergeordneten Programmsicht und stimmt sich mit dem Auftraggeber laufend ab;"
+},
+{
+"text": "der Auftraggeber ist verantwortlich für den Erfolg seines Projekts, wahrt die Interessen seiner Stammorganisation, steuert das Projekt im Auftrag des Programmauftraggebers und behandelt und löst mit ihm aufkommende Interessenkonflikte zwischen Programmzielen und denen seiner Stammorganisation;"
+},
+{
+"text": "der Projektleiter führt das Projekt im Auftrag des Auftraggebers, führt die programmspezifischen Anweisungen des Programmleiter aus und stimmt den Projektmanagementplan mit dem Programmleiter ab;"
+},
+{
+"text": "der Anwendervertreter verantwortet die Lösung."
+}
+]
+},
+{
+"t": "p",
+"text": "Diese Art der Programmorganisation verändert die Rollen des Auftraggebers und des Projektleiters. Der Auftraggeber rapportiert sowohl der eigenen Stammorganisation als auch dem Programmauftraggeber und muss im Rahmen seiner Entscheide beide Instanzen entsprechend berücksichtigen. Der Projektleiter wird durch den Programmleiter koordiniert."
+},
+{
+"t": "h",
+"text": "Programmorganisation 2"
+},
+{
+"t": "p",
+"text": "Eine bestimmte Stammorganisation verantwortet den Erfolg des Programms und aller daran beteiligten Projekte:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "der Programmleiter (aus der Sicht des Projektes in der Hierarchieebene Steuerung, aus jener des Programms in der Hierarchieebene Führung) steuert das Projekt und führt (siehe Rollenbeschreibung Auftraggeber) den Projektleiter, die Verantwortung für den Projekterfolg obliegt hingegen dem Programmauftraggeber;"
+},
+{
+"text": "der Projektleiter führt das Projekt im Auftrag des Programmleiters und stimmt mit ihm den Projektmanagementplan ab;"
+},
+{
+"text": "der Anwendervertreter verantwortet die Lösung."
+}
+]
+},
+{
+"t": "p",
+"text": "Diese Art der Programmorganisation verzichtet auf der Projektebene auf den Auftraggeber und ersetzt ihn durch den Programmleiter. Er übernimmt alle Aufgaben und Pflichten des Auftraggebers innerhalb eines Projekts. Der Projektleiter ist somit einem Programmleiter unterstellt, der in der Projektorganisation der Hierarchieebene Steuerung, in der Programmorganisation der Ebene Führung zugeordnet ist."
+}
+]
+},
+{
+"nummer": "6.2",
+"titel": "Übersicht der Rollen",
+"ebene": 2,
+"seite": 166,
+"bloecke": []
+},
+{
+"nummer": "6.2.1",
+"titel": "Standardrollen",
+"ebene": 3,
+"seite": 166,
+"bloecke": [
+{
+"t": "p",
+"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Rollen auf und zeigt deren Zuordnung zur Hierarchieebene und zur Partnergruppe."
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Hierarchieebene",
+"kopf": true
+},
+{
+"text": "Rolle",
+"kopf": true
+},
+{
+"text": "Anwender",
+"kopf": true
+},
+{
+"text": "Ersteller",
+"kopf": true
+},
+{
+"text": "Betreiber",
+"kopf": true
+}
+],
+[
+{
+"text": "Steuerung",
+"kopf": true
+},
+{
+"text": "Steuerungsrollen",
+"kopf": true
+},
+{
+"text": "X",
+"kopf": true
+},
+{
+"text": "X",
+"kopf": true
+},
+{
+"text": "X",
+"kopf": true
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Auftraggeber*"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektausschuss"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Qualitäts- und Risikomanager"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Führung"
+},
+{
+"text": "Führungsrollen"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Fachausschuss"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektleiter*"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektunterstützung"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Teilprojektleiter"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Ausführung"
+},
+{
+"text": "Ausführungsrollen"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Anwendervertreter*"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Betriebsverantwortlicher"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Business Analyst"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entwickler"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Umsetzungsorganisation"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "ISDS-Verantwortlicher"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "IT-Architekt"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Tester"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Testverantwortlicher"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+]
+],
+"titel": "Tabelle 19: Rollen und deren Zuordnung zur Hierarchieebene und zur Partnergruppe",
+"unten": true
+},
+{
+"t": "p",
+"text": "Die mit einem Stern (*) markierten minimal zu besetzenden Rollen werden benötigt, um die Anforderungen der Governance zu erfüllen. Die drei markierten Rollen sind für das Projekt, ungeachtet der gewählten Vorgehensweise (klassisch oder agil), unentbehrlich und sind zwingend in der Partnergruppe Anwender angesiedelt. Sie müssen in jedem Projekt besetzt sein:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Auftraggeber hat die Gesamtverantwortung für das Vorhaben und das Erreichen der Ziele."
+},
+{
+"text": "Der Projektleiter hat die alleinige Führungsverantwortung und verantwortet den reibungslosen Projektablauf, bei agiler Lösungsentstehung darf er jedoch nicht in die Umsetzungsorganisation, welche sich selbst organisiert, eingreifen."
+},
+{
+"text": "Der Anwendervertreter verantwortet die Produkt- beziehungsweise die fachliche Lösungsentstehung."
+}
+]
+},
+{
+"t": "p",
+"text": "Weitere zu besetzende Rollen werden abhängig von den Projektanforderungen zugewiesen."
+},
+{
+"t": "p",
+"text": "Die Ausführungsrollen, in Organigrammen mit Ausnahme des Anwendervertreters summarisch auch als Fachspezialisten bezeichnet, sind zahlreich und nicht abschliessend aufgeführt. Je nach Stammorganisation, oder der Art eines Vorhabens können weitere projektspezifische Ausführungsrollen dazukommen."
+},
+{
+"t": "p",
+"text": "Bei agiler Vorgehensweise werden während der Phase Umsetzung alle am Vorhaben beteiligten Ausführungsrollen in der Umsetzungsorganisation zusammengefasst. Die Rolle Umsetzungsorganisation ist eine Rollengruppe."
+}
+]
+},
+{
+"nummer": "6.2.2",
+"titel": "Individuelle Rollen",
+"ebene": 3,
+"seite": 167,
+"bloecke": [
+{
+"t": "p",
+"text": "Ergänzend zu den standardmässig bereitgestellten Rollen besteht die Möglichkeit, eigene fach-, organisations- oder vorhabenspezifische Rollen in eigene Projekte zu integrieren. Dies wird durch HERMES Online unterstützt und kommt insbesondere dann zum Tragen, wenn neue Module entwickelt und mit neuen Aufgaben und Ergebnissen versehen werden. Beispiele von individuellen Rollen sind Integrationsmanager, Logistiker, Immobilienverwalter, Einkäufer oder Facility Manager."
+}
+]
+},
+{
+"nummer": "6.2.3",
+"titel": "Rollenbesetzung",
+"ebene": 3,
+"seite": 167,
+"bloecke": []
+},
+{
+"nummer": "6.2.3.1",
+"titel": "Allgemeine Erläuterungen",
+"ebene": 4,
+"seite": 167,
+"bloecke": [
+{
+"t": "p",
+"text": "Für jede im Projekt benötigte Rolle wird die Rollenbesetzung festgelegt."
+},
+{
+"t": "p",
+"text": "Die Rollenbesetzung erfolgt gemäss den Projektanforderungen. Sie berücksichtigt die im Projekt erforderliche Erfahrung, die benötigte Kapazität und die Verfügbarkeit der Rolleninhaber. Die konkrete Projektorganisation und die Rollenbesetzung werden im Projektmanagementplan festgehalten."
+},
+{
+"t": "p",
+"text": "Bei der Rollenbesetzung müssen die folgenden Grundsätze beachtet werden, damit die Projekt-Governance eingehalten werden kann:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Eine Person kann mehrere Rollen wahrnehmen, sofern dadurch keine Interessenkonflikte entstehen."
+},
+{
+"text": "Eine Rolle kann von mehreren Personen wahrgenommen werden, sofern die Rolle eine Mehrfachbesetzung zulässt. Es gibt z. B. meistens mehrere Tester in einem Projekt, jedoch nur einen Auftraggeber."
+}
+]
+},
+{
+"t": "p",
+"text": "Nachfolgend sind Hinweise zur Rollenbesetzung einiger Rollen der Hierarchieebenen Steuerung, Führung und Ausführung aufgeführt."
+}
+]
+},
+{
+"nummer": "6.2.3.2",
+"titel": "Steuerung",
+"ebene": 4,
+"seite": 167,
+"bloecke": [
+{
+"t": "h",
+"text": "Auftraggeber"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Auftraggeber muss beim Anwender angesiedelt sein."
+},
+{
+"text": "Der Auftraggeber muss eine einzige natürliche Person aus der Stammorganisation sein."
+},
+{
+"text": "Der Auftraggeber initialisiert, finanziert und steuert das gesamte Vorhaben."
+},
+{
+"text": "Der Auftraggeber muss das Projekt in der Führung der Stammorganisation und den Controlling- und Vorgabestellen vertreten und in der Stammorganisation hierarchisch entsprechend hoch angesiedelt sein."
+},
+{
+"text": "Der Auftraggeber stellt sicher, dass die für den Projekterfolg massgebenden, vom Projektleiter identifizierten Stakeholder im Projekt vertreten sind."
+},
+{
+"text": "Die Rollen Auftraggeber und Projektleiter dürfen nicht durch dieselbe Person besetzt werden."
+}
+]
+},
+{
+"t": "h",
+"text": "Projektausschuss"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Auftraggeber bestimmt die Mitglieder des Projektausschusses."
+},
+{
+"text": "Für den Projekterfolg relevante Organisationen sind im Projektausschuss vertreten."
+},
+{
+"text": "Der Auftraggeber legt das Stimmrecht der Mitglieder des Projektausschusses fest."
+}
+]
+},
+{
+"t": "h",
+"text": "Qualitäts- und Risikomanager"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Je nach Projektgrösse und Risiken beauftragt der Auftraggeber eine Stelle mit dem Qualitäts- und Risikomanagement. Sie rapportiert direkt an den Auftraggeber."
+},
+{
+"text": "Die unabhängige Organisation, die den Qualitäts- und Risikomanager stellt, übernimmt keine weiteren Rollen im Projekt und muss die Unabhängigkeit des Mandats sicherstellen."
+}
+]
+}
+]
+},
+{
+"nummer": "6.2.3.3",
+"titel": "Führung",
+"ebene": 4,
+"seite": 168,
+"bloecke": [
+{
+"t": "h",
+"text": "Projektleiter"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Auftraggeber bestimmt den Projektleiter."
+},
+{
+"text": "Der Projektleiter muss beim Anwender angesiedelt sein und ausschliesslich dessen Interessen im Projekt vertreten. Dies gilt auch dann, wenn der Rolleninhaber organisatorisch anderweitig unterstellt oder angesiedelt ist (z. B. externe Rekrutierung oder Poolorganisation). Auf eine Bereitstellung durch Partnergruppen Ersteller oder Betreiber ist aufgrund von potenziellen Interessenkonflikten sowie wegen der Sicherstellung der Governance zu verzichten."
+},
+{
+"text": "Der Projektleiter führt das Projekt und verantwortet den reibungslosen Projektablauf inklusive aller Teilprojekte."
+},
+{
+"text": "Der Projektleiter kann zugleich ein Teilprojektleiter sein."
+},
+{
+"text": "Übernimmt der Projektleiter zusätzlich eine Ausführungsrolle, muss durch den Auftraggeber sichergestellt werden, dass genügend Kapazität für die Projektleitung zur Verfügung steht."
+}
+]
+},
+{
+"t": "h",
+"text": "Teilprojektleiter"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Projektleiter bestimmt den Teilprojektleiter."
+},
+{
+"text": "Der Teilprojektleiter sollte beim Anwender angesiedelt sein, aber in jedem Fall ausschliesslich die Anwender-Interessen im Projekt vertreten. Dies gilt insbesondere dann, wenn der Rolleninhaber organisatorisch anderweitig unterstellt oder angesiedelt ist. Eine Bereitstellung durch Partnergruppen Ersteller oder Betreiber kann ebenfalls in Betracht gezogen werden (die Gesamtverantwortung obliegt dem Projektleiter)."
+},
+{
+"text": "Der Teilprojektleiter führt das Teilprojekt und verantwortet den reibungslosen Projektablauf gegenüber dem Projektleiter."
+},
+{
+"text": "Übernimmt der Teilprojektleiter zusätzlich eine Ausführungsrolle, muss durch den Projektleiter sichergestellt werden, dass genügend Kapazität für die Teilprojektleitung zur Verfügung steht."
+}
+]
+}
+]
+},
+{
+"nummer": "6.2.3.4",
+"titel": "Ausführung",
+"ebene": 4,
+"seite": 169,
+"bloecke": [
+{
+"t": "h",
+"text": "Generell"
+},
+{
+"t": "p",
+"text": "Die Verantwortung, Kompetenzen und Fähigkeiten aller Ausführungsrollen bleiben unabhängig davon, ob die Rollen in einem Projektteam, oder in einem Teilprojektteam mitwirken, stets unverändert."
+},
+{
+"t": "h",
+"text": "Anwendervertreter"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Auftraggeber bestimmt den Anwendervertreter."
+},
+{
+"text": "Der Anwendervertreter muss beim Anwender angesiedelt sein. Auf eine Bereitstellung durch Ersteller oder Betreiber ist aufgrund von fehlenden Kenntnissen des Anwenderumfelds und potenziellen Interessenkonflikten zu verzichten."
+},
+{
+"text": "Der Anwendervertreter verantwortet die fachliche Ausgestaltung der Lösung."
+},
+{
+"text": "Übernimmt der Anwendervertreter zusätzlich eine weitere Ausführungsrolle, muss durch den Auftraggeber sichergestellt werden, dass genügend Kapazität für die Anwendervertretung zur Verfügung steht."
+},
+{
+"text": "Richtet sich bei der Erarbeitung der Lösung nach den zugeteilten Ressourcen aus."
+}
+]
+},
+{
+"t": "h",
+"text": "Business Analyst"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Der Business Analyst kann aufgrund seiner Kenntnisse zusätzlich die Rolle des Anwendervertreters übernehmen. Dies setzt jedoch fundierte Kenntnisse des betreffenden Fachbereichs voraus, für den die Lösung erarbeitet wird."
+}
+]
+},
+{
+"t": "h",
+"text": "Tester"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Jede im Projekt vertretene Partnergruppe (Anwender, Ersteller, Betreiber) testet in ihrem Verantwortungsbereich."
+}
+]
+},
+{
+"t": "h",
+"text": "Testverantwortlicher"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Jede im Projekt vertretene Partnergruppe (Anwender, Ersteller, Betreiber) kann in ihrem Verantwortungsbereich einen Testverantwortlichen einsetzen."
+}
+]
+}
+]
+},
+{
+"nummer": "6.3",
+"titel": "Erläuterung der Rollenbeschreibung",
+"ebene": 2,
+"seite": 169,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Rollen beschreiben die Verantwortung, die Kompetenz und die benötigten Fähigkeiten der Projektbeteiligten. Sie bilden die Grundlage für ein gemeinsames Verständnis. Die Rollen sind bestimmten Aufgaben und Ergebnissen zugeordnet."
+},
+{
+"t": "p",
+"text": "Für jede Rolle gibt es eine Rollenbeschreibung, die stets gleich strukturiert ist:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Beschreibung vermittelt das Verständnis der Rolle."
+},
+{
+"text": "Verantwortung beschreibt, sofern zutreffend, die Verantwortung der Rolle."
+},
+{
+"text": "Kompetenzen beschreiben, sofern zutreffend, die Befugnisse der Rolle."
+},
+{
+"text": "Fähigkeiten beschreiben, welche Kenntnisse eine Person benötigt, um die Rolle wahrnehmen zu können. Bei der Beschreibung der Fähigkeiten wird bewusst nicht zwischen Kenntnissen und Erfahrung unterschieden, da der Grad der benötigten Fähigkeiten stark vom Projekt abhängig ist."
+},
+{
+"text": "Beziehungen (sofern relevant) zeigen pro Modul, für welche konkreten Aufgaben die Rolle verantwortlich ist und welche weitere Rollen an der Ergebniserstellung beteiligt sind. Hat die Rolle keine Aufgabenverantwortung, werden Beziehungen nicht aufgeführt.",
+"items": [
+{
+"text": "Die für die Aufgabe verantwortliche Rolle trägt auch die Verantwortung für die Erarbeitung der Ergebnisse und für die Ergebnisse selbst."
+},
+{
+"text": "Die an der Erarbeitung beteiligten Rollen sind nicht abschliessend und müssen projektspezifisch festgelegt werden."
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "6.4",
+"titel": "Beschreibung der Rollen",
+"ebene": 2,
+"seite": 170,
+"bloecke": []
+},
+{
+"nummer": "6.4.1",
+"titel": "Steuerungsrollen",
+"ebene": 3,
+"seite": 170,
+"bloecke": []
+},
+{
+"nummer": "6.4.1.1",
+"titel": "Auftraggeber",
+"ebene": 4,
+"seite": 170,
+"element": "rolle-auftraggeber",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/auftraggeber.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Auftraggeber ist verantwortlich für die Ergebnisse des Projekts und die Erreichung der gesetzten Ziele innerhalb der gesetzten Rahmenbedingungen."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Initiieren und Steuern des Vorhabens"
+},
+{
+"text": "Gesamtverantwortung für das Vorhaben und das Erreichen der Ziele"
+},
+{
+"text": "Abstimmung der Ziele mit den übergeordneten Strategien, Vorgaben und Zielen der Stammorganisation"
+},
+{
+"text": "Bereitstellen der Ressourcen und Sicherstellen des wirtschaftlichen Einsatzes (finanziell, personell, Infrastruktur)"
+},
+{
+"text": "Rechtzeitige Entscheidungen über Anträge und Massnahmen"
+},
+{
+"text": "Bestimmen der Mitglieder des Projektausschusses und Führen des Projektausschusses"
+},
+{
+"text": "Bestimmen und Steuern des Projektleiters, Festlegen seiner Kompetenzen"
+},
+{
+"text": "Ausreichende Mitwirkung des Fachbereichs sicherstellen"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Entscheidungskompetenz im Rahmen der Kompetenzordnung durch die Stammorganisation"
+},
+{
+"text": "Zuteilung finanzieller und personeller Ressourcen sowie der Infrastruktur für das Projekt"
+},
+{
+"text": "Eskalation zur Stammorganisation"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Geschäftsverständnis und Kenntnisse im Fachbereich"
+},
+{
+"text": "Kenntnisse der Vorgaben der Stammorganisation an das Projekt (z. B. für Beschaffungen, Finanzierung, Controlling, Sicherheit), an die Projektsteuerung und an die Projektorganisation"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse zur Sicherstellung des effizienten und effektiven Einsatzes der finanziellen und personellen Ressourcen"
+},
+{
+"text": "Vertiefte Kenntnisse der Projektinitialisierung und Projektsteuerung"
+},
+{
+"text": "Kenntnisse von HERMES, nachgewiesen durch einen Kursbesuch"
+},
+{
+"text": "Kommunikationsfähigkeit, um das Projekt gegen innen und aussen zu vertreten, die Stakeholder zu managen und Konflikte zu lösen"
+},
+{
+"text": "Entscheidungsfreudigkeit und Durchsetzungsvermögen"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "Projektsteuerung"
+},
+{
+"text": "Entscheid Projektinitialisierungsfreigabe treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektinitialisierungsauftrag"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Projektinitialisierungsfreigabe"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Projektinitialisierungsfreigabe"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Durchführungsfreigabe treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Meilenstein Durchführungsfreigabe"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Durchführungsfreigabe"
+},
+{
+"text": "Auftraggeber, Projektleiter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Durchführungsauftrag"
+},
+{
+"text": "Auftraggeber, Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Projektabschluss treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Checkliste Projektabschluss"
+},
+{
+"text": "Auftraggeber, Projektleiter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Projektabschluss"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": "Auftraggeber, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Phasenfreigabe treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Checkliste Phasenfreigabe"
+},
+{
+"text": "Auftraggeber, Projektleiter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Phasenfreigabe"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": "Auftraggeber, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Projektabbruch treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Checkliste Projektabbruch"
+},
+{
+"text": "Auftraggeber, Projektleiter, Anwendervertreter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektschlussbeurteilung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": "Auftraggeber, Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Projektabschluss"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Releasefreigabe treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": "Auftraggeber, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Releasefreigabe"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Releasefreigabe"
+},
+{
+"text": "Auftraggeber, Projektleiter, Anwendervertreter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Phasenfreigabe Abschluss treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Checkliste Phasenfreigabe Abschluss"
+},
+{
+"text": "Auftraggeber, Projektleiter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Phasenfreigabe Abschluss"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": "Auftraggeber, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projekt steuern"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": "Auftraggeber, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss"
+}
+],
+[
+{
+"text": "Beschaffung"
+},
+{
+"text": "Entscheid Ausschreibung treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Checkliste Ausschreibung"
+},
+{
+"text": "Auftraggeber, Projektleiter, Anwendervertreter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Ausschreibung"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Zuschlag treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Checkliste Zuschlag"
+},
+{
+"text": "Auftraggeber, Projektleiter, Anwendervertreter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Zuschlag"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Publikation"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+],
+[
+{
+"text": "Einführungsorganisation"
+},
+{
+"text": "Entscheid Betriebsaufnahme treffen"
+},
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Checkliste Betriebsaufnahme"
+},
+{
+"text": "Auftraggeber, Projektleiter, Qualitäts- und Risikomanager"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Betriebsaufnahme"
+},
+{
+"text": "Auftraggeber, Projektleiter, Projektausschuss"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "Auftraggeber, Projektleiter"
+}
+]
+],
+"titel": "Tabelle 20: Aufgaben, die der Auftraggeber verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+},
+{
+"nummer": "6.4.1.2",
+"titel": "Projektausschuss",
+"ebene": 4,
+"seite": 174,
+"element": "rolle-projektausschuss",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/projektausschuss.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Projektausschuss ist eine Rollengruppe. Die Mitglieder des Projektausschusses unterstützen den Auftraggeber in seinen Aufgaben und bringen die Anliegen der Organisation, die sie vertreten, in den Ausschuss ein. Der Auftraggeber organisiert und leitet die Sitzungen des Projektausschusses."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Beratung und Unterstützung des Auftraggebers in seinen Aufgaben"
+},
+{
+"text": "Unterstützung und Verankerung des Projekts in der Organisation, die das Mitglied des Projektausschusses vertritt"
+},
+{
+"text": "Frühzeitiges Einbringen von Anliegen der vertretenen Organisation"
+},
+{
+"text": "Mitwirkung bei der Erarbeitung von Problemlösungen"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann einen Projektreview oder ein Projektaudit beantragen"
+},
+{
+"text": "Empfehlungskompetenz:",
+"items": [
+{
+"text": "Empfehlungen zu Abschluss und Freigabe von Phasen an den Auftraggeber"
+},
+{
+"text": "Empfehlungen zu risikominimierenden Massnahmen (z. B. zur Einsetzung des Projektcontrollings oder des Qualitäts- und Risikomanagers) an den Auftraggeber"
+}
+]
+},
+{
+"text": "Kann alle für die Steuerung und Beurteilung des Projekts benötigten Informationen einholen"
+},
+{
+"text": "Kann an Abstimmungen mitwirken, sofern er stimmberechtigt ist"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Übergeordnete Kenntnisse im Fachbereich"
+},
+{
+"text": "Vertiefte Kenntnisse im Spezialgebiet, das vertreten wird"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse zur Sicherstellung des effizienten und effektiven Einsatzes der finanziellen und personellen Ressourcen"
+},
+{
+"text": "Vertiefte Kenntnisse in der Projektsteuerung"
+},
+{
+"text": "Kenntnisse von HERMES, idealerweise mittels eines Kursbesuchs"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+}
+]
+}
+]
+},
+{
+"nummer": "6.4.1.3",
+"titel": "Qualitäts- und Risikomanager",
+"ebene": 4,
+"seite": 175,
+"element": "rolle-qualitaets-und-risikomanager",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/qualitaets-und-risikomanager.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Qualitäts- und Risikomanager unterstützt den Auftraggeber mit einer unabhängigen Beurteilung des Projekts. Er gibt Empfehlungen für Massnahmen zur Erreichung der Ziele ab."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Beurteilung der Einhaltung der Vorgaben der Stammorganisation"
+},
+{
+"text": "Beurteilung des Vorgehens und der Ergebnisse des Projektmanagements, der Projektorganisation und der Zusammenarbeit im Projekt"
+},
+{
+"text": "Umfassende Beurteilung der Prozesse der Projektsteuerung, Projektführung und Projektabwicklung bei allen Projektbeteiligten"
+},
+{
+"text": "Beurteilung der Projektergebnisse aus qualitativer Sicht"
+},
+{
+"text": "Beurteilung des Projektstands und der Prognosen"
+},
+{
+"text": "Beurteilung der Risiken"
+},
+{
+"text": "Empfehlung von Massnahmen zum Umgang mit Risiken und zur Erreichung der gesetzten Ziele"
+},
+{
+"text": "Transparente Berichterstattung an den Auftraggeber"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Empfehlungen zu Abschluss und Freigabe von Phasen an den Auftraggeber"
+},
+{
+"text": "Empfehlungen zu Massnahmen an den Auftraggeber"
+},
+{
+"text": "Kann alle für die Beurteilung des Projekts benötigten Informationen einholen (mit direktem Zugang zu allen Projektbeteiligten, inkl. Umsetzungsorganisation)"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vertiefte Kenntnisse im Projektmanagement, im Besonderen in Bezug auf die Aspekte Controlling, Qualitätssicherung und Risikomanagement"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse"
+},
+{
+"text": "Vertiefte Kenntnisse von HERMES, nachgewiesen durch ein Zertifikat"
+},
+{
+"text": "Bei agiler Umsetzung vertiefte Kenntnisse der eingesetzten agilen Methode"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+},
+{
+"text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Berichte zu erstellen"
+}
+]
+}
+]
+},
+{
+"nummer": "6.4.2",
+"titel": "Führungsrollen",
+"ebene": 3,
+"seite": 176,
+"bloecke": []
+},
+{
+"nummer": "6.4.2.1",
+"titel": "Fachausschuss",
+"ebene": 4,
+"seite": 176,
+"element": "rolle-fachausschuss",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/fachausschuss.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Fachausschuss ist eine Rollengruppe, die beim klassischen Vorgehen den Projektleiter durch die Beurteilung von Ergebnissen unterstützt."
+},
+{
+"t": "p",
+"text": "Die Mitglieder des Fachausschusses bringen die Anliegen der Organisationseinheit ein, die sie vertreten. Der Projektleiter organisiert und leitet die Sitzungen des Fachausschusses."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Beratung und Unterstützung des Projektleiters bei der Beurteilung von fachlichen Fragestellungen und Ergebnissen"
+},
+{
+"text": "Unterstützung und Verankerung des Projekts in der von ihm vertretenen Organisation"
+},
+{
+"text": "Frühzeitiges Einbringen von Anliegen der vertretenen Organisation"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Empfehlungen zu Ergebnissen zuhanden des Projektleiters abgeben"
+},
+{
+"text": "Empfehlungen zu qualitätssichernden Massnahmen zuhanden des Projektleiters abgeben"
+},
+{
+"text": "Kann auf alle benötigten Informationen zugreifen"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vertiefte Kenntnisse im Fachbereich und im vertretenen Spezialgebiet"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse für die Bewertung und Priorisierung der Anforderungen und die Beurteilung von Varianten sowie der Wirtschaftlichkeit"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+}
+]
+}
+]
+},
+{
+"nummer": "6.4.2.2",
+"titel": "Projektleiter",
+"ebene": 4,
+"seite": 176,
+"element": "rolle-projektleiter",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/projektleiter.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Projektleiter führt das Projekt im Auftrag des Auftraggebers. Er führt und koordiniert das Projekt unabhängig von der fachlichen Ausrichtung der Lösung und des gewählten Entwicklungsvorgehens."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Führung des Projekts zur Erreichung der gesetzten Ziele (insb. Zeit, Kosten, Qualität)"
+},
+{
+"text": "Wirtschaftlicher und nachhaltiger Einsatz der Ressourcen"
+},
+{
+"text": "Führung des Berichtswesens und umfassende, regelmässige und situative Information der Projektsteuerung, damit sie ihre Steuerungs- und Entscheidungsaufgaben wahrnehmen kann"
+},
+{
+"text": "Identifizierung von Stakeholdern, Rekrutierung dieser für das Projekt und Analyse deren Grundinteressen"
+},
+{
+"text": "Risiken managen und Qualitätssicherung führen"
+},
+{
+"text": "Einhaltung der Organisationsvorgaben (Governance)"
+},
+{
+"text": "Sicherstellung des rechtzeitigen Einbezugs von zuständigen Controlling- und Vorgabestellen, damit ihre berechtigten Anforderungen erfüllt werden"
+},
+{
+"text": "Regelung der im Projekt ergänzend zu HERMES einzusetzenden Methoden, Praktiken und Werkzeuge und Sicherstellung ihrer Anwendung, sofern diese nicht in der Hoheit der agilen Umsetzungsorganisation liegen"
+},
+{
+"text": "Umsetzen der Entscheide Steuerung und Führung"
+},
+{
+"text": "Durchführung von Beschaffungen unter Einhaltung der Vorgaben"
+},
+{
+"text": "Überprüfung der Einhaltung des SLAs (Dienstleistungsniveau Vereinbarung) durch die Vertragspartner im Projekt"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann auf alle Projektinformationen zugreifen"
+},
+{
+"text": "Kompetenz bezüglich des Einsatzes der freigegebenen Ressourcen"
+},
+{
+"text": "Alleinige Projektführungsverantwortung und Anordnungskompetenz, ohne bei agiler Vorgehensweise in die Hoheit der Umsetzungsorganisation einzugreifen, solange es sich im Rahmen des Durchführungsauftrages bewegt"
+},
+{
+"text": "Entscheidungskompetenz im mit dem Auftraggeber definierten Rahmen"
+},
+{
+"text": "In Absprache mit dem Auftraggeber:",
+"items": [
+{
+"text": "Projekt in Teilprojekte aufteilen,"
+},
+{
+"text": "Teilprojektleiter bestimmen und"
+},
+{
+"text": "Führungsaufgaben delegieren."
+}
+]
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kenntnisse des Projektumfelds"
+},
+{
+"text": "Kenntnisse der Vorgaben der Stammorganisation an das Projekt, an den Betrieb und die Anwendung der Lösung (z. B. für Beschaffungen, Finanzierung, Controlling, Sicherheit)"
+},
+{
+"text": "Vertiefte Kenntnisse in Projektmanagement (Hauptkriterium)"
+},
+{
+"text": "Vertiefte Kenntnisse von HERMES, nachgewiesen durch ein Zertifikat"
+},
+{
+"text": "Gute Kenntnisse der im Projekt angewendeten Methoden und Praktiken"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse für die Beurteilung von Varianten und Wirtschaftlichkeit sowie für die Sicherstellung des effizienten und effektiven Einsatzes der finanziellen und personellen Ressourcen"
+},
+{
+"text": "Entscheidungsfreudigkeit und Durchsetzungsvermögen"
+},
+{
+"text": "Führungskompetenz"
+},
+{
+"text": "Kommunikationsfähigkeit,",
+"items": [
+{
+"text": "um das Projekt gegen innen und aussen zu vertreten;"
+},
+{
+"text": "um die Stakeholder zu managen und Konflikte zu lösen;"
+},
+{
+"text": "um stufengerecht kommunizieren zu können (z. B. bei Präsentationen im Projektausschuss, vor Gremien der Stammorganisation, usw.)"
+}
+]
+},
+{
+"text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Projektberichte zu erstellen"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "Projektführung"
+},
+{
+"text": "Durchführungsauftrag erarbeiten"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Durchführungsauftrag"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Risiken managen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Probleme behandeln und Erfahrungen nutzen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": "Projektleiter, Auftraggeber, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projekt führen und kontrollieren"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Arbeitsauftrag"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Protokoll"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Releaseabschluss vorbereiten"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Releasebericht"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan erarbeiten"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Projektleiter, Auftraggeber"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Phasenfreigabe vorbereiten"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Phasenbericht"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Änderungen managen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Änderungsstatusliste"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Änderungsantrag"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Business Analyst, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Leistungen vereinbaren und steuern"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Evaluationsbericht"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Vereinbarung"
+},
+{
+"text": "Projektleiter, Auftraggeber, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Offertanfrage"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Angebot"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Stakeholder managen und informieren"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Stakeholderliste"
+},
+{
+"text": "Projektleiter, Auftraggeber, Business Analyst, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Projektleiter, Auftraggeber"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Qualitätssicherung führen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Prüfprotokoll"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektabschluss vorbereiten"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Projektschlussbeurteilung"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": "Projektleiter, Auftraggeber, Anwendervertreter"
+}
+],
+[
+{
+"text": "Projektgrundlagen"
+},
+{
+"text": "Rechtsgrundlagenanalyse erarbeiten"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Rechtsgrundlagenanalyse"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Weiteres Vorgehen treffen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Weiteres Vorgehen"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Studie"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Weiteres Vorgehen"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Studie erarbeiten"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Stakeholderliste"
+},
+{
+"text": "Projektleiter, Auftraggeber, Anwendervertreter, Business Analyst, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Studie"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Business Analyst, IT-Architekt, Projektunterstützung"
+}
+],
+[
+{
+"text": "Beschaffung"
+},
+{
+"text": "Vereinbarung erarbeiten"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Vereinbarung"
+},
+{
+"text": "Projektleiter, Auftraggeber, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Ausschreibung durchführen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Ausschreibungsunterlagen"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Angebot"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Betriebsverantwortlicher, Entwickler"
+}
+],
+[
+{
+"text": "Produkt"
+},
+{
+"text": "Entscheid Produktkonzept treffen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Produktkonzept"
+},
+{
+"text": "Projektleiter, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Produktkonzept"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": "IT-System"
+},
+{
+"text": "Entscheid Lösungsarchitektur treffen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Meilenstein Lösungsarchitektur"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Lösungsarchitektur"
+},
+{
+"text": "Projektleiter, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": "Einführungsorganisation"
+},
+{
+"text": "Entscheid Abnahme treffen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Abnahmeprotokoll"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Betriebsverantwortlicher, Entwickler, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Abnahme"
+},
+{
+"text": "Projektleiter, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Abnahme"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Entscheid Vorabnahme treffen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Meilenstein Vorabnahme"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Vorabnahme"
+},
+{
+"text": "Projektleiter, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Abnahmeprotokoll"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Betriebsverantwortlicher, Entwickler, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": "IT-Migration"
+},
+{
+"text": "Entscheid Abnahme Migration treffen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Abnahmeprotokoll"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Betriebsverantwortlicher, Entwickler, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein Abnahme Migration"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "Projektleiter, Anwendervertreter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste Abnahme Migration"
+},
+{
+"text": "Projektleiter, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": "ISDS"
+},
+{
+"text": "Entscheid ISDS-Konzept treffen"
+},
+{
+"text": "Projektleiter"
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "Projektleiter, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Checkliste ISDS-Konzept"
+},
+{
+"text": "Projektleiter, Qualitäts- und Risikomanager, Projektunterstützung"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Meilenstein ISDS-Konzept"
+},
+{
+"text": "Projektleiter, Anwendervertreter"
+}
+]
+],
+"titel": "Tabelle 21: Aufgaben, die der Projektleiter verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+},
+{
+"nummer": "6.4.2.3",
+"titel": "Projektunterstützung",
+"ebene": 4,
+"seite": 183,
+"element": "rolle-projektunterstuetzung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/projektunterstuetzung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Projektunterstützung hilft dem Projektleiter in organisatorischen und administrativen Belangen. Die Rolle wird auch als Project Office (PO) bezeichnet."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Verantwortung der an die Rolle delegierten Aktivitäten"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann im Rahmen der an die Rolle delegierten Aktivitäten:",
+"items": [
+{
+"text": "Informationen einfordern, erteilen, aufbereiten und bereitstellen"
+},
+{
+"text": "Anordnungen treffen"
+}
+]
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kenntnisse des Projektumfelds"
+},
+{
+"text": "Vertiefte Kenntnisse in Projektmanagement"
+},
+{
+"text": "Kenntnisse der in seinen Aufgaben anzuwendenden Methoden und Praktiken"
+},
+{
+"text": "Vertiefte Kenntnisse von HERMES, nachgewiesen durch ein Zertifikat"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+},
+{
+"text": "Gute schriftliche Ausdrucksfähigkeit und Fähigkeit zur Erstellung von Dokumentationen"
+}
+]
+}
+]
+},
+{
+"nummer": "6.4.2.4",
+"titel": "Teilprojektleiter",
+"ebene": 4,
+"seite": 183,
+"element": "rolle-teilprojektleiter",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/teilprojektleiter.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Teilprojektleiter trägt die Verantwortung für das Teilprojekt im Auftrag des Projektleiters. Er verfügt dabei über alle Kompetenzen, um die vom Projektleiter delegierten Tätigkeiten wahrzunehmen."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Führung des Teilprojekts zur Erreichung der mit dem Projektleiter vereinbarten Ziele (Zeit, Kosten, Qualität)"
+},
+{
+"text": "Einhaltung der mit dem Projektleiter vereinbarten Richtlinien im eigenen Teilprojekt"
+},
+{
+"text": "Wirtschaftlicher und nachhaltiger Einsatz der Ressourcen im eigenen Bereich"
+},
+{
+"text": "Führung des Berichtswesens im eigenen Teilprojekt und umfassende, regelmässige und situative Information des Projektleiters, damit dieser seinen Führungs- und Kommunikationsaufgaben nachkommen kann"
+},
+{
+"text": "Umsetzen der Entscheide Steuerung und Führung"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann auf alle Informationen seines Teilprojekts zugreifen"
+},
+{
+"text": "Kompetenz bezüglich des Einsatzes der für das Teilprojekt freigegebenen Ressourcen"
+},
+{
+"text": "Alleinige Führungsverantwortung und Anordnungskompetenz im Teilprojekt, ohne bei agiler Vorgehensweise in die Hoheit der Umsetzungsorganisation (im Teilprojekt) einzugreifen"
+},
+{
+"text": "Entscheidungskompetenz im mit dem Projektleiter definierten Umfang (im Rahmen der Kompetenzen des Projektleiters)"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kenntnisse des Projektumfelds"
+},
+{
+"text": "Kenntnisse der Vorgaben der Stammorganisation an das Projekt und an den Betrieb der Anwendung oder an die Anwendung des Produkts"
+},
+{
+"text": "Vertiefte Kenntnisse im Projektmanagement"
+},
+{
+"text": "Vertiefte Kenntnisse von HERMES, nachgewiesen durch ein Zertifikat"
+},
+{
+"text": "Kenntnisse der im Projekt angewendeten Methoden und Praktiken"
+},
+{
+"text": "Kenntnisse von Methoden und Techniken für die Beurteilung von Varianten und der Wirtschaftlichkeit"
+},
+{
+"text": "Entscheidungsfreudigkeit und Durchsetzungsvermögen"
+},
+{
+"text": "Führungskompetenz"
+},
+{
+"text": "Kommunikationsfähigkeit"
+},
+{
+"text": "Angemessene schriftliche Ausdrucksfähigkeit"
+}
+]
+}
+]
+},
+{
+"nummer": "6.4.3",
+"titel": "Ausführungsrollen",
+"ebene": 3,
+"seite": 184,
+"bloecke": []
+},
+{
+"nummer": "6.4.3.1",
+"titel": "Anwendervertreter",
+"ebene": 4,
+"seite": 184,
+"element": "rolle-anwendervertreter",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/anwendervertreter.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Anwendervertreter vertritt im Projekt die Anwender und deren Interessen. Er verantwortet die mit den Fachbereichen abgestimmten und eindeutigen fachlichen Lösungsanforderungen als stabile Basis für die Realisierung sowie den fachlichen Erfolg der Lösungsentstehung. Er ist sowohl für die Umsetzungsorganisation als auch für die Stakeholder der Ansprechpartner und bildet damit in der Projektorganisation einen verbindlichen Kommunikationskanal. Er wird vom Auftraggeber ernannt, vom Projektleiter geführt, ist jedoch während der Lösungsentstehung in fach- und lösungsspezifischen Fragen und Entscheidungen im Rahmen des Durchführungsauftrages eigenständig."
+},
+{
+"t": "p",
+"text": "Bei agiler Vorgehensweise fungiert er als Schnittstelle zur Umsetzungsorganisation. Der Rolleninhaber nimmt in diesem Fall durch zusätzliche Übernahme der aus dem im agilen Umfeld bekannten Rolle „Product Owner“ seine fachliche Verantwortung wahr. Alle Detailaufgaben und Verantwortlichkeiten innerhalb der agilen Umsetzungsorganisation sind durch die zur Anwendung kommende agile Methode definiert."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Verantwortung für den Leistungsumfang und den fachlichen Erfolg der Lieferergebnisse"
+},
+{
+"text": "Erhebung aller lösungsspezifischen Anforderungen"
+},
+{
+"text": "Verantwortung für die Lösungsanforderungen"
+},
+{
+"text": "Transparenzhaltung und Verfügbarmachung der Lösungsanforderungen für alle am Projekt Beteiligten"
+},
+{
+"text": "Einbringen der vollständigen, mit den Fachbereichen und Kunden abgestimmten fachlichen Anforderungen und Funktionalität, Vertretung der Stakeholderinteressen"
+},
+{
+"text": "Maximierung der Wertschöpfung der Entwicklungsarbeit (Wertmaximierung der Lösung)"
+},
+{
+"text": "Einbindung der Stakeholder gemäss Stakeholderliste in die Lösungsentstehung"
+},
+{
+"text": "Einhaltung der Anforderungen an ISDS"
+},
+{
+"text": "Bei agiler Umsetzung Schnittstelle zur Umsetzungsorganisation"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann auf alle benötigten Informationen zugreifen"
+},
+{
+"text": "Entscheid über die Eigenschaften der Lösung inklusive der Qualitätsanforderungen im Rahmen des Durchführungsauftrags"
+},
+{
+"text": "Definition der Akzeptanzkriterien"
+},
+{
+"text": "Zusammenarbeit mit Stakeholdern und Umsetzungsorganisation"
+},
+{
+"text": "Mitsprache bei der Festlegung von Anforderungen an und beim Abschluss der SLAs"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vertiefte Kenntnisse im Fachbereich"
+},
+{
+"text": "Kenntnisse im Projektmanagement und von HERMES"
+},
+{
+"text": "Vertiefte Kenntnisse im klassischen und agilen Entwicklungsmanagement"
+},
+{
+"text": "Kenntnisse der Methoden und Praktiken für Entwicklungsmanagement, Design, Spezifikation"
+},
+{
+"text": "Betriebswirtschaftliche Grundkenntnisse"
+},
+{
+"text": "Kenntnisse des Projektumfelds"
+},
+{
+"text": "Kenntnisse der Vorgaben der Stammorganisation an den Betrieb der Anwendung (z. B. für Beschaffungen, Finanzierung, Controlling, Sicherheit) oder an die Anwendung der Lieferergebnisses"
+},
+{
+"text": "Fähigkeit zur Erhebung, Formulierung, Bewertung und Priorisierung von Anforderungen und Erstellung von Änderungsanträgen"
+},
+{
+"text": "Gute schriftliche Ausdrucksfähigkeit"
+},
+{
+"text": "Fähigkeit, zu abstrahieren und zu vereinfachen"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+},
+{
+"text": "Visionäres Denken"
+},
+{
+"text": "Durchsetzungsvermögen"
+},
+{
+"text": "Natürliche Autorität"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "Projektgrundlagen"
+},
+{
+"text": "Beschaffungsanalyse erarbeiten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Beschaffungsanalyse"
+},
+{
+"text": "Anwendervertreter, Projektleiter"
+}
+],
+[
+{
+"text": "Beschaffung"
+},
+{
+"text": "Ausschreibung erarbeiten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Ausschreibungsunterlagen"
+},
+{
+"text": "Anwendervertreter, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Angebote bewerten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Evaluationsbericht"
+},
+{
+"text": "Anwendervertreter, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Angebotsprotokoll"
+},
+{
+"text": "Anwendervertreter, Projektleiter"
+}
+],
+[
+{
+"text": "Organisation"
+},
+{
+"text": "Stakeholderinteressen vertreten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": "Anwendervertreter"
+}
+],
+[
+{
+"text": "Produkt"
+},
+{
+"text": "Produktkonzept erarbeiten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Produktkonzept"
+},
+{
+"text": "Anwendervertreter, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Stakeholderinteressen vertreten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": "Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsanforderungen erarbeiten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Situationsanalyse"
+},
+{
+"text": "Anwendervertreter, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": "Anwendervertreter, Business Analyst"
+}
+],
+[
+{
+"text": "IT-System"
+},
+{
+"text": "Stakeholderinteressen vertreten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": "Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsanforderungen erarbeiten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": "Anwendervertreter, IT-Architekt, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Situationsanalyse"
+},
+{
+"text": "Anwendervertreter, IT-Architekt, Business Analyst"
+}
+],
+[
+{
+"text": "Einführungsorganisation"
+},
+{
+"text": "Einführungsmassnahmen durchführen"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Einführungsmassnahmen durchgeführt"
+},
+{
+"text": "Anwendervertreter, Projektleiter, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Einführungskonzept erarbeiten"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "Anwendervertreter, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Einführungskonzept"
+},
+{
+"text": "Anwendervertreter, Projektleiter, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Einführungsmassnahmen realisieren"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "Einführungsmassnahmen realisiert"
+},
+{
+"text": "Anwendervertreter, Projektleiter, Business Analyst"
+}
+],
+[
+{
+"text": "ISDS"
+},
+{
+"text": "ISDS-Konzept realisieren"
+},
+{
+"text": "Anwendervertreter"
+},
+{
+"text": "ISDS-Konzept"
+},
+{
+"text": "Anwendervertreter, Projektleiter, Betriebsverantwortlicher, ISDS-Verantwortlicher, Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "ISDS-Massnahmen realisiert"
+},
+{
+"text": "Anwendervertreter, Projektleiter, Betriebsverantwortlicher, ISDS-Verantwortlicher, IT-Architekt"
+}
+]
+],
+"titel": "Tabelle 22: Aufgaben, die der Anwendervertreter verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+},
+{
+"nummer": "6.4.3.2",
+"titel": "Betriebsverantwortlicher",
+"ebene": 4,
+"seite": 187,
+"element": "rolle-betriebsverantwortlicher",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/betriebsverantwortlicher.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Betriebsverantwortliche vertritt im Projekt die Partnergruppe Betreiber und ist für den Aufbau des Betriebs mit den Betriebsplattformen und der Betriebsorganisation zuständig. Er stellt die technische und organisatorische Integration und den Betrieb des Systems auf den verschiedenen Systemplattformen während der Projektphasen und des Betriebs sicher."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Erbringen der mit dem Betreiber vereinbarten Leistungen unter Einhaltung der gesetzten Termine und Kosten"
+},
+{
+"text": "Einbringen der Anforderungen des Betreibers"
+},
+{
+"text": "Einhaltung der Anforderungen an ISDS des Betreibers"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann auf alle benötigten Informationen zugreifen"
+},
+{
+"text": "Anordnungskompetenzen für die eigenen Spezialbereiche beim Betreiber"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vertiefte Kenntnisse des Betriebs"
+},
+{
+"text": "Kenntnisse der Vorgaben der Stammorganisation an das Projekt und an den Betrieb der Anwendung (z. B. technische und organisatorische Vorgaben)"
+},
+{
+"text": "Fähigkeit zur Erarbeitung von Anforderungen, Spezifikationen, Konzepten und Betriebsdokumentationen"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse zur Beurteilung von Varianten und Wirtschaftlichkeit"
+},
+{
+"text": "Vertiefte Kenntnisse von HERMES, nachgewiesen durch ein Zertifikat"
+},
+{
+"text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Betriebsdokumentationen zu erstellen"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+},
+{
+"text": "Führung von Fachspezialisten im eigenen Verantwortungsbereich"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "Tests"
+},
+{
+"text": "Testinfrastruktur realisieren"
+},
+{
+"text": "Betriebsverantwortlicher"
+},
+{
+"text": "Testinfrastruktur realisiert"
+},
+{
+"text": "Betriebsverantwortlicher, Anwendervertreter, Business Analyst, Testverantwortlicher"
+}
+],
+[
+{
+"text": "IT-Betrieb"
+},
+{
+"text": "Betrieb realisieren"
+},
+{
+"text": "Betriebsverantwortlicher"
+},
+{
+"text": "Betriebsorganisation realisiert"
+},
+{
+"text": "Betriebsverantwortlicher"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": "Betriebsverantwortlicher"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Betriebsinfrastruktur realisiert"
+},
+{
+"text": "Betriebsverantwortlicher"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Betrieb aktivieren"
+},
+{
+"text": "Betriebsverantwortlicher"
+},
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": "Betriebsverantwortlicher"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Betrieb aktiviert"
+},
+{
+"text": "Betriebsverantwortlicher, Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "System in Betrieb integrieren"
+},
+{
+"text": "Betriebsverantwortlicher"
+},
+{
+"text": "System integriert"
+},
+{
+"text": "Betriebsverantwortlicher, Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": "Betriebsverantwortlicher"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Betriebskonzept erarbeiten"
+},
+{
+"text": "Betriebsverantwortlicher"
+},
+{
+"text": "Betriebskonzept"
+},
+{
+"text": "Betriebsverantwortlicher, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Service Level Agreement"
+},
+{
+"text": "Betriebsverantwortlicher, Auftraggeber, Projektleiter, Anwendervertreter"
+}
+]
+],
+"titel": "Tabelle 23: Aufgaben, die der Betriebsverantwortliche verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+},
+{
+"nummer": "6.4.3.3",
+"titel": "Business Analyst",
+"ebene": 4,
+"seite": 188,
+"element": "rolle-business-analyst",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/business-analyst.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Business Analyst, oft auch Betriebsorganisator genannt, bildet die Schnittstelle zwischen den Partnergruppen Anwender und Ersteller/Betreiber. Er erhebt, hinterfragt, analysiert und priorisiert die Bedürfnisse und Anforderungen der Anwender auf der Basis der Geschäftsabläufe und -strukturen und transformiert sie in Organisationsanforderungen. Diese dienen Ersteller und Betreiber als Grundlage für die Konzipierung und für den Betrieb des Produkts oder des Systems. Umgekehrt berücksichtigt er lösungsspezifische Aspekte in der Konzipierung der angestrebten Organisation."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Erhebung aller organisatorischen Anforderungen"
+},
+{
+"text": "Verantwortung für die Organisationsanforderungen"
+},
+{
+"text": "Definition der Geschäftsprozesse und der Aufbauorganisation"
+},
+{
+"text": "Sicherstellung des Einbezugs von diversen Spezialisten"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann auf alle benötigten Informationen zugreifen"
+},
+{
+"text": "Zusammenarbeit mit allen Partnergruppen"
+},
+{
+"text": "Konzipierung, Umsetzung und Aktivierung der Organisation"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vertiefte Kenntnisse im Fachbereich"
+},
+{
+"text": "Kenntnisse der Vorgaben der Stammorganisation an das Projekt, an den Betrieb der Anwendung (z. B. für Beschaffungen, Finanzierung, Controlling, Sicherheit) oder an die Anwendung des Produkts"
+},
+{
+"text": "Vertiefte Kenntnisse in Business-Analyse sowie den einschlägigen Methoden und Techniken"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse in Organisationslehre und zur Bewertung von Varianten und Wirtschaftlichkeit"
+},
+{
+"text": "Fähigkeit zur Erhebung, Formulierung, Bewertung und Priorisierung von Anforderungen"
+},
+{
+"text": "Kenntnisse im Projektmanagement"
+},
+{
+"text": "Kenntnisse von HERMES"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+},
+{
+"text": "Gute schriftliche Ausdrucksfähigkeit"
+},
+{
+"text": "Führung von Spezialisten im eigenen Verantwortungsbereich"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "Organisation"
+},
+{
+"text": "Organisationskonzept erarbeiten"
+},
+{
+"text": "Business Analyst"
+},
+{
+"text": "Prozessbeschreibung"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Organisationskonzept"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Geschäftsmodellbeschreibung"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Organisationsbeschreibung"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Organisation aktivieren"
+},
+{
+"text": "Business Analyst"
+},
+{
+"text": "Organisation aktiviert"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Organisationsanforderungen erarbeiten"
+},
+{
+"text": "Business Analyst"
+},
+{
+"text": "Situationsanalyse"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Organisationsanforderungen"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Organisation umsetzen"
+},
+{
+"text": "Business Analyst"
+},
+{
+"text": "Organisationsbeschreibung"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Prozessbeschreibung"
+},
+{
+"text": "Business Analyst, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Organisation umgesetzt"
+},
+{
+"text": "Business Analyst"
+}
+]
+],
+"titel": "Tabelle 24: Aufgaben, die der Business Analyst verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+},
+{
+"nummer": "6.4.3.4",
+"titel": "Entwickler",
+"ebene": 4,
+"seite": 190,
+"element": "rolle-entwickler",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/entwickler.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Rolle Entwickler ist umfassend und bezeichnet den Produktentwickler und den IT-Entwickler in einem. Der Entwickler realisiert das Produkt bzw. das System gemäss den Lösungsanforderungen und den vorangehenden Konzepten. Er aktiviert das Produkt bzw. das System."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Verantwortung für die Realisierung des Produkts oder des Systems"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann auf alle benötigten Informationen zugreifen"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vertiefte Kenntnisse im Spezialgebiet Produkt- oder Softwareentwicklung"
+},
+{
+"text": "Vertiefte Kenntnisse der eingesetzten Methoden und Praktiken für die Lösungserstellung"
+},
+{
+"text": "Kenntnisse von HERMES"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "Projektgrundlagen"
+},
+{
+"text": "Prototyping durchführen"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Prototypdokumentation"
+},
+{
+"text": "Entwickler, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Prototyp realisiert"
+},
+{
+"text": "Entwickler, Anwendervertreter, IT-Architekt"
+}
+],
+[
+{
+"text": "Produkt"
+},
+{
+"text": "Produkt aktivieren"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Produkt aktiviert"
+},
+{
+"text": "Entwickler, Anwendervertreter, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Prototyping durchführen"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Prototyp realisiert"
+},
+{
+"text": "Entwickler, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Prototypdokumentation"
+},
+{
+"text": "Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Produkt realisieren"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Produkt entwickelt oder angepasst"
+},
+{
+"text": "Entwickler, Anwendervertreter, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": "Entwickler, Anwendervertreter, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Produktdokumentation"
+},
+{
+"text": "Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Anwendungshandbuch"
+},
+{
+"text": "Entwickler, Anwendervertreter"
+}
+],
+[
+{
+"text": "IT-System"
+},
+{
+"text": "Prototyping durchführen"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Prototyp realisiert"
+},
+{
+"text": "Entwickler, Anwendervertreter, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Prototypdokumentation"
+},
+{
+"text": "Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "System realisieren"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Anwendungshandbuch"
+},
+{
+"text": "Entwickler, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Systemkonzept"
+},
+{
+"text": "Entwickler, Betriebsverantwortlicher, IT-Architekt, Anwendervertreter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": "Entwickler, Anwendervertreter, Business Analyst, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Lösungsarchitektur"
+},
+{
+"text": "Entwickler, Betriebsverantwortlicher, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "System entwickelt oder parametrisiert"
+},
+{
+"text": "Entwickler, Anwendervertreter, Business Analyst, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Systemintegration vorbereiten"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": "Entwickler, Business Analyst, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Integrations- und Installationsanleitung"
+},
+{
+"text": "Entwickler, Betriebsverantwortlicher"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Lösungsarchitektur"
+},
+{
+"text": "Entwickler, Betriebsverantwortlicher, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Schnittstellen realisiert"
+},
+{
+"text": "Entwickler, Betriebsverantwortlicher"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "System aktivieren"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "System aktiviert"
+},
+{
+"text": "Entwickler, Betriebsverantwortlicher, Anwendervertreter, Business Analyst"
+}
+],
+[
+{
+"text": "IT-Migration"
+},
+{
+"text": "Migration durchführen"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Migration durchgeführt"
+},
+{
+"text": "Entwickler, Betriebsverantwortlicher, Business Analyst"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Migrationsverfahren realisieren"
+},
+{
+"text": "Entwickler"
+},
+{
+"text": "Migrationsverfahren realisiert"
+},
+{
+"text": "Entwickler, Betriebsverantwortlicher"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": "Entwickler, Business Analyst, IT-Architekt"
+}
+]
+],
+"titel": "Tabelle 25: Aufgaben, die der Entwickler verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+},
+{
+"nummer": "6.4.3.5",
+"titel": "Umsetzungsorganisation",
+"ebene": 4,
+"seite": 192,
+"element": "rolle-umsetzungsorganisation",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/umsetzungsorganisation.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Umsetzungsorganisation ist eine interdisziplinäre Rollengruppe, die ausschliesslich während der agilen Vorgehensweise in der Phase Umsetzung zum Tragen kommt. Die Zusammensetzung der Rollengruppe richtet sich nach der Art des Vorhabens, den zu erarbeitenden Ergebnissen sowie der angewendeten Entwicklungsmethode. Bei der Etablierung der Projektorganisation ist bei agilen Umsetzungen die fachliche Verantwortung des Anwendervertreters durch Wahrnehmung einer entsprechenden Rolle in der Umsetzungsorganisation Rechnung zu tragen."
+},
+{
+"t": "p",
+"text": "Die Projektführungsverantwortung liegt beim Projektleiter, er darf dennoch nicht in die Hoheit der Umsetzungsorganisation eingreifen. Die Umsetzungsorganisation organisiert sich selbst."
+},
+{
+"t": "p",
+"text": "Für die Umsetzungsorganisation werden daher keine Verantwortung, Kompetenzen, Fähigkeiten oder Beziehungen definiert."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Wird durch die eingesetzte agile Umsetzungsmethode definiert"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Werden durch die eingesetzte agile Umsetzungsmethode definiert"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Werden durch die eingesetzte agile Umsetzungsmethode definiert"
+}
+]
+}
+]
+},
+{
+"nummer": "6.4.3.6",
+"titel": "ISDS-Verantwortlicher",
+"ebene": 4,
+"seite": 192,
+"element": "rolle-isds-verantwortlicher",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/isds-verantwortlicher.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der ISDS-Verantwortliche nimmt die Aspekte der Informationssicherheit und des Datenschutzes im Projekt wahr."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Sicherstellung der Berücksichtigung und Umsetzung von Informationssicherheitsvorgaben und von Datenschutzmassnahmen im Projekt"
+},
+{
+"text": "Förderung des ISDS-Verständnisses/-Bewusstseins im Projekt"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann auf alle benötigten Informationen des Projektes zugreifen"
+},
+{
+"text": "Erlassen von sicherheitsrelevanten Vorgaben zum Umgang mit Daten und Informationen während der Projektabwicklung"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vertiefte Kenntnisse im Spezialgebiet ISDS"
+},
+{
+"text": "Kenntnisse der gesetzlichen Grundlagen und der Vorgaben der Stammorganisation"
+},
+{
+"text": "Kenntnisse der Standards, Architekturen, Methoden und Praktiken der Informatik"
+},
+{
+"text": "Vertiefte Kenntnisse der im eigenen Aufgabenkreis anzuwendenden Methoden und Praktiken"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse zur Bewertung von Varianten und Wirtschaftlichkeit"
+},
+{
+"text": "Kenntnisse im Prozessmanagement"
+},
+{
+"text": "Kenntnisse von HERMES, vorzugsweise nachgewiesen durch ein Zertifikat"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+},
+{
+"text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Berichte zu erstellen"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "Projektgrundlagen"
+},
+{
+"text": "Schutzbedarfsanalyse erarbeiten"
+},
+{
+"text": "ISDS-Verantwortlicher"
+},
+{
+"text": "Schutzbedarfsanalyse"
+},
+{
+"text": "ISDS-Verantwortlicher, Projektleiter"
+}
+],
+[
+{
+"text": "ISDS"
+},
+{
+"text": "ISDS-Konzept erarbeiten"
+},
+{
+"text": "ISDS-Verantwortlicher"
+},
+{
+"text": "ISDS-Konzept"
+},
+{
+"text": "ISDS-Verantwortlicher, Betriebsverantwortlicher, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "ISDS-Konzept überführen"
+},
+{
+"text": "ISDS-Verantwortlicher"
+},
+{
+"text": "ISDS-Konzept"
+},
+{
+"text": "ISDS-Verantwortlicher, Auftraggeber, Projektleiter, Anwendervertreter, Betriebsverantwortlicher, IT-Architekt"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "ISDS-Konzept überführt"
+},
+{
+"text": "ISDS-Verantwortlicher, Projektleiter, Anwendervertreter, Betriebsverantwortlicher"
+}
+]
+],
+"titel": "Tabelle 26: Aufgaben, die der ISDS-Verantwortliche verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+},
+{
+"nummer": "6.4.3.7",
+"titel": "IT-Architekt",
+"ebene": 4,
+"seite": 194,
+"element": "rolle-it-architekt",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/it-architekt.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der IT-Architekt entwirft die Lösungsarchitektur des zu erstellenden Systems. Er definiert die Lösungskomponenten des Systems und ihre Schnittstellen mit den Umsystemen."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Gesamtverantwortung für die technischen Aspekte des entstehenden Systems"
+},
+{
+"text": "Sicherstellung der Konformität mit den vorhandenen Standards und Architekturvorgaben und Durchführen von Prüfungen"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Anordnungskompetenz"
+},
+{
+"text": "Entscheidungskompetenz bezüglich der Lösungsarchitektur"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kenntnisse im Fachbereich"
+},
+{
+"text": "Vertiefte Kenntnisse im Spezialgebiet IT-Architekturen"
+},
+{
+"text": "Vertiefte Kenntnisse der Standards, Architekturen, Methoden und Praktiken der Informatik"
+},
+{
+"text": "Betriebswirtschaftliche Kenntnisse zur Bewertung von Varianten und Wirtschaftlichkeit"
+},
+{
+"text": "Kenntnisse im Projektmanagement"
+},
+{
+"text": "Kenntnisse von HERMES"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+},
+{
+"text": "Sehr gute schriftliche Ausdrucksfähigkeit, um z. B. Lösungsarchitekturdokumentationen zu erstellen"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "IT-System"
+},
+{
+"text": "Integrationskonzept erarbeiten"
+},
+{
+"text": "IT-Architekt"
+},
+{
+"text": "Integrationskonzept"
+},
+{
+"text": "IT-Architekt, Betriebsverantwortlicher, Business Analyst, Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsarchitektur erarbeiten"
+},
+{
+"text": "IT-Architekt"
+},
+{
+"text": "Systemkonzept"
+},
+{
+"text": "IT-Architekt, Business Analyst, Anwendervertreter, Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Lösungsarchitektur"
+},
+{
+"text": "IT-Architekt, Betriebsverantwortlicher, Entwickler"
+}
+],
+[
+{
+"text": "IT-Migration"
+},
+{
+"text": "Migrationskonzept erarbeiten"
+},
+{
+"text": "IT-Architekt"
+},
+{
+"text": "Migrationskonzept"
+},
+{
+"text": "IT-Architekt, Business Analyst, Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Altsystem ausser Betrieb setzen"
+},
+{
+"text": "IT-Architekt"
+},
+{
+"text": "Altsystem entfernt"
+},
+{
+"text": "IT-Architekt, Projektleiter, Betriebsverantwortlicher, Business Analyst"
+}
+]
+],
+"titel": "Tabelle 27: Aufgaben, die der IT-Architekt verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+},
+{
+"nummer": "6.4.3.8",
+"titel": "Tester",
+"ebene": 4,
+"seite": 195,
+"element": "rolle-tester",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/tester.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Tester arbeitet bei der Erstellung der Testfallbeschreibungen mit, führt Tests durch und beurteilt und protokolliert die Ergebnisse."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Unterstützung des Testverantwortlichen bei der Erstellung der Testfallbeschreibungen"
+},
+{
+"text": "Durchführung der Tests eines oder mehrerer Testobjekte"
+},
+{
+"text": "Beurteilung der Testergebnisse und Festhalten der Ergebnisse in Form von Testprotokollen"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kann auf alle benötigten Informationen zugreifen"
+},
+{
+"text": "Entscheidungskompetenz zur Einstufung der Testergebnisse gemäss den im Testplan festgelegten Mängelklassen"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Vertiefte Kenntnisse im Fachbereich (fachliche Prozesse, Organisationsanforderungen, Lösungsanforderungen usw. im eigenen Testbereich)"
+},
+{
+"text": "Kenntnisse im Testen und in der Testmethode"
+},
+{
+"text": "Rasche Auffassungsgabe und gründliche Arbeitsweise"
+},
+{
+"text": "Durchsetzungsvermögen"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+}
+]
+}
+]
+},
+{
+"nummer": "6.4.3.9",
+"titel": "Testverantwortlicher",
+"ebene": 4,
+"seite": 196,
+"element": "rolle-testverantwortlicher",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/rollen/testverantwortlicher.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Testverantwortliche konzipiert, plant und koordiniert das Testen. Er stellt sicher, dass die Testgrundlagen in Form des Testkonzepts erarbeitet werden, und überführt das Testen in den anschliessenden Betrieb."
+},
+{
+"t": "h",
+"text": "Verantwortung"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Sicherstellung der Erfüllung der verschiedenen Anforderungen wie z. B. Organisationsanforderungen und Lösungsanforderungen in Bezug auf die Qualität des Systems"
+}
+]
+},
+{
+"t": "h",
+"text": "Kompetenz"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Legt Testmethoden und Testorganisation fest"
+},
+{
+"text": "Legt Mitarbeitereinsatz und Systemeinsatz für das Testen fest und ordnet Tests an"
+}
+]
+},
+{
+"t": "h",
+"text": "Fähigkeiten"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kenntnisse im Fachbereich"
+},
+{
+"text": "Vertiefte Kenntnisse der Testobjekte (fachliche Prozesse, Technik usw.)"
+},
+{
+"text": "Vertiefte Kenntnisse im Spezialgebiet Qualitätssicherung und Testen mit den entsprechenden Methoden und Praktiken"
+},
+{
+"text": "Kenntnisse in Design und Umsetzung von Informatiklösungen"
+},
+{
+"text": "Kenntnisse im Projektmanagement"
+},
+{
+"text": "Vertiefte Kenntnisse im Änderungsmanagement"
+},
+{
+"text": "Vertiefte Kenntnisse von HERMES, nachgewiesen durch ein Zertifikat"
+},
+{
+"text": "Entscheidungsfreudigkeit und Durchsetzungsvermögen"
+},
+{
+"text": "Team-, Kommunikations- und Konfliktlösungsfähigkeit"
+},
+{
+"text": "Gute schriftliche Ausdrucksfähigkeit, um z. B. Testkonzepte und Testberichte zu erstellen"
+}
+]
+},
+{
+"t": "h",
+"text": "Beziehungen"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Modul",
+"kopf": true
+},
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Verantwortung Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "Beteiligt an der Ergebniserstellung",
+"kopf": true
+}
+],
+[
+{
+"text": "Tests"
+},
+{
+"text": "Testinfrastruktur überführen"
+},
+{
+"text": "Testverantwortlicher"
+},
+{
+"text": "Testkonzept"
+},
+{
+"text": "Testverantwortlicher, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Protokoll"
+},
+{
+"text": "Testverantwortlicher, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Testinfrastruktur überführt"
+},
+{
+"text": "Testverantwortlicher, Projektleiter"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Testkonzept erarbeiten"
+},
+{
+"text": "Testverantwortlicher"
+},
+{
+"text": "Testkonzept"
+},
+{
+"text": "Testverantwortlicher, Tester, Anwendervertreter, Betriebsverantwortlicher, Business Analyst, Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Test durchführen"
+},
+{
+"text": "Testverantwortlicher"
+},
+{
+"text": "Testkonzept"
+},
+{
+"text": "Testverantwortlicher, Tester, Anwendervertreter, Betriebsverantwortlicher, Business Analyst, Entwickler"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "Testprotokoll"
+},
+{
+"text": "Testverantwortlicher, Tester"
+}
+]
+],
+"titel": "Tabelle 28: Aufgaben, die der Testverantwortliche verantwortet und weitere an der Ergebniserstellung beteiligte Rollen",
+"unten": true
+}
+]
+}
+]
+}

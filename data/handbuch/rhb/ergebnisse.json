@@ -1,0 +1,5250 @@
+{
+"id": "ergebnisse",
+"nummer": "4",
+"titel": "Ergebnisse",
+"kategorie": "ergebnis",
+"seite": 46,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html",
+"abschnitte": [
+{
+"nummer": "4",
+"titel": "Ergebnisse",
+"ebene": 1,
+"seite": 46,
+"bloecke": []
+},
+{
+"nummer": "4.1",
+"titel": "Einleitung",
+"ebene": 2,
+"seite": 46,
+"bloecke": [
+{
+"t": "p",
+"text": "Die HERMES-Projektmanagementmethode ist ergebnisorientiert, die Ergebnisse als die wichtigsten Methodenelemente stehen im Zentrum."
+},
+{
+"t": "p",
+"text": "Es werden zwei Arten von Ergebnissen unterschieden. Ein Ergebnis kann"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "ein Dokument sein, das möglichst auf der Basis einer vorhandenen Dokumentvorlage erarbeitet wird, wie beispielsweise ein Durchführungsauftrag, eine Studie, eine Checkliste oder eine Prozessbeschreibung;"
+},
+{
+"text": "ein Zustand sein, der neu erreicht wird, wie beispielsweise Betriebsinfrastruktur realisiert oder auch ein Meilenstein, der die direkte Folge eines Entscheids ist."
+}
+]
+},
+{
+"t": "p",
+"text": "Abgrenzung"
+},
+{
+"t": "p",
+"text": "Das Ergebnis eines ganzen Projekts, die eigentliche fertige Lösung, oder auch ein Teil davon, das Inkrement, sind keine HERMES-Methodenelemente. Diese Lösung können beispielsweise Produkte, Dienstleistungen, IT-Anwendungen, Infrastrukturen, geänderte oder neue betriebliche Organisationen, neue oder fusionierte Stammorganisationen oder einzelne Organisationseinheiten sein. Das Projektergebnis kann auch aus ausgebildeten Anwendern und der aktivierten Organisation mit ihren Prozessen bestehen. Am Ende eines erfolgreichen Projekts resultiert also als Ergebnis eine Lösung, ein Gesamtsystem, bestehend aus einem oder mehreren aktivierten Elementen."
+}
+]
+},
+{
+"nummer": "4.2",
+"titel": "Übersicht der Ergebnisse",
+"ebene": 2,
+"seite": 46,
+"bloecke": []
+},
+{
+"nummer": "4.2.1",
+"titel": "Standardergebnisse",
+"ebene": 3,
+"seite": 46,
+"bloecke": []
+},
+{
+"nummer": "4.2.1.1",
+"titel": "Standarddokumente",
+"ebene": 4,
+"seite": 46,
+"bloecke": [
+{
+"t": "p",
+"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Dokumente auf. Für jedes der Dokumente stellt HERMES eine entsprechende Dokumentvorlage zur Verfügung."
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Dokumente",
+"kopf": true
+},
+{
+"text": "minimal geforderte Dokumente",
+"kopf": true
+}
+],
+[
+{
+"text": "Abnahmeprotokoll"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Änderungsantrag"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Änderungsstatusliste"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Angebot"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Angebotsprotokoll"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Anwendungshandbuch"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Arbeitsauftrag"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Ausschreibungsunterlagen"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Beschaffungsanalyse"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Betriebskonzept"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Checklisten"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Detailspezifikation"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Durchführungsauftrag"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Einführungskonzept"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Evaluationsbericht"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Geschäftsmodellbeschreibung"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Integrations- und Installationsanleitung"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Integrationskonzept"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "ISDS-Konzept"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Lösungsarchitektur"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Migrationskonzept"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Offertanfrage"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Organisationsanforderungen"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Organisationsbeschreibung"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Organisationskonzept"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Phasenbericht"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Produktdokumentation"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Produktkonzept"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Projektinitialisierungsauftrag"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Projektschlussbeurteilung"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Protokoll"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Prototypdokumentation"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Prozessbeschreibung"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Prüfprotokoll"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Publikation"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Rechtsgrundlagenanalyse"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Releasebericht"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Schutzbedarfsanalyse"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Service Level Agreement"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Situationsanalyse"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Stakeholderliste"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Studie"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Systemkonzept"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Testkonzept"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Testprotokoll"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Vereinbarung"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 16: Ergebnisübersicht - Dokumente",
+"unten": true
+},
+{
+"t": "p",
+"text": "Die mit einem X markierten minimal geforderten Dokumente werden benötigt, um die Anforderungen der Governance zu erfüllen. Dazu gehören u. a. nicht nur diejenigen Ergebnisse, die von den Revisionsstellen überprüft werden müssen, sondern als „Muss“ auch all jene, die zwingend in einem Modul zu erstellen sind."
+},
+{
+"t": "p",
+"text": "Die minimal geforderten Dokumente sind die Leitplanken für die Sicherstellung des Projekterfolges und widerspiegeln eine allgemeine Projektsituation, ohne auf die Besonderheiten der einzelnen Projekte einzugehen. Die Erarbeitung der minimal geforderten Dokumente ist obligatorisch. Ist ein Modul für das Projekt nicht relevant, entfallen auch die darin definierten minimal geforderten Dokumente. Sie entfallen ebenso, wenn unter gewissen Umständen ihre Verwendung im Modul nicht vorgesehen ist (z. B. im Fall klassisch/agil). Die minimal geforderten Dokumente können auch stammorganisationsspezifisch gemäss deren Governance-Bestimmungen angepasst werden."
+}
+]
+},
+{
+"nummer": "4.2.1.2",
+"titel": "Standardzustände",
+"ebene": 4,
+"seite": 48,
+"bloecke": [
+{
+"t": "p",
+"text": "Die folgende Tabelle listet alle standardmässig vorgesehenen Zustände auf."
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Zustände",
+"kopf": true
+}
+],
+[
+{
+"text": "Altsystem entfernt"
+}
+],
+[
+{
+"text": "Betrieb aktiviert"
+}
+],
+[
+{
+"text": "Betriebsinfrastruktur realisiert"
+}
+],
+[
+{
+"text": "Betriebsorganisation realisiert"
+}
+],
+[
+{
+"text": "Einführungsmassnahmen durchgeführt"
+}
+],
+[
+{
+"text": "Einführungsmassnahmen realisiert"
+}
+],
+[
+{
+"text": "ISDS-Konzept überführt"
+}
+],
+[
+{
+"text": "ISDS-Massnahmen realisiert"
+}
+],
+[
+{
+"text": "Meilensteine"
+}
+],
+[
+{
+"text": "Migration durchgeführt"
+}
+],
+[
+{
+"text": "Migrationsverfahren realisiert"
+}
+],
+[
+{
+"text": "Organisation aktiviert"
+}
+],
+[
+{
+"text": "Organisation umgesetzt"
+}
+],
+[
+{
+"text": "Produkt aktiviert"
+}
+],
+[
+{
+"text": "Produkt entwickelt oder angepasst"
+}
+],
+[
+{
+"text": "Prototyp realisiert"
+}
+],
+[
+{
+"text": "Schnittstellen realisiert"
+}
+],
+[
+{
+"text": "System aktiviert"
+}
+],
+[
+{
+"text": "System entwickelt oder parametrisiert"
+}
+],
+[
+{
+"text": "System integriert"
+}
+],
+[
+{
+"text": "Testinfrastruktur realisiert"
+}
+],
+[
+{
+"text": "Testinfrastruktur überführt"
+}
+]
+],
+"titel": "Tabelle 17: Ergebnisübersicht - Zustände",
+"unten": true
+}
+]
+},
+{
+"nummer": "4.2.2",
+"titel": "Individuelle Ergebnisse",
+"ebene": 3,
+"seite": 49,
+"bloecke": [
+{
+"t": "p",
+"text": "Ergänzend zu den standardmässig bereitgestellten Dokumenten und Zuständen besteht die Möglichkeit, weitere fach-, organisations- oder vorhabenspezifische Ergebnisse in eigenen Modulen zu integrieren. Dies wird durch HERMES Online unterstützt und kommt insbesondere dann zum Tragen, wenn neue Module mit neuen Aufgaben entwickelt werden. Beispiele von individuellen Ergebnissen können stammorganisationsspezifische Berichte und Rapporte oder eine abgeschlossene Konsultation sein."
+}
+]
+},
+{
+"nummer": "4.3",
+"titel": "Erläuterung der Ergebnisbeschreibung",
+"ebene": 2,
+"seite": 49,
+"bloecke": [
+{
+"t": "p",
+"text": "Für jedes Ergebnis gibt es eine Ergebnisbeschreibung, die stets gleich strukturiert ist:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Beschreibung schafft das grundlegende Verständnis des Ergebnisses."
+},
+{
+"text": "Inhalt (nur bei Dokumenten) beschreibt den vorgeschlagenen Inhalt eines Dokuments (s. weiter unten Dokumentvorlagen). Falls erforderlich, wird jede Inhaltsangabe mit „A“ für agil, respektive mit „K“ für klassisch gekennzeichnet."
+},
+{
+"text": "Beziehungen (nur online) zeigen den Bezug des Ergebnisses zu Modulen, Rollen und Aufgaben."
+},
+{
+"text": "Vorlagen (nur online) für alle Dokumente steht eine Dokumentvorlage zur Verfügung. Sie ist ein konkretes Hilfsmittel für ein tieferes Verständnis der Anwendung von HERMES-Dokumenten. Die Dokumentvorlagen können jedoch an die Bedürfnisse der Organisation angepasst oder durch adäquate toolgestützte Lösungen ersetzt werden (vgl. Kapitel „Hinweise zur Anwendung“)."
+}
+]
+}
+]
+},
+{
+"nummer": "4.4",
+"titel": "Beschreibung der Ergebnisse",
+"ebene": 2,
+"seite": 50,
+"bloecke": []
+},
+{
+"nummer": "4.4.1",
+"titel": "Dokumente",
+"ebene": 3,
+"seite": 50,
+"bloecke": []
+},
+{
+"nummer": "4.4.1.1",
+"titel": "Abnahmeprotokoll",
+"ebene": 4,
+"seite": 50,
+"element": "ergebnis-abnahmeprotokoll",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/abnahmeprotokoll.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Abnahmeprotokoll wird bei den Entscheiden Vorabnahme, Abnahme und Abnahme Migration erstellt. Es dokumentiert die Erfüllung der Vereinbarung über die Lösungseigenschaften (Produkt/Dienstleistung/System) und bestehende Mängel. Es ist ein rechtlich verbindliches Dokument."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Abnahmegegenstand"
+},
+{
+"text": "Abnahmebeteiligte"
+},
+{
+"text": "Grundlagen"
+},
+{
+"text": "Abnahmeverfahren"
+},
+{
+"text": "Abnahmekriterien mit Mängelklassen"
+},
+{
+"text": "Lieferergebnisse und Mängel inkl.",
+"items": [
+{
+"text": "Massnahmen"
+},
+{
+"text": "Verantwortlichkeiten und"
+},
+{
+"text": "Terminen"
+}
+]
+},
+{
+"text": "Abnahmeergebnis"
+},
+{
+"text": "Unterschriften"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.2",
+"titel": "Änderungsantrag",
+"ebene": 4,
+"seite": 50,
+"element": "ergebnis-aenderungsantrag",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/aenderungsantrag.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Änderungsantrag bei klassisch geführter Lösungsentstehung bildet die Grundlage für eine inhaltliche Änderung. Er umfasst die Änderungsbeschreibung mit dem Antrag, das Vorgehen, um die Änderung durchzuführen, und den Lösungsvorschlag, um die Änderung umzusetzen. Der Änderungsantrag hat Anforderungscharakter und spezifiziert die durchzuführende Änderung im Detail."
+},
+{
+"t": "p",
+"text": "Bei agil geführter Lösungsentstehung kommt der Änderungsantrag zum Tragen, wenn Änderungen durch die Umsetzungsorganisation erkannt werden, welche die Projektziele, das Budget oder den Zeitrahmen des Gesamtvorhabens tangieren."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Änderungsantrag Nummer"
+},
+{
+"text": "Antragsteller"
+},
+{
+"text": "Antragsdatum"
+},
+{
+"text": "Änderungsgrund"
+},
+{
+"text": "Änderungsbeschreibung"
+},
+{
+"text": "Angaben zur Ausführung"
+},
+{
+"text": "Lösungsvorschlag"
+},
+{
+"text": "Beurteilung der Auswirkungen",
+"items": [
+{
+"text": "Aufwand"
+},
+{
+"text": "Kosten"
+},
+{
+"text": "Termin"
+},
+{
+"text": "Risiken"
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.3",
+"titel": "Änderungsstatusliste",
+"ebene": 4,
+"seite": 51,
+"element": "ergebnis-aenderungsstatusliste",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/aenderungsstatusliste.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Änderungsstatusliste dient zur Aufzählung und Überwachung der Änderungen sowie der Dokumentation aller hinzugefügten, gelöschten oder geänderten Funktionen oder sonstiger durchgeführter Modifikationen. Sie unterstützt die Nachvollziehbarkeit des Projektverlaufs (Governance) und gibt einen Überblick über deren Bearbeitungsstatus und - falls die Änderungen erfolgen - den Status der Änderungen."
+},
+{
+"t": "p",
+"text": "Ein aus der agilen Lösungsentstehung hervorgegangener Änderungsantrag, welcher die Ziele, Kosten oder Termine des Gesamtvorhabens tangiert, wird klassisch abgewickelt und in der Tabelle „Änderungsstatusliste“ als klassische Änderung erfasst, d. h., es sind alle Angaben gem. Spalte K zu führen."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Je Änderung: (K=klassisch, A=agil)"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Änderungsantrag Nummer (K)"
+},
+{
+"text": "Antragsteller (K)"
+},
+{
+"text": "Antragsdatum (K/A)"
+},
+{
+"text": "Änderung/Kurzbeschreibung (A)"
+},
+{
+"text": "Entscheidungsverantwortlicher (K)"
+},
+{
+"text": "Status (K/A)"
+},
+{
+"text": "Änderungsdatum (K/A)"
+},
+{
+"text": "Änderungsverantwortlich (K)"
+},
+{
+"text": "Aufwand (K)"
+},
+{
+"text": "Kosten (K)"
+},
+{
+"text": "Auswirkungen (K)"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.4",
+"titel": "Angebot",
+"ebene": 4,
+"seite": 51,
+"element": "ergebnis-angebot",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/angebot.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Angebot spezifiziert die vom Ersteller/Betreiber angebotene Leistung oder das Produkt. Weiter umfasst das Angebot alle kommerziellen Elemente wie Aufwand, Kosten, Gewährleistungen, Garantien, Rechte an Ergebnissen usw. Das Angebot beschreibt Vorgehen und Verfahren zur Erbringung der Leistung und/oder zur Installation und Integration von Produkten/Systemen."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Der Aufbau des Angebots richtet sich nach den Vorgaben der Beschaffungsstelle."
+}
+]
+},
+{
+"nummer": "4.4.1.5",
+"titel": "Angebotsprotokoll",
+"ebene": 4,
+"seite": 51,
+"element": "ergebnis-angebotsprotokoll",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/angebotsprotokoll.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Bei öffentlichen Beschaffungen wird nach Ablauf der Eingabefrist ein Protokoll der Angebotsöffnung erstellt. Fallweise werden auch alle beschaffungsrechtlichen und bewertungsrelevanten Punkte protokolliert."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Beschaffungsgegenstand"
+},
+{
+"text": "Datum"
+},
+{
+"text": "Anbieter/Angebot"
+},
+{
+"text": "Sachverhalt"
+},
+{
+"text": "Öffnungsprotokoll"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.6",
+"titel": "Anwendungshandbuch",
+"ebene": 4,
+"seite": 52,
+"element": "ergebnis-anwendungshandbuch",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/anwendungshandbuch.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Anwendungshandbuch enthält alle Informationen, die der Anwender eines Produkts/Systems braucht, um es ordnungsgemäss zu bedienen und im Fall von Problemen richtig reagieren zu können."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Übersicht"
+},
+{
+"text": "Funktionen"
+},
+{
+"text": "Detailbeschreibungen zur Anwendung"
+},
+{
+"text": "Mängelbehandlung"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.7",
+"titel": "Arbeitsauftrag",
+"ebene": 4,
+"seite": 52,
+"element": "ergebnis-arbeitsauftrag",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/arbeitsauftrag.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Arbeitsauftrag enthält alle relevanten Informationen zur Erledigung einer gestellten Aufgabe. Der Projektleiter verwendet ihn, um den Projektmitarbeitern Aufträge im Rahmen der Projektplanung, -führung, -information und -kontrolle zu erteilen. Arbeitsaufträge können intern oder extern vergeben werden. Allfällige lösungsspezifische Aufträge müssen mit dem Anwendervertreter im Voraus abgestimmt sein."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Arbeitsziele"
+},
+{
+"text": "Ergebnisse"
+},
+{
+"text": "Abgrenzung"
+},
+{
+"text": "Voraussetzungen und Abhängigkeiten"
+},
+{
+"text": "Liste der Aktivitäten mit",
+"items": [
+{
+"text": "Bezug auf die Ergebnisse"
+},
+{
+"text": "Aktivität"
+},
+{
+"text": "Verantwortlichen/Mitwirkenden"
+},
+{
+"text": "Planstunden"
+},
+{
+"text": "Terminen"
+},
+{
+"text": "Status"
+}
+]
+},
+{
+"text": "Ressourcenbedarf"
+},
+{
+"text": "Ergebnisdarstellung"
+},
+{
+"text": "Qualitätssicherung"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.8",
+"titel": "Ausschreibungsunterlagen",
+"ebene": 4,
+"seite": 52,
+"element": "ergebnis-ausschreibungsunterlagen",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/ausschreibungsunterlagen.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Ausschreibungsunterlagen umfassen alle Informationen, die im Rahmen einer Ausschreibung publiziert werden. Dazu gehört in erster Linie das Lastenheft (in der Schweiz auch Pflichtenheft genannt) samt Kriterienkatalog, das ein unabdingbarer Teil der Ausschreibungsunterlagen ist. Oft bestehen organisationsspezifische Ausschreibungsunterlagen der Beschaffungsstelle, welche prioritär zu verwenden sind."
+},
+{
+"t": "p",
+"text": "Zu den Ausschreibungsunterlagen gehören weiter der Vertragsentwurf, die allgemeinen Geschäftsbedingungen der Stammorganisation, der Ausschreibungstext und weitere Beilagen zum Lastenheft. Werden in einer öffentlichen Ausschreibung Fragen beantwortet, sind die Fragen und Antworten ebenfalls Teil der Ausschreibungsunterlagen, die anschliessend allen Anbietern zugestellt werden."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Lastenheft mit",
+"items": [
+{
+"text": "Ausgangslage mit",
+"items": [
+{
+"text": "Einleitung, Zweck des Dokuments"
+},
+{
+"text": "Grund für die Ausschreibung, Handlungsbedarf"
+},
+{
+"text": "Beschaffungsgegenstand"
+}
+]
+},
+{
+"text": "Situationsbeschreibung mit",
+"items": [
+{
+"text": "Organisation"
+},
+{
+"text": "Stärken und Schwächen"
+},
+{
+"text": "Mengen und Häufigkeiten"
+},
+{
+"text": "Umfang und Preis"
+}
+]
+},
+{
+"text": "Soll-Zustand mit",
+"items": [
+{
+"text": "Zielen und Anforderungen"
+},
+{
+"text": "Muss- und Kann-Kriterien"
+},
+{
+"text": "Umfang (Scope)"
+},
+{
+"text": "Preis (Rahmen)"
+}
+]
+},
+{
+"text": "Terminen"
+},
+{
+"text": "Aufbau des Angebots"
+},
+{
+"text": "Administrativem"
+},
+{
+"text": "Kriterienkatalog mit",
+"items": [
+{
+"text": "Eignungs- und Zuschlagskriterien"
+},
+{
+"text": "Gewichtung"
+},
+{
+"text": "Punkten"
+}
+]
+}
+]
+},
+{
+"text": "Anhänge wie",
+"items": [
+{
+"text": "Allgemeine Geschäftsbedingungen"
+},
+{
+"text": "Vertragsentwurf"
+},
+{
+"text": "Ausschreibungstext"
+},
+{
+"text": "weitere Ausschreibungsunterlagen"
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.9",
+"titel": "Beschaffungsanalyse",
+"ebene": 4,
+"seite": 53,
+"element": "ergebnis-beschaffungsanalyse",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/beschaffungsanalyse.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Beschaffungsanalyse beschreibt u. a. den konkreten Handlungsbedarf, was durch wen und wann beschafft werden soll, wie sich der Markt präsentiert, welche anderen Rahmenbedingungen zu beachten sind und welches Beschaffungsverfahren zum Tragen kommt. Die Analyse wird mit den Controlling- und Vorgabestellen für das Beschaffungswesen abgestimmt."
+},
+{
+"t": "p",
+"text": "Die Beschaffungsanalyse bildet als Ergänzung zur Studie die Grundlage für die Entscheidung, ob die Projektfortsetzung freigegeben wird oder nicht. Ebenso ist sie die Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Grund für die Beschaffung, Handlungsbedarf"
+},
+{
+"text": "Beschaffungsinhalte mit",
+"items": [
+{
+"text": "Beschaffungsbedarf"
+},
+{
+"text": "Beschaffungsgegenstand mit Art, Zustand und Qualität"
+},
+{
+"text": "Verfügbarkeit auf dem Markt"
+}
+]
+},
+{
+"text": "Anbieter und Lieferanten mit",
+"items": [
+{
+"text": "Mögliche Anbieter und Lieferanten"
+},
+{
+"text": "Bestehende Lieferanten"
+},
+{
+"text": "Bestehende Verträge und deren Laufdauer"
+},
+{
+"text": "Anforderungen an die Anbieter"
+},
+{
+"text": "Auswahl potenzieller Anbieter"
+},
+{
+"text": "Gewünschte Vertriebsart"
+}
+]
+},
+{
+"text": "Rollen und ihre Verantwortung mit",
+"items": [
+{
+"text": "Aufgaben und Verantwortung Projektleiter"
+},
+{
+"text": "Aufgaben und Verantwortung Projektteam"
+},
+{
+"text": "Aufgaben und Verantwortung Beschaffungsabteilung/Einkauf"
+}
+]
+},
+{
+"text": "Terminliche Aspekte"
+},
+{
+"text": "Finanzielle Aspekte"
+},
+{
+"text": "Approximative Vorkalkulation / Wirtschaftlichkeitsvorschau"
+},
+{
+"text": "Beschaffungsrechtliche Aspekte"
+},
+{
+"text": "Standards der Beschaffung:",
+"items": [
+{
+"text": "Welche Dokumente werden bei der Beschaffung benutzt?"
+},
+{
+"text": "Wie sind die Prozessschritte bei der Beschaffung gestaltet?"
+}
+]
+},
+{
+"text": "Vertragsformen:",
+"items": [
+{
+"text": "Welche Vertragsformen kommen zur Anwendung?"
+}
+]
+},
+{
+"text": "Abstimmung der Prozesse:",
+"items": [
+{
+"text": "In welcher Weise werden die wechselseitigen Abhängigkeiten zwischen dem Prozess der Beschaffung und anderen vor- oder nachgelagerten Prozessen gemanagt?"
+},
+{
+"text": "Unterscheidet sich die Beschaffung je nach Lösungsvariante aus der Studie?"
+}
+]
+},
+{
+"text": "Beschaffungsplan"
+},
+{
+"text": "Ausschreibungsverfahren"
+},
+{
+"text": "Vorgehen bei Fragen zur Ausschreibung, zu den Unterlagen"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.10",
+"titel": "Betriebshandbuch",
+"ebene": 4,
+"seite": 54,
+"element": "ergebnis-betriebshandbuch",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebshandbuch.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Betriebshandbuch liefert alle Informationen, die der Betreiber benötigt, um das System ordnungsgemäss betreiben und im Fall von Problemen richtig reagieren zu können. Alle für den Betreiber betriebsrelevanten Informationen sind im Betriebshandbuch dokumentiert."
+},
+{
+"t": "p",
+"text": "Während der agilen Lösungsentstehung wird das Betriebshandbuch mehrmals, pro Iteration/Release, entsprechend der Aktivierung eines vollständigen Teils der Lösung aktualisiert."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Systemübersicht"
+},
+{
+"text": "Aufnahme des Betriebs",
+"items": [
+{
+"text": "Voraussetzungen für die Betriebsaufnahme"
+},
+{
+"text": "Ablauf der Betriebsaufnahme"
+},
+{
+"text": "Qualitätssicherung nach Betriebsaufnahme"
+},
+{
+"text": "Vorgaben zur Abnahme des Systems"
+}
+]
+},
+{
+"text": "Durchführung und Überwachung des Betriebs"
+},
+{
+"text": "Unterbrechung oder Beendigung des Betriebs"
+},
+{
+"text": "Supportorganisation mit",
+"items": [
+{
+"text": "Supportprozessen"
+},
+{
+"text": "Organisation mit Rollen"
+}
+]
+},
+{
+"text": "Changemanagement mit",
+"items": [
+{
+"text": "Changemanagement-Prozess"
+},
+{
+"text": "Changemanagement-Organisation mit",
+"items": [
+{
+"text": "Rollen"
+},
+{
+"text": "Kontaktinformationen"
+}
+]
+}
+]
+},
+{
+"text": "Sicherheitsbestimmungen"
+},
+{
+"text": "Anhänge",
+"items": [
+{
+"text": "Betriebskonzept"
+},
+{
+"text": "Integrationskonzept"
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.11",
+"titel": "Betriebskonzept",
+"ebene": 4,
+"seite": 55,
+"element": "ergebnis-betriebskonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebskonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Betriebskonzept beschreibt die Betriebsorganisation mit der Aufbauorganisation und den Betriebsprozessen des Betreibers. Das Betriebskonzept bildet die Grundlage für die Erarbeitung des Betriebshandbuchs und der Organisation beim Betreiber."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Anforderungen an den Betrieb"
+},
+{
+"text": "Systemtechnik",
+"items": [
+{
+"text": "IT-Infrastrukturkonzept"
+},
+{
+"text": "Systeme, eingesetzte Komponenten, Versionen"
+},
+{
+"text": "Netze"
+},
+{
+"text": "Datensicherung"
+},
+{
+"text": "Archivierung"
+}
+]
+},
+{
+"text": "Organisation",
+"items": [
+{
+"text": "Aufbauorganisation"
+},
+{
+"text": "Betriebsprozesse"
+}
+]
+},
+{
+"text": "Systembetrieb mit",
+"items": [
+{
+"text": "Normalbetrieb"
+},
+{
+"text": "Systemüberwachung"
+},
+{
+"text": "Arbeitsvorbereitung"
+}
+]
+},
+{
+"text": "Behandlung von Störungen"
+},
+{
+"text": "Beschreibung der Sicherheitsaspekte"
+},
+{
+"text": "Anforderungsabdeckung"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.12",
+"titel": "Detailspezifikation",
+"ebene": 4,
+"seite": 55,
+"element": "ergebnis-detailspezifikation",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/detailspezifikation.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "In klassisch geführter Lösungsentstehung beschreibt die Detailspezifikation die funktionalen und qualitativen Lösungseigenschaften. Sie basiert auf den Lösungsanforderungen und auf dem Produktkonzept bzw. bei IT-Projekten auf dem Systemkonzept und der Lösungsarchitektur. Sie wird inhaltlich und planerisch so detailliert erstellt, dass sie eine verlässliche Grundlage für die Realisierung (Entwicklung und Anpassung bzw. Entwicklung und Parametrisierung) der Lösung bildet. Die Detailspezifikation bildet die Grundlage für die Erstellung von detaillierten Testfallbeschreibungen."
+},
+{
+"t": "p",
+"text": "In agil geführter Lösungsentstehung entspricht die Detailspezifikation weitgehend einem „Sprint Backlog“, dient jedoch aus Projektmanagementsicht nur der Dokumentation der jeweiligen aktuellen Planung jener Anforderungen, welche die Umsetzungsorganisation ausgewählt hat und die innerhalb der jeweiligen Iteration zu erledigen sind. Sie wird im Rahmen der Aufgabe Projekt führen und kontrollieren iterativ-inkrementell fortgeführt, sodass die bereits im Dokument erledigten Anforderungen vorheriger Iterationen jeweils um ein neues Kapitel ergänzt werden. Alternativ kann lediglich ein Verweis auf die Dokumentation im Entwicklungsframework gesetzt werden."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "In klassisch geführter Lösungsentstehung ist der Inhalt der Detailspezifikation abhängig vom Realisierungsgegenstand und der eingesetzten Methode zur Spezifizierung. Ergänzend ist folgende Spezifikation möglich:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Detailanforderungen mit",
+"items": [
+{
+"text": "Anforderungen der Organisation"
+},
+{
+"text": "Funktionalen Anforderungen"
+}
+]
+}
+]
+},
+{
+"t": "p",
+"text": "In agil geführter Lösungsentstehung hingegen ist der Inhalt durch die zum Einsatz kommenden agilen Entwicklungsmethoden geprägt."
+}
+]
+},
+{
+"nummer": "4.4.1.13",
+"titel": "Durchführungsauftrag",
+"ebene": 4,
+"seite": 56,
+"element": "ergebnis-durchfuehrungsauftrag",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/durchfuehrungsauftrag.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Durchführungsauftrag bildet den Rahmen und die verbindliche Grundlage für die Lösungsentstehung sowie den darauffolgenden Projektabschluss und autorisiert die Projektfortsetzung. Er beinhaltet alle wesentlichen lösungsspezifischen Angaben sowie Hinweise betreffend das Vorgehen in den nächsten Phasen. Es handelt sich um eine verbindliche Vereinbarung zwischen dem Auftraggeber und dem Projektleiter."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage und Handlungsbedarf"
+},
+{
+"text": "Ziele",
+"items": [
+{
+"text": "Lösungsziele"
+},
+{
+"text": "Projektvorgehensziele mit",
+"items": [
+{
+"text": "klassischer/agiler Vorgehensweise"
+},
+{
+"text": "Szenario"
+},
+{
+"text": "weiteren Projektvorgehenszielen"
+}
+]
+},
+{
+"text": "Rahmenbedingungen, Strategiebezug und Abgrenzungen"
+}
+]
+},
+{
+"text": "Zusammenfassende Lösungsbeschreibung"
+},
+{
+"text": "Rechtliche Grundlagen"
+},
+{
+"text": "Investitionsbedarf"
+},
+{
+"text": "Ressourcen- und Hilfsmittelbedarf"
+},
+{
+"text": "Kosten/Nutzen/Wirtschaftlichkeit (Vorschau)"
+},
+{
+"text": "Planung und Organisation"
+},
+{
+"text": "Vorgehensweise (Entwicklungsmanagement)"
+},
+{
+"text": "Risiken"
+},
+{
+"text": "Konsequenzen"
+},
+{
+"text": "Verbindlichkeiten"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.14",
+"titel": "Einführungskonzept",
+"ebene": 4,
+"seite": 56,
+"element": "ergebnis-einfuehrungskonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungskonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Einführungskonzept beschreibt die Massnahmen für die Lösungseinführung und die Einführungsorganisation. Dazu gehören u. a. die Massnahmen des Organisationschangemanagements zur Unterstützung des Übergangs zum neuen Zustand, das Ausbildungskonzept, die Planung der Abnahmen samt Abnahmekriterien sowie die Freigabekriterien der Betriebsaufnahme."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Betroffenheitsanalyse"
+},
+{
+"text": "Einführungsvorgehen"
+},
+{
+"text": "Einführungsmassnahmen mit",
+"items": [
+{
+"text": "Organisations-, Transitions- und Changemanagement"
+},
+{
+"text": "Notfallmassnahmen und Notfallorganisation"
+}
+]
+},
+{
+"text": "Ausbildungskonzept mit",
+"items": [
+{
+"text": "Anforderungen"
+},
+{
+"text": "Ausbildungsvorgehen"
+},
+{
+"text": "Ausbildungsunterlagen"
+},
+{
+"text": "Ausbildungsinfrastruktur"
+}
+]
+},
+{
+"text": "Einführungsorganisation"
+},
+{
+"text": "Einführungsplanung"
+},
+{
+"text": "Planung der Vorabnahme und der Abnahme mit",
+"items": [
+{
+"text": "Abnahmekriterien"
+}
+]
+},
+{
+"text": "Freigabekriterien der Betriebsaufnahme"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.15",
+"titel": "Evaluationsbericht",
+"ebene": 4,
+"seite": 57,
+"element": "ergebnis-evaluationsbericht",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/evaluationsbericht.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Evaluationsbericht fasst die Ergebnisse der Angebotsbewertung zusammen. Er bildet die Grundlage für den Entscheid Zuschlag."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Vorgehen bei der Evaluation",
+"items": [
+{
+"text": "Mitglieder des Evaluationsteams"
+},
+{
+"text": "Ablauf der Evaluation"
+}
+]
+},
+{
+"text": "Ausschreibung, Fragen und Angebotsöffnung"
+},
+{
+"text": "Ergebnisse der Evaluation mit",
+"items": [
+{
+"text": "Eignungskriterien"
+},
+{
+"text": "Technischen Spezifikationen"
+},
+{
+"text": "Zuschlagskriterien"
+},
+{
+"text": "Bewertungsverfahren"
+},
+{
+"text": "Beurteilung der Angebote (Leistungswert/Wirtschaftlichkeit)"
+},
+{
+"text": "Vergleich der Angebote"
+},
+{
+"text": "Auswahl und Begründung"
+}
+]
+},
+{
+"text": "Empfehlung mit",
+"items": [
+{
+"text": "Geeignetstem Angebot (Leistungswert)"
+},
+{
+"text": "Wirtschaftlichstem Angebot (Kosten/Nutzen)"
+},
+{
+"text": "Bestem Angebot (Leistungswert/Wirtschaftlichkeit)"
+}
+]
+},
+{
+"text": "Anträge"
+},
+{
+"text": "Unterschriften"
+},
+{
+"text": "Anhänge mit",
+"items": [
+{
+"text": "Ausgefülltem Kriterienkatalog"
+},
+{
+"text": "Bewertung"
+},
+{
+"text": "Weiteren Beilagen"
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.16",
+"titel": "Geschäftsmodellbeschreibung",
+"ebene": 4,
+"seite": 58,
+"element": "ergebnis-geschaeftsmodellbeschreibung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/geschaeftsmodellbeschreibung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Geschäftsmodellbeschreibung beinhaltet alle organisatorischen Aspekte, die für die Lösung relevant sind und die durch die Lösung beeinflusst werden können und gibt den Rahmen für die Ablauf- und Aufbauorganisation vor. Sie orientiert sich an den Elementen des Geschäftsmodells einer Organisation, verstärkt die ganzheitliche Sichtweise auf die Organisation und umfasst eine Auswahl von Komponenten wie z. B. die Kundensegmentierung oder die Kundenbeziehungen."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Der Inhalt ist stark durch das Projekt und die Vorgehensweise sowie durch die Stammorganisation geprägt."
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Übersicht Geschäftsmodell"
+},
+{
+"text": "Kundensegmente"
+},
+{
+"text": "Wertangebote"
+},
+{
+"text": "Kanäle"
+},
+{
+"text": "Kundenbeziehungen"
+},
+{
+"text": "Schlüsselaktivitäten"
+},
+{
+"text": "Schlüsselressourcen"
+},
+{
+"text": "Schlüsselpartnerschaften"
+},
+{
+"text": "Einnahmequellen"
+},
+{
+"text": "Kostenstruktur"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.17",
+"titel": "Integrations- und Installationsanleitung",
+"ebene": 4,
+"seite": 58,
+"element": "ergebnis-integrations-und-installationsanleitung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/integrations-und-installationsanleitung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Integrations- und Installationsanleitung beschreibt, wie das System in der Betriebsinfrastruktur integriert und installiert wird."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Voraussetzungen"
+},
+{
+"text": "Integrations- und Installationsaktivitäten"
+},
+{
+"text": "Fehler- und Mängelbehandlung"
+},
+{
+"text": "Support"
+},
+{
+"text": "Integrationsorganisation"
+},
+{
+"text": "Abnahme"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.18",
+"titel": "Integrationskonzept",
+"ebene": 4,
+"seite": 58,
+"element": "ergebnis-integrationskonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/integrationskonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Integrationskonzept beschreibt, wie das System im Umfeld integriert wird. Es beschreibt ebenfalls, wie der Transport von einer Systemumgebung in eine andere erfolgt und wie das Konfigurationsmanagement und die Qualität sichergestellt werden. Bei einer Einführung mit Realisierungseinheiten (klassisch) oder schrittweiser Integration mit Releases (agil) ist die Planung der Realisierungseinheiten bzw. die Releaseplanung gemäss Projektmanagementplan ein Bestandteil des Integrationskonzepts."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Systemübersicht"
+},
+{
+"text": "Integrationsobjekte und Schnittstellen"
+},
+{
+"text": "Integrationsumgebungen"
+},
+{
+"text": "Integrationsschritte"
+},
+{
+"text": "Transport- und Deployment-Überblick"
+},
+{
+"text": "Rahmenbedingungen und Abhängigkeiten"
+},
+{
+"text": "Integrationsorganisation"
+},
+{
+"text": "Risiken"
+},
+{
+"text": "Qualitätssicherung"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.19",
+"titel": "ISDS-Konzept",
+"ebene": 4,
+"seite": 59,
+"element": "ergebnis-isds-konzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-konzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das ISDS-Konzept bildet die Grundlage für die Festlegung der Massnahmen für Informationssicherheit und Datenschutz (ISDS). Es zeigt die Restrisiken auf, die mit dem Betrieb des Systems und der Organisation verbunden sind."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Der Inhalt richtet sich nach den Vorgaben der Stammorganisation."
+}
+]
+},
+{
+"nummer": "4.4.1.20",
+"titel": "Liste Projektentscheide Führung",
+"ebene": 4,
+"seite": 59,
+"element": "ergebnis-liste-projektentscheide-fuehrung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/liste-projektentscheide-fuehrung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Liste Projektentscheide Führung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene Führung. Die Liste wird während der ganzen Dauer eines Projekts verwendet."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Entscheid"
+},
+{
+"text": "Meilenstein erreicht ja/nein"
+},
+{
+"text": "Zugrundeliegende Dokumente"
+},
+{
+"text": "Entscheidungsträger der Hierarchieebene Führung und/oder Ausführung"
+},
+{
+"text": "Datum"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.21",
+"titel": "Liste Projektentscheide Steuerung",
+"ebene": 4,
+"seite": 59,
+"element": "ergebnis-liste-projektentscheide-steuerung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/liste-projektentscheide-steuerung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Liste Projektentscheide Steuerung dokumentiert die Ergebnisse der Entscheidungsaufgaben der Hierarchieebene Steuerung. Die Liste wird während der ganzen Dauer eines Projekts verwendet."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Entscheid"
+},
+{
+"text": "Meilenstein erreicht ja/nein"
+},
+{
+"text": "Zugrundeliegende Dokumente"
+},
+{
+"text": "Entscheidungsträger der Hierarchieebene Steuerung"
+},
+{
+"text": "Datum"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.22",
+"titel": "Lösungsanforderungen",
+"ebene": 4,
+"seite": 60,
+"element": "ergebnis-loesungsanforderungen",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/loesungsanforderungen.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Lösungsanforderungen beinhalten sämtliche Anforderungen, die das künftige System oder Produkt erfüllen soll. Dies beinhaltet die fachlichen und technischen Anforderungen, aber auch erwartete Eigenschaften, Funktionen, rechtliche sowie lösungsrelevante und regulatorische Vorgaben, Betriebs-, Support- und Sicherheitsanforderungen wie auch Anforderungen zur Optimierung und Mängelkorrektur an allenfalls schon bestehenden Produkten oder Systemen."
+},
+{
+"t": "p",
+"text": "In klassisch geführter Lösungsentstehung werden die Lösungsanforderungen auf der Basis der Studie und der Situationsanalyse im endgültigen Detaillierungsgrad erarbeitet und während der Lösungsentstehung bei Bedarf über das Änderungsmanagement sukzessive nachgeführt."
+},
+{
+"t": "p",
+"text": "In agil geführter Lösungsentstehung werden die Lösungsanforderungen auf der Basis der Studie und der Situationsanalyse in der Phase Umsetzung erstmalig als „Initial Product Backlogs“ erarbeitet. Im Rahmen der selbstorganisierten agilen Umsetzung werden Änderungen in der Änderungsstatusliste dokumentiert und in den Lösungsanforderungen nur über einen Änderungsantrag nachgeführt, wenn Sie Projektziele, das Budget oder den Zeitrahmen des Gesamtvorhabens verändern (siehe Aufgabe Änderungen managen)."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Grobanforderungen"
+},
+{
+"text": "Anforderungskatalog"
+},
+{
+"text": "Detaillierte Lösungsanforderungen"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.23",
+"titel": "Lösungsarchitektur",
+"ebene": 4,
+"seite": 60,
+"element": "ergebnis-loesungsarchitektur",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/loesungsarchitektur.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Lösungsarchitektur basiert auf dem Systemkonzept und gliedert das System in Subsysteme und ihre Komponenten. Sie beschreibt die Systemstruktur und die Schnittstellen. Die Lösungsarchitektur erlaubt eine umfassende Sicht auf das System. Je nach Projektergebnis und Umfang enthält es mehrere Architekturelemente und -modelle, beispielsweise das Geschäftsprozessmodell, das Funktionsmodell (z. B. mit Use Cases / User Stories), die Datenarchitektur/das Datenmodell, die Sicherheitsarchitektur. Sie enthält auch die IT-Dokumentation bzw. verweist auf die Dokumentation des Erstellers. Die Ergebnisse des Systemkonzepts werden in einem Anhang zur Lösungsarchitektur zusammengefasst."
+},
+{
+"t": "p",
+"text": "Die Lösungsarchitektur berücksichtigt die Vorgaben der Controlling- und Vorgabestellen."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Systemstruktur",
+"items": [
+{
+"text": "Übersicht über das System"
+},
+{
+"text": "Subsysteme und Komponenten"
+},
+{
+"text": "Lösungsarchitekturen/Modelle"
+}
+]
+},
+{
+"text": "Schnittstellen und Abgrenzung",
+"items": [
+{
+"text": "Schnittstellen zu Umsystemen"
+},
+{
+"text": "Hinweis auf Integrationskonzept"
+},
+{
+"text": "Abgrenzung"
+}
+]
+},
+{
+"text": "Machbarkeitsbeurteilung"
+},
+{
+"text": "Konformität mit Vorgaben"
+},
+{
+"text": "Anforderungszuordnung und -abdeckung"
+},
+{
+"text": "Ergebnisse des Systemkonzepts"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.24",
+"titel": "Migrationskonzept",
+"ebene": 4,
+"seite": 61,
+"element": "ergebnis-migrationskonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migrationskonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Migrationskonzept beschreibt die technischen und organisatorischen Anforderungen an die Migration und enthält das Konzept der Migrationsverfahren. Das Migrationskonzept belegt die Machbarkeit und zeigt die Migrationsplanung auf. Neben den technischen und organisatorischen Anforderungen sind auch die Anforderungen der Revision sowie des ISDS berücksichtigt."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ziele der Migration"
+},
+{
+"text": "Anforderungen an die Migration"
+},
+{
+"text": "Migrationsobjekte"
+},
+{
+"text": "Datenanalyse"
+},
+{
+"text": "Migrationsverfahren"
+},
+{
+"text": "Migrationsplan"
+},
+{
+"text": "Machbarkeit"
+},
+{
+"text": "Archivierung und Ausserbetriebssetzung Altsystem"
+},
+{
+"text": "Anforderungsabdeckung"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.25",
+"titel": "Offertanfrage",
+"ebene": 4,
+"seite": 61,
+"element": "ergebnis-offertanfrage",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/offertanfrage.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Mit der Offertanfrage werden Angebote für verschiedene organisationsinterne und -externe Leistungen eingeholt. Die Angebote bilden die Grundlage für die Leistungsvereinbarung, wie in der Aufgabe Leistungen vereinbaren und steuern beschrieben ist. Die Vorgaben an die Offerte erlauben es, die Angebote zu vergleichen und zu bewerten."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Auftraggeber"
+},
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Auftragsgegenstand"
+},
+{
+"text": "Termine"
+},
+{
+"text": "Bedingungen"
+},
+{
+"text": "Vorgaben an die Offerte"
+},
+{
+"text": "Administrativer Ablauf der Beschaffung"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.26",
+"titel": "Organisationsanforderungen",
+"ebene": 4,
+"seite": 61,
+"element": "ergebnis-organisationsanforderungen",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationsanforderungen.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Organisationsanforderungen definieren, ob es ein neues oder aktualisiertes Geschäftsmodell braucht und/oder ob die Aufbau- oder Ablauforganisation ändert. Sie beinhalten jene kontextbezogenen, betriebswirtschaftlichen und organisatorischen Anforderungen, die die interne Organisation im Rahmen der künftigen Lösung stärken und der Lösung selbst einen höheren Wirkungsgrad ermöglichen."
+},
+{
+"t": "p",
+"text": "Sie umfassen neben den klassischen aufbau- und ablauforganisationsspezifischen Aspekten auch die Anforderungen an die Wirtschaftlichkeit, Effektivität und Effizienz sowie die Ziele der Stammorganisation und die aus den Zielen abgeleitete Organisationsstrategie, oftmals manifestiert in einem Geschäftsmodell, das den Rahmen vorgibt, in den die neue Organisation eingepasst werden muss."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Der Inhalt ist stark durch das Projekt und die Vorgehensweise geprägt."
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Stossrichtung des geplanten/geänderten Geschäftsmodells"
+},
+{
+"text": "Stossrichtung der geplanten/geänderten Aufbauorganisation"
+},
+{
+"text": "Stossrichtung der geplanten/geänderten Ablauforganisation"
+},
+{
+"text": "Anforderungskatalog"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.27",
+"titel": "Organisationsbeschreibung",
+"ebene": 4,
+"seite": 62,
+"element": "ergebnis-organisationsbeschreibung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationsbeschreibung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Organisationsbeschreibung beschreibt die Aufbauorganisation mit dem detaillierten Organigramm, den Funktionsbeschreibungen und Personalanforderungen. Sie bildet die Grundlage für Stellenbesetzungen."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Organigramm"
+},
+{
+"text": "Organisatorische Schnittstellen"
+},
+{
+"text": "Funktionsbeschreibungen"
+},
+{
+"text": "Personalanforderungen"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.28",
+"titel": "Organisationskonzept",
+"ebene": 4,
+"seite": 62,
+"element": "ergebnis-organisationskonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisationskonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Organisationskonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante aus organisatorischer Sicht. Es basiert auf den Organisationsanforderungen, ggfs. ergänzt durch die Erkenntnisse aus den Lösungsanforderungen und beschreibt die relevanten Geschäftsmodellaspekte sowie Aufbau- und Ablauforganisation (Geschäftsprozesse) für die Geschäftsabwicklung und den Support. Es zeigt auf, welche neue Organisation erstellt wird und welche Änderungen an Bestehendem vorgenommen werden."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Organisationsanforderungen"
+},
+{
+"text": "Geschäftsmodell"
+},
+{
+"text": "Aufbauorganisation"
+},
+{
+"text": "Ablauforganisation"
+},
+{
+"text": "Übersicht der Veränderungen"
+},
+{
+"text": "Anforderungsabdeckung"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.29",
+"titel": "Phasenbericht",
+"ebene": 4,
+"seite": 62,
+"element": "ergebnis-phasenbericht",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/phasenbericht.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Phasenbericht bildet die Grundlage für den Entscheid über die Freigabe der nächsten Phase und für die Aktualisierung des Projektstatusberichts. Er fasst die Ergebnisse und Entscheide der aktuellen Phase zusammen und zeigt die Organisation der nächsten Phase auf."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Strategiebezug und Umsetzung von Vorgaben"
+},
+{
+"text": "Nutzen und Wirtschaftlichkeit"
+},
+{
+"text": "Rechtliche Grundlagen"
+},
+{
+"text": "Planung und Organisation"
+},
+{
+"text": "Prognose der Zielerreichung und Lösungen"
+},
+{
+"text": "Probleme und Massnahmen"
+},
+{
+"text": "Risiken"
+},
+{
+"text": "Anträge"
+},
+{
+"text": "Fazit"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.30",
+"titel": "Produktdokumentation",
+"ebene": 4,
+"seite": 63,
+"element": "ergebnis-produktdokumentation",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produktdokumentation.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Produktdokumentation ist die technische Dokumentation des Produkts. Alle im Entwicklungsprozess definierten Dokumentationen bilden zusammen die Produktdokumentation. Sie ist eine Voraussetzung für die Wartung und Weiterentwicklung des Produkts."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Der Inhalt der Produktdokumentation ist abhängig von den im Entwicklungsprozess definierten Ergebnissen."
+}
+]
+},
+{
+"nummer": "4.4.1.31",
+"titel": "Produktkonzept",
+"ebene": 4,
+"seite": 63,
+"element": "ergebnis-produktkonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produktkonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Produktkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den Lösungsanforderungen, ggfs. ergänzt durch die Erkenntnisse aus den Organisationsanforderungen und beschreibt das zu erstellende Produkt. Je nach Produkt und Komplexität der Lösungsanforderungen variieren die Struktur und der Detaillierungsgrad."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Anforderungen"
+},
+{
+"text": "Abgrenzung"
+},
+{
+"text": "Verwendungszweck"
+},
+{
+"text": "Produktklassifizierungen"
+},
+{
+"text": "Produktbeschreibung"
+},
+{
+"text": "Varianten"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.32",
+"titel": "Projekterfahrungen",
+"ebene": 4,
+"seite": 63,
+"element": "ergebnis-projekterfahrungen",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projekterfahrungen.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Projekterfahrungen werden systematisch gesammelt und als Projekt-Rückblick laufend dokumentiert. Sie unterstützen den kontinuierlichen Verbesserungsprozess im Projekt und in der Stammorganisation. Sie liefern wertvolle Informationen für den weiteren Projektverlauf und mögliche Anhaltspunkte für nachfolgende Projekte, indem positive Aspekte erkannt und übernommen und negative Aspekte möglichst vermieden werden."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kontakt"
+},
+{
+"text": "Themengebiet"
+},
+{
+"text": "Datum"
+},
+{
+"text": "Erfahrung: positiv/negativ"
+},
+{
+"text": "Relevanz: mögliche Bedeutung für das eigene oder für andere Projekte"
+},
+{
+"text": "Mögliche Ursachen"
+},
+{
+"text": "Empfehlung; Hinweise für die Stammorganisation"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.33",
+"titel": "Projektinitialisierungsauftrag",
+"ebene": 4,
+"seite": 64,
+"element": "ergebnis-projektinitialisierungsauftrag",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektinitialisierungsauftrag.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Projektinitialisierungsauftrag bildet die verbindliche Grundlage für die Freigabe der Phase Initialisierung. Es handelt sich um eine Vereinbarung zwischen dem Auftraggeber und dem Projektleiter für die Phase Initialisierung."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Ziele",
+"items": [
+{
+"text": "Ziele der Phase Initialisierung"
+},
+{
+"text": "Rahmenbedingungen"
+}
+]
+},
+{
+"text": "Ressourcenbedarf mit",
+"items": [
+{
+"text": "Personalaufwand"
+},
+{
+"text": "Sachmittel"
+},
+{
+"text": "Kosten"
+}
+]
+},
+{
+"text": "Termine"
+},
+{
+"text": "Projektorganisation und Personal"
+},
+{
+"text": "Kommunikation"
+},
+{
+"text": "Risiken"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.34",
+"titel": "Projektmanagementplan",
+"ebene": 4,
+"seite": 64,
+"element": "ergebnis-projektmanagementplan",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektmanagementplan.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die erstmalige Ausarbeitung des Projektmanagementplans wird durch den Entscheid „Weiteres Vorgehen“ in der Initialisierungsphase geprägt. Insbesondere der Vorgehensentscheid, ob klassisch oder agil, beeinflusst die Ausführung der Aufgaben und die Struktur und Inhalt der Ergebnisse."
+},
+{
+"t": "p",
+"text": "Der Projektmanagementplan beinhaltet die Gesamtplanung des Projekts und die wesentlichen Regelungen zu Methoden, Techniken, Rollen und Hilfsmitteln, die projektspezifisch festgelegt werden. Der Projektmanagementplan dient als einheitliche Handlungsgrundlage für alle Projektbeteiligten. Im Rahmen der Projektorganisation stellt er sicher, dass die Verantwortlichkeiten und die Aufgabenteilungen zwischen Leistungsbezügern, internen Leistungserbringern und ggf. externen Lieferanten ausreichend klar geregelt und dokumentiert sind. Er wird im Projektverlauf nach dem Prinzip der rollenden Planung und Steuerung kontinuierlich konkretisiert und nachgeführt."
+},
+{
+"t": "p",
+"text": "Bei agiler Lösungsentstehung wird der Terminplan für die Phase Umsetzung mit dem (agilen) Releaseplan kombiniert. Dieser Releaseplan gibt an, wann der Betrieb pro Release aktiviert wird. Ferner wird festgehalten, ob der (optionale) Entscheid „Releasefreigabe treffen“ im Projekt vorgeschrieben ist oder nicht."
+},
+{
+"t": "p",
+"text": "Bei Phasenabschluss wird der Projektmanagementplan zur Abwicklung der nächsten Phase den veränderten Bedingungen angepasst. Bevor die Phase Abschluss freigegeben wird, wird der Projektmanagementplan für den Projektabschluss zusätzlich entsprechend vorbereitet und angepasst."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Projektbeschreibung",
+"items": [
+{
+"text": "Zusammenfassung"
+},
+{
+"text": "Phasen und Meilensteinen (klassisch) oder Releases (agil)"
+},
+{
+"text": "Releasefreigabe ja/nein (agil)"
+}
+]
+},
+{
+"text": "Szenario mit Durchführungsstrukturplan"
+},
+{
+"text": "Durchführungsorganisation mit",
+"items": [
+{
+"text": "Projektorganigramm"
+},
+{
+"text": "Rollen in der Stamm- und Projektorganisation"
+},
+{
+"text": "Besetzung der Rollen (einschliesslich der Umsetzungsorganisation (agil))"
+}
+]
+},
+{
+"text": "Projektergebnisstruktur"
+},
+{
+"text": "Qualitätsziele und -vorgaben (für die Durchführung)"
+},
+{
+"text": "Prüfplan (QS)"
+},
+{
+"text": "Durchführungsplanung mit",
+"items": [
+{
+"text": "Terminplan"
+},
+{
+"text": "Releaseplan (agil) mit",
+"items": [
+{
+"text": "Releases"
+},
+{
+"text": "Abhängigkeiten und Voraussetzungen"
+},
+{
+"text": "Organisation"
+},
+{
+"text": "Terminen"
+}
+]
+}
+]
+},
+{
+"text": "Kostenplan/genehmigtes Budget"
+},
+{
+"text": "Ressourcenplan"
+},
+{
+"text": "Beschaffungsplan"
+},
+{
+"text": "Kommunikationsplan"
+},
+{
+"text": "Reporting"
+},
+{
+"text": "Stakeholdermanagement (projektspezifisch)"
+},
+{
+"text": "Vorgaben, Methoden und Werkzeuge"
+},
+{
+"text": "Qualitätssicherung"
+},
+{
+"text": "Änderungsmanagement"
+},
+{
+"text": "Risikomanagement"
+},
+{
+"text": "Eskalationsvorgehen"
+},
+{
+"text": "Dokumentenmanagement"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.35",
+"titel": "Projektschlussbeurteilung",
+"ebene": 4,
+"seite": 65,
+"element": "ergebnis-projektschlussbeurteilung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektschlussbeurteilung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Projektschlussbeurteilung bildet die Grundlage für den Entscheid zum Projektabschluss. Sie informiert den Auftraggeber über den Soll-Ist-Vergleich bezüglich der sachlichen, terminlichen und finanziellen Projekt- und Vorgehensziele. Die Inhalte des Ergebnisses Projekterfahrungen sind zusammenfassend dokumentiert. Inhalt und Termine der Projekterfolgskontrolle sind bestimmt."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Beurteilung der Zielerreichung"
+},
+{
+"text": "Wirtschaftlichkeit"
+},
+{
+"text": "Soll-Ist-Vergleich",
+"items": [
+{
+"text": "Kosten"
+},
+{
+"text": "Aufwand"
+},
+{
+"text": "Termine"
+},
+{
+"text": "Ergebnisse"
+}
+]
+},
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": "Pendenzen und Massnahmen",
+"items": [
+{
+"text": "Direkt aus dem Projekt mit",
+"items": [
+{
+"text": "Offenem Punkt"
+},
+{
+"text": "Massnahme"
+},
+{
+"text": "Verantwortlichen"
+},
+{
+"text": "Umsetzungstermin"
+}
+]
+},
+{
+"text": "Weitere Massnahmen nach Projektabschluss mit",
+"items": [
+{
+"text": "Massnahme"
+},
+{
+"text": "Verantwortlichen"
+},
+{
+"text": "Umsetzungstermin"
+}
+]
+}
+]
+},
+{
+"text": "Antrag"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.36",
+"titel": "Projektstatusbericht",
+"ebene": 4,
+"seite": 66,
+"element": "ergebnis-projektstatusbericht",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/projektstatusbericht.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Projektstatusbericht dient zur periodischen Berichterstattung über den Projektstand, den Projektfortschritt und die Prognosen zum weiteren Projektverlauf. Die Art und Weise der Berichterstattung ist im Projektmanagementplan geregelt. Vorgaben der Stammorganisation bezüglich des Inhalts und der Frequenz des Reportings werden berücksichtigt."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Übersicht Projektstand"
+},
+{
+"text": "Prognose der Zielerreichung (agil: Burn-Down -Diagramm)"
+},
+{
+"text": "Soll-Ist-Vergleich und Prognosen mit",
+"items": [
+{
+"text": "Kosten/Nutzen"
+},
+{
+"text": "Aufwand"
+},
+{
+"text": "Termine"
+},
+{
+"text": "Ergebnisse"
+}
+]
+},
+{
+"text": "Probleme und Massnahmen"
+},
+{
+"text": "Risiken"
+},
+{
+"text": "Ausblick"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.37",
+"titel": "Protokoll",
+"ebene": 4,
+"seite": 66,
+"element": "ergebnis-protokoll",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/protokoll.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Protokoll dokumentiert einerseits die Entscheide und Aufträge, die in einer Besprechung getroffen bzw. erteilt werden, anderseits wichtige Führungs- und Ausführungsprozesse, die später bei Bedarf nachvollzogen werden müssen. Wichtige Diskussions- und Handlungspunkte werden festgehalten. Im Protokoll festgehaltene Aufträge werden in einer Pendenzenliste verwaltet."
+},
+{
+"t": "p",
+"text": "Generell:"
+},
+{
+"t": "p",
+"text": "Die Sammlung aller Protokolle dient der Nachvollziehbarkeit von Entscheiden und Abläufen bzw. Prozessen."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Kopfbereich",
+"items": [
+{
+"text": "Sitzungsart / Thema"
+},
+{
+"text": "Datum / Zeit / Ort"
+},
+{
+"text": "Leitung / Protokollführung"
+},
+{
+"text": "Teilnehmende / Abwesende"
+}
+]
+},
+{
+"text": "Protokollbereich mit",
+"items": [
+{
+"text": "Begrüssung / Ggf. Genehmigung letztes Protokoll"
+},
+{
+"text": "Einzelne besprochene Traktanden"
+},
+{
+"text": "Beschlussliste"
+},
+{
+"text": "Ggf. Informationen zu nächstem Meeting"
+}
+]
+},
+{
+"text": "Pendenzenliste (Anhang)"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.38",
+"titel": "Prototypdokumentation",
+"ebene": 4,
+"seite": 67,
+"element": "ergebnis-prototypdokumentation",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prototypdokumentation.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Prototypdokumentation bildet die Grundlage für die Erstellung und Auswertung des Prototyps. Sie hält die Ziele, Anforderungen, Ergebnisse und Schlussfolgerungen des Prototypings fest."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Rahmenbedingungen"
+},
+{
+"text": "Anforderungen"
+},
+{
+"text": "Konzept",
+"items": [
+{
+"text": "Konzept des Prototyps"
+},
+{
+"text": "Benötigte Infrastruktur"
+}
+]
+},
+{
+"text": "Zusammenfassung der Testergebnisse",
+"items": [
+{
+"text": "Hinweis auf Testkonzept"
+},
+{
+"text": "Liste der Testfälle"
+},
+{
+"text": "Zusammenfassung der Testprotokolle, Testbericht"
+}
+]
+},
+{
+"text": "Schlussfolgerungen"
+},
+{
+"text": "Empfehlungen"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.39",
+"titel": "Prozessbeschreibung",
+"ebene": 4,
+"seite": 67,
+"element": "ergebnis-prozessbeschreibung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prozessbeschreibung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Prozessbeschreibung ist eine bis auf Prozessebene ausdetaillierte Ablauforganisation, sie beschreibt die einzelnen Prozesse mit den eingesetzten Hilfsmitteln."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Übersicht über die Prozesse"
+},
+{
+"text": "Pro Prozess:",
+"items": [
+{
+"text": "Prozessbeschreibung (gem. eCH-0140)"
+},
+{
+"text": "Tabellarischer Prozessablauf"
+},
+{
+"text": "Grafischer Prozessablauf"
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.40",
+"titel": "Prüfprotokoll",
+"ebene": 4,
+"seite": 68,
+"element": "ergebnis-pruefprotokoll",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/pruefprotokoll.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Prüfprotokoll hält die Befunde aus Prüfungen fest und dokumentiert die Umsetzungsentscheide zu den Befunden sowie den Entscheid zum Status des Ergebnisses."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Zu prüfendes Ergebnis"
+},
+{
+"text": "Prüfdatum"
+},
+{
+"text": "Prüfer"
+},
+{
+"text": "Befund"
+},
+{
+"text": "Entscheid zum Ergebnis"
+},
+{
+"text": "Entscheid zum Befund"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.41",
+"titel": "Publikation",
+"ebene": 4,
+"seite": 68,
+"element": "ergebnis-publikation",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/publikation.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Publikation informiert über die Zuschlagserteilung in der betreffenden Ausschreibung. Form und Inhalt der Publikation werden durch die Controlling- und Vorgabestellen bzw. die Beschaffungsstelle vorgegeben. In der Schweiz erfolgen Publikationen öffentlicher Ausschreibungen i. d. R. über www.simap.ch."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Betroffene Ausschreibung"
+},
+{
+"text": "Beschaffungsstelle"
+},
+{
+"text": "Zuschlagsempfänger"
+},
+{
+"text": "Rechtsmittel"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.42",
+"titel": "QS- und Risikobericht",
+"ebene": 4,
+"seite": 68,
+"element": "ergebnis-qs-und-risikobericht",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/qs-und-risikobericht.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der QS (Qualitätssicherungs)- und Risikobericht wird durch den Qualitäts- und Risikomanager (QRM) nach Beauftragung durch den Auftraggeber erstellt. Er informiert aus unabhängiger Sicht über die Qualität und die Risikosituation des Projekts. Der Inhalt des QS- und Risikoberichts ist abhängig von Auftrag und Abgrenzung sowie von den eingesetzten Methoden."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Auftrag und Abgrenzung"
+},
+{
+"text": "Vorgehensweise"
+},
+{
+"text": "Gesamtbeurteilung mit Projektstatus"
+},
+{
+"text": "Qualitätsbeurteilung"
+},
+{
+"text": "Risikobeurteilung"
+},
+{
+"text": "Empfehlungen"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.43",
+"titel": "Releasebericht",
+"ebene": 4,
+"seite": 69,
+"element": "ergebnis-releasebericht",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/releasebericht.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Releasebericht liefert im Rahmen der agilen Vorgehensweise die Übersicht über den bisherigen Projekterfolg und bildet die Grundlage für die Erstellung des Projektstatusberichts sowie, je nach Bestimmung im Projektmanagementplan, auch für den Entscheid über die etwaige Freigabe des nächsten Release. Er fasst die Ergebnisse und Entscheide des aktuellen Release zusammen und zeigt eine Übersicht über den noch zu leistenden Aufwand im Projekt."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Strategiebezug und Umsetzung von Vorgaben"
+},
+{
+"text": "Nutzen und Wirtschaftlichkeit"
+},
+{
+"text": "Inhalt des Release"
+},
+{
+"text": "Bekannte Fehler"
+},
+{
+"text": "Burn-Down-Diagramm"
+},
+{
+"text": "Risiken"
+},
+{
+"text": "Fazit"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.44",
+"titel": "Rechtsgrundlagenanalyse",
+"ebene": 4,
+"seite": 69,
+"element": "ergebnis-rechtsgrundlagenanalyse",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/rechtsgrundlagenanalyse.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Rechtsgrundlagenanalyse beschreibt die für das Projektergebnis bestehende bzw. geltende Rechtsgrundlagen und den allfälligen Bedarf für deren Änderung. Ein besonderes Augenmerk gilt den kommunalen, kantonalen, nationalen und allenfalls auch den internationalen rechtlichen sowie produktrelevanten und regulatorischen Vorgaben, die die anvisierte Lösung samt ihren Auswirkungen auf die Umsysteme, einhalten muss (Product Compliance)."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Bestehende Rechtsgrundlagen"
+},
+{
+"text": "Bevorstehende Änderungen"
+},
+{
+"text": "Identifizierte Lücken"
+},
+{
+"text": "Vorschläge zur Schliessung von Lücken"
+},
+{
+"text": "Hinweise betreffend Product Compliance"
+},
+{
+"text": "Beurteilung der Konsequenzen"
+},
+{
+"text": "Empfehlungen"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.45",
+"titel": "Schutzbedarfsanalyse",
+"ebene": 4,
+"seite": 69,
+"element": "ergebnis-schutzbedarfsanalyse",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/schutzbedarfsanalyse.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Schutzbedarfsanalyse, auch ISDS-Analyse genannt, dokumentiert die Anforderungen an die Informationssicherheit und den Datenschutz. Diese sind im Rahmen der Vorgaben der Stammorganisation bei der Lösungsentstehung zu berücksichtigen."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Der Inhalt richtet sich nach den Vorgaben der Stammorganisation."
+}
+]
+},
+{
+"nummer": "4.4.1.46",
+"titel": "Service Level Agreement",
+"ebene": 4,
+"seite": 70,
+"element": "ergebnis-service-level-agreement",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/service-level-agreement.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Ein Service Level Agreement (SLA) ist eine vertragliche Vereinbarung zwischen dem Betreiber und dem Anwender, vertreten durch den Auftraggeber und den Anwendervertreter. Das SLA nennt die Dienstleistungen, die der Betreiber zu erbringen hat, definiert deren Service Level (Güte der Dienstleistung) und formuliert etwaige Massnahmen und Sanktionen bei Nichteinhaltung. Die vereinbarten Dienstleistungen und deren Service Level sind in der Regel kostenpflichtig."
+},
+{
+"t": "p",
+"text": "Wird der Betrieb ausgelagert, können die SLAs ein wichtiger Faktor bei der Evaluation des möglichen Betreibers sein."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Der Inhalt eines SLAs wird durch die Stammorganisation vorgegeben. Bei einem externen Provider kann bereits ein vorgefertigtes SLA vorliegen. Das SLA kann unter anderem die folgenden Punkte beinhalten:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Präambel mit",
+"items": [
+{
+"text": "Gegenstand"
+},
+{
+"text": "Ziele"
+},
+{
+"text": "Partner"
+}
+]
+},
+{
+"text": "Geltungsbereich"
+},
+{
+"text": "Inkrafttreten, Laufzeit, Kündigung"
+},
+{
+"text": "Dienstleistungen"
+},
+{
+"text": "Vergütung mit",
+"items": [
+{
+"text": "Verrechnungspreisen"
+},
+{
+"text": "Rechnungsstellung"
+},
+{
+"text": "Zahlungsmodalitäten"
+}
+]
+},
+{
+"text": "Berichtswesen mit",
+"items": [
+{
+"text": "Service-Level-Berichte (Standardberichte)"
+},
+{
+"text": "Weitere Berichte (ggf.)"
+}
+]
+},
+{
+"text": "Konsequenzen bei Abweichung von vereinbarten Service-Levels"
+},
+{
+"text": "Regelungen zur Kontrolle des SLAs (SLA-Audits)"
+},
+{
+"text": "Regelungen zur Änderung des SLAs"
+},
+{
+"text": "Regelung zur Lösung von Konflikten"
+},
+{
+"text": "Datenschutz"
+},
+{
+"text": "Haftung und Gewährleistung"
+},
+{
+"text": "Schadensersatz"
+},
+{
+"text": "Anwendbares Recht"
+},
+{
+"text": "Gerichtsstand"
+},
+{
+"text": "Schiedsgerichtsverfahren"
+},
+{
+"text": "Vertraulichkeit, Geheimhaltung und Veröffentlichung"
+},
+{
+"text": "Teilnichtigkeit von Regelungen"
+},
+{
+"text": "Unterschriften"
+},
+{
+"text": "Beilagen"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.47",
+"titel": "Situationsanalyse",
+"ebene": 4,
+"seite": 71,
+"element": "ergebnis-situationsanalyse",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/situationsanalyse.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Situationsanalyse beschreibt und analysiert die gegenwärtige Situation und die zukünftigen Entwicklungen, indem sie die grobe Standortbestimmung aus der Studie ergänzt bzw. vertieft."
+},
+{
+"t": "p",
+"text": "Zur Bestimmung des Untersuchungsbereichs wird der gesamtheitliche Lösungs- und Einflussbereich der in der Phase Initialisierung gewählten Variante herangezogen. Neben der Zusammenstellung der wesentlichen Mengen und Häufigkeiten geht die Situationsanalyse insbesondere auf die Mängel und Schwachstellen ein, die mit der künftigen Lösung möglichst beseitigt werden sollen, und definiert die vorhandenen Stärken, die erhalten werden sollen."
+},
+{
+"t": "p",
+"text": "Die Situationsanalyse bildet die fachliche Basis für die Definition der vom Projektergebnis zu erfüllenden Lösungs- und Organisationsanforderungen. Sie ist ziel- und lösungsneutral und umfasst alle für die Lösung relevanten Aspekte."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Ist-Organisation (falls relevant) mit",
+"items": [
+{
+"text": "Geschäftsmodell/geschäftlicher Sichtweise"
+},
+{
+"text": "Aufbauorganisation/Strukturen"
+},
+{
+"text": "Ablauforganisation/Prozesse"
+}
+]
+},
+{
+"text": "Beschreibung, sofern vorhanden, der bestehenden Lösung (Ist-System/Ist-Produkt)",
+"items": [
+{
+"text": "Ziel und Anwendungszweck, Funktion"
+},
+{
+"text": "Dokumentationen zur bestehenden Lösung wie",
+"items": [
+{
+"text": "Ursprüngliche Lösungsbeschreibung/Lösungskonzept"
+},
+{
+"text": "Rahmenbedingungen und Vorgaben"
+},
+{
+"text": "Anwenderdokumentation"
+},
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": "ISDS"
+},
+{
+"text": "Schnittstellen und Umsysteme (organisatorisch/technisch)"
+}
+]
+},
+{
+"text": "Betriebskosten"
+}
+]
+},
+{
+"text": "Mengen und Häufigkeiten"
+},
+{
+"text": "Beschreibung des Ist-Gesamtkontexts"
+},
+{
+"text": "Stärken- und Schwächenanalyse"
+},
+{
+"text": "Fazit und Handlungsbedarf"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.48",
+"titel": "Stakeholderinteressen",
+"ebene": 4,
+"seite": 71,
+"element": "ergebnis-stakeholderinteressen",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/stakeholderinteressen.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Stakeholderinteressen bilden die Grundlage für die Information der Stakeholder und für die direkte Zusammenarbeit mit ihnen. Die Analyse der Stakeholderinteressen wird getrennt von der Stakeholderliste geführt. Diese Analyse ist eine subjektive, projektinterne Einschätzung und kein öffentliches Ergebnis. Die Stakeholderinteressen werden für die Kommunikation und für die Zusammenarbeit mit den Stakeholdern benötigt und werden regelmässig nachgeführt."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Stakeholder-Positionierung"
+},
+{
+"text": "Stakeholder-Beschreibung"
+},
+{
+"text": "Erkannte Interessen- und Zielkonflikte"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.49",
+"titel": "Stakeholderliste",
+"ebene": 4,
+"seite": 72,
+"element": "ergebnis-stakeholderliste",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/stakeholderliste.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Stakeholderliste wird erstmals in der Phase Initialisierung erarbeitet und bildet die Grundlage für das Managen der Stakeholder, für die direkte Zusammenarbeit mit ihnen und für die Kommunikationsplanung. Sie wird im Projektablauf kontinuierlich weitergeführt."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Stakeholder"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.50",
+"titel": "Studie",
+"ebene": 4,
+"seite": 72,
+"element": "ergebnis-studie",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/studie.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Studie beschreibt die angestrebte Lösung, indem sie basierend auf der Standortbestimmung, die die Ziele im Sinne des mit dem Projekt angestrebten Nutzens definiert, mögliche Lösungsvarianten und das vorgeschlagene Vorgehen aufführt und diese anschliessend bewertet. Sie entspricht dem Business-Case und zeigt den Geschäftsnutzen sowie den Bezug zur Strategie und den Zielen der Stammorganisation. Alle Aspekte, die einen Einfluss auf die geplante Lösung haben oder die von der Lösung beeinflusst werden können, werden in der Studie erwähnt. Darüber hinaus wird das passende Szenario (vgl. Kapitel „Szenarien“) ausgewählt, allenfalls ein benutzerdefiniertes Szenario erstellt und es wird geschätzt, welche Wertigkeit das Projekt haben wird."
+},
+{
+"t": "p",
+"text": "Die Studie wird nur soweit detailliert, dass die Stossrichtung des anvisierten Projekts klar ersichtlich ist und der Entscheid Weiteres Vorgehen getroffen werden kann. Die straffe Vorgehensweise trifft insbesondere auf die Standortbestimmung zu, um die Initialisierungsphase nicht unnötig zu verlängern."
+},
+{
+"t": "p",
+"text": "Der in der Studie dokumentierte Entscheid über das weitere Vorgehen bildet die Grundlage für die Entscheidungsvorbereitung, ob ein Projekt fortgesetzt wird oder nicht. Die Studie ist die Voraussetzung für die Erarbeitung des Projektmanagementplans und des Durchführungsauftrags."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Standortbestimmung aus geschäftlicher Sicht mit",
+"items": [
+{
+"text": "Geschäftsorganisation"
+},
+{
+"text": "Produkt oder IT System"
+},
+{
+"text": "Mengen und Häufigkeiten"
+},
+{
+"text": "Informationssicherheit und Datenschutz"
+},
+{
+"text": "Beschreibung des IST-Gesamtkontextes"
+},
+{
+"text": "Stärken- und Schwächenanalyse"
+},
+{
+"text": "Analyse und Bewertung"
+}
+]
+},
+{
+"text": "Ziele"
+},
+{
+"text": "Rahmenbedingungen, Strategiebezug und Abgrenzungen"
+},
+{
+"text": "Grobanforderungen"
+},
+{
+"text": "Lösungsvarianten mit",
+"items": [
+{
+"text": "Variantenübersicht"
+},
+{
+"text": "Beschreibung je Variante inkl. vorgeschlagener Vorgehensweise"
+},
+{
+"text": "Analyse und Bewertung mit",
+"items": [
+{
+"text": "Zielerreichungsgrad"
+},
+{
+"text": "Anforderungsabdeckung"
+},
+{
+"text": "Kosten/Nutzen/Wirtschaftlichkeits-Betrachtungen"
+},
+{
+"text": "Risikobeurteilung (Projekt- und Betriebsrisiken)"
+},
+{
+"text": "Weiteren Kriterien wie Nachhaltigkeit usw."
+}
+]
+}
+]
+},
+{
+"text": "Vorschlag und Entscheid weiteres Vorgehen",
+"items": [
+{
+"text": "Lösungsvariante"
+},
+{
+"text": "Szenario"
+},
+{
+"text": "Vorgehensweise"
+},
+{
+"text": "Projektwertigkeit"
+}
+]
+},
+{
+"text": "Planung und Termine",
+"items": [
+{
+"text": "Szenario und Module"
+},
+{
+"text": "Projekttermine, Meilensteine"
+},
+{
+"text": "Geplanter Nutzungszeitraum"
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.51",
+"titel": "Systemkonzept",
+"ebene": 4,
+"seite": 73,
+"element": "ergebnis-systemkonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/systemkonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Systemkonzept vertieft die in der Studie beschriebene und gewählte Lösungsvariante. Es basiert auf den Lösungsanforderungen und zeigt auf, wie sie mit der Lösung erfüllt werden. Das Systemkonzept kann mehrere Systemvarianten beschreiben und beurteilen."
+},
+{
+"t": "p",
+"text": "Es kann mehrere Systemkonzepte zu verschiedenen Themenbereichen geben."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Ausgangslage"
+},
+{
+"text": "Anforderungen"
+},
+{
+"text": "Lösungskonzept mit",
+"items": [
+{
+"text": "Systemvarianten für jede Systemvariante:",
+"items": [
+{
+"text": "Beschreibung"
+},
+{
+"text": "Anforderungsabdeckung"
+},
+{
+"text": "Machbarkeitsbeurteilung"
+}
+]
+}
+]
+},
+{
+"text": "Variantenvergleich"
+},
+{
+"text": "Empfehlung"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.52",
+"titel": "Testkonzept",
+"ebene": 4,
+"seite": 73,
+"element": "ergebnis-testkonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testkonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Testkonzept beschreibt die Testziele, Testobjekte, Testarten, Testinfrastruktur sowie Testorganisation. Es umfasst ebenfalls die Testplanung und die Testfallbeschreibungen. Für jeden Testfall wird eine detaillierte Testfallbeschreibung erstellt. Diese stellt die Spezifikation des Tests dar. Die Testplanung legt den logischen und zeitlichen Ablauf der Tests fest. Das Testkonzept bildet die Grundlage, auf der die Testorganisation und die Testinfrastruktur bereitgestellt und die Tests durchgeführt werden. Tauchen neue Erkenntnisse auf, wird das Testkonzept nachgeführt."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Testziele"
+},
+{
+"text": "Teststrategie und Teststufen"
+},
+{
+"text": "Testobjekte"
+},
+{
+"text": "Testarten"
+},
+{
+"text": "Testabdeckung",
+"items": [
+{
+"text": "Übersicht Testfälle"
+},
+{
+"text": "Beurteilung Testziele und Testabdeckung"
+}
+]
+},
+{
+"text": "Testrahmen mit",
+"items": [
+{
+"text": "Testvoraussetzungen"
+},
+{
+"text": "Mängelklassifizierung"
+},
+{
+"text": "Start- und Abbruchbedingungen"
+}
+]
+},
+{
+"text": "Testumgebung"
+},
+{
+"text": "Testfallbeschreibungen"
+},
+{
+"text": "Testplan"
+},
+{
+"text": "Testorganisation und Zuständigkeiten"
+},
+{
+"text": "Testinfrastruktur mit",
+"items": [
+{
+"text": "Testsystem"
+},
+{
+"text": "Testdaten"
+},
+{
+"text": "Testhilfsmittel"
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.53",
+"titel": "Testprotokoll",
+"ebene": 4,
+"seite": 74,
+"element": "ergebnis-testprotokoll",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testprotokoll.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das Testprotokoll hält die Testergebnisse fest. Die Testergebnisse werden gemäss den im Testkonzept definierten Mängelklassen bewertet."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Testfälle aus dem Testkonzept",
+"items": [
+{
+"text": "ID"
+},
+{
+"text": "Bezeichnung"
+},
+{
+"text": "Testdatum"
+},
+{
+"text": "Tester"
+},
+{
+"text": "MK* Mangelbeschreibung / Bemerkungen"
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.1.54",
+"titel": "Vereinbarung",
+"ebene": 4,
+"seite": 74,
+"element": "ergebnis-vereinbarung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/vereinbarung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Vereinbarung regelt die Zusammenarbeit zwischen den verschiedenen Projektbeteiligten, vorwiegend zwischen Anwender (Auftraggeber) und Ersteller. Die Vereinbarung kann für eine oder mehrere Phasen abgeschlossen werden. Vereinbarungen werden unterschieden nach Projektvereinbarung oder Vertrag."
+},
+{
+"t": "h",
+"text": "Inhalt"
+},
+{
+"t": "p",
+"text": "Der Inhalt von Vereinbarungen wird durch die Stammorganisation vorgegeben. Die Vereinbarung kann unter anderem die folgenden Punkte beinhalten:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Einführung"
+},
+{
+"text": "Vertragsbestandteile"
+},
+{
+"text": "Geltungsbereich"
+},
+{
+"text": "Leistungsumfang und Ergebnisse"
+},
+{
+"text": "Eingesetzte Personen"
+},
+{
+"text": "Mitwirkungspflichten"
+},
+{
+"text": "Qualitätssicherung und Abnahme"
+},
+{
+"text": "Gewährleistung"
+},
+{
+"text": "Datenschutz und Datensicherheit"
+},
+{
+"text": "Änderungsmanagement"
+},
+{
+"text": "Rapportierung"
+},
+{
+"text": "Aufwand und Kosten"
+},
+{
+"text": "Unterschriften"
+},
+{
+"text": "Ergänzende technische Normen"
+},
+{
+"text": "Reglemente"
+},
+{
+"text": "Weisungen"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.2",
+"titel": "Checklisten",
+"ebene": 3,
+"seite": 75,
+"element": "ergebnis-checklisten",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checklisten.html",
+"bloecke": [
+{
+"t": "p",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Checklisten gehören zu den Dokumenten. Sie werden zur Unterstützung bei der Entscheidungsfindung genutzt. Sie stellen Kataloge von Kontroll- und Prüfungsschritten dar, die im Rahmen einer Entscheidungsvorbereitung systematisch und vollständig durchgeführt werden sollen. Dies verringert die Wahrscheinlichkeit von Fehlentscheiden, da so alle wesentlichen Aspekte berücksichtigt werden."
+},
+{
+"t": "p",
+"text": "Jede Checkliste ist auf einen konkreten Entscheid abgestimmt und nennt die notwendigen Prüfpunkte mit Ergebnis, Freigabekriterien, Bewertung, Verantwortlichen und Prüfungsdatum. Die Checkliste kann im Rahmen der Entscheidungsvorbereitung mit weiteren Kriterien ergänzt werden."
+},
+{
+"t": "p",
+"text": "Alle Checklisten sind dementsprechend in drei Bereiche gegliedert:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Generelle Prüfpunkte"
+},
+{
+"text": "Organisationsspezifische Prüfpunkte"
+},
+{
+"text": "Projektspezifische Prüfpunkte"
+}
+]
+}
+]
+},
+{
+"nummer": "4.4.2.1",
+"titel": "Checkliste Abnahme",
+"ebene": 4,
+"seite": 75,
+"element": "ergebnis-checkliste-abnahme",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-abnahme.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Abnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.2",
+"titel": "Checkliste Abnahme Migration",
+"ebene": 4,
+"seite": 75,
+"element": "ergebnis-checkliste-abnahme-migration",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-abnahme-migration.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Abnahme Migration beschreibt Prüfpunkte und Kriterien, die für den Entscheid Abnahme Migration relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.3",
+"titel": "Checkliste Ausschreibung",
+"ebene": 4,
+"seite": 75,
+"element": "ergebnis-checkliste-ausschreibung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-ausschreibung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Ausschreibung beschreibt Prüfpunkte und Kriterien, die für den Entscheid Ausschreibung relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.4",
+"titel": "Checkliste Betriebsaufnahme",
+"ebene": 4,
+"seite": 75,
+"element": "ergebnis-checkliste-betriebsaufnahme",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-betriebsaufnahme.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Betriebsaufnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Betriebsaufnahme relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.5",
+"titel": "Checkliste Durchführungsfreigabe",
+"ebene": 4,
+"seite": 75,
+"element": "ergebnis-checkliste-durchfuehrungsfreigabe",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-durchfuehrungsfreigabe.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Durchführungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Durchführungsfreigabe relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.6",
+"titel": "Checkliste ISDS-Konzept",
+"ebene": 4,
+"seite": 76,
+"element": "ergebnis-checkliste-isds-konzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-isds-konzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste ISDS-Konzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid ISDS-Konzept relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.7",
+"titel": "Checkliste Lösungsarchitektur",
+"ebene": 4,
+"seite": 76,
+"element": "ergebnis-checkliste-loesungsarchitektur",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-loesungsarchitektur.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Lösungsarchitektur beschreibt Prüfpunkte und Kriterien, die für den Entscheid Lösungsarchitektur relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.8",
+"titel": "Checkliste Phasenfreigabe",
+"ebene": 4,
+"seite": 76,
+"element": "ergebnis-checkliste-phasenfreigabe",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-phasenfreigabe.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Phasenfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.9",
+"titel": "Checkliste Phasenfreigabe Abschluss",
+"ebene": 4,
+"seite": 76,
+"element": "ergebnis-checkliste-phasenfreigabe-abschluss",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-phasenfreigabe-abschluss.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Phasenfreigabe Abschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Phasenfreigabe Abschluss relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.10",
+"titel": "Checkliste Produktkonzept",
+"ebene": 4,
+"seite": 76,
+"element": "ergebnis-checkliste-produktkonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-produktkonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Produktkonzept beschreibt Prüfpunkte und Kriterien, die für den Entscheid Produktkonzept relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.11",
+"titel": "Checkliste Projektabbruch",
+"ebene": 4,
+"seite": 76,
+"element": "ergebnis-checkliste-projektabbruch",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektabbruch.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Projektabbruch beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabbruch relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.12",
+"titel": "Checkliste Projektabschluss",
+"ebene": 4,
+"seite": 76,
+"element": "ergebnis-checkliste-projektabschluss",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektabschluss.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Projektabschluss beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektabschluss relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.13",
+"titel": "Checkliste Projektinitialisierungsfreigabe",
+"ebene": 4,
+"seite": 76,
+"element": "ergebnis-checkliste-projektinitialisierungsfreigabe",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-projektinitialisierungsfreigabe.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Projektinitialisierungsfreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Projektinitialisierungsfreigabe relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.14",
+"titel": "Checkliste Releasefreigabe",
+"ebene": 4,
+"seite": 77,
+"element": "ergebnis-checkliste-releasefreigabe",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-releasefreigabe.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Releasefreigabe beschreibt Prüfpunkte und Kriterien, die für den Entscheid Releasefreigabe relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.15",
+"titel": "Checkliste Vorabnahme",
+"ebene": 4,
+"seite": 77,
+"element": "ergebnis-checkliste-vorabnahme",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-vorabnahme.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Vorabnahme beschreibt Prüfpunkte und Kriterien, die für den Entscheid Vorabnahme relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.16",
+"titel": "Checkliste Weiteres Vorgehen",
+"ebene": 4,
+"seite": 77,
+"element": "ergebnis-checkliste-weiteres-vorgehen",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-weiteres-vorgehen.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Weiteres Vorgehen beschreibt Prüfpunkte und Kriterien, die für den Entscheid Weiteres Vorgehen relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.2.17",
+"titel": "Checkliste Zuschlag",
+"ebene": 4,
+"seite": 77,
+"element": "ergebnis-checkliste-zuschlag",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/checkliste-zuschlag.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Checkliste Zuschlag beschreibt Prüfpunkte und Kriterien, die für den Entscheid Zuschlag relevant sind."
+}
+]
+},
+{
+"nummer": "4.4.3",
+"titel": "Zustände",
+"ebene": 3,
+"seite": 77,
+"bloecke": []
+},
+{
+"nummer": "4.4.3.1",
+"titel": "Altsystem entfernt",
+"ebene": 4,
+"seite": 77,
+"element": "ergebnis-altsystem-entfernt",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/altsystem-entfernt.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die alte Systemversion sowie das Altsystem sind unter Berücksichtigung der Vorgaben abgebaut bzw. entfernt. Die Ausserbetriebssetzung umfasst ebenfalls die Vernichtung oder Archivierung von Daten."
+}
+]
+},
+{
+"nummer": "4.4.3.2",
+"titel": "Betrieb aktiviert",
+"ebene": 4,
+"seite": 77,
+"element": "ergebnis-betrieb-aktiviert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betrieb-aktiviert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Betrieb des aktivierten Systems ist aufgenommen und erfolgt mit der im Betriebskonzept definierten Betriebsorganisation. Die im Betriebshandbuch festgelegten Aktivitäten werden ausgeführt. Das Betriebspersonal nimmt die Betriebsaufgaben wahr. Die Voraussetzungen für die Messung und Einhaltung des SLAs sind gegeben."
+}
+]
+},
+{
+"nummer": "4.4.3.3",
+"titel": "Betriebsinfrastruktur realisiert",
+"ebene": 4,
+"seite": 77,
+"element": "ergebnis-betriebsinfrastruktur-realisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebsinfrastruktur-realisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Betriebsinfrastruktur umfasst alle für die Erstellung und den Betrieb eines Systems benötigten Infrastrukturen mit den verschiedenen Systemumgebungen (Entwicklung, Test, Produktion usw.) und allen ihren Komponenten. Zur Betriebsinfrastruktur gehören auch die für die Betriebsüberwachung nötigen Komponenten wie Monitoring und Alarmierung, Statistikwerkzeuge usw."
+}
+]
+},
+{
+"nummer": "4.4.3.4",
+"titel": "Betriebsorganisation realisiert",
+"ebene": 4,
+"seite": 78,
+"element": "ergebnis-betriebsorganisation-realisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/betriebsorganisation-realisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die im Betriebskonzept definierte Betriebsorganisation mit der Betriebsaufbauorganisation und den Betriebsprozessen des Betreibers sind realisiert. Das Betriebspersonal ist ausgebildet und kann die Betriebsaufgaben wahrnehmen."
+}
+]
+},
+{
+"nummer": "4.4.3.5",
+"titel": "Einführungsmassnahmen durchgeführt",
+"ebene": 4,
+"seite": 78,
+"element": "ergebnis-einfuehrungsmassnahmen-durchgefuehrt",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungsmassnahmen-durchgefuehrt.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die im Einführungskonzept beschriebenen und realisierten Massnahmen sind durchgeführt. Die Umsetzung der Massnahmen ist überprüft und deren Qualitätssicherung durchgeführt. Beispielsweise ist die Anwenderschulung durchgeführt worden und es liegen Kursbeurteilungen der Teilnehmer für die Qualitätssicherung vor."
+}
+]
+},
+{
+"nummer": "4.4.3.6",
+"titel": "Einführungsmassnahmen realisiert",
+"ebene": 4,
+"seite": 78,
+"element": "ergebnis-einfuehrungsmassnahmen-realisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/einfuehrungsmassnahmen-realisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die im Einführungskonzept beschriebenen Massnahmen und die für die Einführung nötige Organisation sind realisiert. Beispielsweise sind die Superuser rekrutiert und ausgebildet, die die Anwender bei der Einführung unterstützen, oder die Ausbildungsunterlagen sind realisiert, damit anschliessend Schulungen durchgeführt werden können."
+}
+]
+},
+{
+"nummer": "4.4.3.7",
+"titel": "ISDS-Massnahmen realisiert",
+"ebene": 4,
+"seite": 78,
+"element": "ergebnis-isds-massnahmen-realisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-massnahmen-realisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die ISDS-Massnahmen wurden auf der Grundlage des ISDS-Konzepts realisiert. Sie stellen sicher, dass die Anforderungen an den Schutzbedarf gemäss ISDS-Konzept erfüllt werden."
+}
+]
+},
+{
+"nummer": "4.4.3.8",
+"titel": "ISDS-Konzept überführt",
+"ebene": 4,
+"seite": 78,
+"element": "ergebnis-isds-konzept-ueberfuehrt",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/isds-konzept-ueberfuehrt.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das ISDS-Konzept wurde aktualisiert, durch die Controlling- und Vorgabestelle geprüft und von der Projektorganisation in die Stammorganisation überführt."
+}
+]
+},
+{
+"nummer": "4.4.3.9",
+"titel": "Migration durchgeführt",
+"ebene": 4,
+"seite": 78,
+"element": "ergebnis-migration-durchgefuehrt",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migration-durchgefuehrt.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die Migration vom alten auf das neue bzw. weiterentwickelte System ist durchgeführt und gemäss den Vorgaben der Controlling- und Koordinationsstellen dokumentiert. Die Nachvollziehbarkeit der Migration wird sichergestellt. Die erfolgreich durchgeführte Migration ist die Voraussetzung für deren Abnahme und den Entscheid Betriebsaufnahme."
+}
+]
+},
+{
+"nummer": "4.4.3.10",
+"titel": "Migrationsverfahren realisiert",
+"ebene": 4,
+"seite": 78,
+"element": "ergebnis-migrationsverfahren-realisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/migrationsverfahren-realisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das realisierte Migrationsverfahren ist durch den Entwickler bzw. den Tester des Erstellers getestet worden. Er erbringt den Nachweis seiner Tests. Sie bilden die Voraussetzung für die Vorabnahme."
+}
+]
+},
+{
+"nummer": "4.4.3.11",
+"titel": "Organisation aktiviert",
+"ebene": 4,
+"seite": 79,
+"element": "ergebnis-organisation-aktiviert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisation-aktiviert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die neue Organisation ist aktiviert. Sie führt ihre Prozesse gemäss den Prozessbeschreibungen durch."
+},
+{
+"t": "p",
+"text": "Wird die neue Organisation im Rahmen einer klassischen Lösungsentstehung aktiviert, ist dies die Voraussetzung für die Aktivierung des Produkts oder des Systems. Bei agiler Lösungsentstehung wird nur der entsprechende Teil der Organisation aktiviert."
+}
+]
+},
+{
+"nummer": "4.4.3.12",
+"titel": "Organisation umgesetzt",
+"ebene": 4,
+"seite": 79,
+"element": "ergebnis-organisation-umgesetzt",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/organisation-umgesetzt.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die im Organisationskonzept definierte Organisation ist umgesetzt."
+},
+{
+"t": "p",
+"text": "Auf Grundlage der Prozessbeschreibung und der Organisationsbeschreibung wurden die Massnahmen realisiert, um die Organisation ins Leben zu rufen (Stellenbesetzungen, Personalanstellungen usw.)."
+}
+]
+},
+{
+"nummer": "4.4.3.13",
+"titel": "Produkt aktiviert",
+"ebene": 4,
+"seite": 79,
+"element": "ergebnis-produkt-aktiviert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produkt-aktiviert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das aktivierte Produkt wird den Anwendern für die Nutzung zur Verfügung gestellt."
+}
+]
+},
+{
+"nummer": "4.4.3.14",
+"titel": "Produkt entwickelt oder angepasst",
+"ebene": 4,
+"seite": 79,
+"element": "ergebnis-produkt-entwickelt-oder-angepasst",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/produkt-entwickelt-oder-angepasst.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das entwickelte und/oder angepasste Produkt ist durch den Entwickler bzw. den Tester des Erstellers getestet worden. Es wird für die Tests und die Vorabnahme an den Anwender übergeben."
+}
+]
+},
+{
+"nummer": "4.4.3.15",
+"titel": "Prototyp realisiert",
+"ebene": 4,
+"seite": 79,
+"element": "ergebnis-prototyp-realisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/prototyp-realisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Mit dem Prototyp wird die Machbarkeit oder das Verhalten eines Systems bzw. eines Produkts in einer bestimmten Situation geprüft. Mit Prototypen werden Risiken bewertet und reduziert."
+},
+{
+"t": "p",
+"text": "Im Projektverlauf können zwecks Überprüfung der Machbarkeit mehrere, verschiedene Prototypen realisiert werden. Es kann zwischen Wegwerfprototypen und wiederverwendbaren Prototypen unterschieden werden."
+}
+]
+},
+{
+"nummer": "4.4.3.16",
+"titel": "Schnittstellen realisiert",
+"ebene": 4,
+"seite": 79,
+"element": "ergebnis-schnittstellen-realisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/schnittstellen-realisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die realisierten Schnittstellen stellen den Datenaustausch zwischen dem System und den Umsystemen sicher."
+},
+{
+"t": "p",
+"text": "Die Schnittstelle ist durch den Entwickler bzw. den Integrator und den Tester des Erstellers getestet worden. Sie wird dem Betreiber für die Integration in die Betriebsinfrastruktur übergeben."
+}
+]
+},
+{
+"nummer": "4.4.3.17",
+"titel": "System aktiviert",
+"ebene": 4,
+"seite": 80,
+"element": "ergebnis-system-aktiviert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-aktiviert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das aktivierte System wird den Anwendern für die Nutzung zur Verfügung gestellt."
+}
+]
+},
+{
+"nummer": "4.4.3.18",
+"titel": "System entwickelt oder parametrisiert",
+"ebene": 4,
+"seite": 80,
+"element": "ergebnis-system-entwickelt-oder-parametrisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-entwickelt-oder-parametrisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das entwickelte und/oder parametrisierte System ist durch den Entwickler bzw. den Integrator und den Tester des Erstellers getestet worden. Es wurde dem Betreiber für die Integration in die Betriebsinfrastruktur übergeben. Die Entwicklung und die Integration können in mehreren Schritten bzw. Releases erfolgen."
+}
+]
+},
+{
+"nummer": "4.4.3.19",
+"titel": "System integriert",
+"ebene": 4,
+"seite": 80,
+"element": "ergebnis-system-integriert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/system-integriert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Das integrierte System steht den Testern des Anwenders für die Tests und die Vorabnahme zur Verfügung."
+},
+{
+"t": "p",
+"text": "Nach den Entscheiden Vorabnahme und Betriebsaufnahme wird das System aktiviert."
+}
+]
+},
+{
+"nummer": "4.4.3.20",
+"titel": "Testinfrastruktur realisiert",
+"ebene": 4,
+"seite": 80,
+"element": "ergebnis-testinfrastruktur-realisiert",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testinfrastruktur-realisiert.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Für die Durchführung der Tests wird eine Testinfrastruktur bestehend aus Testsystem (darunter sind alle Systeme zur Testdurchführung zu verstehen), Testdaten und Testhilfsmitteln verwendet. Sie wird gemäss Testkonzept bereitgestellt. Je nach Testmethode werden unterschiedliche Anforderungen an die Testinfrastruktur gestellt. Folgend können auch unterschiedliche Testsysteme benötigt werden."
+},
+{
+"t": "p",
+"text": "Die Testinfrastruktur richtet sich nach der Infrastruktur des Produktionssystems, also nach der realisierten Betriebsinfrastruktur. Das Testsystem muss soweit dem Produktionssystem entsprechen, dass die Testfallbeschreibungen unter realistischen Bedingungen durchgeführt werden können."
+},
+{
+"t": "p",
+"text": "Werden für die Tests als Testdaten nicht anonymisierte Kopien von produktiven Daten verwendet, müssen die Anforderungen an ISDS erfüllt sein."
+}
+]
+},
+{
+"nummer": "4.4.3.21",
+"titel": "Testinfrastruktur überführt",
+"ebene": 4,
+"seite": 80,
+"element": "ergebnis-testinfrastruktur-ueberfuehrt",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/testinfrastruktur-ueberfuehrt.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Die gesamte Testinfrastruktur inklusive des Testkonzepts wurde in die Stammorganisation überführt."
+}
+]
+},
+{
+"nummer": "4.4.4",
+"titel": "Meilensteine",
+"ebene": 3,
+"seite": 80,
+"element": "ergebnis-meilensteine",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilensteine.html",
+"bloecke": [
+{
+"t": "p",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Meilensteine gehören zu den Zuständen und sind immer die Folge eines Entscheides. Sie kennzeichnen und definieren einen erreichten konkreten Zeitpunkt im Projektverlauf."
+},
+{
+"t": "p",
+"text": "Meilensteine dienen als anvisierte und erreichte Entscheidungsergebnisse der Projektsteuerung und -führung, verleihen dem Projekt eine Struktur und markieren im Projektverlauf wichtige Punkte, an denen über die weiteren Projektschritte entschieden wird."
+}
+]
+},
+{
+"nummer": "4.4.4.1",
+"titel": "Meilenstein Abnahme",
+"ebene": 4,
+"seite": 81,
+"element": "ergebnis-meilenstein-abnahme",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-abnahme.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme getroffen wird. Die Lösung wird definitiv in die Anwendungs- und allenfalls auch in die Betriebsorganisation überführt. Danach beginnt die Gewährleistung und damit der reguläre Betrieb."
+}
+]
+},
+{
+"nummer": "4.4.4.2",
+"titel": "Meilenstein Abnahme Migration",
+"ebene": 4,
+"seite": 81,
+"element": "ergebnis-meilenstein-abnahme-migration",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-abnahme-migration.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Abnahme Migration getroffen wird. Die Nutzung des neuen Systems kann für die Anwender freigegeben werden (Entscheid Betriebsaufnahme)."
+}
+]
+},
+{
+"nummer": "4.4.4.3",
+"titel": "Meilenstein Ausschreibung",
+"ebene": 4,
+"seite": 81,
+"element": "ergebnis-meilenstein-ausschreibung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-ausschreibung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Ausschreibung getroffen wird. Die Ausschreibung kann publiziert werden."
+}
+]
+},
+{
+"nummer": "4.4.4.4",
+"titel": "Meilenstein Betriebsaufnahme",
+"ebene": 4,
+"seite": 81,
+"element": "ergebnis-meilenstein-betriebsaufnahme",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-betriebsaufnahme.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Betriebsaufnahme getroffen wird. Die Lösung kann in Betrieb genommen werden."
+}
+]
+},
+{
+"nummer": "4.4.4.5",
+"titel": "Meilenstein Durchführungsfreigabe",
+"ebene": 4,
+"seite": 81,
+"element": "ergebnis-meilenstein-durchfuehrungsfreigabe",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-durchfuehrungsfreigabe.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Durchführungsfreigabe getroffen wird. Die Arbeiten starten gemäss dem Durchführungsauftrag."
+}
+]
+},
+{
+"nummer": "4.4.4.6",
+"titel": "Meilenstein ISDS-Konzept",
+"ebene": 4,
+"seite": 81,
+"element": "ergebnis-meilenstein-isds-konzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-isds-konzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid ISDS-Konzept getroffen wird. Die Realisierung der ISDS-Massnahmen kann an die Hand genommen werden."
+}
+]
+},
+{
+"nummer": "4.4.4.7",
+"titel": "Meilenstein Lösungsarchitektur",
+"ebene": 4,
+"seite": 81,
+"element": "ergebnis-meilenstein-loesungsarchitektur",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-loesungsarchitektur.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Lösungsarchitektur getroffen wird. Dies bildet die Voraussetzung für die Entwicklung oder Adaption von Systemen."
+}
+]
+},
+{
+"nummer": "4.4.4.8",
+"titel": "Meilenstein Phasenfreigabe",
+"ebene": 4,
+"seite": 81,
+"element": "ergebnis-meilenstein-phasenfreigabe",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-phasenfreigabe.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe getroffen wird. Die Arbeiten in der nächsten Phase können gestartet werden."
+}
+]
+},
+{
+"nummer": "4.4.4.9",
+"titel": "Meilenstein Phasenfreigabe Abschluss",
+"ebene": 4,
+"seite": 82,
+"element": "ergebnis-meilenstein-phasenfreigabe-abschluss",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-phasenfreigabe-abschluss.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Phasenfreigabe Abschluss getroffen wird. Die Leistungserbringung im Rahmen der Lösungsentstehung ist beendet. Die Arbeiten in der in der Phase Abschluss können gestartet werden."
+}
+]
+},
+{
+"nummer": "4.4.4.10",
+"titel": "Meilenstein Produktkonzept",
+"ebene": 4,
+"seite": 82,
+"element": "ergebnis-meilenstein-produktkonzept",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-produktkonzept.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Produktkonzept getroffen wird. Das Konzept ist die Voraussetzung für die Entwicklung oder Adaption von Produkten oder Dienstleistungen."
+}
+]
+},
+{
+"nummer": "4.4.4.11",
+"titel": "Meilenstein Projektabschluss",
+"ebene": 4,
+"seite": 82,
+"element": "ergebnis-meilenstein-projektabschluss",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-projektabschluss.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Projektabschluss getroffen wird. Das Projekt ist beendet."
+}
+]
+},
+{
+"nummer": "4.4.4.12",
+"titel": "Meilenstein Projektinitialisierungsfreigabe",
+"ebene": 4,
+"seite": 82,
+"element": "ergebnis-meilenstein-projektinitialisierungsfreigabe",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-projektinitialisierungsfreigabe.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Projektinitialisierungsfreigabe getroffen wird. Das Projekt wurde formell ins Leben gerufen. Die Arbeiten starten gemäss dem Projektinitialisierungsauftrag."
+}
+]
+},
+{
+"nummer": "4.4.4.13",
+"titel": "Meilenstein Releasefreigabe",
+"ebene": 4,
+"seite": 82,
+"element": "ergebnis-meilenstein-releasefreigabe",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-releasefreigabe.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Releasefreigabe getroffen wird. Im Rahmen der agilen Vorgehensweise können die Arbeiten am nächsten Release starten."
+}
+]
+},
+{
+"nummer": "4.4.4.14",
+"titel": "Meilenstein Vorabnahme",
+"ebene": 4,
+"seite": 82,
+"element": "ergebnis-meilenstein-vorabnahme",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-vorabnahme.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Vorabnahme getroffen wird. Dies bildet die Grundlage für die Durchführung der Einführungsmassnahmen und die Betriebsaufnahme."
+}
+]
+},
+{
+"nummer": "4.4.4.15",
+"titel": "Meilenstein Weiteres Vorgehen",
+"ebene": 4,
+"seite": 82,
+"element": "ergebnis-meilenstein-weiteres-vorgehen",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-weiteres-vorgehen.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Weiteres Vorgehen getroffen wird. Dies bildet die Grundlage für die Erarbeitung des Projektmanagementplans sowie des Durchführungsauftrags."
+}
+]
+},
+{
+"nummer": "4.4.4.16",
+"titel": "Meilenstein Zuschlag",
+"ebene": 4,
+"seite": 82,
+"element": "ergebnis-meilenstein-zuschlag",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/ergebnisse/meilenstein-zuschlag.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Beschreibung"
+},
+{
+"t": "p",
+"text": "Der Meilenstein wird erreicht, wenn der Entscheid Zuschlag getroffen wird. Der Entscheid kann publiziert und die Vertragsarbeiten mit dem Zuschlagsempfänger gestartet werden."
+}
+]
+}
+]
+}

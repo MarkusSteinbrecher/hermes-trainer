@@ -1,0 +1,846 @@
+{
+"id": "szenarien",
+"nummer": "2",
+"titel": "Szenarien",
+"kategorie": "szenario",
+"seite": 25,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien.html",
+"abschnitte": [
+{
+"nummer": "2",
+"titel": "Szenarien",
+"ebene": 1,
+"seite": 25,
+"bloecke": []
+},
+{
+"nummer": "2.1",
+"titel": "Einleitung",
+"ebene": 2,
+"seite": 25,
+"bloecke": [
+{
+"t": "p",
+"text": "In einer Stammorganisation werden verschiedenartige Projekte durchgeführt. Die Projekte können sich bezüglich Inhalt und Komplexität stark unterscheiden."
+},
+{
+"t": "p",
+"text": "Um der Vielfalt der Projekte gerecht zu werden, bietet HERMES unterschiedliche Szenarien an. Ein Szenario ist auf die Lösungsentstehung in Projekten mit einer spezifischen Charakteristik ausgerichtet, beispielsweise für die Entwicklung oder Adaption einer IT-Lösung."
+},
+{
+"t": "p",
+"text": "Wie die nachfolgende Abbildung zeigt, bildet ein Szenario die komplette Lösungsentstehung eines Projekts ab und unterstützt den Projektleiter bei der Durchführungsplanung. Die Erkenntnisse der Studie sind ausschlaggebend für die Auswahl des passenden Standardszenarios. Die Phasen Initialisierung und Abschluss sind kein Bestandteil eines Szenarios."
+},
+{
+"t": "abb",
+"datei": "assets/abb/2317a869-117-wahl-und-anwendung-des-fuer-das-projekt-geeigneten-szenarios.svg",
+"text": "Abbildung 15: Wahl und Anwendung des für das Projekt geeigneten Szenarios"
+},
+{
+"t": "p",
+"text": "Ein Szenario beinhaltet standardmässig diejenigen Methodenelemente, die üblicherweise für Projekte der jeweiligen Charakteristik von Bedeutung sind. Dadurch ist HERMES rasch und einfach anwendbar."
+},
+{
+"t": "p",
+"text": "Der Projektleiter kann Standardszenarien an die Bedürfnisse der Stammorganisation sowie des konkret vorliegenden Projektes anpassen und weitere benutzerdefinierte Szenarien erstellen."
+}
+]
+},
+{
+"nummer": "2.2",
+"titel": "Übersicht der Szenarien",
+"ebene": 2,
+"seite": 25,
+"bloecke": []
+},
+{
+"nummer": "2.2.1",
+"titel": "Aufbau der Szenarien",
+"ebene": 3,
+"seite": 25,
+"bloecke": [
+{
+"t": "p",
+"text": "Szenarien basieren auf Modulen mit thematisch zusammengehörenden Aufgaben und Ergebnissen. Die nachfolgende Abbildung zeigt, wie mit Hilfe der Module B und N sowie eines Teils des Moduls A ein Szenario gebildet werden kann."
+},
+{
+"t": "abb",
+"datei": "assets/abb/6425eb83-118-mehrere-module-mit-aufgaben-und-ergebnissen-als-basis-fuer-ein-szenario.svg",
+"text": "Abbildung 16: Mehrere Module mit Aufgaben und Ergebnissen als Basis für ein Szenario"
+},
+{
+"t": "p",
+"text": "Die Szenarien sind auf die Entwicklung von Lösungen mit einer spezifischen Charakteristik ausgerichtet und nutzen daher diejenigen Module, die für die Lösungsentstehung relevant und geeignet sind. Dabei kann ein Modul in mehreren Szenarien verwendet oder, weil ein Modul umfassender sein kann als ein Szenario, in einem Szenario nur zum Teil genutzt werden. Und da sich die Module aus den entsprechenden Aufgaben und Ergebnissen zusammensetzen, liegt je Szenario eine abgestimmte Lösungsentstehungsvorlage inklusive der notwendigen Dokumentvorlagen vor."
+},
+{
+"t": "p",
+"text": "Ein Szenario beschreibt ausschliesslich die Lösungsentstehung; die Phasen Initialisierung und Abschluss befinden sich ausserhalb des Szenarios."
+}
+]
+},
+{
+"nummer": "2.2.2",
+"titel": "Standardszenarien",
+"ebene": 3,
+"seite": 26,
+"bloecke": [
+{
+"t": "p",
+"text": "HERMES bietet fünf Standardszenarien für Projekte mit verschiedenen Charakteristiken an:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Dienstleistung/Produkt Entwicklung"
+},
+{
+"text": "Dienstleistung/Produkt Adaption"
+},
+{
+"text": "IT-Entwicklung"
+},
+{
+"text": "IT-Adaption"
+},
+{
+"text": "Organisationsanpassung"
+}
+]
+},
+{
+"t": "p",
+"text": "Die nachfolgende Tabelle zeigt pro Szenario die verwendeten Module kontextgerecht auf."
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Szenarien/Module",
+"kopf": true
+},
+{
+"text": "Projektsteuerung",
+"kopf": true
+},
+{
+"text": "Projektführung",
+"kopf": true
+},
+{
+"text": "Beschaffung",
+"kopf": true
+},
+{
+"text": "Organisation",
+"kopf": true
+},
+{
+"text": "Produkt",
+"kopf": true
+},
+{
+"text": "IT-System",
+"kopf": true
+},
+{
+"text": "Tests",
+"kopf": true
+},
+{
+"text": "Einführungsorganisation",
+"kopf": true
+},
+{
+"text": "IT-Migration",
+"kopf": true
+},
+{
+"text": "IT-Betrieb",
+"kopf": true
+},
+{
+"text": "ISDS",
+"kopf": true
+}
+],
+[
+{
+"text": "Dienstleistung/Produkt Entwicklung"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Dienstleistung/Produkt Adaption"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "IT-Entwicklung"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "IT-Adaption"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Organisationsanpassung"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 2: Standardszenarien für Projekte verschiedener Charakteristiken samt Modulen",
+"unten": true
+},
+{
+"t": "p",
+"text": "Das Angebot der Standardszenarien ist nicht abschliessend. Die Nachfrage bezüglich neuer Szenarien wird periodisch überprüft und bei Bedarf werden weitere Standardszenarien bereitgestellt."
+}
+]
+},
+{
+"nummer": "2.2.3",
+"titel": "Benutzerdefinierte Szenarien",
+"ebene": 3,
+"seite": 27,
+"bloecke": []
+},
+{
+"nummer": "2.2.3.1",
+"titel": "Anpassung der Szenarien",
+"ebene": 4,
+"seite": 27,
+"bloecke": [
+{
+"t": "p",
+"text": "HERMES Online bietet über „Benutzerdefinierte Szenarien“ zwei Funktionen, um basierend auf den Standardszenarien eigene Szenarien zu erstellen:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Sizing"
+},
+{
+"text": "Tailoring"
+}
+]
+}
+]
+},
+{
+"nummer": "2.2.3.2",
+"titel": "Sizing",
+"ebene": 4,
+"seite": 27,
+"bloecke": [
+{
+"t": "p",
+"text": "Um die Vollständigkeit der Information und der Methode an sich zu gewährleisten, ist der volle Umfang von HERMES-Projektmanagement für grosse Projekte mit hoher Komplexität ausgelegt."
+},
+{
+"t": "p",
+"text": "Da viele Stammorganisationen vorwiegend mittlere und kleine Projekte führen, sollte die Anwendung der Methode mittels Sizing-Funktion an die Grösse des Vorhabens angepasst werden. Der Einsatz der Sizing-Funktion reduziert unter Einhaltung der HERMES Governance die Komplexität des Vorgehens und den Umfang der Dokumentation auf das absolute Minimum."
+},
+{
+"t": "p",
+"text": "Die Sizing-Funktion ermittelt die tatsächlich benötigte Projektgrösse aus mehreren Parametern, welche durch den Anwender erfasst werden können. Darauf basierend stellt die Sizing-Funktion dem Projektleiter ein individuell auf die Vorhabengrösse zugeschnittenes Szenario mit Durchführungsstrukturplan und den notwendigen Vorlagen zur Verfügung."
+},
+{
+"t": "p",
+"text": "Diese online-tool-gestützte Anpassung garantiert die Methoden-Kontinuität und -Kohärenz (HERMES Governance) und erlaubt alle Vorhaben möglichst schlank abzuwickeln."
+},
+{
+"t": "p",
+"text": "Anschliessend kann das resultierende benutzerdefinierte Szenario optional über die Tailoring-Funktion an die jeweiligen Projektbedürfnisse angepasst werden."
+}
+]
+},
+{
+"nummer": "2.2.3.3",
+"titel": "Tailoring",
+"ebene": 4,
+"seite": 27,
+"bloecke": [
+{
+"t": "p",
+"text": "Mit dem Tailoring werden Standardszenarien oder bereits durch die Sizing-Funktion erstellte benutzerdefinierte Szenarien an die jeweiligen Projektbedürfnisse angepasst und weiter individualisiert."
+},
+{
+"t": "p",
+"text": "Es gibt dazu vier grundlegende Möglichkeiten, die kombiniert angewendet werden können:"
+},
+{
+"t": "ol",
+"items": [
+{
+"text": "Module aus einem bestehenden Szenario entfernen: Nicht benötigte Module werden entfernt. Beispiel: In einem Vorhaben ohne Migration das Modul IT-Migration aus dem Szenario IT-Entwicklung entfernen."
+},
+{
+"text": "Aufgaben und Ergebnisse entfernen: Der Inhalt eines Moduls kann mit Ausnahme von minimal geforderten Dokumenten um Ergebnisse und dazugehörige Aufgaben wahlweise reduziert werden."
+},
+{
+"text": "Ein zusätzliches, fachspezifisches Modul im bestehenden Szenario integrieren: Es wird ein eigenes Modul mit fachspezifischem Inhalt - mit bestehenden oder mit neuen individuellen Aufgaben und Ergebnissen - erstellt und in ein Szenario integriert."
+},
+{
+"text": "Aufgaben und Ergebnisse hinzufügen: Der Inhalt eines Moduls kann erweitert werden. Neue individuelle Aufgaben und Ergebnisse können erstellt werden."
+}
+]
+},
+{
+"t": "p",
+"text": "Mit diesen Möglichkeiten lassen sich weitere benutzerdefinierte, projekt- oder organisationsspezifische Szenarien einfach abbilden. Die nachfolgende Abbildung zeigt, wie mehrere Projekte einer Stammorganisation mit unterschiedlichen Szenarien gleichzeitig nebeneinander abgewickelt werden können. Vorhaben Projekte einer Stammorganisation mit Szenarien"
+},
+{
+"t": "abb",
+"datei": "assets/rhb/abb-17.png",
+"text": "Abbildung 17: Anwendung von Standard- und benutzerdefinierten Szenarien"
+},
+{
+"t": "p",
+"text": "Benutzerdefinierte Szenarien können untereinander mit anderen HERMES-Anwendern ausgetauscht oder für alle Anwender zur Verfügung gestellt werden. Weitere Informationen dazu finden Sie auf HERMES Online."
+}
+]
+},
+{
+"nummer": "2.3",
+"titel": "Erläuterung der Szenario-Beschreibung",
+"ebene": 2,
+"seite": 28,
+"bloecke": [
+{
+"t": "p",
+"text": "Für jedes Szenario gibt es eine Szenario-Beschreibung, die stets gleich strukturiert ist:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Anwendbarkeit beschreibt konkrete Projektkriterien, für die sich das Szenario eignet."
+},
+{
+"text": "Module zählen auf und stellen graphisch dar alle Module des Szenarios entlang der Lösungsentstehung - das Modul Projektgrundlagen sowie Teile anderer Module, die ausserhalb der Lösungsentstehung zum Einsatz kommen und somit in keinem Szenario vorkommen, sind weiss schattiert dargestellt."
+}
+]
+}
+]
+},
+{
+"nummer": "2.4",
+"titel": "Szenarien-Verzeichnis",
+"ebene": 2,
+"seite": 28,
+"bloecke": []
+},
+{
+"nummer": "2.4.1",
+"titel": "Dienstleistung/Produkt-Szenarien",
+"ebene": 3,
+"seite": 28,
+"bloecke": []
+},
+{
+"nummer": "2.4.1.1",
+"titel": "Dienstleistung/Produkt Entwicklung",
+"ebene": 4,
+"seite": 28,
+"element": "szenario-dienstleistung-produkt-entwicklung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/dienstleistung-produkt-entwicklung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Anwendbarkeit"
+},
+{
+"t": "p",
+"text": "Das Szenario Dienstleistung/Produkt Entwicklung unterstützt die Durchführung jener Projekte, in denen eine Dienstleistung oder ein Produkt entwickelt und bereitgestellt wird."
+},
+{
+"t": "p",
+"text": "Beispiele:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Entwicklung von Ausbildungsunterlagen und Lehrgängen zu einem bestimmten Thema"
+},
+{
+"text": "Entwickeln eines internen Standards"
+},
+{
+"text": "Aufbau eines Lieferdienstes"
+}
+]
+},
+{
+"t": "h",
+"text": "Module"
+},
+{
+"t": "p",
+"text": "Das Szenario Dienstleistung/Produkt Entwicklung basiert auf folgenden, in der nachfolgenden Abbildung aufgeführten Modulen:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Projektsteuerung"
+},
+{
+"text": "Projektführung"
+},
+{
+"text": "Organisation"
+},
+{
+"text": "Produkt"
+},
+{
+"text": "Einführungsorganisation"
+}
+]
+},
+{
+"t": "abb",
+"datei": "assets/abb/22f4fcaf-120-module-im-kontext-des-szenarios-dienstleistung-produkt-entwicklung.svg",
+"text": "Abbildung 18: Module im Kontext des Szenarios Dienstleistung/Produkt Entwicklung"
+}
+]
+},
+{
+"nummer": "2.4.1.2",
+"titel": "Dienstleistung/Produkt Adaption",
+"ebene": 4,
+"seite": 29,
+"element": "szenario-dienstleistung-produkt-adaption",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/dienstleistung-produkt-adaption.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Anwendbarkeit"
+},
+{
+"t": "p",
+"text": "Das Szenario Dienstleistung/Produkt Adaption unterstützt die Durchführung jener Projekte, in denen ein im Markt verfügbares Produkt oder eine Dienstleistung beschafft, angepasst und in die Organisation integriert wird."
+},
+{
+"t": "h",
+"text": "Module"
+},
+{
+"t": "p",
+"text": "Das Szenario Dienstleistung/Produkt Adaption basiert auf folgenden, in der nachfolgenden Abbildung aufgeführten Modulen:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Projektsteuerung"
+},
+{
+"text": "Projektführung"
+},
+{
+"text": "Beschaffung"
+},
+{
+"text": "Organisation"
+},
+{
+"text": "Produkt"
+},
+{
+"text": "Einführungsorganisation"
+}
+]
+},
+{
+"t": "abb",
+"datei": "assets/abb/5b5ae97a-121-module-im-kontext-des-szenarios-dienstleistung-produkt-adaption.svg",
+"text": "Abbildung 19: Module im Kontext des Szenarios Dienstleistung/Produkt Adaption"
+},
+{
+"t": "p",
+"text": "Bei Bedarf kann das Modul Tests ebenfalls im Szenario eingebettet werden. Dadurch wird die Organisation und Durchführung des Testens von Lösungen ermöglicht."
+}
+]
+},
+{
+"nummer": "2.4.2",
+"titel": "Informatik-Szenarien",
+"ebene": 3,
+"seite": 30,
+"bloecke": []
+},
+{
+"nummer": "2.4.2.1",
+"titel": "IT-Entwicklung",
+"ebene": 4,
+"seite": 30,
+"element": "szenario-it-entwicklung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/it-entwicklung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Anwendbarkeit"
+},
+{
+"t": "p",
+"text": "Das Szenario IT-Entwicklung unterstützt die Durchführung jener Projekte, in denen eine neue IT-Lösung für die spezifischen Bedürfnisse eines oder mehrerer Fachbereiche oder auch organisationsübergreifend (Anwenderbedürfnisse) entwickelt oder eine bestehende IT-Lösung weiterentwickelt und sowohl technisch als auch organisatorisch integriert wird."
+},
+{
+"t": "h",
+"text": "Module"
+},
+{
+"t": "p",
+"text": "Das Szenario IT-Entwicklung basiert auf folgenden, in der nachfolgenden Abbildung aufgeführten Modulen:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Projektsteuerung"
+},
+{
+"text": "Projektführung"
+},
+{
+"text": "Organisation"
+},
+{
+"text": "IT-System"
+},
+{
+"text": "Tests"
+},
+{
+"text": "Einführungsorganisation"
+},
+{
+"text": "IT-Migration"
+},
+{
+"text": "IT-Betrieb"
+},
+{
+"text": "ISDS"
+}
+]
+},
+{
+"t": "abb",
+"datei": "assets/abb/60556089-122-module-im-kontext-des-szenarios-it-entwicklung.svg",
+"text": "Abbildung 20: Module im Kontext des Szenarios IT-Entwicklung"
+}
+]
+},
+{
+"nummer": "2.4.2.2",
+"titel": "IT-Adaption",
+"ebene": 4,
+"seite": 30,
+"element": "szenario-it-adaption",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/it-adaption.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Anwendbarkeit"
+},
+{
+"t": "p",
+"text": "Das Szenario IT-Adaption unterstützt die Durchführung jener Projekte, in denen eine im Markt verfügbare IT-Lösung (z. B. Standardsoftware oder IT-Infrastruktur) beschafft, angepasst und sowohl technisch als auch organisatorisch integriert wird."
+},
+{
+"t": "h",
+"text": "Module"
+},
+{
+"t": "p",
+"text": "Das Szenario IT-Adaption basiert auf folgenden, in der nachfolgenden Abbildung aufgeführten Modulen:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Projektsteuerung"
+},
+{
+"text": "Projektführung"
+},
+{
+"text": "Beschaffung"
+},
+{
+"text": "Organisation"
+},
+{
+"text": "IT-System"
+},
+{
+"text": "Tests"
+},
+{
+"text": "Einführungsorganisation"
+},
+{
+"text": "IT-Migration"
+},
+{
+"text": "IT-Betrieb"
+},
+{
+"text": "ISDS"
+}
+]
+},
+{
+"t": "abb",
+"datei": "assets/abb/c8abd261-123-module-im-kontext-des-szenarios-it-adaption.svg",
+"text": "Abbildung 21: Module im Kontext des Szenarios IT-Adaption"
+}
+]
+},
+{
+"nummer": "2.4.3",
+"titel": "Organisation-Szenarien",
+"ebene": 3,
+"seite": 31,
+"bloecke": []
+},
+{
+"nummer": "2.4.3.1",
+"titel": "Organisationsanpassung",
+"ebene": 4,
+"seite": 31,
+"element": "szenario-organisationsanpassung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/szenarien/organisationsanpassung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Anwendbarkeit"
+},
+{
+"t": "p",
+"text": "Das Szenario Organisationsanpassung unterstützt die Durchführung jener Projekte, in denen neue Organisationen aufgebaut oder bestehende durch Restrukturierungen und Innovationen, neue Geschäftsfelder, In- und Outsourcing, Übernahmen, Verschmelzungen und Trennungen, Liquidationen, (internationale) Expansionen usw. angepasst werden."
+},
+{
+"t": "p",
+"text": "Beispiele:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Umzug, Anpassung oder Schaffung einer Organisation"
+},
+{
+"text": "Fusion von Organisationen"
+},
+{
+"text": "Outsourcing von Dienstleistungen in ein Service-Center"
+}
+]
+},
+{
+"t": "h",
+"text": "Module"
+},
+{
+"t": "p",
+"text": "Das Szenario Organisationsanpassung basiert auf folgenden, in der nachfolgenden Abbildung aufgeführten Modulen:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Projektsteuerung"
+},
+{
+"text": "Projektführung"
+},
+{
+"text": "Organisation"
+},
+{
+"text": "Einführungsorganisation"
+}
+]
+},
+{
+"t": "abb",
+"datei": "assets/abb/828b71ba-124-module-im-kontext-des-szenarios-organisationsanpassung.svg",
+"text": "Abbildung 22: Module im Kontext des Szenarios Organisationsanpassung"
+}
+]
+}
+]
+}

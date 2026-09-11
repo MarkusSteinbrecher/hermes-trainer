@@ -1,0 +1,6687 @@
+{
+"id": "module",
+"nummer": "3",
+"titel": "Module",
+"kategorie": "modul",
+"seite": 33,
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module.html",
+"abschnitte": [
+{
+"nummer": "3",
+"titel": "Module",
+"ebene": 1,
+"seite": 33,
+"bloecke": []
+},
+{
+"nummer": "3.1",
+"titel": "Einleitung",
+"ebene": 2,
+"seite": 33,
+"bloecke": [
+{
+"t": "p",
+"text": "Module enthalten thematisch zusammengehörende Aufgaben und Ergebnisse. Sie sind Bausteine zur Erstellung von Projekten und Szenarien."
+},
+{
+"t": "p",
+"text": "Die nachfolgende Abbildung zeigt im Gesamtkontext alle Module, die verwendet werden können und teils sogar verwendet werden müssen. Ergänzend können eigene Module erstellt werden."
+},
+{
+"t": "abb",
+"datei": "assets/abb/f13aac37-125-standardmaessig-verfuegbare-hermes-module-im-gesamtkontext.svg",
+"text": "Abbildung 23: Standardmässig verfügbare HERMES-Module im Gesamtkontext"
+}
+]
+},
+{
+"nummer": "3.2",
+"titel": "Übersicht der Module",
+"ebene": 2,
+"seite": 33,
+"bloecke": []
+},
+{
+"nummer": "3.2.1",
+"titel": "Standardmodule",
+"ebene": 3,
+"seite": 33,
+"bloecke": [
+{
+"t": "p",
+"text": "Die Tabelle führt alle bereitgestellten Standardmodule kontextgerecht auf und zeigt, in welchen Projektphasen sie vorkommen können."
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Projektphasen/Module",
+"kopf": true
+},
+{
+"text": "Initialisierung",
+"kopf": true
+},
+{
+"text": "Konzept",
+"kopf": true
+},
+{
+"text": "Realisierung",
+"kopf": true
+},
+{
+"text": "Einführung",
+"kopf": true
+},
+{
+"text": "Umsetzung",
+"kopf": true
+},
+{
+"text": "Abschluss",
+"kopf": true
+}
+],
+[
+{
+"text": "Projektsteuerung"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Projektführung"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Projektgrundlagen"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Beschaffung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Organisation"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Produkt"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "IT-System"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Tests"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Einführungsorganisation"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "IT-Migration"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "IT-Betrieb"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "ISDS"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 3: Standardmodule den Projektphasen zugeordnet",
+"unten": true
+},
+{
+"t": "p",
+"text": "Damit die Projekt-Governance eingehalten werden kann, müssen folgende Module zwingend in jedem Projekt vorkommen:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Projektsteuerung;"
+},
+{
+"text": "Projektführung;"
+},
+{
+"text": "Projektgrundlagen;"
+},
+{
+"text": "Einführungsorganisation."
+}
+]
+}
+]
+},
+{
+"nummer": "3.2.2",
+"titel": "Individuelle Module",
+"ebene": 3,
+"seite": 34,
+"bloecke": [
+{
+"t": "p",
+"text": "Ergänzend zu den standardmässig verfügbaren Modulen besteht die Möglichkeit, eigene fach-, organisations- oder vorhabenspezifische Module mit bestehenden oder neuen individuellen Aufgaben und Ergebnissen zu entwickeln und diese in eigene Projekte oder Szenarien zu integrieren. Dies wird auch durch HERMES Online unterstützt."
+},
+{
+"t": "p",
+"text": "Beispiele von fachspezifischen individuellen Modulen, die selbst entwickelt werden können, sind beispielsweise Marketing, Immobilien, Kommunikation, Personalentwicklung, Rechtsetzung, Ausbildung, Strategieentwicklung oder Einführung einer Geschäftsverwaltung."
+}
+]
+},
+{
+"nummer": "3.3",
+"titel": "Erläuterung der Modulbeschreibung",
+"ebene": 2,
+"seite": 34,
+"bloecke": [
+{
+"t": "p",
+"text": "Für jedes Modul gibt es eine Modulbeschreibung, die stets gleich strukturiert ist:"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Zweck definiert den Verwendungszweck des Moduls."
+},
+{
+"text": "Was ist zu tun umschreibt die Modulaufgaben im Gesamtkontext des Moduls."
+},
+{
+"text": "Aufgaben und Ergebnisse listet tabellarisch auf",
+"items": [
+{
+"text": "die Modulaufgaben im Gesamtkontext,"
+},
+{
+"text": "die aus den Aufgaben abgeleiteten oder durch die Aufgaben angepassten, den entsprechenden Projektphasen zugeordneten Ergebnisse."
+}
+]
+}
+]
+}
+]
+},
+{
+"nummer": "3.4",
+"titel": "Beschreibung der Module",
+"ebene": 2,
+"seite": 35,
+"bloecke": []
+},
+{
+"nummer": "3.4.1",
+"titel": "Module zur Steuerung und Führung",
+"ebene": 3,
+"seite": 35,
+"bloecke": []
+},
+{
+"nummer": "3.4.1.1",
+"titel": "Projektsteuerung",
+"ebene": 4,
+"seite": 35,
+"element": "modul-projektsteuerung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektsteuerung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul Projektsteuerung sorgt für die gesamthafte und organisationsübergreifende Steuerung des Projekts und stellt die Erreichung der gesetzten Ziele sicher."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Das Projekt initialisieren, kontinuierlich steuern und die Übereinstimmung mit den übergeordneten Zielen und Vorgaben der Stammorganisation sicherstellen."
+},
+{
+"text": "Anliegen der Stakeholder berücksichtigen und integrieren, Entscheide zu Risiken treffen."
+},
+{
+"text": "Entscheide zur Steuerung treffen."
+},
+{
+"text": "Das Projekt abschliessen, eventuell vorzeitig abbrechen."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Entscheid Projektinitialisierungsfreigabe treffen"
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektinitialisierungsauftrag"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Projektinitialisierungsfreigabe"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Projektinitialisierungsfreigabe"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Durchführungsfreigabe treffen"
+},
+{
+"text": "Meilenstein Durchführungsfreigabe"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Durchführungsfreigabe"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Durchführungsauftrag"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Projektabschluss treffen"
+},
+{
+"text": "Checkliste Projektabschluss"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Projektabschluss"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Entscheid Phasenfreigabe treffen"
+},
+{
+"text": "Checkliste Phasenfreigabe"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Phasenfreigabe"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Projektabbruch treffen"
+},
+{
+"text": "Checkliste Projektabbruch"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "I"
+},
+{
+"text": "K"
+},
+{
+"text": "R"
+},
+{
+"text": "E"
+},
+{
+"text": "U"
+},
+{
+"text": "A"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektschlussbeurteilung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Projektabschluss"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Releasefreigabe treffen"
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Releasefreigabe"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Releasefreigabe"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Phasenfreigabe Abschluss treffen"
+},
+{
+"text": "Checkliste Phasenfreigabe Abschluss"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Phasenfreigabe Abschluss"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Projekt steuern"
+},
+{
+"text": "QS- und Risikobericht"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+]
+],
+"titel": "Tabelle 4: Aufgaben und Ergebnisse Modul Projektsteuerung",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.1.2",
+"titel": "Projektführung",
+"ebene": 4,
+"seite": 36,
+"element": "modul-projektfuehrung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektfuehrung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Im Rahmen des Moduls Projektführung erfolgt die Planung, Führung und Koordination des Projekts zur Erreichung der Projektergebnisse und der Vorgehensziele sowie die Durchführung aller notwendigen flankierenden Massnahmen."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Das Projekt planen, führen und gemäss den definierten Rahmenbedingungen (Termine und Kosten) mit dem geforderten Ergebnis zum Ziel bringen."
+},
+{
+"text": "Stakeholder für das Projekt gewinnen und informieren."
+},
+{
+"text": "Risiken managen, Probleme bewältigen und Erfahrungen berücksichtigen."
+},
+{
+"text": "Leistungen vereinbaren und steuern, das Änderungsmanagement und die Qualitätssicherung führen."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Durchführungsauftrag erarbeiten"
+},
+{
+"text": "Durchführungsauftrag"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Risiken managen"
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "I"
+},
+{
+"text": "K"
+},
+{
+"text": "R"
+},
+{
+"text": "E"
+},
+{
+"text": "U"
+},
+{
+"text": "A"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Probleme behandeln und Erfahrungen nutzen"
+},
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Projekt führen und kontrollieren"
+},
+{
+"text": "Arbeitsauftrag"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Protokoll"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Releaseabschluss vorbereiten"
+},
+{
+"text": "Releasebericht"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Projektmanagementplan erarbeiten"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Phasenfreigabe vorbereiten"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektstatusbericht"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Phasenbericht"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Änderungen managen"
+},
+{
+"text": "Änderungsstatusliste"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Änderungsantrag"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Leistungen vereinbaren und steuern"
+},
+{
+"text": "Evaluationsbericht"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Vereinbarung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Offertanfrage"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Angebot"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Stakeholder managen und informieren"
+},
+{
+"text": "Stakeholderliste"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Qualitätssicherung führen"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Prüfprotokoll"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Projektabschluss vorbereiten"
+},
+{
+"text": "Projektschlussbeurteilung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Projekterfahrungen"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+]
+],
+"titel": "Tabelle 5: Aufgaben und Ergebnisse Modul Projektführung",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2",
+"titel": "Module zur Ausführung",
+"ebene": 3,
+"seite": 38,
+"bloecke": []
+},
+{
+"nummer": "3.4.2.1",
+"titel": "Projektgrundlagen",
+"ebene": 4,
+"seite": 38,
+"element": "modul-projektgrundlagen",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/projektgrundlagen.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul Projektgrundlagen schafft eine konkrete, fundierte Ausgangslage für eine mögliche Lösungsentstehung und den darauffolgenden Projektabschluss."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die Studie erarbeiten, damit der Entscheid Weiteres Vorgehen getroffen werden kann."
+},
+{
+"text": "Die Rechtsgrundlagen klären und den Schutzbedarf analysieren."
+},
+{
+"text": "Eine Beschaffungsanalyse durchführen, sofern eine Beschaffung mit anschliessender Adaption geplant ist."
+},
+{
+"text": "Die Voraussetzungen schaffen, um den Projektmanagementplan und den Durchführungsauftrag zu erarbeiten."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Rechtsgrundlagenanalyse erarbeiten"
+},
+{
+"text": "Rechtsgrundlagenanalyse"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Weiteres Vorgehen treffen"
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Weiteres Vorgehen"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Studie"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Weiteres Vorgehen"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Beschaffungsanalyse erarbeiten"
+},
+{
+"text": "Beschaffungsanalyse"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Schutzbedarfsanalyse erarbeiten"
+},
+{
+"text": "Schutzbedarfsanalyse"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Prototyping durchführen"
+},
+{
+"text": "Prototypdokumentation"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Prototyp realisiert"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Studie erarbeiten"
+},
+{
+"text": "Stakeholderliste"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Studie"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 6: Aufgaben und Ergebnisse Modul Projektgrundlagen",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.2",
+"titel": "Beschaffung",
+"ebene": 4,
+"seite": 38,
+"element": "modul-beschaffung",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/beschaffung.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul Beschaffung dient der gezielten Beschaffung eines am Markt verfügbaren Systems, Produkts oder einer Dienstleistung mittels offenem oder selektivem Verfahren."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Beschaffung mit offenem oder selektivem Verfahren und öffentlicher Publikation, alle anderen Fälle von Beschaffungen werden im Modul Projektführung abgewickelt."
+},
+{
+"text": "Abgrenzung: Die Erarbeitung der Beschaffungsgrundlagen wie Bedarfs- und Marktanalyse, Abklärung des korrekten Verfahrens mit Beschaffung/Einkauf, Sicherstellung der rechtlichen Aspekte oder Verfahrenswahl finden bei der Erarbeitung der Beschaffungsanalyse im Modul Projektgrundlagen statt."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Vereinbarung erarbeiten"
+},
+{
+"text": "Vereinbarung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Ausschreibung treffen"
+},
+{
+"text": "Checkliste Ausschreibung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Ausschreibung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Zuschlag treffen"
+},
+{
+"text": "Checkliste Zuschlag"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Zuschlag"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Publikation"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Ausschreibung erarbeiten"
+},
+{
+"text": "Ausschreibungsunterlagen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Angebote bewerten"
+},
+{
+"text": "Evaluationsbericht"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Angebotsprotokoll"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Ausschreibung durchführen"
+},
+{
+"text": "Ausschreibungsunterlagen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Angebot"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 7: Aufgaben und Ergebnisse Modul Beschaffung",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.3",
+"titel": "Organisation",
+"ebene": 4,
+"seite": 39,
+"element": "modul-organisation",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/organisation.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul Organisation unterstützt den lösungsspezifischen Aufbau oder Anpassung der Organisation und deren Umsetzung oder liefert die organisatorisch-fachlichen Grundlagen für den Aufbau der jeweiligen Lösung."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Organisation mit Geschäftsmodell, Aufbau- und Ablauforganisation anpassen oder neu konzipieren, umsetzen und aktivieren."
+},
+{
+"text": "Die Interessen der Stakeholder kontinuierlich weiter in Erfahrung bringen und analysieren."
+},
+{
+"text": "Die Stakeholder in die Lösungsentstehung einbeziehen."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Organisationskonzept erarbeiten"
+},
+{
+"text": "Prozessbeschreibung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Organisationskonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Geschäftsmodellbeschreibung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Organisationsbeschreibung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Organisation aktivieren"
+},
+{
+"text": "Organisation aktiviert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Organisationsanforderungen erarbeiten"
+},
+{
+"text": "Situationsanalyse"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "I"
+},
+{
+"text": "K"
+},
+{
+"text": "R"
+},
+{
+"text": "E"
+},
+{
+"text": "U"
+},
+{
+"text": "A"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Organisationsanforderungen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Stakeholderinteressen vertreten"
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Organisation umsetzen"
+},
+{
+"text": "Organisationsbeschreibung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Prozessbeschreibung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Organisation umgesetzt"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 8: Aufgaben und Ergebnisse Modul Organisation",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.4",
+"titel": "Produkt",
+"ebene": 4,
+"seite": 40,
+"element": "modul-produkt",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/produkt.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul Produkt dient der Entwicklung eines Produkts oder einer Dienstleistung."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Das Produktkonzept erarbeiten und das Produkt entwickeln oder anpassen."
+},
+{
+"text": "Die Lösungsanforderungen verfeinern."
+},
+{
+"text": "Die Detailspezifikation erarbeiten."
+},
+{
+"text": "Die Interessen der Stakeholder kennen und sie ggf. an der Lösungsentstehung mitwirken lassen."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Produkt aktivieren"
+},
+{
+"text": "Produkt aktiviert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Produktkonzept erarbeiten"
+},
+{
+"text": "Produktkonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Produktkonzept treffen"
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Produktkonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Produktkonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Prototyping durchführen"
+},
+{
+"text": "Prototyp realisiert"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Prototypdokumentation"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Stakeholderinteressen vertreten"
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Produkt realisieren"
+},
+{
+"text": "Produkt entwickelt oder angepasst"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Produktdokumentation"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Anwendungshandbuch"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Lösungsanforderungen erarbeiten"
+},
+{
+"text": "Situationsanalyse"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 9: Aufgaben und Ergebnisse Modul Produkt",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.5",
+"titel": "IT-System",
+"ebene": 4,
+"seite": 41,
+"element": "modul-it-system",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-system.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul IT-System dient der Entwicklung eines Systems."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die Lösungsanforderungen verfeinern, die Lösungsarchitektur erarbeiten und die Machbarkeit überprüfen (allenfalls mit Prototypen)."
+},
+{
+"text": "Das System realisieren bzw. integrieren und dokumentieren."
+},
+{
+"text": "Die Detailspezifikation erarbeiten und das System und die Integration realisieren."
+},
+{
+"text": "Die Interessen der Stakeholder kennen und sie an der Lösungsentstehung mitwirken lassen."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Stakeholderinteressen vertreten"
+},
+{
+"text": "Stakeholderinteressen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Integrationskonzept erarbeiten"
+},
+{
+"text": "Integrationskonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Prototyping durchführen"
+},
+{
+"text": "Prototyp realisiert"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Prototypdokumentation"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "System realisieren"
+},
+{
+"text": "Anwendungshandbuch"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Systemkonzept"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsarchitektur"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "System entwickelt oder parametrisiert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Lösungsarchitektur erarbeiten"
+},
+{
+"text": "Systemkonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsarchitektur"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Lösungsanforderungen erarbeiten"
+},
+{
+"text": "Lösungsanforderungen"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Situationsanalyse"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Lösungsarchitektur treffen"
+},
+{
+"text": "Meilenstein Lösungsarchitektur"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Lösungsarchitektur"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Systemintegration vorbereiten"
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Integrations- und Installationsanleitung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Lösungsarchitektur"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Schnittstellen realisiert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "System aktivieren"
+},
+{
+"text": "System aktiviert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 10: Aufgaben und Ergebnisse Modul IT-System",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.6",
+"titel": "Tests",
+"ebene": 4,
+"seite": 42,
+"element": "modul-tests",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/tests.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul Tests dient einer systematischen und effizienten Organisation und Durchführung des Testens von Lösungen."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die Testinfrastruktur realisieren und überführen."
+},
+{
+"text": "Die Tests vorbereiten, durchführen und protokollieren."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Testinfrastruktur überführen"
+},
+{
+"text": "Testkonzept"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Protokoll"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Testinfrastruktur überführt"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Testinfrastruktur realisieren"
+},
+{
+"text": "Testinfrastruktur realisiert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Testkonzept erarbeiten"
+},
+{
+"text": "Testkonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Test durchführen"
+},
+{
+"text": "Testkonzept"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Testprotokoll"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 11: Aufgaben und Ergebnisse Modul Tests",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.7",
+"titel": "Einführungsorganisation",
+"ebene": 4,
+"seite": 42,
+"element": "modul-einfuehrungsorganisation",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/einfuehrungsorganisation.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul Einführungsorganisation unterstützt die Schulung und Einführung der neuen Lösung bzw. den Übergang zum neuen Zustand."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Einführungskonzept erarbeiten."
+},
+{
+"text": "Einführungsmassnahmen und die Einführungsorganisation realisieren und durchführen."
+},
+{
+"text": "Vorabnahme und Abnahme durchführen."
+},
+{
+"text": "Organisationschangemanagement durchführen."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Einführungsmassnahmen durchführen"
+},
+{
+"text": "Einführungsmassnahmen durchgeführt"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Einführungskonzept erarbeiten"
+},
+{
+"text": "Projektmanagementplan"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Einführungskonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Abnahme treffen"
+},
+{
+"text": "Abnahmeprotokoll"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Abnahme"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Abnahme"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "I"
+},
+{
+"text": "K"
+},
+{
+"text": "R"
+},
+{
+"text": "E"
+},
+{
+"text": "U"
+},
+{
+"text": "A"
+}
+],
+[
+{
+"text": "Einführungsmassnahmen realisieren"
+},
+{
+"text": "Einführungsmassnahmen realisiert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Vorabnahme treffen"
+},
+{
+"text": "Meilenstein Vorabnahme"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Vorabnahme"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Abnahmeprotokoll"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Entscheid Betriebsaufnahme treffen"
+},
+{
+"text": "Checkliste Betriebsaufnahme"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Betriebsaufnahme"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Steuerung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 12: Aufgaben und Ergebnisse Modul Einführungsorganisation",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.8",
+"titel": "IT-Migration",
+"ebene": 4,
+"seite": 43,
+"element": "modul-it-migration",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-migration.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul IT-Migration dient der Überführung der Daten in das neue System sowie der Ausserbetriebssetzung und Entfernung des Altsystems."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Die Migration konzipieren, planen, vorbereiten und durchführen."
+},
+{
+"text": "Abnahme der Migration durchführen."
+},
+{
+"text": "Das Altsystem ausser Betrieb setzen."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Migrationskonzept erarbeiten"
+},
+{
+"text": "Migrationskonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Migration durchführen"
+},
+{
+"text": "Migration durchgeführt"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Altsystem ausser Betrieb setzen"
+},
+{
+"text": "Altsystem entfernt"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+}
+],
+[
+{
+"text": "Entscheid Abnahme Migration treffen"
+},
+{
+"text": "Abnahmeprotokoll"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein Abnahme Migration"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste Abnahme Migration"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Migrationsverfahren realisieren"
+},
+{
+"text": "Migrationsverfahren realisiert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Detailspezifikation"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 13: Aufgaben und Ergebnisse Modul IT-Migration",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.9",
+"titel": "IT-Betrieb",
+"ebene": 4,
+"seite": 44,
+"element": "modul-it-betrieb",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/it-betrieb.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Das Modul IT-Betrieb dient der Konzeption und Realisierung der Betriebsorganisation beim Betreiber sowie der Aktivierung des Betriebs."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Den Betrieb mit Infrastruktur und Betriebsorganisation konzipieren und realisieren."
+},
+{
+"text": "Das System in den Betrieb integrieren."
+},
+{
+"text": "Den Betrieb aktivieren."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "Betrieb realisieren"
+},
+{
+"text": "Betriebsorganisation realisiert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Betriebsinfrastruktur realisiert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Betrieb aktivieren"
+},
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Betrieb aktiviert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "System in Betrieb integrieren"
+},
+{
+"text": "System integriert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Betriebshandbuch"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "Betriebskonzept erarbeiten"
+},
+{
+"text": "Betriebskonzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Service Level Agreement"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 14: Aufgaben und Ergebnisse Modul IT-Betrieb",
+"unten": true
+}
+]
+},
+{
+"nummer": "3.4.2.10",
+"titel": "ISDS",
+"ebene": 4,
+"seite": 44,
+"element": "modul-isds",
+"url": "https://www.hermes.admin.ch/de/projektmanagement/module/isds.html",
+"bloecke": [
+{
+"t": "h",
+"text": "Zweck"
+},
+{
+"t": "p",
+"text": "Im Modul ISDS (Informationssicherheit und Datenschutz) werden die erforderlichen Schutzmassnahmen betreffend die Informationssicherheit und den Datenschutz bei der Nutzung und beim Betrieb der IT-Lösung definiert."
+},
+{
+"t": "h",
+"text": "Was ist zu tun"
+},
+{
+"t": "ul",
+"items": [
+{
+"text": "Anforderungen an ISDS ermitteln, Risiken bewerten und Massnahmen zur Erfüllung der Anforderungen konzipieren und umsetzen."
+},
+{
+"text": "Das ISDS-Konzept erarbeiten und die Ergebnisse laufend dokumentieren."
+}
+]
+},
+{
+"t": "h",
+"text": "Aufgaben und Ergebnisse"
+},
+{
+"t": "tabelle",
+"zeilen": [
+[
+{
+"text": "Aufgabe",
+"kopf": true
+},
+{
+"text": "Ergebnis",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "Phasen",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+}
+],
+[
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "",
+"kopf": true
+},
+{
+"text": "I",
+"kopf": true
+},
+{
+"text": "K",
+"kopf": true
+},
+{
+"text": "R",
+"kopf": true
+},
+{
+"text": "E",
+"kopf": true
+},
+{
+"text": "U",
+"kopf": true
+},
+{
+"text": "A",
+"kopf": true
+}
+],
+[
+{
+"text": "ISDS-Konzept erarbeiten"
+},
+{
+"text": "ISDS-Konzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "ISDS-Konzept überführen"
+},
+{
+"text": "ISDS-Konzept"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "ISDS-Konzept überführt"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": "ISDS-Konzept realisieren"
+},
+{
+"text": "ISDS-Konzept"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "ISDS-Massnahmen realisiert"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "I"
+},
+{
+"text": "K"
+},
+{
+"text": "R"
+},
+{
+"text": "E"
+},
+{
+"text": "U"
+},
+{
+"text": "A"
+}
+],
+[
+{
+"text": "Entscheid ISDS-Konzept treffen"
+},
+{
+"text": "Liste Projektentscheide Führung"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Checkliste ISDS-Konzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+],
+[
+{
+"text": ""
+},
+{
+"text": "Meilenstein ISDS-Konzept"
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+},
+{
+"text": ""
+},
+{
+"text": "X"
+},
+{
+"text": ""
+}
+]
+],
+"titel": "Tabelle 15: Aufgaben und Ergebnisse Modul ISDS",
+"unten": true
+}
+]
+}
+]
+}

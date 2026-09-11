@@ -25,7 +25,7 @@
       h('ul', {}, [
         h('li', {}, [h('b', { text: 'Graph: ' }), 'die Methodenelemente und ihre Zusammenhänge: als Struktur (Szenarien, Module, Aufgaben, Ergebnisse, Rollen in Spalten), im Fokus (ein Element mit allen Verbindungen) und entlang der Phasen. Jede Verbindung entspricht einem Querverweis der offiziellen Dokumentation; Kategorien, Beziehungen und Filter lassen sich ein- und ausblenden.']),
         h('li', {}, [h('b', { text: 'Trainer: ' }), 'Ausschnitte aus dem Gesamtbild der Methode — je Phase, je Modul oder das ganze Bild — mit leeren Ergebniskästen; die Namen liegen als Chips bereit und werden an ihren Platz gezogen, die Prüfung zeigt richtig, falsch und offen.']),
-        h('li', {}, [h('b', { text: 'Handbuch: ' }), 'das Referenzhandbuch Kapitel für Kapitel in seiner Gliederung (Methodenüberblick, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung); die Elemente stehen mit ihrem vollständigen Handbuchtext an ihrer Stelle im Text, mit Nummer und Seite im Referenzhandbuch.']),
+        h('li', {}, [h('b', { text: 'Handbuch: ' }), 'das Referenzhandbuch Projektmanagement (PDF) 1:1 als Text, Kapitel für Kapitel in seiner Gliederung (Vorwort, Methodenüberblick, Methodenelemente, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung, Vokabular) mit den Kapitelnummern und Seitenzahlen des PDF; die Elemente stehen als Karten an ihrer Stelle im Text, jede mit Link auf HERMES online und auf die Seite im PDF. Nicht übernommen sind Inhalts-, Tabellen- und Abbildungsverzeichnis sowie der Index.']),
         h('li', {}, [h('b', { text: 'Lernkarten: ' }), 'Begriff ↔ Definition mit Selbsteinschätzung; Fortschritt lokal im Browser.']),
         h('li', {}, [h('b', { text: 'Quiz: ' }), 'kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus den Elementkarten erzeugte Fragen.']),
         h('li', {}, [h('b', { text: 'Markieren: ' }), 'Wörter und Sätze im Überblick und im Handbuch auswählen und gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg. Alles bleibt in diesem Browser.'])
@@ -34,11 +34,11 @@
       h('h2', { text: 'Quelle der Inhalte' }),
       h('p', {}, [
         'HERMES ist die Projektmanagementmethode der Schweizerischen Bundesverwaltung und ein offener Standard (eCH-0054). ',
-        'Die Texte der Stufe «Handbuch» sind der offiziellen Dokumentation entnommen: ',
+        'Die Seite «Handbuch» gibt das ',
+        extern('https://www.hermes.admin.ch/_Resources/Persistent/c/7/1/6/c7166cbb014fffc5a7ebb4697ba59ef63edb0de3/HERMES-Projektmanagement.pdf', 'Referenzhandbuch Projektmanagement, Ausgabe 2022, 3. Auflage vom 9. März 2026 (PDF)'),
+        ' als Text wieder — mit seinen Kapitelnummern und Seitenzahlen; die Abbildungen stammen von ',
         extern('https://www.hermes.admin.ch/de/projektmanagement.html', 'HERMES online'),
-        ' (gemäss Impressum die führende, für die Zertifizierung massgebliche Quelle) und dem ',
-        extern('https://www.hermes.admin.ch/de/downloads.html', 'Referenzhandbuch Projektmanagement, Ausgabe 2022, 3. Auflage vom 9. März 2026'),
-        ', aus dem die Kapitelnummern und Seitenzahlen stammen. Kurzfassungen und Quizfragen sind eigene, an diesem Wortlaut geprüfte Texte.'
+        ' (gemäss Impressum die führende, für die Zertifizierung massgebliche Quelle), von dort kommen auch die Handbuchtexte der Karten im Überblick. Kurzfassungen und Quizfragen sind eigene, an diesem Wortlaut geprüfte Texte.'
       ]),
       h('p', { text: 'Die Urheberrechte an der HERMES-Dokumentation liegen bei der Schweizerischen Eidgenossenschaft (Bundeskanzlei, Digitale Transformation und IKT-Lenkung). '
         + 'Die Wiedergabe dient ausschliesslich dem Lernen; massgebend bleibt in jedem Fall die offizielle Dokumentation.' }),
