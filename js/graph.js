@@ -1054,10 +1054,15 @@
       /* Nach dem Einblenden: Nachholen, was verborgen nicht gezeichnet wurde,
          sonst neu einpassen — die Fläche hatte verborgen keine Grösse. */
       sichtbarGeworden: function () {
-        global.requestAnimationFrame(function () {
-          if (!zeichner || !document.body.contains(refs.buehne)) { return; }
+        /* rAF läuft im Hintergrundtab nicht — darum zusätzlich ein Timeout. */
+        var erledigt = false;
+        function nachholen() {
+          if (erledigt || !zeichner || !document.body.contains(refs.buehne)) { return; }
+          erledigt = true;
           if (zeichnungFaellig) { alles(true); } else { zeichner.einpassen(einpassOptionen()); }
-        });
+        }
+        global.requestAnimationFrame(nachholen);
+        global.setTimeout(nachholen, 120);
       },
       verborgen: function () { popSchliessen(); tooltipVerbergen(); }
     };

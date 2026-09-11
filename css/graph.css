@@ -245,9 +245,7 @@
   min-height: 0;
 }
 .graph-buehne[hidden] { display: none; }
-/* Eingebettet im Überblick: oben links steht der Sichtwechsel, die linke
-   Icon-Leiste rückt darunter. */
-.ub-sichten .grail:not(.grail--rechts) { top: 56px; }
+
 .graph-zoom { margin-left: 8px; padding-left: 9px; }
 .graph-zoom::before { content: ""; width: 1px; height: 16px; margin-right: 2px; background: var(--rand); }
 
