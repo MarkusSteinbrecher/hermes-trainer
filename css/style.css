@@ -1228,9 +1228,6 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .kernaussagen { margin: 0 0 10px; padding-left: 1.4rem; }
 .kernaussagen li { margin-bottom: 8px; font-weight: 500; text-wrap: pretty; max-width: 60ch; }
 .kernaussagen li::marker { color: var(--akzent); font-weight: 800; }
-.pruefungsfallen { margin: 0 0 6px; padding-left: 1.25rem; }
-.pruefungsfallen li { margin-bottom: 6px; text-wrap: pretty; max-width: 60ch; }
-.pruefungsfallen li::marker { color: var(--akzent); }
 
 /* Stufen 2 und 3: aufklappbare Abschnitte zwischen Linien. */
 details.stufe-block, .stufe-block--offen {

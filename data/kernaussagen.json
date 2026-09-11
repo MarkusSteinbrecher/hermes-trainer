@@ -14,12 +14,6 @@
       "Sie unterstützt zwei Vorgehensweisen: das klassische phasenweise Vorgehen und das iterativ-inkrementelle, agile Vorgehen. Für die agile Entwicklung wirkt HERMES als Projektvorgehenshülle: Die Entwicklungsmethode wird als Blackbox eingekapselt, HERMES definiert nur die Schnittstellen für Steuerung, Führung, Kommunikation und Reporting. Der Projektleiter führt das Projekt, darf aber nicht in die Selbstorganisation der agilen Umsetzungsorganisation eingreifen; der Anwendervertreter ist sein Ansprechpartner.",
       "Die Methodenelemente sind Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen. Das Phasenmodell bildet das Rückgrat jedes Projekts, Szenarien decken die Lösungsentstehung ab, Module bündeln thematisch zusammengehörende Ergebnisse und Aufgaben, Meilensteine entsprechen Quality Gates. Mit Sizing und Tailoring wird der Methodenumfang an die Projektgrösse angepasst. Programmmanagement erweitert das Projektmanagement; die Hinweise zur Anwendung vertiefen Themen wie Governance und Nachhaltigkeit."
     ],
-    "pruefungsfallen": [
-      "HERMES schreibt die Begriffswelt innerhalb der agilen Entwicklung nicht vor; diese richtet sich nach der eingesetzten Entwicklungsmethode, festgelegt sind nur die Ergebnis-Schnittstellen und die Projektmanagement-Begriffe.",
-      "«Agile Umsetzung» meint nicht nur Scrum oder Kanban, sondern auch skaliert agile Methoden wie SAFe bis Stufe «Essential» beziehungsweise «ART Flow».",
-      "Bei agiler Vorgehensweise erteilt der Projektleiter keine Arbeitsaufträge an die Teams; die Arbeit wird vom Anwendervertreter über die Lösungsanforderungen gesteuert, und die Teams organisieren sich selbst.",
-      "Lange dauernde oder komplexe Vorhaben müssen nicht als Programm strukturiert werden; sie können auch als Projekte mit Realisierungseinheiten durchgeführt werden."
-    ],
     "belege": [
       {
         "kapitel": "A.1 HERMES-Projektmanagement - Big Picture",
@@ -60,12 +54,6 @@
       "Klassisch wird die gewählte Variante in der Phase Konzept konkretisiert, in der Realisierung entwickelt und getestet und in der Einführung mit Betriebsaufnahme und Abnahme aktiviert. Agil wird sie in der Phase Umsetzung iterativ-inkrementell umgesetzt; jede Iteration liefert ein Inkrement, und die Umsetzungsorganisation wird nach der Abnahme des letzten Release aufgelöst.",
       "Die Phase Abschluss fährt das Projekt systematisch herunter: Dokumentation prüfen, Projektschlussbeurteilung erarbeiten, Ergebnisse übergeben, Altsystem entfernen, archivieren und die Projektorganisation auflösen."
     ],
-    "pruefungsfallen": [
-      "Der Entscheid Weiteres Vorgehen ist nicht dasselbe wie der Entscheid Durchführungsfreigabe: Weiteres Vorgehen wählt die Lösungsvariante, die Durchführungsfreigabe gibt die Fortsetzung des Projekts frei.",
-      "Die Phase Einführung endet nicht mit der Betriebsaufnahme, sondern nach erfolgreicher Betriebsaufnahme mit dem Entscheid Abnahme.",
-      "Der Meilenstein Releasefreigabe ist nicht obligatorisch, sondern optional; ob er erforderlich ist, wird in der Phase Initialisierung festgelegt.",
-      "Die Phase Umsetzung ist nicht eine agile Variante der Phase Realisierung, sondern ersetzt Konzept, Realisierung und Einführung gemeinsam durch ein iterativ-inkrementelles Vorgehen."
-    ],
     "belege": [
       {
         "kapitel": "1.1.1 Projektlebenszyklus",
@@ -105,12 +93,6 @@
       "Szenarien setzen sich aus Modulen mit thematisch zusammengehörenden Aufgaben und Ergebnissen zusammen; je Szenario liegt damit eine abgestimmte Lösungsentstehungsvorlage samt Dokumentvorlagen vor. Die fünf Standardszenarien sind Dienstleistung/Produkt Entwicklung, Dienstleistung/Produkt Adaption, IT-Entwicklung, IT-Adaption und Organisationsanpassung. Die Adaptionsszenarien enthalten zusätzlich das Modul Beschaffung, die IT-Szenarien die Module IT-System, Tests, IT-Migration, IT-Betrieb und ISDS. Das Angebot ist nicht abschliessend.",
       "Über «Benutzerdefinierte Szenarien» in HERMES Online wird ein Standardszenario zuerst mit der Sizing-Funktion an die ermittelte Projektgrösse angepasst und anschliessend optional mit dem Tailoring weiter individualisiert. Minimal geforderte Dokumente dürfen dabei nicht entfernt werden. Benutzerdefinierte Szenarien können mit anderen HERMES-Anwendern ausgetauscht werden."
     ],
-    "pruefungsfallen": [
-      "Das Modul Projektgrundlagen kommt in keinem Szenario vor, da es ausserhalb der Lösungsentstehung in der Phase Initialisierung eingesetzt wird.",
-      "Sizing ist nicht dasselbe wie Tailoring: Sizing passt das Szenario an die ermittelte Projektgrösse an, Tailoring individualisiert es anschliessend optional nach Projektbedürfnissen.",
-      "Beim Tailoring dürfen Ergebnisse und Aufgaben entfernt werden, jedoch nicht die minimal geforderten Dokumente.",
-      "Die Adaptionsszenarien unterscheiden sich von den Entwicklungsszenarien nicht durch weniger Module, sondern durch das zusätzliche Modul Beschaffung."
-    ],
     "belege": [
       {
         "kapitel": "2.1 Einleitung",
@@ -148,12 +130,6 @@
       "Module sind die Bausteine, aus denen Projekte und Szenarien zusammengesetzt werden. Ein Modul bündelt thematisch zusammengehörende Aufgaben und die daraus entstehenden Ergebnisse und ist den Phasen zugeordnet, in denen es vorkommen kann. Die Tabelle der Standardmodule zeigt, dass Projektsteuerung und Projektführung alle Phasen begleiten, das Modul Projektgrundlagen ausschliesslich in der Initialisierung wirkt und die übrigen Module die Lösungsentstehung, teilweise bis in den Abschluss, abdecken.",
       "Zwingend in jedem Projekt sind die Module Projektsteuerung, Projektführung, Projektgrundlagen und Einführungsorganisation; damit wird die Projekt-Governance eingehalten. Projektsteuerung sorgt für die gesamthafte, organisationsübergreifende Steuerung und die Entscheide der Steuerung, Projektführung für Planung, Führung und Koordination inklusive Risiko-, Änderungs- und Qualitätsmanagement. Projektgrundlagen schafft mit Studie, Rechtsgrundlagen-, Schutzbedarfs- und Beschaffungsanalyse die Ausgangslage, Einführungsorganisation unterstützt Schulung, Einführung, Vorabnahme und Abnahme.",
       "Die Ausführungsmodule Beschaffung, Organisation, Produkt, IT-System, Tests, IT-Migration, IT-Betrieb und ISDS werden je nach Szenario eingesetzt. Ergänzend können individuelle Module, etwa für Marketing, Rechtsetzung oder Ausbildung, entwickelt und über HERMES Online in eigene Szenarien integriert werden."
-    ],
-    "pruefungsfallen": [
-      "Die Beschaffungsgrundlagen wie Bedarfs- und Marktanalyse oder Verfahrenswahl entstehen nicht im Modul Beschaffung, sondern in der Beschaffungsanalyse im Modul Projektgrundlagen.",
-      "Der Entscheid Betriebsaufnahme gehört nicht zum Modul IT-Betrieb, sondern als Entscheid der Steuerung zum Modul Einführungsorganisation.",
-      "Der Entscheid Weiteres Vorgehen gehört nicht zum Modul Projektsteuerung, sondern als Entscheid der Führung zum Modul Projektgrundlagen.",
-      "Der Durchführungsauftrag wird nicht im Modul Projektsteuerung erarbeitet, sondern im Modul Projektführung; die Projektsteuerung trifft darauf den Entscheid Durchführungsfreigabe."
     ],
     "belege": [
       {
@@ -194,12 +170,6 @@
       "Die Tabelle der Standarddokumente markiert die minimal geforderten Dokumente. Sie werden benötigt, um die Anforderungen der Governance zu erfüllen, und umfassen sowohl Ergebnisse, die von Revisionsstellen geprüft werden, als auch alles, was zwingend in einem Modul zu erstellen ist. Ihre Erarbeitung ist obligatorisch; sie entfallen nur, wenn ein Modul nicht relevant ist oder ihre Verwendung im Modul, etwa im Fall klassisch/agil, nicht vorgesehen ist. Stammorganisationen können sie gemäss ihren Governance-Bestimmungen anpassen.",
       "Checklisten unterstützen die Entscheidungsfindung mit Katalogen von Kontroll- und Prüfungsschritten und sind je Entscheid definiert. Meilensteine kennzeichnen einen erreichten Zeitpunkt im Projektverlauf und sind Entscheidungsergebnisse der Projektsteuerung und -führung. Jede Ergebnisbeschreibung ist gleich aufgebaut: Beschreibung, Inhalt bei Dokumenten sowie Beziehungen und Vorlagen online."
     ],
-    "pruefungsfallen": [
-      "Ein Meilenstein ist nicht der Entscheid selbst, sondern der Zustand, der als Folge des Entscheids erreicht wird.",
-      "Das Abnahmeprotokoll ist nicht bloss eine Dokumentation, sondern ein rechtlich verbindliches Dokument, das bei den Entscheiden Vorabnahme, Abnahme und Abnahme Migration erstellt wird.",
-      "Nicht jedes Standarddokument ist minimal gefordert; Beschaffungsanalyse, Migrationskonzept, Protokoll, Projekterfahrungen oder QS- und Risikobericht sind in der Ergebnisübersicht nicht als minimal gefordert markiert.",
-      "Individuelle Ergebnisse werden nicht lose ergänzt, sondern in eigenen Modulen integriert, insbesondere wenn neue Module mit neuen Aufgaben entwickelt werden."
-    ],
     "belege": [
       {
         "kapitel": "4.1 Einleitung",
@@ -238,12 +208,6 @@
       "In HERMES stehen die Ergebnisse im Mittelpunkt; sie werden mit Aufgaben erarbeitet. Eine Aufgabe besteht aus mehreren Aktivitäten, die der Erarbeitung eines oder mehrerer Ergebnisse sowie der Sicherstellung der Qualitätsanforderungen dienen. Thematisch zusammengehörende Aufgaben und Ergebnisse bilden Module.",
       "HERMES unterscheidet Entscheidungsaufgaben und sonstige Aufgaben. Entscheidungsaufgaben führen zu einem Entscheid und enden mit einem Meilenstein; sie werden mit einer Checkliste unterstützt. Entscheide der Steuerung trifft der Auftraggeber, etwa Projektinitialisierungsfreigabe, Durchführungsfreigabe, Phasenfreigabe, Releasefreigabe, Projektabschluss oder Projektabbruch sowie Ausschreibung, Zuschlag und Betriebsaufnahme. Entscheide der Führung sind Entscheide des Projektleiters zu Projektergebnissen, beispielsweise Lösungsarchitektur, ISDS-Konzept, Vorabnahme, Abnahme oder Weiteres Vorgehen. Die Prüfung technischer Ergebnisse erfolgt durch die Spezialisten der Ausführung zuhanden der Führung.",
       "Die Steuerung prüft am Ende einer Phase beziehungsweise eines Release, ob die benötigten Fachentscheide vorliegen, und kann so entscheiden, ohne selbst über die Fachkompetenz zu verfügen. Sonstige Aufgaben wie Risiken managen, Änderungen managen oder Stakeholder managen und informieren begleiten den Projektverlauf. Individuelle Aufgaben können in eigene Module integriert werden."
-    ],
-    "pruefungsfallen": [
-      "Betriebsaufnahme, Ausschreibung und Zuschlag sind keine Entscheide der Führung, sondern Entscheide des Auftraggebers auf der Hierarchieebene Steuerung.",
-      "Lösungsarchitektur, ISDS-Konzept, Produktkonzept, Vorabnahme, Abnahme, Abnahme Migration und Weiteres Vorgehen sind keine Entscheide der Steuerung, sondern Entscheide der Führung.",
-      "Die Steuerung trifft die Fachentscheide nicht selbst, sondern prüft am Ende einer Phase oder eines Release, ob sie vorliegen; fehlen sie, wird nicht freigegeben.",
-      "Eine Aktivität ist keine eigenständige Aufgabe; eine Aufgabe besteht aus mehreren Aktivitäten, die Ergebnisse erarbeiten und die Qualität sichern."
     ],
     "belege": [
       {
@@ -284,12 +248,6 @@
       "Jede Rolle gehört zu einer Hierarchieebene: Steuerungsrollen steuern das Projekt gesamthaft, Führungsrollen erarbeiten die Projektgrundlagen und führen das Projekt, Ausführungsrollen erarbeiten die Lösung. Zudem ist jede Rolle den Partnergruppen Anwender, Ersteller oder Betreiber zugeordnet; Rolleninhaber vertreten stets ausschliesslich die Sicht ihrer Partnergruppe, auch wenn sie externe Dienstleister sind.",
       "Auftraggeber, Projektleiter und Anwendervertreter müssen in jedem Projekt besetzt sein und beim Anwender angesiedelt werden. Der Auftraggeber trägt die Gesamtverantwortung und bestimmt Projektleiter und Anwendervertreter; der Projektleiter hat die alleinige Führungsverantwortung, darf aber bei agiler Lösungsentstehung nicht in die selbstorganisierte Umsetzungsorganisation eingreifen; der Anwendervertreter verantwortet die fachliche Lösungsentstehung. Die Rollenbesetzung wird im Projektmanagementplan festgehalten. In Programmen werden vor allem die Rollen Auftraggeber und Projektleiter angepasst oder ersetzt."
     ],
-    "pruefungsfallen": [
-      "Der Projektleiter darf nicht durch die Partnergruppen Ersteller oder Betreiber gestellt werden, sondern muss beim Anwender angesiedelt sein und ausschliesslich dessen Interessen vertreten.",
-      "Der Projektausschuss unterstützt nicht den Projektleiter, sondern den Auftraggeber auf der Ebene Steuerung; der Fachausschuss unterstützt den Projektleiter beim klassischen Vorgehen.",
-      "Die Umsetzungsorganisation ist keine einzelne Rolle, sondern eine Rollengruppe, in der alle beteiligten Ausführungsrollen zusammengefasst werden.",
-      "Der Qualitäts- und Risikomanager ist keine Führungsrolle, sondern eine Steuerungsrolle, die direkt an den Auftraggeber rapportiert."
-    ],
     "belege": [
       {
         "kapitel": "6.1.3.1 Übersicht",
@@ -325,11 +283,6 @@
       "Das Kapitel «Hinweise zur Anwendung» unterstützt die Anwender dabei, HERMES-Projektmanagement richtig einzusetzen. Es bündelt Hinweise, die ein vertieftes Verständnis für die Methode ermöglichen, Anwendungsfälle erläutern oder fallspezifisch eine Art Leitfaden liefern. Bereits der Methodenüberblick verweist darauf, dass diese Hinweise die Basis für ein vertieftes Methodenverständnis bilden, etwa in Bezug auf Governance und Nachhaltigkeit.",
       "Die Hinweise werden in zwei Kategorien gegliedert. Erläuterungen zeigen auf, wie spezifische Themen in HERMES integriert sind, und vermitteln Zusammenhänge; dazu gehören Governance, Nachhaltigkeit, Projektmanagement und Entwicklungsmanagement sowie Finanzielle Steuerung und Führung. Anwendungsfälle zeigen, wie HERMES in spezifischen Situationen umgesetzt werden soll, und reduzieren den Interpretationsspielraum; dazu gehören Planung, Realisierungseinheiten bei klassischer Vorgehensweise, Anwendung mit anderen Methoden und Praktiken sowie Integration von HERMES in die Stammorganisation.",
       "Anders als Phasen, Module, Ergebnisse, Aufgaben und Rollen haben die Hinweise keine einheitliche Beschreibungsstruktur; jeder Hinweis ist bedarfsgerecht gegliedert und bildet für sich eine unabhängige Themeneinheit."
-    ],
-    "pruefungsfallen": [
-      "Die Beschreibung der Hinweise folgt keiner festen oder einheitlichen Struktur wie bei Modulen oder Aufgaben, sondern jeder Hinweis ist bedarfsgerecht gegliedert.",
-      "Die Realisierungseinheiten betreffen nicht die agile, sondern ausschliesslich die klassische Vorgehensweise.",
-      "Die Hinweise sind keine Methodenelemente wie Phasen, Szenarien, Module, Ergebnisse, Aufgaben oder Rollen, sondern erläutern deren Anwendung."
     ],
     "belege": [
       {
@@ -370,12 +323,6 @@
       "Bedeutende Veränderungen werden mit Projekten umgesetzt: In der Initialisierung werden die Skizzen der Unternehmensplanung vertieft, und mit dem Durchführungsauftrag entscheidet der Auftraggeber in Abstimmung mit der Stammorganisation über die Fortsetzung. Die Stammorganisation besetzt die entscheidenden Rollen aus der Partnergruppe Anwender; Leitung sowie Controlling- und Vorgabestellen werden über Entscheidungsaufgaben und Reporting eingebunden. Die Wahl der Vorgehensweise klassisch oder agil erfolgt nachvollziehbar auf Projektebene.",
       "Die Anwender bestimmen selbst über das Projekt; Ersteller oder Betreiber dürfen das Projektgeschehen nicht dominieren. Das Projektportfoliomanagement priorisiert und koordiniert die Projekte übergeordnet und entscheidet, welche Projekte initialisiert, umgesetzt, angehalten und beendet werden. Nach dem Abschluss wandelt sich das Projekt zur Anwendung; die Erfolgskontrolle erfolgt während der Nutzung."
     ],
-    "pruefungsfallen": [
-      "Die Anwender dürfen ihr Selbstbestimmungsrecht nicht nur beanspruchen, sondern müssen es auch konsequent durchsetzen; dies gehört zu ihrer Pflicht.",
-      "Die Wahl zwischen klassisch und agil wird nicht pauschal für ein Programm getroffen, sondern für jedes Projekt einzeln auf Projektebene, auch innerhalb eines Programms.",
-      "Die Erfolgskontrolle, ob die ursprünglichen Ziele erreicht wurden, erfolgt nicht beim Projektabschluss, sondern während der Nutzung der Lösung.",
-      "Die Verantwortung für das Portfolio liegt nicht beim Kompetenzzentrum Projektmanagement, wo es oft angesiedelt ist, sondern in der Regel bei der Leitung."
-    ],
     "belege": [
       {
         "kapitel": "7.4.1.1 Projekt-Governance",
@@ -415,12 +362,6 @@
       "Folgende Ergebnisse fallen beim Reporting an: Der Projektstatusbericht informiert periodisch von Projektbeginn bis Projektabschluss über Plan/Ist und Prognose. Der Phasenbericht bereitet am Ende der Phasen Konzept, Realisierung, Einführung und Umsetzung den Entscheid des Auftraggebers zum weiteren Vorgehen vor. Der Releasebericht informiert agil am Ende jedes Release über Releaseerfolg und Fortschritt. Die Projektschlussbeurteilung am Ende der Phase Abschluss dient der kontinuierlichen Verbesserung in der Stammorganisation.",
       "Die Reportingstruktur ist gekapselt und gegenüber der Stammorganisation einheitlich, unabhängig vom gewählten Entwicklungsvorgehen. Ergänzend werden fachliche Ergebnisse wie die Lösungsarchitektur den Controlling- und Vorgabestellen zur Prüfung zugestellt. Der Abschnitt zeigt zudem je Governance-Anforderung, welche Methodenelemente ihre Erfüllung unterstützen."
     ],
-    "pruefungsfallen": [
-      "Der Phasenbericht ist nicht dasselbe wie der Projektstatusbericht: Der Statusbericht erscheint periodisch, der Phasenbericht am Ende einer Phase zur Vorbereitung der Phasenfreigabe.",
-      "Der Releasebericht ist nicht in jedem Fall Entscheidungsgrundlage; er dient nur dann der Entscheidungsfindung, wenn der Entscheid Releasefreigabe in der Initialisierung als erforderlich festgelegt wurde.",
-      "Der Projektstatusbericht enthält nicht nur den Projektstand, sondern auch die aktuelle Risikobeurteilung des Projektleiters.",
-      "Die Projektschlussbeurteilung ist kein Bericht zur Phasenfreigabe, sondern dient der kontinuierlichen Verbesserung in der Stammorganisation aufgrund der gemachten Erfahrungen."
-    ],
     "belege": [
       {
         "kapitel": "7.4.1.2 Reporting",
@@ -459,12 +400,6 @@
       "HERMES verankert die Nachhaltigkeit in den Methodenelementen. Nachhaltigkeitsziele fliessen als strategische Vorgaben in die Initialisierung ein und sind Entscheidungskriterium bei der Durchführungsfreigabe sowie bei jeder Phasen- und Releasefreigabe. Studie, Ausschreibungsunterlagen und Checklisten stützen nachhaltige Entscheide; die Entscheidungsaufgaben, Leistungen vereinbaren und steuern, Stakeholder managen und informieren, die Beschaffungsanalyse und das Modul Beschaffung setzen sie um. Für den nachhaltigen Betrieb werden Organisation, Anwendungshandbuch, Betriebshandbuch, Produktkonzept, Lösungsarchitektur und Detailspezifikation erarbeitet.",
       "Der Auftraggeber legt die Ziele gemäss Strategie und Nachhaltigkeitsvorgaben fest und sichert die Betriebsressourcen, der Projektleiter verankert das Nachhaltigkeitsbewusstsein im Projekt, der Anwendervertreter integriert und priorisiert die Nachhaltigkeitsziele in den Lösungsanforderungen. In der Stammorganisation prüfen die Controlling- und Vorgabestellen die Zielerreichung, die Leitung priorisiert das Portfolio auch nach Nachhaltigkeitskriterien."
     ],
-    "pruefungsfallen": [
-      "Nachhaltigkeit wird nicht nur bei der Durchführungsfreigabe geprüft, sondern bei jedem Entscheid zur Phasen- oder Releasefreigabe erneut als Bewertungskriterium mitberücksichtigt.",
-      "Nachhaltigkeit in HERMES betrifft nicht nur die Lösung, sondern auch die Entscheide: Studie, Ausschreibungsunterlagen und Checklisten unterstützen die Nachhaltigkeit von Entscheiden.",
-      "Für die Nachhaltigkeitsziele ist nicht allein der Auftraggeber massgebend; alle Rollen mit ihren Aufgaben sind massgebend, besonders Auftraggeber, Projektleiter und Anwendervertreter.",
-      "Nachhaltigkeitsziele werden nicht erst vom Projekt definiert, sondern bei der Definition der strategischen Ziele der Stammorganisation verankert und dem Projekt vorgegeben."
-    ],
     "belege": [
       {
         "kapitel": "7.4.2.1 Nachhaltigkeitsverständnis",
@@ -502,11 +437,6 @@
       "HERMES bietet Projektmanagement mit klassischer und mit agiler Umsetzung an. Die Lösungsentstehung kann klassisch oder agil erfolgen: Das klassische Projektmanagement unterstützt das klassische Entwicklungsmanagement in den Phasen Konzept, Realisierung und Einführung; das Projektmanagement mit agiler Umsetzung unterstützt das agile Entwicklungsmanagement in der Phase Umsetzung.",
       "Agile Entwicklungsmethoden sind keine Projektmanagementmethoden, sondern Entwicklungsmanagementmethoden. Projekte unter HERMES müssen Rahmenbedingungen wie die Einhaltung der Governance, die reibungslose Einbettung in die Planungs- und Controllingprozesse der Stammorganisation und eine gemeinsame Terminologie erfüllen. Agile Entwicklungen ohne entsprechenden Projektmanagement-Rahmen erfüllen diese Anforderungen nicht; deshalb werden agile Methoden und Frameworks in das HERMES-Projektmanagement eingebettet. Das Rollenverständnis lehnt sich an beide Welten an: Die Projektorganisation arbeitet nach klassischem Projektmanagement, die Umsetzungsorganisation nach der gewählten agilen Methode, und der Anwendervertreter bildet die Schnittstelle dazwischen.",
       "In der Praxis kann ein Projekt auch mit einer Kombination aus beiden Vorgehensweisen abgewickelt werden. Das setzt ein entsprechendes Tailoring in der Initialisierungsphase voraus, weil das gewählte Szenario und der Durchführungsstrukturplan angepasst werden müssen. Weiterführende Informationen enthält der «Agile Leitfaden - Projektmanagement» als Erweiterung des Referenzhandbuchs."
-    ],
-    "pruefungsfallen": [
-      "Das Projektmanagement mit agiler Umsetzung verzichtet nicht auf Projektmanagement; die Phasen Initialisierung und Abschluss rahmen das agile Entwicklungsmanagement in der Phase Umsetzung ein.",
-      "Das Rollenverständnis bei agiler Umsetzung ist nicht rein agil, sondern lehnt sich sowohl an das klassische Projektmanagement als auch an die agilen Entwicklungsmethoden an.",
-      "Eine Kombination von klassisch und agil erfordert nicht nur einen Entscheid, sondern ein Tailoring in der Initialisierungsphase, da Szenario und Durchführungsstrukturplan angepasst werden müssen."
     ],
     "belege": [
       {
@@ -547,12 +477,6 @@
       "Klassisch sollen am Ende der Konzeptphase Investitions- und Betriebskosten verbindlich bekannt sein, einschliesslich der Kosten zur Deckung von Projektrisiken; der Auftraggeber gibt die Finanzen phasenweise über die Phasenfreigaben frei. Agil ist das Budget für Lösungsentstehung und Abschluss im Durchführungsauftrag grundsätzlich fix oder als Kostendach definiert und wird einmalig freigegeben; Betriebskostenkennzahlen werden von Release zu Release konkretisiert, und ein Burn-Down-Diagramm stellt den geschätzten Restaufwand dem tatsächlich verbleibenden gegenüber.",
       "Der Auftraggeber verantwortet die finanzielle Steuerung, sichert die Wirtschaftlichkeit und steuert Projekt- und künftige Betriebskosten, bei Bedarf unterstützt durch einen unabhängigen Qualitäts- und Risikomanager. Der Projektleiter verantwortet die finanzielle Führung, führt die Projektbuchhaltung und stellt mit der Aufgabe Änderungen managen sicher, dass Auswirkungen von Änderungen auf Kosten, Personalbedarf und Termine rechtzeitig entschieden werden."
     ],
-    "pruefungsfallen": [
-      "Die finanzielle Führung liegt nicht beim Auftraggeber, sondern beim Projektleiter, der die Projektbuchhaltung führt und die Steuerung mit Informationen versorgt.",
-      "Bei agiler Vorgehensweise werden die Finanzen nicht phasen- oder releaseweise freigegeben, sondern einmalig mit dem Durchführungsauftrag als fixes Budget oder Kostendach.",
-      "Die Aufwände der Phase Initialisierung stehen nicht ausserhalb der Wirtschaftlichkeitsbetrachtung, sondern fliessen als Vorleistung in sie ein.",
-      "Betriebskosten werden nicht von Beginn an über das Linienbudget finanziert, sondern während der Projektabwicklung über das Projektbudget und erst anschliessend über das Linienbudget."
-    ],
     "belege": [
       {
         "kapitel": "7.4.4.1 Allgemeines",
@@ -591,12 +515,6 @@
       "Die Planung bildet die Grundlage für den effektiven und effizienten Ressourceneinsatz und ist Voraussetzung für Führung und Steuerung des Projekts. Nach der Studie und dem Entscheid Weiteres Vorgehen beginnt die Durchführungsplanung mit der Durchführungsstrukturierung: Der Projektleiter wählt in HERMES Online das passende Szenario, dessen Methodenelemente die Grundstruktur der Lösungsentstehung vorgeben. Alle Planungsergebnisse werden im Projektmanagementplan festgehalten, dem zentralen Führungsinstrument, das alle Pläne umfasst und laufend nachgeführt wird.",
       "In der Initialisierung wird der Durchführungsstrukturplan erstellt, exportiert und in den Projektmanagementplan integriert; anschliessend folgen Risikomanagement, QS-Plan, Aufwandschätzungen, Abhängigkeiten, Termin-, Ressourcen-, Kommunikations- und Kostenplan sowie die Abstimmung mit den Stakeholdern als Grundlage für den Durchführungsauftrag.",
       "Klassisch gilt das Prinzip vom Groben zum Detail mit rollender Planung: Vor jeder Phasenfreigabe wird die nächste Phase mit Arbeitspaketen detailliert geplant. Aus einer Aufgabe können mehrere Arbeitspakete gebildet werden; ein Verantwortlicher wird beauftragt, und ein Arbeitspaket dauert typischerweise zwei bis sechs Wochen. Mit steigenden Kenntnissen sinkt die Planungsungenauigkeit; die Vorgabe zur Detaillierung leisten Auftraggeber sowie Controlling- und Vorgabestellen. Agil plant die Umsetzungsorganisation autonom, die Releaseplanung ist mit dem Terminplan im Projektmanagementplan verknüpft."
-    ],
-    "pruefungsfallen": [
-      "Der Durchführungsstrukturplan ist nicht dasselbe wie der Projektmanagementplan; er wird in HERMES Online erstellt und in den Projektmanagementplan integriert.",
-      "Die Aufwandschätzung wird nicht direkt aus den Aufgaben abgeleitet, sondern auf der Grundlage der Arbeitspakete verifiziert; aus einer Aufgabe können mehrere Arbeitspakete gebildet werden.",
-      "Bei agiler Lösungsentstehung plant nicht der Projektleiter die Umsetzung, sondern die Umsetzungsorganisation autonom; die Führungsplanung wird erst in der Phase Abschluss wieder aktiviert.",
-      "HERMES gibt nicht vor, wie detailliert die Planung zu einem bestimmten Zeitpunkt sein muss; diese Vorgabe leisten der Auftraggeber und die Controlling- und Vorgabestellen."
     ],
     "belege": [
       {
@@ -637,12 +555,6 @@
       "Eine Realisierungseinheit umfasst alle technischen und organisatorischen Ergebnisse, die für die Einführung des Systems oder eines Teils davon benötigt werden, und erstreckt sich über die beiden Phasen Realisierung und Einführung mit allen Entscheidungsaufgaben der Steuerung und Führung. Initialisierung und Konzept werden vollständig durchlaufen; die Freigabe der ersten Realisierungseinheit ist die Phasenfreigabe Realisierung. Danach spielt sich das Projekt in den Phasen und Meilensteinen der jeweiligen Realisierungseinheit ab, ein übergeordnetes Phasenmodell gibt es nicht.",
       "Die Anzahl ist nicht begrenzt, doch werden die Realisierungseinheiten in der Phase Konzept gesamthaft geplant, damit die Projektdauer begrenzt bleibt. Jeder Start wird von der Projektsteuerung auf Basis eines aktualisierten Projektmanagementplans freigegeben. Als eigenständige Kontrolleinheiten werden sie separat geplant, kontrolliert und rapportiert; am Ende jeder Einheit kann eine Schlussbeurteilung erstellt werden. Nach der letzten Realisierungseinheit wird die Phase Abschluss freigegeben, inklusive Projektschlussbeurteilung sämtlicher Realisierungseinheiten."
     ],
-    "pruefungsfallen": [
-      "Realisierungseinheiten sind kein agiles Instrument, sondern ein Hinweis für die klassische Vorgehensweise.",
-      "Eine Realisierungseinheit umfasst nicht nur die Phase Realisierung, sondern immer beide Phasen Realisierung und Einführung.",
-      "Die Phase Konzept wird nicht je Realisierungseinheit wiederholt; Initialisierung und Konzept werden einmal vollständig durchlaufen, erst danach starten die Realisierungseinheiten.",
-      "Realisierungseinheiten haben kein übergeordnetes Phasenmodell; das Projekt spielt sich in den Phasen und Meilensteinen der jeweiligen Realisierungseinheit ab."
-    ],
     "belege": [
       {
         "kapitel": "7.4.6 Realisierungseinheiten bei klassischer Vorgehensweise",
@@ -679,11 +591,6 @@
       "So kann etwa der Anwender ein Opensourcetool für die konzeptionelle Datenmodellierung festlegen oder der Entwickler die in seiner Stammorganisation favorisierte agile Entwicklungsmethode einsetzen. Diese Offenheit universalisiert die Anwendbarkeit von HERMES und kommt den einzelnen Methodenprotagonisten voll entgegen.",
       "Dabei gelten feste Grenzen: Die Aufgaben, Ergebnisse und Rollen der Projektsteuerung und Projektführung basieren immer auf HERMES und können nicht durch andere Methoden ersetzt werden, das HERMES-Phasenmodell bleibt bestehen, und die Meilensteine sind gesetzt und können nicht verändert werden. Alle Festlegungen zum Einsatz von Methoden und Praktiken werden im Projektmanagementplan festgehalten."
     ],
-    "pruefungsfallen": [
-      "Andere Methoden ersetzen nicht die Aufgaben, Ergebnisse und Rollen der Projektsteuerung und Projektführung; diese basieren immer auf HERMES.",
-      "Die Meilensteine sind beim Einsatz anderer Methoden nicht verhandelbar; sie sind gesetzt und können nicht verändert werden.",
-      "Der Einsatz ergänzender Methoden wird nicht informell oder in einer separaten Vereinbarung geregelt, sondern im Projektmanagementplan festgehalten."
-    ],
     "belege": [
       {
         "kapitel": "7.4.7 Anwendung mit anderen Methoden und Praktiken",
@@ -717,12 +624,6 @@
       "Jede Stammorganisation hat spezifische Eigenheiten; deshalb ist die Anpassung von HERMES an ihre Bedürfnisse oft unerlässlich. Ziele der Integration sind, organisationsspezifische Prozesse und Vorgaben zu berücksichtigen, Projektleiter, Anwendervertreter und weitere Beteiligte mit einem definierten Rahmen zu unterstützen, die Effizienz zu erhöhen, die Qualität durch Integration von Praktiken und Hilfsmitteln zu steigern und die Schulung wirksamer zu machen. Die Terminologie soll mit Blick auf die Zertifizierung nicht übermässig verändert werden.",
       "Die Integration erfolgt am besten über ein Projekt auf Grundlage des Szenarios Dienstleistung/Produkt Adaption, inklusive Einführungsorganisation mit Ausbildung und Organisation für Betrieb und Weiterentwicklung des Projektmanagements. Die Anpassung erfolgt durch das Kompetenzzentrum Projektmanagement. Integriert werden Vorgaben etwa zu Entscheidungsprozessen, Reporting, SLAs, ISDS und Lösungsarchitektur sowie Methoden wie UML, BPMN, SCRUM oder ITIL.",
       "Für die Anpassung der Methodenelemente gelten Leitplanken: Phasen und Meilensteine dürfen nicht entfallen, Phasen können unterteilt werden. Minimal geforderte Dokumente bleiben zwingend; Ergebnisse können zusammengefasst, aufgeteilt, ergänzt und Vorlagen ersetzt werden. Module und Szenarien dürfen erweitert, nicht reduziert werden. Neue Rollen benötigen eine Rollenbeschreibung sowie Hierarchieebene und Partnergruppe; die minimal zu besetzenden Rollen bleiben beim Anwender. Checklisten aus Entscheidungsaufgaben können nicht entfallen."
-    ],
-    "pruefungsfallen": [
-      "Die Bezeichnungen der Methodenelemente und die HERMES-Terminologie sollen nicht verändert werden, auch wenn Ergebnisse und Rollen differenzierter beschrieben werden dürfen.",
-      "Die definierten HERMES-Szenarien und -Module dürfen erweitert, aber nicht reduziert werden.",
-      "Die Anpassung der Methode erfolgt nicht durch die Leitung oder die Controlling- und Vorgabestellen, sondern durch das Kompetenzzentrum Projektmanagement.",
-      "Die minimal zu besetzenden Rollen und ihre Zugehörigkeit zur Partnergruppe Anwender dürfen bei der Anpassung nicht verändert werden."
     ],
     "belege": [
       {

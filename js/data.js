@@ -24,7 +24,7 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-09a';
+  var DATEN_VERSION = '2026-09-11a';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
@@ -336,7 +336,7 @@
     return zustand.kapitel;
   }
 
-  /** Kuratierte Kernaussagen, Zusammenfassungen und Prüfungsfallen je Kapitel. */
+  /** Kuratierte Kernaussagen und Zusammenfassungen je Kapitel, mit Belegen. */
   function kernaussagen() {
     if (!zustand.kernaussagen) {
       zustand.kernaussagen = ladeJson('data/kernaussagen.json')

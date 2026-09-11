@@ -14,7 +14,7 @@ Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSO
 | `data/ergebnisse.json` | `ergebnis` | Alle Ergebnisse |
 | `data/rollen.json` | `rolle` | Alle Rollen |
 | `data/quizfragen.json` | — | Kuratierte Prüfungsfragen (eigenes Schema, siehe unten) |
-| `data/kernaussagen.json` | — | Je Handbuchkapitel Kernaussagen, Zusammenfassung, Prüfungsfallen, Belege (Schema unten) |
+| `data/kernaussagen.json` | — | Je Handbuchkapitel Kernaussagen, Zusammenfassung, Belege (Schema unten) |
 | `data/handbuch/*.json` | — | Importierte Handbuchtexte (generiert von `tools/handbuch-import.py`, nicht von Hand pflegen) |
 
 ## Pflichtfelder je Eintrag
@@ -91,7 +91,6 @@ Objekt mit einem Schlüssel je Kapitel bzw. Hinweis-Thema (`methodenueberblick`,
   "phasen": {
     "kernaussagen": ["5–8 Sätze, die ein Prüfling zwingend wissen muss"],
     "zusammenfassung": ["2–4 Absätze als Strings"],
-    "pruefungsfallen": ["2–4 Verwechslungen: «X ist nicht Y, sondern …»"],
     "belege": [{ "kapitel": "1.2.2 Einheitliche Projektstruktur", "seite": 18, "zitat": "…" }]
   }
 }

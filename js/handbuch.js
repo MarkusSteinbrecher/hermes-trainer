@@ -184,10 +184,6 @@
       kinder.push(h('span', { class: 'detail__label', text: 'Das Wichtigste' }));
       kinder.push(h('ol', { class: 'kernaussagen' }, daten.kernaussagen.map(function (s) { return h('li', { text: s }); })));
     }
-    if (daten.pruefungsfallen && daten.pruefungsfallen.length) {
-      kinder.push(h('span', { class: 'detail__label detail__label--warn', text: 'Prüfungsfallen' }));
-      kinder.push(h('ul', { class: 'pruefungsfallen' }, daten.pruefungsfallen.map(function (s) { return h('li', { text: s }); })));
-    }
     if (!kinder.length) { return null; }
     return h('div', { class: 'stufe-box stufe-box--1' }, kinder);
   }
