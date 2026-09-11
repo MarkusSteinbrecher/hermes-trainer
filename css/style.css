@@ -230,7 +230,6 @@ main:focus { outline: none; }
   align-items: center;
   margin-left: auto;
   padding: 0 16px;
-  border-left: 1px solid var(--linie-stark);
   flex: 0 0 auto;
 }
 .kofi:hover { background: var(--flaeche-2); }
@@ -240,7 +239,6 @@ main:focus { outline: none; }
   display: none;
   flex: 1 1 auto;
   justify-content: center;
-  border-left: 1px solid var(--linie-stark);
 }
 .nav-top__liste {
   display: flex;

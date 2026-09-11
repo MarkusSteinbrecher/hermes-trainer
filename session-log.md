@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Kopfzeile ohne Trennlinien
+
+**Auftrag:** «Entferne die Linien in der Top-Navigation rechts von meinHERMES und links vom Ko-fi-Logo.»
+
+**Umsetzung:** `border-left` an `.nav-top` und `.kofi` in `css/style.css` entfernt; die Kopfzeile trägt nur noch die untere Linie. Lokal geprüft.
+
 ## 2026-09-11 — Trainer: Chip aus belegtem Kasten wieder herausziehen
 
 **Auftrag:** «Wenn ich einen Kasten per Drag-and-drop auf einen leeren Kasten gezogen habe, kann ich ihn nicht mehr entfernen. Ich muss die Möglichkeit haben, ihn wegzuziehen und woanders zu droppen.»
