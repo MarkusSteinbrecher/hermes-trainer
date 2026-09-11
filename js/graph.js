@@ -684,15 +684,12 @@
       on: { click: alleZuruecksetzen }
     });
 
+    /* Drei Zonen, damit die Suche in der Mitte der Leiste steht: links die
+       Ansicht und die Filter, in der Mitte die Suche, rechts die Chips. */
     refs.werkzeugleiste = h('div', { class: 'graph-leiste' }, [
-      refs.ansichtSegment,
-      refs.knopfAlle,
-      refs.vorgehenSegment,
-      refs.leisteSuche,
-      refs.umfangChips,
-      refs.fokusChip,
-      refs.knopfReset,
-      refs.status
+      h('div', { class: 'graph-leiste__links' }, [refs.ansichtSegment, refs.knopfAlle, refs.vorgehenSegment]),
+      h('div', { class: 'graph-leiste__mitte' }, [refs.leisteSuche]),
+      h('div', { class: 'graph-leiste__rechts' }, [refs.umfangChips, refs.fokusChip, refs.knopfReset, refs.status])
     ]);
 
     return [refs.werkzeugleiste];

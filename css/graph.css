@@ -260,14 +260,16 @@ body[data-route="graph"] .fusszeile { display: none; }
 /* Die Leiste des Graphen unter der Kopfzeile: Ansicht, Auswahl, Werkzeuge.
    Was nicht hineinpasst, liegt in einem Popover. */
 .graph-leiste {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 34rem) minmax(0, 1fr);
   align-items: center;
-  gap: 4px 2px;
+  gap: 4px 12px;
   padding: 7px 16px;
   background: var(--bg);
   border-bottom: 1px solid var(--rand);
 }
+.graph-leiste__links, .graph-leiste__rechts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 2px; min-width: 0; }
+.graph-leiste__mitte { min-width: 0; }
 .graph-werkzeuge { display: flex; align-items: center; gap: 2px; margin-left: auto; flex: 0 0 auto; }
 /* Hairlines zwischen den Gruppen der Leiste: 1 × 16 px, wie im Überblick.
    Die Auswahl-Chips scrollen in sich, deshalb kein Pseudo-Element, sondern
@@ -548,7 +550,7 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gauswahl__reset { color: var(--akzent-text); padding: 0 4px; }
 
 /* Suchfeld in der Leiste mit Trefferliste als Ausklappmenü darunter. */
-.gleiste-suche { position: relative; flex: 1 1 16rem; min-width: 10rem; max-width: 34rem; margin-left: 10px; }
+.gleiste-suche { position: relative; width: 100%; }
 .gleiste-suche__ikone {
   position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
   display: flex; color: var(--text-leise); pointer-events: none;
@@ -828,14 +830,15 @@ body[data-route="graph"] .fusszeile { display: none; }
   .gpop { left: .5rem; right: .5rem; top: auto; bottom: .5rem; width: auto; max-height: 70%; }
   /* Schmal: drei kurze Zeilen — oben Ansicht und Werkzeuge, darunter die
      Auswahl-Chips, zuunterst die Filter. */
-  .graph-leiste { gap: 4px 2px; padding: 6px 10px; }
+  .graph-leiste { display: flex; flex-wrap: wrap; gap: 4px 2px; padding: 6px 10px; }
+  .graph-leiste__links, .graph-leiste__mitte, .graph-leiste__rechts { display: contents; }
   .graph-leiste .segment__knopf { padding: 0 6px; }
   /* Zoomstufen weg: auf dem Touchgerät zoomt man mit zwei Fingern.
      «Einpassen» bleibt — dafür gibt es keine Geste. */
   .graph-zoom__knopf--stufe { display: none; }
   .segment--ansicht { order: 2; }
   .graph-werkzeuge { order: 3; }
-  .gleiste-suche { order: 4; flex-basis: 100%; max-width: none; margin-left: 0; }
+  .gleiste-suche { order: 4; flex-basis: 100%; }
   .gumfang { order: 4; flex-basis: 100%; }
   .gumfang .gfokus--umfang:first-child { margin-left: 0; }
   .gauswahl__vorgehen { order: 5; margin-left: 0; padding-left: 0; background-image: none; }

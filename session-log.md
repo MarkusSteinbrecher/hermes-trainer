@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Graph: Suchleiste zentriert
+
+**Auftrag:** «Zentriere die Searchbar auf der Graph-Seite.»
+
+**Umsetzung:** Die Leiste ist ein Raster aus drei Zonen (`graph-leiste__links` mit Ansicht, «Alle Filter» und Vorgehensweise; `__mitte` mit der Suche, 12–34 rem breit; `__rechts` mit Umfang-Chips, Fokus-Chip und «Zurücksetzen»), Spalten `1fr auto 1fr`, so bleibt die Suche in der Mitte der Leiste, egal wie viel links und rechts steht. Unter 700 px werden die Zonen zu `display: contents`, damit die bisherigen `order`-Regeln der schmalen Leiste weiter greifen. Lokal geprüft, keine Konsolenfehler.
+
 ## 2026-09-11 — Kopfzeile ohne Trennlinien
 
 **Auftrag:** «Entferne die Linien in der Top-Navigation rechts von meinHERMES und links vom Ko-fi-Logo.»
