@@ -1,4 +1,4 @@
-/* meinHERMES — Lexikonkarte (gemeinsam für Lexikon und Graph).
+/* meinHERMES — Elementkarte (gemeinsam für Handbuch und Überblick).
    Eine Karte zeigt einen Eintrag in drei Stufen: Kurz (erster Satz + Fakten),
    Kernpunkte (Definition, Querverweise) und
    Handbuch (vollständiger Text der offiziellen Dokumentation, nachgeladen).
@@ -19,7 +19,7 @@
      zwingend in jedem Projekt vorkommen. */
   var ZWINGENDE_MODULE = ['Projektsteuerung', 'Projektführung', 'Projektgrundlagen', 'Einführungsorganisation'];
 
-  /* --- Querverweis: exakter Begriffs-String -> Lexikonlink ---------------- */
+  /* --- Querverweis: exakter Begriffs-String -> Link auf die Karte -------- */
 
   function zielVon(begriff, bevorzugteKategorie) {
     return HT.daten.eintragMitBegriff(begriff, bevorzugteKategorie)
@@ -204,7 +204,7 @@
     'integration-von-hermes-in-die-stammorganisation': '7.4.8'
   };
 
-  /* Rückgabe: Query-String für die Methode-Ansicht («kapitel=…[&teil=…]») oder null. */
+  /* Rückgabe: Query-String für das Handbuch («kapitel=…[&teil=…]») oder null. */
   function kapitelAusUrl(url) {
     var m = /\/de\/projektmanagement\/([a-z-]+)(?:\/([a-z-]+))?/.exec(url || '');
     if (!m) { return null; }
@@ -247,8 +247,8 @@
     if (kap) {
       kinder.push(h('p', { class: 'detail__block' }, h('a', {
         class: 'btn btn--klein',
-        href: '#/methode?' + kap,
-        text: 'Zum Handbuchkapitel in der Methode'
+        href: '#/handbuch?' + kap,
+        text: 'Zum Handbuchkapitel'
       })));
     }
     if (HT.ui.quellenLink(e.quelle)) {
@@ -294,22 +294,22 @@
 
   /* --- Karte --------------------------------------------------------------- */
 
-  function lexikonZiel(ziel) {
-    return '#/lexikon?id=' + encodeURIComponent(ziel.id);
+  function handbuchZiel(ziel) {
+    return '#/handbuch?id=' + encodeURIComponent(ziel.id);
   }
 
   /**
    * Baut die Karte eines Eintrags.
    * optionen.stufe: Startstufe 0–2
    * optionen.beiStufe(id, stufe): Rückruf bei Umschalten
-   * optionen.linkZiel(eintrag): Link-Ziel für Querverweise (Standard: Lexikon)
+   * optionen.linkZiel(eintrag): Link-Ziel für Querverweise (Standard: Handbuch)
    * optionen.zusatz: zusätzliche Aktionen im Fuss (Array von Elementen)
    * optionen.ohneTitel: Kopf ohne h2 (wenn der Titel bereits darüber steht)
    * optionen.titelEbene: 'h2' | 'h3'
    */
   function bauen(e, optionen) {
     optionen = optionen || {};
-    var linkZiel = optionen.linkZiel || lexikonZiel;
+    var linkZiel = optionen.linkZiel || handbuchZiel;
 
     var kern = h('div', { class: 'detail detail--kern', id: 'kern-' + e.id }, kernpunkte(e, linkZiel));
     var handbuch = h('div', { class: 'detail detail--handbuch', id: 'handbuch-' + e.id });
@@ -342,11 +342,11 @@
     var titelTag = optionen.titelEbene || 'h2';
 
     /* Ort für Markierungen (js/markieren.js): die Karte ist der Block, in
-       dem sie verankert werden — im Lexikon wie im Überblick. */
+       dem sie verankert werden — im Handbuch wie im Überblick. */
     var artikel = h('article', {
       class: 'eintrag eintrag--' + e.kategorie,
       id: 'eintrag-' + e.id,
-      dataset: { id: e.id, markOrt: '#/lexikon?id=' + encodeURIComponent(e.id) }
+      dataset: { id: e.id, markOrt: '#/handbuch?id=' + encodeURIComponent(e.id) }
     }, [
       h('div', { class: 'eintrag__kopf' }, [
         optionen.ohneTitel ? null : h('div', { class: 'eintrag__titelzeile' }, [
@@ -376,6 +376,6 @@
     fakten: fakten,
     kernpunkte: kernpunkte,
     kapitelAusUrl: kapitelAusUrl,
-    lexikonZiel: lexikonZiel
+    handbuchZiel: handbuchZiel
   };
 }(window));

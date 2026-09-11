@@ -1310,7 +1310,7 @@
   }
 
   function lexikonZiel(x) {
-    return '#/lexikon?id=' + encodeURIComponent(x.id);
+    return '#/handbuch?id=' + encodeURIComponent(x.id);
   }
 
   function inhaltZeichnen() {
@@ -1320,9 +1320,9 @@
 
     var e = zustand.aktiv;
     if (e) {
-      /* Ort für Markierungen — derselbe wie die Lexikonkarte, damit eine
+      /* Ort für Markierungen — derselbe wie die Karte im Handbuch, damit eine
          Markierung hier auch dort erscheint. */
-      refs.inhalt.dataset.markOrt = '#/lexikon?id=' + encodeURIComponent(e.id);
+      refs.inhalt.dataset.markOrt = '#/handbuch?id=' + encodeURIComponent(e.id);
     } else {
       delete refs.inhalt.dataset.markOrt;
     }
@@ -1389,7 +1389,7 @@
         type: 'button', class: 'ub-verweis ub-verweis--knopf', text: 'Im Graph',
         on: { click: function () { imGraphZeigen(e); } }
       }),
-      h('a', { class: 'ub-verweis', href: '#/lexikon?id=' + encodeURIComponent(e.id), text: 'Im Lexikon' }),
+      h('a', { class: 'ub-verweis', href: '#/handbuch?id=' + encodeURIComponent(e.id), text: 'Im Handbuch' }),
       h('a', {
         class: 'ub-verweis ub-verweis--akzent',
         href: (e.quelle && e.quelle.url) || QUELLE_ALLGEMEIN,

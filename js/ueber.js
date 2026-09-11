@@ -25,11 +25,10 @@
       h('ul', {}, [
         h('li', {}, [h('b', { text: 'Graph: ' }), 'die Methodenelemente und ihre Zusammenhänge: als Struktur (Szenarien, Module, Aufgaben, Ergebnisse, Rollen in Spalten), im Fokus (ein Element mit allen Verbindungen) und entlang der Phasen. Jede Verbindung entspricht einem Querverweis der offiziellen Dokumentation; Kategorien, Beziehungen und Filter lassen sich ein- und ausblenden.']),
         h('li', {}, [h('b', { text: 'Trainer: ' }), 'Ausschnitte aus dem Gesamtbild der Methode — je Phase, je Modul oder das ganze Bild — mit leeren Ergebniskästen; die Namen liegen als Chips bereit und werden an ihren Platz gezogen, die Prüfung zeigt richtig, falsch und offen.']),
-        h('li', {}, [h('b', { text: 'Methode: ' }), 'die Kapitel des Referenzhandbuchs (Methodenüberblick, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung) — je Kapitel Kernaussagen und Prüfungsfallen, eine Zusammenfassung und der vollständige Handbuchtext.']),
-        h('li', {}, [h('b', { text: 'Lexikon: ' }), 'alle Methodenelemente mit drei Detailstufen: Kurz (erster Satz und Fakten), Kernpunkte (Definition und Querverweise) und Handbuch (vollständige Beschreibung mit Kapitel- und Seitenangabe).']),
+        h('li', {}, [h('b', { text: 'Handbuch: ' }), 'die Kapitel des Referenzhandbuchs (Methodenüberblick, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung) — je Kapitel Kernaussagen und Prüfungsfallen, eine Zusammenfassung, der vollständige Handbuchtext und darunter die Elemente des Kapitels mit drei Detailstufen: Kurz (erster Satz und Fakten), Kernpunkte (Definition und Querverweise) und Handbuch (vollständige Beschreibung mit Kapitel- und Seitenangabe).']),
         h('li', {}, [h('b', { text: 'Lernkarten: ' }), 'Begriff ↔ Definition mit Selbsteinschätzung; Fortschritt lokal im Browser.']),
-        h('li', {}, [h('b', { text: 'Quiz: ' }), 'kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus dem Lexikon erzeugte Fragen.']),
-        h('li', {}, [h('b', { text: 'Markieren: ' }), 'Wörter und Sätze in Überblick, Lexikon und Methode auswählen und gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg. Alles bleibt in diesem Browser.'])
+        h('li', {}, [h('b', { text: 'Quiz: ' }), 'kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus den Elementkarten erzeugte Fragen.']),
+        h('li', {}, [h('b', { text: 'Markieren: ' }), 'Wörter und Sätze im Überblick und im Handbuch auswählen und gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg. Alles bleibt in diesem Browser.'])
       ]),
 
       h('h2', { text: 'Quelle der Inhalte' }),
@@ -77,7 +76,7 @@
           type: 'button', class: 'btn btn--klein', text: 'Alle lokal gespeicherten Daten löschen',
           on: { click: function () {
             if (!global.confirm('Lernfortschritt, Filter und Quiz-Statistik wirklich löschen?')) { return; }
-            HT.store.loesche('lexikon');
+            HT.store.loesche('handbuch');
             HT.store.loesche('graph');
             HT.store.loesche('lernkarten');
             HT.store.loesche('quiz-konfig');
@@ -90,9 +89,9 @@
       h('h2', { text: 'Hinweise zur Nutzung' }),
       h('ul', {}, [
         h('li', { text: 'Im Graph: Klick auf einen Knoten zeigt Details und hebt die Nachbarn hervor, Doppelklick stellt ihn in den Fokus; Ziehen verschiebt, Mausrad oder zwei Finger zoomen. Grosse Gruppen sind auf zwölf Einträge gekappt («+ n weitere anzeigen»).' }),
-        h('li', { text: 'Im Lexikon lässt sich der Volltext aller Einträge durchsuchen; die Filterchips grenzen auf einzelne Kategorien ein, die Ansicht-Chips legen die Detailtiefe fest.' }),
+        h('li', { text: 'Die Suche in der Kopfzeile findet jedes Element und jeden Grundbegriff; im Handbuch wählen die Chips das Kapitel, die Ansicht-Chips legen die Detailtiefe der Karten fest.' }),
         h('li', { text: 'Bei den Lernkarten lässt sich die Abfragerichtung umschalten: Begriff → Definition oder Definition → Begriff.' }),
-        h('li', { text: 'Im Quiz stehen kuratierte Prüfungsfragen und automatisch aus dem Lexikon erzeugte Fragen zur Wahl. Zu jeder kuratierten Frage wird nach der Antwort das Belegzitat mit Kapitel und Seite des Referenzhandbuchs angezeigt.' }),
+        h('li', { text: 'Im Quiz stehen kuratierte Prüfungsfragen und automatisch aus den Elementkarten erzeugte Fragen zur Wahl. Zu jeder kuratierten Frage wird nach der Antwort das Belegzitat mit Kapitel und Seite des Referenzhandbuchs angezeigt.' }),
         h('li', { text: 'Generierte Fragen entstehen maschinell aus den erfassten Daten. Bei Zweifeln gilt der verlinkte Originaltext.' })
       ]),
 

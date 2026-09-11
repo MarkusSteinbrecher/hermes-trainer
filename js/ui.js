@@ -328,18 +328,18 @@
 
   /* --- Handbuchtext: Blöcke aus data/handbuch/ als DOM ------------------- */
 
-  /** Lexikonlink auf einen Eintrag (oder Text, wenn nichts passt). */
+  /** Link auf die Karte eines Eintrags im Handbuch (oder Text, wenn nichts passt). */
   function eintragLink(eintrag, text) {
     if (!eintrag) { return document.createTextNode(text); }
     return h('a', {
       class: 'hb-link',
-      href: '#/lexikon?id=' + encodeURIComponent(eintrag.id),
-      title: eintrag.begriff + ' im Lexikon anzeigen'
+      href: '#/handbuch?id=' + encodeURIComponent(eintrag.id),
+      title: eintrag.begriff + ' im Handbuch anzeigen'
     }, text);
   }
 
   /**
-   * Text, in dem Begriffe aus dem Lexikon verlinkt sind — nur für kurze
+   * Text, in dem bekannte Begriffe auf ihre Karte verlinkt sind — nur für kurze
    * Zellen/Listenpunkte, die selbst Begriffe sind («Auftraggeber*, Projektleiter»).
    */
   function begriffeText(text, verlinken) {
@@ -431,7 +431,7 @@
 
   /**
    * Rendert eine Blockliste (p, ul/ol, tabelle, abb, download, h).
-   * optionen.verlinken: Begriffe in Listen/Zellen auf das Lexikon verlinken.
+   * optionen.verlinken: Begriffe in Listen/Zellen auf ihre Karte verlinken.
    * optionen.ebene: HTML-Überschriftenebene für «h»-Blöcke (Standard 4).
    */
   function bloecke(liste, optionen) {

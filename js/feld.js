@@ -23,7 +23,7 @@
   /* Jedes Element steht vollständig im Lexikon; der Methodenüberblick zeigt
      seine Kurzfassung inzwischen selbst in der Inhaltsseite. */
   function verweisZiel(e) {
-    return '#/lexikon?id=' + encodeURIComponent(e.id);
+    return '#/handbuch?id=' + encodeURIComponent(e.id);
   }
 
   var detailZiel = verweisZiel;
@@ -150,7 +150,7 @@
   function aufgabeEintrag(a, feld) {
     var kopf = [h('a', {
       class: 'feld-e__titel',
-      href: '#/lexikon?id=' + encodeURIComponent(a.id),
+      href: '#/handbuch?id=' + encodeURIComponent(a.id),
       text: a.begriff
     })];
 
@@ -297,7 +297,7 @@
     var kopf = [r.eintrag
       ? h('a', {
           class: 'feld-e__titel',
-          href: '#/lexikon?id=' + encodeURIComponent(r.eintrag.id),
+          href: '#/handbuch?id=' + encodeURIComponent(r.eintrag.id),
           text: r.name
         })
       : h('span', { class: 'feld-e__titel', text: r.name })];
@@ -382,11 +382,11 @@
     }).length;
 
     var badges = feld.module.map(function (m) {
-      return h('a', { class: 'badge badge--modul', href: '#/lexikon?id=' + encodeURIComponent(m.id) }, [
+      return h('a', { class: 'badge badge--modul', href: '#/handbuch?id=' + encodeURIComponent(m.id) }, [
         HT.ui.katSymbol('modul', 13), h('span', { text: m.begriff })
       ]);
     });
-    badges.push(h('a', { class: 'badge badge--phase', href: '#/lexikon?id=' + encodeURIComponent(feld.phase.id) }, [
+    badges.push(h('a', { class: 'badge badge--phase', href: '#/handbuch?id=' + encodeURIComponent(feld.phase.id) }, [
       HT.ui.katSymbol('phase', 13), h('span', { text: feld.phase.begriff })
     ]));
     if (vorgehen) { badges.push(marke(vorgehen, 'feld-marke--leise')); }
@@ -415,14 +415,14 @@
   function einordnung(feld) {
     var punkte = feld.module.map(function (m) {
       return h('li', {}, [
-        h('a', { class: 'feld-e__titel', href: '#/lexikon?id=' + encodeURIComponent(m.id), text: 'Modul ' + m.begriff }),
+        h('a', { class: 'feld-e__titel', href: '#/handbuch?id=' + encodeURIComponent(m.id), text: 'Modul ' + m.begriff }),
         h('span', { text: ' — ' + HT.ui.kuerzen(m.kurz || m.definition || '', 200) })
       ]);
     });
     punkte.push(h('li', {}, [
       h('a', {
         class: 'feld-e__titel',
-        href: '#/lexikon?id=' + encodeURIComponent(feld.phase.id),
+        href: '#/handbuch?id=' + encodeURIComponent(feld.phase.id),
         text: 'Phase ' + feld.phase.begriff
       }),
       h('span', { text: ' — ' + HT.ui.kuerzen(feld.phase.kurz || feld.phase.definition || '', 200) })

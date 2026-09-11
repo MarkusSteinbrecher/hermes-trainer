@@ -45,6 +45,13 @@
       if (alt) { HT.store.schreib(SPEICHER, daten); HT.store.loesche(ALT); }
     }
     daten.eintraege = daten.eintraege.filter(function (e) { return e && e.id && e.ort && e.zitat && e.zitat.exact; });
+    /* Lexikon und Methode sind seit 2026-09-11 das Handbuch — Orte nachziehen. */
+    var umgezogen = false;
+    daten.eintraege.forEach(function (e) {
+      var neu = e.ort.replace(/^#\/(lexikon|methode)\?/, '#/handbuch?');
+      if (neu !== e.ort) { e.ort = neu; umgezogen = true; }
+    });
+    if (umgezogen) { HT.store.schreib(SPEICHER, daten); }
     return daten;
   }
 

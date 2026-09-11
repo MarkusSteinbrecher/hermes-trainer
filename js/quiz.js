@@ -1,6 +1,6 @@
 /* meinHERMES — Ansicht «Quiz».
    Multiple Choice mit vier Antworten, sofortiger Rückmeldung und Auswertung.
-   Fragen stammen aus data/quizfragen.json und aus generierten Lexikonfragen. */
+   Fragen stammen aus data/quizfragen.json und aus generierten Fragen zu den Elementen. */
 (function (global) {
   'use strict';
 
@@ -318,7 +318,7 @@
     if (!fragen.length) {
       lauf = null;
       hinweis = konfig.herkunft === 'kuratiert'
-        ? 'Für diese Auswahl gibt es keine Prüfungsfragen. Quelle auf «Gemischt» oder «Nur Lexikonfragen» umstellen.'
+        ? 'Für diese Auswahl gibt es keine Prüfungsfragen. Quelle auf «Gemischt» oder «Nur generierte Fragen» umstellen.'
         : 'Für diese Auswahl lassen sich keine Fragen bilden — eine Kategorie braucht mindestens vier Einträge, '
           + 'damit plausible falsche Antworten entstehen. Bitte weitere Kategorien zulassen.';
       zeichnen();
@@ -433,14 +433,14 @@
     behaelter.appendChild(schalterGruppe('Fragenquelle', [
       { wert: 'gemischt', label: 'Gemischt' },
       { wert: 'kuratiert', label: 'Nur Prüfungsfragen' },
-      { wert: 'generiert', label: 'Nur Lexikonfragen' }
+      { wert: 'generiert', label: 'Nur generierte Fragen' }
     ], function (w) { return konfig.herkunft === w; },
       function (w) { konfig.herkunft = w; }));
 
     behaelter.appendChild(h('p', {
       class: 'trefferzahl',
       text: 'Im Bestand: ' + HT.daten.quizfragen().length + ' kuratierte Prüfungsfragen mit Belegstelle im Referenzhandbuch'
-        + ' · Lexikonfragen entstehen automatisch aus ' + HT.daten.alleEintraege().length + ' Einträgen.'
+        + ' · Generierte Fragen entstehen automatisch aus ' + HT.daten.alleEintraege().length + ' Einträgen.'
     }));
 
     /* Kategorienfilter */
@@ -537,7 +537,7 @@
 
     behaelter.appendChild(h('div', { class: 'quiz-kopf' }, [
       h('span', { text: 'Frage ' + (lauf.index + 1) + ' von ' + lauf.fragen.length }),
-      h('span', { text: f.herkunft === 'kuratiert' ? 'Prüfungsfrage' : 'Lexikonfrage (generiert)' })
+      h('span', { text: f.herkunft === 'kuratiert' ? 'Prüfungsfrage' : 'Generierte Frage' })
     ]));
 
     var anteil = HT.ui.prozent(lauf.index, lauf.fragen.length);

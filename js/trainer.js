@@ -611,7 +611,7 @@
         return h('li', {}, [
           h('span', { class: 'tr-liste__falsch', text: z.chip.name }),
           ' — hier gehört ',
-          h('a', { href: '#/lexikon?id=' + encodeURIComponent(z.k.eintraege[0].id), text: z.name }),
+          h('a', { href: '#/handbuch?id=' + encodeURIComponent(z.k.eintraege[0].id), text: z.name }),
           ' hin'
         ]);
       })));
@@ -619,7 +619,7 @@
     if (leer.length) {
       kinder.push(h('h3', { class: 'tr-mikro', text: 'Offen geblieben' }));
       kinder.push(h('ul', { class: 'tr-liste' }, leer.map(function (z) {
-        return h('li', {}, h('a', { href: '#/lexikon?id=' + encodeURIComponent(z.k.eintraege[0].id), text: z.name }));
+        return h('li', {}, h('a', { href: '#/handbuch?id=' + encodeURIComponent(z.k.eintraege[0].id), text: z.name }));
       })));
     }
     return h('div', {}, kinder);

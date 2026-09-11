@@ -936,27 +936,6 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .pm-pfeil { color: var(--text-leise-hell); font-size: 1rem; }
 .pm-pfeil--breit { display: none; }
 
-.mini-liste {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-  list-style: none;
-  margin: 0 0 22px;
-  padding: 0;
-}
-.mini-liste a {
-  display: inline-block;
-  padding: 4px 0;
-  border-bottom: 2px solid var(--rand);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-.mini-liste a:hover { border-color: var(--akzent); color: var(--akzent); }
-
 .abschnitt { margin-bottom: 26px; }
 .abschnitt__kopf {
   display: flex;
@@ -1218,44 +1197,23 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .hb-vorlage__text b { font-size: 14px; font-weight: 700; }
 .hb-vorlage__meta { font-size: 11.5px; color: var(--text-leise); }
 
-/* --- Methode: Hub -------------------------------------------------------- */
+/* --- Handbuch: Kapitel-Chips, Kapitelkopf, Elemente ---------------------- */
 .pm-block { margin-bottom: 8px; }
-.kapitel-raster {
-  display: grid;
-  gap: 0;
-  grid-template-columns: 1fr;
-}
-/* Kapitel als Zeilen zwischen Haarlinien; das Icon in Akzentfarbe. */
-.kapitel-karte {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 0 16px;
-  border-top: 1px solid var(--rand);
-  text-decoration: none;
-  color: var(--text);
-}
-.kapitel-raster > .kapitel-karte:last-child { border-bottom: 1px solid var(--rand); }
-.kapitel-karte:hover .kapitel-karte__titel { color: var(--akzent); }
-.kapitel-karte__kopf { display: flex; align-items: center; gap: 8px; min-height: 24px; }
-.kapitel-karte__nr { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--akzent-text); }
-.kapitel-karte__ikone {
-  display: inline-grid;
-  place-items: center;
-  width: 24px; height: 24px;
-  flex: 0 0 auto;
-  color: var(--akzent);
-}
-.kapitel-karte__ikone svg { width: 20px; height: 20px; }
-.kapitel-karte__titel { font-size: 18px; font-weight: 800; letter-spacing: -.015em; line-height: 1.15; }
-.kapitel-karte__teaser { font-size: 14px; color: var(--text-weich); line-height: 1.5; max-width: 60ch; text-wrap: pretty; }
-.kapitel-karte__meta { font-size: 12px; color: var(--text-leise); margin-top: 2px; }
-.lernweg { margin: 6px 0 0; padding-left: 1.25rem; }
-.lernweg li { margin-bottom: 6px; }
+.hb-kapitel { margin-bottom: 18px; }
+.hb-kapitel__nr { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--akzent-text); }
+.chip[aria-pressed="true"] .hb-kapitel__nr { color: inherit; }
+.hb-kapitelkopf { margin: 0 0 6px; }
+.hb-kapitelkopf__titel { margin: 2px 0 6px; font-size: 26px; font-weight: 800; letter-spacing: -.015em; line-height: 1.1; }
+.hb-kapitelkopf__teaser { margin: 0 0 14px; font-size: 15px; color: var(--text-weich); line-height: 1.5; max-width: 60ch; text-wrap: pretty; }
+.hb-elemente { margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--linie-stark); }
+.hb-elemente__kopf { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 18px; margin-bottom: 12px; }
+.hb-elemente__kopf .stufe__titel { display: flex; align-items: center; gap: 8px; margin: 0; }
+.hb-elemente__kopf .stufenwahl { margin: 0; }
+.hb-elemente__ikone { display: inline-grid; place-items: center; width: 24px; height: 24px; color: var(--akzent); }
+.hb-elemente__ikone svg { width: 20px; height: 20px; }
+.stufe-block--text > summary .hb-seite { font-weight: 400; }
 
-/* --- Methode: Kapitelseite ----------------------------------------------- */
-.brotkrumen { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); margin-bottom: 8px; }
-.brotkrumen a { text-decoration: none; }
+/* --- Handbuch: Kapitelseite ---------------------------------------------- */
 .kapitel .hb-verweis { margin-top: 0; }
 
 /* Stufe 1: Kernaussagen — ein Abschnitt unter einer starken Linie. */

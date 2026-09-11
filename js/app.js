@@ -12,22 +12,22 @@
   var ROUTEN = [
     { name: 'ueberblick', label: 'Überblick',  kurz: 'Überblick', pfade: ['M3.5 4.5h17v15h-17Z', 'M3.5 9h17', 'M9 9v10.5', 'M14.5 9v10.5'] },
     { name: 'trainer',    label: 'Trainer',    kurz: 'Trainer',  pfade: ['M4 5h7v6H4Z', 'M13 13h7v6h-7Z', 'M13 5h7v6h-7Z', 'M4 13h7v6H4Z', 'M6 16l1.6 1.6L10 14.8'] },
-    { name: 'methode',    label: 'Methode',    kurz: 'Methode',  pfade: ['M4 5h6v6H4Z', 'M14 5h6v6h-6Z', 'M4 15h6v4H4Z', 'M14 15h6v4h-6Z'] },
-    { name: 'lexikon',    label: 'Lexikon',    kurz: 'Lexikon',  pfade: ['M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M4 17.5h15'] },
+    { name: 'handbuch',   label: 'Handbuch',   kurz: 'Handbuch', pfade: ['M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M4 17.5h15'] },
     { name: 'lernkarten', label: 'Lernkarten', kurz: 'Karten',   pfade: ['M8 3h10a2 2 0 0 1 2 2v9', 'M5 7h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z'] },
     { name: 'quiz',       label: 'Quiz',       kurz: 'Quiz',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M9.3 9.4a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 3.9', 'M12 17.4h.01'] },
     { name: 'ueber',      label: 'Über',       kurz: 'Über',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.8h.01'] }
   ];
 
   var STARTROUTE = 'ueberblick';
-  var ALIASE = { uebersicht: 'methode' };   // alte Links bleiben gültig
+  /* Alte Links bleiben gültig: Methode und Lexikon sind seit 2026-09-11 das Handbuch. */
+  var ALIASE = { uebersicht: 'handbuch', methode: 'handbuch', lexikon: 'handbuch' };
   var ersterAufruf = true;
 
   /* --- Suche in der Kopfzeile --------------------------------------------- */
 
   /* Rechts neben der Marke: eine kleine Pille «Suchen», die beim Anklicken
      breit wird. Sie findet Ergebnisse, Aufgaben, Rollen, Module, Phasen und
-     Szenarien. Ist der Überblick offen, wendet er den Treffer selbst an
+     Szenarien sowie Grundbegriffe. Ist der Überblick offen, wendet er den Treffer selbst an
      (Umfang, Einfärbung, Fokus); sonst führt der Treffer in den Überblick. */
   function sucheBauen() {
     var inner = document.querySelector('.topbar__inner');
@@ -38,10 +38,12 @@
       label: 'Element, Modul, Phase oder Szenario suchen',
       treffer: function (text) {
         return HT.ui.suchtreffer(text, ['modul', 'phase', 'szenario'], function (t) {
-          return HT.daten.suchen(t, ['ergebnis', 'aufgabe', 'rolle']);
+          return HT.daten.suchen(t, ['ergebnis', 'aufgabe', 'rolle', 'grundbegriff']);
         });
       },
       beiWahl: function (e) {
+        /* Grundbegriffe haben weder Kasten noch Knoten — sie stehen im Handbuch. */
+        if (e.kategorie === 'grundbegriff') { global.location.hash = '#/handbuch?id=' + encodeURIComponent(e.id); return; }
         var ub = HT.views.ueberblick;
         if (routeLesen().name === 'ueberblick' && ub && ub.suchtreffer && ub.suchtreffer(e)) { return; }
         global.location.hash = '#/ueberblick?id=' + encodeURIComponent(e.id);
@@ -188,6 +190,10 @@
   /* --- Start -------------------------------------------------------------- */
 
   function starten() {
+    /* Die Ansichten rollen selbst zum gewünschten Element (Direktlink auf
+       eine Karte, einen Teil); die Wiederherstellung der Scrollposition
+       durch den Browser nach dem Laden würde das wieder aufheben. */
+    try { if ('scrollRestoration' in global.history) { global.history.scrollRestoration = 'manual'; } } catch (e) { /* egal */ }
     navBauen();
     sucheBauen();
     gleicheRouteAbfangen();
