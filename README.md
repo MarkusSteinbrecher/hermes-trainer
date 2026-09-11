@@ -12,10 +12,8 @@ Die Anwendung ist eine **Beta-Version**. Rückmeldungen und Fehlerberichte sind 
 
 - **Überblick** — oben das Gesamtbild der Methode (Abbildung 1 des Referenzhandbuchs) als Originalgrafik, darunter der Graph: Rollen, Aufgaben und Ergebnisse mit ihren Verbindungen, nach Phasen oder Modulen geordnet; beide Bereiche lassen sich zu- und aufklappen. Zeigen auf einen Kasten erklärt ihn, ein Klick hält ihn fest, und der Graph zeigt nur noch, was direkt damit zusammenhängt. Ein Filter für Phasen, Szenarien und Module gilt für beide; im Abfragemodus sind die Kästen der Abbildung verdeckt, und Sie suchen den richtigen Ort.
 - **Suche** — oben in der Kopfzeile, auf jeder Seite: findet jedes Element, jedes Modul, jede Phase und jedes Szenario und zeigt es im Überblick.
-- **Trainer** — Ergebnisse per Drag-and-drop in die leeren Kästen des Gesamtbilds legen, je Phase, je Modul oder das ganze Bild; «Prüfen» zeigt, was stimmt.
+- **Trainer** — drei Übungsformen unter einem Dach: *Zuordnen* (Ergebnisse per Drag-and-drop in die leeren Kästen des Gesamtbilds legen, je Phase, je Modul oder das ganze Bild; «Prüfen» zeigt, was stimmt), *Lernkarten* (Begriff und Definition mit Selbsteinschätzung; was nicht sitzt, kommt wieder) und *Quiz* (Prüfungsfragen mit Belegzitat aus dem Referenzhandbuch).
 - **Handbuch** — das Referenzhandbuch Projektmanagement (PDF) 1:1 als Text, Kapitel für Kapitel in seiner Gliederung mit den Kapitelnummern und Seitenzahlen des PDF (Vorwort, Methodenüberblick, Methodenelemente, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung, Vokabular); Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen stehen als Karten an ihrer Stelle im Text, je mit Link auf die offizielle Seite und auf die Seite im PDF.
-- **Lernkarten** — Begriff und Definition mit Selbsteinschätzung; was nicht sitzt, kommt wieder.
-- **Quiz** — Prüfungsfragen mit Belegzitat aus dem Referenzhandbuch.
 - **Markieren** — Wörter und Sätze im Überblick und im Handbuch gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg.
 
 Lernstand und Markierungen bleiben in Ihrem Browser. Es gibt kein Konto und keine Übertragung an einen Server.

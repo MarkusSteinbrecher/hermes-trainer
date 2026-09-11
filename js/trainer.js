@@ -1,4 +1,18 @@
-/* meinHERMES — Ansicht «Trainer»: Ausschnitte der Abbildung 1 zum Zuordnen.
+/* meinHERMES — Ansicht «Trainer»: das Dach über allen Übungsformen.
+
+   Der Trainer hat mehrere Teile, umgeschaltet über eine Chip-Leiste unter
+   dem Seitenkopf: «Zuordnen» (unten in dieser Datei), «Lernkarten»
+   (js/lernkarten.js) und «Quiz» (js/quiz.js). Die Teile melden sich unter
+   HT.trainerTeile an; ein Teil ist { id, label, pfade, render(behaelter,
+   params) } und zeichnet sich in den Behälter unter der Leiste. Weitere
+   Teile (etwa Prüfungsfragen anderer Herkunft) kommen dazu, indem sie sich
+   anmelden und in TEILE eingetragen werden.
+
+   Adressen: #/trainer (Zuordnen), #/trainer?teil=lernkarten,
+   #/trainer?teil=quiz — Parameter der Teile (etwa ?kat=) bleiben daneben
+   gültig. Die alten Adressen #/lernkarten und #/quiz leiten hierher.
+
+   --- Teil «Zuordnen»: Ausschnitte der Abbildung 1 ---------------------------
 
    Jede Übung ist ein Ausschnitt aus dem Gesamtbild der Methode — eine Phase
    (die Zeile der Abbildung, darüber die Modulköpfe als Orientierung) oder
@@ -15,13 +29,14 @@
    Spalte des Ausschnitts, damit Phasenbalken und Modulspalte nebeneinander
    stehen können, obwohl sie in der Grafik weit auseinander liegen.
 
-   Adressen: #/trainer (Übersicht), #/trainer?phase=<Phase>,
-   #/trainer?modul=<Modul>, #/trainer?alles=1 (Gesamtbild). */
+   Adressen der Übungen: #/trainer?phase=<Phase>, #/trainer?modul=<Modul>,
+   #/trainer?alles=1 (Gesamtbild) — je eine eigene Seite in voller Breite. */
 (function (global) {
   'use strict';
 
   var HT = global.HT = global.HT || {};
   HT.views = HT.views || {};
+  HT.trainerTeile = HT.trainerTeile || {};
 
   var h = HT.ui.h;
   var SVG_NS = 'http://www.w3.org/2000/svg';
@@ -747,8 +762,8 @@
     var alles = abb.uebungen.filter(function (u) { return u.art === 'alles'; });
 
     behaelter.appendChild(h('section', { class: 'tr-hub' }, [
-      h('div', { class: 'kopf' }, [
-        h('h1', { text: 'Trainer' }),
+      h('div', { class: 'kopf kopf--teil' }, [
+        h('h2', { text: 'Zuordnen' }),
         h('p', { text: 'Ausschnitte aus dem Gesamtbild der Methode, leer bis auf Modulköpfe, Phasenbalken und Pfeile. '
           + 'Die Ergebnisse liegen als Chips bereit und wollen an ihren Platz — pro Phase, pro Modul oder das ganze Bild. '
           + 'Am Ende zeigt die Prüfung, was richtig, falsch oder offen geblieben ist.' })
@@ -862,14 +877,16 @@
     });
   }
 
-  function render(behaelter, params) {
+  /* --- Teil «Zuordnen» ------------------------------------------------------ */
+
+  /* Ohne phase/modul/alles: die Übersicht der Übungen (unter der Leiste des
+     Trainers); mit: die Übung selbst als eigene Seite in voller Breite. */
+  function zuordnenRendern(behaelter, params) {
     if (!zustand.initialisiert) { wiederherstellen(); zustand.initialisiert = true; }
     refs = {};
     uebung = null;
     params = params || {};
 
-    var warnung = HT.app.datenWarnung();
-    if (warnung) { behaelter.appendChild(warnung); }
     var laden = h('p', { class: 'ladehinweis', text: 'Abbildung wird geladen …' });
     behaelter.appendChild(laden);
 
@@ -877,7 +894,7 @@
       if (!document.body.contains(laden)) { return; }
       behaelter.removeChild(laden);
       var def = null;
-      if (params.phase || params.modul || params.alles) {
+      if (istUebung(params)) {
         abb.uebungen.forEach(function (u) {
           if (def) { return; }
           if (params.alles && u.art === 'alles') { def = u; }
@@ -906,11 +923,80 @@
     });
   }
 
+  function istUebung(params) {
+    return !!(params && (params.phase || params.modul || params.alles));
+  }
+
+  HT.trainerTeile.zuordnen = {
+    id: 'zuordnen',
+    label: 'Zuordnen',
+    pfade: ['M4 5h7v6H4Z', 'M13 13h7v6h-7Z', 'M13 5h7v6h-7Z', 'M4 13h7v6H4Z', 'M6 16l1.6 1.6L10 14.8'],
+    render: zuordnenRendern
+  };
+
+  /* --- Das Dach: Seitenkopf, Teil-Leiste, Teil ------------------------------- */
+
+  /* Reihenfolge der Leiste; der erste Teil ist der ohne ?teil=. */
+  var TEILE = ['zuordnen', 'lernkarten', 'quiz'];
+
+  function teile() {
+    return TEILE.map(function (id) { return HT.trainerTeile[id]; }).filter(Boolean);
+  }
+
+  function teilAdresse(teil) {
+    return teil.id === TEILE[0] ? '#/trainer' : '#/trainer?teil=' + encodeURIComponent(teil.id);
+  }
+
+  function teilFinden(id) {
+    var liste = teile();
+    for (var i = 0; i < liste.length; i++) {
+      if (liste[i].id === id) { return liste[i]; }
+    }
+    return liste[0];
+  }
+
+  function teilLeiste(aktiv) {
+    return h('ul', { class: 'chips chips--streifen tr-teile', 'aria-label': 'Übungsform' }, teile().map(function (t) {
+      var a = { class: 'chip', href: teilAdresse(t) };
+      if (t === aktiv) { a['aria-current'] = 'page'; }
+      return h('li', {}, h('a', a, [
+        t.pfade ? HT.ui.symbol(t.pfade, 14) : null,
+        h('span', { text: t.label })
+      ]));
+    }));
+  }
+
+  function render(behaelter, params) {
+    params = params || {};
+    var warnung = HT.app.datenWarnung();
+    if (warnung) { behaelter.appendChild(warnung); }
+
+    if (istUebung(params)) {
+      document.body.dataset.teil = 'uebung';
+      zuordnenRendern(behaelter, params);
+      return;
+    }
+
+    var teil = teilFinden(params.teil);
+    document.body.dataset.teil = teil.id;
+    behaelter.appendChild(h('div', { class: 'kopf' }, [
+      h('h1', { text: 'Trainer' }),
+      h('p', { text: 'Üben für die Prüfung auf drei Arten: Ergebnisse ins Gesamtbild der Methode legen, '
+        + 'Lernkarten umdrehen und selbst einschätzen, Prüfungsfragen beantworten. '
+        + 'Der Lernstand bleibt in diesem Browser.' })
+    ]));
+    behaelter.appendChild(teilLeiste(teil));
+    var teilBehaelter = h('div', { class: 'tr-teil', 'data-teil': teil.id });
+    behaelter.appendChild(teilBehaelter);
+    teil.render(teilBehaelter, params);
+  }
+
   function titel(params) {
     if (params && params.phase) { return 'Trainer · Phase ' + params.phase; }
     if (params && params.modul) { return 'Trainer · Modul ' + params.modul; }
     if (params && params.alles) { return 'Trainer · Gesamtbild'; }
-    return 'Trainer';
+    var teil = teilFinden(params && params.teil);
+    return teil && teil.id !== TEILE[0] ? 'Trainer · ' + teil.label : 'Trainer';
   }
 
   HT.views.trainer = {

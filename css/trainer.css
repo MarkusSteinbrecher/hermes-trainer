@@ -7,7 +7,20 @@
    damit ein gelegter Chip aussieht wie der gedruckte Kasten.
    ========================================================================== */
 
-body[data-route="trainer"] .view { max-width: none; padding: 18px 20px 40px; }
+/* Nur die Übung selbst (Phase, Modul, Gesamtbild) braucht die volle Breite;
+   die Trainer-Seite mit Leiste und Teilen bleibt in der Inhaltsbreite. */
+body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding: 18px 20px 40px; }
+
+/* --- Teil-Leiste: Zuordnen · Lernkarten · Quiz ------------------------------ */
+
+.tr-teile { margin-bottom: 20px; }
+.tr-teile .chip { height: 34px; gap: 7px; font-size: 12.5px; }
+.tr-teile .chip[aria-current="page"] {
+  color: var(--text);
+  font-weight: 800;
+  box-shadow: inset 0 -3px 0 var(--akzent);
+}
+.tr-teile .chip svg { width: 15px; height: 15px; }
 
 .tr-mikro {
   margin: 0 0 6px;

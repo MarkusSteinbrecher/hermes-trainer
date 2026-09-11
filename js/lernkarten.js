@@ -1,11 +1,11 @@
-/* meinHERMES — Ansicht «Lernkarten».
+/* meinHERMES — Teil «Lernkarten» des Trainers (#/trainer?teil=lernkarten).
    Karte drehen, selbst einschätzen; «Nochmals» kehrt im Stapel zurück.
    Fortschritt liegt im localStorage und ist zurücksetzbar. */
 (function (global) {
   'use strict';
 
   var HT = global.HT = global.HT || {};
-  HT.views = HT.views || {};
+  HT.trainerTeile = HT.trainerTeile || {};
 
   var h = HT.ui.h;
 
@@ -342,13 +342,10 @@
     }
     stapelAufbauen(false);
 
-    behaelter.appendChild(h('div', { class: 'kopf' }, [
-      h('h1', { text: 'Lernkarten' }),
+    behaelter.appendChild(h('div', { class: 'kopf kopf--teil' }, [
+      h('h2', { text: 'Lernkarten' }),
       h('p', { text: 'Karte umdrehen, selbst einschätzen. Was «Nochmals» erhält, kehrt im Stapel zurück.' })
     ]));
-
-    var warnung = HT.app.datenWarnung();
-    if (warnung) { behaelter.appendChild(warnung); }
 
     behaelter.appendChild(h('div', { class: 'lk-leiste' }, [
       richtungsKnopf(),
@@ -376,8 +373,10 @@
     neuZeichnen(false);
   }
 
-  HT.views.lernkarten = {
-    titel: 'Lernkarten',
+  HT.trainerTeile.lernkarten = {
+    id: 'lernkarten',
+    label: 'Lernkarten',
+    pfade: ['M8 3h10a2 2 0 0 1 2 2v9', 'M5 7h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z'],
     render: render
   };
 }(window));

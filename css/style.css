@@ -342,6 +342,9 @@ main:focus { outline: none; }
    Kasten, nur die Abstände gliedern. */
 .kopf { margin-bottom: 22px; }
 .kopf h1 { font-size: 26px; letter-spacing: -.022em; margin: 0 0 8px; }
+/* Kopf eines Teils unter einer Seite mit Leiste (Trainer): eine Stufe kleiner. */
+.kopf--teil { margin-bottom: 18px; }
+.kopf--teil h2 { font-size: 21px; letter-spacing: -.018em; margin: 0 0 6px; }
 .kopf p {
   color: var(--text-weich);
   margin: 0;

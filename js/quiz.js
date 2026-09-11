@@ -1,11 +1,11 @@
-/* meinHERMES — Ansicht «Quiz».
+/* meinHERMES — Teil «Quiz» des Trainers (#/trainer?teil=quiz).
    Multiple Choice mit vier Antworten, sofortiger Rückmeldung und Auswertung.
    Fragen stammen aus data/quizfragen.json und aus generierten Fragen zu den Elementen. */
 (function (global) {
   'use strict';
 
   var HT = global.HT = global.HT || {};
-  HT.views = HT.views || {};
+  HT.trainerTeile = HT.trainerTeile || {};
 
   var h = HT.ui.h;
   var DEF_MAX = 170;               // Obergrenze je Antwortoption (Kürzung an Satz-/Wortgrenze)
@@ -395,13 +395,10 @@
   function konfigAnsicht(behaelter) {
     var st = statistik();
 
-    behaelter.appendChild(h('div', { class: 'kopf' }, [
-      h('h1', { text: 'Quiz' }),
+    behaelter.appendChild(h('div', { class: 'kopf kopf--teil' }, [
+      h('h2', { text: 'Quiz' }),
       h('p', { text: 'Vier Antworten, eine ist richtig. Rückmeldung samt Quellenlink kommt sofort.' })
     ]));
-
-    var warnung = HT.app.datenWarnung();
-    if (warnung) { behaelter.appendChild(warnung); }
 
     if (hinweis) {
       behaelter.appendChild(h('div', { class: 'datenwarnung', role: 'status', text: hinweis }));
@@ -697,8 +694,10 @@
     zeichnen();
   }
 
-  HT.views.quiz = {
-    titel: 'Quiz',
+  HT.trainerTeile.quiz = {
+    id: 'quiz',
+    label: 'Quiz',
+    pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M9.3 9.4a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 3.9', 'M12 17.4h.01'],
     render: render
   };
 }(window));

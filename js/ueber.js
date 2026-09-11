@@ -24,10 +24,8 @@
       h('h2', { text: 'Aufbau' }),
       h('ul', {}, [
         h('li', {}, [h('b', { text: 'Graph: ' }), 'die Methodenelemente und ihre Zusammenhänge: als Struktur (Szenarien, Module, Aufgaben, Ergebnisse, Rollen in Spalten), im Fokus (ein Element mit allen Verbindungen) und entlang der Phasen. Jede Verbindung entspricht einem Querverweis der offiziellen Dokumentation; Kategorien, Beziehungen und Filter lassen sich ein- und ausblenden.']),
-        h('li', {}, [h('b', { text: 'Trainer: ' }), 'Ausschnitte aus dem Gesamtbild der Methode — je Phase, je Modul oder das ganze Bild — mit leeren Ergebniskästen; die Namen liegen als Chips bereit und werden an ihren Platz gezogen, die Prüfung zeigt richtig, falsch und offen.']),
+        h('li', {}, [h('b', { text: 'Trainer: ' }), 'drei Übungsformen unter einem Dach. Zuordnen: Ausschnitte aus dem Gesamtbild der Methode — je Phase, je Modul oder das ganze Bild — mit leeren Ergebniskästen; die Namen liegen als Chips bereit und werden an ihren Platz gezogen, die Prüfung zeigt richtig, falsch und offen. Lernkarten: Begriff ↔ Definition mit Selbsteinschätzung. Quiz: kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus den Elementkarten erzeugte Fragen. Der Lernstand bleibt lokal im Browser.']),
         h('li', {}, [h('b', { text: 'Handbuch: ' }), 'das Referenzhandbuch Projektmanagement (PDF) 1:1 als Text, Kapitel für Kapitel in seiner Gliederung (Vorwort, Methodenüberblick, Methodenelemente, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung, Vokabular) mit den Kapitelnummern und Seitenzahlen des PDF; die Elemente stehen als Karten an ihrer Stelle im Text, jede mit Link auf HERMES online und auf die Seite im PDF. Nicht übernommen sind Inhalts-, Tabellen- und Abbildungsverzeichnis sowie der Index.']),
-        h('li', {}, [h('b', { text: 'Lernkarten: ' }), 'Begriff ↔ Definition mit Selbsteinschätzung; Fortschritt lokal im Browser.']),
-        h('li', {}, [h('b', { text: 'Quiz: ' }), 'kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus den Elementkarten erzeugte Fragen.']),
         h('li', {}, [h('b', { text: 'Markieren: ' }), 'Wörter und Sätze im Überblick und im Handbuch auswählen und gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg. Alles bleibt in diesem Browser.'])
       ]),
 
@@ -90,7 +88,7 @@
       h('ul', {}, [
         h('li', { text: 'Im Graph: Klick auf einen Knoten zeigt Details und hebt die Nachbarn hervor, Doppelklick stellt ihn in den Fokus; Ziehen verschiebt, Mausrad oder zwei Finger zoomen. Grosse Gruppen sind auf zwölf Einträge gekappt («+ n weitere anzeigen»).' }),
         h('li', { text: 'Die Suche in der Kopfzeile findet jedes Element; im Handbuch wählen die Chips das Kapitel.' }),
-        h('li', { text: 'Bei den Lernkarten lässt sich die Abfragerichtung umschalten: Begriff → Definition oder Definition → Begriff.' }),
+        h('li', { text: 'Im Trainer wählen die Chips die Übungsform. Bei den Lernkarten lässt sich die Abfragerichtung umschalten: Begriff → Definition oder Definition → Begriff.' }),
         h('li', { text: 'Im Quiz stehen kuratierte Prüfungsfragen und automatisch aus den Elementkarten erzeugte Fragen zur Wahl. Zu jeder kuratierten Frage wird nach der Antwort das Belegzitat mit Kapitel und Seite des Referenzhandbuchs angezeigt.' }),
         h('li', { text: 'Generierte Fragen entstehen maschinell aus den erfassten Daten. Bei Zweifeln gilt der verlinkte Originaltext.' })
       ]),

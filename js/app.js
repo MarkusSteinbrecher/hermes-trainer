@@ -8,19 +8,24 @@
   var h = HT.ui.h;
 
   /* Der Graph ist seit 2026-09-11 eine Sicht des Überblicks (#/graph leitet
-     dorthin weiter). */
+     dorthin weiter); Lernkarten und Quiz sind seit 2026-09-11 Teile des
+     Trainers (#/trainer?teil=lernkarten, #/trainer?teil=quiz). */
   var ROUTEN = [
     { name: 'ueberblick', label: 'Überblick',  kurz: 'Überblick', pfade: ['M3.5 4.5h17v15h-17Z', 'M3.5 9h17', 'M9 9v10.5', 'M14.5 9v10.5'] },
     { name: 'trainer',    label: 'Trainer',    kurz: 'Trainer',  pfade: ['M4 5h7v6H4Z', 'M13 13h7v6h-7Z', 'M13 5h7v6h-7Z', 'M4 13h7v6H4Z', 'M6 16l1.6 1.6L10 14.8'] },
     { name: 'handbuch',   label: 'Handbuch',   kurz: 'Handbuch', pfade: ['M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M4 17.5h15'] },
-    { name: 'lernkarten', label: 'Lernkarten', kurz: 'Karten',   pfade: ['M8 3h10a2 2 0 0 1 2 2v9', 'M5 7h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z'] },
-    { name: 'quiz',       label: 'Quiz',       kurz: 'Quiz',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M9.3 9.4a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 3.9', 'M12 17.4h.01'] },
     { name: 'ueber',      label: 'Über',       kurz: 'Über',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.8h.01'] }
   ];
 
   var STARTROUTE = 'ueberblick';
-  /* Alte Links bleiben gültig: Methode und Lexikon sind seit 2026-09-11 das Handbuch. */
-  var ALIASE = { uebersicht: 'handbuch', methode: 'handbuch', lexikon: 'handbuch' };
+  /* Alte Links bleiben gültig: Methode und Lexikon sind seit 2026-09-11 das
+     Handbuch; Lernkarten und Quiz sind Teile des Trainers — ein Alias mit
+     `params` bringt seine Parameter mit (bestehende wie ?kat= bleiben). */
+  var ALIASE = {
+    uebersicht: 'handbuch', methode: 'handbuch', lexikon: 'handbuch',
+    lernkarten: { name: 'trainer', params: { teil: 'lernkarten' } },
+    quiz: { name: 'trainer', params: { teil: 'quiz' } }
+  };
   var ersterAufruf = true;
 
   /* --- Suche in der Kopfzeile --------------------------------------------- */
@@ -78,7 +83,7 @@
   }
 
   /* Klick auf einen Link, der bereits die aktuelle Route ist, baut die Ansicht
-     trotzdem neu auf — sonst passiert beim Tippen auf «Quiz» im laufenden Quiz nichts. */
+     trotzdem neu auf — sonst passiert beim Tippen auf «Trainer» im laufenden Quiz nichts. */
   function gleicheRouteAbfangen() {
     document.addEventListener('click', function (ev) {
       var ziel = ev.target;
@@ -126,7 +131,14 @@
       });
     }
 
-    if (ALIASE[name]) { name = ALIASE[name]; }
+    var alias = ALIASE[name];
+    if (typeof alias === 'string') { name = alias; }
+    else if (alias) {
+      name = alias.name;
+      for (var k2 in alias.params) {
+        if (Object.prototype.hasOwnProperty.call(alias.params, k2)) { params[k2] = alias.params[k2]; }
+      }
+    }
     if (!HT.views[name]) { name = STARTROUTE; }
     return { name: name, params: params };
   }
@@ -140,6 +152,8 @@
     HT.ui.leeren(behaelter);
     behaelter.setAttribute('aria-busy', 'false');
     document.body.dataset.route = route.name;
+    /* Eine Ansicht mit mehreren Teilen (Trainer) trägt den Teil selbst ein. */
+    delete document.body.dataset.teil;
 
     try {
       view.render(behaelter, route.params);
