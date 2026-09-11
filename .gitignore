@@ -6,3 +6,6 @@ design/**/graph-steuerung.html
 # Handoff-Bündel von Claude Design zum Überblick — Prototypen samt Kopien der
 # Daten und der Abbildung; das Ergebnis steckt in js/ueberblick.js + css/ueberblick.css
 design/design_handoff_hermes_ueberblick/
+
+# Sitzungsprotokoll: nur lokal, nicht auf GitHub
+session-log.md
