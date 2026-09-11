@@ -881,9 +881,12 @@
     ]);
     refs.fokusHinweis.hidden = true;
 
-    refs.buehne = h('div', { class: 'graph-buehne' }, leisteBauen().concat([
+    /* Die Leiste entsteht hier (die rechte Icon-Leiste braucht ihre Knöpfe),
+       liegt aber als eigene Zeile über Bühne und Detailfeld. */
+    leisteBauen();
+    refs.buehne = h('div', { class: 'graph-buehne' }, [
       h('div', { class: 'graph-flaeche-huelle' }, [refs.flaeche, railBauen(), railRechtsBauen(), refs.leer, refs.fokusHinweis, refs.pop, refs.tooltip])
-    ]));
+    ]);
 
     zeichner = HT.graphZeichnen.erstellen(refs.flaeche, {
       freihalten: function () { return [refs.rail, refs.railRechts, refs.fokusHinweis]; },
@@ -1215,7 +1218,8 @@
 
     var warnung = HT.app.datenWarnung();
 
-    refs.seite = h('div', { class: 'graph-seite' }, [buehneBauen(), detailBauen()]);
+    var buehne = buehneBauen();
+    refs.seite = h('div', { class: 'graph-seite' }, [refs.werkzeugleiste, buehne, detailBauen()]);
     if (warnung) { behaelter.appendChild(warnung); }
     behaelter.appendChild(refs.seite);
 

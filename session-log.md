@@ -2,6 +2,12 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Zweite Leiste über die ganze Breite (Graph und Überblick)
+
+**Auftrag:** «Die zweite Top-Navigation sollte immer über die ganze Seite gehen.»
+
+**Umsetzung:** Graph: die Leiste (`graph-leiste`) ist nicht mehr Teil der Bühne, sondern erste Zeile des Rasters `graph-seite` (`grid-template-areas: 'leiste leiste' 'buehne detail'`, Zeilen `auto minmax(0,1fr)`), damit sie auch bei offenem Detailfeld über beide Spalten läuft; `leisteBauen()` wird weiterhin in `buehneBauen()` aufgerufen, weil die rechte Icon-Leiste ihre Knöpfe braucht. Überblick: die Suchleiste (`ub-suchleiste`) steht jetzt direkt in der Werkbank mit `grid-column: 1 / -1`, das Raster hat die Zeilen `auto minmax(0,1fr)`; unter 700 px und im Druck bleibt alles gestapelt. Lokal beide Seiten geprüft, keine Konsolenfehler.
+
 ## 2026-09-11 — Überblick: Suchleiste über der Abbildung, Suchpille als gemeinsame Komponente
 
 **Auftrag:** «Ergänze die Searchbar auch auf der Übersichtsseite.»

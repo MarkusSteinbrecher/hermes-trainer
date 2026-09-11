@@ -99,6 +99,9 @@ body[data-route="graph"] .fusszeile { display: none; }
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto;
+  /* Die Leiste liegt als eigene Zeile über Bühne und Detailfeld — über die
+     ganze Breite der Seite. */
+  grid-template-areas: 'leiste' 'buehne' 'detail';
   /* Die Kopfzeile der Anwendung steht auch hier; unter ihr und über der
      Fussnavigation bleibt der Rest für die Leinwand. */
   min-height: calc(100vh - var(--kopf) - 64px);
@@ -251,6 +254,7 @@ body[data-route="graph"] .fusszeile { display: none; }
 
 /* --- Bühne --------------------------------------------------------------- */
 .graph-buehne {
+  grid-area: buehne;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -260,6 +264,7 @@ body[data-route="graph"] .fusszeile { display: none; }
 /* Die Leiste des Graphen unter der Kopfzeile: Ansicht, Auswahl, Werkzeuge.
    Was nicht hineinpasst, liegt in einem Popover. */
 .graph-leiste {
+  grid-area: leiste;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(12rem, 34rem) minmax(0, 1fr);
   align-items: center;
@@ -755,6 +760,7 @@ body[data-route="graph"] .fusszeile { display: none; }
 
 /* --- Detailfeld ---------------------------------------------------------- */
 .graph-detail {
+  grid-area: detail;
   background: var(--bg);
   border-left: 1px solid var(--rand);
   display: flex;
@@ -872,6 +878,8 @@ body[data-route="graph"] .fusszeile { display: none; }
 @media (min-width: 1100px) {
   .graph-seite {
     grid-template-columns: minmax(0, 1fr) 0;
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas: 'leiste leiste' 'buehne detail';
     min-height: 0;
     transition: grid-template-columns .2s ease;
   }

@@ -1801,7 +1801,6 @@
 
     return h('section', { class: 'ub-seite' }, [
       warnung || null,
-      suchleisteBauen(),
       refs.prompt,
       refs.buehneHuelle,
       h('p', { class: 'ub-bildunterschrift' }, [
@@ -1960,6 +1959,7 @@
 
     refs.werkbank = h('div', { class: 'ub-werkbank' }, [
       h('h1', { class: 'nur-sr', text: 'Methodenüberblick' }),
+      suchleisteBauen(),
       abbildungSeiteBauen(),
       trennerBauen(),
       refs.seite
