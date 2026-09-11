@@ -325,9 +325,9 @@
 
   function teilElement(teil, kernDaten, offen, einzeln, kapitelId) {
     var inhalt = h('div', { class: 'stufe__inhalt' });
-    /* Ort für persönliche Notizen: der Kapitelteil mit seinem Direktlink. */
-    var nz = teil.nummer
-      ? { nzOrt: '#/methode?kapitel=' + encodeURIComponent(kapitelId) + '&teil=' + encodeURIComponent(teil.nummer), nzTitel: teil.nummer + ' ' + (teil.titel || ''), nzKomplett: '1' }
+    /* Ort für Markierungen: der Kapitelteil mit seinem Direktlink. */
+    var markOrt = teil.nummer
+      ? '#/methode?kapitel=' + encodeURIComponent(kapitelId) + '&teil=' + encodeURIComponent(teil.nummer)
       : null;
 
     (kernDaten || []).forEach(function (d) {
@@ -365,7 +365,7 @@
 
     if (einzeln) {
       inhalt.className = 'stufe-block stufe-block--3 stufe-block--offen';
-      if (nz) { inhalt.dataset.nzOrt = nz.nzOrt; inhalt.dataset.nzTitel = nz.nzTitel; }
+      if (markOrt) { inhalt.dataset.markOrt = markOrt; inhalt.dataset.markKomplett = '1'; }
       return inhalt;
     }
     return h('details', { class: 'stufe-block stufe-block--3', open: !!offen, id: teil.nummer ? 'teil-' + teil.nummer : null, dataset: nz }, [
@@ -389,11 +389,9 @@
       h('p', { text: meta.teaser })
     ]));
 
-    /* Ort für persönliche Notizen: das Kapitel (Kernaussagen, Zusammenfassung);
+    /* Ort für Markierungen: das Kapitel (Kernaussagen, Zusammenfassung);
        die Handbuchteile darin sind eigene Orte. */
-    var kapitelOrt = '#/methode?kapitel=' + encodeURIComponent(meta.id);
-    var kapitelTitel = 'Kapitel ' + meta.nummer + ' ' + meta.titel;
-    var inhalt = h('div', { class: 'kapitel', dataset: { nzOrt: kapitelOrt, nzTitel: kapitelTitel } });
+    var inhalt = h('div', { class: 'kapitel', dataset: { markOrt: '#/methode?kapitel=' + encodeURIComponent(meta.id) } });
     behaelter.appendChild(inhalt);
     inhalt.appendChild(ladeHinweis('Kapitel wird geladen …'));
 
@@ -467,8 +465,7 @@
       });
       inhalt.appendChild(wrapper);
 
-      if (HT.notizen) { inhalt.appendChild(HT.notizen.panel(kapitelOrt, kapitelTitel)); }
-      inhalt.dataset.nzKomplett = '1';
+      inhalt.dataset.markKomplett = '1';
 
       /* Blättern */
       inhalt.appendChild(h('div', { class: 'btn-reihe kapitel-nav' }, [

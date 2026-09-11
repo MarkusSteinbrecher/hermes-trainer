@@ -17,9 +17,9 @@ Die Anwendung ist eine **Beta-Version**. Rückmeldungen und Fehlerberichte sind 
 - **Lexikon** — alle Phasen, Szenarien, Module, Aufgaben, Ergebnisse, Rollen und Grundbegriffe, durchsuchbar, mit Link auf die offizielle Seite.
 - **Lernkarten** — Begriff und Definition mit Selbsteinschätzung; was nicht sitzt, kommt wieder.
 - **Quiz** — Prüfungsfragen mit Belegzitat aus dem Referenzhandbuch.
-- **Notizen** — Textstellen markieren und kommentieren, eigene Notizen je Kapitel und Begriff; als Datei sichern und wieder einlesen.
+- **Markieren** — Wörter und Sätze in Überblick, Lexikon und Methode gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg.
 
-Lernstand und Notizen bleiben in Ihrem Browser. Es gibt kein Konto und keine Übertragung an einen Server.
+Lernstand und Markierungen bleiben in Ihrem Browser. Es gibt kein Konto und keine Übertragung an einen Server.
 
 ## Unterstützen
 

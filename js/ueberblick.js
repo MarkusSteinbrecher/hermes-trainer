@@ -1320,15 +1320,13 @@
 
     var e = zustand.aktiv;
     if (e) {
-      /* Ort für persönliche Notizen — derselbe wie die Lexikonkarte, damit
-         eine Markierung hier auch dort erscheint. */
-      refs.inhalt.dataset.nzOrt = '#/lexikon?id=' + encodeURIComponent(e.id);
-      refs.inhalt.dataset.nzTitel = e.begriff;
+      /* Ort für Markierungen — derselbe wie die Lexikonkarte, damit eine
+         Markierung hier auch dort erscheint. */
+      refs.inhalt.dataset.markOrt = '#/lexikon?id=' + encodeURIComponent(e.id);
     } else {
-      delete refs.inhalt.dataset.nzOrt;
-      delete refs.inhalt.dataset.nzTitel;
+      delete refs.inhalt.dataset.markOrt;
     }
-    delete refs.inhalt.dataset.nzKomplett;
+    delete refs.inhalt.dataset.markKomplett;
     if (!e) {
       refs.inhalt.appendChild(leerseite());
       refs.inhalt.scrollTop = 0;
@@ -1338,8 +1336,8 @@
 
     handbuchHolen(e);
     var text = hbTexte[e.id] || null;
-    /* Mit Handbuchtext ist die Seite vollständig (siehe js/notizen.js). */
-    if (text) { refs.inhalt.dataset.nzKomplett = '1'; }
+    /* Mit Handbuchtext ist die Seite vollständig (siehe js/markieren.js). */
+    if (text) { refs.inhalt.dataset.markKomplett = '1'; }
     var lead = leadQuelle(text);
     var marker = markerVon(e);
     var vorlage = vorlageVon(text);
@@ -1383,8 +1381,6 @@
         h('p', { class: 'ub-doku', text: e.details })
       ], 'ub-abschnitt--regel'));
     }
-
-    if (HT.notizen) { refs.inhalt.appendChild(HT.notizen.panel('#/lexikon?id=' + encodeURIComponent(e.id), e.begriff)); }
 
     /* «Im Graph»: die Graph-Sicht der Bühne zeigt das Element mit allem,
        was direkt daran hängt — in der Graph-Sicht selbst überflüssig. */

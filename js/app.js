@@ -16,7 +16,6 @@
     { name: 'lexikon',    label: 'Lexikon',    kurz: 'Lexikon',  pfade: ['M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M4 17.5h15'] },
     { name: 'lernkarten', label: 'Lernkarten', kurz: 'Karten',   pfade: ['M8 3h10a2 2 0 0 1 2 2v9', 'M5 7h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z'] },
     { name: 'quiz',       label: 'Quiz',       kurz: 'Quiz',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M9.3 9.4a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 3.9', 'M12 17.4h.01'] },
-    { name: 'notizen',    label: 'Notizen',    kurz: 'Notizen',  pfade: ['M4 20.5 5 16.5 15.5 6a2.1 2.1 0 0 1 3 3L8 19.5Z', 'M13.5 8l3 3', 'M4 20.5l4-1'] },
     { name: 'ueber',      label: 'Über',       kurz: 'Über',     pfade: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.8h.01'] }
   ];
 

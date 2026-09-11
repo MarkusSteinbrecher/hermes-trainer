@@ -29,7 +29,7 @@
         h('li', {}, [h('b', { text: 'Lexikon: ' }), 'alle Methodenelemente mit drei Detailstufen: Kurz (erster Satz und Fakten), Kernpunkte (Definition und Querverweise) und Handbuch (vollständige Beschreibung mit Kapitel- und Seitenangabe).']),
         h('li', {}, [h('b', { text: 'Lernkarten: ' }), 'Begriff ↔ Definition mit Selbsteinschätzung; Fortschritt lokal im Browser.']),
         h('li', {}, [h('b', { text: 'Quiz: ' }), 'kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus dem Lexikon erzeugte Fragen.']),
-        h('li', {}, [h('b', { text: 'Notizen: ' }), 'Text in Methode, Lexikon und Überblick markieren (vier Farben) und kommentieren, dazu freie Notizen je Kapitel und Eintrag. Alles bleibt in diesem Browser und lässt sich als Datei sichern und auf einem anderen Gerät wieder einlesen — samt Lernstand von Lernkarten, Quiz und Trainer.'])
+        h('li', {}, [h('b', { text: 'Markieren: ' }), 'Wörter und Sätze in Überblick, Lexikon und Methode auswählen und gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg. Alles bleibt in diesem Browser.'])
       ]),
 
       h('h2', { text: 'Quelle der Inhalte' }),

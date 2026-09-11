@@ -266,12 +266,12 @@
     HT.ui.leeren(behaelter);
     behaelter.appendChild(h('p', { class: 'trefferzahl', text: 'Handbuchtext wird geladen …' }));
 
-    var block = behaelter.closest ? behaelter.closest('[data-nz-ort]') : null;
+    var block = behaelter.closest ? behaelter.closest('[data-mark-ort]') : null;
     HT.daten.handbuchElement(e).then(function (text) {
       HT.ui.leeren(behaelter);
-      /* Ab jetzt ist der Text der Karte vollständig — Notizen dürfen
-         Markierungen, die sie nicht finden, als verwaist führen. */
-      if (block) { block.setAttribute('data-nz-komplett', '1'); }
+      /* Ab jetzt ist der Text der Karte vollständig — Markierungen, die
+         sich nicht mehr finden, dürfen wegfallen. */
+      if (block) { block.setAttribute('data-mark-komplett', '1'); }
       if (!text) {
         handbuchFallback(e).forEach(function (k) { behaelter.appendChild(k); });
         return;
@@ -341,13 +341,12 @@
     var quelle = HT.ui.quellenLink(e.quelle);
     var titelTag = optionen.titelEbene || 'h2';
 
-    /* Ort für persönliche Notizen (js/notizen.js): die Karte ist der Block,
-       in dem Markierungen verankert werden — im Lexikon wie im Überblick. */
-    var ort = '#/lexikon?id=' + encodeURIComponent(e.id);
+    /* Ort für Markierungen (js/markieren.js): die Karte ist der Block, in
+       dem sie verankert werden — im Lexikon wie im Überblick. */
     var artikel = h('article', {
       class: 'eintrag eintrag--' + e.kategorie,
       id: 'eintrag-' + e.id,
-      dataset: { id: e.id, nzOrt: ort, nzTitel: e.begriff }
+      dataset: { id: e.id, markOrt: '#/lexikon?id=' + encodeURIComponent(e.id) }
     }, [
       h('div', { class: 'eintrag__kopf' }, [
         optionen.ohneTitel ? null : h('div', { class: 'eintrag__titelzeile' }, [
@@ -363,8 +362,7 @@
         optionen.zusatz || null
       ]),
       kern,
-      handbuch,
-      HT.notizen && !optionen.ohneNotizen ? HT.notizen.panel(ort, e.begriff, { kompakt: true }) : null
+      handbuch
     ]);
 
     anwenden(typeof optionen.stufe === 'number' ? optionen.stufe : 0);

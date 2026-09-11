@@ -1,0 +1,46 @@
+/* ==========================================================================
+   meinHERMES — Markierungen im Text
+
+   Eine Markierfarbe, hell und druckfähig. Der Knopf «Markieren» über der
+   Auswahl ist das einzige Schwebende — flach, mit Linie und Schatten.
+   ========================================================================== */
+
+:root { --mk-gelb: #fbe58a; }
+
+mark.mk-mark {
+  padding: .04em 0;
+  background: var(--mk-gelb);
+  color: inherit;
+  cursor: pointer;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+mark.mk-mark:hover, mark.mk-mark:focus-visible { outline: 2px solid var(--akzent); outline-offset: 1px; }
+
+.mk-blase {
+  position: fixed;
+  z-index: 70;
+  padding: 4px;
+  background: var(--weiss);
+  border: 1px solid var(--rand-stark);
+  box-shadow: var(--schatten-stark);
+}
+.mk-blase[hidden] { display: none; }
+.mk-blase__knopf {
+  display: flex; align-items: center; gap: 8px;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.mk-blase__knopf::before { content: ''; width: 14px; height: 14px; background: var(--mk-gelb); border: 1px solid var(--rand-stark); }
+.mk-blase__knopf:hover { color: var(--akzent-text); }
+
+@media print { .mk-blase { display: none !important; } }
