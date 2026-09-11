@@ -3,9 +3,9 @@
    3 Module, 4 Ergebnisse, 5 Aufgaben, 6 Rollen, 7 Hinweise zur Anwendung.
    Die Kapitel sind Chips in der Kopfzeile; ein Kapitel zeigt seinen Text in
    der Gliederung des Handbuchs (Nummern, Seiten), und an der Stelle
-   «Beschreibung der …» stehen die Elemente als Karten in drei Stufen
-   (siehe js/karte.js) unter den Zwischentiteln des Handbuchs — Abnahme-
-   protokoll etwa als 4.4.1.1 unter 4.4.1 Dokumente. Gesucht wird in der
+   «Beschreibung der …» stehen die Elemente als Karten mit ihrem vollen
+   Handbuchtext (siehe js/karte.js) unter den Zwischentiteln des Handbuchs
+   — Abnahmeprotokoll etwa als 4.4.1.1 unter 4.4.1 Dokumente. Gesucht wird in der
    Kopfzeile der Anwendung; die Seite hat kein eigenes Suchfeld. */
 (function (global) {
   'use strict';
@@ -14,24 +14,20 @@
   HT.views = HT.views || {};
 
   var h = HT.ui.h;
-  var STUFEN = HT.karte.STUFEN;
 
   var KAPITEL = [
     { id: 'methodenueberblick', nummer: 'A/B', titel: 'Methodenüberblick', kategorie: 'grundbegriff' },
-    /* beschreibung: der Abschnitt «Beschreibung der …», unter dem die Karten stehen. */
-    { id: 'phasen', nummer: '1', titel: 'Phasen', kategorie: 'phase', beschreibung: '1.4' },
-    { id: 'szenarien', nummer: '2', titel: 'Szenarien', kategorie: 'szenario', beschreibung: '2.4' },
-    { id: 'module', nummer: '3', titel: 'Module', kategorie: 'modul', beschreibung: '3.4' },
-    { id: 'ergebnisse', nummer: '4', titel: 'Ergebnisse', kategorie: 'ergebnis', beschreibung: '4.4' },
-    { id: 'aufgaben', nummer: '5', titel: 'Aufgaben', kategorie: 'aufgabe', beschreibung: '5.4' },
-    { id: 'rollen', nummer: '6', titel: 'Rollen', kategorie: 'rolle', beschreibung: '6.4' },
+    { id: 'phasen', nummer: '1', titel: 'Phasen', kategorie: 'phase' },
+    { id: 'szenarien', nummer: '2', titel: 'Szenarien', kategorie: 'szenario' },
+    { id: 'module', nummer: '3', titel: 'Module', kategorie: 'modul' },
+    { id: 'ergebnisse', nummer: '4', titel: 'Ergebnisse', kategorie: 'ergebnis' },
+    { id: 'aufgaben', nummer: '5', titel: 'Aufgaben', kategorie: 'aufgabe' },
+    { id: 'rollen', nummer: '6', titel: 'Rollen', kategorie: 'rolle' },
     { id: 'hinweise', nummer: '7', titel: 'Hinweise zur Anwendung', kategorie: null }
   ];
 
   var zustand = {
     kapitel: 'methodenueberblick',  // zuletzt gelesenes Kapitel
-    standardStufe: 0,               // Stufe neuer Karten
-    stufe: {},                      // id -> Stufe, wenn abweichend gewählt
     initialisiert: false
   };
 
@@ -75,14 +71,13 @@
   /* --- Persistenz ---------------------------------------------------------- */
 
   function speichern() {
-    HT.store.schreib('handbuch', { kapitel: zustand.kapitel, stufe: zustand.standardStufe });
+    HT.store.schreib('handbuch', { kapitel: zustand.kapitel });
   }
 
   function wiederherstellen() {
     var g = HT.store.lies('handbuch', null);
     if (g && typeof g === 'object') {
       if (kapitelMeta(g.kapitel)) { zustand.kapitel = g.kapitel; }
-      if ([0, 1, 2].indexOf(g.stufe) !== -1) { zustand.standardStufe = g.stufe; }
     }
   }
 
@@ -107,15 +102,6 @@
 
   /* --- Karten -------------------------------------------------------------- */
 
-  /* Stufe einer Karte: ausdrücklich gewählt, sonst die Standardstufe — und
-     «Handbuch», wenn Markierungen zu diesem Element gespeichert sind, damit
-     eine Markierung aus dem Überblick hier auch zu sehen ist. */
-  function stufeVon(e) {
-    if (zustand.stufe.hasOwnProperty(e.id)) { return zustand.stufe[e.id]; }
-    if (HT.markieren && HT.markieren.fuerOrt('#/handbuch?id=' + encodeURIComponent(e.id)).length) { return 2; }
-    return zustand.standardStufe;
-  }
-
   /* Grundbegriffe kommen im Graphen nicht vor — dort führt der Knopf ins Leere. */
   function graphLink(e) {
     if (e.kategorie === 'grundbegriff') { return null; }
@@ -128,45 +114,16 @@
     }, [h('span', { 'aria-hidden': 'true', text: '◎ ' }), 'Im Graph']);
   }
 
+  /* Die Karte zeigt hier nur den Handbuchtext — Kurzfassung und Kernpunkte
+     sind eigene Texte und gehören nicht ins Handbuch. */
   function karte(e, hb) {
     return HT.karte.bauen(e, {
-      stufe: stufeVon(e),
-      beiStufe: function (id, stufe) { zustand.stufe[id] = stufe; },
+      nurHandbuch: true,
       zusatz: graphLink(e),
       titelEbene: 'h4',
       nummer: hb ? hb.nummer : null,
       seite: hb ? hb.seite : null
     });
-  }
-
-  /* «Ansicht»: Stufe aller Karten des Kapitels; zeichnet die Karten neu. */
-  function stufenwahlBauen(neuZeichnen) {
-    var knoepfe = [];
-    function markieren() {
-      knoepfe.forEach(function (b) {
-        b.setAttribute('aria-pressed', Number(b.dataset.wert) === zustand.standardStufe ? 'true' : 'false');
-      });
-    }
-    STUFEN.forEach(function (s) {
-      var b = h('button', {
-        type: 'button', class: 'chip', 'aria-pressed': 'false',
-        dataset: { wert: String(s.wert) }, title: s.titel, text: s.label
-      });
-      b.addEventListener('click', function () {
-        zustand.standardStufe = s.wert;
-        zustand.stufe = {};
-        markieren();
-        speichern();
-        neuZeichnen();
-      });
-      knoepfe.push(b);
-    });
-    markieren();
-    return h('div', { class: 'stufenwahl' }, [
-      h('span', { class: 'stufenwahl__label', text: 'Ansicht' }),
-      h('ul', { class: 'chips', role: 'group', 'aria-label': 'Detailtiefe aller Karten' },
-        knoepfe.map(function (b) { return h('li', {}, b); }))
-    ]);
   }
 
   /* Die Elemente eines Kapitels nach ihrem Zwischentitel im Handbuch:
@@ -191,16 +148,11 @@
     return nachEltern;
   }
 
-  function kartenListe(gruppe, listen) {
+  function kartenListe(gruppe) {
     var liste = h('div', { class: 'eintraege hb-karten' });
-    function fuellen() {
-      HT.ui.leeren(liste);
-      var fragment = document.createDocumentFragment();
-      gruppe.forEach(function (x) { fragment.appendChild(karte(x.eintrag, x.hb)); });
-      liste.appendChild(fragment);
-    }
-    fuellen();
-    listen.push(fuellen);
+    var fragment = document.createDocumentFragment();
+    gruppe.forEach(function (x) { fragment.appendChild(karte(x.eintrag, x.hb)); });
+    liste.appendChild(fragment);
     return liste;
   }
 
@@ -219,7 +171,8 @@
   function ohneNamensliste(bloecke, namen) {
     return (bloecke || []).filter(function (b) {
       if (b.t !== 'ul' || !b.items || !b.items.length) { return true; }
-      return !b.items.every(function (it) { return namen[HT.daten.normalisieren(it.text || '')]; });
+      /* Im Handbuch tragen manche Namen ein Sternchen («Auftraggeber*»). */
+      return !b.items.every(function (it) { return namen[HT.daten.normalisieren(String(it.text || '').replace(/[\s*]+$/, ''))]; });
     });
   }
 
@@ -230,10 +183,9 @@
       kinder.push(h('h' + ebene, { class: 'hb-titel hb-titel--' + ebene, id: a.nummer ? 'hb-' + a.nummer : null }, titelKinder(a)));
     }
     var gruppe = a.nummer ? ctx.nachEltern[a.nummer] : null;
-    if (a.nummer && ctx.stufenwahlBei === a.nummer) { kinder.push(ctx.stufenwahl); }
     var bloecke = gruppe ? ohneNamensliste(a.bloecke, ctx.namen) : (a.bloecke || []);
     if (bloecke.length) { kinder.push(HT.ui.bloecke(bloecke, { verlinken: true, ebene: ebene + 1 })); }
-    if (gruppe) { kinder.push(kartenListe(gruppe, ctx.listen)); }
+    if (gruppe) { kinder.push(kartenListe(gruppe)); }
     return h('section', { class: 'hb-abschnitt' + (gruppe ? ' hb-abschnitt--karten' : '') }, kinder);
   }
 
@@ -285,8 +237,7 @@
     return h('section', { class: 'hb-abschnitt hb-abschnitt--karten', id: 'hb-grundbegriffe' }, [
       h('h2', { class: 'hb-teil__titel', text: 'Grundbegriffe' }),
       h('p', { class: 'hb-p', text: 'Begriffe, die das Referenzhandbuch durchgehend verwendet — mit Verweis auf die Stelle bei HERMES online.' }),
-      ctx.stufenwahl,
-      kartenListe(gruppe, ctx.listen)
+      kartenListe(gruppe)
     ]);
   }
 
@@ -330,14 +281,11 @@
       var verweis = HT.ui.handbuchVerweis(kap, { url: kap.url });
       if (verweis) { kopf.appendChild(verweis); }
 
-      /* Elemente nach Zwischentitel; die Stufenwahl steht am Abschnitt
-         «Beschreibung der …», dem gemeinsamen Elternteil. */
-      var ctx = { meta: meta, nachEltern: {}, namen: {}, listen: [], versatz: 0, stufenwahl: null, stufenwahlBei: null };
+      /* Elemente nach Zwischentitel des Handbuchs. */
+      var ctx = { meta: meta, nachEltern: {}, namen: {}, versatz: 0 };
       if (meta.kategorie) {
         ctx.nachEltern = elementeNachEltern(meta, res[1] || {});
         HT.daten.eintraegeDerKategorie(meta.kategorie).forEach(function (e) { ctx.namen[HT.daten.normalisieren(e.begriff)] = true; });
-        ctx.stufenwahlBei = meta.beschreibung || null;
-        ctx.stufenwahl = stufenwahlBauen(function () { ctx.listen.forEach(function (f) { f(); }); });
       }
 
       var teile = kap.teile || [];
@@ -391,7 +339,6 @@
       if (e) {
         meta = kapitelDerKategorie(e.kategorie);
         zielId = e.id;
-        zustand.stufe[e.id] = Math.max(1, stufeVon(e));
       }
     }
     if (!meta && params.kat) { meta = kapitelDerKategorie(params.kat); }

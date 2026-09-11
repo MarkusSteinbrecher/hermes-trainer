@@ -18,14 +18,14 @@
       ]),
 
       h('p', { text: 'meinHERMES ist eine private, inoffizielle Lernhilfe zur Vorbereitung auf die HERMES-2022-Prüfung. '
-        + 'Die Seite zeigt die Methodenelemente als Graph mit ihren Zusammenhängen und erschliesst die offizielle Dokumentation in Stufen: zuerst das Wichtigste, dann Kernpunkte, dann der vollständige Text — '
+        + 'Die Seite zeigt die Methodenelemente als Graph mit ihren Zusammenhängen und zeigt das Referenzhandbuch in seiner Gliederung — '
         + 'und verweist bei jedem Eintrag, jeder Lernkarte und jeder Quizfrage auf die Belegstelle im Referenzhandbuch und auf HERMES online.' }),
 
       h('h2', { text: 'Aufbau' }),
       h('ul', {}, [
         h('li', {}, [h('b', { text: 'Graph: ' }), 'die Methodenelemente und ihre Zusammenhänge: als Struktur (Szenarien, Module, Aufgaben, Ergebnisse, Rollen in Spalten), im Fokus (ein Element mit allen Verbindungen) und entlang der Phasen. Jede Verbindung entspricht einem Querverweis der offiziellen Dokumentation; Kategorien, Beziehungen und Filter lassen sich ein- und ausblenden.']),
         h('li', {}, [h('b', { text: 'Trainer: ' }), 'Ausschnitte aus dem Gesamtbild der Methode — je Phase, je Modul oder das ganze Bild — mit leeren Ergebniskästen; die Namen liegen als Chips bereit und werden an ihren Platz gezogen, die Prüfung zeigt richtig, falsch und offen.']),
-        h('li', {}, [h('b', { text: 'Handbuch: ' }), 'das Referenzhandbuch Kapitel für Kapitel in seiner Gliederung (Methodenüberblick, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung); die Elemente stehen als Karten an ihrer Stelle im Text, mit drei Detailstufen: Kurz (erster Satz und Fakten), Kernpunkte (Definition und Querverweise) und Handbuch (vollständige Beschreibung mit Kapitel- und Seitenangabe).']),
+        h('li', {}, [h('b', { text: 'Handbuch: ' }), 'das Referenzhandbuch Kapitel für Kapitel in seiner Gliederung (Methodenüberblick, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung); die Elemente stehen mit ihrem vollständigen Handbuchtext an ihrer Stelle im Text, mit Nummer und Seite im Referenzhandbuch.']),
         h('li', {}, [h('b', { text: 'Lernkarten: ' }), 'Begriff ↔ Definition mit Selbsteinschätzung; Fortschritt lokal im Browser.']),
         h('li', {}, [h('b', { text: 'Quiz: ' }), 'kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus den Elementkarten erzeugte Fragen.']),
         h('li', {}, [h('b', { text: 'Markieren: ' }), 'Wörter und Sätze im Überblick und im Handbuch auswählen und gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg. Alles bleibt in diesem Browser.'])

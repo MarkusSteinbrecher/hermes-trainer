@@ -303,6 +303,8 @@
    * optionen.ohneTitel: Kopf ohne h2 (wenn der Titel bereits darüber steht)
    * optionen.titelEbene: 'h2' | 'h3' | 'h4'
    * optionen.nummer, optionen.seite: Nummer und Seite im Referenzhandbuch, vor bzw. nach dem Titel
+   * optionen.nurHandbuch: nur Titel, Fakten und der Handbuchtext — ohne Kurzfassung,
+   *   Kernpunkte und Stufenwahl (Seite «Handbuch»)
    */
   function bauen(e, optionen) {
     optionen = optionen || {};
@@ -334,7 +336,7 @@
       knoepfe.push(b);
     });
 
-    var stufen = h('div', { class: 'stufen', role: 'group', 'aria-label': 'Detailtiefe für ' + e.begriff }, knoepfe);
+    var stufen = optionen.nurHandbuch ? null : h('div', { class: 'stufen', role: 'group', 'aria-label': 'Detailtiefe für ' + e.begriff }, knoepfe);
     var quelle = HT.ui.quellenLink(e.quelle);
     var titelTag = optionen.titelEbene || 'h2';
 
@@ -354,7 +356,7 @@
           ]),
           HT.ui.badge(e.kategorie)
         ]),
-        h('p', { class: 'eintrag__def', text: e.kurz || e.definition || 'Keine Definition hinterlegt.' }),
+        optionen.nurHandbuch ? null : h('p', { class: 'eintrag__def', text: e.kurz || e.definition || 'Keine Definition hinterlegt.' }),
         fakten(e, linkZiel)
       ]),
       h('div', { class: 'eintrag__fuss' }, [
@@ -362,11 +364,11 @@
         quelle || h('span', { class: 'chip__zahl', text: 'Kein Quellenlink hinterlegt' }),
         optionen.zusatz || null
       ]),
-      kern,
+      optionen.nurHandbuch ? null : kern,
       handbuch
     ]);
 
-    anwenden(typeof optionen.stufe === 'number' ? optionen.stufe : 0);
+    anwenden(optionen.nurHandbuch ? 2 : (typeof optionen.stufe === 'number' ? optionen.stufe : 0));
     return artikel;
   }
 
