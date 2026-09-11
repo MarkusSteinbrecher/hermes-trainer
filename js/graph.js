@@ -197,6 +197,10 @@
   function fokusSetzen(id) {
     if (!id || zustand.fokusId === id) {
       zustand.fokusId = null;
+      /* Der zweite Klick hebt den Fokus auf, zeigt aber weiterhin das
+         Element: war das Detailfeld geschlossen, geht es damit auf — ein
+         Klick auf einen Knoten öffnet es immer. */
+      if (id) { zustand.auswahlId = id; }
       if (umfangVorFokus) { zustand.umfang = umfangVorFokus; umfangVorFokus = null; }
       popSchliessen();
       geaendert();
@@ -241,7 +245,6 @@
      öffnet. */
   var POPS = {
     alle:        { titel: 'Alle Filter',    inhalt: function () { return alleFilterInhalt(); },  knopf: 'knopfAlle', breit: true },
-    filter:      { titel: 'Filter',         inhalt: function () { return filterInhalt(); },      knopf: 'knopfFilter' },
     suche:       { titel: 'Element suchen', inhalt: function () { return sucheInhalt(); },       knopf: 'knopfSuche' },
     darstellung: { titel: 'Darstellung',    inhalt: function () { return darstellungInhalt(); }, knopf: 'knopfDarstellung' },
     legende:     { titel: 'Legende',        inhalt: function () { return legendeInhalt(); },     knopf: 'knopfLegende' }
@@ -440,37 +443,6 @@
     return popInhalt(kinder);
   }
 
-  /* Filter: ein Element mit seiner Nachbarschaft. Rollen sind der häufigste
-     Fall («was tut der Projektleiter?») und stehen als Chips bereit; jedes
-     andere Element lässt sich suchen oder im Detailfeld wählen. */
-  function filterInhalt() {
-    var fokus = zustand.fokusId ? HT.daten.eintragMitId(zustand.fokusId) : null;
-    var kinder = [];
-
-    kinder.push(h('p', { class: 'gpop__hinweis', text:
-      'Zeigt nur ein Element mit allem, was direkt daran hängt — eine Rolle mit ihren Aufgaben und Ergebnissen, '
-      + 'ein Ergebnis mit den Aufgaben und Rollen, die es erzeugen. Phasen und Module bleiben als Auswahl in der Leiste.' }));
-
-    if (fokus) {
-      kinder.push(h('div', { class: 'gfilter__aktiv' }, [
-        h('span', { class: 'gswatch gswatch--' + fokus.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(fokus.kategorie, 13)),
-        h('span', { class: 'gfilter__name', text: fokus.begriff }),
-        h('button', { type: 'button', class: 'gauswahl__reset', text: 'Aufheben', on: { click: function () { fokusSetzen(null); } } })
-      ]));
-    }
-
-    kinder.push(h('div', { class: 'gpop__label', text: 'Rolle' }));
-    kinder.push(h('div', { class: 'chips chips--klein', role: 'group', 'aria-label': 'Rolle' },
-      HT.daten.alphabetisch(HT.daten.eintraegeDerKategorie('rolle')).map(function (r) {
-        return chip(r.begriff, null, zustand.fokusId === r.id, function () { fokusSetzen(r.id); });
-      })));
-
-    kinder.push(h('div', { class: 'gpop__label', text: 'Anderes Element' }));
-    kinder.push(refs.filterFeld);
-    kinder.push(refs.filterListe);
-    return popInhalt(kinder);
-  }
-
   function chip(label, zahl, aktiv, beiKlick, klasse) {
     return h('button', {
       type: 'button', class: 'chip chip--auswahl' + (klasse ? ' ' + klasse : ''),
@@ -586,32 +558,6 @@
        Screenreader als Live-Bereich. */
     refs.status = h('p', { class: 'graph-status nur-sr', role: 'status', 'aria-live': 'polite' });
 
-    /* Suchfeld des Filters: Treffer setzen den Fokus statt der Auswahl. */
-    refs.filterFeld = h('input', {
-      type: 'search', class: 'suche__feld suche__feld--klein', placeholder: 'Aufgabe, Ergebnis oder Rolle …',
-      autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': 'Element für den Fokus suchen'
-    });
-    refs.filterListe = h('ul', { class: 'gs-treffer', role: 'listbox', 'aria-label': 'Suchtreffer' });
-    refs.filterListe.hidden = true;
-    var filterTimer = null;
-    refs.filterFeld.addEventListener('input', function () {
-      if (filterTimer) { clearTimeout(filterTimer); }
-      filterTimer = setTimeout(function () { trefferZeichnen(refs.filterFeld, refs.filterListe, fokusSetzen); }, 120);
-    });
-    refs.filterFeld.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Enter') {
-        ev.preventDefault();
-        var erster = refs.filterListe.querySelector('button');
-        if (erster) { erster.click(); }
-      } else if (ev.key === 'Escape') {
-        refs.filterFeld.value = '';
-        trefferZeichnen(refs.filterFeld, refs.filterListe, fokusSetzen);
-      }
-    });
-
-    refs.knopfFilter = werkzeugKnopf('graph-werkzeug--filter', 'Filter: nur ein Element mit seiner Nachbarschaft',
-      ['M3.5 5h17', 'M6.5 12h11', 'M10 19h4'],
-      function () { popOeffnen('filter'); });
     refs.fokusChip = h('button', {
       type: 'button', class: 'gfokus', title: 'Fokus aufheben',
       on: { click: function () { fokusSetzen(null); } }
@@ -636,16 +582,12 @@
         HT.ui.symbol(['M9.6 4.6H4.6v5', 'M14.4 4.6h5v5', 'M9.6 19.4h-5v-5', 'M14.4 19.4h5v-5'], 17))
     ]);
 
-    /* Auswahl (früher eine eigene Leiste) */
-    refs.knopfAlle = h('button', {
-      type: 'button', class: 'btn btn--klein gauswahl__alle', 'aria-expanded': 'false', 'aria-haspopup': 'dialog',
-      title: 'Alle Filter auf einer Seite',
-      on: { click: function () { popOeffnen('alle'); } }
-    }, [
-      HT.ui.symbol(['M4 6h16', 'M7 12h10', 'M10 18h4'], 15),
-      h('span', { text: 'Alle Filter' }),
-      h('span', { 'aria-hidden': 'true', text: ' ▾' })
-    ]);
+    /* «Alle Filter»: ein Werkzeug in der rechten Icon-Leiste, öffnet den
+       breiten Popover mit Phasen, Szenarien, Modulen, Elementen und
+       Verbindungen. */
+    refs.knopfAlle = werkzeugKnopf('graph-werkzeug--filter', 'Alle Filter: Phasen, Szenarien, Module, Elemente',
+      ['M3.5 5h17', 'M6.5 12h11', 'M10 19h4'],
+      function () { popOeffnen('alle'); });
     refs.vorgehenSegment = h('span', { class: 'gauswahl__vorgehen' });
     /* Suchfeld in der Leiste: findet Elemente, Module und Phasen. Ein
        Element setzt den Fokus, ein Modul oder eine Phase den Umfang — in
@@ -668,9 +610,10 @@
     });
 
     /* Drei Zonen, damit die Suche in der Mitte der Leiste steht: links die
-       Ansicht und die Filter, in der Mitte die Suche, rechts die Chips. */
+       Ansicht (und die Vorgehensweise), in der Mitte die Suche, rechts die
+       Chips. Die Filter liegen als Werkzeug in der rechten Icon-Leiste. */
     refs.werkzeugleiste = h('div', { class: 'graph-leiste' }, [
-      h('div', { class: 'graph-leiste__links' }, [refs.ansichtSegment, refs.knopfAlle, refs.vorgehenSegment]),
+      h('div', { class: 'graph-leiste__links' }, [refs.ansichtSegment, refs.vorgehenSegment]),
       h('div', { class: 'graph-leiste__mitte' }, [refs.leisteSuche]),
       h('div', { class: 'graph-leiste__rechts' }, [refs.umfangChips, refs.fokusChip, refs.knopfReset, refs.status])
     ]);
@@ -717,7 +660,6 @@
       refs.fokusChip.appendChild(h('span', { class: 'gfokus__x', 'aria-hidden': 'true', text: '×' }));
       refs.fokusChip.setAttribute('aria-label', 'Fokus auf ' + fokus.begriff + ' aufheben');
     }
-    refs.knopfFilter.classList.toggle('ist-aktiv', !!fokus);
     refs.fokusHinweis.hidden = !fokus;
     if (fokus) {
       var meta = HT.graph.KAT[fokus.kategorie];
@@ -741,14 +683,14 @@
     return refs.rail;
   }
 
-  /* Rechte Icon-Leiste: die Werkzeuge, die früher rechts in der Leiste
-     standen — Filter, Suche, Darstellung, Legende und darunter der Zoom.
+  /* Rechte Icon-Leiste: die Werkzeuge, die früher in der Leiste standen —
+     Alle Filter, Suche, Darstellung, Legende und darunter der Zoom.
      Die Knöpfe entstehen in leisteBauen(), damit die Popover-Tabelle POPS
      sie über refs findet. */
   function railRechtsBauen() {
     refs.railRechts = h('div', { class: 'grail grail--rechts' }, [
       h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Werkzeuge' }, [
-        refs.knopfFilter, refs.knopfSuche, refs.knopfDarstellung, refs.knopfLegende
+        refs.knopfAlle, refs.knopfSuche, refs.knopfDarstellung, refs.knopfLegende
       ]),
       h('div', { class: 'grail__trenner', 'aria-hidden': 'true' }),
       refs.zoom

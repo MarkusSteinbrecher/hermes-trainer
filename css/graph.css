@@ -279,7 +279,6 @@ body[data-route="graph"] .fusszeile { display: none; }
 /* Hairlines zwischen den Gruppen der Leiste: 1 × 16 px, wie im Überblick.
    Die Auswahl-Chips scrollen in sich, deshalb kein Pseudo-Element, sondern
    ein Hintergrundstrich am linken Rand. */
-.gauswahl__alle,
 .gauswahl__vorgehen:not([hidden]),
 .graph-werkzeuge {
   margin-left: 8px;
@@ -482,20 +481,6 @@ body[data-route="graph"] .fusszeile { display: none; }
 .chips--phasen { gap: 2px; }
 .chip--phase:focus-visible { outline-offset: -2px; }
 
-/* «Alle Filter ▾» — Auswahl mit Rahmen: ein Select ohne Radius. */
-.graph-seite .gauswahl__alle {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  border: 1px solid var(--rand-stark);
-  padding: 0 8px;
-  color: var(--text);
-}
-.graph-seite .gauswahl__alle svg { width: 15px; height: 15px; margin-right: 2px; }
-.graph-seite .gauswahl__alle:hover { border-color: var(--text); }
-.graph-seite .gauswahl__alle.ist-aktiv { border-color: var(--akzent); color: var(--akzent-text); }
-.graph-seite .gauswahl__alle[aria-expanded="true"] { border-color: var(--text); color: var(--text); }
-
 /* Popover «Alle Filter»: über die ganze Breite der Fläche, die Abschnitte
    als Spalten nebeneinander — nichts muss scrollen. */
 .gpop.gpop--breit { left: .75rem; right: calc(1.5rem + 54px); width: auto; }
@@ -629,11 +614,6 @@ body[data-route="graph"] .fusszeile { display: none; }
 .gfokus__x { font-size: 15px; font-weight: 400; margin-left: 2px; }
 .graph-werkzeug.ist-aktiv { color: var(--akzent-text); }
 
-/* Filter-Popover */
-.gpop__label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); margin-bottom: -6px; }
-.gfilter__aktiv { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--akzent); background: var(--akzent-schwach); font-size: 13px; font-weight: 700; }
-.gfilter__name { flex: 1 1 auto; min-width: 0; }
-.gfilter__aktiv .gauswahl__reset { height: auto; padding: 0; }
 .gauswahl__reset:hover { color: var(--akzent); }
 
 /* --- Werkzeugknöpfe in der Leiste ---------------------------------------- */
@@ -852,7 +832,6 @@ body[data-route="graph"] .fusszeile { display: none; }
   .gumfang { order: 4; flex-basis: 100%; }
   .gumfang .gfokus--umfang:first-child { margin-left: 0; }
   .gauswahl__vorgehen { order: 5; margin-left: 0; padding-left: 0; background-image: none; }
-  .gauswahl__alle { order: 6; }
   .gauswahl__reset { order: 7; margin-left: auto; }
 }
 
