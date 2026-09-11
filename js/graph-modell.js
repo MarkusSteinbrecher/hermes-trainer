@@ -36,6 +36,22 @@
     klassisch: ['Initialisierung', 'Konzept', 'Realisierung', 'Einführung', 'Abschluss'],
     agil:      ['Initialisierung', 'Umsetzung', 'Abschluss']
   };
+  /* Alle Phasen beider Vorgehensweisen im Projektverlauf — Sortierschlüssel
+     für Aufgaben und Ergebnisse innerhalb einer Bahn: früheste Phase oben. */
+  var PHASEN_REIHE = ['Initialisierung', 'Konzept', 'Realisierung', 'Einführung', 'Umsetzung', 'Abschluss'];
+
+  /** Rang der frühesten Phase eines Elements; Phasen der gewählten
+      Vorgehensweise zählen zuerst, sonst alle. Ohne Phase ganz unten. */
+  function phasenRang(phasen, vp) {
+    var best = 999;
+    (phasen || []).forEach(function (name) {
+      var i = PHASEN_REIHE.indexOf(name);
+      if (i === -1) { return; }
+      if (vp.indexOf(name) === -1) { i += 100; }
+      if (i < best) { best = i; }
+    });
+    return best;
+  }
 
   /* Handbuch Kap. 3.2.1: zwingend in jedem Projekt. */
   var ZWINGENDE_MODULE = ['Projektsteuerung', 'Projektführung', 'Projektgrundlagen', 'Einführungsorganisation'];
@@ -283,10 +299,14 @@
       }
       gruppeVon[k.id] = g;
     });
+    /* Innerhalb der Bahn nach der frühesten Phase, dann nach Name. */
     aufgabenAlle.sort(function (a, b) {
       var ga = gruppenNamen.indexOf(gruppeVon[a.id]);
       var gb = gruppenNamen.indexOf(gruppeVon[b.id]);
       if (ga !== gb) { return ga - gb; }
+      var pa = phasenRang(a.eintrag.phasen, vp);
+      var pb = phasenRang(b.eintrag.phasen, vp);
+      if (pa !== pb) { return pa - pb; }
       return a.begriff.localeCompare(b.begriff, 'de');
     });
 
@@ -323,10 +343,19 @@
       var mm = k.eintrag.module.length ? k.eintrag.module[0] : '';
       return mo.hasOwnProperty(mm) ? mo[mm] : 999;
     }
+    /* Ergebnisse folgen der Phase ihrer erzeugenden Aufgabe (sonst der
+       eigenen), dann der Reihenfolge der Aufgaben — so bleiben die
+       Kanten «erzeugt» gebündelt und die frühesten Phasen stehen oben. */
+    function ergebnisPhasenRang(k) {
+      var q = quelleVon[k.id] ? m.knoten[quelleVon[k.id]] : null;
+      return phasenRang(q ? q.eintrag.phasen : k.eintrag.phasen, vp);
+    }
     ergebnisseAlle.sort(function (a, b) {
       var ga = gruppenNamen.indexOf(gruppeVonErgebnis[a.id]);
       var gb = gruppenNamen.indexOf(gruppeVonErgebnis[b.id]);
       if (ga !== gb) { return ga - gb; }
+      var pa = ergebnisPhasenRang(a), pb = ergebnisPhasenRang(b);
+      if (pa !== pb) { return pa - pb; }
       var ra = rang[a.id] === undefined ? 9999 : rang[a.id];
       var rb = rang[b.id] === undefined ? 9999 : rang[b.id];
       if (ra !== rb) { return ra - rb; }
