@@ -1204,95 +1204,27 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .chip[aria-pressed="true"] .hb-kapitel__nr { color: inherit; }
 .hb-kapitelkopf { margin: 0 0 6px; }
 .hb-kapitelkopf__titel { margin: 2px 0 6px; font-size: 26px; font-weight: 800; letter-spacing: -.015em; line-height: 1.1; }
-.hb-kapitelkopf__teaser { margin: 0 0 14px; font-size: 15px; color: var(--text-weich); line-height: 1.5; max-width: 60ch; text-wrap: pretty; }
-.hb-elemente { margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--linie-stark); }
-.hb-elemente__kopf { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 18px; margin-bottom: 12px; }
-.hb-elemente__kopf .stufe__titel { display: flex; align-items: center; gap: 8px; margin: 0; }
-.hb-elemente__kopf .stufenwahl { margin: 0; }
-.hb-elemente__ikone { display: inline-grid; place-items: center; width: 24px; height: 24px; color: var(--akzent); }
-.hb-elemente__ikone svg { width: 20px; height: 20px; }
-.stufe-block--text > summary .hb-seite { font-weight: 400; }
+/* Inhaltsverzeichnis des Kapitels: Knöpfe wie Links, Abschnitte eingerückt. */
+.hb-inhalt { margin: 4px 0 18px; padding: 10px 0 12px; border-top: 1px solid var(--rand); border-bottom: 1px solid var(--rand); }
+.hb-inhalt__liste { list-style: none; margin: 4px 0 0; padding: 0; columns: 2; column-gap: 28px; }
+.hb-inhalt__eintrag { break-inside: avoid; }
+.hb-inhalt__eintrag--2 { padding-left: 14px; }
+.hb-inhalt__knopf { padding: 2px 0; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 13.5px; text-align: left; cursor: pointer; }
+.hb-inhalt__knopf:hover { color: var(--akzent); }
+.hb-inhalt__eintrag--1 .hb-inhalt__knopf { font-weight: 700; }
+/* Teile (Unterkapitel) und Titelebenen des Handbuchtexts. */
+.hb-teil { margin-top: 8px; }
+.hb-teil + .hb-teil { margin-top: 26px; padding-top: 12px; border-top: 1px solid var(--linie-stark); }
+.hb-teil__titel { margin: 0 0 4px; font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
+.hb-titel--2 { margin-top: 26px; font-size: 16px; font-weight: 800; letter-spacing: -.01em; text-transform: none; color: var(--text); padding-top: 12px; border-top: 1px solid var(--rand); }
+.hb-titel--3 { margin-top: 18px; font-size: 14.5px; text-transform: none; letter-spacing: 0; color: var(--text); }
+.hb-titel--4, .hb-titel--5, .hb-titel--6 { text-transform: none; letter-spacing: 0; font-size: 13.5px; color: var(--text); }
+.hb-abschnitt--karten .stufenwahl { margin: 8px 0 10px; }
+.hb-karten { margin: 6px 0 10px; }
+.hb-karten .eintrag__titel { font-size: 17px; }
 
 /* --- Handbuch: Kapitelseite ---------------------------------------------- */
-.kapitel .hb-verweis { margin-top: 0; }
-
-/* Stufe 1: Kernaussagen — ein Abschnitt unter einer starken Linie. */
-.stufe-box {
-  border-top: 1px solid var(--linie-stark);
-  padding: 14px 0 10px;
-  margin: 12px 0 18px;
-}
-.stufe-box__titel { margin: 0 0 10px; font-size: 18px; }
-.stufe-box .detail__label { margin-top: 8px; }
-.detail__label--warn { color: var(--akzent-text); }
-.kernaussagen { margin: 0 0 10px; padding-left: 1.4rem; }
-.kernaussagen li { margin-bottom: 8px; font-weight: 500; text-wrap: pretty; max-width: 60ch; }
-.kernaussagen li::marker { color: var(--akzent); font-weight: 800; }
-
-/* Stufen 2 und 3: aufklappbare Abschnitte zwischen Linien. */
-details.stufe-block, .stufe-block--offen {
-  border-top: 1px solid var(--rand);
-  margin: 0;
-}
-.stufe-wrap > :last-child { border-bottom: 1px solid var(--rand); }
-details.stufe-block > summary {
-  cursor: pointer;
-  padding: 12px 0;
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: -.01em;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-details.stufe-block > summary::-webkit-details-marker { display: none; }
-details.stufe-block > summary::before {
-  content: '▶';
-  font-size: 9px;
-  color: var(--text-leise);
-  transition: transform .18s ease;
-}
-details.stufe-block[open] > summary::before { transform: rotate(90deg); }
-details.stufe-block > summary:hover { color: var(--akzent); }
-.stufe__nr {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--akzent-text);
-}
-.stufe__inhalt { padding: 0 0 16px; }
-.stufe__titel { margin: 18px 0 10px; display: flex; align-items: center; gap: 10px; font-size: 16px; }
-.stufe-wrap { margin-bottom: 8px; }
-.stufe-block--offen { padding-top: 8px; }
-.hb-zusammenfassung { margin: 4px 0 6px; }
-
-details.hb-gruppe {
-  border-top: 1px solid var(--rand-fein);
-  margin-top: 8px;
-}
-details.hb-gruppe > summary {
-  cursor: pointer;
-  padding: 10px 0;
-  font-weight: 700;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-details.hb-gruppe > summary::-webkit-details-marker { display: none; }
-details.hb-gruppe > summary::before { content: '▶'; font-size: 8px; color: var(--text-leise); transition: transform .18s ease; }
-details.hb-gruppe[open] > summary::before { transform: rotate(90deg); }
-details.hb-gruppe > summary:hover { color: var(--akzent); }
-.hb-gruppe__inhalt { padding: 0 0 8px 2px; }
-.hb-gruppe .hb-titel { text-transform: none; letter-spacing: 0; font-size: 14.5px; color: var(--text); }
-
-.belege { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rand-fein); }
-.belege__liste { margin: 0; padding-left: 1.1rem; font-size: 13.5px; color: var(--text-weich); }
-.belege__liste li { margin-bottom: 6px; }
-.beleg__zitat { font-style: italic; }
-.beleg__ort { color: var(--text-leise); white-space: nowrap; }
+.hb-kapitelkopf .hb-verweis { margin-top: 2px; }
 
 .kapitel-nav { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--rand); }
 

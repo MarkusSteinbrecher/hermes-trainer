@@ -305,7 +305,8 @@
    * optionen.linkZiel(eintrag): Link-Ziel für Querverweise (Standard: Handbuch)
    * optionen.zusatz: zusätzliche Aktionen im Fuss (Array von Elementen)
    * optionen.ohneTitel: Kopf ohne h2 (wenn der Titel bereits darüber steht)
-   * optionen.titelEbene: 'h2' | 'h3'
+   * optionen.titelEbene: 'h2' | 'h3' | 'h4'
+   * optionen.nummer, optionen.seite: Nummer und Seite im Referenzhandbuch, vor bzw. nach dem Titel
    */
   function bauen(e, optionen) {
     optionen = optionen || {};
@@ -350,7 +351,11 @@
     }, [
       h('div', { class: 'eintrag__kopf' }, [
         optionen.ohneTitel ? null : h('div', { class: 'eintrag__titelzeile' }, [
-          h(titelTag, { class: 'eintrag__titel', text: e.begriff }),
+          h(titelTag, { class: 'eintrag__titel' }, [
+            optionen.nummer ? h('span', { class: 'hb-nr', text: optionen.nummer + ' ' }) : null,
+            e.begriff,
+            optionen.seite ? h('span', { class: 'hb-seite', text: ' S. ' + optionen.seite }) : null
+          ]),
           HT.ui.badge(e.kategorie)
         ]),
         h('p', { class: 'eintrag__def', text: e.kurz || e.definition || 'Keine Definition hinterlegt.' }),

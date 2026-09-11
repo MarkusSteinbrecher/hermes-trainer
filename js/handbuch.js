@@ -1,10 +1,12 @@
 /* meinHERMES — Ansicht «Handbuch».
-   Folgt dem Aufbau des Referenzhandbuchs: Methodenüberblick, 1 Phasen,
-   2 Szenarien, 3 Module, 4 Ergebnisse, 5 Aufgaben, 6 Rollen, 7 Hinweise zur
-   Anwendung. Die Kapitel sind Chips in der Kopfzeile; ein Kapitel zeigt
-   Kernaussagen → Zusammenfassung → vollständigen Handbuchtext und darunter
-   seine Elemente als Karten in drei Stufen (siehe js/karte.js). Gesucht wird
-   in der Kopfzeile der Anwendung — die Seite hat kein eigenes Suchfeld. */
+   Folgt dem Referenzhandbuch: Methodenüberblick (A/B), 1 Phasen, 2 Szenarien,
+   3 Module, 4 Ergebnisse, 5 Aufgaben, 6 Rollen, 7 Hinweise zur Anwendung.
+   Die Kapitel sind Chips in der Kopfzeile; ein Kapitel zeigt seinen Text in
+   der Gliederung des Handbuchs (Nummern, Seiten), und an der Stelle
+   «Beschreibung der …» stehen die Elemente als Karten in drei Stufen
+   (siehe js/karte.js) unter den Zwischentiteln des Handbuchs — Abnahme-
+   protokoll etwa als 4.4.1.1 unter 4.4.1 Dokumente. Gesucht wird in der
+   Kopfzeile der Anwendung; die Seite hat kein eigenes Suchfeld. */
 (function (global) {
   'use strict';
 
@@ -12,65 +14,62 @@
   HT.views = HT.views || {};
 
   var h = HT.ui.h;
-  var SEITE = 40;                 // Karten je Nachladeschritt
   var STUFEN = HT.karte.STUFEN;
 
   var KAPITEL = [
-    { id: 'methodenueberblick', nummer: 'A/B', titel: 'Methodenüberblick', kategorie: 'grundbegriff', elementeTitel: 'Grundbegriffe',
-      teaser: 'Was HERMES-Projektmanagement ist, welche Vorgehensweisen es unterstützt und wie die Methodenelemente zusammenspielen.' },
-    { id: 'phasen', nummer: '1', titel: 'Phasen', kategorie: 'phase',
-      teaser: 'Projektlebenszyklus, Phasenmodell für klassische und agile Vorgehensweise, Meilensteine als Quality Gates und die Beschreibung der einzelnen Phasen.' },
-    { id: 'szenarien', nummer: '2', titel: 'Szenarien', kategorie: 'szenario',
-      teaser: 'Fünf Standardszenarien, ihr Aufbau aus Modulen sowie Sizing und Tailoring für benutzerdefinierte Szenarien.' },
-    { id: 'module', nummer: '3', titel: 'Module', kategorie: 'modul',
-      teaser: 'Standardmodule, ihre Zuordnung zu den Phasen und die vier Module, die zur Einhaltung der Projekt-Governance zwingend sind.' },
-    { id: 'ergebnisse', nummer: '4', titel: 'Ergebnisse', kategorie: 'ergebnis',
-      teaser: 'Dokumente und Zustände, minimal geforderte Dokumente, Checklisten und Meilensteine.' },
-    { id: 'aufgaben', nummer: '5', titel: 'Aufgaben', kategorie: 'aufgabe',
-      teaser: 'Entscheidungsaufgaben der Steuerung und der Führung, sonstige Aufgaben und der Aufbau jeder Aufgabenbeschreibung.' },
-    { id: 'rollen', nummer: '6', titel: 'Rollen', kategorie: 'rolle',
-      teaser: 'Stammorganisation und Projektorganisation, Partnergruppen, Hierarchieebenen, minimal zu besetzende Rollen und Rollenbesetzung.' },
-    { id: 'hinweise', nummer: '7', titel: 'Hinweise zur Anwendung', kategorie: null,
-      teaser: 'Governance, Reporting, Nachhaltigkeit, finanzielle Steuerung, Planung, Realisierungseinheiten, andere Methoden und die Integration in die Stammorganisation.' }
+    { id: 'methodenueberblick', nummer: 'A/B', titel: 'Methodenüberblick', kategorie: 'grundbegriff' },
+    /* beschreibung: der Abschnitt «Beschreibung der …», unter dem die Karten stehen. */
+    { id: 'phasen', nummer: '1', titel: 'Phasen', kategorie: 'phase', beschreibung: '1.4' },
+    { id: 'szenarien', nummer: '2', titel: 'Szenarien', kategorie: 'szenario', beschreibung: '2.4' },
+    { id: 'module', nummer: '3', titel: 'Module', kategorie: 'modul', beschreibung: '3.4' },
+    { id: 'ergebnisse', nummer: '4', titel: 'Ergebnisse', kategorie: 'ergebnis', beschreibung: '4.4' },
+    { id: 'aufgaben', nummer: '5', titel: 'Aufgaben', kategorie: 'aufgabe', beschreibung: '5.4' },
+    { id: 'rollen', nummer: '6', titel: 'Rollen', kategorie: 'rolle', beschreibung: '6.4' },
+    { id: 'hinweise', nummer: '7', titel: 'Hinweise zur Anwendung', kategorie: null }
   ];
-
-  /* Kuratierte Kernaussagen je Teil der Hinweise zur Anwendung (Schlüssel in data/kernaussagen.json). */
-  var HINWEIS_THEMEN = {
-    '7': ['hinweise'],
-    '7.4.1': ['governance', 'reporting'],
-    '7.4.2': ['nachhaltigkeit'],
-    '7.4.3': ['pm-entwicklungsmanagement'],
-    '7.4.4': ['finanzen'],
-    '7.4.5': ['planung'],
-    '7.4.6': ['realisierungseinheiten'],
-    '7.4.7': ['andere-methoden'],
-    '7.4.8': ['integration']
-  };
 
   var zustand = {
     kapitel: 'methodenueberblick',  // zuletzt gelesenes Kapitel
     standardStufe: 0,               // Stufe neuer Karten
     stufe: {},                      // id -> Stufe, wenn abweichend gewählt
-    limit: SEITE,
     initialisiert: false
   };
 
   function kapitelMeta(id) {
-    for (var i = 0; i < KAPITEL.length; i++) {
-      if (KAPITEL[i].id === id) { return KAPITEL[i]; }
-    }
+    for (var i = 0; i < KAPITEL.length; i++) { if (KAPITEL[i].id === id) { return KAPITEL[i]; } }
     return null;
   }
 
   function kapitelDerKategorie(kat) {
-    for (var i = 0; i < KAPITEL.length; i++) {
-      if (KAPITEL[i].kategorie === kat) { return KAPITEL[i]; }
-    }
+    for (var i = 0; i < KAPITEL.length; i++) { if (KAPITEL[i].kategorie === kat) { return KAPITEL[i]; } }
     return null;
   }
 
   function kapitelAdresse(id, teil) {
     return '#/handbuch?kapitel=' + encodeURIComponent(id) + (teil ? '&teil=' + encodeURIComponent(teil) : '');
+  }
+
+  function cssId(id) {
+    if (global.CSS && typeof global.CSS.escape === 'function') { return global.CSS.escape(id); }
+    return String(id).replace(/[^a-zA-Z0-9_-]/g, '\\$&');
+  }
+
+  /* Handbuchnummern vergleichen: 4.4.1.10 kommt nach 4.4.1.9. */
+  function nummerTeile(n) {
+    return String(n || '').split('.').map(function (x) { var z = parseInt(x, 10); return isNaN(z) ? x : z; });
+  }
+  function nummerVergleich(a, b) {
+    var ta = nummerTeile(a), tb = nummerTeile(b);
+    for (var i = 0; i < Math.max(ta.length, tb.length); i++) {
+      if (ta[i] === undefined) { return -1; }
+      if (tb[i] === undefined) { return 1; }
+      if (ta[i] !== tb[i]) { return ta[i] < tb[i] ? -1 : 1; }
+    }
+    return 0;
+  }
+  function elternNummer(n) {
+    var t = String(n || '').split('.');
+    return t.length > 1 ? t.slice(0, -1).join('.') : '';
   }
 
   /* --- Persistenz ---------------------------------------------------------- */
@@ -87,80 +86,13 @@
     }
   }
 
-  /* --- Phasenmodell (Grafik) ---------------------------------------------- */
-
-  function phasenKasten(name, nummer, definition, id, meilensteine) {
-    var kinder = [
-      h('span', { class: 'pm-phase__nr', text: 'Phase ' + nummer }),
-      h('span', { class: 'pm-phase__name', text: name }),
-      definition ? h('span', { class: 'pm-phase__def', text: HT.ui.kuerzen(definition, 72) }) : null,
-      meilensteinListe(meilensteine)
-    ];
-    if (id) {
-      return h('a', { class: 'pm-phase', href: '#/handbuch?id=' + encodeURIComponent(id), title: name + ' anzeigen' }, kinder);
-    }
-    return h('div', { class: 'pm-phase' }, kinder);
-  }
-
-  var MS_MAX = 3;                  // mehr Meilensteine überfrachten die Grafik
-
-  function meilensteinKurz(name) {
-    return String(name || '').replace(/^Meilenstein\s+/i, '');
-  }
-
-  function meilensteinListe(meilensteine) {
-    var liste = meilensteine || [];
-    if (!liste.length) { return null; }
-    var eintraege = liste.slice(0, MS_MAX).map(function (m) {
-      return h('li', { class: 'pm-meilenstein', title: m.name }, [
-        h('span', { class: 'pm-raute', 'aria-hidden': 'true', text: '◆' }),
-        h('span', { text: meilensteinKurz(m.name) })
-      ]);
-    });
-    if (liste.length > MS_MAX) {
-      eintraege.push(h('li', { class: 'pm-meilenstein pm-meilenstein--mehr', text: '+ ' + (liste.length - MS_MAX) + ' weitere' }));
-    }
-    return h('ul', { class: 'pm-ms', 'aria-label': 'Meilensteine dieser Phase' }, eintraege);
-  }
-
-  function verbinder(mitPfeil) {
-    if (!mitPfeil) { return null; }
-    return h('div', { class: 'pm-verbinder' }, [
-      h('span', { class: 'pm-pfeil pm-pfeil--schmal', 'aria-hidden': 'true', text: '↓' }),
-      h('span', { class: 'pm-pfeil pm-pfeil--breit', 'aria-hidden': 'true', text: '→' })
-    ]);
-  }
-
-  function phasenmodell(phasen) {
-    var behaelter = h('div', { class: 'phasenmodell' });
-    phasen.forEach(function (p, i) {
-      var e = p.eintrag;
-      behaelter.appendChild(phasenKasten(e ? e.begriff : p.name, i + 1, e ? e.kurz : '', e ? e.id : null, e ? e.meilensteine : []));
-      var v = verbinder(i < phasen.length - 1);
-      if (v) { behaelter.appendChild(v); }
-    });
-    return behaelter;
-  }
-
-  function phasenmodellBlock() {
-    return h('div', { class: 'pm-block' }, HT.daten.vorgehensweisen().map(function (v) {
-      return h('div', { class: 'vorgehen' }, [
-        h('div', { class: 'vorgehen__kopf' }, [
-          h('h3', { class: 'vorgehen__titel', text: v.label }),
-          h('span', { class: 'vorgehen__zahl', text: v.zusatz })
-        ]),
-        phasenmodell(v.phasen)
-      ]);
-    }));
-  }
-
   /* --- Kapitel-Chips ------------------------------------------------------- */
 
   function chipsBauen(aktiv) {
     var liste = h('ul', { class: 'chips chips--streifen hb-kapitel', 'aria-label': 'Kapitel' });
     KAPITEL.forEach(function (k) {
       var anzahl = k.kategorie ? HT.daten.eintraegeDerKategorie(k.kategorie).length : 0;
-      var btn = h('button', {
+      liste.appendChild(h('li', {}, h('button', {
         type: 'button', class: 'chip', 'aria-pressed': k === aktiv ? 'true' : 'false',
         title: 'Kapitel ' + k.nummer + ' ' + k.titel,
         on: { click: function () { global.location.hash = kapitelAdresse(k.id); } }
@@ -168,155 +100,12 @@
         h('span', { class: 'hb-kapitel__nr', text: k.nummer }),
         h('span', { text: k.titel }),
         anzahl ? h('span', { class: 'chip__zahl', text: String(anzahl) }) : null
-      ]);
-      liste.appendChild(h('li', {}, btn));
+      ])));
     });
     return liste;
   }
 
-  /* --- Kapiteltext ------------------------------------------------------- */
-
-  function kernaussagenBlock(daten, titel) {
-    if (!daten) { return null; }
-    var kinder = [];
-    if (titel) { kinder.push(h('h3', { class: 'stufe-box__titel', text: titel })); }
-    if (daten.kernaussagen && daten.kernaussagen.length) {
-      kinder.push(h('span', { class: 'detail__label', text: 'Das Wichtigste' }));
-      kinder.push(h('ol', { class: 'kernaussagen' }, daten.kernaussagen.map(function (s) { return h('li', { text: s }); })));
-    }
-    if (!kinder.length) { return null; }
-    return h('div', { class: 'stufe-box stufe-box--1' }, kinder);
-  }
-
-  function zusammenfassungBlock(daten, extra) {
-    var kinder = [];
-    if (daten && daten.zusammenfassung && daten.zusammenfassung.length) {
-      daten.zusammenfassung.forEach(function (abs) { kinder.push(h('p', { class: 'hb-p', text: abs })); });
-    }
-    if (extra) { kinder.push(extra); }
-    if (daten && daten.belege && daten.belege.length) {
-      kinder.push(h('div', { class: 'belege' }, [
-        h('span', { class: 'detail__label', text: 'Belegstellen im Referenzhandbuch' }),
-        h('ul', { class: 'belege__liste' }, daten.belege.map(function (b) {
-          return h('li', {}, [
-            h('span', { class: 'beleg__zitat', text: '«' + b.zitat + '»' }),
-            h('span', { class: 'beleg__ort', text: ' — Kap. ' + b.kapitel + (b.seite ? ', S. ' + b.seite : '') })
-          ]);
-        }))
-      ]));
-    }
-    if (!kinder.length) { return null; }
-    return h('details', { class: 'stufe-block stufe-block--2', open: true }, [
-      h('summary', {}, [h('span', { class: 'stufe__nr', text: 'Stufe 2' }), ' Zusammenfassung']),
-      h('div', { class: 'stufe__inhalt' }, kinder)
-    ]);
-  }
-
-  /* Fallback, wenn keine kuratierten Kernaussagen vorliegen: erste Absätze des Kapitels. */
-  function einleitungFallback(kap) {
-    var absaetze = [];
-    (kap.teile || []).some(function (t) {
-      return (t.abschnitte || []).some(function (a) {
-        (a.bloecke || []).forEach(function (b) {
-          if (b.t === 'p' && absaetze.length < 3) { absaetze.push(b.text); }
-        });
-        return absaetze.length >= 3;
-      });
-    });
-    if (!absaetze.length) { return null; }
-    return h('div', { class: 'stufe-box stufe-box--1' }, [
-      h('span', { class: 'detail__label', text: 'Einleitung' }),
-      absaetze.map(function (t) { return h('p', { class: 'hb-p', text: t }); })
-    ]);
-  }
-
-  function abschnittElement(a, ebeneBasis) {
-    var n = Math.min(6, Math.max(2, ebeneBasis + Math.max(0, (a.ebene || 2) - 2)));
-    var kinder = [];
-    if (a.titel) {
-      kinder.push(h('h' + n, { class: 'hb-titel', id: a.nummer ? 'hb-' + a.nummer : null }, [
-        a.nummer ? h('span', { class: 'hb-nr', text: a.nummer + ' ' }) : null,
-        a.titel,
-        a.seite ? h('span', { class: 'hb-seite', text: ' S. ' + a.seite }) : null
-      ]));
-    }
-    if (a.bloecke && a.bloecke.length) {
-      kinder.push(HT.ui.bloecke(a.bloecke, { verlinken: true, ebene: n + 1 }));
-    }
-    return h('section', { class: 'hb-abschnitt' }, kinder);
-  }
-
-  /* Gruppiert die Abschnitte eines Teils an den Überschriften der Ebene 2. */
-  function gruppen(abschnitte) {
-    var aus = [];
-    var aktuell = null;
-    (abschnitte || []).forEach(function (a) {
-      if (a.ebene <= 2 || !aktuell) {
-        aktuell = { kopf: a.ebene <= 2 ? a : null, kinder: a.ebene <= 2 ? [] : [a] };
-        aus.push(aktuell);
-      } else {
-        aktuell.kinder.push(a);
-      }
-    });
-    return aus;
-  }
-
-  function summaryText(nummer, titel, seite) {
-    return [
-      nummer ? h('span', { class: 'hb-nr', text: nummer + ' ' }) : null,
-      titel,
-      seite ? h('span', { class: 'hb-seite', text: ' S. ' + seite }) : null
-    ];
-  }
-
-  /* Ein Teil des Kapitels (Handbuchtext). Ort für Markierungen: der Teil
-     mit seinem Direktlink. */
-  function teilElement(teil, kernDaten, offen, einzeln, kapitelId) {
-    var inhalt = h('div', { class: 'stufe__inhalt' });
-    var markOrt = teil.nummer ? kapitelAdresse(kapitelId, teil.nummer) : null;
-
-    (kernDaten || []).forEach(function (d) {
-      var kb = kernaussagenBlock(d.daten, d.titel);
-      if (kb) { inhalt.appendChild(kb); }
-      if (d.daten && d.daten.zusammenfassung && d.daten.zusammenfassung.length) {
-        inhalt.appendChild(h('div', { class: 'hb-zusammenfassung' }, d.daten.zusammenfassung.map(function (abs) {
-          return h('p', { class: 'hb-p', text: abs });
-        })));
-      }
-    });
-
-    if (!einzeln) {
-      var verweis = HT.ui.handbuchVerweis(teil, { url: teil.url });
-      if (verweis) { inhalt.appendChild(verweis); }
-    }
-
-    gruppen(teil.abschnitte).forEach(function (g) {
-      var kinder = [];
-      if (g.kopf && g.kopf.bloecke && g.kopf.bloecke.length) {
-        kinder.push(h('section', { class: 'hb-abschnitt' }, HT.ui.bloecke(g.kopf.bloecke, { verlinken: true, ebene: 4 })));
-      }
-      g.kinder.forEach(function (a) { kinder.push(abschnittElement(a, 4)); });
-      if (!kinder.length) { return; }
-      if (g.kopf) {
-        inhalt.appendChild(h('details', { class: 'hb-gruppe', open: true }, [
-          h('summary', {}, summaryText(g.kopf.nummer, g.kopf.titel, g.kopf.seite)),
-          h('div', { class: 'hb-gruppe__inhalt' }, kinder)
-        ]));
-      } else {
-        kinder.forEach(function (k) { inhalt.appendChild(k); });
-      }
-    });
-
-    /* Ein einzelner Teil: der Block «Stufe 3» trägt den Ort (siehe renderKapitel). */
-    if (einzeln) { return inhalt; }
-    var ort = markOrt ? { markOrt: markOrt, markKomplett: '1' } : null;
-    return h('details', { class: 'stufe-block stufe-block--3', open: !!offen, id: teil.nummer ? 'teil-' + teil.nummer : null, dataset: ort }, [
-      h('summary', {}, summaryText(teil.nummer, teil.titel, teil.seite)),
-      inhalt
-    ]);
-  }
-
-  /* --- Elemente des Kapitels ------------------------------------------------ */
+  /* --- Karten -------------------------------------------------------------- */
 
   function stufeVon(e) {
     return zustand.stufe.hasOwnProperty(e.id) ? zustand.stufe[e.id] : zustand.standardStufe;
@@ -334,14 +123,18 @@
     }, [h('span', { 'aria-hidden': 'true', text: '◎ ' }), 'Im Graph']);
   }
 
-  function karte(e) {
+  function karte(e, hb) {
     return HT.karte.bauen(e, {
       stufe: stufeVon(e),
       beiStufe: function (id, stufe) { zustand.stufe[id] = stufe; },
-      zusatz: graphLink(e)
+      zusatz: graphLink(e),
+      titelEbene: 'h4',
+      nummer: hb ? hb.nummer : null,
+      seite: hb ? hb.seite : null
     });
   }
 
+  /* «Ansicht»: Stufe aller Karten des Kapitels; zeichnet die Karten neu. */
   function stufenwahlBauen(neuZeichnen) {
     var knoepfe = [];
     function markieren() {
@@ -366,56 +159,129 @@
     markieren();
     return h('div', { class: 'stufenwahl' }, [
       h('span', { class: 'stufenwahl__label', text: 'Ansicht' }),
-      h('ul', { class: 'chips', role: 'group', 'aria-label': 'Detailtiefe aller Einträge' },
+      h('ul', { class: 'chips', role: 'group', 'aria-label': 'Detailtiefe aller Karten' },
         knoepfe.map(function (b) { return h('li', {}, b); }))
     ]);
   }
 
-  function elementeBlock(meta, zielId) {
-    var eintraege = HT.daten.eintraegeDerKategorie(meta.kategorie);
-    if (!eintraege.length) { return null; }
-    var km = HT.daten.kategorieMeta(meta.kategorie);
-    var titel = meta.elementeTitel || (km ? km.label : 'Elemente');
-    var liste = h('div', { class: 'eintraege' });
+  /* Die Elemente eines Kapitels nach ihrem Zwischentitel im Handbuch:
+     Eltern-Nummer (z. B. 4.4.1) -> Einträge in Handbuchreihenfolge. Ein
+     Sammeleintrag, dessen Nummer der Zwischentitel selbst ist (4.4.2
+     Checklisten), steht dort als erste Karte. */
+  function elementeNachEltern(meta, index) {
+    var nachEltern = {};
+    HT.daten.eintraegeDerKategorie(meta.kategorie).forEach(function (e) {
+      var hb = index[e.id] || null;
+      var eltern = '';
+      if (hb && hb.nummer) { eltern = nummerTeile(hb.nummer).length < 4 ? String(hb.nummer) : elternNummer(hb.nummer); }
+      if (!nachEltern[eltern]) { nachEltern[eltern] = []; }
+      nachEltern[eltern].push({ eintrag: e, hb: hb });
+    });
+    Object.keys(nachEltern).forEach(function (k) {
+      nachEltern[k].sort(function (a, b) {
+        if (a.hb && b.hb && a.hb.nummer && b.hb.nummer) { return nummerVergleich(a.hb.nummer, b.hb.nummer); }
+        return a.eintrag.begriff.localeCompare(b.eintrag.begriff, 'de');
+      });
+    });
+    return nachEltern;
+  }
 
-    /* Direktlink: so weit nachladen, bis der gesuchte Eintrag sichtbar ist. */
-    if (zielId) {
-      for (var p = 0; p < eintraege.length; p++) {
-        if (eintraege[p].id === zielId && p >= zustand.limit) {
-          zustand.limit = Math.ceil((p + 1) / SEITE) * SEITE;
-          break;
-        }
-      }
-    }
-
+  function kartenListe(gruppe, listen) {
+    var liste = h('div', { class: 'eintraege hb-karten' });
     function fuellen() {
       HT.ui.leeren(liste);
-      var sichtbar = eintraege.slice(0, zustand.limit);
       var fragment = document.createDocumentFragment();
-      sichtbar.forEach(function (e) { fragment.appendChild(karte(e)); });
+      gruppe.forEach(function (x) { fragment.appendChild(karte(x.eintrag, x.hb)); });
       liste.appendChild(fragment);
-      if (sichtbar.length < eintraege.length) {
-        liste.appendChild(h('div', { class: 'mehr-laden' }, [
-          h('button', {
-            type: 'button', class: 'btn',
-            text: 'Weitere ' + Math.min(SEITE, eintraege.length - sichtbar.length) + ' von ' + eintraege.length + ' anzeigen',
-            on: { click: function () { zustand.limit += SEITE; fuellen(); } }
-          })
-        ]));
-      }
     }
     fuellen();
+    listen.push(fuellen);
+    return liste;
+  }
 
-    return h('section', { class: 'hb-elemente', id: 'elemente' }, [
-      h('div', { class: 'hb-elemente__kopf' }, [
-        h('h2', { class: 'stufe__titel' }, [
-          h('span', { class: 'hb-elemente__ikone hb-elemente__ikone--' + meta.kategorie, 'aria-hidden': 'true' }, HT.ui.katSymbol(meta.kategorie, 18)),
-          titel,
-          h('span', { class: 'abschnitt__zahl', text: String(eintraege.length) })
-        ]),
-        stufenwahlBauen(fuellen)
-      ]),
-      liste
+  /* --- Kapiteltext in Handbuchgliederung ------------------------------------ */
+
+  function titelKinder(a) {
+    return [
+      a.nummer ? h('span', { class: 'hb-nr', text: a.nummer + ' ' }) : null,
+      a.titel,
+      a.seite ? h('span', { class: 'hb-seite', text: ' S. ' + a.seite }) : null
+    ];
+  }
+
+  /* Der Handbuchtext listet unter «Beschreibung der …» nur die Namen der
+     Elemente — an ihrer Stelle stehen hier die Karten. */
+  function ohneNamensliste(bloecke, namen) {
+    return (bloecke || []).filter(function (b) {
+      if (b.t !== 'ul' || !b.items || !b.items.length) { return true; }
+      return !b.items.every(function (it) { return namen[HT.daten.normalisieren(it.text || '')]; });
+    });
+  }
+
+  function abschnittElement(a, ctx) {
+    var ebene = Math.min(6, Math.max(2, (a.ebene || 2) + ctx.versatz));
+    var kinder = [];
+    if (a.titel) {
+      kinder.push(h('h' + ebene, { class: 'hb-titel hb-titel--' + ebene, id: a.nummer ? 'hb-' + a.nummer : null }, titelKinder(a)));
+    }
+    var gruppe = a.nummer ? ctx.nachEltern[a.nummer] : null;
+    if (a.nummer && ctx.stufenwahlBei === a.nummer) { kinder.push(ctx.stufenwahl); }
+    var bloecke = gruppe ? ohneNamensliste(a.bloecke, ctx.namen) : (a.bloecke || []);
+    if (bloecke.length) { kinder.push(HT.ui.bloecke(bloecke, { verlinken: true, ebene: ebene + 1 })); }
+    if (gruppe) { kinder.push(kartenListe(gruppe, ctx.listen)); }
+    return h('section', { class: 'hb-abschnitt' + (gruppe ? ' hb-abschnitt--karten' : '') }, kinder);
+  }
+
+  /* Ein Teil des Kapitels (im Handbuch ein Kapitel oder Unterkapitel); Ort
+     für Markierungen mit seinem Direktlink. */
+  function teilElement(teil, ctx, mitTitel) {
+    var kinder = [];
+    if (mitTitel) {
+      kinder.push(h('h2', { class: 'hb-teil__titel', id: teil.nummer ? 'hb-' + teil.nummer : null }, titelKinder(teil)));
+      var verweis = HT.ui.handbuchVerweis(teil, { url: teil.url });
+      if (verweis) { kinder.push(verweis); }
+    }
+    (teil.abschnitte || []).forEach(function (a) { kinder.push(abschnittElement(a, ctx)); });
+    var ort = teil.nummer ? { markOrt: kapitelAdresse(ctx.meta.id, teil.nummer), markKomplett: '1' } : null;
+    return h('section', { class: 'hb-teil', id: teil.nummer ? 'teil-' + teil.nummer : null, dataset: ort }, kinder);
+  }
+
+  /* Inhaltsverzeichnis des Kapitels: Teile und Abschnitte der Ebene 2, zum
+     Springen — als Knöpfe, weil «#…»-Links die Route wechseln würden. */
+  function inhaltsverzeichnis(kap, mehrereTeile) {
+    var eintraege = [];
+    (kap.teile || []).forEach(function (t) {
+      if (mehrereTeile && t.nummer) { eintraege.push({ nummer: t.nummer, titel: t.titel, ebene: 1 }); }
+      (t.abschnitte || []).forEach(function (a) {
+        if (a.nummer && a.titel && (a.ebene || 2) <= 2) { eintraege.push({ nummer: a.nummer, titel: a.titel, ebene: 2 }); }
+      });
+    });
+    if (!eintraege.length) { return null; }
+    return h('nav', { class: 'hb-inhalt', 'aria-label': 'Inhalt des Kapitels' }, [
+      h('span', { class: 'detail__label', text: 'Inhalt' }),
+      h('ul', { class: 'hb-inhalt__liste' }, eintraege.map(function (x) {
+        return h('li', { class: 'hb-inhalt__eintrag hb-inhalt__eintrag--' + x.ebene }, h('button', {
+          type: 'button', class: 'hb-inhalt__knopf',
+          on: { click: function () {
+            var ziel = document.getElementById('hb-' + x.nummer);
+            if (ziel) { try { ziel.scrollIntoView({ block: 'start' }); } catch (e) { ziel.scrollIntoView(); } }
+          } }
+        }, [h('span', { class: 'hb-nr', text: x.nummer + ' ' }), x.titel]));
+      }))
+    ]);
+  }
+
+  /* Grundbegriffe haben keine Nummer im Handbuch: sie stehen am Ende des
+     Methodenüberblicks, alphabetisch. */
+  function grundbegriffeBlock(ctx) {
+    var gruppe = ctx.nachEltern[''] || [];
+    if (!gruppe.length) { return null; }
+    gruppe.sort(function (a, b) { return a.eintrag.begriff.localeCompare(b.eintrag.begriff, 'de'); });
+    return h('section', { class: 'hb-abschnitt hb-abschnitt--karten', id: 'hb-grundbegriffe' }, [
+      h('h2', { class: 'hb-teil__titel', text: 'Grundbegriffe' }),
+      h('p', { class: 'hb-p', text: 'Begriffe, die das Referenzhandbuch durchgehend verwendet — mit Verweis auf die Stelle bei HERMES online.' }),
+      ctx.stufenwahl,
+      kartenListe(gruppe, ctx.listen)
     ]);
   }
 
@@ -428,78 +294,55 @@
 
     behaelter.appendChild(h('div', { class: 'kopf kopf--handbuch' }, [
       h('h1', { text: 'Handbuch' }),
-      h('p', { text: 'HERMES 2022 entlang des Referenzhandbuchs — je Kapitel Kernaussagen, Zusammenfassung, der vollständige Text und die Elemente des Kapitels in drei Stufen.' })
+      h('p', { text: 'HERMES 2022 — das Referenzhandbuch in seiner Gliederung, Kapitel für Kapitel; die Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen stehen als Karten an ihrer Stelle im Text.' })
     ]));
     var warnung = HT.app.datenWarnung();
     if (warnung) { behaelter.appendChild(warnung); }
     behaelter.appendChild(chipsBauen(meta));
 
-    behaelter.appendChild(h('div', { class: 'hb-kapitelkopf' }, [
+    var kopf = h('div', { class: 'hb-kapitelkopf' }, [
       h('span', { class: 'detail__label', text: 'Kapitel ' + meta.nummer }),
-      h('h2', { class: 'hb-kapitelkopf__titel', text: meta.titel }),
-      h('p', { class: 'hb-kapitelkopf__teaser', text: meta.teaser })
-    ]));
+      h('h2', { class: 'hb-kapitelkopf__titel', text: meta.titel })
+    ]);
+    behaelter.appendChild(kopf);
 
-    /* Ort für Markierungen: das Kapitel (Kernaussagen, Zusammenfassung);
-       die Handbuchteile darin und die Karten sind eigene Orte. */
-    var inhalt = h('div', { class: 'kapitel', dataset: { markOrt: kapitelAdresse(meta.id) } });
+    var inhalt = h('div', { class: 'kapitel' });
     behaelter.appendChild(inhalt);
     inhalt.appendChild(h('p', { class: 'trefferzahl', role: 'status', text: 'Kapitel wird geladen …' }));
 
-    Promise.all([HT.daten.handbuchKapitel(), HT.daten.kernaussagen()]).then(function (res) {
+    var indexLaden = meta.kategorie ? HT.daten.handbuchIndex(meta.kategorie) : Promise.resolve({});
+    Promise.all([HT.daten.handbuchKapitel(), indexLaden]).then(function (res) {
       if (!document.body.contains(inhalt)) { return; }   // inzwischen weitergeblättert
-      var kapitel = res[0];
-      var kern = res[1] || {};
       var kap = null;
-      kapitel.forEach(function (k) { if (k.id === meta.id) { kap = k; } });
-
+      res[0].forEach(function (k) { if (k.id === meta.id) { kap = k; } });
       HT.ui.leeren(inhalt);
 
       if (!kap) {
         inhalt.appendChild(HT.ui.leerZustand('Handbuchtext nicht verfügbar', 'Die Datei data/handbuch/kapitel.json konnte nicht geladen werden.'));
-      } else {
-        var verweis = HT.ui.handbuchVerweis(kap, { url: kap.url });
-        if (verweis) { inhalt.appendChild(verweis); }
-
-        /* Stufe 1 */
-        var stufe1 = kernaussagenBlock(kern[meta.id]) || einleitungFallback(kap);
-        if (stufe1) { inhalt.appendChild(stufe1); }
-
-        /* Stufe 2 */
-        var extra = meta.id === 'phasen'
-          ? h('div', {}, [h('span', { class: 'detail__label', text: 'Phasenmodell' }), phasenmodellBlock()])
-          : null;
-        var stufe2 = zusammenfassungBlock(kern[meta.id], extra);
-        if (stufe2) { inhalt.appendChild(stufe2); }
-
-        /* Stufe 3 — zu, wenn darunter die Elemente folgen und kein Teil
-           gewünscht ist; sonst auf. */
-        var teile = kap.teile || [];
-        var gewuenscht = params && params.teil ? String(params.teil) : null;
-        var hatElemente = !!meta.kategorie && HT.daten.eintraegeDerKategorie(meta.kategorie).length > 0;
-        var stufe3Inhalt = h('div', { class: 'stufe__inhalt' });
-        teile.forEach(function (t, i) {
-          var themen = meta.id === 'hinweise' ? (HINWEIS_THEMEN[t.nummer] || []) : [];
-          var kernDaten = themen.map(function (id) {
-            return { daten: kern[id] || null, titel: themen.length > 1 && kern[id] ? (id === 'reporting' ? 'Reporting' : null) : null };
-          }).filter(function (d) { return !!d.daten; });
-          /* Kernaussagen des Kapitels selbst stehen bereits oben. */
-          if (meta.id === 'hinweise' && t.nummer === '7') { kernDaten = []; }
-          var offen = gewuenscht ? (t.nummer === gewuenscht) : (teile.length === 1 || i === 0);
-          stufe3Inhalt.appendChild(teilElement(t, kernDaten, offen, teile.length === 1, meta.id));
-        });
-        var einzelOrt = teile.length === 1 && teile[0].nummer ? { markOrt: kapitelAdresse(meta.id, teile[0].nummer), markKomplett: '1' } : null;
-        inhalt.appendChild(h('details', { class: 'stufe-block stufe-block--3 stufe-block--text', open: !hatElemente || !!gewuenscht, dataset: einzelOrt }, [
-          h('summary', {}, [h('span', { class: 'stufe__nr', text: 'Stufe 3' }), ' Handbuchtext (vollständig)', kap.seite ? h('span', { class: 'hb-seite', text: ' ab S. ' + kap.seite }) : null]),
-          stufe3Inhalt
-        ]));
+        return;
       }
-      inhalt.dataset.markKomplett = '1';
 
-      /* Elemente des Kapitels */
+      var verweis = HT.ui.handbuchVerweis(kap, { url: kap.url });
+      if (verweis) { kopf.appendChild(verweis); }
+
+      /* Elemente nach Zwischentitel; die Stufenwahl steht am Abschnitt
+         «Beschreibung der …», dem gemeinsamen Elternteil. */
+      var ctx = { meta: meta, nachEltern: {}, namen: {}, listen: [], versatz: 0, stufenwahl: null, stufenwahlBei: null };
       if (meta.kategorie) {
-        var block = elementeBlock(meta, zielId);
-        if (block) { inhalt.appendChild(block); }
+        ctx.nachEltern = elementeNachEltern(meta, res[1] || {});
+        HT.daten.eintraegeDerKategorie(meta.kategorie).forEach(function (e) { ctx.namen[HT.daten.normalisieren(e.begriff)] = true; });
+        ctx.stufenwahlBei = meta.beschreibung || null;
+        ctx.stufenwahl = stufenwahlBauen(function () { ctx.listen.forEach(function (f) { f(); }); });
+      }
+
+      var teile = kap.teile || [];
+      var mehrereTeile = teile.length > 1;
+      var toc = inhaltsverzeichnis(kap, mehrereTeile);
+      if (toc) { inhalt.appendChild(toc); }
+      teile.forEach(function (t) { inhalt.appendChild(teilElement(t, ctx, mehrereTeile)); });
+      if (meta.kategorie === 'grundbegriff') {
+        var gb = grundbegriffeBlock(ctx);
+        if (gb) { inhalt.appendChild(gb); }
       }
 
       /* Blättern */
@@ -510,6 +353,7 @@
 
       /* Erst nach dem Einfügen scrollen — sonst verschiebt der nachgeladene
          Inhalt die Position wieder. */
+      var gewuenscht = params && params.teil ? String(params.teil) : null;
       global.setTimeout(function () {
         var ziel = null;
         if (zielId) {
@@ -525,11 +369,6 @@
         }
       }, 0);
     });
-  }
-
-  function cssId(id) {
-    if (global.CSS && typeof global.CSS.escape === 'function') { return global.CSS.escape(id); }
-    return String(id).replace(/[^a-zA-Z0-9_-]/g, '\\$&');
   }
 
   /* --- Render ------------------------------------------------------------- */
@@ -552,8 +391,6 @@
     }
     if (!meta && params.kat) { meta = kapitelDerKategorie(params.kat); }
     if (!meta) { meta = kapitelMeta(zustand.kapitel) || KAPITEL[0]; }
-
-    if (zustand.kapitel !== meta.id) { zustand.limit = SEITE; }
     zustand.kapitel = meta.id;
     speichern();
     renderKapitel(behaelter, meta, params, zielId);

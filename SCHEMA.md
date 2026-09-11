@@ -14,7 +14,6 @@ Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSO
 | `data/ergebnisse.json` | `ergebnis` | Alle Ergebnisse |
 | `data/rollen.json` | `rolle` | Alle Rollen |
 | `data/quizfragen.json` | — | Kuratierte Prüfungsfragen (eigenes Schema, siehe unten) |
-| `data/kernaussagen.json` | — | Je Handbuchkapitel Kernaussagen, Zusammenfassung, Belege (Schema unten) |
 | `data/handbuch/*.json` | — | Importierte Handbuchtexte (generiert von `tools/handbuch-import.py`, nicht von Hand pflegen) |
 
 ## Pflichtfelder je Eintrag
@@ -81,20 +80,6 @@ Umlaute im Slug: ä→ae, ö→oe, ü→ue. Übersichtsseiten: `…/de/projektma
 - Genau eine richtige Antwort, `richtig` ist der 0-basierte Index; genau vier Antworten.
 - Fragen zielen auf Begriffsverständnis und exakte Ausdrücke (Verwechslungskandidaten als Distraktoren). Nur fragen, was das Handbuch explizit sagt — keine eigenen Zählungen oder Schlussfolgerungen.
 - `beleg` ist Pflicht: wörtliches Zitat (Silbentrennung aufgelöst), Kapitelnummer mit Titel und Seitenzahl des Referenzhandbuchs (Ausgabe 2022, 3. Auflage). Tabelleninhalte dürfen als «Tabelle N: …» paraphrasiert werden. `tools/quiz-pruefen.py --pdf-text rhb.txt` prüft Form und Zitate.
-
-## Kernaussagen (`data/kernaussagen.json`)
-
-Objekt mit einem Schlüssel je Kapitel bzw. Hinweis-Thema (`methodenueberblick`, `phasen`, `szenarien`, `module`, `ergebnisse`, `aufgaben`, `rollen`, `hinweise`, `governance`, `reporting`, `nachhaltigkeit`, `pm-entwicklungsmanagement`, `finanzen`, `planung`, `realisierungseinheiten`, `andere-methoden`, `integration`):
-
-```json
-{
-  "phasen": {
-    "kernaussagen": ["5–8 Sätze, die ein Prüfling zwingend wissen muss"],
-    "zusammenfassung": ["2–4 Absätze als Strings"],
-    "belege": [{ "kapitel": "1.2.2 Einheitliche Projektstruktur", "seite": 18, "zitat": "…" }]
-  }
-}
-```
 
 ## Handbuchtexte (`data/handbuch/`, generiert)
 

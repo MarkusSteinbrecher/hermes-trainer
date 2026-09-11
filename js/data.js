@@ -24,7 +24,7 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-11a';
+  var DATEN_VERSION = '2026-09-11b';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
@@ -62,8 +62,7 @@
     fehler: [],       // Namen der Dateien, die nicht geladen werden konnten
     geladen: false,
     handbuch: {},     // Kategorie -> Promise mit Volltexten (lazy)
-    kapitel: null,    // Promise mit Kapiteltexten (lazy)
-    kernaussagen: null
+    kapitel: null     // Promise mit Kapiteltexten (lazy)
   };
 
   /* --- Textnormalisierung für die Suche ---------------------------------- */
@@ -326,6 +325,17 @@
     });
   }
 
+  /** Alle Handbuchtexte einer Kategorie (id -> {titel, nummer, seite, url, abschnitte}),
+      etwa für Nummern und Seiten aller Karten eines Kapitels. */
+  function handbuchIndex(kategorie) {
+    if (!zustand.handbuch[kategorie]) {
+      zustand.handbuch[kategorie] = ladeJson('data/handbuch/elemente-' + kategorie + '.json')
+        .then(function (json) { return (json && typeof json === 'object') ? json : {}; })
+        .catch(function () { return {}; });
+    }
+    return zustand.handbuch[kategorie];
+  }
+
   /** Alle Kapiteltexte (Methodenüberblick, Einleitungen, Hinweise zur Anwendung). */
   function handbuchKapitel() {
     if (!zustand.kapitel) {
@@ -336,15 +346,6 @@
     return zustand.kapitel;
   }
 
-  /** Kuratierte Kernaussagen und Zusammenfassungen je Kapitel, mit Belegen. */
-  function kernaussagen() {
-    if (!zustand.kernaussagen) {
-      zustand.kernaussagen = ladeJson('data/kernaussagen.json')
-        .then(function (json) { return (json && typeof json === 'object') ? json : {}; })
-        .catch(function () { return {}; });
-    }
-    return zustand.kernaussagen;
-  }
 
   /* --- Zugriff ------------------------------------------------------------ */
 
@@ -527,6 +528,6 @@
     ersterSatz: ersterSatz,
     handbuchElement: handbuchElement,
     handbuchKapitel: handbuchKapitel,
-    kernaussagen: kernaussagen
+    handbuchIndex: handbuchIndex
   };
 }(window));
