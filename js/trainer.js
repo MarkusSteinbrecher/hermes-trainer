@@ -361,7 +361,8 @@
       g.appendChild(titel);
       z.gruppe = g; z.etikett = etikett; z.flaeche = flaeche; z.titel = titel;
 
-      g.addEventListener('click', function () { zielGeklickt(z); });
+      g.addEventListener('click', function () { if (z.gezogen) { z.gezogen = false; return; } zielGeklickt(z); });
+      zielZiehbar(z, g);
       g.addEventListener('keydown', function (ev) {
         if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') { ev.preventDefault(); zielGeklickt(z); }
       });
@@ -516,6 +517,7 @@
     /* Ziele */
     uebung.ziele.forEach(function (z) {
       if (!z.gruppe) { return; }
+      z.gezogen = false;
       var text = '', klasse = 'tr-ziel';
       if (gepr) {
         klasse += ' tr-ziel--' + z.status;
@@ -534,7 +536,7 @@
           : z.status === 'falsch' ? 'Falsch — hier gehört ' + z.name + ' hin, gelegt war ' + z.chip.name
           : 'Offen — hier gehört ' + z.name + ' hin';
       } else if (z.chip) {
-        beschreibung = z.chip.name + ' — Klick oder Enter legt den Chip zurück';
+        beschreibung = z.chip.name + ' — Klick oder Enter legt den Chip zurück, Ziehen verschiebt ihn';
       } else {
         beschreibung = uebung.gewaehlt ? 'Leerer Kasten — Klick oder Enter legt ' + uebung.gewaehlt.name + ' hierher' : 'Leerer Kasten';
       }
@@ -627,73 +629,93 @@
 
   /* Auf Touch-Geräten bleibt es beim Antippen (Chip, dann Kasten) — ein
      Ziehen stritte dort mit dem Scrollen des Pools. */
+  /* Ziehen mit der Maus — vom Chip im Pool oder aus einem belegten Kasten.
+     Der Geist folgt dem Zeiger; ein Kasten darunter leuchtet auf. Loslassen
+     auf einem Kasten legt den Chip dorthin (ein belegter tauscht), Loslassen
+     irgendwo sonst legt einen aus dem Kasten gezogenen Chip in den Pool
+     zurück. Ein Zug unter 6 px bleibt ein Klick. */
+  function ziehen(ev, chip, quelle) {
+    var start = { x: ev.clientX, y: ev.clientY };
+    var mass = quelle.mass || null;
+    var griff = mass ? { x: ev.clientX - mass.left, y: ev.clientY - mass.top } : { x: 14, y: 16 };
+    var geist = null;
+    var drueber = null;
+
+    function zielUnter(e) {
+      var unter = document.elementFromPoint(e.clientX, e.clientY);
+      var g = unter && unter.closest ? unter.closest('[data-ziel]') : null;
+      return g ? uebung.ziele[Number(g.getAttribute('data-ziel'))] : null;
+    }
+
+    /* Die Bewegung hört das Dokument, nicht das Element: ein Zug verlässt es
+       sofort, und Pointer Capture kommt nicht überall zuverlässig an. */
+    function bewegen(e) {
+      if (!geist) {
+        if (Math.hypot(e.clientX - start.x, e.clientY - start.y) < 6) { return; }
+        geist = h('div', { class: 'tr-geist', text: chip.name });
+        if (mass) {
+          geist.style.width = Math.round(mass.width) + 'px';
+          geist.style.height = Math.round(mass.height) + 'px';
+        }
+        document.body.appendChild(geist);
+        quelle.el.classList.add('ist-am-ziehen');
+        document.body.classList.add('tr-zieht');
+      }
+      geist.style.left = (e.clientX - griff.x) + 'px';
+      geist.style.top = (e.clientY - griff.y) + 'px';
+      var z = zielUnter(e);
+      if (z !== drueber) {
+        if (drueber && drueber.gruppe) { drueber.gruppe.classList.remove('ist-drueber'); }
+        drueber = z;
+        if (drueber && drueber.gruppe) { drueber.gruppe.classList.add('ist-drueber'); }
+      }
+      e.preventDefault();
+    }
+
+    function ende(e) {
+      document.removeEventListener('pointermove', bewegen);
+      document.removeEventListener('pointerup', ende);
+      document.removeEventListener('pointercancel', ende);
+      global.removeEventListener('blur', ende);
+      var punkt = e && typeof e.clientX === 'number' ? e : null;
+      /* Ohne Zwischenbewegung (sehr schneller Zug) zählt der Weg bis zum
+         Loslassen; ein Klick an Ort und Stelle bleibt ein Klick. */
+      var weit = punkt ? Math.hypot(punkt.clientX - start.x, punkt.clientY - start.y) >= 6 : false;
+      if (geist) { geist.parentNode.removeChild(geist); }
+      quelle.el.classList.remove('ist-am-ziehen');
+      document.body.classList.remove('tr-zieht');
+      if (drueber && drueber.gruppe) { drueber.gruppe.classList.remove('ist-drueber'); }
+      if (!geist && !weit) { return; }
+      /* Der Klick, der dem Loslassen folgt, darf nichts mehr auslösen. Die
+         Sperre fällt beim nächsten Aufbau (zeichnen) bzw. beim Klick. */
+      quelle.gezogen();
+      var z = punkt && e.type === 'pointerup' ? zielUnter(punkt) : null;
+      if (z) { setzen(chip, z); }
+      else if (quelle.ziel && e && e.type === 'pointerup') { loesen(quelle.ziel); }
+    }
+
+    document.addEventListener('pointermove', bewegen);
+    document.addEventListener('pointerup', ende);
+    document.addEventListener('pointercancel', ende);
+    global.addEventListener('blur', ende);
+  }
+
   function chipZiehbar(chip, el) {
     el.addEventListener('pointerdown', function (ev) {
       if (ev.button !== 0 || ev.pointerType === 'touch' || uebung.geprueft) { return; }
-      var start = { x: ev.clientX, y: ev.clientY };
       /* Griffpunkt im Chip: der Geist erscheint an derselben Stelle unter
          dem Zeiger, an der der Chip angefasst wurde, in derselben Grösse. */
-      var mass = el.getBoundingClientRect();
-      var griff = { x: ev.clientX - mass.left, y: ev.clientY - mass.top };
-      var geist = null;
-      var drueber = null;
+      ziehen(ev, chip, { el: el, mass: el.getBoundingClientRect(), ziel: null, gezogen: function () { chip.gezogen = true; } });
+    });
+  }
 
-      function zielUnter(e) {
-        var unter = document.elementFromPoint(e.clientX, e.clientY);
-        var g = unter && unter.closest ? unter.closest('[data-ziel]') : null;
-        return g ? uebung.ziele[Number(g.getAttribute('data-ziel'))] : null;
-      }
-
-      /* Die Bewegung hört das Dokument, nicht der Chip: ein Zug verlässt den
-         Chip sofort, und Pointer Capture auf einem Button kommt nicht überall
-         zuverlässig an. */
-      function bewegen(e) {
-        if (!geist) {
-          if (Math.hypot(e.clientX - start.x, e.clientY - start.y) < 6) { return; }
-          geist = h('div', { class: 'tr-geist', text: chip.name });
-          geist.style.width = Math.round(mass.width) + 'px';
-          geist.style.height = Math.round(mass.height) + 'px';
-          document.body.appendChild(geist);
-          el.classList.add('ist-am-ziehen');
-          document.body.classList.add('tr-zieht');
-        }
-        geist.style.left = (e.clientX - griff.x) + 'px';
-        geist.style.top = (e.clientY - griff.y) + 'px';
-        var z = zielUnter(e);
-        if (z !== drueber) {
-          if (drueber && drueber.gruppe) { drueber.gruppe.classList.remove('ist-drueber'); }
-          drueber = z;
-          if (drueber && drueber.gruppe) { drueber.gruppe.classList.add('ist-drueber'); }
-        }
-        e.preventDefault();
-      }
-
-      function ende(e) {
-        document.removeEventListener('pointermove', bewegen);
-        document.removeEventListener('pointerup', ende);
-        document.removeEventListener('pointercancel', ende);
-        global.removeEventListener('blur', ende);
-        var punkt = e && typeof e.clientX === 'number' ? e : null;
-        /* Ohne Zwischenbewegung (sehr schneller Zug) zählt der Weg bis zum
-           Loslassen; ein Klick an Ort und Stelle bleibt ein Klick. */
-        var weit = punkt ? Math.hypot(punkt.clientX - start.x, punkt.clientY - start.y) >= 6 : false;
-        if (geist) { geist.parentNode.removeChild(geist); }
-        el.classList.remove('ist-am-ziehen');
-        document.body.classList.remove('tr-zieht');
-        if (drueber && drueber.gruppe) { drueber.gruppe.classList.remove('ist-drueber'); }
-        if (!geist && !weit) { return; }
-        /* Der Klick, der dem Loslassen folgt, darf den Chip nicht wählen.
-           Nach einem Treffer kommt kein Klick mehr am alten Knopf an — die
-           Sperre fällt dann beim nächsten Aufbau des Chips (zeichnen). */
-        chip.gezogen = true;
-        var z = punkt && e.type === 'pointerup' ? zielUnter(punkt) : null;
-        if (z) { setzen(chip, z); }
-      }
-
-      document.addEventListener('pointermove', bewegen);
-      document.addEventListener('pointerup', ende);
-      document.addEventListener('pointercancel', ende);
-      global.addEventListener('blur', ende);
+  /* Belegter Kasten: sein Chip lässt sich wieder herausziehen — in einen
+     anderen Kasten oder zurück in den Pool. */
+  function zielZiehbar(ziel, g) {
+    g.addEventListener('pointerdown', function (ev) {
+      if (ev.button !== 0 || ev.pointerType === 'touch' || uebung.geprueft || !ziel.chip) { return; }
+      ziel.gezogen = false;
+      ziehen(ev, ziel.chip, { el: g, mass: null, ziel: ziel, gezogen: function () { ziel.gezogen = true; } });
     });
   }
 
@@ -796,7 +818,7 @@
     refs.zaehler = h('span', { class: 'tr-zaehler', role: 'status' });
     refs.hinweis = h('p', { class: 'tr-hinweis', text:
       'Chip in einen leeren Kasten ziehen — oder Chip antippen und dann den Kasten. '
-      + 'Ein Klick auf einen belegten Kasten legt den Chip zurück.' });
+      + 'Aus einem belegten Kasten lässt sich der Chip wieder herausziehen; ein Klick darauf legt ihn zurück.' });
     refs.ergebnis = h('div', { class: 'tr-ergebnis', tabindex: '-1', 'aria-live': 'polite', hidden: true });
 
     refs.knopfPruefen = werkzeug('Prüfen', 'btn btn--primaer', pruefen);

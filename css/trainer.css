@@ -118,6 +118,9 @@ body[data-route="trainer"] .view { max-width: none; padding: 18px 20px 40px; }
 /* --- Ziele in der Grafik ---------------------------------------------------- */
 
 .tr-ziel { cursor: pointer; outline: none; }
+.tr-ziel--belegt { cursor: grab; }
+.tr-ziel.ist-am-ziehen .tr-etikett { opacity: .35; }
+.tr-ziel.ist-am-ziehen .tr-ziel__flaeche { stroke-dasharray: 2 2; stroke: var(--rand-stark); }
 .tr-ziel__deckel { pointer-events: none; }
 /* foreignObject beschneidet von Haus aus — ein dreizeiliges Etikett darf um
    einen halben Pixel über den Kastenrand hinaus. */

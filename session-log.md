@@ -2,6 +2,14 @@
 
 Neueste Einträge zuerst.
 
+## 2026-09-11 — Trainer: Chip aus belegtem Kasten wieder herausziehen
+
+**Auftrag:** «Wenn ich einen Kasten per Drag-and-drop auf einen leeren Kasten gezogen habe, kann ich ihn nicht mehr entfernen. Ich muss die Möglichkeit haben, ihn wegzuziehen und woanders zu droppen.»
+
+**Umsetzung:** Die Zieh-Logik in `js/trainer.js` ist jetzt eine gemeinsame Funktion `ziehen(ev, chip, quelle)` für Chips im Pool (`chipZiehbar`) und belegte Kästen (`zielZiehbar`). Aus einem belegten Kasten lässt sich der Chip mit der Maus herausziehen: Loslassen auf einem anderen Kasten verschiebt ihn (ein belegter tauscht wie bisher), Loslassen irgendwo sonst legt ihn in den Pool zurück. Der Kasten wird während des Zugs blass gestrichelt, der Cursor ist «grab». Der Klick, der auf ein Loslassen auf demselben Kasten folgt, wird verschluckt (`ziel.gezogen`, beim nächsten `zeichnen()` zurückgesetzt), damit er den Chip nicht ungewollt löst. Der Klick auf einen belegten Kasten legt den Chip weiterhin zurück; Hinweistext und Kastenbeschreibung sagen das. Touch bleibt beim Antippen.
+
+**Geprüft** lokal mit synthetischen Pointer-Ereignissen (Chromes Drag löst kein pointerup aus): Chip → Kasten, Kasten → Pool, Kasten → anderer Kasten, Zurückfallen auf denselben Kasten plus Folge-Klick (bleibt belegt), echter Klick löst; kein Geist bleibt hängen, keine Konsolenfehler.
+
 ## 2026-09-11 — Kopfzeile: Beta-Pille
 
 **Auftrag:** «Ergänze auch noch eine Beta-Version-Pille in der Top-Navigation.»
