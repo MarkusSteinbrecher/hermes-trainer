@@ -27,6 +27,31 @@
       "Lösungsanforderungen",
       "Projektmanagementplan"
     ],
+    "ergebnisPhasen": {
+      "Änderungsstatusliste": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Änderungsantrag": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Lösungsanforderungen": [
+        "Konzept",
+        "Realisierung",
+        "Einführung"
+      ],
+      "Projektmanagementplan": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/aenderungen-managen.html",
       "bezeichnung": "HERMES online · Aufgabe «Änderungen managen»"
@@ -54,6 +79,11 @@
     "ergebnisse": [
       "Altsystem entfernt"
     ],
+    "ergebnisPhasen": {
+      "Altsystem entfernt": [
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/altsystem-ausser-betrieb-setzen.html",
       "bezeichnung": "HERMES online · Aufgabe «Altsystem ausser Betrieb setzen»"
@@ -81,6 +111,16 @@
       "Evaluationsbericht",
       "Angebotsprotokoll"
     ],
+    "ergebnisPhasen": {
+      "Evaluationsbericht": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Angebotsprotokoll": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/angebote-bewerten.html",
       "bezeichnung": "HERMES online · Aufgabe «Angebote bewerten»"
@@ -111,6 +151,16 @@
       "Ausschreibungsunterlagen",
       "Angebot"
     ],
+    "ergebnisPhasen": {
+      "Ausschreibungsunterlagen": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Angebot": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/ausschreibung-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Ausschreibung durchführen»"
@@ -137,6 +187,12 @@
     "ergebnisse": [
       "Ausschreibungsunterlagen"
     ],
+    "ergebnisPhasen": {
+      "Ausschreibungsunterlagen": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/ausschreibung-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Ausschreibung erarbeiten»"
@@ -162,6 +218,11 @@
     "ergebnisse": [
       "Beschaffungsanalyse"
     ],
+    "ergebnisPhasen": {
+      "Beschaffungsanalyse": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/beschaffungsanalyse-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Beschaffungsanalyse erarbeiten»"
@@ -189,6 +250,16 @@
       "Betriebshandbuch",
       "Betrieb aktiviert"
     ],
+    "ergebnisPhasen": {
+      "Betriebshandbuch": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Betrieb aktiviert": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/betrieb-aktivieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Betrieb aktivieren»"
@@ -216,6 +287,20 @@
       "Betriebshandbuch",
       "Betriebsinfrastruktur realisiert"
     ],
+    "ergebnisPhasen": {
+      "Betriebsorganisation realisiert": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Betriebshandbuch": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Betriebsinfrastruktur realisiert": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/betrieb-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Betrieb realisieren»"
@@ -246,6 +331,16 @@
       "Betriebskonzept",
       "Service Level Agreement"
     ],
+    "ergebnisPhasen": {
+      "Betriebskonzept": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Service Level Agreement": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/betriebskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Betriebskonzept erarbeiten»"
@@ -272,6 +367,11 @@
     "ergebnisse": [
       "Durchführungsauftrag"
     ],
+    "ergebnisPhasen": {
+      "Durchführungsauftrag": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/durchfuehrungsauftrag-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Durchführungsauftrag erarbeiten»"
@@ -300,6 +400,16 @@
       "Projektmanagementplan",
       "Einführungskonzept"
     ],
+    "ergebnisPhasen": {
+      "Projektmanagementplan": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Einführungskonzept": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/einfuehrungskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Einführungskonzept erarbeiten»"
@@ -327,6 +437,12 @@
     "ergebnisse": [
       "Einführungsmassnahmen durchgeführt"
     ],
+    "ergebnisPhasen": {
+      "Einführungsmassnahmen durchgeführt": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/einfuehrungsmassnahmen-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Einführungsmassnahmen durchführen»"
@@ -354,6 +470,12 @@
     "ergebnisse": [
       "Einführungsmassnahmen realisiert"
     ],
+    "ergebnisPhasen": {
+      "Einführungsmassnahmen realisiert": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/einfuehrungsmassnahmen-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Einführungsmassnahmen realisieren»"
@@ -387,6 +509,24 @@
       "Liste Projektentscheide Führung",
       "Checkliste Abnahme Migration"
     ],
+    "ergebnisPhasen": {
+      "Abnahmeprotokoll": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Meilenstein Abnahme Migration": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Führung": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Checkliste Abnahme Migration": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-abnahme-migration-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Abnahme Migration treffen»"
@@ -420,6 +560,24 @@
       "Liste Projektentscheide Führung",
       "Meilenstein Abnahme"
     ],
+    "ergebnisPhasen": {
+      "Abnahmeprotokoll": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Checkliste Abnahme": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Führung": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Meilenstein Abnahme": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-abnahme-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Abnahme treffen»"
@@ -451,6 +609,20 @@
       "Liste Projektentscheide Steuerung",
       "Meilenstein Ausschreibung"
     ],
+    "ergebnisPhasen": {
+      "Checkliste Ausschreibung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Meilenstein Ausschreibung": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-ausschreibung-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Ausschreibung treffen»"
@@ -481,6 +653,20 @@
       "Meilenstein Betriebsaufnahme",
       "Liste Projektentscheide Steuerung"
     ],
+    "ergebnisPhasen": {
+      "Checkliste Betriebsaufnahme": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Meilenstein Betriebsaufnahme": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-betriebsaufnahme-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Betriebsaufnahme treffen»"
@@ -512,6 +698,20 @@
       "Liste Projektentscheide Steuerung",
       "Durchführungsauftrag"
     ],
+    "ergebnisPhasen": {
+      "Meilenstein Durchführungsfreigabe": [
+        "Initialisierung"
+      ],
+      "Checkliste Durchführungsfreigabe": [
+        "Initialisierung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Initialisierung"
+      ],
+      "Durchführungsauftrag": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-durchfuehrungsfreigabe-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Durchführungsfreigabe treffen»"
@@ -542,6 +742,20 @@
       "Checkliste ISDS-Konzept",
       "Meilenstein ISDS-Konzept"
     ],
+    "ergebnisPhasen": {
+      "Liste Projektentscheide Führung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Checkliste ISDS-Konzept": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Meilenstein ISDS-Konzept": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-isds-konzept-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid ISDS-Konzept treffen»"
@@ -572,6 +786,20 @@
       "Checkliste Lösungsarchitektur",
       "Liste Projektentscheide Führung"
     ],
+    "ergebnisPhasen": {
+      "Meilenstein Lösungsarchitektur": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Checkliste Lösungsarchitektur": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Führung": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-loesungsarchitektur-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Lösungsarchitektur treffen»"
@@ -604,6 +832,24 @@
       "Liste Projektentscheide Steuerung",
       "QS- und Risikobericht"
     ],
+    "ergebnisPhasen": {
+      "Checkliste Phasenfreigabe Abschluss": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Meilenstein Phasenfreigabe Abschluss": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "QS- und Risikobericht": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-phasenfreigabe-abschluss-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Phasenfreigabe Abschluss treffen»"
@@ -636,6 +882,24 @@
       "Liste Projektentscheide Steuerung",
       "QS- und Risikobericht"
     ],
+    "ergebnisPhasen": {
+      "Checkliste Phasenfreigabe": [
+        "Konzept",
+        "Realisierung"
+      ],
+      "Meilenstein Phasenfreigabe": [
+        "Konzept",
+        "Realisierung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Konzept",
+        "Realisierung"
+      ],
+      "QS- und Risikobericht": [
+        "Konzept",
+        "Realisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-phasenfreigabe-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Phasenfreigabe treffen»"
@@ -666,6 +930,20 @@
       "Checkliste Produktkonzept",
       "Meilenstein Produktkonzept"
     ],
+    "ergebnisPhasen": {
+      "Liste Projektentscheide Führung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Checkliste Produktkonzept": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Meilenstein Produktkonzept": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-produktkonzept-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Produktkonzept treffen»"
@@ -700,6 +978,38 @@
       "Projekterfahrungen",
       "Meilenstein Projektabschluss"
     ],
+    "ergebnisPhasen": {
+      "Checkliste Projektabbruch": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Projektschlussbeurteilung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Projekterfahrungen": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Meilenstein Projektabschluss": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-projektabbruch-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Projektabbruch treffen»"
@@ -730,6 +1040,20 @@
       "QS- und Risikobericht",
       "Liste Projektentscheide Steuerung"
     ],
+    "ergebnisPhasen": {
+      "Checkliste Projektabschluss": [
+        "Abschluss"
+      ],
+      "Meilenstein Projektabschluss": [
+        "Abschluss"
+      ],
+      "QS- und Risikobericht": [
+        "Abschluss"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-projektabschluss-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Projektabschluss treffen»"
@@ -758,6 +1082,20 @@
       "Meilenstein Projektinitialisierungsfreigabe",
       "Checkliste Projektinitialisierungsfreigabe"
     ],
+    "ergebnisPhasen": {
+      "Liste Projektentscheide Steuerung": [
+        "Initialisierung"
+      ],
+      "Projektinitialisierungsauftrag": [
+        "Initialisierung"
+      ],
+      "Meilenstein Projektinitialisierungsfreigabe": [
+        "Initialisierung"
+      ],
+      "Checkliste Projektinitialisierungsfreigabe": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-projektinitialisierungsfreigabe-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Projektinitialisierungsfreigabe treffen»"
@@ -789,6 +1127,20 @@
       "Checkliste Releasefreigabe",
       "Liste Projektentscheide Steuerung"
     ],
+    "ergebnisPhasen": {
+      "QS- und Risikobericht": [
+        "Umsetzung"
+      ],
+      "Meilenstein Releasefreigabe": [
+        "Umsetzung"
+      ],
+      "Checkliste Releasefreigabe": [
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-releasefreigabe-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Releasefreigabe treffen»"
@@ -822,6 +1174,24 @@
       "Checkliste Vorabnahme",
       "Abnahmeprotokoll"
     ],
+    "ergebnisPhasen": {
+      "Meilenstein Vorabnahme": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Führung": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Checkliste Vorabnahme": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Abnahmeprotokoll": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-vorabnahme-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Vorabnahme treffen»"
@@ -852,6 +1222,20 @@
       "Studie",
       "Meilenstein Weiteres Vorgehen"
     ],
+    "ergebnisPhasen": {
+      "Liste Projektentscheide Führung": [
+        "Initialisierung"
+      ],
+      "Checkliste Weiteres Vorgehen": [
+        "Initialisierung"
+      ],
+      "Studie": [
+        "Initialisierung"
+      ],
+      "Meilenstein Weiteres Vorgehen": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-weiteres-vorgehen-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Weiteres Vorgehen treffen»"
@@ -884,6 +1268,24 @@
       "Liste Projektentscheide Steuerung",
       "Publikation"
     ],
+    "ergebnisPhasen": {
+      "Checkliste Zuschlag": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Meilenstein Zuschlag": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Publikation": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/entscheid-zuschlag-treffen.html",
       "bezeichnung": "HERMES online · Aufgabe «Entscheid Zuschlag treffen»"
@@ -912,6 +1314,12 @@
     "ergebnisse": [
       "Integrationskonzept"
     ],
+    "ergebnisPhasen": {
+      "Integrationskonzept": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/integrationskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Integrationskonzept erarbeiten»"
@@ -939,6 +1347,12 @@
     "ergebnisse": [
       "ISDS-Konzept"
     ],
+    "ergebnisPhasen": {
+      "ISDS-Konzept": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/isds-konzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «ISDS-Konzept erarbeiten»"
@@ -970,6 +1384,16 @@
       "ISDS-Konzept",
       "ISDS-Massnahmen realisiert"
     ],
+    "ergebnisPhasen": {
+      "ISDS-Konzept": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "ISDS-Massnahmen realisiert": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/isds-konzept-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «ISDS-Konzept realisieren»"
@@ -1001,6 +1425,16 @@
       "ISDS-Konzept",
       "ISDS-Konzept überführt"
     ],
+    "ergebnisPhasen": {
+      "ISDS-Konzept": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "ISDS-Konzept überführt": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/isds-konzept-ueberfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «ISDS-Konzept überführen»"
@@ -1034,6 +1468,32 @@
       "Offertanfrage",
       "Angebot"
     ],
+    "ergebnisPhasen": {
+      "Evaluationsbericht": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Vereinbarung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Offertanfrage": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Angebot": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/leistungen-vereinbaren-und-steuern.html",
       "bezeichnung": "HERMES online · Aufgabe «Leistungen vereinbaren und steuern»"
@@ -1063,6 +1523,16 @@
       "Situationsanalyse",
       "Lösungsanforderungen"
     ],
+    "ergebnisPhasen": {
+      "Situationsanalyse": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Lösungsanforderungen": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/loesungsanforderungen-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Lösungsanforderungen erarbeiten»"
@@ -1093,6 +1563,16 @@
       "Systemkonzept",
       "Lösungsarchitektur"
     ],
+    "ergebnisPhasen": {
+      "Systemkonzept": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Lösungsarchitektur": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/loesungsarchitektur-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Lösungsarchitektur erarbeiten»"
@@ -1120,6 +1600,12 @@
     "ergebnisse": [
       "Migration durchgeführt"
     ],
+    "ergebnisPhasen": {
+      "Migration durchgeführt": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/migration-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Migration durchführen»"
@@ -1147,6 +1633,12 @@
     "ergebnisse": [
       "Migrationskonzept"
     ],
+    "ergebnisPhasen": {
+      "Migrationskonzept": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/migrationskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Migrationskonzept erarbeiten»"
@@ -1176,6 +1668,16 @@
       "Migrationsverfahren realisiert",
       "Detailspezifikation"
     ],
+    "ergebnisPhasen": {
+      "Migrationsverfahren realisiert": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Detailspezifikation": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/migrationsverfahren-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Migrationsverfahren realisieren»"
@@ -1202,6 +1704,12 @@
     "ergebnisse": [
       "Organisation aktiviert"
     ],
+    "ergebnisPhasen": {
+      "Organisation aktiviert": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisation-aktivieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Organisation aktivieren»"
@@ -1230,6 +1738,20 @@
       "Prozessbeschreibung",
       "Organisation umgesetzt"
     ],
+    "ergebnisPhasen": {
+      "Organisationsbeschreibung": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Prozessbeschreibung": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Organisation umgesetzt": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisation-umsetzen.html",
       "bezeichnung": "HERMES online · Aufgabe «Organisation umsetzen»"
@@ -1257,6 +1779,16 @@
       "Situationsanalyse",
       "Organisationsanforderungen"
     ],
+    "ergebnisPhasen": {
+      "Situationsanalyse": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Organisationsanforderungen": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisationsanforderungen-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Organisationsanforderungen erarbeiten»"
@@ -1286,6 +1818,24 @@
       "Geschäftsmodellbeschreibung",
       "Organisationsbeschreibung"
     ],
+    "ergebnisPhasen": {
+      "Prozessbeschreibung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Organisationskonzept": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Geschäftsmodellbeschreibung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Organisationsbeschreibung": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/organisationskonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Organisationskonzept erarbeiten»"
@@ -1317,6 +1867,26 @@
       "Projektstatusbericht",
       "Phasenbericht"
     ],
+    "ergebnisPhasen": {
+      "Projektmanagementplan": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Projektstatusbericht": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Phasenbericht": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/phasenfreigabe-vorbereiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Phasenfreigabe vorbereiten»"
@@ -1347,6 +1917,15 @@
     "ergebnisse": [
       "Projekterfahrungen"
     ],
+    "ergebnisPhasen": {
+      "Projekterfahrungen": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/probleme-behandeln-und-erfahrungen-nutzen.html",
       "bezeichnung": "HERMES online · Aufgabe «Probleme behandeln und Erfahrungen nutzen»"
@@ -1374,6 +1953,12 @@
     "ergebnisse": [
       "Produkt aktiviert"
     ],
+    "ergebnisPhasen": {
+      "Produkt aktiviert": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/produkt-aktivieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Produkt aktivieren»"
@@ -1404,6 +1989,24 @@
       "Produktdokumentation",
       "Anwendungshandbuch"
     ],
+    "ergebnisPhasen": {
+      "Produkt entwickelt oder angepasst": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Detailspezifikation": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Produktdokumentation": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Anwendungshandbuch": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/produkt-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Produkt realisieren»"
@@ -1430,6 +2033,12 @@
     "ergebnisse": [
       "Produktkonzept"
     ],
+    "ergebnisPhasen": {
+      "Produktkonzept": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/produktkonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Produktkonzept erarbeiten»"
@@ -1466,6 +2075,46 @@
       "Projektmanagementplan",
       "Protokoll"
     ],
+    "ergebnisPhasen": {
+      "Arbeitsauftrag": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Lösungsanforderungen": [
+        "Umsetzung"
+      ],
+      "Detailspezifikation": [
+        "Umsetzung"
+      ],
+      "Projektstatusbericht": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Projektmanagementplan": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Protokoll": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projekt-fuehren-und-kontrollieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Projekt führen und kontrollieren»"
@@ -1499,6 +2148,22 @@
       "QS- und Risikobericht",
       "Liste Projektentscheide Steuerung"
     ],
+    "ergebnisPhasen": {
+      "QS- und Risikobericht": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Liste Projektentscheide Steuerung": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projekt-steuern.html",
       "bezeichnung": "HERMES online · Aufgabe «Projekt steuern»"
@@ -1527,6 +2192,14 @@
       "Projektschlussbeurteilung",
       "Projekterfahrungen"
     ],
+    "ergebnisPhasen": {
+      "Projektschlussbeurteilung": [
+        "Abschluss"
+      ],
+      "Projekterfahrungen": [
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projektabschluss-vorbereiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Projektabschluss vorbereiten»"
@@ -1552,6 +2225,11 @@
     "ergebnisse": [
       "Projektmanagementplan"
     ],
+    "ergebnisPhasen": {
+      "Projektmanagementplan": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/projektmanagementplan-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Projektmanagementplan erarbeiten»"
@@ -1584,6 +2262,20 @@
       "Prototypdokumentation",
       "Prototyp realisiert"
     ],
+    "ergebnisPhasen": {
+      "Prototypdokumentation": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Prototyp realisiert": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/prototyping-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Prototyping durchführen»"
@@ -1615,6 +2307,22 @@
       "Projektmanagementplan",
       "Prüfprotokoll"
     ],
+    "ergebnisPhasen": {
+      "Projektmanagementplan": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Prüfprotokoll": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/qualitaetssicherung-fuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Qualitätssicherung führen»"
@@ -1640,6 +2348,11 @@
     "ergebnisse": [
       "Rechtsgrundlagenanalyse"
     ],
+    "ergebnisPhasen": {
+      "Rechtsgrundlagenanalyse": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/rechtsgrundlagenanalyse-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Rechtsgrundlagenanalyse erarbeiten»"
@@ -1668,6 +2381,17 @@
       "Projektmanagementplan",
       "Projektstatusbericht"
     ],
+    "ergebnisPhasen": {
+      "Releasebericht": [
+        "Umsetzung"
+      ],
+      "Projektmanagementplan": [
+        "Umsetzung"
+      ],
+      "Projektstatusbericht": [
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/releaseabschluss-vorbereiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Releaseabschluss vorbereiten»"
@@ -1697,6 +2421,20 @@
       "Projektstatusbericht",
       "Projektmanagementplan"
     ],
+    "ergebnisPhasen": {
+      "Projektstatusbericht": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Projektmanagementplan": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/risiken-managen.html",
       "bezeichnung": "HERMES online · Aufgabe «Risiken managen»"
@@ -1722,6 +2460,11 @@
     "ergebnisse": [
       "Schutzbedarfsanalyse"
     ],
+    "ergebnisPhasen": {
+      "Schutzbedarfsanalyse": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/schutzbedarfsanalyse-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Schutzbedarfsanalyse erarbeiten»"
@@ -1757,6 +2500,32 @@
       "Stakeholderinteressen",
       "Projektmanagementplan"
     ],
+    "ergebnisPhasen": {
+      "Stakeholderliste": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Stakeholderinteressen": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Projektmanagementplan": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/stakeholder-managen-und-informieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Stakeholder managen und informieren»"
@@ -1786,6 +2555,14 @@
     "ergebnisse": [
       "Stakeholderinteressen"
     ],
+    "ergebnisPhasen": {
+      "Stakeholderinteressen": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/stakeholderinteressen-vertreten.html",
       "bezeichnung": "HERMES online · Aufgabe «Stakeholderinteressen vertreten»"
@@ -1816,6 +2593,14 @@
       "Stakeholderliste",
       "Studie"
     ],
+    "ergebnisPhasen": {
+      "Stakeholderliste": [
+        "Initialisierung"
+      ],
+      "Studie": [
+        "Initialisierung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/studie-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Studie erarbeiten»"
@@ -1844,6 +2629,12 @@
     "ergebnisse": [
       "System aktiviert"
     ],
+    "ergebnisPhasen": {
+      "System aktiviert": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/system-aktivieren.html",
       "bezeichnung": "HERMES online · Aufgabe «System aktivieren»"
@@ -1871,6 +2662,16 @@
       "System integriert",
       "Betriebshandbuch"
     ],
+    "ergebnisPhasen": {
+      "System integriert": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Betriebshandbuch": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/system-in-betrieb-integrieren.html",
       "bezeichnung": "HERMES online · Aufgabe «System in Betrieb integrieren»"
@@ -1904,6 +2705,28 @@
       "Lösungsarchitektur",
       "System entwickelt oder parametrisiert"
     ],
+    "ergebnisPhasen": {
+      "Anwendungshandbuch": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Systemkonzept": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Detailspezifikation": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Lösungsarchitektur": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "System entwickelt oder parametrisiert": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/system-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «System realisieren»"
@@ -1935,6 +2758,24 @@
       "Lösungsarchitektur",
       "Schnittstellen realisiert"
     ],
+    "ergebnisPhasen": {
+      "Detailspezifikation": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Integrations- und Installationsanleitung": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Lösungsarchitektur": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Schnittstellen realisiert": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/systemintegration-vorbereiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Systemintegration vorbereiten»"
@@ -1967,6 +2808,18 @@
       "Testkonzept",
       "Testprotokoll"
     ],
+    "ergebnisPhasen": {
+      "Testkonzept": [
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Testprotokoll": [
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/test-durchfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Test durchführen»"
@@ -1995,6 +2848,12 @@
     "ergebnisse": [
       "Testinfrastruktur realisiert"
     ],
+    "ergebnisPhasen": {
+      "Testinfrastruktur realisiert": [
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/testinfrastruktur-realisieren.html",
       "bezeichnung": "HERMES online · Aufgabe «Testinfrastruktur realisieren»"
@@ -2022,6 +2881,17 @@
       "Protokoll",
       "Testinfrastruktur überführt"
     ],
+    "ergebnisPhasen": {
+      "Testkonzept": [
+        "Abschluss"
+      ],
+      "Protokoll": [
+        "Abschluss"
+      ],
+      "Testinfrastruktur überführt": [
+        "Abschluss"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/testinfrastruktur-ueberfuehren.html",
       "bezeichnung": "HERMES online · Aufgabe «Testinfrastruktur überführen»"
@@ -2052,6 +2922,12 @@
     "ergebnisse": [
       "Testkonzept"
     ],
+    "ergebnisPhasen": {
+      "Testkonzept": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/testkonzept-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Testkonzept erarbeiten»"
@@ -2079,6 +2955,12 @@
     "ergebnisse": [
       "Vereinbarung"
     ],
+    "ergebnisPhasen": {
+      "Vereinbarung": [
+        "Konzept",
+        "Umsetzung"
+      ]
+    },
     "quelle": {
       "url": "https://www.hermes.admin.ch/de/projektmanagement/aufgaben/vereinbarung-erarbeiten.html",
       "bezeichnung": "HERMES online · Aufgabe «Vereinbarung erarbeiten»"

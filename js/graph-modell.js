@@ -281,6 +281,18 @@
     return true;
   }
 
+  /** Erzeugt die Aufgabe das Ergebnis in einer dieser Phasen? Die Modultabellen
+      des Handbuchs kreuzen die Phasen je Paar an (aufgabe.ergebnisPhasen) —
+      «Projekt steuern» erzeugt den QS- und Risikobericht nicht im Abschluss,
+      obwohl beide dort vorkommen. Ohne Angabe gilt der Schnitt der Phasen beider. */
+  function erzeugtInPhasen(aufgabe, ergebnis, phasen) {
+    var liste = aufgabe.ergebnisPhasen && aufgabe.ergebnisPhasen[ergebnis.begriff];
+    if (!liste) {
+      liste = (aufgabe.phasen || []).filter(function (p) { return (ergebnis.phasen || []).indexOf(p) !== -1; });
+    }
+    return schneidet(liste, phasen);
+  }
+
   /** Module eines Szenarios (für die Vorwahl über das Szenario). */
   /* Die Szenarioseiten der Quelle führen Projektgrundlagen nicht in ihrer
      Modulliste; nach Kap. 3.2.1 ist es aber wie Projektsteuerung,
@@ -340,6 +352,8 @@
     var kat = zustand.kategorien || {};
     var rel = zustand.relationen || {};
     var vp = phasenDerVorgehensweise(u.vorgehen);
+    /* Phasen des Umfangs — eine Kante «erzeugt» gilt nur, wenn die Aufgabe das Ergebnis in einer davon erzeugt. */
+    var phasenImUmfang = u.phasen.length ? vp.filter(function (p) { return u.phasen.indexOf(p) !== -1; }) : vp;
     var gruppenNamen = zustand.gruppierung === 'phase'
       ? (u.phasen.length ? vp.filter(function (p) { return u.phasen.indexOf(p) !== -1; }) : vp)
       : (function () {
@@ -429,7 +443,7 @@
       aufgaben.forEach(function (k, i) {
         k.eintrag.ergebnisse.forEach(function (name) {
           var e = HT.daten.eintragMitBegriff(name, 'ergebnis');
-          if (e && rang[e.id] === undefined) { rang[e.id] = i; quelleVon[e.id] = k.id; }
+          if (e && rang[e.id] === undefined && erzeugtInPhasen(k.eintrag, e, phasenImUmfang)) { rang[e.id] = i; quelleVon[e.id] = k.id; }
         });
       });
     }
@@ -536,7 +550,8 @@
       sp.forEach(function (k) { sichtbar[k.id] = true; });
     });
     var kanten = m.kanten.filter(function (kante) {
-      return rel[kante.rel] && sichtbar[kante.von] && sichtbar[kante.nach];
+      if (!rel[kante.rel] || !sichtbar[kante.von] || !sichtbar[kante.nach]) { return false; }
+      return kante.rel !== 'erzeugt' || erzeugtInPhasen(m.knoten[kante.von].eintrag, m.knoten[kante.nach].eintrag, phasenImUmfang);
     });
 
     if (zustand.isolierteAusblenden) {
@@ -658,6 +673,7 @@
     umfangAktiv: umfangAktiv,
     phasenDerVorgehensweise: phasenDerVorgehensweise,
     imUmfang: imUmfang,
+    erzeugtInPhasen: erzeugtInPhasen,
     szenarioModule: szenarioModule,
     beitrag: beitrag,
     teilgraph: teilgraph,

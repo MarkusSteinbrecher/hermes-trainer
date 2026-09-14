@@ -23,7 +23,7 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-11e';
+  var DATEN_VERSION = '2026-09-14a';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
@@ -188,6 +188,7 @@
       module: alsArray(roh.module),
       szenarien: alsArray(roh.szenarien),
       ergebnisse: alsArray(roh.ergebnisse),
+      ergebnisPhasen: phasenJeErgebnis(roh.ergebnisPhasen),
       meilensteine: meilensteine,
       quelle: quelle,
       reihenfolge: index
@@ -202,6 +203,16 @@
     ].join(' ')).join('  ');
 
     return e;
+  }
+
+  /* Aufgaben: Phasen je erzeugtem Ergebnis ({ Ergebnis: [Phasen] }), aus den
+     Modultabellen des Handbuchs (tools/ergebnis-phasen.py). */
+  function phasenJeErgebnis(roh) {
+    var aus = {};
+    if (roh && typeof roh === 'object' && !Array.isArray(roh)) {
+      Object.keys(roh).forEach(function (name) { aus[name] = alsArray(roh[name]); });
+    }
+    return aus;
   }
 
   function normBeleg(roh) {

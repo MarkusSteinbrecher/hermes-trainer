@@ -205,11 +205,14 @@
     ]);
   }
 
-  /* Welche Aufgabe dieses Felds erzeugt welches Ergebnis? (aufgabe.ergebnisse) */
-  function erzeugerKarte(aufgaben) {
+  /* Welche Aufgabe dieses Felds erzeugt welches Ergebnis? (aufgabe.ergebnisse,
+     nur wenn die Modultabelle das Paar in der Phase des Felds ankreuzt) */
+  function erzeugerKarte(aufgaben, phase) {
     var karte = {};
     aufgaben.forEach(function (a) {
       (a.ergebnisse || []).forEach(function (name) {
+        var e = HT.daten.eintragMitBegriff(name, 'ergebnis');
+        if (e && !HT.graph.erzeugtInPhasen(a, e, [phase])) { return; }
         var key = HT.daten.normalisieren(name);
         if (!karte[key]) { karte[key] = []; }
         if (karte[key].indexOf(a.begriff) === -1) { karte[key].push(a.begriff); }
@@ -477,7 +480,7 @@
     }
 
     if (ergebnisse.length) {
-      var erzeuger = erzeugerKarte(aufgaben);
+      var erzeuger = erzeugerKarte(aufgaben, feld.phase.begriff);
       var texte = meilensteinTexte(feld.phase);
       behaelter.appendChild(h('section', { class: 'feld-abschnitt' }, [
         h('h2', { text: 'Ergebnisse (' + ergebnisse.length + ')' }),

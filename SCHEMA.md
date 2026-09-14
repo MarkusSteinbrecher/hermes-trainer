@@ -46,6 +46,7 @@ Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSO
   "verantwortlich": "Projektleiter",
   "beteiligt": ["Anwendervertreter"],
   "ergebnisse": ["Ausschreibung"],
+  "ergebnisPhasen": "Aufgaben: { Ergebnis: [Phasen] } — Phasen, in denen die Aufgabe das Ergebnis erzeugt (Tabellen «Aufgaben und Ergebnisse Modul …», gesetzt von tools/ergebnis-phasen.py)",
   "ebene": "Führung",
   "meilensteine": [{ "name": "Freigabe Umsetzung", "beschreibung": "…" }],
   "kurz": "Nur wenn der erste Satz der Definition nicht als Kurzfassung taugt.",
@@ -106,7 +107,7 @@ Blöcke wie oben, jeder mit `seite` (die PDF-Seite, auf der der Block beginnt �
 | `erzeugt` | `aufgabe.ergebnisse` | Aufgabe → Ergebnis |
 | `ergebnisrolle` | `ergebnis.verantwortlich` | Rolle → Ergebnis |
 
-Der Umfang (`{ vorgehen, phasen[], module[] }`) filtert über `aufgabe.phasen`/`ergebnis.phasen` und `aufgabe.module`/`ergebnis.module`; `vorgehen` schränkt zusätzlich auf die Phasen der klassischen (Initialisierung, Konzept, Realisierung, Einführung, Abschluss) oder der agilen Vorgehensweise (Initialisierung, Umsetzung, Abschluss) ein. Leere Auswahl heisst «alle». Rollen tragen selbst weder Phasen noch Module — sie erscheinen, wenn sie über eine eingeblendete Beziehung an einer Aufgabe oder einem Ergebnis im Umfang hängen. `szenario.module` dient als Vorwahl der Modulauswahl. Aufgaben und Ergebnisse ohne Phasenangabe — die Sammeleinträge «Checklisten» und «Meilensteine» — lassen sich nicht im Ablauf verorten und erscheinen nur im Lexikon.
+Der Umfang (`{ vorgehen, phasen[], module[] }`) filtert über `aufgabe.phasen`/`ergebnis.phasen` und `aufgabe.module`/`ergebnis.module`; `vorgehen` schränkt zusätzlich auf die Phasen der klassischen (Initialisierung, Konzept, Realisierung, Einführung, Abschluss) oder der agilen Vorgehensweise (Initialisierung, Umsetzung, Abschluss) ein. Leere Auswahl heisst «alle». Rollen tragen selbst weder Phasen noch Module — sie erscheinen, wenn sie über eine eingeblendete Beziehung an einer Aufgabe oder einem Ergebnis im Umfang hängen. `szenario.module` dient als Vorwahl der Modulauswahl. Aufgaben und Ergebnisse ohne Phasenangabe — die Sammeleinträge «Checklisten» und «Meilensteine» — lassen sich nicht im Ablauf verorten und erscheinen nur im Lexikon. Eine Kante `erzeugt` gilt im Umfang nur, wenn die Aufgabe das Ergebnis in einer seiner Phasen erzeugt: die Modultabellen kreuzen die Phasen je Paar an (`aufgabe.ergebnisPhasen`), ohne Angabe gilt der Schnitt der Phasen beider — «Projekt steuern → QS- und Risikobericht» fehlt so im Abschluss, «Projekt führen und kontrollieren → Lösungsanforderungen» in der klassischen Vorgehensweise ganz.
 
 Die Ansicht («Nach Phasen» oder «Nach Modulen») legt die Bahnen des Swimlane-Layouts fest: eine Aufgabe steht in der ersten Bahn, zu der sie laut ihren Feldern gehört; ein Ergebnis in der Bahn der Aufgabe, die es erzeugt (ohne erzeugende Aufgabe in seiner eigenen ersten Phase bzw. seinem ersten Modul). Rollen bekommen keine Bahn — sie tragen in HERMES weder Phase noch Modul und stehen als durchgehende Spalte daneben. Die Daten tragen das: 68 von 71 Aufgaben hängen an genau einem Modul, 55 von 71 an genau einer klassischen Phase.
 
@@ -120,7 +121,7 @@ Querverweise werden über den exakten Begriff aufgelöst (`eintragMitBegriff`); 
 |---|---|
 | Ergebnisse | `ergebnis.phasen` enthält die Phase **und** `ergebnis.module` eines der Module. Reihenfolge: Meilenstein, Dokument, Zustand, Checkliste, darin alphabetisch |
 | Aufgaben | `aufgabe.phasen` enthält die Phase **und** `aufgabe.module` eines der Module |
-| «Entsteht aus» | Aufgaben **dieses Felds**, deren `ergebnisse` das Ergebnis nennen — nicht alle erzeugenden Aufgaben |
+| «Entsteht aus» | Aufgaben **dieses Felds**, deren `ergebnisse` das Ergebnis nennen und die es laut `ergebnisPhasen` in der Phase des Felds erzeugen — nicht alle erzeugenden Aufgaben |
 | Meilensteintext | `phase.meilensteine[].beschreibung`, wenn der Name übereinstimmt; sonst die Kurzfassung des Ergebnisses |
 | Rollen | aus `verantwortlich` (kommagetrennt) und `beteiligt` der Aufgaben und Ergebnisse des Felds; «beteiligt an» lässt weg, was die Rolle im selben Feld ohnehin verantwortet |
 | Nachbarfelder | dieselbe Rechnung für die übrigen Phasen bzw. Module; leere Felder erscheinen nicht (das eigene bleibt als Anker stehen) |
