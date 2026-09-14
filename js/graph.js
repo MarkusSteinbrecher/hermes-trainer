@@ -32,12 +32,13 @@
     { key: 'klassisch', label: 'Klassisch' },
     { key: 'agil', label: 'Agil' }
   ];
-  /* Die Umfangsleiste über dem Graphen: drei Schalter oben in der linken
-     Icon-Leiste (Phasen, Szenarien, Module) blenden je eine Chip-Zeile ein. */
-  var LEISTE_DIMENSIONEN = [
-    { key: 'phasen', label: 'Phasen', ikone: 'phase' },
-    { key: 'szenarien', label: 'Szenarien', ikone: 'szenario' },
-    { key: 'module', label: 'Module', ikone: 'modul' }
+  /* Der Umfang oben in der linken Icon-Leiste: drei Knöpfe (Phasen,
+     Szenarien, Module), jeder öffnet neben sich einen Popover mit derselben
+     Auswahl wie in «Alle Filter». */
+  var UMFANG_DIMENSIONEN = [
+    { key: 'phasen', label: 'Phasen', ikone: 'phase', knopf: 'knopfPhasen' },
+    { key: 'szenarien', label: 'Szenarien', ikone: 'szenario', knopf: 'knopfSzenarien' },
+    { key: 'module', label: 'Module', ikone: 'modul', knopf: 'knopfModule' }
   ];
 
   var refs = {};
@@ -66,8 +67,7 @@
       phasenstreifen: true,
       isolierteAusblenden: false,
       nurMinimal: false,
-      nurEntscheide: false,
-      leiste: { phasen: true, szenarien: false, module: false } // welche Chip-Zeilen die Umfangsleiste zeigt
+      nurEntscheide: false
     };
   }
 
@@ -82,8 +82,7 @@
       phasenstreifen: zustand.phasenstreifen,
       isolierteAusblenden: zustand.isolierteAusblenden,
       nurMinimal: zustand.nurMinimal,
-      nurEntscheide: zustand.nurEntscheide,
-      leiste: zustand.leiste
+      nurEntscheide: zustand.nurEntscheide
     });
   }
 
@@ -91,14 +90,6 @@
     var g = HT.store.lies('graph', null);
     if (!g || typeof g !== 'object') { return; }
     if (ANSICHTEN.some(function (a) { return a.key === g.ansicht; })) { zustand.ansicht = g.ansicht; }
-    if (g.leiste && typeof g.leiste === 'object') {
-      LEISTE_DIMENSIONEN.forEach(function (d) {
-        if (typeof g.leiste[d.key] === 'boolean') { zustand.leiste[d.key] = g.leiste[d.key]; }
-      });
-    } else if (LEISTE_DIMENSIONEN.some(function (d) { return d.key === g.leisteDimension; })) {
-      /* Bis 2026-09-14 ein Radio: die gewählte Dimension wird zur einzigen eingeschalteten. */
-      LEISTE_DIMENSIONEN.forEach(function (d) { zustand.leiste[d.key] = d.key === g.leisteDimension; });
-    }
     if (g.umfang && typeof g.umfang === 'object') {
       var u = zustand.umfang;
       if (HT.graph.VORGEHEN[g.umfang.vorgehen]) { u.vorgehen = g.umfang.vorgehen; }
@@ -271,7 +262,11 @@
     alle:        { titel: 'Alle Filter',    inhalt: function () { return alleFilterInhalt(); },  knopf: 'knopfAlle', breit: true },
     suche:       { titel: 'Element suchen', inhalt: function () { return sucheInhalt(); },       knopf: 'knopfSuche' },
     darstellung: { titel: 'Darstellung',    inhalt: function () { return darstellungInhalt(); }, knopf: 'knopfDarstellung' },
-    legende:     { titel: 'Legende',        inhalt: function () { return legendeInhalt(); },     knopf: 'knopfLegende' }
+    legende:     { titel: 'Legende',        inhalt: function () { return legendeInhalt(); },     knopf: 'knopfLegende' },
+    /* Die drei Umfang-Popover öffnen neben ihrem Knopf in der linken Leiste. */
+    phasen:      { titel: 'Phasen',         inhalt: function () { return phasenInhalt(); },      knopf: 'knopfPhasen', links: true },
+    szenarien:   { titel: 'Szenarien',      inhalt: function () { return szenarienInhalt(); },   knopf: 'knopfSzenarien', links: true },
+    module:      { titel: 'Module',         inhalt: function () { return moduleInhalt(); },      knopf: 'knopfModule', links: true, mittel: true }
   };
 
   /* Knöpfe, die einen Popover öffnen — auch die, die der Gastgeber über
@@ -300,6 +295,9 @@
     knoepfe.forEach(function (b) { if (b) { b.setAttribute('aria-expanded', 'true'); } });
     /* «Alle Filter» nutzt die ganze Breite der Fläche — Spalten statt Liste. */
     refs.pop.classList.toggle('gpop--breit', !!meta.breit);
+    refs.pop.classList.toggle('gpop--mittel', !!meta.mittel);
+    refs.pop.classList.toggle('gpop--links', !!meta.links);
+    popAusrichten(meta);
 
     refs.pop.appendChild(h('div', { class: 'gpop__kopf' }, [
       h('strong', { class: 'gpop__titel', text: titel }),
@@ -321,61 +319,135 @@
     return h('div', { class: 'gpop__inhalt' }, kinder);
   }
 
+  /* Ein Popover «links» steht neben der linken Icon-Leiste, oben bündig mit
+     seinem Knopf (der Behälter ist der des Gastgebers, darum wird der
+     Abstand gemessen). Liegt die Leiste quer (schmal), gilt das CSS. */
+  function popAusrichten(meta) {
+    refs.pop.style.top = '';
+    refs.pop.style.maxHeight = '';
+    var knopf = meta.links ? refs[meta.knopf] : null;
+    if (!knopf || !refs.rail || getComputedStyle(refs.rail).flexDirection === 'row') { return; }
+    var eltern = refs.pop.offsetParent || refs.pop.parentNode;
+    if (!eltern) { return; }
+    var oben = Math.round(knopf.getBoundingClientRect().top - eltern.getBoundingClientRect().top);
+    refs.pop.style.top = oben + 'px';
+    refs.pop.style.maxHeight = 'calc(100% - ' + oben + 'px - .75rem)';
+  }
+
+  /* --- Bausteine der Auswahl (Alle Filter und die drei Umfang-Popover) ------ */
+
+  function filterAbschnitt(titel, rechts, inhalt, klasse) {
+    return h('section', { class: 'gaf' + (klasse ? ' ' + klasse : '') }, [
+      h('div', { class: 'gaf__kopf' }, [h('h3', { class: 'gaf__titel', text: titel }), rechts]),
+      inhalt
+    ]);
+  }
+
+  function alleKnopf(feld, label) {
+    var alle = !zustand.umfang[feld].length;
+    return h('button', {
+      type: 'button', class: 'gaf__alle', 'aria-pressed': alle ? 'true' : 'false',
+      text: alle ? label + ': alle' : 'Alle ' + label,
+      disabled: alle ? 'disabled' : null,
+      on: { click: function () { zustand.umfang[feld] = []; geaendert(); popZeichnen(); } }
+    });
+  }
+
+  /* Häkchen für Phasen und Module: «alle» heisst im Modell eine leere Liste,
+     darum zeigt die Liste dann jedes Häkchen gesetzt, und wer eines
+     wegnimmt, behält die übrigen. Sind wieder alle gesetzt, wird die Liste
+     leer. */
+  function umfangHaken(feld, name, alle, zahl) {
+    var liste = zustand.umfang[feld];
+    var an = !liste.length || liste.indexOf(name) !== -1;
+    var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': feld + ':' + name });
+    kasten.checked = an;
+    kasten.addEventListener('change', function () {
+      var l = zustand.umfang[feld];
+      if (!l.length) {
+        zustand.umfang[feld] = alle.filter(function (n) { return n !== name; });
+      } else {
+        var i = l.indexOf(name);
+        if (i === -1) { l.push(name); } else { l.splice(i, 1); }
+        if (alle.every(function (n) { return l.indexOf(n) !== -1; })) { zustand.umfang[feld] = []; }
+      }
+      geaendert();
+      popZeichnen();
+    });
+    return h('label', { class: 'gs-schalter' }, [
+      kasten,
+      h('span', { class: 'gs-schalter__label', text: name }),
+      zahl === null || zahl === undefined ? null : h('span', { class: 'gs-schalter__extra', text: String(zahl) })
+    ]);
+  }
+
+  function vorgehenAbschnitt() {
+    return filterAbschnitt('Vorgehensweise', null, segment(VORGEHENSWEISEN, zustand.umfang.vorgehen, function (key) { vorgehenSetzen(key); popZeichnen(); }, 'Vorgehensweise', true));
+  }
+
+  function phasenAbschnitt() {
+    var phasen = HT.graph.phasenDerVorgehensweise(zustand.umfang.vorgehen);
+    return filterAbschnitt('Phasen', alleKnopf('phasen', 'Phasen'),
+      h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Phasen' }, phasen.map(function (name) {
+        return umfangHaken('phasen', name, phasen, HT.graph.beitrag('phase', name, zustand.umfang));
+      })));
+  }
+
+  /* Ein Szenario setzt seine Module und ist markiert, solange genau diese
+     gewählt sind. */
+  function szenarienAbschnitt() {
+    var aktuell = zustand.umfang.module;
+    var szenarien = HT.daten.eintraegeDerKategorie('szenario').map(function (sz) {
+      var gleich = szenarioGewaehlt(sz, zustand.umfang);
+      return h('button', {
+        type: 'button', class: 'gaf__szenario', 'aria-pressed': gleich ? 'true' : 'false', 'data-fokus': 'sz:' + sz.id,
+        on: { click: function () {
+          zustand.umfang.module = gleich ? [] : sz.module.slice();
+          geaendert();
+          popZeichnen();
+        } }
+      }, [
+        h('span', { class: 'gaf__szenario-haken', 'aria-hidden': 'true', text: gleich ? '●' : '○' }),
+        h('span', { class: 'gaf__szenario-titel', text: sz.begriff }),
+        h('span', { class: 'gs-schalter__extra', title: sz.module.length + ' Module', text: String(sz.module.length) })
+      ]);
+    });
+    return filterAbschnitt('Szenarien', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien));
+  }
+
+  function moduleAbschnitt() {
+    var module = HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
+    return filterAbschnitt('Module', alleKnopf('module', 'Module'),
+      h('div', { class: 'gs-liste gs-liste--zwei', role: 'group', 'aria-label': 'Module' }, module.map(function (name) {
+        return umfangHaken('module', name, module, HT.graph.beitrag('modul', name, zustand.umfang));
+      })), 'gaf--module');
+  }
+
+  function phasenInhalt() {
+    return popInhalt([vorgehenAbschnitt(), phasenAbschnitt()]);
+  }
+
+  function szenarienInhalt() {
+    return popInhalt([
+      szenarienAbschnitt(),
+      h('p', { class: 'gpop__hinweis', text: 'Ein Szenario wählt seine Module; die Auswahl steht dann auch unter «Module».' })
+    ]);
+  }
+
+  function moduleInhalt() {
+    return popInhalt([moduleAbschnitt()]);
+  }
+
   function sucheInhalt() {
     return popInhalt([refs.sucheFeld, refs.sucheListe]);
   }
 
   /* Alle Filter auf einer Seite: Ansicht, Vorgehensweise, Phasen, Szenarien,
-     Module, Elemente, Verbindungen, Darstellung. Phasen und Module sind
-     Häkchenlisten; «alle» heisst im Modell eine leere Liste, darum zeigt die
-     Liste dann jedes Häkchen gesetzt, und wer eines wegnimmt, behält die
-     übrigen. Sind wieder alle gesetzt, wird die Liste leer. Der Umfang gilt
-     zugleich für die Abbildung des Überblicks. */
+     Module, Elemente, Verbindungen, Darstellung — aus denselben Bausteinen
+     wie die drei Umfang-Popover. Der Umfang gilt zugleich für die Abbildung
+     des Überblicks. */
   function alleFilterInhalt() {
-    var phasen = HT.graph.phasenDerVorgehensweise(zustand.umfang.vorgehen);
-    var module = HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
     var zahlen = refs.zahlen || {};
-
-    function abschnitt(titel, rechts, inhalt, klasse) {
-      return h('section', { class: 'gaf' + (klasse ? ' ' + klasse : '') }, [
-        h('div', { class: 'gaf__kopf' }, [h('h3', { class: 'gaf__titel', text: titel }), rechts]),
-        inhalt
-      ]);
-    }
-
-    function alleKnopf(feld, label) {
-      var alle = !zustand.umfang[feld].length;
-      return h('button', {
-        type: 'button', class: 'gaf__alle', 'aria-pressed': alle ? 'true' : 'false',
-        text: alle ? label + ': alle' : 'Alle ' + label,
-        disabled: alle ? 'disabled' : null,
-        on: { click: function () { zustand.umfang[feld] = []; geaendert(); popZeichnen(); } }
-      });
-    }
-
-    function haken(feld, name, alle, zahl, klasse) {
-      var liste = zustand.umfang[feld];
-      var an = !liste.length || liste.indexOf(name) !== -1;
-      var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': feld + ':' + name });
-      kasten.checked = an;
-      kasten.addEventListener('change', function () {
-        var l = zustand.umfang[feld];
-        if (!l.length) {
-          zustand.umfang[feld] = alle.filter(function (n) { return n !== name; });
-        } else {
-          var i = l.indexOf(name);
-          if (i === -1) { l.push(name); } else { l.splice(i, 1); }
-          if (alle.every(function (n) { return l.indexOf(n) !== -1; })) { zustand.umfang[feld] = []; }
-        }
-        geaendert();
-        popZeichnen();
-      });
-      return h('label', { class: 'gs-schalter' + (klasse ? ' ' + klasse : '') }, [
-        kasten,
-        h('span', { class: 'gs-schalter__label', text: name }),
-        zahl === null || zahl === undefined ? null : h('span', { class: 'gs-schalter__extra', text: String(zahl) })
-      ]);
-    }
 
     function kategorieHaken(m) {
       var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': 'kat:' + m.key });
@@ -407,23 +479,6 @@
       return h('label', { class: 'gs-schalter' }, [kasten, h('span', { class: 'gs-schalter__label', text: label })]);
     }
 
-    var aktuell = zustand.umfang.module;
-    var szenarien = HT.daten.eintraegeDerKategorie('szenario').map(function (sz) {
-      var gleich = sz.module.length === aktuell.length && sz.module.every(function (m) { return aktuell.indexOf(m) !== -1; });
-      return h('button', {
-        type: 'button', class: 'gaf__szenario', 'aria-pressed': gleich ? 'true' : 'false', 'data-fokus': 'sz:' + sz.id,
-        on: { click: function () {
-          zustand.umfang.module = gleich ? [] : sz.module.slice();
-          geaendert();
-          popZeichnen();
-        } }
-      }, [
-        h('span', { class: 'gaf__szenario-haken', 'aria-hidden': 'true', text: gleich ? '●' : '○' }),
-        h('span', { class: 'gaf__szenario-titel', text: sz.begriff }),
-        h('span', { class: 'gs-schalter__extra', title: sz.module.length + ' Module', text: String(sz.module.length) })
-      ]);
-    });
-
     var ansichtOptionen = ANSICHTEN.map(function (a) { return { key: a.key, label: a.label }; });
 
     /* Sechs Spalten über die ganze Breite: kein Scrollen, alles auf einen
@@ -433,23 +488,17 @@
     var kinder = [
       h('div', { class: 'gaf-raster' }, [
         h('div', { class: 'gaf-spalte' }, [
-          abschnitt('Ansicht', null, segment(ansichtOptionen, zustand.ansicht, function (key) { ansichtSetzen(key); popOeffnen('alle'); }, 'Ansicht', true)),
-          abschnitt('Vorgehensweise', null, segment(VORGEHENSWEISEN, zustand.umfang.vorgehen, function (key) { vorgehenSetzen(key); popZeichnen(); }, 'Vorgehensweise', true))
+          filterAbschnitt('Ansicht', null, segment(ansichtOptionen, zustand.ansicht, function (key) { ansichtSetzen(key); popOeffnen('alle'); }, 'Ansicht', true)),
+          vorgehenAbschnitt()
         ]),
-        abschnitt('Phasen', alleKnopf('phasen', 'Phasen'),
-          h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Phasen' }, phasen.map(function (name) {
-            return haken('phasen', name, phasen, HT.graph.beitrag('phase', name, zustand.umfang));
-          }))),
-        abschnitt('Szenarien', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien)),
-        abschnitt('Module', alleKnopf('module', 'Module'),
-          h('div', { class: 'gs-liste gs-liste--zwei', role: 'group', 'aria-label': 'Module' }, module.map(function (name) {
-            return haken('module', name, module, HT.graph.beitrag('modul', name, zustand.umfang));
-          })), 'gaf--module'),
+        phasenAbschnitt(),
+        szenarienAbschnitt(),
+        moduleAbschnitt(),
         h('div', { class: 'gaf-spalte' }, [
-          abschnitt('Elemente', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
-          abschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
+          filterAbschnitt('Elemente', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
+          filterAbschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
         ]),
-        abschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
+        filterAbschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
           darstellungHaken('Phasenmodell im Knoten (Phasen des Elements dunkelgrau)', 'phasenstreifen', false),
           darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
           darstellungHaken('Nur minimal geforderte Dokumente', 'nurMinimal'),
@@ -612,7 +661,7 @@
   /* --- Icon-Leisten --------------------------------------------------------- */
 
   function railBauen() {
-    refs.railUmfang = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Auswahl nach Phasen, Szenarien oder Modulen ein- und ausblenden' });
+    refs.railUmfang = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Auswahl nach Phasen, Szenarien, Modulen' });
     refs.railTypen = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Elemente ein- und ausblenden' });
     refs.railRel = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Verbindungen ein- und ausblenden' });
     refs.rail = h('div', { class: 'grail' }, [
@@ -640,6 +689,7 @@
 
   function railAktualisieren(zahlen) {
     refs.zahlen = zahlen;
+    railUmfangZeichnen();
     HT.ui.leeren(refs.railTypen);
     HT.graph.KATEGORIEN.forEach(function (m) {
       var an = !!zustand.kategorien[m.key];
@@ -903,42 +953,17 @@
 
   function alles(einpassen) {
     werkzeugeAktualisieren();
-    leisteZeichnen();
     graphZeichnen(einpassen);
     melden();
   }
 
-  /* --- Umfangsleiste über dem Graphen ---------------------------------------- */
-
-  /* Je eingeschalteter Dimension eine Zeile Chips (Phasen, Szenarien,
-     Module), links das Icon der Dimension — derselbe Umfang wie in «Alle
-     Filter» und in der Abbildung. Ein- und ausgeschaltet wird oben in der
-     linken Icon-Leiste (`railUmfangZeichnen`); sind alle aus, verschwindet
-     die Leiste und die Fläche bekommt den Platz. Muster wie bei den
-     Lernkarten: «Alle» ist gedrückt, solange die Liste leer ist; ein Klick auf
-     einen Namen schaltet ihn um. Ein Szenario setzt seine Module und ist
-     gedrückt, solange genau diese gewählt sind. Ist in einer Dimension etwas
-     eingeschränkt, trägt ihr Icon in der Leiste einen Punkt — auch wenn ihre
-     Zeile ausgeblendet ist. */
-  function leisteBauen() {
-    refs.leiste = h('div', { class: 'gleiste', role: 'group', 'aria-label': 'Umfang: Phasen, Szenarien, Module' });
-    leisteZeichnen();
-    return refs.leiste;
-  }
-
-  function leisteChip(text, gedrueckt, beiKlick, titel) {
-    var b = h('button', {
-      type: 'button', class: 'chip gleiste__chip', 'aria-pressed': gedrueckt ? 'true' : 'false', title: titel || null,
-      on: { click: function () { tooltipVerbergen(); popSchliessen(); beiKlick(); } }
-    }, [h('span', { text: text })]);
-    return h('li', {}, b);
-  }
+  /* --- Umfang in der linken Icon-Leiste --------------------------------------- */
 
   function szenarioGewaehlt(sz, u) {
     return sz.module.length === u.module.length && sz.module.every(function (m) { return u.module.indexOf(m) !== -1; });
   }
 
-  /* Ist in der Dimension etwas eingeschränkt? (Punkt am Radio-Icon) */
+  /* Ist in der Dimension etwas eingeschränkt? (Punkt am Icon) */
   function dimensionAktiv(key) {
     var u = zustand.umfang;
     if (key === 'phasen') { return u.phasen.length > 0; }
@@ -946,77 +971,25 @@
     return u.module.length > 0;
   }
 
-  /* Schalter oben in der linken Icon-Leiste: ein Klick blendet die Zeile
-     der Dimension ein oder aus; der Graph wird danach neu eingepasst, weil
-     die Fläche ihre Höhe ändert. */
+  /* Oben in der linken Icon-Leiste: je ein Knopf für Phasen, Szenarien und
+     Module. Ein Klick öffnet neben dem Knopf den Popover mit der Auswahl —
+     dieselben Häkchen wie in «Alle Filter». Ein Punkt am Icon zeigt, dass
+     in dieser Dimension etwas eingeschränkt ist. */
   function railUmfangZeichnen() {
     if (!refs.railUmfang) { return; }
     HT.ui.leeren(refs.railUmfang);
-    LEISTE_DIMENSIONEN.forEach(function (d) {
-      var an = !!zustand.leiste[d.key];
+    UMFANG_DIMENSIONEN.forEach(function (d) {
       var eingeschraenkt = dimensionAktiv(d.key);
-      refs.railUmfang.appendChild(h('button', {
+      var knopf = h('button', {
         type: 'button', class: 'grail__knopf grail__knopf--umfang' + (eingeschraenkt ? ' grail__knopf--eingeschraenkt' : ''),
-        'aria-pressed': an ? 'true' : 'false',
-        title: d.label + (eingeschraenkt ? ' (eingeschränkt)' : '') + ' — Auswahl ' + (an ? 'ausblenden' : 'einblenden'),
-        'aria-label': 'Auswahl nach ' + d.label + ' ' + (an ? 'ausblenden' : 'einblenden'),
-        on: { click: function () {
-          zustand.leiste[d.key] = !zustand.leiste[d.key];
-          speichern();
-          leisteZeichnen();
-          if (zeichner) { zeichner.einpassen(einpassOptionen()); }
-        } }
-      }, [HT.ui.katSymbol(d.ikone, 18), h('span', { class: 'grail__punkt', 'aria-hidden': 'true' })]));
+        'aria-expanded': zustand.pop === d.key ? 'true' : 'false', 'aria-haspopup': 'dialog',
+        title: d.label + (eingeschraenkt ? ' (eingeschränkt)' : '') + ' — Auswahl öffnen',
+        'aria-label': 'Auswahl nach ' + d.label,
+        on: { click: function () { tooltipVerbergen(); popOeffnen(d.key); } }
+      }, [HT.ui.katSymbol(d.ikone, 18), h('span', { class: 'grail__punkt', 'aria-hidden': 'true' })]);
+      refs[d.knopf] = knopf;
+      refs.railUmfang.appendChild(knopf);
     });
-  }
-
-  function leisteZeile(d, chips) {
-    return h('div', { class: 'gleiste__zeile', role: 'group', 'aria-label': d.label }, [
-      h('span', { class: 'gleiste__ikone', title: d.label, 'aria-hidden': 'true' }, HT.ui.katSymbol(d.ikone, 15)),
-      h('ul', { class: 'chips chips--streifen gleiste__chips' }, chips)
-    ]);
-  }
-
-  function leisteZeichnen() {
-    railUmfangZeichnen();
-    if (!refs.leiste) { return; }
-    HT.ui.leeren(refs.leiste);
-    var u = zustand.umfang;
-    var zeilen = 0;
-
-    LEISTE_DIMENSIONEN.forEach(function (d) {
-      if (!zustand.leiste[d.key]) { return; }
-      var chips = [];
-      if (d.key === 'phasen') {
-        var phasen = HT.graph.phasenDerVorgehensweise(u.vorgehen);
-        chips = VORGEHENSWEISEN.map(function (v) {
-          return leisteChip(v.label, u.vorgehen === v.key, function () { vorgehenSetzen(v.key); }, 'Vorgehensweise ' + v.label);
-        });
-        chips.push(h('li', { class: 'gleiste__trenner', 'aria-hidden': 'true' }));
-        chips.push(leisteChip('Alle', !u.phasen.length, function () { u.phasen = []; geaendert(); }, 'Alle Phasen'));
-        phasen.forEach(function (name) {
-          var z = HT.graph.beitrag('phase', name, u);
-          chips.push(leisteChip(name, u.phasen.indexOf(name) !== -1, function () { listeSchalten('phasen', name); },
-            'Phase ' + name + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
-        });
-      } else if (d.key === 'szenarien') {
-        chips = HT.daten.eintraegeDerKategorie('szenario').map(function (sz) {
-          var gleich = szenarioGewaehlt(sz, u);
-          return leisteChip(sz.begriff, gleich, function () { u.module = gleich ? [] : sz.module.slice(); geaendert(); },
-            'Szenario ' + sz.begriff + ': seine ' + sz.module.length + ' Module wählen');
-        });
-      } else {
-        chips = [leisteChip('Alle', !u.module.length, function () { u.module = []; geaendert(); }, 'Alle Module')];
-        HT.daten.eintraegeDerKategorie('modul').forEach(function (m) {
-          var z = HT.graph.beitrag('modul', m.begriff, u);
-          chips.push(leisteChip(m.begriff, u.module.indexOf(m.begriff) !== -1, function () { listeSchalten('module', m.begriff); },
-            'Modul ' + m.begriff + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
-        });
-      }
-      refs.leiste.appendChild(leisteZeile(d, chips));
-      zeilen++;
-    });
-    refs.leiste.hidden = zeilen === 0;
   }
 
   /* --- Parameter aus der Adresse -------------------------------------------- */
@@ -1142,7 +1115,6 @@
     gemeldeteAuswahl = null;
     parameterAnwenden(wirt.params);
 
-    behaelter.appendChild(leisteBauen());
     behaelter.appendChild(buehneBauen());
     globalBinden();
 

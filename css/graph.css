@@ -449,6 +449,11 @@
 /* Popover «Alle Filter»: über die ganze Breite der Fläche, die Abschnitte
    als Spalten nebeneinander — nichts muss scrollen. */
 .gpop.gpop--breit { left: .75rem; right: calc(1.5rem + 54px); width: auto; }
+/* Die Umfang-Popover (Phasen, Szenarien, Module) stehen rechts neben der
+   linken Icon-Leiste (58 px breit), oben bündig mit ihrem Knopf — die Höhe
+   setzt `popAusrichten` in js/graph.js. */
+.gpop.gpop--links { left: calc(1.25rem + 58px); right: auto; }
+.gpop.gpop--mittel { width: min(30rem, calc(100% - 1.5rem)); }
 /* Sechs Spuren: Ansicht+Vorgehen · Phasen · Szenarien · Module (zwei
    Reihen) · Elemente+Verbindungen · Darstellung. */
 .gaf-raster {
@@ -627,14 +632,13 @@
 .grail__knopf .gswatch { width: 22px; height: 22px; }
 .grail__zahl { font-size: 10px; font-weight: 700; line-height: 1; color: var(--text-leise); font-variant-numeric: tabular-nums; }
 .grail__knopf--linie { min-height: 28px; }
-/* Oben: Auswahl nach Phasen, Szenarien, Modulen ein- und ausblenden.
-   Gedrückt = die Chip-Zeile über dem Graph ist zu sehen; ein Punkt sagt,
-   dass in dieser Dimension etwas eingeschränkt ist (auch bei ausgeblendeter
-   Zeile). */
+/* Oben: Auswahl nach Phasen, Szenarien, Modulen — jeder Knopf öffnet neben
+   sich den Popover mit der Auswahl (offen: Akzent auf zartem Grund). Ein
+   Punkt sagt, dass in dieser Dimension etwas eingeschränkt ist. */
 .grail__knopf--umfang { position: relative; min-height: 34px; color: var(--text-leise); border-radius: 4px; }
 .grail__knopf--umfang svg { width: 18px; height: 18px; }
 .grail__knopf--umfang:hover { color: var(--text); }
-.grail__knopf--umfang[aria-pressed="true"] { color: var(--akzent); background: var(--akzent-schwach); }
+.grail__knopf--umfang[aria-expanded="true"] { color: var(--akzent); background: var(--akzent-schwach); }
 .grail__punkt { position: absolute; right: 7px; top: 5px; width: 6px; height: 6px; border-radius: 50%; background: var(--akzent); display: none; }
 .grail__knopf--eingeschraenkt .grail__punkt { display: block; }
 
@@ -709,6 +713,7 @@
   .grail__trenner { width: 1px; height: auto; margin: .3rem; }
   .grail__knopf--linie { min-height: 44px; width: 34px; }
   .gpop { left: .5rem; right: .5rem; top: auto; bottom: .5rem; width: auto; max-height: 70%; }
+  .gpop.gpop--links, .gpop.gpop--mittel { left: .5rem; right: .5rem; width: auto; }
   /* Zoomstufen weg: auf dem Touchgerät zoomt man mit zwei Fingern.
      «Einpassen» bleibt — dafür gibt es keine Geste. */
   .graph-zoom__knopf--stufe { display: none; }
@@ -722,30 +727,6 @@
   .grail, .gpop { display: none !important; }
 }
 
-/* --- Umfangsleiste über dem Graphen ---------------------------------------
-   Je eingeschalteter Dimension (Schalter oben in der linken Icon-Leiste) eine
-   Zeile: links das Icon der Dimension, rechts die Chips, umbrechend.
-   Gedrückt = im Umfang; wirkt auf Graph und Abbildung. Ohne eingeschaltete
-   Dimension ist die Leiste weg. */
-.gleiste {
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 auto;
-  padding: 0 8px 0 12px;
-  background: var(--flaeche);
-  border-bottom: 1px solid var(--rand);
-}
-.gleiste[hidden] { display: none; }
-.gleiste__zeile { display: flex; align-items: center; gap: 10px; min-height: 30px; }
-.gleiste__zeile + .gleiste__zeile { border-top: 1px solid var(--rand); }
-.gleiste__ikone { flex: 0 0 auto; display: grid; place-items: center; width: 20px; height: 20px; color: var(--text-leise); }
-.gleiste__ikone svg { width: 15px; height: 15px; }
-/* Die Chips dürfen umbrechen (die zwölf Module brauchen zwei Zeilen); Phasen
-   und Szenarien bleiben einzeilig. */
-.gleiste__chips { flex: 1 1 auto; flex-wrap: wrap; min-width: 0; margin: 0; padding: 2px 0; border: 0; gap: 0; overflow: visible; }
-.gleiste__chip { height: 22px; font-size: 10.5px; letter-spacing: .05em; }
-.gleiste__trenner { width: 8px; }
-.gleiste .chips > li + li::before { height: 11px; margin: 0 3px; }
 /* Im Überblick teilt sich der Graph die Höhe mit der Abbildung: keine
    Mindesthöhe der Fläche, sie folgt ihrem Behälter (unter 700 px hält die
    Bühne selbst eine Mindesthöhe). */

@@ -345,10 +345,11 @@
       texte.push({ x: beschriftungX, y: y + BAHN_LUFT + 31, text: anzahl, klasse: 'gtext gtext--bahnzahl', anker: 'start' });
 
       mitBahn.forEach(function (sp) {
-        /* Kürzere Spalte in der Bahn mittig: sonst klafft unter den Aufgaben
-           eine Lücke, wenn die Bahn viel mehr Ergebnisse als Aufgaben hat. */
+        /* Beide Spalten beginnen oben in der Bahn: Aufgaben und Ergebnisse
+           eines Moduls stehen so nebeneinander in derselben Bahn, statt dass
+           die kürzere Spalte mittig sitzt und wie eine eigene Bahn wirkt. */
         var liste = proBahn[b.name][sp.kategorie];
-        var ny = y + BAHN_LUFT + (b.inhalt - inhaltHoehe(sp, liste)) / 2;
+        var ny = y + BAHN_LUFT;
         var letzte = null;
         liste.forEach(function (n, ni) {
           if (sp.untergruppeVon) {
