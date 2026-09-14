@@ -558,6 +558,16 @@
     }
   }
 
+  /* Nach einer Prüfung mitten in der Übung weiterarbeiten: die gelegten
+     Elemente bleiben liegen (auch die falschen), nur die Prüfmarken gehen. */
+  function weitermachen() {
+    uebung.ziele.forEach(function (z) { z.status = ''; z.loesung = null; });
+    uebung.gewaehlt = null;
+    uebung.geprueft = false;
+    zeichnen();
+    try { refs.knopfPruefen.focus({ preventScroll: true }); } catch (x) { refs.knopfPruefen.focus(); }
+  }
+
   /* Zurück auf Anfang — an den bestehenden Objekten, denn die Ziele tragen
      die Verweise auf ihre SVG-Elemente. */
   function zuruecksetzen() {
@@ -777,7 +787,11 @@
     refs.knopfPruefen.hidden = !!gepr;
     refs.knopfPruefen.disabled = gelegt === 0;
     refs.knopfReset.hidden = !!gepr;
+    /* Nach der Prüfung «Weiter», solange nicht alles richtig ist; sonst nur «Nochmals». */
+    var offenBleibt = !!gepr && gepr.richtig < gepr.gesamt;
+    refs.knopfFortsetzen.hidden = !offenBleibt;
     refs.knopfNochmals.hidden = !gepr;
+    refs.knopfNochmals.classList.toggle('btn--primaer', !offenBleibt);
 
     /* Auswertung */
     HT.ui.leeren(refs.ergebnis);
@@ -1146,9 +1160,10 @@
 
     refs.knopfPruefen = werkzeug('Prüfen', 'btn btn--primaer', pruefen);
     refs.knopfReset = werkzeug('Zurücksetzen', 'btn', function () { zuruecksetzen(); });
-    refs.knopfNochmals = werkzeug('Nochmals', 'btn btn--primaer', function () { zuruecksetzen(); });
-    var weiter = naechste(def);
-    var knopfWeiter = weiter && weiter !== def ? h('a', { class: 'btn', href: weiter.adresse, text: 'Nächste: ' + weiter.name + ' →' }) : null;
+    refs.knopfFortsetzen = werkzeug('Weiter', 'btn btn--primaer', weitermachen, { title: 'Mit den gelegten Elementen weiterarbeiten' });
+    refs.knopfNochmals = werkzeug('Nochmals', 'btn btn--primaer', function () { zuruecksetzen(); }, { title: 'Alle Elemente zurück in die Auswahl' });
+    var folgende = naechste(def);
+    var knopfNaechste = folgende && folgende !== def ? h('a', { class: 'btn', href: folgende.adresse, text: 'Nächste: ' + folgende.name + ' →' }) : null;
 
     /* Andere leere Arten: neues Bild, was schon liegt und noch einen Kasten hat, bleibt liegen. */
     function neuAufbauen() {
@@ -1176,7 +1191,7 @@
       h('div', { class: 'tr-buehne-huelle' }, [refs.buehne, zoomLeiste]),
       h('aside', { class: 'tr-seite', 'aria-label': 'Elemente und Auswertung' }, [
         artenLeiste(neuAufbauen),
-        h('div', { class: 'btn-reihe tr-knoepfe' }, [refs.knopfPruefen, refs.knopfReset, refs.knopfNochmals, knopfWeiter]),
+        h('div', { class: 'btn-reihe tr-knoepfe' }, [refs.knopfPruefen, refs.knopfReset, refs.knopfFortsetzen, refs.knopfNochmals, knopfNaechste]),
         refs.ergebnis,
         refs.suche,
         refs.pool
