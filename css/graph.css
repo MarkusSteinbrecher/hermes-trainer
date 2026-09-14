@@ -515,15 +515,12 @@
   .gaf-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .gaf { display: grid; gap: 4px; min-width: 0; }
-/* Titel links, «Alle»/«Keine» rechts; ist die Spur zu schmal, rutschen die
-   Knöpfe unter den Titel statt in die Nachbarspalte. */
-.gaf__kopf { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 8px; }
+.gaf__kopf { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .gaf__titel { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
-.gaf__alle { border: 0; background: transparent; padding: 0; font-size: 12px; color: var(--akzent-text); cursor: pointer; }
-.gaf__alle:hover { color: var(--akzent); text-decoration: underline; }
-.gaf__alle:disabled { color: var(--text-leise); cursor: default; text-decoration: none; }
-/* «Alle» und «Keine» nebeneinander im Abschnittskopf. */
-.gaf__knoepfe { display: inline-flex; gap: 10px; flex: 0 0 auto; }
+/* Kasten links vom Titel für alle Häkchen darunter — gleicher Abstand wie in
+   den Zeilen, damit er über ihren Kästen steht. */
+.gaf__haupt { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+.gaf__haupt:hover { color: var(--text); }
 .gaf .gs-schalter { min-height: 30px; }
 .gaf .gswatch { width: 18px; height: 18px; flex: 0 0 auto; }
 .gaf .glinie { flex: 0 0 auto; }

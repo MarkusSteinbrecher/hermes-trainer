@@ -350,33 +350,40 @@
 
   /* --- Bausteine der Auswahl (Alle Filter und die drei Umfang-Popover) ------ */
 
-  function filterAbschnitt(titel, rechts, inhalt, klasse) {
+  /* Abschnitt mit Titel. Mit `haupt` steht links vom Titel ein Kasten, der
+     alle Häkchen darunter an- und abwählt; der Titel gehört zu seinem Label. */
+  function filterAbschnitt(titel, haupt, inhalt, klasse) {
+    var kopf = haupt
+      ? h('h3', { class: 'gaf__titel' }, h('label', { class: 'gaf__haupt' }, [haupt, h('span', { text: titel })]))
+      : h('h3', { class: 'gaf__titel', text: titel });
     return h('section', { class: 'gaf' + (klasse ? ' ' + klasse : '') }, [
-      h('div', { class: 'gaf__kopf' }, [h('h3', { class: 'gaf__titel', text: titel }), rechts]),
+      h('div', { class: 'gaf__kopf' }, [kopf]),
       inhalt
     ]);
   }
 
-  /* «Alle» und «Keine» rechts im Kopf eines Abschnitts; der Knopf für den
-     Zustand, der schon gilt, ist ausgegraut. */
-  function alleKeineKnoepfe(label, alle, keine, beiAlle, beiKeine) {
-    function knopf(text, gilt, titel, klick) {
-      return h('button', {
-        type: 'button', class: 'gaf__alle', text: text, title: titel, 'aria-label': titel,
-        disabled: gilt ? 'disabled' : null,
-        on: { click: function () { klick(); geaendert(); popZeichnen(); } }
-      });
-    }
-    return h('span', { class: 'gaf__knoepfe' }, [
-      knopf('Alle', alle, 'Alle ' + label + ' wählen', beiAlle),
-      knopf('Keine', keine, 'Alle ' + label + ' abwählen', beiKeine)
-    ]);
+  /* Kasten links vom Abschnittstitel: gesetzt, wenn alle gewählt sind, leer
+     bei keinem, dazwischen halb gesetzt. Ein Klick wählt alle — sind schon
+     alle gewählt, keine. */
+  function hauptKasten(label, alle, keine, beiAlle, beiKeine) {
+    var kasten = h('input', {
+      type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': 'alle:' + label,
+      title: alle ? 'Alle ' + label + ' abwählen' : 'Alle ' + label + ' wählen'
+    });
+    kasten.checked = alle;
+    kasten.indeterminate = !alle && !keine;
+    kasten.addEventListener('change', function () {
+      if (kasten.checked) { beiAlle(); } else { beiKeine(); }
+      geaendert();
+      popZeichnen();
+    });
+    return kasten;
   }
 
   /* Für Phasen und Module: «alle» ist die leere Liste, «keine» [KEINE]. */
-  function umfangKnoepfe(feld, label) {
+  function umfangHaupt(feld, label) {
     var l = zustand.umfang[feld];
-    return alleKeineKnoepfe(label, !l.length, l.indexOf(HT.graph.KEINE) !== -1,
+    return hauptKasten(label, !l.length, l.indexOf(HT.graph.KEINE) !== -1,
       function () { zustand.umfang[feld] = []; },
       function () { zustand.umfang[feld] = [HT.graph.KEINE]; });
   }
@@ -419,7 +426,7 @@
 
   function phasenAbschnitt() {
     var phasen = HT.graph.phasenDerVorgehensweise(zustand.umfang.vorgehen);
-    return filterAbschnitt('Phasen', umfangKnoepfe('phasen', 'Phasen'),
+    return filterAbschnitt('Phasen', umfangHaupt('phasen', 'Phasen'),
       h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Phasen' }, phasen.map(function (name) {
         return umfangHaken('phasen', name, phasen, HT.graph.beitrag('phase', name, zustand.umfang));
       })));
@@ -444,19 +451,14 @@
         h('span', { class: 'gs-schalter__extra', title: sz.module.length + ' Module', text: String(sz.module.length) })
       ]);
     });
-    /* Ein Szenario ist eine Auswahl von Modulen; abgewählt gelten wieder alle. */
-    var eines = HT.daten.eintraegeDerKategorie('szenario').some(function (sz) { return szenarioGewaehlt(sz, zustand.umfang); });
-    var abwaehlen = h('span', { class: 'gaf__knoepfe' }, h('button', {
-      type: 'button', class: 'gaf__alle', text: 'Keines', title: 'Szenario abwählen (wieder alle Module)', 'aria-label': 'Szenario abwählen (wieder alle Module)',
-      disabled: eines ? null : 'disabled',
-      on: { click: function () { zustand.umfang.module = []; geaendert(); popZeichnen(); } }
-    }));
-    return filterAbschnitt('Szenarien', abwaehlen, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien));
+    /* Kein Kasten für alle: Szenarien schliessen sich aus; ein zweiter Klick
+       auf das gewählte hebt es auf. */
+    return filterAbschnitt('Szenarien', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien));
   }
 
   function moduleAbschnitt() {
     var module = HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
-    return filterAbschnitt('Module', umfangKnoepfe('module', 'Module'),
+    return filterAbschnitt('Module', umfangHaupt('module', 'Module'),
       h('div', { class: 'gs-liste gs-liste--zwei', role: 'group', 'aria-label': 'Module' }, module.map(function (name) {
         return umfangHaken('module', name, module, HT.graph.beitrag('modul', name, zustand.umfang));
       })), 'gaf--module');
@@ -469,7 +471,7 @@
   function szenarienInhalt() {
     return popInhalt([
       szenarienAbschnitt(),
-      h('p', { class: 'gpop__hinweis', text: 'Ein Szenario wählt seine Module; die Auswahl steht dann auch unter «Module».' })
+      h('p', { class: 'gpop__hinweis', text: 'Ein Szenario wählt seine Module; die Auswahl steht dann auch unter «Module». Ein zweiter Klick hebt es wieder auf.' })
     ]);
   }
 
@@ -518,10 +520,10 @@
       return h('label', { class: 'gs-schalter' }, [kasten, h('span', { class: 'gs-schalter__label', text: label })]);
     }
 
-    /* Alle/Keine für Ein/Aus-Schalter (Elemente, Verbindungen). */
-    function schalterKnoepfe(label, schalter) {
+    /* Kasten für alle Ein/Aus-Schalter eines Abschnitts (Elemente, Verbindungen). */
+    function schalterHaupt(label, schalter) {
       var keys = Object.keys(schalter);
-      return alleKeineKnoepfe(label,
+      return hauptKasten(label,
         keys.every(function (k) { return schalter[k]; }),
         keys.every(function (k) { return !schalter[k]; }),
         function () { keys.forEach(function (k) { schalter[k] = true; }); },
@@ -544,8 +546,8 @@
         szenarienAbschnitt(),
         moduleAbschnitt(),
         h('div', { class: 'gaf-spalte' }, [
-          filterAbschnitt('Elemente', schalterKnoepfe('Elemente', zustand.kategorien), h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
-          filterAbschnitt('Verbindungen', schalterKnoepfe('Verbindungen', zustand.relationen), h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
+          filterAbschnitt('Elemente', schalterHaupt('Elemente', zustand.kategorien), h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
+          filterAbschnitt('Verbindungen', schalterHaupt('Verbindungen', zustand.relationen), h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
         ]),
         filterAbschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
           darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
