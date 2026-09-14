@@ -208,6 +208,7 @@
     var ZEILE = KNOTEN_HOEHE + 8;
     var BAHN_LUFT = 12;           /* Luft oben und unten in der Bahn */
     var BAHN_RAND = 14;           /* Überstand des Bandes links und rechts */
+    var UNTER_H = 22;             /* Zeile eines Modul-Zwischentitels in der Bahn */
 
     var spalten = tg.spalten.filter(function (sp) { return sp.knoten.length; }).map(function (sp) {
       var meta = HT.graph.KAT[sp.kategorie];
@@ -215,6 +216,7 @@
         kategorie: sp.kategorie,
         label: meta.label,
         gruppeVon: sp.gruppeVon || null,
+        untergruppeVon: sp.untergruppeVon || null,
         knoten: sp.knoten.map(function (k) {
           var n = { id: k.id, kategorie: k.kategorie, begriff: k.begriff, eintrag: k.eintrag, entscheid: k.entscheid, h: KNOTEN_HOEHE };
           n.w = knotenBreite(n, opt);
@@ -260,11 +262,27 @@
         proBahn[g][sp.kategorie].push(n);
       });
     });
+    /* Untergruppen (Module) einer Spalte in einer Bahn: Titel steht vor jedem
+       Wechsel, auch vor der ersten Gruppe — so ist das Modul immer lesbar. */
+    function untergruppen(sp, liste) {
+      if (!sp.untergruppeVon) { return 0; }
+      var n = 0, letzte = null;
+      liste.forEach(function (k) {
+        var g = sp.untergruppeVon[k.id] || '';
+        if (g !== letzte) { n++; letzte = g; }
+      });
+      return n;
+    }
+    /* Höhe des Inhalts einer Spalte in einer Bahn: Knotenzeilen plus Zwischentitel. */
+    function inhaltHoehe(sp, liste) {
+      if (!liste.length) { return 0; }
+      return liste.length * ZEILE - 8 + untergruppen(sp, liste) * UNTER_H;
+    }
     bahnen.forEach(function (b) {
-      var max = 0;
-      mitBahn.forEach(function (sp) { max = Math.max(max, proBahn[b.name][sp.kategorie].length); });
-      b.zeilen = Math.max(1, max);
-      b.hoehe = b.zeilen * ZEILE - 8 + 2 * BAHN_LUFT;
+      var max = ZEILE - 8;
+      mitBahn.forEach(function (sp) { max = Math.max(max, inhaltHoehe(sp, proBahn[b.name][sp.kategorie])); });
+      b.inhalt = max;
+      b.hoehe = b.inhalt + 2 * BAHN_LUFT;
     });
     var bahnenHoehe = bahnen.reduce(function (m, b) { return m + b.hoehe; }, 0);
 
@@ -330,8 +348,20 @@
         /* Kürzere Spalte in der Bahn mittig: sonst klafft unter den Aufgaben
            eine Lücke, wenn die Bahn viel mehr Ergebnisse als Aufgaben hat. */
         var liste = proBahn[b.name][sp.kategorie];
-        var ny = y + BAHN_LUFT + ((b.zeilen - liste.length) * ZEILE) / 2;
-        liste.forEach(function (n) {
+        var ny = y + BAHN_LUFT + (b.inhalt - inhaltHoehe(sp, liste)) / 2;
+        var letzte = null;
+        liste.forEach(function (n, ni) {
+          if (sp.untergruppeVon) {
+            var g = sp.untergruppeVon[n.id] || '';
+            if (g !== letzte) {
+              /* Zwischentitel: Haarlinie (nicht vor der ersten Gruppe, dort
+                 trennt schon die Bahn) und Modulname in Versalien. */
+              if (ni > 0) { linien.push({ x1: sp.x, y1: ny + 1, x2: sp.x + sp.breite, y2: ny + 1, klasse: 'ggruppenlinie--unter' }); }
+              texte.push({ x: sp.x, y: ny + UNTER_H / 2 + 1, text: g || 'Ohne Modul', klasse: 'gtext gtext--untergruppe', anker: 'start', modul: g || null });
+              ny += UNTER_H;
+              letzte = g;
+            }
+          }
           n.x = sp.x;
           n.y = ny;
           n.spalte = sp.index;
@@ -623,6 +653,11 @@
 
     svg.addEventListener('click', function (ev) {
       if (bewegt) { return; }
+      var u = untergruppeAusEreignis(ev);
+      if (u) {
+        if (rueckrufe.beiUntergruppe) { rueckrufe.beiUntergruppe(u.getAttribute('data-modul'), ev); }
+        return;
+      }
       var g = knotenAusEreignis(ev) || gedrueckt;
       if (g) {
         if (rueckrufe.beiKlick) { rueckrufe.beiKlick(g.getAttribute('data-id'), ev); }
@@ -632,12 +667,17 @@
     });
 
     svg.addEventListener('keydown', function (ev) {
+      if (ev.key !== 'Enter' && ev.key !== ' ') { return; }
+      var u = untergruppeAusEreignis(ev);
+      if (u) {
+        ev.preventDefault();
+        if (rueckrufe.beiUntergruppe) { rueckrufe.beiUntergruppe(u.getAttribute('data-modul'), ev); }
+        return;
+      }
       var g = knotenAusEreignis(ev);
       if (!g) { return; }
-      if (ev.key === 'Enter' || ev.key === ' ') {
-        ev.preventDefault();
-        if (rueckrufe.beiKlick) { rueckrufe.beiKlick(g.getAttribute('data-id'), ev); }
-      }
+      ev.preventDefault();
+      if (rueckrufe.beiKlick) { rueckrufe.beiKlick(g.getAttribute('data-id'), ev); }
     });
 
     svg.addEventListener('pointerover', function (ev) {
@@ -667,6 +707,11 @@
         el = el.parentNode;
       }
       return null;
+    }
+
+    function untergruppeAusEreignis(ev) {
+      var el = ev.target;
+      return el && el.getAttribute && el.getAttribute('data-modul') ? el : null;
     }
 
     /* --- Zeichnen --------------------------------------------------------- */
@@ -707,11 +752,19 @@
       });
 
       (layout.linien || []).forEach(function (l) {
-        ebeneTexte.appendChild(s('line', { class: 'ggruppenlinie', x1: rund(l.x1), y1: rund(l.y1), x2: rund(l.x2), y2: rund(l.y2) }));
+        ebeneTexte.appendChild(s('line', { class: 'ggruppenlinie' + (l.klasse ? ' ' + l.klasse : ''), x1: rund(l.x1), y1: rund(l.y1), x2: rund(l.x2), y2: rund(l.y2) }));
       });
 
       layout.texte.forEach(function (t) {
-        ebeneTexte.appendChild(s('text', { class: t.klasse, x: rund(t.x), y: rund(t.y), 'text-anchor': t.anker || 'start', text: t.text }));
+        var attrs = { class: t.klasse, x: rund(t.x), y: rund(t.y), 'text-anchor': t.anker || 'start', text: t.text };
+        /* Modul-Zwischentitel: anklickbar, schränkt auf das Modul ein. */
+        if (t.modul) {
+          attrs['data-modul'] = t.modul;
+          attrs.role = 'button';
+          attrs.tabindex = '0';
+          attrs['aria-label'] = 'Auf Modul ' + t.modul + ' einschränken';
+        }
+        ebeneTexte.appendChild(s('text', attrs));
       });
 
       layout.knoten.forEach(function (k) {

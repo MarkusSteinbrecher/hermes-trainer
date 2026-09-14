@@ -256,7 +256,8 @@
    * fokus zeigt nur ein Element mit seiner Nachbarschaft (siehe fokusMenge).
    * Rückgabe: Spalten in Reihenfolge Rolle, Aufgabe, Ergebnis; die
    * Aufgaben und Ergebnisse tragen ihre Bahn (Phase bzw. Modul) für das
-   * Swimlane-Layout; Rollen haben keine.
+   * Swimlane-Layout; Rollen haben keine. In Phasenbahnen tragen sie dazu
+   * ihre Untergruppe (das Modul, `untergruppeVon`) für die Zwischentitel.
    */
   function teilgraph(zustand) {
     var m = bauen();
@@ -299,11 +300,27 @@
       }
       gruppeVon[k.id] = g;
     });
-    /* Innerhalb der Bahn nach der frühesten Phase, dann nach Name. */
+    var mo = modulOrdnung();
+    function modulRang(k) {
+      var mm = k.eintrag.module.length ? k.eintrag.module[0] : '';
+      return mo.hasOwnProperty(mm) ? mo[mm] : 999;
+    }
+    /* In Phasenbahnen stehen die Aufgaben nach Modul gebündelt (Reihenfolge
+       der Abbildung 1); der Zeichner setzt über jede Gruppe einen
+       Modul-Zwischentitel. In Modulbahnen ist die Bahn selbst das Modul. */
+    var nachModul = zustand.gruppierung === 'phase';
+    var untergruppeVon = {};
+    aufgabenAlle.forEach(function (k) { untergruppeVon[k.id] = k.eintrag.module.length ? k.eintrag.module[0] : ''; });
+
+    /* Innerhalb der Bahn nach Modul, dann nach der frühesten Phase, dann nach Name. */
     aufgabenAlle.sort(function (a, b) {
       var ga = gruppenNamen.indexOf(gruppeVon[a.id]);
       var gb = gruppenNamen.indexOf(gruppeVon[b.id]);
       if (ga !== gb) { return ga - gb; }
+      if (nachModul) {
+        var ma = modulRang(a), mb = modulRang(b);
+        if (ma !== mb) { return ma - mb; }
+      }
       var pa = phasenRang(a.eintrag.phasen, vp);
       var pb = phasenRang(b.eintrag.phasen, vp);
       if (pa !== pb) { return pa - pb; }
@@ -338,22 +355,33 @@
       }
       gruppeVonErgebnis[k.id] = g;
     });
-    var mo = modulOrdnung();
-    function modulRang(k) {
-      var mm = k.eintrag.module.length ? k.eintrag.module[0] : '';
-      return mo.hasOwnProperty(mm) ? mo[mm] : 999;
-    }
     /* Ergebnisse folgen der Phase ihrer erzeugenden Aufgabe (sonst der
        eigenen), dann der Reihenfolge der Aufgaben — so bleiben die
-       Kanten «erzeugt» gebündelt und die frühesten Phasen stehen oben. */
+       Kanten «erzeugt» gebündelt und die frühesten Phasen stehen oben.
+       Ihr Modul-Zwischentitel ist das Modul der erzeugenden Aufgabe (in den
+       Daten liegt jedes erzeugte Ergebnis in deren Modul), sonst das eigene. */
     function ergebnisPhasenRang(k) {
       var q = quelleVon[k.id] ? m.knoten[quelleVon[k.id]] : null;
       return phasenRang(q ? q.eintrag.phasen : k.eintrag.phasen, vp);
     }
+    function ergebnisModul(k) {
+      var q = quelleVon[k.id] ? m.knoten[quelleVon[k.id]] : null;
+      var liste = q ? q.eintrag.module : k.eintrag.module;
+      return liste.length ? liste[0] : '';
+    }
+    function ergebnisModulRang(k) {
+      var mm = ergebnisModul(k);
+      return mo.hasOwnProperty(mm) ? mo[mm] : 999;
+    }
+    ergebnisseAlle.forEach(function (k) { untergruppeVon[k.id] = ergebnisModul(k); });
     ergebnisseAlle.sort(function (a, b) {
       var ga = gruppenNamen.indexOf(gruppeVonErgebnis[a.id]);
       var gb = gruppenNamen.indexOf(gruppeVonErgebnis[b.id]);
       if (ga !== gb) { return ga - gb; }
+      if (nachModul) {
+        var ma = ergebnisModulRang(a), mb = ergebnisModulRang(b);
+        if (ma !== mb) { return ma - mb; }
+      }
       var pa = ergebnisPhasenRang(a), pb = ergebnisPhasenRang(b);
       if (pa !== pb) { return pa - pb; }
       var ra = rang[a.id] === undefined ? 9999 : rang[a.id];
@@ -420,8 +448,8 @@
         /* Im Fokus ohne Bahnen: die wenigen Elemente rücken zu drei
            schlichten Spalten zusammen statt über die Modul- oder
            Phasenbahnen des ganzen Graphen verteilt zu bleiben. */
-        { kategorie: 'aufgabe', knoten: aufgaben, gruppeVon: fokus ? null : gruppeVon },
-        { kategorie: 'ergebnis', knoten: ergebnisse, gruppeVon: fokus ? null : gruppeVonErgebnis }
+        { kategorie: 'aufgabe', knoten: aufgaben, gruppeVon: fokus ? null : gruppeVon, untergruppeVon: fokus || !nachModul ? null : untergruppeVon },
+        { kategorie: 'ergebnis', knoten: ergebnisse, gruppeVon: fokus ? null : gruppeVonErgebnis, untergruppeVon: fokus || !nachModul ? null : untergruppeVon }
       ].filter(function (sp) { return kat[sp.kategorie]; }),
       /* Bahnen des Swimlane-Layouts, in der Reihenfolge der Methode. */
       bahnen: gruppenNamen,

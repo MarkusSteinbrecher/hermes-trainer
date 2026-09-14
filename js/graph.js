@@ -754,6 +754,9 @@
       },
       beiKlick: function (id) { fokusSetzen(id); },
       beiDoppelklick: einschraenken,
+      /* Modul-Zwischentitel in einer Phasenbahn: Modul als Umfang ein-/ausschalten
+         (wie der Modulkopf in der Abbildung). */
+      beiUntergruppe: function (modul) { tooltipVerbergen(); popSchliessen(); listeSchalten('module', modul); },
       beiLeerklick: function () { tooltipVerbergen(); popSchliessen(); },
       beiHover: function (id) {
         if (!zeichner) { return; }
@@ -783,6 +786,9 @@
     HT.ui.leeren(refs.tooltip);
     refs.tooltip.appendChild(h('div', { class: 'graph-tooltip__kopf' }, [HT.ui.badge(k.kategorie), h('b', { text: k.begriff })]));
     refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__text', text: HT.ui.kuerzen(k.eintrag.kurz || k.eintrag.definition, 160) }));
+    if (k.eintrag.module && k.eintrag.module.length) {
+      refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__module', text: (k.eintrag.module.length === 1 ? 'Modul ' : 'Module ') + k.eintrag.module.join(', ') }));
+    }
     refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__tipp', text: meta.singular + ' · Klick: nur dieses Element mit seinen direkten Verbindungen' + (k.eintrag.module && k.eintrag.module.length ? ' · Doppelklick: auf Modul einschränken' : '') }));
     refs.tooltip.hidden = false;
 
