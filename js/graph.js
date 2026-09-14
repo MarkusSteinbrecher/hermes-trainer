@@ -32,6 +32,13 @@
     { key: 'klassisch', label: 'Klassisch' },
     { key: 'agil', label: 'Agil' }
   ];
+  /* Die Umfangsleiste über dem Graphen: ein Radio aus drei Icons wählt, welche
+     Chips in der einen Zeile stehen. */
+  var LEISTE_DIMENSIONEN = [
+    { key: 'phasen', label: 'Phasen', ikone: 'phase' },
+    { key: 'szenarien', label: 'Szenarien', ikone: 'szenario' },
+    { key: 'module', label: 'Module', ikone: 'modul' }
+  ];
 
   var refs = {};
   var zeichner = null;
@@ -60,7 +67,7 @@
       isolierteAusblenden: false,
       nurMinimal: false,
       nurEntscheide: false,
-      leisteOffen: true         // Umfangsleiste über dem Graphen aus- oder eingeklappt
+      leisteDimension: 'phasen' // welche Chips die Umfangsleiste zeigt: phasen | szenarien | module
     };
   }
 
@@ -76,7 +83,7 @@
       isolierteAusblenden: zustand.isolierteAusblenden,
       nurMinimal: zustand.nurMinimal,
       nurEntscheide: zustand.nurEntscheide,
-      leisteOffen: zustand.leisteOffen
+      leisteDimension: zustand.leisteDimension
     });
   }
 
@@ -84,7 +91,7 @@
     var g = HT.store.lies('graph', null);
     if (!g || typeof g !== 'object') { return; }
     if (ANSICHTEN.some(function (a) { return a.key === g.ansicht; })) { zustand.ansicht = g.ansicht; }
-    if (typeof g.leisteOffen === 'boolean') { zustand.leisteOffen = g.leisteOffen; }
+    if (LEISTE_DIMENSIONEN.some(function (d) { return d.key === g.leisteDimension; })) { zustand.leisteDimension = g.leisteDimension; }
     if (g.umfang && typeof g.umfang === 'object') {
       var u = zustand.umfang;
       if (HT.graph.VORGEHEN[g.umfang.vorgehen]) { u.vorgehen = g.umfang.vorgehen; }
@@ -893,11 +900,13 @@
 
   /* --- Umfangsleiste über dem Graphen ---------------------------------------- */
 
-  /* Drei Zeilen mit Chips, die den Umfang direkt an- und abwählen — derselbe
-     Umfang wie in «Alle Filter» und in der Abbildung. Muster wie bei den
-     Lernkarten: «Alle» ist gedrückt, solange die Liste leer ist; ein Klick
-     auf einen Namen schaltet ihn in der Liste um. Ein Szenario setzt seine
-     Module und ist gedrückt, solange genau diese gewählt sind. */
+  /* Eine Zeile: links ein Radio aus drei Icons (Phasen, Szenarien, Module),
+     rechts die Chips der gewählten Dimension — derselbe Umfang wie in «Alle
+     Filter» und in der Abbildung. Muster wie bei den Lernkarten: «Alle» ist
+     gedrückt, solange die Liste leer ist; ein Klick auf einen Namen schaltet
+     ihn um. Ein Szenario setzt seine Module und ist gedrückt, solange genau
+     diese gewählt sind. Was in den anderen Dimensionen gewählt ist, zeigt
+     das Radio-Icon mit einem Punkt. */
   function leisteBauen() {
     refs.leiste = h('div', { class: 'gleiste', role: 'group', 'aria-label': 'Umfang: Phasen, Szenarien, Module' });
     leisteZeichnen();
@@ -912,94 +921,62 @@
     return h('li', {}, b);
   }
 
-  function leisteZeile(label, kinder) {
-    return [
-      h('span', { class: 'gleiste__label', text: label }),
-      h('ul', { class: 'chips gleiste__chips', 'aria-label': label }, kinder)
-    ];
+  function szenarioGewaehlt(sz, u) {
+    return sz.module.length === u.module.length && sz.module.every(function (m) { return u.module.indexOf(m) !== -1; });
   }
 
-  function leisteSchalten() {
-    zustand.leisteOffen = !zustand.leisteOffen;
-    speichern();
-    leisteZeichnen();
-    if (zeichner && sichtbar()) { global.setTimeout(function () { zeichner.einpassen(einpassOptionen()); }, 60); }
-  }
-
-  /* Eine Zeile Text für die eingeklappte Leiste: «Klassisch · alle Phasen · Szenario IT-Adaption». */
-  function umfangText() {
+  /* Ist in der Dimension etwas eingeschränkt? (Punkt am Radio-Icon) */
+  function dimensionAktiv(key) {
     var u = zustand.umfang;
-    var teile = [];
-    VORGEHENSWEISEN.forEach(function (v) { if (v.key === u.vorgehen) { teile.push(v.label); } });
-    teile.push(u.phasen.length ? u.phasen.join(', ') : 'alle Phasen');
-    var szenario = null;
-    if (u.module.length) {
-      HT.daten.eintraegeDerKategorie('szenario').forEach(function (sz) {
-        if (!szenario && sz.module.length === u.module.length && sz.module.every(function (m) { return u.module.indexOf(m) !== -1; })) { szenario = sz.begriff; }
-      });
-    }
-    teile.push(szenario ? 'Szenario ' + szenario : u.module.length ? u.module.join(', ') : 'alle Module');
-    return teile.join(' · ');
+    if (key === 'phasen') { return u.phasen.length > 0; }
+    if (key === 'szenarien') { return HT.daten.eintraegeDerKategorie('szenario').some(function (sz) { return szenarioGewaehlt(sz, u); }); }
+    return u.module.length > 0;
   }
 
   function leisteZeichnen() {
     if (!refs.leiste) { return; }
     HT.ui.leeren(refs.leiste);
-    refs.leiste.dataset.offen = zustand.leisteOffen ? 'auf' : 'zu';
-    var knopf = h('button', {
-      type: 'button', class: 'gleiste__knopf', 'aria-expanded': zustand.leisteOffen ? 'true' : 'false',
-      'aria-label': zustand.leisteOffen ? 'Umfangsleiste einklappen' : 'Umfangsleiste ausklappen',
-      title: zustand.leisteOffen ? 'Leiste einklappen' : 'Leiste ausklappen',
-      on: { click: leisteSchalten }
-    }, h('span', { class: 'gleiste__pfeil', 'aria-hidden': 'true' }));
-
-    if (!zustand.leisteOffen) {
-      refs.leiste.appendChild(h('span', { class: 'gleiste__label', text: 'Umfang' }));
-      refs.leiste.appendChild(h('button', {
-        type: 'button', class: 'gleiste__zusammenfassung', text: umfangText(),
-        title: 'Leiste ausklappen', on: { click: leisteSchalten }
-      }));
-      refs.leiste.appendChild(knopf);
-      return;
-    }
-
     var u = zustand.umfang;
-    var phasen = HT.graph.phasenDerVorgehensweise(u.vorgehen);
-    var module = HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
-    var kinder = [];
 
-    /* Phasen: Vorgehensweise als Paar, dann «Alle» und die Phasen der Vorgehensweise. */
-    var zPhasen = VORGEHENSWEISEN.map(function (v) {
-      return leisteChip(v.label, u.vorgehen === v.key, function () { vorgehenSetzen(v.key); }, 'Vorgehensweise ' + v.label);
-    });
-    zPhasen.push(h('li', { class: 'gleiste__trenner', 'aria-hidden': 'true' }));
-    zPhasen.push(leisteChip('Alle', !u.phasen.length, function () { u.phasen = []; geaendert(); }, 'Alle Phasen'));
-    phasen.forEach(function (name) {
-      var z = HT.graph.beitrag('phase', name, u);
-      zPhasen.push(leisteChip(name, u.phasen.indexOf(name) !== -1, function () { listeSchalten('phasen', name); },
-        'Phase ' + name + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
-    });
-    kinder = kinder.concat(leisteZeile('Phasen', zPhasen));
+    var radio = h('div', { class: 'gleiste__radio', role: 'radiogroup', 'aria-label': 'Umfang wählen nach' }, LEISTE_DIMENSIONEN.map(function (d) {
+      var an = zustand.leisteDimension === d.key;
+      return h('button', {
+        type: 'button', class: 'gleiste__wahl' + (dimensionAktiv(d.key) ? ' gleiste__wahl--aktiv' : ''),
+        role: 'radio', 'aria-checked': an ? 'true' : 'false', title: d.label, 'aria-label': d.label,
+        on: { click: function () { zustand.leisteDimension = d.key; speichern(); leisteZeichnen(); } }
+      }, [HT.ui.katSymbol(d.ikone, 15), h('span', { class: 'gleiste__punkt', 'aria-hidden': 'true' })]);
+    }));
+    refs.leiste.appendChild(radio);
 
-    /* Szenarien: setzen ihre Module. */
-    var zSz = HT.daten.eintraegeDerKategorie('szenario').map(function (sz) {
-      var gleich = sz.module.length === u.module.length && sz.module.every(function (m) { return u.module.indexOf(m) !== -1; });
-      return leisteChip(sz.begriff, gleich, function () { u.module = gleich ? [] : sz.module.slice(); geaendert(); },
-        'Szenario ' + sz.begriff + ': seine ' + sz.module.length + ' Module wählen');
-    });
-    kinder = kinder.concat(leisteZeile('Szenarien', zSz));
-
-    /* Module: «Alle» und die zwölf Module in der Reihenfolge der Methode. */
-    var zMod = [leisteChip('Alle', !u.module.length, function () { u.module = []; geaendert(); }, 'Alle Module')];
-    module.forEach(function (name) {
-      var z = HT.graph.beitrag('modul', name, u);
-      zMod.push(leisteChip(name, u.module.indexOf(name) !== -1, function () { listeSchalten('module', name); },
-        'Modul ' + name + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
-    });
-    kinder = kinder.concat(leisteZeile('Module', zMod));
-
-    kinder.forEach(function (k) { refs.leiste.appendChild(k); });
-    refs.leiste.appendChild(knopf);
+    var chips = [];
+    if (zustand.leisteDimension === 'phasen') {
+      var phasen = HT.graph.phasenDerVorgehensweise(u.vorgehen);
+      chips = VORGEHENSWEISEN.map(function (v) {
+        return leisteChip(v.label, u.vorgehen === v.key, function () { vorgehenSetzen(v.key); }, 'Vorgehensweise ' + v.label);
+      });
+      chips.push(h('li', { class: 'gleiste__trenner', 'aria-hidden': 'true' }));
+      chips.push(leisteChip('Alle', !u.phasen.length, function () { u.phasen = []; geaendert(); }, 'Alle Phasen'));
+      phasen.forEach(function (name) {
+        var z = HT.graph.beitrag('phase', name, u);
+        chips.push(leisteChip(name, u.phasen.indexOf(name) !== -1, function () { listeSchalten('phasen', name); },
+          'Phase ' + name + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
+      });
+    } else if (zustand.leisteDimension === 'szenarien') {
+      chips = HT.daten.eintraegeDerKategorie('szenario').map(function (sz) {
+        var gleich = szenarioGewaehlt(sz, u);
+        return leisteChip(sz.begriff, gleich, function () { u.module = gleich ? [] : sz.module.slice(); geaendert(); },
+          'Szenario ' + sz.begriff + ': seine ' + sz.module.length + ' Module wählen');
+      });
+    } else {
+      chips = [leisteChip('Alle', !u.module.length, function () { u.module = []; geaendert(); }, 'Alle Module')];
+      HT.daten.eintraegeDerKategorie('modul').forEach(function (m) {
+        var z = HT.graph.beitrag('modul', m.begriff, u);
+        chips.push(leisteChip(m.begriff, u.module.indexOf(m.begriff) !== -1, function () { listeSchalten('module', m.begriff); },
+          'Modul ' + m.begriff + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
+      });
+    }
+    var liste = h('ul', { class: 'chips chips--streifen gleiste__chips', 'aria-label': zustand.leisteDimension }, chips);
+    refs.leiste.appendChild(liste);
   }
 
   /* --- Parameter aus der Adresse -------------------------------------------- */

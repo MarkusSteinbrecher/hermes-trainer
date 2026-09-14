@@ -713,73 +713,47 @@
 }
 
 /* --- Umfangsleiste über dem Graphen ---------------------------------------
-   Drei Zeilen: Phasen (mit Vorgehensweise), Szenarien, Module — Chips wie
-   bei den Lernkarten, gedrückt = im Umfang. Wirkt auf Graph und Abbildung.
-   Eingeklappt bleibt eine Zeile mit dem Umfang als Text. */
+   Eine Zeile: links das Radio aus drei Icons (Phasen, Szenarien, Module),
+   rechts die Chips der gewählten Dimension, einzeilig und bei Bedarf
+   seitlich scrollbar. Gedrückt = im Umfang; wirkt auf Graph und Abbildung. */
 .gleiste {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: flex;
   align-items: center;
-  column-gap: 12px;
-  row-gap: 0;
+  gap: 10px;
   flex: 0 0 auto;
-  padding: 2px 40px 3px 16px;
+  min-height: 32px;
+  padding: 0 8px 0 12px;
   background: var(--flaeche);
   border-bottom: 1px solid var(--rand);
 }
-.gleiste__label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--text-leise);
-}
-.gleiste__chips { margin: 0; padding: 0; border: 0; gap: 0; }
-.gleiste__chip { height: 24px; font-size: 10.5px; letter-spacing: .05em; }
-.gleiste__trenner { width: 10px; }
-.gleiste .chips > li + li::before { height: 11px; margin: 0 3px; }
-.gleiste__zusammenfassung {
-  justify-self: start;
-  min-height: 24px;
+.gleiste__radio { display: flex; align-items: center; gap: 2px; flex: 0 0 auto; padding-right: 8px; border-right: 1px solid var(--rand); }
+.gleiste__wahl {
+  position: relative;
+  width: 28px;
+  height: 28px;
   padding: 0;
   border: 0;
-  background: none;
-  font: 600 11.5px var(--schrift);
-  color: var(--text-weich);
-  text-align: left;
-  cursor: pointer;
-}
-.gleiste__zusammenfassung:hover { color: var(--text); }
-.gleiste__knopf {
-  position: absolute;
-  right: 8px;
-  top: 4px;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  border: 0;
+  border-radius: 4px;
   background: none;
   color: var(--text-leise);
   cursor: pointer;
   display: grid;
   place-items: center;
 }
-.gleiste__knopf:hover { color: var(--text); }
-.gleiste__pfeil {
-  width: 0; height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 6px solid currentColor;
-}
-.gleiste[data-offen="zu"] .gleiste__pfeil { transform: rotate(180deg); }
+.gleiste__wahl:hover { color: var(--text); }
+.gleiste__wahl[aria-checked="true"] { color: var(--akzent); background: var(--akzent-schwach); }
+/* Punkt: in dieser Dimension ist etwas eingeschränkt. */
+.gleiste__punkt { position: absolute; right: 3px; top: 3px; width: 6px; height: 6px; border-radius: 50%; background: var(--akzent); display: none; }
+.gleiste__wahl--aktiv .gleiste__punkt { display: block; }
+/* Die Chips dürfen umbrechen (die zwölf Module brauchen zwei Zeilen); Phasen
+   und Szenarien bleiben einzeilig. */
+.gleiste__chips { flex: 1 1 auto; flex-wrap: wrap; min-width: 0; margin: 0; padding: 2px 0; border: 0; gap: 0; overflow: visible; }
+.gleiste__chip { height: 22px; font-size: 10.5px; letter-spacing: .05em; }
+.gleiste__trenner { width: 8px; }
+.gleiste .chips > li + li::before { height: 11px; margin: 0 3px; }
 /* Im Überblick teilt sich der Graph die Höhe mit der Abbildung: keine
    Mindesthöhe der Fläche, sie folgt ihrem Behälter (unter 700 px hält die
    Bühne selbst eine Mindesthöhe). */
 @media (min-width: 700px) {
   .ub-sichten .graph-flaeche { min-height: 0; }
-}
-@media (max-width: 699.98px) {
-  .gleiste { grid-template-columns: minmax(0, 1fr); padding-left: 12px; }
-  .gleiste__label { margin-top: 4px; }
 }
