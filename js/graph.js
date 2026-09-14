@@ -142,9 +142,18 @@
   }
 
   function listeSchalten(feld, wert) {
+    var keine = HT.graph.KEINE;
     var l = zustand.umfang[feld];
-    var i = l.indexOf(wert);
-    if (i === -1) { l.push(wert); } else { l.splice(i, 1); }
+    if (l.indexOf(keine) !== -1) {
+      /* Aus «keine» heraus: das geschaltete Element allein, «keine» selbst
+         geschaltet (Chip entfernt) heisst wieder alle. */
+      zustand.umfang[feld] = wert === keine ? [] : [wert];
+    } else if (wert === keine) {
+      zustand.umfang[feld] = [keine];
+    } else {
+      var i = l.indexOf(wert);
+      if (i === -1) { l.push(wert); } else { l.splice(i, 1); }
+    }
     geaendert();
   }
 
@@ -163,7 +172,7 @@
     if (zustand.umfang.vorgehen === key) { return; }
     zustand.umfang.vorgehen = key;
     var gueltig = HT.graph.phasenDerVorgehensweise(key);
-    zustand.umfang.phasen = zustand.umfang.phasen.filter(function (p) { return gueltig.indexOf(p) !== -1; });
+    zustand.umfang.phasen = zustand.umfang.phasen.filter(function (p) { return p === HT.graph.KEINE || gueltig.indexOf(p) !== -1; });
     geaendert();
   }
 
@@ -348,34 +357,52 @@
     ]);
   }
 
-  function alleKnopf(feld, label) {
-    var alle = !zustand.umfang[feld].length;
-    return h('button', {
-      type: 'button', class: 'gaf__alle', 'aria-pressed': alle ? 'true' : 'false',
-      text: alle ? label + ': alle' : 'Alle ' + label,
-      disabled: alle ? 'disabled' : null,
-      on: { click: function () { zustand.umfang[feld] = []; geaendert(); popZeichnen(); } }
-    });
+  /* «Alle» und «Keine» rechts im Kopf eines Abschnitts; der Knopf für den
+     Zustand, der schon gilt, ist ausgegraut. */
+  function alleKeineKnoepfe(label, alle, keine, beiAlle, beiKeine) {
+    function knopf(text, gilt, titel, klick) {
+      return h('button', {
+        type: 'button', class: 'gaf__alle', text: text, title: titel, 'aria-label': titel,
+        disabled: gilt ? 'disabled' : null,
+        on: { click: function () { klick(); geaendert(); popZeichnen(); } }
+      });
+    }
+    return h('span', { class: 'gaf__knoepfe' }, [
+      knopf('Alle', alle, 'Alle ' + label + ' wählen', beiAlle),
+      knopf('Keine', keine, 'Alle ' + label + ' abwählen', beiKeine)
+    ]);
+  }
+
+  /* Für Phasen und Module: «alle» ist die leere Liste, «keine» [KEINE]. */
+  function umfangKnoepfe(feld, label) {
+    var l = zustand.umfang[feld];
+    return alleKeineKnoepfe(label, !l.length, l.indexOf(HT.graph.KEINE) !== -1,
+      function () { zustand.umfang[feld] = []; },
+      function () { zustand.umfang[feld] = [HT.graph.KEINE]; });
   }
 
   /* Häkchen für Phasen und Module: «alle» heisst im Modell eine leere Liste,
      darum zeigt die Liste dann jedes Häkchen gesetzt, und wer eines
      wegnimmt, behält die übrigen. Sind wieder alle gesetzt, wird die Liste
-     leer. */
+     leer; ist keines mehr gesetzt, steht nur KEINE darin. */
   function umfangHaken(feld, name, alle, zahl) {
     var liste = zustand.umfang[feld];
     var an = !liste.length || liste.indexOf(name) !== -1;
     var kasten = h('input', { type: 'checkbox', class: 'gs-schalter__eingabe', 'data-fokus': feld + ':' + name });
     kasten.checked = an;
     kasten.addEventListener('change', function () {
-      var l = zustand.umfang[feld];
-      if (!l.length) {
-        zustand.umfang[feld] = alle.filter(function (n) { return n !== name; });
+      var bisher = zustand.umfang[feld];
+      var l;
+      if (!bisher.length) {
+        l = alle.filter(function (n) { return n !== name; });
       } else {
+        l = bisher.filter(function (n) { return n !== HT.graph.KEINE; });
         var i = l.indexOf(name);
         if (i === -1) { l.push(name); } else { l.splice(i, 1); }
-        if (alle.every(function (n) { return l.indexOf(n) !== -1; })) { zustand.umfang[feld] = []; }
       }
+      if (alle.every(function (n) { return l.indexOf(n) !== -1; })) { l = []; }
+      else if (!l.length) { l = [HT.graph.KEINE]; }
+      zustand.umfang[feld] = l;
       geaendert();
       popZeichnen();
     });
@@ -392,7 +419,7 @@
 
   function phasenAbschnitt() {
     var phasen = HT.graph.phasenDerVorgehensweise(zustand.umfang.vorgehen);
-    return filterAbschnitt('Phasen', alleKnopf('phasen', 'Phasen'),
+    return filterAbschnitt('Phasen', umfangKnoepfe('phasen', 'Phasen'),
       h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Phasen' }, phasen.map(function (name) {
         return umfangHaken('phasen', name, phasen, HT.graph.beitrag('phase', name, zustand.umfang));
       })));
@@ -417,12 +444,19 @@
         h('span', { class: 'gs-schalter__extra', title: sz.module.length + ' Module', text: String(sz.module.length) })
       ]);
     });
-    return filterAbschnitt('Szenarien', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien));
+    /* Ein Szenario ist eine Auswahl von Modulen; abgewählt gelten wieder alle. */
+    var eines = HT.daten.eintraegeDerKategorie('szenario').some(function (sz) { return szenarioGewaehlt(sz, zustand.umfang); });
+    var abwaehlen = h('span', { class: 'gaf__knoepfe' }, h('button', {
+      type: 'button', class: 'gaf__alle', text: 'Keines', title: 'Szenario abwählen (wieder alle Module)', 'aria-label': 'Szenario abwählen (wieder alle Module)',
+      disabled: eines ? null : 'disabled',
+      on: { click: function () { zustand.umfang.module = []; geaendert(); popZeichnen(); } }
+    }));
+    return filterAbschnitt('Szenarien', abwaehlen, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Szenarien' }, szenarien));
   }
 
   function moduleAbschnitt() {
     var module = HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
-    return filterAbschnitt('Module', alleKnopf('module', 'Module'),
+    return filterAbschnitt('Module', umfangKnoepfe('module', 'Module'),
       h('div', { class: 'gs-liste gs-liste--zwei', role: 'group', 'aria-label': 'Module' }, module.map(function (name) {
         return umfangHaken('module', name, module, HT.graph.beitrag('modul', name, zustand.umfang));
       })), 'gaf--module');
@@ -484,6 +518,16 @@
       return h('label', { class: 'gs-schalter' }, [kasten, h('span', { class: 'gs-schalter__label', text: label })]);
     }
 
+    /* Alle/Keine für Ein/Aus-Schalter (Elemente, Verbindungen). */
+    function schalterKnoepfe(label, schalter) {
+      var keys = Object.keys(schalter);
+      return alleKeineKnoepfe(label,
+        keys.every(function (k) { return schalter[k]; }),
+        keys.every(function (k) { return !schalter[k]; }),
+        function () { keys.forEach(function (k) { schalter[k] = true; }); },
+        function () { keys.forEach(function (k) { schalter[k] = false; }); });
+    }
+
     var ansichtOptionen = ANSICHTEN.map(function (a) { return { key: a.key, label: a.label }; });
 
     /* Sechs Spalten über die ganze Breite: kein Scrollen, alles auf einen
@@ -500,8 +544,8 @@
         szenarienAbschnitt(),
         moduleAbschnitt(),
         h('div', { class: 'gaf-spalte' }, [
-          filterAbschnitt('Elemente', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
-          filterAbschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
+          filterAbschnitt('Elemente', schalterKnoepfe('Elemente', zustand.kategorien), h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Elemente' }, HT.graph.KATEGORIEN.map(kategorieHaken))),
+          filterAbschnitt('Verbindungen', schalterKnoepfe('Verbindungen', zustand.relationen), h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
         ]),
         filterAbschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
           darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
@@ -977,12 +1021,21 @@
     if (!leer) { return; }
     HT.ui.leeren(refs.leer);
     var alleAus = HT.graph.KATEGORIEN.every(function (m) { return !zustand.kategorien[m.key]; });
-    refs.leer.appendChild(HT.ui.leerZustand(
-      alleAus ? 'Alle Elemente ausgeblendet' : 'Nichts in dieser Auswahl',
-      alleAus
-        ? 'Rollen, Aufgaben und Ergebnisse sind über die Icon-Leiste ausgeblendet. Ein Klick auf ein Zeichen blendet sie wieder ein.'
-        : 'Für diese Phasen und Module sind keine Aufgaben oder Ergebnisse erfasst. Weniger einschränken oder die Auswahl zurücksetzen.'
-    ));
+    var keinePhase = zustand.umfang.phasen[0] === HT.graph.KEINE;
+    var keinModul = zustand.umfang.module[0] === HT.graph.KEINE;
+    var titel, text;
+    if (alleAus) {
+      titel = 'Alle Elemente ausgeblendet';
+      text = 'Rollen, Aufgaben und Ergebnisse sind über die Icon-Leiste ausgeblendet. Ein Klick auf ein Zeichen blendet sie wieder ein.';
+    } else if (keinePhase || keinModul) {
+      titel = keinePhase && keinModul ? 'Keine Phase und kein Modul gewählt' : (keinePhase ? 'Keine Phase gewählt' : 'Kein Modul gewählt');
+      text = 'Mindestens ' + (keinePhase && keinModul ? 'eine Phase und ein Modul' : (keinePhase ? 'eine Phase' : 'ein Modul'))
+        + ' über die Icons links ankreuzen oder die Auswahl zurücksetzen.';
+    } else {
+      titel = 'Nichts in dieser Auswahl';
+      text = 'Für diese Phasen und Module sind keine Aufgaben oder Ergebnisse erfasst. Weniger einschränken oder die Auswahl zurücksetzen.';
+    }
+    refs.leer.appendChild(HT.ui.leerZustand(titel, text));
     if (!alleAus && HT.graph.umfangAktiv(zustand.umfang)) {
       refs.leer.appendChild(h('button', { type: 'button', class: 'btn btn--klein btn--primaer', text: 'Auswahl zurücksetzen', on: { click: alleZuruecksetzen } }));
     }
@@ -991,10 +1044,11 @@
   function umfangText() {
     var u = zustand.umfang;
     var teile = [];
-    teile.push(u.module.length
+    var keine = HT.graph.KEINE;
+    teile.push(u.module[0] === keine ? 'kein Modul' : u.module.length
       ? (u.module.length === 1 ? 'Modul ' + u.module[0] : u.module.length + ' Module')
       : 'alle Module');
-    teile.push((u.vorgehen === 'agil' ? 'agil' : 'klassisch') + ', ' + (u.phasen.length
+    teile.push((u.vorgehen === 'agil' ? 'agil' : 'klassisch') + ', ' + (u.phasen[0] === keine ? 'keine Phase' : u.phasen.length
       ? (u.phasen.length === 1 ? 'Phase ' + u.phasen[0] : u.phasen.length + ' Phasen')
       : 'alle Phasen'));
     return teile.join(' · ');
@@ -1154,6 +1208,21 @@
     }
   }
 
+  /* Reihenfolge der Aufgaben und Ergebnisse aus der Abbildung 1: die Grafik
+     einmal holen (der Überblick lädt sie ohnehin), ihre Kästen dem Modell
+     geben und ohne neues Einpassen neu zeichnen — die Bahnen bleiben gleich
+     gross, nur die Folge darin ändert sich. */
+  var lagenGeladen = false;
+
+  function reihenfolgeLaden() {
+    if (lagenGeladen || !HT.abbildung) { return; }
+    lagenGeladen = true;
+    HT.abbildung.holen().then(function (text) {
+      HT.graph.abbildungLagenSetzen(HT.abbildung.lagen(HT.abbildung.kaesten(HT.abbildung.lesen(text))));
+      if (zeichner && refs.buehne && document.body.contains(refs.buehne)) { alles(false); }
+    }).catch(function () { lagenGeladen = false; });
+  }
+
   /* --- Einbetten ------------------------------------------------------------ */
 
   function globalBinden() {
@@ -1227,6 +1296,7 @@
     }
     global.requestAnimationFrame(ersterAufbau);
     global.setTimeout(ersterAufbau, 150);
+    reihenfolgeLaden();
 
     return {
       buehne: refs.buehne,

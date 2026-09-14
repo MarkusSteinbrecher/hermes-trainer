@@ -291,6 +291,39 @@
     return alle;
   }
 
+  /**
+   * Lage der Ergebnisse in der Abbildung — für die Reihenfolge im Graphen:
+   * id → [{ y, x, phasen, module }] je Kasten; phasen sind die Phasenbalken,
+   * deren Höhe die Kastenmitte trifft (Konzept und Umsetzung liegen
+   * nebeneinander), module die des nächsten Modulkopfs darüber, der die
+   * Kastenmitte überdeckt (ein Kopf steht für Projektsteuerung und
+   * Projektführung). Kästen in der Sammelfläche «Phasenunabhängig» (der
+   * einzige Kasten ohne Eintrag) zählen nicht: sie haben keine Stelle im Ablauf.
+   */
+  function lagen(alle) {
+    function mitEintrag(k) { return k.eintraege && k.eintraege.length; }
+    var balken = alle.filter(function (k) { return k.art === 'phase' && mitEintrag(k); });
+    var koepfe = alle.filter(function (k) { return k.art === 'modul' && mitEintrag(k); });
+    var sammel = alle.filter(function (k) { return k.art === 'ergebnis' && !mitEintrag(k); });
+    var aus = {};
+    alle.forEach(function (k) {
+      if (k.art !== 'ergebnis' || !mitEintrag(k)) { return; }
+      var mx = k.x + k.w / 2, my = k.y + k.h / 2;
+      if (sammel.some(function (s) { return mx >= s.x && mx <= s.x + s.w && my >= s.y && my <= s.y + s.h; })) { return; }
+      var phasen = balken.filter(function (b) { return my >= b.y && my <= b.y + b.h; })
+        .map(function (b) { return b.eintraege[0].begriff; });
+      var kopf = null;
+      koepfe.forEach(function (q) {
+        if (mx >= q.x && mx <= q.x + q.w && q.y <= k.y && (!kopf || q.y > kopf.y)) { kopf = q; }
+      });
+      var module = kopf ? kopf.eintraege.map(function (e) { return e.begriff; }) : [];
+      k.eintraege.forEach(function (e) {
+        (aus[e.id] = aus[e.id] || []).push({ y: k.y, x: k.x, phasen: phasen, module: module });
+      });
+    });
+    return aus;
+  }
+
   HT.abbildung = {
     BILDUNTERSCHRIFT: BILDUNTERSCHRIFT,
     QUELLE: QUELLE_ABB,
@@ -298,6 +331,7 @@
     holen: holen,
     lesen: lesen,
     masse: masse,
-    kaesten: kaesten
+    kaesten: kaesten,
+    lagen: lagen
   };
 }(window));

@@ -502,12 +502,28 @@
   .gs-liste--zwei { grid-template-columns: minmax(0, 1fr); }
   .gs-liste--zwei > .gs-schalter:nth-child(2) { border-top: 1px solid var(--rand-fein); }
 }
+/* «Alle Filter» liegt im Überblick neben der Inhaltsseite und ist dort
+   deutlich schmaler als das Fenster: die Spalten richten sich nach der
+   Breite des Popovers, nicht des Fensters. Unter 1250 px drei Spuren, die
+   Module über zwei davon. */
+.gpop.gpop--breit { container-type: inline-size; }
+@container (max-width: 1250px) {
+  .gaf-raster { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gaf-raster > .gaf--module { grid-column: span 2; }
+}
+@container (max-width: 640px) {
+  .gaf-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .gaf { display: grid; gap: 4px; min-width: 0; }
-.gaf__kopf { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+/* Titel links, «Alle»/«Keine» rechts; ist die Spur zu schmal, rutschen die
+   Knöpfe unter den Titel statt in die Nachbarspalte. */
+.gaf__kopf { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 8px; }
 .gaf__titel { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
 .gaf__alle { border: 0; background: transparent; padding: 0; font-size: 12px; color: var(--akzent-text); cursor: pointer; }
 .gaf__alle:hover { color: var(--akzent); text-decoration: underline; }
 .gaf__alle:disabled { color: var(--text-leise); cursor: default; text-decoration: none; }
+/* «Alle» und «Keine» nebeneinander im Abschnittskopf. */
+.gaf__knoepfe { display: inline-flex; gap: 10px; flex: 0 0 auto; }
 .gaf .gs-schalter { min-height: 30px; }
 .gaf .gswatch { width: 18px; height: 18px; flex: 0 0 auto; }
 .gaf .glinie { flex: 0 0 auto; }

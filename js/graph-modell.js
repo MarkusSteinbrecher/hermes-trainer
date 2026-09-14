@@ -53,6 +53,76 @@
     return best;
   }
 
+  /** Name der frühesten Phase — nach derselben Regel wie phasenRang. */
+  function fruehestePhase(phasen, vp) {
+    var best = null, bestRang = 999;
+    (phasen || []).forEach(function (name) {
+      var i = PHASEN_REIHE.indexOf(name);
+      if (i === -1) { return; }
+      if (vp.indexOf(name) === -1) { i += 100; }
+      if (i < bestRang) { bestRang = i; best = name; }
+    });
+    return best;
+  }
+
+  /** Rang der spätesten Phase der Vorgehensweise; ohne solche -1. */
+  function letzterPhasenRang(phasen, vp) {
+    var best = -1;
+    (phasen || []).forEach(function (name) {
+      var i = PHASEN_REIHE.indexOf(name);
+      if (i !== -1 && vp.indexOf(name) !== -1 && i > best) { best = i; }
+    });
+    return best;
+  }
+
+  /* --- Reihenfolge aus der Abbildung 1 -------------------------------------- */
+
+  /* Die Abbildung zeigt die Ergebnisse je Phase und Modul von oben nach unten
+     in ihrer Abfolge. Ihre Lage (HT.abbildung.lagen: id → [{ y, x, phasen }])
+     setzt die Graph-Sicht, sobald die Grafik geladen ist; bis dahin fehlt sie
+     und es gilt die Ordnung nach Phase und Name. */
+  var abbLagen = null;
+  /* Ergebnisse an derselben Stelle (etwa die eines Entscheids): Meilenstein zuletzt. */
+  var TYP_ORDNUNG = { Dokument: 0, Zustand: 1, Checkliste: 2, Meilenstein: 3 };
+
+  function abbildungLagenSetzen(lagen) { abbLagen = lagen || null; }
+
+  /** Stelle eines Ergebnisses im Feld aus Phase (Zeile) und Modul (Spalte):
+      oben vor unten (auf 4 px gerundet), dann links vor rechts; null, wenn
+      das Ergebnis dort keinen Kasten hat. Nur Kästen im eigenen Feld zählen —
+      ein Kasten in einer anderen Spalte oder Zeile sagt nichts über die Folge
+      in dieser Bahn. */
+  function abbStelle(id, phase, modul) {
+    var l = abbLagen ? abbLagen[id] : null;
+    if (!l || !l.length) { return null; }
+    var wahl = l.filter(function (p) { return p.phasen.indexOf(phase) !== -1 && p.module.indexOf(modul) !== -1; });
+    if (!wahl.length) { return null; }
+    return wahl.reduce(function (min, p) { return Math.min(min, Math.round(p.y / 4) * 10000 + Math.round(p.x)); }, Infinity);
+  }
+
+  /** Stelle einer Aufgabe: beim ersten ihrer Ergebnisse im Feld. Ein
+      Entscheid steht am Ende der Zeile seines letzten Ergebnisses — in der
+      Abbildung laufen die Analysen einer Zeile oft von beiden Seiten auf das
+      Dokument zu, über das entschieden wird (Studie → Entscheid Weiteres
+      Vorgehen nach Schutzbedarfs- und Beschaffungsanalyse). */
+  function aufgabeStelle(k, phase, modul) {
+    var stellen = k.eintrag.ergebnisse.map(function (name) {
+      var e = HT.daten.eintragMitBegriff(name, 'ergebnis');
+      return e ? abbStelle(e.id, phase, modul) : null;
+    }).filter(function (s) { return s !== null; });
+    if (!stellen.length) { return null; }
+    return k.entscheid ? Math.floor(Math.max.apply(null, stellen) / 10000) * 10000 + 9999 : Math.min.apply(null, stellen);
+  }
+
+  /* Elemente mit Stelle zuerst, in ihrer Folge; ohne Stelle danach (0 = gleich). */
+  function stellenVergleich(a, b) {
+    var ohneA = a === null || a === undefined, ohneB = b === null || b === undefined;
+    if (ohneA && ohneB) { return 0; }
+    if (ohneA) { return 1; }
+    if (ohneB) { return -1; }
+    return a - b;
+  }
+
   /* Handbuch Kap. 3.2.1: zwingend in jedem Projekt. */
   var ZWINGENDE_MODULE = ['Projektsteuerung', 'Projektführung', 'Projektgrundlagen', 'Einführungsorganisation'];
 
@@ -166,11 +236,16 @@
 
   /* --- Umfang: welche Phasen und Module ------------------------------------ */
 
+  /* «Keine» ist in einer Liste des Umfangs der einzige Eintrag KEINE: er
+     trifft keine Phase und kein Modul, der Graph bleibt leer. So gilt
+     «leer = alle» unverändert, und die Adresse trägt phase=(keine). */
+  var KEINE = '(keine)';
+
   function leererUmfang() {
     return {
       vorgehen: 'klassisch',   // klassisch | agil
-      phasen: [],              // Phasennamen, leer = alle der Vorgehensweise
-      module: []               // Modulnamen, leer = alle
+      phasen: [],              // Phasennamen, leer = alle der Vorgehensweise, [KEINE] = keine
+      module: []               // Modulnamen, leer = alle, [KEINE] = keine
     };
   }
 
@@ -312,7 +387,18 @@
     var untergruppeVon = {};
     aufgabenAlle.forEach(function (k) { untergruppeVon[k.id] = k.eintrag.module.length ? k.eintrag.module[0] : ''; });
 
-    /* Innerhalb der Bahn nach Modul, dann nach der frühesten Phase, dann nach Name. */
+    /* Stelle in der Abbildung, gesucht im Feld aus Bahn und Modul-Unterbahn
+       (Phasenansicht) bzw. aus frühester Phase und Modulbahn (Modulansicht). */
+    var stelleA = {};
+    aufgabenAlle.forEach(function (k) {
+      stelleA[k.id] = nachModul
+        ? aufgabeStelle(k, gruppeVon[k.id], untergruppeVon[k.id])
+        : aufgabeStelle(k, fruehestePhase(k.eintrag.phasen, vp), gruppeVon[k.id]);
+    });
+
+    /* Innerhalb der Bahn nach Modul, dann nach der frühesten Phase, dann in
+       der Reihenfolge der Abbildung 1. Ohne Stelle dort danach: Entscheide
+       zuletzt, nach ihrer spätesten Phase, sonst nach Name. */
     aufgabenAlle.sort(function (a, b) {
       var ga = gruppenNamen.indexOf(gruppeVon[a.id]);
       var gb = gruppenNamen.indexOf(gruppeVon[b.id]);
@@ -324,6 +410,13 @@
       var pa = phasenRang(a.eintrag.phasen, vp);
       var pb = phasenRang(b.eintrag.phasen, vp);
       if (pa !== pb) { return pa - pb; }
+      var s = stellenVergleich(stelleA[a.id], stelleA[b.id]);
+      if (s) { return s; }
+      if (stelleA[a.id] === null) {
+        if (a.entscheid !== b.entscheid) { return a.entscheid ? 1 : -1; }
+        var la = letzterPhasenRang(a.eintrag.phasen, vp), lb = letzterPhasenRang(b.eintrag.phasen, vp);
+        if (la !== lb) { return la - lb; }
+      }
       return a.begriff.localeCompare(b.begriff, 'de');
     });
 
@@ -374,6 +467,17 @@
       return mo.hasOwnProperty(mm) ? mo[mm] : 999;
     }
     ergebnisseAlle.forEach(function (k) { untergruppeVon[k.id] = ergebnisModul(k); });
+    /* Stelle eines Ergebnisses: sein Kasten in der Abbildung, im Feld aus
+       Bahn und Modul (bzw. früheste Phase der erzeugenden Aufgabe und
+       Modulbahn); ohne Kasten dort gleich hinter seiner erzeugenden Aufgabe. */
+    var stelleE = {};
+    ergebnisseAlle.forEach(function (k) {
+      var q = quelleVon[k.id] ? m.knoten[quelleVon[k.id]] : null;
+      var phase = nachModul ? gruppeVonErgebnis[k.id] : fruehestePhase(q ? q.eintrag.phasen : k.eintrag.phasen, vp);
+      var s = abbStelle(k.id, phase, nachModul ? untergruppeVon[k.id] : gruppeVonErgebnis[k.id]);
+      if (s === null && q && stelleA[q.id] !== null && stelleA[q.id] !== undefined) { s = stelleA[q.id] + 0.1; }
+      stelleE[k.id] = s;
+    });
     ergebnisseAlle.sort(function (a, b) {
       var ga = gruppenNamen.indexOf(gruppeVonErgebnis[a.id]);
       var gb = gruppenNamen.indexOf(gruppeVonErgebnis[b.id]);
@@ -384,9 +488,13 @@
       }
       var pa = ergebnisPhasenRang(a), pb = ergebnisPhasenRang(b);
       if (pa !== pb) { return pa - pb; }
+      var s = stellenVergleich(stelleE[a.id], stelleE[b.id]);
+      if (s) { return s; }
       var ra = rang[a.id] === undefined ? 9999 : rang[a.id];
       var rb = rang[b.id] === undefined ? 9999 : rang[b.id];
       if (ra !== rb) { return ra - rb; }
+      var ta = TYP_ORDNUNG[a.eintrag.typ] || 0, tb = TYP_ORDNUNG[b.eintrag.typ] || 0;
+      if (ta !== tb) { return ta - tb; }
       var d = modulRang(a) - modulRang(b);
       return d !== 0 ? d : a.begriff.localeCompare(b.begriff, 'de');
     });
@@ -538,6 +646,7 @@
     RELATIONEN: RELATIONEN,
     REL: REL,
     VORGEHEN: VORGEHEN,
+    KEINE: KEINE,
     EBENEN: EBENEN,
     ZWINGENDE_MODULE: ZWINGENDE_MODULE,
     bauen: bauen,
@@ -552,6 +661,7 @@
     szenarioModule: szenarioModule,
     beitrag: beitrag,
     teilgraph: teilgraph,
+    abbildungLagenSetzen: abbildungLagenSetzen,
     einstieg: einstieg,
     suchen: suchen
   };

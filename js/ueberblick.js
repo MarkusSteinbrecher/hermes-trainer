@@ -464,10 +464,14 @@
     HT.ui.leeren(refs.suchChips);
     function chip(kat, name, titel, beiKlick) { refs.suchChips.appendChild(chipBauen(kat, name, titel, beiKlick)); }
     var u = umfang();
+    /* «Keine» steht als eigener Chip; sein × schaltet wieder alle ein. */
+    var keine = HT.graph.KEINE;
     u.phasen.forEach(function (name) {
+      if (name === keine) { chip('phase', 'Keine Phase', 'Wieder alle Phasen zeigen', function () { graph.listeSchalten('phasen', name); }); return; }
       chip('phase', name, 'Phase ' + name + ' entfernen', function () { graph.listeSchalten('phasen', name); });
     });
     u.module.forEach(function (name) {
+      if (name === keine) { chip('modul', 'Kein Modul', 'Wieder alle Module zeigen', function () { graph.listeSchalten('module', name); }); return; }
       chip('modul', name, 'Modul ' + name + ' entfernen', function () { graph.listeSchalten('module', name); });
     });
     if (zustand.rolle) {
