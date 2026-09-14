@@ -213,9 +213,6 @@
     });
     spalten.forEach(function (sp) {
       sp.breite = sp.knoten.reduce(function (m, n) { return Math.max(m, n.w); }, 0);
-      /* Übungen im Trainer: alle Knoten einer Spalte gleich breit — ein leerer
-         Kasten verrät so nicht, wie lang der gesuchte Name ist. */
-      if (opt.gleicheBreite) { sp.knoten.forEach(function (n) { n.w = sp.breite; }); }
     });
 
     var mitBahn = spalten.filter(function (sp) { return !!sp.gruppeVon; });

@@ -1,26 +1,23 @@
-/* meinHERMES — Trainer, Teil «Zuordnen»: Rollen, Aufgaben und Ergebnisse in
-   den Graph der Methode legen.
+/* meinHERMES — Trainer, Teil «Zuordnen»: Rollen, Aufgaben und Ergebnisse
+   einander zuordnen.
 
-   Jede Übung ist ein Ausschnitt aus dem Graphen des Überblicks in der
-   klassischen Vorgehensweise, nach Phasen gegliedert: eine Phase (eine Bahn,
-   darin die Module als Unterbahnen), ein Modul (die Phasen als Bahnen, darin
-   nur dieses Modul) oder das Gesamtbild. Auswahl, Reihenfolge, Layout und
-   Knotenformen kommen aus js/graph-modell.js und js/graph-zeichnen.js — die
-   Übung zeigt dasselbe Bild wie der Graph, nur mit leeren Kästen, und die
-   Elemente im Pool sehen aus wie seine Knoten.
+   Jede Übung ist ein Ausschnitt der klassischen Vorgehensweise, nach Phasen
+   gegliedert: eine Phase (eine Bahn, darin die Module als Unterbahnen), ein
+   Modul (die Phasen als Bahnen) oder das Gesamtbild. Auswahl und Reihenfolge
+   kommen aus js/graph-modell.js, die Knotenformen aus js/graph-zeichnen.js.
+   Linien gibt es keine: je Aufgabe ein Block — links die verantwortliche
+   Rolle, rechts untereinander die Ergebnisse, die sie erzeugt. Eine Rolle
+   steht so vor jeder ihrer Aufgaben, ein Ergebnis bei jeder Aufgabe, die es
+   erzeugt; im Pool liegt jedes Element einmal, mit der Zahl seiner Kästen.
 
    Welche Elementarten leer sind, wählen drei Schalter (Rollen, Aufgaben,
-   Ergebnisse); die übrigen stehen ausgefüllt als Anhaltspunkte im Bild. Die
-   Verbindungen «Rolle ist verantwortlich für die Aufgabe» und «Aufgabe
-   erzeugt Ergebnis» bleiben immer sichtbar — sie sind der Schlüssel, um
-   einen leeren Kasten zu bestimmen. «Beteiligt» fehlt absichtlich: im
-   Konzept wären das 83 Linien und vier Rollen mehr.
+   Ergebnisse); die übrigen stehen ausgefüllt als Anhaltspunkte im Bild.
 
-   Richtig ist ein Kasten, wenn das gelegte Element dort nicht vom gesuchten
-   zu unterscheiden ist: gleiche Art, gleiche Phase und gleiches Modul (Rollen
-   haben beides nicht) und dieselben Verbindungen zu denselben Kästen. Zwei
-   Ergebnisse, die dieselbe Aufgabe im selben Modul erzeugt, sind so
-   vertauschbar — ihre Reihenfolge im Bild ist kein Prüfungsstoff.
+   Geprüft wird die Zuordnung, nicht die Reihenfolge: Blöcke im selben Feld
+   (Phase und Modul) mit gleich vielen Ergebniskästen sind vertauschbar, und
+   innerhalb eines Blocks zählt nicht, in welchem Kasten ein Ergebnis liegt.
+   Die Prüfung gibt jedem Block den gesuchten Block, der insgesamt die
+   meisten Treffer ergibt; ausgefüllte Kästen müssen dazu passen.
 
    Adressen: #/trainer?phase=<Phase>, #/trainer?modul=<Modul>,
    #/trainer?alles=1 — je eine eigene Seite in voller Breite. */
@@ -33,21 +30,29 @@
   var h = HT.ui.h;
   var SVG_NS = 'http://www.w3.org/2000/svg';
   var SPEICHER = 'trainer';
-  var VERSION = 2;          // 1: Ausschnitte der Abbildung 1 (bis 2026-09-14) — andere Kästen, Quoten nicht vergleichbar
+  var VERSION = 3;          // 2: Graph mit Linien, jede Rolle einmal (bis 2026-09-14); 1: Abbildung 1 — andere Kästen, Quoten nicht vergleichbar
   var VORGEHEN = 'klassisch';
   var RELATIONEN = { verantwortlich: true, beteiligt: false, erzeugt: true, ergebnisrolle: false };
   var ARTEN = ['rolle', 'aufgabe', 'ergebnis'];
   var ZIEL_ZUSTAENDE = ['tr-ziel--offen', 'tr-ziel--bereit', 'tr-ziel--belegt', 'tr-ziel--richtig', 'tr-ziel--falsch', 'tr-ziel--leer'];
 
-  var SPALTEN_ABSTAND = 80; // enger als im Graph (104): das Bild soll in die Bühne passen
-  var RAND = 20;            // Luft um das Bild (Layout-Einheiten)
+  /* Bild, in Layout-Einheiten (px bei 100 %) */
+  var SPALTEN_LUECKE = 18;  // zwischen Rolle, Aufgabe und Ergebnissen
+  var ZEILEN_LUECKE = 6;    // zwischen zwei Ergebnissen einer Aufgabe
+  var BLOCK_LUECKE = 16;    // zwischen zwei Aufgaben, Haarlinie in der Mitte
+  var UNTER_LUECKE = 10;    // vor dem Titel eines weiteren Moduls
+  var UNTER_H = 24;         // Zeile eines Modultitels
+  var BAHN_TITEL = 30;      // Zeile eines Phasentitels (Modul, Gesamtbild)
+  var BAHN_LUFT = 12;       // Luft oben und unten in der Bahn
+  var BAHN_RAND = 14;       // Überstand des Bandes links und rechts
+  var RAND = 16;            // Luft um das Bild
   var RAHMEN = 3;           // Abstand des Rahmens (Zeiger, Prüfung) um einen Kasten
+
   var ZOOM_MIN = 0.4;
   var ZOOM_MAX = 2;
   var ZOOM_SCHRITT = 1.2;
   var SCHMAL = 900;         // unterhalb: Bühne über dem Pool (siehe css/trainer.css)
   var LESBAR = 0.7;         // kleinster Grundmassstab auf schmalen Schirmen
-  var POOL_MASS = 0.8;      // Knoten im Pool gegenüber dem Knoten im Bild
   var SUCHE_AB = 12;        // ab so vielen Elementen bekommt der Pool ein Suchfeld
   var ROLLZONE = 48;        // Randzone der Bühne, in der ein Zug sie mitrollt (px)
 
@@ -70,9 +75,13 @@
 
   function rund(n) { return Math.round(n * 10) / 10; }
 
+  function istMeilenstein(e) {
+    return e.kategorie === 'ergebnis' && !!e.eintrag && e.eintrag.typ === 'Meilenstein';
+  }
+
   /* «Rolle», «Aufgabe», «Ergebnis» — Meilensteine heissen wie im Graph. */
   function artName(e) {
-    return e.eintrag && e.eintrag.typ === 'Meilenstein' ? 'Meilenstein' : HT.graph.KAT[e.kategorie].singular;
+    return istMeilenstein(e) ? 'Meilenstein' : HT.graph.KAT[e.kategorie].singular;
   }
 
   /* --- Gespeichert: beste Quote je Übung und leere Arten, welche Arten leer sind */
@@ -112,6 +121,34 @@
     });
   }
 
+  /* Die Blöcke einer Übung: je Aufgabe im Umfang ihre verantwortliche Rolle
+     und die Ergebnisse, die sie im Umfang erzeugt, in der Reihenfolge des
+     Graphen. Bahn ist die Phase, Unterbahn das Modul — nicht in der
+     Modulübung, dort ist das Modul die Übung selbst. */
+  function bloeckeVon(def) {
+    var tg = teilgraphVon(def);
+    var aufgaben = null, knoten = {}, rang = {};
+    tg.spalten.forEach(function (sp) {
+      if (sp.kategorie === 'aufgabe') { aufgaben = sp; }
+      sp.knoten.forEach(function (k, i) { knoten[k.id] = k; rang[k.id] = i; });
+    });
+    if (!aufgaben) { return []; }
+    var rolleVon = {}, ergebnisseVon = {};
+    tg.kanten.forEach(function (ka) {
+      if (ka.rel === 'verantwortlich' && !rolleVon[ka.nach]) { rolleVon[ka.nach] = knoten[ka.von]; }
+      if (ka.rel === 'erzeugt') { (ergebnisseVon[ka.von] = ergebnisseVon[ka.von] || []).push(knoten[ka.nach]); }
+    });
+    return aufgaben.knoten.map(function (a) {
+      return {
+        aufgabe: a,
+        rolle: rolleVon[a.id] || null,
+        ergebnisse: (ergebnisseVon[a.id] || []).sort(function (x, y) { return rang[x.id] - rang[y.id]; }),
+        bahn: aufgaben.gruppeVon[a.id] || '',
+        unter: def.art !== 'modul' && aufgaben.untergruppeVon ? aufgaben.untergruppeVon[a.id] || '' : ''
+      };
+    });
+  }
+
   function uebungen() {
     if (liste) { return liste; }
     liste = [];
@@ -136,8 +173,15 @@
       adresse: '#/trainer?alles=1',
       umfang: { vorgehen: VORGEHEN, phasen: [], module: [] }
     });
-    liste.forEach(function (def) { def.zahlen = teilgraphVon(def).gezeigt; });
-    liste = liste.filter(function (def) { return def.zahlen.aufgabe + def.zahlen.ergebnis > 0; });
+    liste.forEach(function (def) {
+      var bloecke = bloeckeVon(def);
+      def.zahlen = {
+        rolle: bloecke.filter(function (b) { return b.rolle; }).length,
+        aufgabe: bloecke.length,
+        ergebnis: bloecke.reduce(function (summe, b) { return summe + b.ergebnisse.length; }, 0)
+      };
+    });
+    liste = liste.filter(function (def) { return def.zahlen.aufgabe > 0; });
     return liste;
   }
 
@@ -182,87 +226,150 @@
     return vorbereitung;
   }
 
-  /* --- Übung: Zustand ------------------------------------------------------ */
+  /* --- Layout: Blöcke in Bahnen ----------------------------------------------- */
 
-  /* uebung = { def, layout, ziele: [{ n, sig, chip, status, gruppe, inhalt, rahmen, titel }],
-                gegeben: [Knoten], chips: [{ id, kategorie, begriff, eintrag, entscheid, w, sig, ziel, el }],
-                nachbarn: { id: { knoten, kanten } }, knotenEl, kantenEl,
-                gewaehlt: Chip | null, geprueft: false | { richtig, gesamt }, suche, hover }
-     vorher: { Knoten-Id des Kastens: Id des gelegten Elements } — beim Umschalten
-     der leeren Arten bleibt liegen, was noch einen Kasten hat. */
-  function uebungStarten(def, vorher) {
-    var tg = teilgraphVon(def);
-    var layout = HT.graphZeichnen.layoutSpalten(tg, { gleicheBreite: true, spaltenAbstand: SPALTEN_ABSTAND });
+  /* Drei Spalten — Rolle, Aufgabe, Ergebnisse —, jede so breit wie ihr
+     breitester Knoten, damit ein leerer Kasten die Länge des Namens nicht
+     verrät. Bahnen (Phasen) und Unterbahnen (Module) als getönte Bänder und
+     Zwischentitel wie im Graph; zwischen zwei Blöcken eine Haarlinie. */
+  function layoutBauen(def, bloecke) {
+    var GZ = HT.graphZeichnen;
+    var KH = GZ.KNOTEN_HOEHE;
+    var breite = { rolle: 0, aufgabe: 0, ergebnis: 0 };
+    function messe(k) { if (k) { breite[k.kategorie] = Math.max(breite[k.kategorie], GZ.knotenBreite(k)); } }
+    bloecke.forEach(function (b) { messe(b.rolle); messe(b.aufgabe); b.ergebnisse.forEach(messe); });
+    var x = { rolle: 0, aufgabe: breite.rolle + SPALTEN_LUECKE };
+    x.ergebnis = x.aufgabe + breite.aufgabe + SPALTEN_LUECKE;
+    var rechts = x.ergebnis + breite.ergebnis;
 
-    /* Feld je Element: Bahn (Phase) und Unterbahn (Modul); Rollen haben keins. */
-    var feld = {};
-    tg.spalten.forEach(function (sp) {
-      sp.knoten.forEach(function (k) {
-        feld[k.id] = sp.gruppeVon
-          ? (sp.gruppeVon[k.id] || '') + '/' + (sp.untergruppeVon ? sp.untergruppeVon[k.id] || '' : '')
-          : '';
-      });
-    });
-
-    /* Signatur je Kasten: Art, Feld und die Verbindungen zu den Kästen daneben
-       (über deren Platz im Bild, nicht über ihren Inhalt). */
-    var platz = {}, nachbarn = {}, verbindungen = {};
-    layout.knoten.forEach(function (n, i) {
-      platz[n.id] = i;
-      nachbarn[n.id] = { knoten: {}, kanten: {} };
-      verbindungen[n.id] = [];
-    });
-    layout.kanten.forEach(function (ka) {
-      verbindungen[ka.von].push(ka.rel + '>' + platz[ka.nach]);
-      verbindungen[ka.nach].push(ka.rel + '<' + platz[ka.von]);
-      nachbarn[ka.von].knoten[ka.nach] = true;
-      nachbarn[ka.nach].knoten[ka.von] = true;
-      nachbarn[ka.von].kanten[ka.id] = true;
-      nachbarn[ka.nach].kanten[ka.id] = true;
-    });
-    var sig = {};
-    layout.knoten.forEach(function (n) {
-      sig[n.id] = n.kategorie + '|' + (feld[n.id] || '') + '|' + verbindungen[n.id].sort().join(',');
-    });
-
-    var ziele = [], gegeben = [], chips = [];
-    layout.knoten.forEach(function (n) {
-      if (!zustand.leer[n.kategorie]) { gegeben.push(n); return; }
-      ziele.push({ n: n, sig: sig[n.id], chip: null, status: '' });
-      chips.push({
-        id: n.id, kategorie: n.kategorie, begriff: n.begriff, eintrag: n.eintrag, entscheid: n.entscheid,
-        w: HT.graphZeichnen.knotenBreite(n), sig: sig[n.id], ziel: null, el: null
-      });
-    });
-    chips.sort(function (a, b) {
-      return (ARTEN.indexOf(a.kategorie) - ARTEN.indexOf(b.kategorie)) || a.begriff.localeCompare(b.begriff, 'de');
-    });
-
-    if (vorher) {
-      var chipVon = {};
-      chips.forEach(function (c) { chipVon[c.id] = c; });
-      ziele.forEach(function (z) {
-        var c = vorher[z.n.id] ? chipVon[vorher[z.n.id]] : null;
-        if (c && !c.ziel) { z.chip = c; c.ziel = z; }
+    var kaesten = [], texte = [], linien = [], baender = [];
+    function kasten(k, block, platz, kx, ky) {
+      kaesten.push({
+        id: k.id, kategorie: k.kategorie, begriff: k.begriff, eintrag: k.eintrag, entscheid: k.entscheid,
+        x: kx, y: ky, w: breite[k.kategorie], h: KH, block: block, platz: platz,
+        schluessel: block + ':' + k.kategorie + ':' + platz
       });
     }
 
+    ARTEN.forEach(function (art) {
+      texte.push({ x: x[art], y: -24, text: HT.graph.KAT[art].label, klasse: 'gtext gtext--spalte gtext--' + art });
+    });
+
+    /* Die Blöcke kommen nach Bahn und Modul geordnet — aufeinanderfolgende
+       mit gleicher Bahn und gleichem Modul bilden eine Unterbahn. */
+    var bahnen = [];
+    bloecke.forEach(function (b, i) {
+      var bahn = bahnen[bahnen.length - 1];
+      if (!bahn || bahn.name !== b.bahn) { bahn = { name: b.bahn, unter: [] }; bahnen.push(bahn); }
+      var unter = bahn.unter[bahn.unter.length - 1];
+      if (!unter || unter.name !== b.unter) { unter = { name: b.unter, bloecke: [] }; bahn.unter.push(unter); }
+      unter.bloecke.push(i);
+    });
+
+    /* In der Phasenübung ist die Phase der Seitentitel — dort ohne Bahntitel. */
+    var bahnTitel = def.art !== 'phase';
+    var y = 0;
+    bahnen.forEach(function (bahn, bi) {
+      var oben = y;
+      if (bi > 0) { linien.push({ x1: -BAHN_RAND, y1: y, x2: rechts + BAHN_RAND, y2: y }); }
+      y += BAHN_LUFT;
+      if (bahnTitel) {
+        texte.push({ x: 0, y: y + 10, text: bahn.name || 'Ohne Phase', klasse: 'gtext gtext--bahn' });
+        y += BAHN_TITEL;
+      }
+      bahn.unter.forEach(function (unter, ui) {
+        if (ui > 0) { y += UNTER_LUECKE; }
+        if (unter.name) {
+          if (ui > 0 || bahnTitel) { linien.push({ x1: 0, y1: y, x2: rechts, y2: y, klasse: 'ggruppenlinie--unter' }); }
+          texte.push({ x: 0, y: y + UNTER_H / 2, text: unter.name, klasse: 'gtext gtext--untergruppe' });
+          y += UNTER_H;
+        }
+        unter.bloecke.forEach(function (i, n) {
+          var b = bloecke[i];
+          if (n > 0) {
+            linien.push({ x1: 0, y1: y + BLOCK_LUECKE / 2, x2: rechts, y2: y + BLOCK_LUECKE / 2, klasse: 'tr-blocklinie' });
+            y += BLOCK_LUECKE;
+          }
+          if (b.rolle) { kasten(b.rolle, i, 0, x.rolle, y); }
+          kasten(b.aufgabe, i, 0, x.aufgabe, y);
+          b.ergebnisse.forEach(function (e, j) { kasten(e, i, j, x.ergebnis, y + j * (KH + ZEILEN_LUECKE)); });
+          y += Math.max(1, b.ergebnisse.length) * (KH + ZEILEN_LUECKE) - ZEILEN_LUECKE;
+        });
+      });
+      y += BAHN_LUFT;
+      baender.push({ x: -BAHN_RAND, y: oben, w: rechts + 2 * BAHN_RAND, h: y - oben, gerade: bi % 2 === 0 });
+    });
+
+    return { kaesten: kaesten, texte: texte, linien: linien, baender: baender };
+  }
+
+  /* --- Übung: Zustand ------------------------------------------------------ */
+
+  /* uebung = { def, bloecke, layout,
+                ziele: [{ n: Kasten, chip, status, loesung, gruppe, inhalt, rahmen, titel }],
+                gegeben: [Kasten], chips: [{ id, kategorie, begriff, eintrag, entscheid, w, ziel }],
+                gewaehlt: { id, kategorie, begriff } | null, geprueft: false | { richtig, gesamt }, suche }
+     Je leerer Kasten ein Chip; Chips desselben Elements sind gleichwertig und
+     liegen im Pool als ein Stapel.
+     vorher: { Schlüssel des Kastens: Id des gelegten Elements } — beim
+     Umschalten der leeren Arten bleibt liegen, was noch einen Kasten hat. */
+  function uebungStarten(def, vorher) {
+    var bloecke = bloeckeVon(def);
+    var layout = layoutBauen(def, bloecke);
+
+    var ziele = [], gegeben = [], chips = [];
+    layout.kaesten.forEach(function (n) {
+      if (!zustand.leer[n.kategorie]) { gegeben.push(n); return; }
+      ziele.push({ n: n, chip: null, status: '', loesung: null });
+      chips.push({ id: n.id, kategorie: n.kategorie, begriff: n.begriff, eintrag: n.eintrag, entscheid: n.entscheid, w: n.w, ziel: null });
+    });
+
     uebung = {
-      def: def, layout: layout, ziele: ziele, gegeben: gegeben, chips: chips, nachbarn: nachbarn,
-      knotenEl: {}, kantenEl: {}, gewaehlt: null, geprueft: false, suche: '', hover: null
+      def: def, bloecke: bloecke, layout: layout, ziele: ziele, gegeben: gegeben, chips: chips,
+      gewaehlt: null, geprueft: false, suche: ''
     };
+
+    if (vorher) {
+      ziele.forEach(function (z) {
+        var c = vorher[z.n.schluessel] ? freierChip(vorher[z.n.schluessel]) : null;
+        if (c) { z.chip = c; c.ziel = z; }
+      });
+    }
   }
 
   function belegung() {
     var b = {};
     if (uebung && !uebung.geprueft) {
-      uebung.ziele.forEach(function (z) { if (z.chip) { b[z.n.id] = z.chip.id; } });
+      uebung.ziele.forEach(function (z) { if (z.chip) { b[z.n.schluessel] = z.chip.id; } });
     }
     return b;
   }
 
   function chipsImPool() {
     return uebung.chips.filter(function (c) { return !c.ziel; });
+  }
+
+  function freierChip(id) {
+    for (var i = 0; i < uebung.chips.length; i++) {
+      if (uebung.chips[i].id === id && !uebung.chips[i].ziel) { return uebung.chips[i]; }
+    }
+    return null;
+  }
+
+  /* Freie Chips je Element, nach Art und Name. */
+  function stapelVon(chips) {
+    var nachId = {}, stapel = [];
+    chips.forEach(function (c) {
+      var s = nachId[c.id];
+      if (!s) {
+        s = nachId[c.id] = { id: c.id, kategorie: c.kategorie, begriff: c.begriff, eintrag: c.eintrag, entscheid: c.entscheid, anzahl: 0 };
+        stapel.push(s);
+      }
+      s.anzahl++;
+    });
+    return stapel.sort(function (a, b) {
+      return (ARTEN.indexOf(a.kategorie) - ARTEN.indexOf(b.kategorie)) || a.begriff.localeCompare(b.begriff, 'de');
+    });
   }
 
   /* Suche im Pool: Umlaute und Diakritika tolerant («losung» trifft «Lösung»). */
@@ -272,14 +379,15 @@
     return t;
   }
 
-  function trifft(chip, suche) {
-    return !suche || suchform(chip.begriff).indexOf(suche) !== -1;
+  function trifft(stapel, suche) {
+    return !suche || suchform(stapel.begriff).indexOf(suche) !== -1;
   }
 
   /* Ein Element passt nur in einen Kasten seiner Art. Liegt im Zielkasten
      schon eines, tauschen die beiden — kommt das neue aus dem Pool, geht das
-     alte dorthin zurück. */
-  function setzen(chip, ziel) {
+     alte dorthin zurück. Aus der Auswahl gelegt, bleibt das Element gewählt,
+     solange noch eines davon im Pool liegt (eine Rolle mit zwölf Kästen). */
+  function setzen(chip, ziel, ausWahl) {
     if (uebung.geprueft || chip.kategorie !== ziel.n.kategorie) { return; }
     if (ziel.chip !== chip) {
       var herkunft = chip.ziel;
@@ -292,7 +400,7 @@
       ziel.chip = chip;
       chip.ziel = ziel;
     }
-    uebung.gewaehlt = null;
+    if (!ausWahl || !freierChip(chip.id)) { uebung.gewaehlt = null; }
     zeichnen();
   }
 
@@ -306,24 +414,120 @@
   function zielGeklickt(ziel) {
     if (uebung.geprueft) { return; }
     if (uebung.gewaehlt) {
-      if (uebung.gewaehlt.kategorie === ziel.n.kategorie) { setzen(uebung.gewaehlt, ziel); }
+      var c = freierChip(uebung.gewaehlt.id);
+      if (c && c.kategorie === ziel.n.kategorie) { setzen(c, ziel, true); }
     } else if (ziel.chip) {
       loesen(ziel);
     }
   }
 
-  function chipGeklickt(chip) {
+  function stapelGeklickt(stapel) {
     if (uebung.geprueft) { return; }
-    uebung.gewaehlt = uebung.gewaehlt === chip ? null : chip;
+    uebung.gewaehlt = uebung.gewaehlt && uebung.gewaehlt.id === stapel.id
+      ? null
+      : { id: stapel.id, kategorie: stapel.kategorie, begriff: stapel.begriff };
     zeichnen();
   }
 
+  /* --- Prüfen ---------------------------------------------------------------- */
+
+  /* Zuordnung mit dem grössten Gesamtwert (ungarische Methode, n³).
+     wert[i][j]: Wert, wenn Platz i den Block j bekommt; null ist verboten.
+     Rückgabe: wahl[i] = j. */
+  function zuordnung(wert) {
+    var n = wert.length, VERBOTEN = 1e9;
+    var u = [], v = [], p = [], weg = [], i, j;
+    for (j = 0; j <= n; j++) { u[j] = 0; v[j] = 0; p[j] = 0; weg[j] = 0; }
+    function kosten(a, b) { var w = wert[a - 1][b - 1]; return w === null ? VERBOTEN : -w; }
+    for (i = 1; i <= n; i++) {
+      p[0] = i;
+      var j0 = 0, minv = [], benutzt = [];
+      for (j = 0; j <= n; j++) { minv[j] = Infinity; benutzt[j] = false; }
+      do {
+        benutzt[j0] = true;
+        var i0 = p[j0], delta = Infinity, j1 = 0;
+        for (j = 1; j <= n; j++) {
+          if (benutzt[j]) { continue; }
+          var d = kosten(i0, j) - u[i0] - v[j];
+          if (d < minv[j]) { minv[j] = d; weg[j] = j0; }
+          if (minv[j] < delta) { delta = minv[j]; j1 = j; }
+        }
+        for (j = 0; j <= n; j++) {
+          if (benutzt[j]) { u[p[j]] += delta; v[j] -= delta; } else { minv[j] -= delta; }
+        }
+        j0 = j1;
+      } while (p[j0] !== 0);
+      do { var j2 = weg[j0]; p[j0] = p[j2]; j0 = j2; } while (j0);
+    }
+    var wahl = [];
+    for (j = 1; j <= n; j++) { wahl[p[j] - 1] = j - 1; }
+    return wahl;
+  }
+
+  /* Jeder Block bekommt den gesuchten Block, der insgesamt die meisten
+     Treffer ergibt — unter den Blöcken im selben Feld mit gleich vielen
+     Ergebniskästen, und nur einen, zu dem seine ausgefüllten Kästen passen.
+     Bei gleich vielen Treffern bleibt ein Block, wo er ist. Danach steht in
+     jedem Kasten, der nicht stimmt, das gesuchte Element (loesung). */
   function pruefen() {
-    var richtig = 0;
-    uebung.ziele.forEach(function (z) {
-      z.status = !z.chip ? 'leer' : (z.chip.sig === z.sig ? 'richtig' : 'falsch');
-      if (z.status === 'richtig') { richtig++; }
+    var bloecke = uebung.bloecke;
+    var leer = bloecke.map(function () { return { rolle: [], aufgabe: [], ergebnis: [] }; });
+    uebung.ziele.forEach(function (z) { leer[z.n.block][z.n.kategorie].push(z); });
+
+    function ids(knoten) { return knoten.map(function (k) { return k.id; }).sort().join('|'); }
+
+    function treffer(i, j, gewicht) {
+      var ist = bloecke[i], soll = bloecke[j], z = leer[i], n = 0;
+      if (!z.rolle.length && ist.rolle && ist.rolle.id !== soll.rolle.id) { return null; }
+      if (!z.aufgabe.length && ist.aufgabe.id !== soll.aufgabe.id) { return null; }
+      if (!z.ergebnis.length && ids(ist.ergebnisse) !== ids(soll.ergebnisse)) { return null; }
+      z.rolle.forEach(function (k) { if (k.chip && k.chip.id === soll.rolle.id) { n++; } });
+      z.aufgabe.forEach(function (k) { if (k.chip && k.chip.id === soll.aufgabe.id) { n++; } });
+      var offen = soll.ergebnisse.map(function (k) { return k.id; });
+      z.ergebnis.forEach(function (k) {
+        var stelle = k.chip ? offen.indexOf(k.chip.id) : -1;
+        if (stelle !== -1) { offen.splice(stelle, 1); n++; }
+      });
+      return gewicht * n + (i === j ? 1 : 0);
+    }
+
+    var gruppen = {};
+    bloecke.forEach(function (b, i) {
+      var s = b.bahn + '|' + b.unter + '|' + b.ergebnisse.length + '|' + (b.rolle ? 'r' : '');
+      (gruppen[s] = gruppen[s] || []).push(i);
     });
+    var partner = [];
+    Object.keys(gruppen).forEach(function (s) {
+      var g = gruppen[s];
+      /* Ein Treffer wiegt mehr als alle «bleibt, wo er ist» zusammen. */
+      var gewicht = g.length + 1;
+      var wahl = zuordnung(g.map(function (i) { return g.map(function (j) { return treffer(i, j, gewicht); }); }));
+      g.forEach(function (i, a) { partner[i] = g[wahl[a]]; });
+    });
+
+    var richtig = 0;
+    function einzeln(z, soll) {
+      z.loesung = soll;
+      z.status = !z.chip ? 'leer' : (z.chip.id === soll.id ? 'richtig' : 'falsch');
+    }
+    bloecke.forEach(function (b, i) {
+      var soll = bloecke[partner[i]], z = leer[i];
+      z.rolle.forEach(function (k) { einzeln(k, soll.rolle); });
+      z.aufgabe.forEach(function (k) { einzeln(k, soll.aufgabe); });
+      var offen = soll.ergebnisse.slice();
+      z.ergebnis.forEach(function (k) {
+        k.status = '';
+        for (var o = 0; k.chip && o < offen.length; o++) {
+          if (offen[o].id === k.chip.id) { k.loesung = offen[o]; k.status = 'richtig'; offen.splice(o, 1); break; }
+        }
+      });
+      z.ergebnis.forEach(function (k) {
+        if (k.status === 'richtig') { return; }
+        k.loesung = offen.shift();
+        k.status = k.chip ? 'falsch' : 'leer';
+      });
+    });
+    uebung.ziele.forEach(function (z) { if (z.status === 'richtig') { richtig++; } });
     uebung.geprueft = { richtig: richtig, gesamt: uebung.ziele.length };
     uebung.gewaehlt = null;
 
@@ -343,8 +547,8 @@
   /* Zurück auf Anfang — an den bestehenden Objekten, denn die Ziele tragen
      die Verweise auf ihre SVG-Elemente. */
   function zuruecksetzen() {
-    uebung.ziele.forEach(function (z) { z.chip = null; z.status = ''; });
-    uebung.chips.forEach(function (c) { c.ziel = null; c.el = null; c.gezogen = false; });
+    uebung.ziele.forEach(function (z) { z.chip = null; z.status = ''; z.loesung = null; });
+    uebung.chips.forEach(function (c) { c.ziel = null; });
     uebung.gewaehlt = null;
     uebung.geprueft = false;
     uebung.suche = '';
@@ -354,9 +558,9 @@
 
   /* --- Bild ----------------------------------------------------------------- */
 
-  /* Ein Knoten wie im Graph — für das Bild, den Pool und den Geist beim
-     Ziehen. Nicht fokussierbar: die Tastatur bedient den Kasten bzw. den
-     Knopf darum. Ohne Namen ist es die Form eines leeren Kastens. */
+  /* Ein Knoten wie im Graph — für das Bild und den Geist beim Ziehen. Nicht
+     fokussierbar: die Tastatur bedient den Kasten darum. Ohne Namen ist es
+     die Form eines leeren Kastens. */
   function knotenBild(e, w, x, y) {
     var g = HT.graphZeichnen.knotenElement({
       id: e.id || '', kategorie: e.kategorie, begriff: e.begriff || '', eintrag: e.eintrag || null,
@@ -368,7 +572,7 @@
     return g;
   }
 
-  /* Ein Knoten als eigenes kleines SVG (Pool, Geist), mit Luft für die Kontur. */
+  /* Ein Knoten als eigenes kleines SVG (Geist), mit Luft für die Kontur. */
   function knotenSvg(chip, mass) {
     var kh = HT.graphZeichnen.KNOTEN_HOEHE, luft = 3;
     var svg = svgEl('svg', {
@@ -383,7 +587,7 @@
     return svg;
   }
 
-  /* Umriss des Layouts: Bänder, Knoten, Linien und Texte (deren Breite
+  /* Umriss des Layouts: Bänder, Kästen, Linien und Texte (deren Breite
      geschätzt — Versalien mit Sperrung). */
   function umriss(layout) {
     var x0 = 0, y0 = 0, x1 = 0, y1 = 0;
@@ -392,7 +596,7 @@
       x1 = Math.max(x1, bx); y1 = Math.max(y1, by);
     }
     layout.baender.forEach(function (b) { nimm(b.x, b.y, b.x + b.w, b.y + b.h); });
-    layout.knoten.forEach(function (n) { nimm(n.x, n.y, n.x + n.w, n.y + n.h); });
+    layout.kaesten.forEach(function (n) { nimm(n.x, n.y, n.x + n.w, n.y + n.h); });
     layout.linien.forEach(function (l) { nimm(l.x1, l.y1, l.x2, l.y2); });
     layout.texte.forEach(function (t) {
       var gross = t.klasse.indexOf('gtext--spalte') !== -1 ? 16 : 14;
@@ -407,15 +611,9 @@
     var u = umriss(layout);
     var svg = svgEl('svg', {
       'class': 'tr-graph', viewBox: [rund(u.x), rund(u.y), rund(u.w), rund(u.h)].join(' '),
-      role: 'group', 'aria-label': uebung.def.titel + ' — Rollen, Aufgaben und Ergebnisse zum Zuordnen',
+      role: 'group', 'aria-label': uebung.def.titel + ' — je Aufgabe die verantwortliche Rolle und die Ergebnisse zum Zuordnen',
       'data-breite': rund(u.w)
     });
-
-    var defs = svgEl('defs', {});
-    var pfeil = svgEl('marker', { id: 'tr-pfeil', viewBox: '0 0 10 10', refX: '9', refY: '5', markerWidth: '7', markerHeight: '7', orient: 'auto-start-reverse' });
-    pfeil.appendChild(svgEl('path', { d: 'M0 0L10 5L0 10Z', 'class': 'gpfeil' }));
-    defs.appendChild(pfeil);
-    svg.appendChild(defs);
 
     var bahnen = svgEl('g', { 'class': 'tr-bahnen' });
     layout.baender.forEach(function (b) {
@@ -425,18 +623,6 @@
       }));
     });
     svg.appendChild(bahnen);
-
-    var kanten = svgEl('g', { 'class': 'tr-kanten' });
-    layout.kanten.forEach(function (ka) {
-      var el = svgEl('path', {
-        'class': 'gkante gkante--' + HT.graph.REL[ka.rel].stil + (ka.weit ? ' gkante--weit' : ''),
-        d: ka.pfad,
-        'marker-end': ka.rel === 'erzeugt' ? 'url(#tr-pfeil)' : null
-      });
-      uebung.kantenEl[ka.id] = el;
-      kanten.appendChild(el);
-    });
-    svg.appendChild(kanten);
 
     var texte = svgEl('g', { 'class': 'tr-texte' });
     layout.linien.forEach(function (l) {
@@ -456,15 +642,13 @@
     uebung.gegeben.forEach(function (n) {
       var g = knotenBild(n, n.w, n.x, n.y);
       g.classList.add('tr-gegeben');
-      g.setAttribute('data-knoten', n.id);
       g.setAttribute('role', 'img');
-      uebung.knotenEl[n.id] = g;
       knoten.appendChild(g);
     });
     uebung.ziele.forEach(function (z, i) {
       var n = z.n;
       var g = svgEl('g', {
-        'class': 'tr-ziel tr-ziel--' + n.kategorie, 'data-ziel': i, 'data-knoten': n.id,
+        'class': 'tr-ziel tr-ziel--' + n.kategorie, 'data-ziel': i,
         tabindex: '0', role: 'button', transform: 'translate(' + rund(n.x) + ',' + rund(n.y) + ')'
       });
       z.inhalt = svgEl('g', { 'class': 'tr-ziel__inhalt' });
@@ -481,7 +665,6 @@
       g.appendChild(z.rahmen);
       g.appendChild(z.titel);
       z.gruppe = g;
-      uebung.knotenEl[n.id] = g;
 
       g.addEventListener('click', function () { if (z.gezogen) { z.gezogen = false; return; } zielGeklickt(z); });
       g.addEventListener('keydown', function (ev) {
@@ -491,30 +674,7 @@
       knoten.appendChild(g);
     });
     svg.appendChild(knoten);
-
-    /* Überfahren oder Fokus: Kasten samt Nachbarn und Verbindungen hervorheben. */
-    function knotenAus(ev) {
-      var g = ev.target && ev.target.closest ? ev.target.closest('[data-knoten]') : null;
-      return g ? g.getAttribute('data-knoten') : null;
-    }
-    svg.addEventListener('pointerover', function (ev) { hervorheben(knotenAus(ev)); });
-    svg.addEventListener('pointerleave', function () { hervorheben(null); });
-    svg.addEventListener('focusin', function (ev) { hervorheben(knotenAus(ev)); });
-    svg.addEventListener('focusout', function () { hervorheben(null); });
     return svg;
-  }
-
-  function hervorheben(id) {
-    if (!uebung || !refs.bild || id === uebung.hover) { return; }
-    uebung.hover = id;
-    var nb = id ? uebung.nachbarn[id] : null;
-    refs.bild.classList.toggle('ist-hervorhebung', !!nb);
-    Object.keys(uebung.knotenEl).forEach(function (k) {
-      uebung.knotenEl[k].classList.toggle('ist-aktiv', !!nb && (k === id || !!nb.knoten[k]));
-    });
-    Object.keys(uebung.kantenEl).forEach(function (k) {
-      uebung.kantenEl[k].classList.toggle('ist-aktiv', !!nb && !!nb.kanten[k]);
-    });
   }
 
   /* --- Zoom ---------------------------------------------------------------- */
@@ -568,10 +728,10 @@
       var klassen, zeigen, beschreibung;
       if (gepr) {
         klassen = ['tr-ziel--' + z.status];
-        zeigen = z.status === 'richtig' ? z.chip : z.n;
+        zeigen = z.status === 'richtig' ? z.chip : z.loesung;
         beschreibung = z.status === 'richtig' ? 'Richtig: ' + z.chip.begriff
-          : z.status === 'falsch' ? 'Falsch — hier gehört ' + z.n.begriff + ' hin, gelegt war ' + z.chip.begriff
-          : 'Offen — hier gehört ' + z.n.begriff + ' hin';
+          : z.status === 'falsch' ? 'Falsch — hier gehört ' + z.loesung.begriff + ' hin, gelegt war ' + z.chip.begriff
+          : 'Offen — hier gehört ' + z.loesung.begriff + ' hin';
       } else if (z.chip) {
         klassen = ['tr-ziel--belegt'];
         zeigen = z.chip;
@@ -595,41 +755,7 @@
       refs.bild.classList.toggle('ist-geprueft', !!gepr);
     }
 
-    /* Pool, nach Art gruppiert */
-    HT.ui.leeren(refs.pool);
-    var alleOffen = chipsImPool();
-    var suche = suchform(uebung.suche);
-    var offen = alleOffen.filter(function (c) { return trifft(c, suche); });
-    if (!alleOffen.length) {
-      refs.pool.appendChild(h('p', { class: 'tr-pool__leer', text: gepr ? 'Alle Elemente lagen im Bild.' : 'Alle Elemente liegen im Bild — jetzt prüfen.' }));
-    } else if (!offen.length) {
-      refs.pool.appendChild(h('p', { class: 'tr-pool__leer', text: 'Kein Element passt zu «' + uebung.suche.trim() + '».' }));
-    }
-    if (refs.suche) {
-      refs.suche.hidden = alleOffen.length < SUCHE_AB && !uebung.suche;
-      refs.sucheStand.textContent = suche ? offen.length + ' von ' + alleOffen.length + ' Elementen' : alleOffen.length + ' Elemente';
-    }
-    ARTEN.forEach(function (art) {
-      var inArt = offen.filter(function (c) { return c.kategorie === art; });
-      if (!inArt.length) { return; }
-      var gesamt = alleOffen.filter(function (c) { return c.kategorie === art; }).length;
-      var label = HT.graph.KAT[art].label;
-      refs.pool.appendChild(h('h3', { class: 'tr-mikro tr-pool__titel', text: label + ' · ' + (suche ? inArt.length + ' von ' + gesamt : gesamt) }));
-      refs.pool.appendChild(h('div', { class: 'tr-pool__gruppe', role: 'group', 'aria-label': label }, inArt.map(function (c) {
-        var el = h('button', {
-          type: 'button',
-          class: 'tr-chip' + (gewaehlt === c ? ' ist-gewaehlt' : ''),
-          'aria-label': artName(c) + ' ' + c.begriff,
-          'aria-pressed': gewaehlt === c ? 'true' : 'false',
-          disabled: gepr ? 'disabled' : null
-        }, knotenSvg(c, POOL_MASS));
-        c.el = el;
-        c.gezogen = false;
-        el.addEventListener('click', function () { if (!c.gezogen) { chipGeklickt(c); } c.gezogen = false; });
-        chipZiehbar(c, el);
-        return el;
-      })));
-    });
+    poolZeichnen(gepr, gewaehlt);
 
     /* Zähler und Knöpfe */
     var gelegt = uebung.ziele.filter(function (z) { return z.chip; }).length;
@@ -643,18 +769,67 @@
     HT.ui.leeren(refs.ergebnis);
     refs.ergebnis.hidden = !gepr;
     if (gepr) { refs.ergebnis.appendChild(auswertung()); }
-
-    refs.hinweis.hidden = !!gepr;
-    hervorhebungErneuern();
   }
 
-  /* Nach dem Neuzeichnen trägt die Hervorhebung noch die Klassen von vorher —
-     einmal neu setzen, falls der Zeiger noch über einem Kasten steht. */
-  function hervorhebungErneuern() {
-    if (!uebung || !uebung.hover) { return; }
-    var id = uebung.hover;
-    uebung.hover = null;
-    hervorheben(id);
+  /* Pool: je leere Art eine Spalte nebeneinander, jedes Element einmal mit
+     der Zahl seiner offenen Kästen. */
+  function poolZeichnen(gepr, gewaehlt) {
+    HT.ui.leeren(refs.pool);
+    var frei = chipsImPool();
+    var stapel = stapelVon(frei);
+    var suche = suchform(uebung.suche);
+    var treffer = stapel.filter(function (s) { return trifft(s, suche); });
+    if (refs.suche) {
+      refs.suche.hidden = stapel.length < SUCHE_AB && !uebung.suche;
+      refs.sucheStand.textContent = suche ? treffer.length + ' von ' + stapel.length + ' Elementen' : stapel.length + ' Elemente';
+    }
+    if (!frei.length) {
+      refs.pool.appendChild(h('p', { class: 'tr-pool__leer', text: gepr ? 'Alle Elemente lagen im Bild.' : 'Alle Elemente liegen im Bild — jetzt prüfen.' }));
+      return;
+    }
+    leereArten().forEach(function (art) {
+      var label = HT.graph.KAT[art].label;
+      var offen = frei.filter(function (c) { return c.kategorie === art; }).length;
+      var inArt = treffer.filter(function (s) { return s.kategorie === art; });
+      var inhalt = inArt.length
+        ? inArt.map(function (s) { return stapelKnopf(s, gewaehlt, gepr); })
+        : [h('p', { class: 'tr-pool__leer', text: offen ? 'Kein Treffer' : 'Alle gelegt' })];
+      refs.pool.appendChild(h('div', { class: 'tr-pool__spalte tr-pool__spalte--' + art, role: 'group', 'aria-label': label },
+        [h('h3', { class: 'tr-mikro tr-pool__titel', text: label + ' · ' + offen })].concat(inhalt)));
+    });
+  }
+
+  /* Ein Element im Pool: Farbe und Zeichen seines Knotens im Graph, der Name
+     darf umbrechen; bei mehreren Kästen die Zahl als Marke an der Ecke. Das
+     Typ-Symbol der Ergebnisse fehlt hier — der Platz gehört dem Namen. */
+  function stapelKnopf(s, gewaehlt, gepr) {
+    var ms = istMeilenstein(s);
+    var ist = !!gewaehlt && gewaehlt.id === s.id;
+    var el = h('button', {
+      type: 'button',
+      class: 'tr-chip tr-chip--' + s.kategorie + (ms ? ' tr-chip--meilenstein' : '') + (s.entscheid ? ' tr-chip--entscheid' : '') + (ist ? ' ist-gewaehlt' : ''),
+      'aria-label': artName(s) + ' ' + s.begriff + (s.anzahl > 1 ? ', ' + s.anzahl + ' Kästen' : ''),
+      'aria-pressed': ist ? 'true' : 'false',
+      disabled: gepr ? 'disabled' : null
+    }, [
+      h('span', { class: 'tr-chip__glyph', 'aria-hidden': 'true' }, HT.ui.katSymbol(ms ? 'meilenstein' : s.kategorie, 13)),
+      h('span', { class: 'tr-chip__text', text: s.begriff }),
+      s.anzahl > 1 ? h('span', { class: 'tr-chip__zahl', 'aria-hidden': 'true', text: '×' + s.anzahl }) : null
+    ]);
+    var gezogen = false;
+    el.addEventListener('click', function () { if (!gezogen) { stapelGeklickt(s); } gezogen = false; });
+    el.addEventListener('pointerdown', function (ev) {
+      if (ev.button !== 0 || ev.pointerType === 'touch' || uebung.geprueft) { return; }
+      var chip = freierChip(s.id);
+      if (!chip) { return; }
+      /* Der Geist hat die Grösse des Kastens im Bild; der Zeiger fasst ihn am Zeichen. */
+      var m = bildMass();
+      ziehen(ev, chip, {
+        el: el, griff: { x: 22 * m, y: HT.graphZeichnen.KNOTEN_HOEHE / 2 * m }, ziel: null,
+        gezogen: function () { gezogen = true; }
+      });
+    });
+    return el;
   }
 
   function elementLink(e) {
@@ -681,13 +856,13 @@
       kinder.push(h('ul', { class: 'tr-liste' }, falsch.map(function (z) {
         return h('li', {}, [
           h('span', { class: 'tr-liste__falsch', text: z.chip.begriff }),
-          ' — hier gehört ', elementLink(z.n), ' hin'
+          ' — hier gehört ', elementLink(z.loesung), ' hin'
         ]);
       })));
     }
     if (leer.length) {
       kinder.push(h('h3', { class: 'tr-mikro', text: 'Offen geblieben' }));
-      kinder.push(h('ul', { class: 'tr-liste' }, leer.map(function (z) { return h('li', {}, elementLink(z.n)); })));
+      kinder.push(h('ul', { class: 'tr-liste' }, leer.map(function (z) { return h('li', {}, elementLink(z.loesung)); })));
     }
     return h('div', {}, kinder);
   }
@@ -704,7 +879,7 @@
      Scrollen. */
   function ziehen(ev, chip, quelle) {
     var start = { x: ev.clientX, y: ev.clientY };
-    var griff = { x: ev.clientX - quelle.mass.left, y: ev.clientY - quelle.mass.top };
+    var griff = quelle.griff || { x: ev.clientX - quelle.mass.left, y: ev.clientY - quelle.mass.top };
     var geist = null;
     var drueber = null;
     var zeiger = null;
@@ -747,7 +922,7 @@
     function bewegen(e) {
       if (!geist) {
         if (Math.hypot(e.clientX - start.x, e.clientY - start.y) < 6) { return; }
-        geist = h('div', { class: 'tr-geist' }, knotenSvg(chip, quelle.ziel ? bildMass() : POOL_MASS));
+        geist = h('div', { class: 'tr-geist' }, knotenSvg(chip, bildMass()));
         document.body.appendChild(geist);
         quelle.el.classList.add('ist-am-ziehen');
         document.body.classList.add('tr-zieht');
@@ -781,7 +956,7 @@
          Sperre fällt beim nächsten Aufbau (zeichnen) bzw. beim Klick. */
       quelle.gezogen();
       var z = punkt && e.type === 'pointerup' ? zielUnter(punkt.clientX, punkt.clientY) : null;
-      if (z) { setzen(chip, z); }
+      if (z) { setzen(chip, z, false); }
       else if (quelle.ziel && e && e.type === 'pointerup') { loesen(quelle.ziel); }
     }
 
@@ -789,15 +964,6 @@
     document.addEventListener('pointerup', ende);
     document.addEventListener('pointercancel', ende);
     global.addEventListener('blur', ende);
-  }
-
-  function chipZiehbar(chip, el) {
-    el.addEventListener('pointerdown', function (ev) {
-      if (ev.button !== 0 || ev.pointerType === 'touch' || uebung.geprueft) { return; }
-      /* Griffpunkt im Element: der Geist erscheint an derselben Stelle unter
-         dem Zeiger, an der es angefasst wurde. */
-      ziehen(ev, chip, { el: el, mass: el.getBoundingClientRect(), ziel: null, gezogen: function () { chip.gezogen = true; } });
-    });
   }
 
   /* Belegter Kasten: sein Element lässt sich wieder herausziehen — in einen
@@ -916,8 +1082,9 @@
     behaelter.appendChild(h('section', { class: 'tr-hub' }, [
       h('div', { class: 'kopf kopf--teil' }, [
         h('h2', { text: 'Zuordnen' }),
-        h('p', { text: 'Ausschnitte aus dem Graph der Methode in der klassischen Vorgehensweise — je Phase, je Modul oder alles auf einmal. '
-          + 'Die Kästen sind leer, Phasen, Module und Verbindungen stehen da; die Rollen, Aufgaben und Ergebnisse liegen daneben bereit und wollen an ihren Platz. '
+        h('p', { text: 'Rollen, Aufgaben und Ergebnisse der klassischen Vorgehensweise — je Phase, je Modul oder alles auf einmal. '
+          + 'Je Aufgabe eine Zeile: links die verantwortliche Rolle, rechts die Ergebnisse, die sie erzeugt. Die Kästen sind leer, '
+          + 'die Elemente liegen daneben bereit und wollen an ihren Platz; es zählt die Zuordnung, nicht die Reihenfolge. '
           + 'Am Ende zeigt die Prüfung, was richtig, falsch oder offen geblieben ist.' })
       ]),
       artenLeiste(function () { karten.forEach(function (k) { k.aktualisieren(); }); }),
@@ -962,15 +1129,7 @@
     refs.suche = suchfeld();
     refs.zaehler = h('span', { class: 'tr-zaehler', role: 'status' });
     refs.beste = h('span', { class: 'tr-beste', hidden: true });
-    refs.hinweis = h('p', { class: 'tr-hinweis', text:
-      'Element in einen leeren Kasten seiner Art ziehen — oder antippen und dann den Kasten. '
-      + 'Die Linien sagen, welche Rolle für welche Aufgabe verantwortlich ist und welche Aufgabe welches Ergebnis erzeugt; '
-      + 'beim Überfahren eines Kastens treten seine Verbindungen hervor. Aus einem belegten Kasten lässt sich das Element wieder herausziehen, ein Klick legt es zurück.' });
     refs.ergebnis = h('div', { class: 'tr-ergebnis', tabindex: '-1', 'aria-live': 'polite', hidden: true });
-    var legende = h('ul', { class: 'tr-legende', 'aria-label': 'Verbindungen' }, ['verantwortlich', 'erzeugt'].map(function (rel) {
-      var r = HT.graph.REL[rel];
-      return h('li', {}, [h('span', { class: 'glinie glinie--' + r.stil, 'aria-hidden': 'true' }), r.label]);
-    }));
 
     refs.knopfPruefen = werkzeug('Prüfen', 'btn btn--primaer', pruefen);
     refs.knopfReset = werkzeug('Zurücksetzen', 'btn', function () { zuruecksetzen(); });
@@ -1006,8 +1165,6 @@
         artenLeiste(neuAufbauen),
         h('div', { class: 'btn-reihe tr-knoepfe' }, [refs.knopfPruefen, refs.knopfReset, refs.knopfNochmals, knopfWeiter]),
         refs.ergebnis,
-        refs.hinweis,
-        legende,
         refs.suche,
         refs.pool
       ])

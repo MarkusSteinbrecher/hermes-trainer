@@ -77,7 +77,7 @@
     document.body.dataset.teil = teil.id;
     behaelter.appendChild(h('div', { class: 'kopf' }, [
       h('h1', { text: 'Trainer' }),
-      h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse in den Graph der Methode legen, '
+      h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse einander zuordnen, '
         + 'Lernkarten umdrehen und selbst einschätzen, Prüfungsfragen beantworten. '
         + 'Der Lernstand bleibt in diesem Browser.' })
     ]));
