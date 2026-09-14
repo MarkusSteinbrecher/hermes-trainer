@@ -627,6 +627,16 @@
 .grail__knopf .gswatch { width: 22px; height: 22px; }
 .grail__zahl { font-size: 10px; font-weight: 700; line-height: 1; color: var(--text-leise); font-variant-numeric: tabular-nums; }
 .grail__knopf--linie { min-height: 28px; }
+/* Oben: Auswahl nach Phasen, Szenarien, Modulen ein- und ausblenden.
+   Gedrückt = die Chip-Zeile über dem Graph ist zu sehen; ein Punkt sagt,
+   dass in dieser Dimension etwas eingeschränkt ist (auch bei ausgeblendeter
+   Zeile). */
+.grail__knopf--umfang { position: relative; min-height: 34px; color: var(--text-leise); border-radius: 4px; }
+.grail__knopf--umfang svg { width: 18px; height: 18px; }
+.grail__knopf--umfang:hover { color: var(--text); }
+.grail__knopf--umfang[aria-pressed="true"] { color: var(--akzent); background: var(--akzent-schwach); }
+.grail__punkt { position: absolute; right: 7px; top: 5px; width: 6px; height: 6px; border-radius: 50%; background: var(--akzent); display: none; }
+.grail__knopf--eingeschraenkt .grail__punkt { display: block; }
 
 /* Rechte Leiste: Werkzeuge und Zoom, gleiche Kachel wie links. */
 .grail--rechts { left: auto; right: .75rem; }
@@ -713,38 +723,23 @@
 }
 
 /* --- Umfangsleiste über dem Graphen ---------------------------------------
-   Eine Zeile: links das Radio aus drei Icons (Phasen, Szenarien, Module),
-   rechts die Chips der gewählten Dimension, einzeilig und bei Bedarf
-   seitlich scrollbar. Gedrückt = im Umfang; wirkt auf Graph und Abbildung. */
+   Je eingeschalteter Dimension (Schalter oben in der linken Icon-Leiste) eine
+   Zeile: links das Icon der Dimension, rechts die Chips, umbrechend.
+   Gedrückt = im Umfang; wirkt auf Graph und Abbildung. Ohne eingeschaltete
+   Dimension ist die Leiste weg. */
 .gleiste {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
   flex: 0 0 auto;
-  min-height: 32px;
   padding: 0 8px 0 12px;
   background: var(--flaeche);
   border-bottom: 1px solid var(--rand);
 }
-.gleiste__radio { display: flex; align-items: center; gap: 2px; flex: 0 0 auto; padding-right: 8px; border-right: 1px solid var(--rand); }
-.gleiste__wahl {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border: 0;
-  border-radius: 4px;
-  background: none;
-  color: var(--text-leise);
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-}
-.gleiste__wahl:hover { color: var(--text); }
-.gleiste__wahl[aria-checked="true"] { color: var(--akzent); background: var(--akzent-schwach); }
-/* Punkt: in dieser Dimension ist etwas eingeschränkt. */
-.gleiste__punkt { position: absolute; right: 3px; top: 3px; width: 6px; height: 6px; border-radius: 50%; background: var(--akzent); display: none; }
-.gleiste__wahl--aktiv .gleiste__punkt { display: block; }
+.gleiste[hidden] { display: none; }
+.gleiste__zeile { display: flex; align-items: center; gap: 10px; min-height: 30px; }
+.gleiste__zeile + .gleiste__zeile { border-top: 1px solid var(--rand); }
+.gleiste__ikone { flex: 0 0 auto; display: grid; place-items: center; width: 20px; height: 20px; color: var(--text-leise); }
+.gleiste__ikone svg { width: 15px; height: 15px; }
 /* Die Chips dürfen umbrechen (die zwölf Module brauchen zwei Zeilen); Phasen
    und Szenarien bleiben einzeilig. */
 .gleiste__chips { flex: 1 1 auto; flex-wrap: wrap; min-width: 0; margin: 0; padding: 2px 0; border: 0; gap: 0; overflow: visible; }

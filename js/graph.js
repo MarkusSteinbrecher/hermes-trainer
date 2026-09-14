@@ -32,8 +32,8 @@
     { key: 'klassisch', label: 'Klassisch' },
     { key: 'agil', label: 'Agil' }
   ];
-  /* Die Umfangsleiste über dem Graphen: ein Radio aus drei Icons wählt, welche
-     Chips in der einen Zeile stehen. */
+  /* Die Umfangsleiste über dem Graphen: drei Schalter oben in der linken
+     Icon-Leiste (Phasen, Szenarien, Module) blenden je eine Chip-Zeile ein. */
   var LEISTE_DIMENSIONEN = [
     { key: 'phasen', label: 'Phasen', ikone: 'phase' },
     { key: 'szenarien', label: 'Szenarien', ikone: 'szenario' },
@@ -67,7 +67,7 @@
       isolierteAusblenden: false,
       nurMinimal: false,
       nurEntscheide: false,
-      leisteDimension: 'phasen' // welche Chips die Umfangsleiste zeigt: phasen | szenarien | module
+      leiste: { phasen: true, szenarien: false, module: false } // welche Chip-Zeilen die Umfangsleiste zeigt
     };
   }
 
@@ -83,7 +83,7 @@
       isolierteAusblenden: zustand.isolierteAusblenden,
       nurMinimal: zustand.nurMinimal,
       nurEntscheide: zustand.nurEntscheide,
-      leisteDimension: zustand.leisteDimension
+      leiste: zustand.leiste
     });
   }
 
@@ -91,7 +91,14 @@
     var g = HT.store.lies('graph', null);
     if (!g || typeof g !== 'object') { return; }
     if (ANSICHTEN.some(function (a) { return a.key === g.ansicht; })) { zustand.ansicht = g.ansicht; }
-    if (LEISTE_DIMENSIONEN.some(function (d) { return d.key === g.leisteDimension; })) { zustand.leisteDimension = g.leisteDimension; }
+    if (g.leiste && typeof g.leiste === 'object') {
+      LEISTE_DIMENSIONEN.forEach(function (d) {
+        if (typeof g.leiste[d.key] === 'boolean') { zustand.leiste[d.key] = g.leiste[d.key]; }
+      });
+    } else if (LEISTE_DIMENSIONEN.some(function (d) { return d.key === g.leisteDimension; })) {
+      /* Bis 2026-09-14 ein Radio: die gewählte Dimension wird zur einzigen eingeschalteten. */
+      LEISTE_DIMENSIONEN.forEach(function (d) { zustand.leiste[d.key] = d.key === g.leisteDimension; });
+    }
     if (g.umfang && typeof g.umfang === 'object') {
       var u = zustand.umfang;
       if (HT.graph.VORGEHEN[g.umfang.vorgehen]) { u.vorgehen = g.umfang.vorgehen; }
@@ -605,9 +612,12 @@
   /* --- Icon-Leisten --------------------------------------------------------- */
 
   function railBauen() {
+    refs.railUmfang = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Auswahl nach Phasen, Szenarien oder Modulen ein- und ausblenden' });
     refs.railTypen = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Elemente ein- und ausblenden' });
     refs.railRel = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Verbindungen ein- und ausblenden' });
     refs.rail = h('div', { class: 'grail' }, [
+      refs.railUmfang,
+      h('div', { class: 'grail__trenner', 'aria-hidden': 'true' }),
       refs.railTypen,
       h('div', { class: 'grail__trenner', 'aria-hidden': 'true' }),
       refs.railRel
@@ -900,13 +910,16 @@
 
   /* --- Umfangsleiste über dem Graphen ---------------------------------------- */
 
-  /* Eine Zeile: links ein Radio aus drei Icons (Phasen, Szenarien, Module),
-     rechts die Chips der gewählten Dimension — derselbe Umfang wie in «Alle
-     Filter» und in der Abbildung. Muster wie bei den Lernkarten: «Alle» ist
-     gedrückt, solange die Liste leer ist; ein Klick auf einen Namen schaltet
-     ihn um. Ein Szenario setzt seine Module und ist gedrückt, solange genau
-     diese gewählt sind. Was in den anderen Dimensionen gewählt ist, zeigt
-     das Radio-Icon mit einem Punkt. */
+  /* Je eingeschalteter Dimension eine Zeile Chips (Phasen, Szenarien,
+     Module), links das Icon der Dimension — derselbe Umfang wie in «Alle
+     Filter» und in der Abbildung. Ein- und ausgeschaltet wird oben in der
+     linken Icon-Leiste (`railUmfangZeichnen`); sind alle aus, verschwindet
+     die Leiste und die Fläche bekommt den Platz. Muster wie bei den
+     Lernkarten: «Alle» ist gedrückt, solange die Liste leer ist; ein Klick auf
+     einen Namen schaltet ihn um. Ein Szenario setzt seine Module und ist
+     gedrückt, solange genau diese gewählt sind. Ist in einer Dimension etwas
+     eingeschränkt, trägt ihr Icon in der Leiste einen Punkt — auch wenn ihre
+     Zeile ausgeblendet ist. */
   function leisteBauen() {
     refs.leiste = h('div', { class: 'gleiste', role: 'group', 'aria-label': 'Umfang: Phasen, Szenarien, Module' });
     leisteZeichnen();
@@ -933,50 +946,77 @@
     return u.module.length > 0;
   }
 
+  /* Schalter oben in der linken Icon-Leiste: ein Klick blendet die Zeile
+     der Dimension ein oder aus; der Graph wird danach neu eingepasst, weil
+     die Fläche ihre Höhe ändert. */
+  function railUmfangZeichnen() {
+    if (!refs.railUmfang) { return; }
+    HT.ui.leeren(refs.railUmfang);
+    LEISTE_DIMENSIONEN.forEach(function (d) {
+      var an = !!zustand.leiste[d.key];
+      var eingeschraenkt = dimensionAktiv(d.key);
+      refs.railUmfang.appendChild(h('button', {
+        type: 'button', class: 'grail__knopf grail__knopf--umfang' + (eingeschraenkt ? ' grail__knopf--eingeschraenkt' : ''),
+        'aria-pressed': an ? 'true' : 'false',
+        title: d.label + (eingeschraenkt ? ' (eingeschränkt)' : '') + ' — Auswahl ' + (an ? 'ausblenden' : 'einblenden'),
+        'aria-label': 'Auswahl nach ' + d.label + ' ' + (an ? 'ausblenden' : 'einblenden'),
+        on: { click: function () {
+          zustand.leiste[d.key] = !zustand.leiste[d.key];
+          speichern();
+          leisteZeichnen();
+          if (zeichner) { zeichner.einpassen(einpassOptionen()); }
+        } }
+      }, [HT.ui.katSymbol(d.ikone, 18), h('span', { class: 'grail__punkt', 'aria-hidden': 'true' })]));
+    });
+  }
+
+  function leisteZeile(d, chips) {
+    return h('div', { class: 'gleiste__zeile', role: 'group', 'aria-label': d.label }, [
+      h('span', { class: 'gleiste__ikone', title: d.label, 'aria-hidden': 'true' }, HT.ui.katSymbol(d.ikone, 15)),
+      h('ul', { class: 'chips chips--streifen gleiste__chips' }, chips)
+    ]);
+  }
+
   function leisteZeichnen() {
+    railUmfangZeichnen();
     if (!refs.leiste) { return; }
     HT.ui.leeren(refs.leiste);
     var u = zustand.umfang;
+    var zeilen = 0;
 
-    var radio = h('div', { class: 'gleiste__radio', role: 'radiogroup', 'aria-label': 'Umfang wählen nach' }, LEISTE_DIMENSIONEN.map(function (d) {
-      var an = zustand.leisteDimension === d.key;
-      return h('button', {
-        type: 'button', class: 'gleiste__wahl' + (dimensionAktiv(d.key) ? ' gleiste__wahl--aktiv' : ''),
-        role: 'radio', 'aria-checked': an ? 'true' : 'false', title: d.label, 'aria-label': d.label,
-        on: { click: function () { zustand.leisteDimension = d.key; speichern(); leisteZeichnen(); } }
-      }, [HT.ui.katSymbol(d.ikone, 15), h('span', { class: 'gleiste__punkt', 'aria-hidden': 'true' })]);
-    }));
-    refs.leiste.appendChild(radio);
-
-    var chips = [];
-    if (zustand.leisteDimension === 'phasen') {
-      var phasen = HT.graph.phasenDerVorgehensweise(u.vorgehen);
-      chips = VORGEHENSWEISEN.map(function (v) {
-        return leisteChip(v.label, u.vorgehen === v.key, function () { vorgehenSetzen(v.key); }, 'Vorgehensweise ' + v.label);
-      });
-      chips.push(h('li', { class: 'gleiste__trenner', 'aria-hidden': 'true' }));
-      chips.push(leisteChip('Alle', !u.phasen.length, function () { u.phasen = []; geaendert(); }, 'Alle Phasen'));
-      phasen.forEach(function (name) {
-        var z = HT.graph.beitrag('phase', name, u);
-        chips.push(leisteChip(name, u.phasen.indexOf(name) !== -1, function () { listeSchalten('phasen', name); },
-          'Phase ' + name + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
-      });
-    } else if (zustand.leisteDimension === 'szenarien') {
-      chips = HT.daten.eintraegeDerKategorie('szenario').map(function (sz) {
-        var gleich = szenarioGewaehlt(sz, u);
-        return leisteChip(sz.begriff, gleich, function () { u.module = gleich ? [] : sz.module.slice(); geaendert(); },
-          'Szenario ' + sz.begriff + ': seine ' + sz.module.length + ' Module wählen');
-      });
-    } else {
-      chips = [leisteChip('Alle', !u.module.length, function () { u.module = []; geaendert(); }, 'Alle Module')];
-      HT.daten.eintraegeDerKategorie('modul').forEach(function (m) {
-        var z = HT.graph.beitrag('modul', m.begriff, u);
-        chips.push(leisteChip(m.begriff, u.module.indexOf(m.begriff) !== -1, function () { listeSchalten('module', m.begriff); },
-          'Modul ' + m.begriff + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
-      });
-    }
-    var liste = h('ul', { class: 'chips chips--streifen gleiste__chips', 'aria-label': zustand.leisteDimension }, chips);
-    refs.leiste.appendChild(liste);
+    LEISTE_DIMENSIONEN.forEach(function (d) {
+      if (!zustand.leiste[d.key]) { return; }
+      var chips = [];
+      if (d.key === 'phasen') {
+        var phasen = HT.graph.phasenDerVorgehensweise(u.vorgehen);
+        chips = VORGEHENSWEISEN.map(function (v) {
+          return leisteChip(v.label, u.vorgehen === v.key, function () { vorgehenSetzen(v.key); }, 'Vorgehensweise ' + v.label);
+        });
+        chips.push(h('li', { class: 'gleiste__trenner', 'aria-hidden': 'true' }));
+        chips.push(leisteChip('Alle', !u.phasen.length, function () { u.phasen = []; geaendert(); }, 'Alle Phasen'));
+        phasen.forEach(function (name) {
+          var z = HT.graph.beitrag('phase', name, u);
+          chips.push(leisteChip(name, u.phasen.indexOf(name) !== -1, function () { listeSchalten('phasen', name); },
+            'Phase ' + name + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
+        });
+      } else if (d.key === 'szenarien') {
+        chips = HT.daten.eintraegeDerKategorie('szenario').map(function (sz) {
+          var gleich = szenarioGewaehlt(sz, u);
+          return leisteChip(sz.begriff, gleich, function () { u.module = gleich ? [] : sz.module.slice(); geaendert(); },
+            'Szenario ' + sz.begriff + ': seine ' + sz.module.length + ' Module wählen');
+        });
+      } else {
+        chips = [leisteChip('Alle', !u.module.length, function () { u.module = []; geaendert(); }, 'Alle Module')];
+        HT.daten.eintraegeDerKategorie('modul').forEach(function (m) {
+          var z = HT.graph.beitrag('modul', m.begriff, u);
+          chips.push(leisteChip(m.begriff, u.module.indexOf(m.begriff) !== -1, function () { listeSchalten('module', m.begriff); },
+            'Modul ' + m.begriff + (z === null || z === undefined ? '' : ' · ' + z + ' Aufgaben') + ' — ein- oder ausschalten'));
+        });
+      }
+      refs.leiste.appendChild(leisteZeile(d, chips));
+      zeilen++;
+    });
+    refs.leiste.hidden = zeilen === 0;
   }
 
   /* --- Parameter aus der Adresse -------------------------------------------- */
