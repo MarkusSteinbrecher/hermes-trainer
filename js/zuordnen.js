@@ -6,10 +6,12 @@
    Modul (die Phasen als Bahnen) oder das Gesamtbild. Auswahl und Reihenfolge
    kommen aus js/graph-modell.js, die Knotenformen aus js/graph-zeichnen.js.
    Linien gibt es keine: je Aufgabe ein Block — links die verantwortliche
-   Rolle, rechts untereinander die Ergebnisse, die sie erzeugt. Eine Rolle
-   steht so vor jeder ihrer Aufgaben, ein Ergebnis bei jeder Aufgabe, die es
-   erzeugt. Im Pool hat jede Zeile ihren eigenen Rollenknopf; ein Ergebnis
-   mehrerer Aufgaben liegt dort einmal, mit der Zahl seiner Kästen.
+   Rolle, rechts untereinander die Ergebnisse, die sie erzeugt. In Modulübung
+   und Gesamtbild steht eine Aufgabe in jeder ihrer Phasen, jeweils mit den
+   Ergebnissen dieser Phase. Eine Rolle steht so vor jeder ihrer Aufgaben, ein
+   Ergebnis bei jeder Aufgabe, die es erzeugt. Im Pool hat jede Zeile ihren
+   eigenen Rollenknopf; eine Aufgabe mehrerer Phasen und ein Ergebnis
+   mehrerer Aufgaben liegen dort einmal, mit der Zahl ihrer Kästen.
 
    Welche Elementarten leer sind, wählen drei Schalter (Rollen, Aufgaben,
    Ergebnisse); die übrigen stehen ausgefüllt als Anhaltspunkte im Bild.
@@ -112,23 +114,43 @@
     return def.id + '|' + leereArten().map(function (art) { return art.charAt(0); }).join('');
   }
 
+  /* Die beste Runde gilt nur, solange die Übung gleich viele Kästen hat —
+     ändert sich ihr Aufbau, zählt eine alte Runde nicht mehr. */
+  function besteVon(def) {
+    var b = zustand.beste[bestSchluessel(def)];
+    return b && b.gesamt === leereAnzahl(def) ? b : null;
+  }
+
   /* --- Übungen -------------------------------------------------------------- */
 
-  function teilgraphVon(def) {
+  function teilgraphVon(umfang) {
     return HT.graph.teilgraph({
-      umfang: def.umfang,
+      umfang: umfang,
       kategorien: { rolle: true, aufgabe: true, ergebnis: true },
       relationen: RELATIONEN,
       gruppierung: 'phase'
     });
   }
 
-  /* Die Blöcke einer Übung: je Aufgabe im Umfang ihre verantwortliche Rolle
-     und die Ergebnisse, die sie im Umfang erzeugt, in der Reihenfolge des
-     Graphen. Bahn ist die Phase, Unterbahn das Modul — nicht in der
-     Modulübung, dort ist das Modul die Übung selbst. */
+  /* Die Blöcke einer Übung. Die Phasenübung ist ein Umfang; Modulübung und
+     Gesamtbild setzen sich aus den Umfängen ihrer Phasen zusammen — so steht
+     eine Aufgabe in jeder ihrer Phasen, jeweils mit den Ergebnissen dieser
+     Phase, statt nur in der frühesten mit allen. Unterbahn ist das Modul,
+     nicht in der Modulübung: dort ist das Modul die Übung selbst. */
   function bloeckeVon(def) {
-    var tg = teilgraphVon(def);
+    if (def.art === 'phase') { return bloeckeImUmfang(def.umfang, true); }
+    var bloecke = [];
+    HT.graph.phasenDerVorgehensweise(VORGEHEN).forEach(function (phase) {
+      var umfang = { vorgehen: VORGEHEN, phasen: [phase], module: def.umfang.module };
+      bloecke = bloecke.concat(bloeckeImUmfang(umfang, def.art !== 'modul'));
+    });
+    return bloecke;
+  }
+
+  /* Je Aufgabe im Umfang ihre verantwortliche Rolle und die Ergebnisse, die
+     sie im Umfang erzeugt, in der Reihenfolge des Graphen; Bahn ist die Phase. */
+  function bloeckeImUmfang(umfang, mitModul) {
+    var tg = teilgraphVon(umfang);
     var aufgaben = null, knoten = {}, rang = {};
     tg.spalten.forEach(function (sp) {
       if (sp.kategorie === 'aufgabe') { aufgaben = sp; }
@@ -146,7 +168,7 @@
         rolle: rolleVon[a.id] || null,
         ergebnisse: (ergebnisseVon[a.id] || []).sort(function (x, y) { return rang[x.id] - rang[y.id]; }),
         bahn: aufgaben.gruppeVon[a.id] || '',
-        unter: def.art !== 'modul' && aufgaben.untergruppeVon ? aufgaben.untergruppeVon[a.id] || '' : ''
+        unter: mitModul && aufgaben.untergruppeVon ? aufgaben.untergruppeVon[a.id] || '' : ''
       };
     });
   }
@@ -360,8 +382,8 @@
 
   /* Freie Chips als Knöpfe für den Pool, nach Art und Name. Rollen einzeln
      (s.chip) — jede Zeile braucht ihren eigenen Rollenknopf, auch wenn eine
-     Rolle mehrere Aufgaben verantwortet; Ergebnisse gleichen Namens als ein
-     Stapel mit Zahl. */
+     Rolle mehrere Aufgaben verantwortet; Aufgaben mehrerer Phasen und
+     Ergebnisse gleichen Namens als ein Stapel mit Zahl. */
   function stapelVon(chips) {
     var nachId = {}, stapel = [];
     chips.forEach(function (c) {
@@ -545,10 +567,9 @@
     uebung.geprueft = { richtig: richtig, gesamt: uebung.ziele.length };
     uebung.gewaehlt = null;
 
-    var schluessel = bestSchluessel(uebung.def);
-    var alt = zustand.beste[schluessel];
-    if (!alt || richtig > alt.richtig || (richtig === alt.richtig && uebung.ziele.length !== alt.gesamt)) {
-      zustand.beste[schluessel] = { richtig: richtig, gesamt: uebung.ziele.length, wann: new Date().toISOString().slice(0, 10) };
+    var alt = besteVon(uebung.def);
+    if (!alt || richtig > alt.richtig) {
+      zustand.beste[bestSchluessel(uebung.def)] = { richtig: richtig, gesamt: uebung.ziele.length, wann: new Date().toISOString().slice(0, 10) };
       speichern();
     }
     zeichnen();
@@ -867,7 +888,7 @@
     var g = uebung.geprueft;
     var falsch = uebung.ziele.filter(function (z) { return z.status === 'falsch'; });
     var leer = uebung.ziele.filter(function (z) { return z.status === 'leer'; });
-    var beste = zustand.beste[bestSchluessel(uebung.def)];
+    var beste = besteVon(uebung.def);
     var quote = Math.round(100 * g.richtig / g.gesamt);
 
     var kinder = [
@@ -1043,7 +1064,7 @@
 
   function besteZeigen() {
     if (!refs.beste || !uebung) { return; }
-    var b = zustand.beste[bestSchluessel(uebung.def)];
+    var b = besteVon(uebung.def);
     refs.beste.textContent = b ? 'Beste ' + b.richtig + '/' + b.gesamt : '';
     refs.beste.hidden = !b;
   }
@@ -1085,7 +1106,7 @@
       h('span', { class: 'tr-karte__meta' }, [anzahl, beste])
     ]);
     function aktualisieren() {
-      var b = zustand.beste[bestSchluessel(def)];
+      var b = besteVon(def);
       var voll = !!b && b.richtig === b.gesamt;
       el.classList.toggle('tr-karte--voll', voll);
       anzahl.textContent = leereAnzahl(def) + ' Kästen';
