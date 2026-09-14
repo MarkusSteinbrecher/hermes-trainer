@@ -445,11 +445,11 @@
     return {
       spalten: [
         { kategorie: 'rolle', knoten: rollen },
-        /* Im Fokus ohne Bahnen: die wenigen Elemente rücken zu drei
-           schlichten Spalten zusammen statt über die Modul- oder
-           Phasenbahnen des ganzen Graphen verteilt zu bleiben. */
-        { kategorie: 'aufgabe', knoten: aufgaben, gruppeVon: fokus ? null : gruppeVon, untergruppeVon: fokus || !nachModul ? null : untergruppeVon },
-        { kategorie: 'ergebnis', knoten: ergebnisse, gruppeVon: fokus ? null : gruppeVonErgebnis, untergruppeVon: fokus || !nachModul ? null : untergruppeVon }
+        /* Auch im Fokus mit Bahnen: der Zeichner zeigt nur belegte Bahnen,
+           so bleibt bei wenigen Elementen lesbar, in welcher Phase (bzw.
+           welchem Modul) sie liegen — und der Modul-Zwischentitel steht dabei. */
+        { kategorie: 'aufgabe', knoten: aufgaben, gruppeVon: gruppeVon, untergruppeVon: nachModul ? untergruppeVon : null },
+        { kategorie: 'ergebnis', knoten: ergebnisse, gruppeVon: gruppeVonErgebnis, untergruppeVon: nachModul ? untergruppeVon : null }
       ].filter(function (sp) { return kat[sp.kategorie]; }),
       /* Bahnen des Swimlane-Layouts, in der Reihenfolge der Methode. */
       bahnen: gruppenNamen,
