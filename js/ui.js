@@ -513,8 +513,13 @@
      Bildschirmen scrollt die Fläche nicht selbst — dort bleibt alles beim
      Alten, sonst stünde das Rad für die Seite still.
      inhaltHolen() liefert das gezoomte Element oder null; skalieren(faktor)
-     wendet den Faktor an und gibt den tatsächlich erreichten zurück. */
-  function radZoomAnbinden(flaeche, inhaltHolen, skalieren) {
+     wendet den Faktor an und gibt den tatsächlich erreichten zurück.
+     optionen.nurMitTaste: das Rad rollt wie gewohnt und zoomt nur mit Strg
+     bzw. ⌘ — oder mit zwei Fingern auf dem Trackpad, die der Browser als Rad
+     mit Strg meldet. Für Flächen, die höher als der Schirm sind (Trainer). */
+  function radZoomAnbinden(flaeche, inhaltHolen, skalieren, optionen) {
+    var nurMitTaste = !!(optionen && optionen.nurMitTaste);
+
     function scrollt() {
       var cs = global.getComputedStyle(flaeche);
       return /auto|scroll/.test(cs.overflowX + ' ' + cs.overflowY);
@@ -523,6 +528,7 @@
     flaeche.addEventListener('wheel', function (ev) {
       var inhalt = inhaltHolen();
       if (!inhalt || !scrollt()) { return; }
+      if (nurMitTaste && !ev.ctrlKey && !ev.metaKey) { return; }
       ev.preventDefault();
       var r = inhalt.getBoundingClientRect();
       var px = ev.clientX - r.left, py = ev.clientY - r.top;

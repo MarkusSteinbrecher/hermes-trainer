@@ -1,8 +1,9 @@
 /* meinHERMES — Abbildung 1 des Referenzhandbuchs («Gesamtbild der
    HERMES-Module und der wesentlichen Ergebnisse entlang der Phasen»).
 
-   Gemeinsame Grundlage von Überblick und Trainer: die Grafik wird nicht
-   nachgebaut, sondern als importierte SVG-Datei aus assets/abb/ geladen. Zur
+   Grundlage des Überblicks und der Reihenfolge im Graph (lagen, auch für die
+   Übungen des Trainers): die Grafik wird nicht nachgebaut, sondern als
+   importierte SVG-Datei aus assets/abb/ geladen. Zur
    Laufzeit werden die Kästen an Füllfarbe und Kontur erkannt, ihre
    Beschriftung aus den Textfragmenten des Office-Exports zusammengesetzt und
    über den von Trennzeichen befreiten Namen mit den Einträgen aus data/

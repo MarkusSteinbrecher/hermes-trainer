@@ -1,10 +1,11 @@
 /* ==========================================================================
-   meinHERMES — Trainer (Ausschnitte der Abbildung 1 zum Zuordnen)
+   meinHERMES — Trainer (Dach und Teil «Zuordnen»)
 
    Derselbe Modernist-Entwurf wie der Überblick: flach, kein Radius, Struktur
-   aus Linien, Rot nur als Akzent. Die Grafik selbst ist die Originalabbildung
-   (weisser Grund, 9-Punkt-Arial); die Etiketten in den Kästen ahmen sie nach,
-   damit ein gelegter Chip aussieht wie der gedruckte Kasten.
+   aus Linien, Rot nur als Akzent. Das Bild einer Übung ist der Graph —
+   Bahnen, Knoten und Kanten tragen die Klassen aus css/graph.css; hier stehen
+   nur die Zustände der Kästen (leer, belegt, geprüft), der Pool und das
+   Gerüst der Seite.
    ========================================================================== */
 
 /* Nur die Übung selbst (Phase, Modul, Gesamtbild) braucht die volle Breite;
@@ -32,9 +33,43 @@ body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding:
 }
 .tr-mikro--gruppe { margin: 26px 0 10px; padding-top: 14px; border-top: 1px solid var(--rand); }
 
+/* --- Schalter «Leere Kästen» (Übersicht und Übung) -------------------------- */
+
+.tr-arten { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.tr-arten__titel {
+  margin-right: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+.tr-art {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px 0 6px;
+  border: 1px solid var(--rand);
+  background: var(--weiss);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tr-art:hover { border-color: var(--text); }
+.tr-art[aria-pressed="true"] { border-color: var(--text); box-shadow: inset 0 -3px 0 var(--akzent); }
+.tr-art[aria-pressed="false"] { color: var(--text-leise); }
+.tr-art[aria-pressed="false"] .gswatch { filter: grayscale(1); opacity: .5; }
+.tr-art .gswatch { width: 20px; height: 20px; }
+/* In der schmalen Seitenleiste der Übung steht der Titel über den Schaltern. */
+.tr-seite .tr-arten__titel { flex: 1 0 100%; margin: 0; }
+
 /* --- Übersicht ------------------------------------------------------------- */
 
 .tr-hub { max-width: var(--maxbreite); margin: 0 auto; }
+.tr-hub .tr-arten { margin-top: 4px; }
 .tr-karten {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -64,7 +99,7 @@ body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding:
 
 .tr-uebung {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) 360px;
   grid-template-areas: "kopf kopf" "buehne seite";
   gap: 14px 20px;
   align-items: start;
@@ -72,7 +107,7 @@ body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding:
 @media (max-width: 899.98px) {
   .tr-uebung { grid-template-columns: minmax(0, 1fr); grid-template-areas: "kopf" "buehne" "seite"; }
   /* Bühne und Pool teilen sich den Schirm: die Bühne bleibt kürzer, damit
-     der Weg Chip → Kasten ohne langes Scrollen geht. */
+     der Weg Element → Kasten ohne langes Scrollen geht. */
   .tr-buehne { max-height: 58vh; }
 }
 
@@ -93,11 +128,10 @@ body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding:
   max-height: calc(100vh - 150px);
   min-height: 240px;
   padding: 14px 14px 52px;
-  background: var(--weiss);
+  background: var(--graph-bg);
   border: 1px solid var(--rand);
 }
 .tr-buehne.ist-am-ziehen, .tr-buehne.ist-am-ziehen * { cursor: grabbing; }
-.tr-abb { display: block; height: auto; max-width: none; }
 
 .tr-zoom {
   position: absolute;
@@ -125,99 +159,108 @@ body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding:
 .tr-zoom__knopf:hover, .tr-zoom__passend:hover { color: var(--text); }
 .tr-zoom__wert { min-width: 44px; text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--text-weich); }
 
-/* Schnittkanten zwischen den Fenstern des Ausschnitts. */
-.tr-kanten line { stroke: var(--rand-stark); stroke-width: 1; stroke-dasharray: 2 3; }
+/* --- Bild: der Graph mit Kästen --------------------------------------------- */
 
-/* --- Ziele in der Grafik ---------------------------------------------------- */
+.tr-graph { display: block; height: auto; max-width: none; font-family: var(--schrift); }
+/* Im Bild sind nur die Kästen zu bedienen: Modultitel und vorgegebene
+   Knoten bleiben still (im Graph sind sie anklickbar). */
+.tr-graph .gtext--untergruppe { pointer-events: none; cursor: default; }
+.tr-gegeben { cursor: default; }
+.tr-gegeben:hover .gk__form { stroke-width: 1.5; }
+.tr-gegeben.gk--rolle:hover .gk__label, .tr-gegeben.gk--meilenstein:hover .gk__label { text-decoration: none; }
+
+/* Überfahren eines Kastens: er, seine Nachbarn und die Verbindungen dazwischen. */
+.tr-knoten > g, .tr-graph .gkante { transition: opacity .12s ease; }
+.tr-graph.ist-hervorhebung .tr-knoten > g:not(.ist-aktiv) { opacity: .35; }
+.tr-graph.ist-hervorhebung .gkante:not(.ist-aktiv) { opacity: .1; }
+.tr-graph.ist-hervorhebung .gkante.ist-aktiv { stroke-width: 2.6; opacity: 1; }
 
 .tr-ziel { cursor: pointer; outline: none; }
+.tr-ziel .gk { cursor: inherit; }
 .tr-ziel--belegt { cursor: grab; }
-.tr-ziel.ist-am-ziehen .tr-etikett { opacity: .35; }
-.tr-ziel.ist-am-ziehen .tr-ziel__flaeche { stroke-dasharray: 2 2; stroke: var(--rand-stark); }
-.tr-ziel__deckel { pointer-events: none; }
-/* foreignObject beschneidet von Haus aus — ein dreizeiliges Etikett darf um
-   einen halben Pixel über den Kastenrand hinaus. */
-.tr-ziel foreignObject { overflow: visible; pointer-events: none; }
-.tr-ziel__flaeche { stroke: var(--rand-stark); stroke-width: 1; stroke-dasharray: 2 2; transition: stroke .12s ease, fill-opacity .12s ease; }
-.tr-ziel:hover .tr-ziel__flaeche, .tr-ziel:focus-visible .tr-ziel__flaeche, .tr-ziel.ist-drueber .tr-ziel__flaeche {
-  stroke: var(--akzent); stroke-width: 2; stroke-dasharray: none; fill: var(--akzent); fill-opacity: .12;
-}
-.tr-ziel--bereit .tr-ziel__flaeche { stroke: var(--akzent); stroke-dasharray: 3 2; }
-.tr-ziel--belegt .tr-ziel__flaeche { stroke: var(--text); stroke-width: 1; stroke-dasharray: none; }
-.tr-ziel--richtig .tr-ziel__flaeche { stroke: var(--gut); stroke-width: 2; stroke-dasharray: none; }
-.tr-ziel--falsch .tr-ziel__flaeche { stroke: var(--akzent); stroke-width: 2; stroke-dasharray: none; fill: var(--akzent); fill-opacity: .10; }
-.tr-ziel--leer .tr-ziel__flaeche { stroke: var(--text-leise-hell); stroke-width: 1.5; stroke-dasharray: 3 2; }
-.tr-ziel--richtig:hover .tr-ziel__flaeche, .tr-ziel--falsch:hover .tr-ziel__flaeche, .tr-ziel--leer:hover .tr-ziel__flaeche { fill-opacity: 0; }
-.tr-ziel--falsch:hover .tr-ziel__flaeche { fill-opacity: .10; }
+.tr-ziel--richtig, .tr-ziel--falsch, .tr-ziel--leer { cursor: default; }
+.tr-ziel__rahmen { stroke: none; transition: stroke .12s ease, fill-opacity .12s ease; }
 
-/* Das Etikett ahmt den gedruckten Kasten nach: Arial 9 auf dem Original-Grund. */
-.tr-etikett {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 1px;
-  overflow: visible;
-  font: 9px/.95 Arial, Helvetica, sans-serif;
-  color: #000;
-  text-align: center;
-  hyphens: manual;
-  -webkit-hyphens: manual;
-  overflow-wrap: break-word;
-}
-.tr-ziel--falsch .tr-etikett { color: var(--akzent-text); }
-.tr-ziel--leer .tr-etikett { color: var(--text-leise); font-style: italic; }
-.tr-ziel--richtig .tr-etikett { color: #000; }
+/* Leer: die Form des Knotens blass und gestrichelt, ohne Namen — auch bei
+   Rollen, die im Graph ohne Kasten stehen. */
+.tr-ziel--offen .gk__form { fill-opacity: .5; stroke-width: 1.2; stroke-dasharray: 4 3; }
+.tr-ziel--offen .gk__glyph { opacity: .4; }
+.tr-ziel--offen.tr-ziel--rolle .gk__form { fill: var(--gk-rolle-bg); stroke: var(--gk-rolle); }
+.tr-ziel--offen:hover .gk__form { stroke-width: 1.2; }
 
-/* --- Seite: Chips, Knöpfe, Auswertung --------------------------------------- */
+/* Ein Element ist gewählt oder wird gezogen: die leeren Kästen seiner Art warten. */
+.tr-ziel--bereit .tr-ziel__rahmen,
+.tr-graph[data-zieht="rolle"] .tr-ziel--rolle.tr-ziel--offen .tr-ziel__rahmen,
+.tr-graph[data-zieht="aufgabe"] .tr-ziel--aufgabe.tr-ziel--offen .tr-ziel__rahmen,
+.tr-graph[data-zieht="ergebnis"] .tr-ziel--ergebnis.tr-ziel--offen .tr-ziel__rahmen {
+  stroke: var(--akzent); stroke-width: 1.5; stroke-dasharray: 4 3;
+}
+.tr-graph:not(.ist-geprueft) .tr-ziel:hover .tr-ziel__rahmen,
+.tr-graph:not(.ist-geprueft) .tr-ziel:focus-visible .tr-ziel__rahmen,
+.tr-ziel.ist-drueber .tr-ziel__rahmen {
+  stroke: var(--akzent); stroke-width: 2; stroke-dasharray: none; fill: var(--akzent); fill-opacity: .08;
+}
+.tr-ziel.ist-am-ziehen .tr-ziel__inhalt { opacity: .35; }
+
+/* Nach der Prüfung steht in jedem Kasten das gesuchte Element (bei «richtig»
+   das gelegte, es kann ein gleichwertiges sein). */
+.tr-ziel--richtig .tr-ziel__rahmen { stroke: var(--gut); stroke-width: 2.5; }
+.tr-ziel--falsch .tr-ziel__rahmen { stroke: var(--akzent); stroke-width: 2.5; fill: var(--akzent); fill-opacity: .08; }
+.tr-ziel--leer .tr-ziel__inhalt { opacity: .5; }
+.tr-ziel--leer .tr-ziel__rahmen { stroke: var(--text-leise-hell); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.tr-graph.ist-geprueft .tr-ziel:focus-visible .tr-ziel__rahmen { stroke-dasharray: none; }
+
+/* --- Seite: Schalter, Knöpfe, Pool, Auswertung ------------------------------ */
 
 .tr-seite { grid-area: seite; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+@media (min-width: 900px) {
+  /* Die Seite ist so hoch wie die Bühne; nur der Pool rollt, Knöpfe bleiben stehen. */
+  .tr-seite { max-height: calc(100vh - 150px); }
+  .tr-pool { flex: 1 1 auto; min-height: 120px; overflow-y: auto; }
+  .tr-ergebnis { flex: 0 1 auto; max-height: 45vh; overflow-y: auto; }
+}
 .tr-knoepfe { margin: 0; }
 .tr-hinweis { margin: 0; font-size: 13px; line-height: 1.5; color: var(--text-leise); }
+.tr-legende { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: var(--text-weich); }
+.tr-legende li { display: flex; align-items: center; gap: 8px; }
 
 .tr-suche { margin: 0; }
 .tr-suche__feld { min-height: 36px; font-size: 13.5px; }
 .tr-suche__stand { display: block; margin-top: 4px; font-size: 12px; color: var(--text-leise); }
-.tr-pool { display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; }
+
+.tr-pool { display: flex; flex-direction: column; gap: 4px; padding: 2px; }
 .tr-pool__leer { margin: 0; font-size: 13px; color: var(--text-leise); }
+.tr-pool__titel { margin: 8px 0 2px; }
+.tr-pool__titel:first-child { margin-top: 0; }
+.tr-pool__gruppe { display: flex; flex-wrap: wrap; gap: 2px 4px; align-content: flex-start; }
+
+/* Die Elemente im Pool sind Knoten wie im Graph, etwas kleiner. */
 .tr-chip {
+  display: inline-flex;
   max-width: 100%;
-  padding: 5px 9px;
-  border: 1px solid var(--rand);
-  background: var(--weiss);
-  color: var(--text);
-  font: inherit;
-  font-size: 13px;
-  line-height: 1.3;
-  text-align: left;
+  padding: 1px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
   cursor: grab;
   touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
 }
-.tr-chip:hover { border-color: var(--text); }
-.tr-chip.ist-gewaehlt { border-color: var(--akzent); box-shadow: inset 0 -3px 0 var(--akzent); }
+.tr-chip .tr-knotenbild { display: block; max-width: 100%; height: auto; }
+.tr-chip .gk { cursor: inherit; }
+.tr-chip:focus-visible { outline: 2px solid var(--fokus); outline-offset: 0; }
+.tr-chip.ist-gewaehlt { outline: 2px solid var(--akzent); outline-offset: 0; }
 .tr-chip.ist-am-ziehen { opacity: .35; cursor: grabbing; }
-.tr-chip:disabled { cursor: default; color: var(--text-leise); }
+.tr-chip:disabled { cursor: default; opacity: .5; }
 body.tr-zieht, body.tr-zieht * { cursor: grabbing; }
 .tr-geist {
   position: fixed;
   z-index: 60;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  padding: 5px 9px;
-  border: 1px solid var(--akzent);
-  background: var(--weiss);
-  color: var(--text);
-  font-size: 13px;
-  line-height: 1.3;
-  box-shadow: var(--schatten-stark);
   pointer-events: none;
-  text-align: left;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .22));
 }
+.tr-geist .tr-knotenbild { display: block; }
 
 .tr-ergebnis { padding: 12px 14px; border: 1px solid var(--rand); background: var(--weiss); outline: none; }
 .tr-ergebnis__zahl { margin: 0 0 10px; font-size: 15px; }
@@ -228,6 +271,6 @@ body.tr-zieht, body.tr-zieht * { cursor: grabbing; }
 .tr-liste__falsch { text-decoration: line-through; color: var(--akzent-text); }
 
 @media print {
-  .tr-zoom, .tr-knoepfe, .tr-hinweis { display: none; }
+  .tr-zoom, .tr-knoepfe, .tr-hinweis, .tr-arten { display: none; }
   .tr-buehne { max-height: none; overflow: visible; border: 0; }
 }

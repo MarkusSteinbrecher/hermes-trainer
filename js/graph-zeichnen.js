@@ -213,6 +213,9 @@
     });
     spalten.forEach(function (sp) {
       sp.breite = sp.knoten.reduce(function (m, n) { return Math.max(m, n.w); }, 0);
+      /* Übungen im Trainer: alle Knoten einer Spalte gleich breit — ein leerer
+         Kasten verrät so nicht, wie lang der gesuchte Name ist. */
+      if (opt.gleicheBreite) { sp.knoten.forEach(function (n) { n.w = sp.breite; }); }
     });
 
     var mitBahn = spalten.filter(function (sp) { return !!sp.gruppeVon; });
@@ -283,10 +286,22 @@
     });
     var bahnenHoehe = bahnen.reduce(function (m, b) { return m + b.hoehe; }, 0);
 
-    /* Breite der Bahnspalte: längster Name, in Grenzen. */
+    function bahnAnzahl(b) {
+      return mitBahn.map(function (sp) {
+        var n = proBahn[b.name][sp.kategorie].length;
+        var meta = HT.graph.KAT[sp.kategorie];
+        return n + ' ' + (n === 1 ? meta.singular : meta.label);
+      }).join(' · ');
+    }
+
+    /* Breite der Bahnspalte: längster Name oder längste Anzahl darunter (in
+       Versalien, 12 px) — sonst läuft «13 Aufgaben · 22 Ergebnisse» in den
+       Modultitel daneben. In Grenzen. */
     var beschriftung = 150;
     bahnen.forEach(function (b) {
-      beschriftung = Math.max(beschriftung, Math.ceil(messen(b.name || 'Ohne Zuordnung', 'normal')) + 34);
+      beschriftung = Math.max(beschriftung,
+        Math.ceil(messen(b.name || 'Ohne Zuordnung', 'normal')) + 34,
+        Math.ceil(messen(bahnAnzahl(b).toUpperCase(), 'normal') * 12 / 14) + 34);
     });
     beschriftung = Math.min(beschriftung, 250);
 
@@ -336,10 +351,7 @@
       });
       if (bi > 0) { linien.push({ x1: beschriftungX - BAHN_RAND, y1: y, x2: bahnRechts + BAHN_RAND, y2: y }); }
       texte.push({ x: beschriftungX, y: y + BAHN_LUFT + 12, text: b.name || 'Ohne Zuordnung', klasse: 'gtext gtext--bahn', anker: 'start' });
-      var anzahl = mitBahn.map(function (sp) {
-        return proBahn[b.name][sp.kategorie].length + ' ' + (sp.kategorie === 'aufgabe' ? 'Aufgaben' : 'Ergebnisse');
-      }).join(' · ');
-      texte.push({ x: beschriftungX, y: y + BAHN_LUFT + 31, text: anzahl, klasse: 'gtext gtext--bahnzahl', anker: 'start' });
+      texte.push({ x: beschriftungX, y: y + BAHN_LUFT + 31, text: bahnAnzahl(b), klasse: 'gtext gtext--bahnzahl', anker: 'start' });
 
       /* Unterbahnen von oben nach unten; in jeder beginnen alle Spalten oben.
          Zwischentitel und Haarlinie laufen über alle Spalten der Bahn (die
