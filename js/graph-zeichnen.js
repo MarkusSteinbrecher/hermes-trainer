@@ -262,26 +262,36 @@
         proBahn[g][sp.kategorie].push(n);
       });
     });
-    /* Untergruppen (Module) einer Spalte in einer Bahn: Titel steht vor jedem
-       Wechsel, auch vor der ersten Gruppe — so ist das Modul immer lesbar. */
-    function untergruppen(sp, liste) {
-      if (!sp.untergruppeVon) { return 0; }
-      var n = 0, letzte = null;
-      liste.forEach(function (k) {
-        var g = sp.untergruppeVon[k.id] || '';
-        if (g !== letzte) { n++; letzte = g; }
+    /* Unterbahnen (Module) in einer Bahn: gemeinsam über alle Spalten, in
+       der Reihenfolge der Methode. Je Modul eine Unterbahn mit Zwischentitel;
+       ihre Höhe bestimmt die längere Spalte, damit Aufgaben und Ergebnisse
+       eines Moduls nebeneinander in derselben Unterbahn stehen. Ohne
+       Untergruppen (Modulbahnen) gibt es eine namenlose Unterbahn ohne Titel. */
+    var mitUnter = mitBahn.some(function (sp) { return !!sp.untergruppeVon; });
+    var unterNamen = mitUnter ? (tg.untergruppen || []).concat(['']) : [''];
+    function unterbahnen(b) {
+      var liste = [];
+      unterNamen.forEach(function (name) {
+        var listen = {}, max = 0, belegt = false;
+        mitBahn.forEach(function (sp) {
+          var alle = proBahn[b.name][sp.kategorie];
+          var l = sp.untergruppeVon
+            ? alle.filter(function (n) { return (sp.untergruppeVon[n.id] || '') === name; })
+            : (name === '' ? alle : []);
+          listen[sp.kategorie] = l;
+          if (l.length) { belegt = true; }
+          max = Math.max(max, l.length);
+        });
+        if (!belegt) { return; }
+        liste.push({ name: name, listen: listen, titel: mitUnter, hoehe: (mitUnter ? UNTER_H : 0) + max * ZEILE - 8 });
       });
-      return n;
-    }
-    /* Höhe des Inhalts einer Spalte in einer Bahn: Knotenzeilen plus Zwischentitel. */
-    function inhaltHoehe(sp, liste) {
-      if (!liste.length) { return 0; }
-      return liste.length * ZEILE - 8 + untergruppen(sp, liste) * UNTER_H;
+      return liste;
     }
     bahnen.forEach(function (b) {
-      var max = ZEILE - 8;
-      mitBahn.forEach(function (sp) { max = Math.max(max, inhaltHoehe(sp, proBahn[b.name][sp.kategorie])); });
-      b.inhalt = max;
+      b.unter = unterbahnen(b);
+      /* Zwischen zwei Unterbahnen bleibt der Zeilenabstand (8) als Luft. */
+      var inhalt = b.unter.reduce(function (m, u) { return m + u.hoehe; }, 0) + Math.max(0, b.unter.length - 1) * 8;
+      b.inhalt = Math.max(ZEILE - 8, inhalt);
       b.hoehe = b.inhalt + 2 * BAHN_LUFT;
     });
     var bahnenHoehe = bahnen.reduce(function (m, b) { return m + b.hoehe; }, 0);
@@ -344,32 +354,29 @@
       }).join(' · ');
       texte.push({ x: beschriftungX, y: y + BAHN_LUFT + 31, text: anzahl, klasse: 'gtext gtext--bahnzahl', anker: 'start' });
 
-      mitBahn.forEach(function (sp) {
-        /* Beide Spalten beginnen oben in der Bahn: Aufgaben und Ergebnisse
-           eines Moduls stehen so nebeneinander in derselben Bahn, statt dass
-           die kürzere Spalte mittig sitzt und wie eine eigene Bahn wirkt. */
-        var liste = proBahn[b.name][sp.kategorie];
-        var ny = y + BAHN_LUFT;
-        var letzte = null;
-        liste.forEach(function (n, ni) {
-          if (sp.untergruppeVon) {
-            var g = sp.untergruppeVon[n.id] || '';
-            if (g !== letzte) {
-              /* Zwischentitel: Haarlinie (nicht vor der ersten Gruppe, dort
-                 trennt schon die Bahn) und Modulname in Versalien. */
-              if (ni > 0) { linien.push({ x1: sp.x, y1: ny + 1, x2: sp.x + sp.breite, y2: ny + 1, klasse: 'ggruppenlinie--unter' }); }
-              texte.push({ x: sp.x, y: ny + UNTER_H / 2 + 1, text: g || 'Ohne Modul', klasse: 'gtext gtext--untergruppe', anker: 'start', modul: g || null });
-              ny += UNTER_H;
-              letzte = g;
-            }
-          }
-          n.x = sp.x;
-          n.y = ny;
-          n.spalte = sp.index;
-          positionen[n.id] = n;
-          knoten.push(n);
-          ny += ZEILE;
+      /* Unterbahnen von oben nach unten; in jeder beginnen alle Spalten oben.
+         Zwischentitel und Haarlinie laufen über alle Spalten der Bahn (die
+         Haarlinie nicht vor der ersten Unterbahn, dort trennt schon die Bahn). */
+      var uy = y + BAHN_LUFT;
+      var linksX = mitBahn.length ? mitBahn[0].x : beschriftungX;
+      b.unter.forEach(function (u, ui) {
+        if (u.titel) {
+          if (ui > 0) { linien.push({ x1: linksX, y1: uy + 1, x2: bahnRechts, y2: uy + 1, klasse: 'ggruppenlinie--unter' }); }
+          texte.push({ x: linksX, y: uy + UNTER_H / 2 + 1, text: u.name || 'Ohne Modul', klasse: 'gtext gtext--untergruppe', anker: 'start', modul: u.name || null });
+        }
+        var oben = uy + (u.titel ? UNTER_H : 0);
+        mitBahn.forEach(function (sp) {
+          var ny = oben;
+          u.listen[sp.kategorie].forEach(function (n) {
+            n.x = sp.x;
+            n.y = ny;
+            n.spalte = sp.index;
+            positionen[n.id] = n;
+            knoten.push(n);
+            ny += ZEILE;
+          });
         });
+        uy += u.hoehe + 8;
       });
       y += b.hoehe;
     });

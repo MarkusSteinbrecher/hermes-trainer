@@ -453,6 +453,10 @@
       ].filter(function (sp) { return kat[sp.kategorie]; }),
       /* Bahnen des Swimlane-Layouts, in der Reihenfolge der Methode. */
       bahnen: gruppenNamen,
+      /* Unterbahnen in den Phasenbahnen: die Module in der Reihenfolge der
+         Abbildung 1 — der Zeichner legt je Modul eine gemeinsame Unterbahn
+         über Aufgaben und Ergebnisse. */
+      untergruppen: nachModul ? Object.keys(mo).sort(function (a, b) { return mo[a] - mo[b]; }) : null,
       achse: zustand.gruppierung === 'phase' ? 'phase' : 'modul',
       kanten: kanten,
       /* Zahlen im Umfang — unabhängig davon, ob die Spalte gerade sichtbar ist. */
