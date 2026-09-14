@@ -95,11 +95,12 @@ body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding:
 
 /* --- Übung: Gerüst ---------------------------------------------------------- */
 
-/* Rechts der Pool in drei Spalten (Rollen, Aufgaben, Ergebnisse) — breit
-   genug, dass die Namen in wenigen Zeilen stehen. */
+/* Bühne und Pool gleich breit: rechts drei Spalten (Rollen, Aufgaben,
+   Ergebnisse), in denen die meisten Namen auf einer Zeile stehen; das Bild
+   links passt sich der Breite an. */
 .tr-uebung {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(440px, 36vw, 600px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-areas: "kopf kopf" "buehne seite";
   gap: 14px 20px;
   align-items: start;
@@ -219,6 +220,10 @@ body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding:
    Element Luft für die Marke mit der Zahl. */
 .tr-pool { display: flex; gap: 8px; align-items: flex-start; }
 .tr-pool__spalte { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 7px; padding: 0 6px 8px 2px; }
+/* Rollennamen sind kurz: ihre Spalte nur so breit wie der längste, den Rest
+   teilen Aufgaben und Ergebnisse — Aufgaben haben die längsten Namen. */
+.tr-pool__spalte--rolle { flex: 0 1 auto; }
+.tr-pool__spalte--aufgabe { flex-grow: 1.1; }
 .tr-pool__leer { margin: 0; font-size: 13px; color: var(--text-leise); }
 .tr-pool__titel { margin: 0; padding-block: 2px 5px; background: var(--bg); }
 
