@@ -11,9 +11,11 @@
    Werkzeuge (Alle Filter, Suche, Darstellung, Legende, Zoom), das «×» zum
    Aufheben des Fokus und die Popover. Der Umfang (Vorgehensweise, Phasen,
    Module) ist zugleich der Filter der Abbildung — der Gastgeber liest ihn
-   über die zurückgegebene Steuerung. Ein Klick auf einen Knoten fokussiert
-   ihn: nur er und seine verbundenen Elemente bleiben stehen, eingepasst;
-   ein zweiter Klick hebt den Fokus wieder auf.
+   über die zurückgegebene Steuerung. Ein Klick auf einen Knoten wählt ihn:
+   die Inhaltsseite des Gastgebers zeigt seinen Text, der Graph bleibt, wie
+   er ist. Beim Überfahren erscheint eine Karte mit Text, Modul und
+   Phasenmodell; ihr Filter-Icon setzt den Fokus — nur das Element und seine
+   verbundenen Elemente bleiben stehen, eingepasst.
 
    Die alte Route #/graph leitet in den Überblick weiter. */
 (function (global) {
@@ -64,7 +66,6 @@
       fokusId: null,            // nur dieses Element mit seiner Nachbarschaft
       pop: null,
       statusText: '',
-      phasenstreifen: true,
       isolierteAusblenden: false,
       nurMinimal: false,
       nurEntscheide: false
@@ -79,7 +80,6 @@
       umfang: zustand.umfang,
       kategorien: zustand.kategorien,
       relationen: zustand.relationen,
-      phasenstreifen: zustand.phasenstreifen,
       isolierteAusblenden: zustand.isolierteAusblenden,
       nurMinimal: zustand.nurMinimal,
       nurEntscheide: zustand.nurEntscheide
@@ -109,7 +109,7 @@
         if (typeof g.relationen[k] === 'boolean') { zustand.relationen[k] = g.relationen[k]; }
       });
     }
-    ['phasenstreifen', 'isolierteAusblenden', 'nurMinimal', 'nurEntscheide'].forEach(function (k) {
+    ['isolierteAusblenden', 'nurMinimal', 'nurEntscheide'].forEach(function (k) {
       if (typeof g[k] === 'boolean') { zustand[k] = g[k]; }
     });
   }
@@ -206,16 +206,21 @@
   }
 
   /** Fokus: nur dieses Element mit seiner Nachbarschaft, eingepasst in die
-      Fläche. Ein Klick auf einen Knoten setzt ihn; das fokussierte Element
-      nochmals gewählt hebt ihn auf und stellt die Auswahl von vorher wieder
-      her — das Element bleibt gewählt, die Inhaltsseite zeigt es weiter. */
-  /* Fokus und Auswahl gehen zusammen: «×», Esc oder ein zweiter Klick auf
-     das fokussierte Element heben beides auf — wie ein zweiter Klick auf
-     den festgehaltenen Kasten in der Abbildung. */
-  function fokusSetzen(id) {
+      Fläche. Das Filter-Icon der Karte (oder Taste F) setzt ihn; über dem
+      fokussierten Element hebt es ihn wieder auf und stellt den Umfang von
+      vorher wieder her — mit `auswahlBehalten` bleibt das Element gewählt,
+      die Inhaltsseite zeigt es weiter. «×» und Esc heben Fokus und Auswahl
+      zusammen auf; ohne Fokus lösen sie nur die Auswahl, ohne neu zu
+      zeichnen. */
+  function fokusSetzen(id, auswahlBehalten) {
+    if (!id && !zustand.fokusId) {
+      popSchliessen();
+      auswaehlen(null);
+      return;
+    }
     if (!id || zustand.fokusId === id) {
       zustand.fokusId = null;
-      zustand.auswahlId = null;
+      if (!auswahlBehalten) { zustand.auswahlId = null; }
       if (umfangVorFokus) { zustand.umfang = umfangVorFokus; umfangVorFokus = null; }
       popSchliessen();
       geaendert();
@@ -499,7 +504,6 @@
           filterAbschnitt('Verbindungen', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Verbindungen' }, HT.graph.RELATIONEN.map(relationHaken)))
         ]),
         filterAbschnitt('Darstellung', null, h('div', { class: 'gs-liste', role: 'group', 'aria-label': 'Darstellung' }, [
-          darstellungHaken('Phasenmodell im Knoten (Phasen des Elements dunkelgrau)', 'phasenstreifen', false),
           darstellungHaken('Ergebnisse ohne erzeugende Aufgabe ausblenden', 'isolierteAusblenden'),
           darstellungHaken('Nur minimal geforderte Dokumente', 'nurMinimal'),
           darstellungHaken('Nur Entscheidungsaufgaben', 'nurEntscheide')
@@ -528,7 +532,6 @@
   function darstellungInhalt() {
     return popInhalt([
       h('div', { class: 'gs-liste' }, [
-        schalter('Phasenmodell im Knoten (Phasen des Elements dunkelgrau)', zustand.phasenstreifen, function (v) { zustand.phasenstreifen = v; geaendert(false); popZeichnen(); }),
         schalter('Ergebnisse ohne erzeugende Aufgabe ausblenden', zustand.isolierteAusblenden, function (v) { zustand.isolierteAusblenden = v; geaendert(); popZeichnen(); }),
         schalter('Nur minimal geforderte Dokumente', zustand.nurMinimal, function (v) { zustand.nurMinimal = v; geaendert(); popZeichnen(); }),
         schalter('Nur Entscheidungsaufgaben', zustand.nurEntscheide, function (v) { zustand.nurEntscheide = v; geaendert(); popZeichnen(); })
@@ -558,7 +561,7 @@
           h('span', { text: t })
         ]);
       })),
-      h('p', { class: 'glegende__hinweis', text: 'Meilensteine sind Ergebnisse, stehen als Quality Gate aber im Sechseck mit Raute. Das kleine Phasenmodell am Knoten zeigt die Phasen des Elements dunkelgrau: links Initialisierung, in der Mitte oben Konzept, Realisierung und Einführung, darunter Umsetzung (agil), rechts Abschluss. Jede Verbindung entspricht einem Querverweis in der offiziellen Dokumentation — es werden keine Beziehungen ergänzt.' })
+      h('p', { class: 'glegende__hinweis', text: 'Meilensteine sind Ergebnisse, stehen als Quality Gate aber wie Rollen ohne Kasten, mit der Raute. Beim Überfahren eines Elements zeigt eine Karte seinen Text und im kleinen Phasenmodell seine Phasen dunkelgrau: links Initialisierung, in der Mitte oben Konzept, Realisierung und Einführung, darunter Umsetzung (agil), rechts Abschluss. Ein Klick zeigt das Element auf der Inhaltsseite; das Filter-Icon der Karte (oder die Taste F) lässt nur das Element mit seinen Verbindungen stehen. Jede Verbindung entspricht einem Querverweis in der offiziellen Dokumentation — es werden keine Beziehungen ergänzt.' })
     ]);
   }
 
@@ -802,8 +805,13 @@
 
   function buehneBauen() {
     refs.flaeche = h('div', { class: 'graph-flaeche' });
-    refs.tooltip = h('div', { class: 'graph-tooltip', role: 'tooltip' });
+    /* Die Karte beim Überfahren trägt ein Bedienelement — darum kein role="tooltip". */
+    refs.tooltip = h('div', { class: 'graph-tooltip' });
     refs.tooltip.hidden = true;
+    refs.tooltip.addEventListener('pointerenter', karteTimerAus);
+    refs.tooltip.addEventListener('pointerleave', function (ev) {
+      if (ev.pointerType !== 'touch') { karteSpaeterSchliessen(); }
+    });
     refs.pop = h('div', { class: 'gpop', role: 'dialog', 'aria-label': 'Einstellungen' });
     refs.pop.hidden = true;
     refs.leer = h('div', { class: 'graph-leer' });
@@ -822,58 +830,146 @@
       freihalten: function () {
         return [refs.rail, refs.railRechts].concat(wirt.freihalten ? wirt.freihalten() : []);
       },
-      beiKlick: function (id) { fokusSetzen(id); },
+      beiKlick: knotenKlick,
+      /* Taste F: wie das Filter-Icon der Karte. */
+      beiFokus: function (id) { fokusSetzen(id, true); },
       beiDoppelklick: einschraenken,
       /* Modul-Zwischentitel in einer Phasenbahn: Modul als Umfang ein-/ausschalten
          (wie der Modulkopf in der Abbildung). */
       beiUntergruppe: function (modul) { tooltipVerbergen(); popSchliessen(); listeSchalten('module', modul); },
-      beiLeerklick: function () { tooltipVerbergen(); popSchliessen(); },
-      beiHover: function (id) {
+      beiLeerklick: function () { karteSchliessen(); popSchliessen(); },
+      beiHover: function (id, ev) {
         if (!zeichner) { return; }
+        var touch = !!ev && ev.pointerType === 'touch';
+        if (!id) {
+          /* Auf Touch gibt es kein Überfahren: die Karte bleibt bis zum
+             nächsten Tippen stehen, sonst wäre ihr Icon nie erreichbar. */
+          if (!touch) { karteSpaeterSchliessen(); }
+          return;
+        }
+        /* Wechsel zwischen Teilen desselben Knotens: Karte nicht neu bauen. */
+        if (id === karte.id && !refs.tooltip.hidden) { karteTimerAus(); return; }
         /* Über dem fokussierten Element nichts dimmen: alles Sichtbare
            gehört zu ihm, ein Grauschleier sähe nach «alles noch da» aus. */
-        if (id && id === zustand.fokusId) { zeichner.hervorheben(null, false); tooltipZeigen(id); return; }
-        if (id) {
-          zeichner.hervorheben(id, false);
-          if (zustand.auswahlId) { zeichner.markieren(zustand.auswahlId); }
-          tooltipZeigen(id);
-        } else {
-          auswahlZeigen();
-          tooltipVerbergen();
-        }
+        zeichner.hervorheben(id === zustand.fokusId ? null : id, false);
+        if (zustand.auswahlId) { zeichner.markieren(zustand.auswahlId); }
+        tooltipZeigen(id, touch);
       }
     });
 
     return refs.buehne;
   }
 
-  function tooltipZeigen(id) {
+  /* Klick auf einen Knoten: nur wählen — die Inhaltsseite des Gastgebers
+     zeigt das Element, der Graph bleibt, wie er ist (auch im Fokus). Ein
+     zweiter Klick löst die Auswahl wieder. Filtern geht über die Karte. */
+  function knotenKlick(id) {
+    zustand.auswahlId = zustand.auswahlId === id ? null : id;
+    if (zeichner) { zeichner.markieren(zustand.auswahlId); }
+    melden();
+  }
+
+  /* --- Karte beim Überfahren -------------------------------------------------- */
+
+  /* «Greifbar» wird die Karte erst nach kurzem Verweilen auf dem Knoten:
+     vorher schliesst sie beim Verlassen sofort, damit sie beim Überstreichen
+     keine Nachbarknoten verdeckt; danach bleibt eine Schonfrist, in der der
+     Zeiger das Filter-Icon erreicht. */
+  var KARTE_GREIFBAR_MS = 250;
+  var KARTE_SCHONFRIST_MS = 300;
+  var karte = { id: null, greifbar: false, timerGreifbar: null, timerZu: null };
+  var IKONE_TRICHTER = ['M4 5h16l-6 7.2V18l-4 2v-7.8Z'];
+
+  function karteTimerAus() {
+    if (karte.timerZu) { clearTimeout(karte.timerZu); karte.timerZu = null; }
+  }
+
+  function karteSpaeterSchliessen() {
+    karteTimerAus();
+    if (!karte.greifbar) { karteSchliessen(); return; }
+    karte.timerZu = global.setTimeout(karteSchliessen, KARTE_SCHONFRIST_MS);
+  }
+
+  /* Karte zu und die Hervorhebung zurück in den Ruhezustand. */
+  function karteSchliessen() {
+    tooltipVerbergen();
+    auswahlZeigen();
+  }
+
+  function tooltipZeigen(id, sofortGreifbar) {
     var k = HT.graph.knoten(id);
     if (!k || !zeichner) { return; }
     var pos = zeichner.knotenPosition(id);
     if (!pos) { return; }
-    var meta = HT.graph.KAT[k.kategorie];
-    HT.ui.leeren(refs.tooltip);
-    refs.tooltip.appendChild(h('div', { class: 'graph-tooltip__kopf' }, [HT.ui.badge(k.kategorie), h('b', { text: k.begriff })]));
-    refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__text', text: HT.ui.kuerzen(k.eintrag.kurz || k.eintrag.definition, 160) }));
-    if (k.eintrag.module && k.eintrag.module.length) {
-      refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__module', text: (k.eintrag.module.length === 1 ? 'Modul ' : 'Module ') + k.eintrag.module.join(', ') }));
+    tooltipVerbergen();
+    karte.id = id;
+    karte.greifbar = !!sofortGreifbar;
+    if (!karte.greifbar) {
+      karte.timerGreifbar = global.setTimeout(function () {
+        karte.timerGreifbar = null;
+        if (karte.id === id) { karte.greifbar = true; }
+      }, KARTE_GREIFBAR_MS);
     }
-    refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__tipp', text: meta.singular + ' · Klick: nur dieses Element mit seinen direkten Verbindungen' + (k.eintrag.module && k.eintrag.module.length ? ' · Doppelklick: auf Modul einschränken' : '') }));
+
+    var e = k.eintrag;
+    var module = e.module || [];
+    var fokussiert = zustand.fokusId === id;
+    var filterTitel = fokussiert
+      ? 'Filter aufheben: wieder alle Elemente zeigen (Taste F)'
+      : 'Graph filtern: nur dieses Element mit seinen Verbindungen (Taste F)';
+    HT.ui.leeren(refs.tooltip);
+    refs.tooltip.appendChild(h('div', { class: 'graph-tooltip__kopf' }, [
+      HT.ui.badge(k.kategorie),
+      h('b', { text: k.begriff }),
+      h('button', {
+        type: 'button', class: 'graph-tooltip__filter',
+        'aria-pressed': fokussiert ? 'true' : 'false', title: filterTitel, 'aria-label': filterTitel,
+        on: { click: function () { fokusSetzen(id, true); } }
+      }, HT.ui.symbol(IKONE_TRICHTER, 16))
+    ]));
+    refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__text', text: HT.ui.kuerzen(e.kurz || e.definition, 160) }));
+    if (module.length) {
+      refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__module', text: (module.length === 1 ? 'Modul ' : 'Module ') + module.join(', ') }));
+    }
+    /* Das Phasenmodell stand früher in jedem Knoten; jetzt nur hier. */
+    if (k.kategorie !== 'rolle' && e.phasen && e.phasen.length) {
+      refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__phasen' }, [
+        HT.graphZeichnen.phasenModell(e.phasen, 1.4),
+        h('span', { text: HT.daten.phasenSortiert(e.phasen).join(', ') })
+      ]));
+    }
+    var tipp = (k.kategorie === 'ergebnis' && e.typ ? [e.typ] : []).concat(['Klick: Text anzeigen']);
+    if (module.length) { tipp.push('Doppelklick: auf Modul einschränken'); }
+    refs.tooltip.appendChild(h('p', { class: 'graph-tooltip__tipp', text: tipp.join(' · ') }));
     refs.tooltip.hidden = false;
 
+    /* Rechts neben dem Knoten, oben bündig — die Spalte darunter bleibt frei.
+       Reicht der Platz rechts nicht, links davon; sonst unter dem Knoten. */
     var b = refs.buehne.getBoundingClientRect();
     var tw = refs.tooltip.offsetWidth, th = refs.tooltip.offsetHeight;
-    var x = pos.x - b.left;
-    var y = pos.y - b.top + pos.h + 8;
-    if (x + tw > b.width - 8) { x = Math.max(8, b.width - tw - 8); }
-    if (y + th > b.height - 8) { y = pos.y - b.top - th - 8; }
+    var abstand = 10;
+    var x = pos.x - b.left + pos.w + abstand;
+    var y = pos.y - b.top - 6;
+    if (x + tw > b.width - 8) {
+      x = pos.x - b.left - abstand - tw;
+      if (x < 8) {
+        x = Math.max(8, Math.min(pos.x - b.left, b.width - tw - 8));
+        y = pos.y - b.top + pos.h + abstand;
+      }
+    }
+    if (y + th > b.height - 8) { y = b.height - th - 8; }
     if (y < 8) { y = 8; }
     refs.tooltip.style.left = Math.round(x) + 'px';
     refs.tooltip.style.top = Math.round(y) + 'px';
   }
 
-  function tooltipVerbergen() { if (refs.tooltip) { refs.tooltip.hidden = true; } }
+  function tooltipVerbergen() {
+    karteTimerAus();
+    if (karte.timerGreifbar) { clearTimeout(karte.timerGreifbar); karte.timerGreifbar = null; }
+    karte.id = null;
+    karte.greifbar = false;
+    if (refs.tooltip) { refs.tooltip.hidden = true; }
+  }
 
   /* Nichts zu zeichnen: sagen, woran es liegt und wie man weiterkommt. */
   function leerZustandZeigen(leer) {
@@ -924,8 +1020,8 @@
     zustand.statusText = teile.join(' · ');
     refs.status.textContent = zustand.statusText;
 
-    var layout = HT.graphZeichnen.layoutSpalten(tg, { phasenstreifen: zustand.phasenstreifen });
-    zeichner.zeigen(layout, { einpassen: einpassen !== false, phasenstreifen: zustand.phasenstreifen, maxZoom: einpassOptionen().maxZoom });
+    var layout = HT.graphZeichnen.layoutSpalten(tg);
+    zeichner.zeigen(layout, { einpassen: einpassen !== false, maxZoom: einpassOptionen().maxZoom });
     leerZustandZeigen(layout.knoten.length === 0);
 
     if (zustand.auswahlId && !layout.knoten.some(function (n) { return n.id === zustand.auswahlId; })) {
@@ -1082,7 +1178,10 @@
     });
     document.addEventListener('keydown', function (ev) {
       if (ev.key !== 'Escape' || !refs.buehne || !document.body.contains(refs.buehne)) { return; }
-      if (zustand.pop) { popSchliessen(); } else if (zustand.fokusId && sichtbar()) { fokusSetzen(null); }
+      /* Esc hebt Fokus und Auswahl auf — die Auswahl nur, wenn sie ein
+         Graphknoten ist (Modul und Phase hält die Abbildung). */
+      if (zustand.pop) { popSchliessen(); }
+      else if (sichtbar() && (zustand.fokusId || (zustand.auswahlId && HT.graph.knoten(zustand.auswahlId)))) { fokusSetzen(null); }
     });
     /* Im Hintergrund aufgebaut: beim Sichtbarwerden neu einpassen. */
     document.addEventListener('visibilitychange', function () {

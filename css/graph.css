@@ -28,7 +28,7 @@
      Orange der Aufgabe für «erzeugt». */
   --gkante-verantwortlich: #a8266a;
   --gkante-erzeugt: #d9541a;
-  /* Phasenmodell im Knoten: Grundfläche hell, Phasen des Elements dunkelgrau. */
+  /* Phasenmodell in der Karte beim Überfahren: Grundfläche hell, Phasen des Elements dunkelgrau. */
   --gk-phase-leer: #d9d6d6;
   --gk-phase-aktiv: #5a5656;
   --gkante-phase: #e2a000;
@@ -304,7 +304,7 @@
   pointer-events: none;
 }
 .gk__typ { font: 600 13px var(--schrift); fill: var(--gk-ergebnis-fg); dominant-baseline: central; pointer-events: none; }
-/* Phasenmodell im Knoten: hellgrau, die Phasen des Elements dunkelgrau. */
+/* Phasenmodell (Karte beim Überfahren): hellgrau, die Phasen des Elements dunkelgrau. */
 .gk__phase { fill: var(--gk-phase-leer); stroke: none; }
 .gk__phase.ist-aktiv { fill: var(--gk-phase-aktiv); }
 
@@ -324,19 +324,26 @@
 .gk--ergebnis .gk__form { fill: var(--gk-ergebnis-bg); stroke: var(--gk-ergebnis); }
 .gk--ergebnis .gk__label { fill: var(--gk-ergebnis-fg); }
 .gk--ergebnis .gk__glyph { fill: var(--gk-ergebnis); }
-/* Rollen ohne Kasten: Glyph und Name genügen — so heben sie sich von Aufgaben
-   und Ergebnissen deutlicher ab. Die Form bleibt transparent als Trefffläche. */
-.gk--rolle .gk__form { fill: transparent; stroke: none; }
-.gk--rolle:hover .gk__label { text-decoration: underline; }
-.gk--rolle:focus-visible .gk__form { stroke: none; }
+/* Rollen und Meilensteine ohne Kasten: Glyph und Name genügen — so heben sie
+   sich von Aufgaben und Ergebnissen deutlicher ab. Die Form bleibt
+   transparent als Trefffläche. */
+.gk--rolle .gk__form,
+.gk--meilenstein .gk__form { fill: transparent; stroke: none; }
+.gk--rolle:hover .gk__label,
+.gk--meilenstein:hover .gk__label { text-decoration: underline; }
+.gk--rolle:hover .gk__form,
+.gk--meilenstein:hover .gk__form,
+.gk--rolle:focus-visible .gk__form,
+.gk--meilenstein:focus-visible .gk__form { stroke: none; }
 .gk--rolle:focus-visible .gk__glyph,
-.gk--rolle.ist-gewaehlt .gk__glyph { stroke: var(--fokus); stroke-width: 2.5; }
-.gk--rolle.ist-gewaehlt .gk__form { filter: none; }
+.gk--rolle.ist-gewaehlt .gk__glyph,
+.gk--meilenstein:focus-visible .gk__glyph,
+.gk--meilenstein.ist-gewaehlt .gk__glyph { stroke: var(--fokus); stroke-width: 2.5; }
+.gk--rolle.ist-gewaehlt .gk__form,
+.gk--meilenstein.ist-gewaehlt .gk__form { stroke: none; filter: none; }
 .gk--rolle .gk__label { fill: var(--gk-rolle-fg); }
 .gk--rolle .gk__glyph { fill: var(--gk-rolle); }
 .gk--grundbegriff .gk__form { stroke-dasharray: 4 3; }
-/* Meilenstein: Ergebnisfarbe, aber als Quality Gate mit kräftigerer Kontur. */
-.gk--meilenstein .gk__form { stroke-width: 2.4; }
 
 .gk--zwingend .gk__form { stroke-width: 2.5; }
 .gk--entscheid .gk__form { stroke-width: 2.2; }
@@ -394,19 +401,39 @@
 .gtext--rolle { fill: var(--gk-rolle-fg); }
 .gtext--grundbegriff { fill: var(--gk-grundbegriff-fg); }
 
-/* Tooltip */
+/* Karte beim Überfahren eines Knotens: Text, Module, Phasenmodell und das
+   Filter-Icon. Sie nimmt Zeiger an, damit das Icon erreichbar ist — beim
+   schnellen Überstreichen verschwindet sie aber sofort (js/graph.js). */
 .graph-tooltip {
   position: absolute;
   z-index: 6;
+  width: max-content;
   max-width: 20rem;
   padding: .55rem .7rem;
   background: var(--bg);
   border: 1px solid var(--rand-stark);
   box-shadow: var(--schatten-stark);
   font-size: 13px;
-  pointer-events: none;
 }
 .graph-tooltip__kopf { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: 700; }
+.graph-tooltip__kopf b { flex: 1 1 auto; min-width: 0; }
+.graph-tooltip__filter {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 26px; height: 26px;
+  margin: -3px -5px -3px 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-leise);
+  cursor: pointer;
+}
+.graph-tooltip__filter:hover { color: var(--text); background: var(--flaeche-2); }
+.graph-tooltip__filter[aria-pressed="true"] { color: var(--akzent-text); background: var(--akzent-schwach); }
+.graph-tooltip__phasen { display: flex; align-items: center; gap: 8px; margin: 6px 0 0; font-size: 12px; color: var(--text-weich); }
+.graph-tooltip__phasen .gk__phasen { flex: 0 0 auto; }
 .graph-tooltip__rel { margin: 0 0 4px; color: var(--akzent-text); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .graph-tooltip__text { margin: 0; color: var(--text-weich); }
 .graph-tooltip__module { margin: 4px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-leise); }

@@ -11,12 +11,13 @@
   var KNOTEN_HOEHE = 36;
   var GLYPH_R = 10;
   var GLYPH_KANTE = 14;   /* Kantenlänge des Kategorie-Icons im Knotenkreis */
-  /* Der Phasenstreifen im Knoten bildet das Phasenmodell der Methode nach,
-     wie es die HERMES-Übersicht zeigt: links Initialisierung, dann Konzept,
-     Realisierung und Einführung oben und darunter Umsetzung (agil) über
-     dieselbe Breite, rechts Abschluss. Alle Felder gleich hoch;
-     Initialisierung und Abschluss stehen mittig zwischen den beiden Reihen.
-     Masse in Knotenpixeln, Ursprung links oben des Streifens. */
+  var KNOTEN_RADIUS = 6;  /* Ecken der Kästen von Aufgabe und Ergebnis */
+  /* Das kleine Phasenmodell (in der Karte beim Überfahren eines Knotens)
+     bildet das Phasenmodell der Methode nach, wie es die HERMES-Übersicht
+     zeigt: links Initialisierung, dann Konzept, Realisierung und Einführung
+     oben und darunter Umsetzung (agil) über dieselbe Breite, rechts
+     Abschluss. Alle Felder gleich hoch; Initialisierung und Abschluss stehen
+     mittig zwischen den beiden Reihen. Ursprung links oben. */
   var ZELLE = 7, ZELLE_LUECKE = 1.5, STREIFEN_H = 20;
   var HALB = (STREIFEN_H - ZELLE_LUECKE) / 2;
   var MITTIG = (STREIFEN_H - HALB) / 2;
@@ -82,23 +83,16 @@
 
   /* --- Knotenmasse --------------------------------------------------------- */
 
-  function phasenListe(k) {
-    return (k.eintrag && k.eintrag.phasen) ? k.eintrag.phasen : [];
-  }
-
   /* Meilensteine sind Ergebnisse — aber die Quality Gates des Phasenmodells.
-     Sie bekommen darum eine eigene Form (Sechseck) und ein eigenes Zeichen
-     (Raute) statt Dokument, und tragen das Typ-Symbol nicht doppelt. */
-  var MEILENSTEIN_SPITZE = 12;
+     Sie stehen darum wie Rollen ohne Kasten, nur mit ihrem Zeichen (Raute)
+     statt Dokument, und tragen das Typ-Symbol nicht doppelt. */
   function istMeilenstein(k) {
     return k.kategorie === 'ergebnis' && k.eintrag && k.eintrag.typ === 'Meilenstein';
   }
 
-  function knotenBreite(k, opt) {
+  function knotenBreite(k) {
     var w = 12 + GLYPH_R * 2 + 8 + messen(k.begriff, 'normal') + 14;
-    if (istMeilenstein(k)) { w += MEILENSTEIN_SPITZE * 2 + 8; }   /* Platz für die beiden Spitzen */
-    else if (k.kategorie === 'ergebnis' && k.eintrag && k.eintrag.typ) { w += 20; }
-    if (opt.phasenstreifen && k.kategorie !== 'rolle' && phasenListe(k).length) { w += STREIFEN_B + 6; }
+    if (!istMeilenstein(k) && k.kategorie === 'ergebnis' && k.eintrag && k.eintrag.typ) { w += 20; }
     return Math.ceil(w);
   }
 
@@ -106,18 +100,14 @@
 
   function formPfad(kategorie, w, h, meilenstein) {
     var c;
-    if (meilenstein) {   // Sechseck (Quality Gate im Ablauf)
-      c = MEILENSTEIN_SPITZE;
-      return 'M' + c + ' 0H' + (w - c) + 'L' + w + ' ' + (h / 2) + 'L' + (w - c) + ' ' + h + 'H' + c + 'L0 ' + (h / 2) + 'Z';
-    }
-    switch (kategorie) {
-      case 'aufgabe':    // Parallelogramm (Tätigkeit)
-        c = 7;
-        return 'M' + c + ' 0H' + w + 'L' + (w - c) + ' ' + h + 'H0Z';
-      case 'ergebnis':   // Dokument mit Eselsohr
-        c = 8;
-        return 'M0 0H' + (w - c) + 'L' + w + ' ' + c + 'V' + h + 'H0Z';
-      case 'rolle':      // Pille
+    switch (meilenstein ? 'rolle' : kategorie) {
+      case 'aufgabe':    // Kasten mit abgerundeten Ecken
+      case 'ergebnis':
+        c = KNOTEN_RADIUS;
+        return 'M' + c + ' 0H' + (w - c) + 'A' + c + ' ' + c + ' 0 0 1 ' + w + ' ' + c + 'V' + (h - c)
+          + 'A' + c + ' ' + c + ' 0 0 1 ' + (w - c) + ' ' + h + 'H' + c + 'A' + c + ' ' + c + ' 0 0 1 0 ' + (h - c)
+          + 'V' + c + 'A' + c + ' ' + c + ' 0 0 1 ' + c + ' 0Z';
+      case 'rolle':      // Pille — unsichtbar, nur Trefffläche (auch Meilenstein)
         c = h / 2;
         return 'M' + c + ' 0H' + (w - c) + 'A' + c + ' ' + c + ' 0 0 1 ' + (w - c) + ' ' + h + 'H' + c + 'A' + c + ' ' + c + ' 0 0 1 ' + c + ' 0Z';
       default:           // Kasten (Rückfall)
@@ -151,7 +141,7 @@
 
     g.appendChild(s('path', { class: 'gk__form', d: formPfad(k.kategorie, w, h, istMs) }));
 
-    var gx = 12 + (istMs ? MEILENSTEIN_SPITZE - 4 : 0) + GLYPH_R;
+    var gx = 12 + GLYPH_R;
     g.appendChild(s('circle', { class: 'gk__glyph', cx: gx, cy: h / 2, r: GLYPH_R }));
     g.appendChild(ikone(istMs ? 'meilenstein' : k.kategorie, gx, h / 2, GLYPH_KANTE));
 
@@ -160,37 +150,34 @@
     g.appendChild(s('text', { class: 'gk__label', x: tx, y: h / 2, text: labelText }));
     tx += messen(labelText, 'normal');
 
+    /* Typ-Symbol ohne <title>: Typ und Phasen nennt die Karte beim Überfahren. */
     if (!istMs && k.kategorie === 'ergebnis' && k.eintrag && k.eintrag.typ) {
-      tx += 8;
       g.appendChild(s('text', {
-        class: 'gk__typ', x: tx, y: h / 2,
+        class: 'gk__typ', x: tx + 8, y: h / 2,
         text: TYP_SYMBOL[k.eintrag.typ] || ''
       }));
-      var t = s('title', { text: 'Ergebnistyp: ' + k.eintrag.typ });
-      g.appendChild(t);
-      tx += 12;
-    }
-
-    if (opt.phasenstreifen && k.kategorie !== 'rolle') {
-      var phasen = phasenListe(k);
-      if (phasen.length) {
-        var aktiv = {};
-        phasen.forEach(function (p) { aktiv[p] = true; });
-        var px = tx + 12;
-        var streifen = s('g', { class: 'gk__phasen', 'aria-hidden': 'true' });
-        var py = h / 2 - STREIFEN_H / 2;
-        PHASEN_ZELLEN.forEach(function (z) {
-          streifen.appendChild(s('rect', {
-            class: 'gk__phase' + (aktiv[z.name] ? ' ist-aktiv' : ''),
-            x: rund(px + z.x), y: rund(py + z.y), width: z.w, height: z.h
-          }));
-        });
-        g.appendChild(streifen);
-        g.appendChild(s('title', { text: label + ' · Phasen: ' + HT.daten.phasenSortiert(phasen).join(', ') }));
-      }
     }
 
     return g;
+  }
+
+  /** Das Phasenmodell als eigenständiges SVG (für HTML, etwa die Karte beim
+      Überfahren): Felder der Phasen des Elements dunkelgrau. */
+  function phasenModell(phasen, masstab) {
+    var m = masstab || 1;
+    var aktiv = {};
+    (phasen || []).forEach(function (p) { aktiv[p] = true; });
+    var svg = s('svg', {
+      class: 'gk__phasen', width: rund(STREIFEN_B * m), height: rund(STREIFEN_H * m),
+      viewBox: '0 0 ' + STREIFEN_B + ' ' + STREIFEN_H, 'aria-hidden': 'true', focusable: 'false'
+    });
+    PHASEN_ZELLEN.forEach(function (z) {
+      svg.appendChild(s('rect', {
+        class: 'gk__phase' + (aktiv[z.name] ? ' ist-aktiv' : ''),
+        x: rund(z.x), y: rund(z.y), width: z.w, height: rund(z.h)
+      }));
+    });
+    return svg;
   }
 
   /* --- Layout: Spalten und Bahnen ------------------------------------------ */
@@ -219,7 +206,7 @@
         untergruppeVon: sp.untergruppeVon || null,
         knoten: sp.knoten.map(function (k) {
           var n = { id: k.id, kategorie: k.kategorie, begriff: k.begriff, eintrag: k.eintrag, entscheid: k.entscheid, h: KNOTEN_HOEHE };
-          n.w = knotenBreite(n, opt);
+          n.w = knotenBreite(n);
           return n;
         })
       };
@@ -675,6 +662,13 @@
     });
 
     svg.addEventListener('keydown', function (ev) {
+      /* Taste F auf einem Knoten: wie das Filter-Icon der Karte — die Karte
+         selbst ist mit der Tastatur nicht erreichbar. */
+      if ((ev.key === 'f' || ev.key === 'F') && !ev.metaKey && !ev.ctrlKey && !ev.altKey) {
+        var gf = knotenAusEreignis(ev);
+        if (gf && rueckrufe.beiFokus) { ev.preventDefault(); rueckrufe.beiFokus(gf.getAttribute('data-id')); }
+        return;
+      }
       if (ev.key !== 'Enter' && ev.key !== ' ') { return; }
       var u = untergruppeAusEreignis(ev);
       if (u) {
@@ -838,6 +832,7 @@
     schriftLesen: schriftLesen,
     knotenBreite: knotenBreite,
     knotenElement: knotenElement,
+    phasenModell: phasenModell,
     KNOTEN_HOEHE: KNOTEN_HOEHE,
     TYP_SYMBOL: TYP_SYMBOL
   };

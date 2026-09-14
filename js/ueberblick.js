@@ -449,7 +449,9 @@
   function graphChipsZeichnen() {
     if (!refs.graphChips || !graph) { return; }
     HT.ui.leeren(refs.graphChips);
-    var id = graph.auswahlId();
+    /* Ohne Auswahl, aber mit Fokus (zweiter Klick löst nur die Auswahl):
+       der Chip bleibt, damit sich der Fokus aufheben lässt. */
+    var id = graph.auswahlId() || graph.fokusId();
     var e = id ? HT.daten.eintragMitId(id) : null;
     if (e && (e.kategorie === 'aufgabe' || e.kategorie === 'ergebnis' || e.kategorie === 'rolle')) {
       refs.graphChips.appendChild(chipBauen(e.kategorie, e.begriff, 'Auswahl «' + e.begriff + '» aufheben (Esc)', function () { graph.fokus(null); }));
