@@ -101,17 +101,10 @@
     }, ' S. ' + seite);
   }
 
-  /* --- Kapitelleiste unter der Kopfzeile ------------------------------------ */
+  /* --- Leiste unter der Kopfzeile ------------------------------------------ */
 
-  var IKONE_INFO = ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.6h.01'];
-  var info = null;            // Knopf und Karte der Leiste, die gerade steht
-  var infoGebunden = false;
-
-  function infoOffen() {
-    return !!info && !info.karte.hidden && document.body.contains(info.karte);
-  }
-
-  /* Was die Seite ist und woher der Text kommt. Die Quelle steht in
+  /* Was die Seite ist und woher der Text kommt — die Karte hinter dem
+     Info-Icon der Leiste (HT.app.unterleiste). Die Quelle steht in
      index.json; ist sie noch nicht geladen, fehlen Ausgabe und PDF-Link. */
   function infoInhalt() {
     var q = quelle || {};
@@ -120,85 +113,12 @@
       links.push(h('a', { class: 'hb-online', href: q.pdf, target: '_blank', rel: 'noopener', text: 'Referenzhandbuch (PDF) ↗' }));
     }
     links.push(h('a', { class: 'hb-online', href: q.online || 'https://www.hermes.admin.ch/de/projektmanagement.html', target: '_blank', rel: 'noopener', text: 'HERMES online ↗' }));
-    return h('div', { class: 'gpop__inhalt' }, [
+    return [
       h('p', { text: 'Das Referenzhandbuch Projektmanagement von HERMES als Text — Kapitel für Kapitel in seiner Gliederung, mit den Nummern und Seitenzahlen des PDF. Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen stehen als Karten an ihrer Stelle.' }),
       h('p', { text: 'Quelle ist das offizielle PDF von hermes.admin.ch' + (q.ausgabe ? ' (' + q.ausgabe + ')' : '')
         + '. Der Text ist daraus maschinell gelesen und 1:1 übernommen, ohne Verzeichnisse und Index; jede Seitenzahl öffnet die Seite im PDF. Massgebend ist die offizielle Fassung.' }),
       h('p', { class: 'hb-verweis' }, links)
-    ]);
-  }
-
-  /* Info-Icon mit seiner Karte darunter; Klick daneben und Esc schliessen sie. */
-  function infoBauen() {
-    var knopf = h('button', {
-      type: 'button', class: 'unterleiste__info', title: 'Über diese Seite',
-      'aria-label': 'Über diese Seite', 'aria-haspopup': 'dialog', 'aria-expanded': 'false'
-    }, HT.ui.symbol(IKONE_INFO, 18));
-    var karte = h('div', { class: 'gpop gpop--kopf', role: 'dialog', 'aria-label': 'Über diese Seite', hidden: true });
-
-    function fuellen() {
-      HT.ui.leeren(karte);
-      karte.appendChild(h('div', { class: 'gpop__kopf' }, [
-        h('strong', { class: 'gpop__titel', text: 'Über diese Seite' }),
-        h('button', { type: 'button', class: 'graph-schliessen', 'aria-label': 'Schliessen', text: '✕', on: { click: function () { schliessen(true); } } })
-      ]));
-      karte.appendChild(infoInhalt());
-    }
-    function schliessen(zurueck) {
-      if (karte.hidden) { return; }
-      karte.hidden = true;
-      knopf.setAttribute('aria-expanded', 'false');
-      if (zurueck) { knopf.focus(); }
-    }
-    knopf.addEventListener('click', function () {
-      if (!karte.hidden) { schliessen(false); return; }
-      fuellen();
-      karte.hidden = false;
-      knopf.setAttribute('aria-expanded', 'true');
-      if (!quelle) {
-        HT.daten.rhbIndex().then(function (idx) {
-          if (idx && idx.quelle) { quelle = idx.quelle; }
-          if (!karte.hidden) { fuellen(); }
-        });
-      }
-    });
-
-    info = { knopf: knopf, karte: karte, schliessen: schliessen };
-    if (!infoGebunden) {
-      infoGebunden = true;
-      document.addEventListener('pointerdown', function (ev) {
-        if (infoOffen() && !info.karte.contains(ev.target) && !info.knopf.contains(ev.target)) { info.schliessen(false); }
-      });
-      document.addEventListener('keydown', function (ev) {
-        if (ev.key === 'Escape' && infoOffen()) { info.schliessen(true); }
-      });
-    }
-    return h('div', { class: 'unterleiste__hilfe' }, [knopf, karte]);
-  }
-
-  /* Die Kapitel als Links, das gelesene mit aria-current; rechts das Info-Icon. */
-  function leisteBauen(aktiv) {
-    var liste = h('ul', { class: 'unterleiste__liste' }, KAPITEL.map(function (k) {
-      return h('li', {}, h('a', {
-        class: 'unterleiste__link', href: kapitelAdresse(k.id),
-        'aria-current': k === aktiv ? 'page' : null
-      }, [
-        k.nummer ? h('span', { class: 'unterleiste__nr', text: k.nummer }) : null,
-        h('span', { text: k.titel })
-      ]));
-    }));
-    return h('div', { class: 'unterleiste__inner' }, [
-      h('nav', { class: 'unterleiste__nav', 'aria-label': 'Kapitel des Handbuchs' }, liste),
-      infoBauen()
-    ]);
-  }
-
-  /* Rollt die Leiste (schmale Schirme), steht das gelesene Kapitel in der Mitte. */
-  function aktivesKapitelZeigen(leiste) {
-    var liste = leiste.querySelector('.unterleiste__liste');
-    var link = leiste.querySelector('[aria-current="page"]');
-    if (!liste || !link || liste.scrollWidth <= liste.clientWidth) { return; }
-    liste.scrollLeft = link.offsetLeft - (liste.clientWidth - link.offsetWidth) / 2;
+    ];
   }
 
   /* --- Karten -------------------------------------------------------------- */
@@ -344,9 +264,11 @@
     /* Kein Seitenkopf: die Kapitel stehen in der Leiste unter der Kopfzeile,
        was die Seite ist, sagt ihr Info-Icon. */
     behaelter.appendChild(h('h1', { class: 'nur-sr', text: 'Handbuch' }));
-    var leiste = leisteBauen(meta);
-    HT.app.unterleiste(leiste);
-    aktivesKapitelZeigen(leiste);
+    HT.app.unterleiste({
+      label: 'Kapitel des Handbuchs',
+      links: KAPITEL.map(function (k) { return { href: kapitelAdresse(k.id), nr: k.nummer, text: k.titel, aktiv: k === meta }; }),
+      info: { inhalt: infoInhalt, bereit: HT.daten.rhbIndex().then(function (idx) { if (idx && idx.quelle) { quelle = idx.quelle; } }) }
+    });
     var warnung = HT.app.datenWarnung();
     if (warnung) { behaelter.appendChild(warnung); }
 

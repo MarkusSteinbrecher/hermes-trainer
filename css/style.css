@@ -308,7 +308,8 @@ main:focus { outline: none; }
 
 /* --- Zweite Leiste unter der Kopfzeile ------------------------------------ */
 /* Liegt im Kopf und klebt mit ihm oben; eine Ansicht füllt sie
-   (HT.app.unterleiste) — das Handbuch mit seinen Kapiteln. Die Zeile steht in
+   (HT.app.unterleiste): Handbuch mit Kapiteln, Trainer mit Übungsformen,
+   Überblick mit der Auswahl des Graphen. Die Zeile steht in
    der Spalte des Inhalts und rollt, wenn sie nicht passt; rechts ein
    Info-Icon mit einer Karte darunter. */
 .unterleiste { border-top: 1px solid var(--rand); }
@@ -353,6 +354,18 @@ main:focus { outline: none; }
 .unterleiste__link[aria-current="page"] { color: var(--text); font-weight: 700; box-shadow: inset 0 -3px 0 var(--akzent); }
 .unterleiste__nr { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--akzent-text); }
 .unterleiste__link[aria-current="page"] .unterleiste__nr { color: inherit; }
+.unterleiste__link svg { width: 14px; height: 14px; flex: 0 0 auto; }
+/* Eigener Inhalt statt Links (die Auswahl des Überblicks): rollt ebenso. */
+.unterleiste__inhalt {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-left: -8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.unterleiste__inhalt::-webkit-scrollbar { display: none; }
 .unterleiste__hilfe { position: relative; display: flex; flex: 0 0 auto; }
 .unterleiste__info {
   display: grid;

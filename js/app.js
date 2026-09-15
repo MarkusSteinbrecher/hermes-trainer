@@ -59,7 +59,7 @@
 
   /* Eine Ansicht kann rechts neben die Suche ein Werkzeug stellen (der
      Überblick seinen Filter) und unter die Kopfzeile eine zweite Leiste, die
-     mit ihr oben klebt (das Handbuch seine Kapitel). zeichnen() leert beide
+     mit ihr oben klebt (unterleisteSetzen). zeichnen() leert beide
      vor jedem Aufbau; leer sind sie verborgen. */
   function kopfPlatz(name, inhalt) {
     var platz = document.querySelector('[data-kopf="' + name + '"]');
@@ -67,6 +67,95 @@
     HT.ui.leeren(platz);
     if (inhalt) { platz.appendChild(inhalt); }
     platz.hidden = !inhalt;
+  }
+
+  /* --- Zweite Leiste unter der Kopfzeile ----------------------------------- */
+
+  var IKONE_INFO = ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.6h.01'];
+  var info = null;            // Knopf und Karte der Leiste, die gerade steht
+  var infoGebunden = false;
+
+  function infoOffen() {
+    return !!info && !info.karte.hidden && document.body.contains(info.karte);
+  }
+
+  /* Info-Icon mit seiner Karte darunter: was die Seite ist und woher ihre
+     Inhalte kommen. opt.inhalt() liefert die Absätze beim Öffnen; opt.bereit
+     (ein Promise) füllt eine offene Karte neu, sobald Nachgeladenes (die
+     Quelle) da ist. Klick daneben und Esc schliessen sie. */
+  function infoBauen(opt) {
+    var titel = opt.titel || 'Über diese Seite';
+    var knopf = h('button', {
+      type: 'button', class: 'unterleiste__info', title: titel,
+      'aria-label': titel, 'aria-haspopup': 'dialog', 'aria-expanded': 'false'
+    }, HT.ui.symbol(IKONE_INFO, 18));
+    var karte = h('div', { class: 'gpop gpop--kopf', role: 'dialog', 'aria-label': titel, hidden: true });
+
+    function fuellen() {
+      HT.ui.leeren(karte);
+      karte.appendChild(h('div', { class: 'gpop__kopf' }, [
+        h('strong', { class: 'gpop__titel', text: titel }),
+        h('button', { type: 'button', class: 'graph-schliessen', 'aria-label': 'Schliessen', text: '✕', on: { click: function () { schliessen(true); } } })
+      ]));
+      karte.appendChild(h('div', { class: 'gpop__inhalt' }, opt.inhalt()));
+    }
+    function schliessen(zurueck) {
+      if (karte.hidden) { return; }
+      karte.hidden = true;
+      knopf.setAttribute('aria-expanded', 'false');
+      if (zurueck) { knopf.focus(); }
+    }
+    knopf.addEventListener('click', function () {
+      if (!karte.hidden) { schliessen(false); return; }
+      fuellen();
+      karte.hidden = false;
+      knopf.setAttribute('aria-expanded', 'true');
+    });
+    if (opt.bereit) { opt.bereit.then(function () { if (!karte.hidden) { fuellen(); } }); }
+
+    info = { knopf: knopf, karte: karte, schliessen: schliessen };
+    if (!infoGebunden) {
+      infoGebunden = true;
+      document.addEventListener('pointerdown', function (ev) {
+        if (infoOffen() && !info.karte.contains(ev.target) && !info.knopf.contains(ev.target)) { info.schliessen(false); }
+      });
+      document.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Escape' && infoOffen()) { info.schliessen(true); }
+      });
+    }
+    return h('div', { class: 'unterleiste__hilfe' }, [knopf, karte]);
+  }
+
+  /* Die Leiste einer Ansicht: links Links (Kapitel, Übungsformen; der aktive
+     mit aria-current) oder eigener Inhalt (die Auswahl des Überblicks),
+     rechts das Info-Icon. opt: { label, links: [{ href, text, nr, pfade,
+     aktiv }], inhalt, info: { titel, inhalt(), bereit } }. Rollt die
+     Linkzeile (schmal), steht der aktive Link in der Mitte. */
+  function unterleisteSetzen(opt) {
+    if (!opt) { kopfPlatz('unterleiste', null); return; }
+    var kinder = [];
+    if (opt.links) {
+      kinder.push(h('nav', { class: 'unterleiste__nav', 'aria-label': opt.label || null },
+        h('ul', { class: 'unterleiste__liste' }, opt.links.map(function (l) {
+          return h('li', {}, h('a', { class: 'unterleiste__link', href: l.href, 'aria-current': l.aktiv ? 'page' : null }, [
+            l.pfade ? HT.ui.symbol(l.pfade, 14) : null,
+            l.nr ? h('span', { class: 'unterleiste__nr', text: l.nr }) : null,
+            h('span', { text: l.text })
+          ]));
+        }))));
+    }
+    if (opt.inhalt) {
+      kinder.push(h('div', { class: 'unterleiste__inhalt', role: 'group', 'aria-label': opt.label || null }, opt.inhalt));
+    }
+    if (opt.info) { kinder.push(infoBauen(opt.info)); }
+    var leiste = h('div', { class: 'unterleiste__inner' }, kinder);
+    kopfPlatz('unterleiste', leiste);
+
+    var liste = leiste.querySelector('.unterleiste__liste');
+    var aktiv = leiste.querySelector('[aria-current="page"]');
+    if (liste && aktiv && liste.scrollWidth > liste.clientWidth) {
+      liste.scrollLeft = aktiv.offsetLeft - (liste.clientWidth - aktiv.offsetWidth) / 2;
+    }
   }
 
   /* --- Navigation --------------------------------------------------------- */
@@ -252,7 +341,7 @@
     datenWarnung: datenWarnung,
     zeichnen: zeichnen,
     kopfWerkzeug: function (el) { kopfPlatz('werkzeug', el); },
-    unterleiste: function (el) { kopfPlatz('unterleiste', el); },
+    unterleiste: unterleisteSetzen,
     routen: ROUTEN
   };
 

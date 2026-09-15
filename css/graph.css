@@ -682,6 +682,34 @@
 .grail__punkt { position: absolute; right: 7px; top: 5px; width: 6px; height: 6px; border-radius: 50%; background: var(--akzent); display: none; }
 .grail__knopf--eingeschraenkt .grail__punkt { display: block; }
 
+/* Dieselbe Leiste quer in der Leiste unter der Kopfzeile (Überblick,
+   `auswahlBeimGastgeber`): Knöpfe mit Namen, Gruppen durch Haarstriche. */
+.gauswahl { display: flex; align-items: stretch; flex: 0 0 auto; }
+.gauswahl .grail__gruppe { flex-direction: row; gap: 0; }
+.gauswahl .grail__trenner { width: 1px; height: auto; margin: 11px 8px; }
+.gauswahl .grail__knopf {
+  flex-direction: row;
+  gap: 6px;
+  width: auto;
+  min-height: 0;
+  padding: 0 8px;
+  border-radius: 0;
+  color: var(--text-leise);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.gauswahl .grail__knopf:hover { color: var(--text); background: var(--flaeche-2); }
+.gauswahl .grail__knopf[aria-expanded="true"] { color: var(--akzent-text); background: var(--akzent-schwach); }
+.gauswahl .grail__knopf:focus-visible { outline-offset: -2px; }
+.gauswahl .grail__knopf .gswatch { width: 18px; height: 18px; }
+.gauswahl .grail__knopf--umfang svg { width: 16px; height: 16px; }
+.gauswahl .grail__zahl { font-size: 11px; font-weight: 500; color: var(--text-leise-hell); letter-spacing: 0; }
+.gauswahl .grail__punkt { right: 1px; top: 9px; }
+.gauswahl .glinie { width: 18px; }
+
 /* Rechte Leiste: Werkzeuge und Zoom, gleiche Kachel wie links. */
 .grail--rechts { left: auto; right: .75rem; }
 .grail--rechts .graph-werkzeug,

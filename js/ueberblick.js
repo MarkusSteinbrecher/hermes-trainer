@@ -11,7 +11,9 @@
    der Graph zeigt das oben festgehaltene Element mit seinen Beziehungen.
    Dazwischen eine ziehbare Trennlinie. Der Filter (Phasen, Szenarien,
    Module) ist der des Graphen und gilt für beide Sichten; sein Knopf steht
-   in der Kopfzeile der Anwendung rechts neben der Suche.
+   in der Kopfzeile der Anwendung rechts neben der Suche, die Auswahl nach
+   Phasen, Szenarien, Modulen, Elementen und Verbindungen in der Leiste
+   darunter.
 
    Zwei Modi:
    – Erkunden — Zeigen füllt die Inhaltsseite, Klick hält den Eintrag fest.
@@ -1466,6 +1468,23 @@
 
   var graphParams = null;
 
+  /* Die Karte hinter dem Info-Icon der Leiste: was die Seite zeigt und woher
+     Grafik, Texte und Verbindungen kommen. */
+  var rhbQuelle = null;
+  function infoInhalt() {
+    var links = [];
+    if (rhbQuelle && rhbQuelle.pdf) {
+      links.push(h('a', { class: 'hb-online', href: rhbQuelle.pdf, target: '_blank', rel: 'noopener', text: 'Referenzhandbuch (PDF) ↗' }));
+    }
+    links.push(h('a', { class: 'hb-online', href: QUELLE_ALLGEMEIN, target: '_blank', rel: 'noopener', text: 'HERMES online ↗' }));
+    return [
+      h('p', { text: 'Oben das Gesamtbild der Methode — Abbildung 1 des Referenzhandbuchs als Originalgrafik —, darunter der Graph mit Rollen, Aufgaben, Ergebnissen und ihren Verbindungen. Zeigen auf einen Kasten der Abbildung füllt die Inhaltsseite rechts; ein Klick, auch auf einen Knoten im Graphen, hält das Element dort fest.' }),
+      h('p', { text: 'In der Leiste wählen Phasen, Szenarien und Module aus, was Abbildung und Graph zeigen; Elemente und Verbindungen gelten nur für den Graphen. Alles zusammen steht hinter dem Filter-Icon neben der Suche.' }),
+      h('p', { text: 'Die Abbildung ist die Originalgrafik von hermes.admin.ch, die Texte der Inhaltsseite stammen aus dem Referenzhandbuch. Jede Verbindung im Graphen entspricht einem Querverweis der offiziellen Dokumentation; ergänzt wird nichts.' }),
+      h('p', { class: 'hb-verweis' }, links)
+    ];
+  }
+
   function abbildungSeiteBauen() {
     refs.prompt = h('div', { class: 'ub-prompt', hidden: true });
     refs.panelHuelle = h('div', { class: 'ub-panel-huelle' });
@@ -1505,6 +1524,7 @@
       params: graphParams,
       popEltern: refs.sichten,
       filterBeimGastgeber: true,
+      auswahlBeimGastgeber: true,
       sichtbar: function () { return zustand.graphOffen && !!refs.werkbank && document.body.contains(refs.werkbank); },
       beiAuswahl: function (e) {
         /* Der Graph hat ein Element gewählt (oder die Auswahl aufgehoben):
@@ -1531,6 +1551,13 @@
     /* Der Filter gilt für Abbildung und Graph; sein einziger Knopf steht in
        der Kopfzeile rechts neben der Suche. */
     HT.app.kopfWerkzeug(graph.filterKnopf());
+    /* Die Auswahl des Graphen steht quer in der Leiste unter der Kopfzeile,
+       rechts daneben das Info-Icon zur Seite. */
+    HT.app.unterleiste({
+      label: 'Auswahl für Abbildung und Graph',
+      inhalt: graph.auswahlLeiste(),
+      info: { inhalt: infoInhalt, bereit: HT.daten.rhbIndex().then(function (idx) { if (idx && idx.quelle) { rhbQuelle = idx.quelle; } }) }
+    });
 
     refs.sichten.appendChild(bereichAbb);
     refs.sichten.appendChild(teilung);

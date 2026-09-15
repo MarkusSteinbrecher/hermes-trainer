@@ -1,7 +1,7 @@
 /* meinHERMES — Ansicht «Trainer»: das Dach über allen Übungsformen.
 
-   Der Trainer hat mehrere Teile, umgeschaltet über eine Chip-Leiste unter
-   dem Seitenkopf: «Zuordnen» (js/zuordnen.js), «Lernkarten»
+   Der Trainer hat mehrere Teile, umgeschaltet über die Leiste unter der
+   Kopfzeile (HT.app.unterleiste): «Zuordnen» (js/zuordnen.js), «Lernkarten»
    (js/lernkarten.js) und «Quiz» (js/quiz.js). Die Teile melden sich unter
    HT.trainerTeile an; ein Teil ist { id, label, pfade, render(behaelter,
    params) } und zeichnet sich in den Behälter unter der Leiste. Ein Teil mit
@@ -50,23 +50,37 @@
     return null;
   }
 
-  function teilLeiste(aktiv) {
-    return h('ul', { class: 'chips chips--streifen tr-teile', 'aria-label': 'Übungsform' }, teile().map(function (t) {
-      var a = { class: 'chip', href: teilAdresse(t) };
-      if (t === aktiv) { a['aria-current'] = 'page'; }
-      return h('li', {}, h('a', a, [
-        t.pfade ? HT.ui.symbol(t.pfade, 14) : null,
-        h('span', { text: t.label })
-      ]));
-    }));
+  /* Was der Trainer ist und woher die Übungen kommen — die Karte hinter dem
+     Info-Icon der Leiste. */
+  function infoInhalt() {
+    return [
+      h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse einander zuordnen, Lernkarten umdrehen und selbst einschätzen, Prüfungsfragen beantworten.' }),
+      h('p', { text: 'Zuordnen und Lernkarten entstehen aus den Querverweisen der offiziellen Dokumentation. Die kuratierten Quizfragen sind eigene, am Referenzhandbuch geprüfte Texte mit Belegzitat; weitere Fragen entstehen maschinell aus den erfassten Daten.' }),
+      h('p', { text: 'Der Lernstand bleibt in diesem Browser; auf der Seite «Über» lässt er sich exportieren und wieder einlesen.' }),
+      h('p', { class: 'hb-verweis' }, [
+        h('a', { class: 'hb-online', href: '#/ueber', text: 'Lernstand sichern →' }),
+        h('a', { class: 'hb-online', href: 'https://www.hermes.admin.ch/de/projektmanagement.html', target: '_blank', rel: 'noopener', text: 'HERMES online ↗' })
+      ])
+    ];
+  }
+
+  /* Die Übungsformen als Links in der Leiste unter der Kopfzeile — auch auf
+     den Seiten einer Übung, dort mit dem Teil, dem sie gehört. */
+  function leisteSetzen(aktiv) {
+    HT.app.unterleiste({
+      label: 'Übungsform',
+      links: teile().map(function (t) { return { href: teilAdresse(t), pfade: t.pfade, text: t.label, aktiv: t === aktiv }; }),
+      info: { inhalt: infoInhalt }
+    });
   }
 
   function render(behaelter, params) {
     params = params || {};
+    var eigen = seitenTeil(params);
+    leisteSetzen(eigen || teilFinden(params.teil));
     var warnung = HT.app.datenWarnung();
     if (warnung) { behaelter.appendChild(warnung); }
 
-    var eigen = seitenTeil(params);
     if (eigen) {
       document.body.dataset.teil = 'uebung';
       eigen.render(behaelter, params);
@@ -75,13 +89,9 @@
 
     var teil = teilFinden(params.teil);
     document.body.dataset.teil = teil.id;
-    behaelter.appendChild(h('div', { class: 'kopf' }, [
-      h('h1', { text: 'Trainer' }),
-      h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse einander zuordnen, '
-        + 'Lernkarten umdrehen und selbst einschätzen, Prüfungsfragen beantworten. '
-        + 'Der Lernstand bleibt in diesem Browser.' })
-    ]));
-    behaelter.appendChild(teilLeiste(teil));
+    /* Kein Seitenkopf: die Übungsformen stehen in der Leiste unter der
+       Kopfzeile, was der Trainer ist, sagt ihr Info-Icon. */
+    behaelter.appendChild(h('h1', { class: 'nur-sr', text: 'Trainer' }));
     var teilBehaelter = h('div', { class: 'tr-teil', 'data-teil': teil.id });
     behaelter.appendChild(teilBehaelter);
     teil.render(teilBehaelter, params);

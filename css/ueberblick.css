@@ -148,6 +148,9 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-schweber, .ub-sichten .grail { border-radius: 6px; }
 /* Die Leisten des Graphen rücken unter der Linie hervor. */
 .ub-sichten .grail { top: calc(.75rem + var(--ub-oben-frei, 0px)); }
+/* Die Leiste unter der Kopfzeile trägt hier die Auswahl des Graphen und läuft
+   über die ganze Breite der Werkbank. */
+body[data-route="ueberblick"] .unterleiste__inner { max-width: none; padding-inline: 12px; }
 
 /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
 

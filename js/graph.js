@@ -7,7 +7,8 @@
    Die Sicht hat keine eigene Seite mehr: der Überblick bettet sie über
    HT.graphSicht.einbetten() als zweite Sicht seiner Bühne ein und zeigt das
    gewählte Element auf seiner Inhaltsseite. Die Komponente bringt mit: die
-   Fläche, links die Icon-Leiste für Elemente und Verbindungen, rechts die
+   Fläche, links die Icon-Leiste für Umfang, Elemente und Verbindungen (mit
+   `auswahlBeimGastgeber` quer beim Gastgeber), rechts die
    Werkzeuge (Alle Filter, Suche, Darstellung, Legende, Zoom), das «×» zum
    Aufheben des Fokus und die Popover. Der Umfang (Vorgehensweise, Phasen,
    Module) ist zugleich der Filter der Abbildung — der Gastgeber liest ihn
@@ -42,6 +43,8 @@
     { key: 'szenarien', label: 'Szenarien', ikone: 'szenario', knopf: 'knopfSzenarien' },
     { key: 'module', label: 'Module', ikone: 'modul', knopf: 'knopfModule' }
   ];
+  /* Kurznamen der Verbindungen für die Auswahl in der Leiste des Gastgebers. */
+  var RELATION_KURZ = { verantwortlich: 'Verantwortlich', beteiligt: 'Beteiligt', erzeugt: 'Erzeugt', ergebnisrolle: 'Ergebnisrolle' };
 
   var refs = {};
   var zeichner = null;
@@ -333,19 +336,41 @@
     return h('div', { class: 'gpop__inhalt' }, kinder);
   }
 
-  /* Ein Popover «links» steht neben der linken Icon-Leiste, oben bündig mit
-     seinem Knopf (der Behälter ist der des Gastgebers, darum wird der
-     Abstand gemessen). Liegt die Leiste quer (schmal), gilt das CSS. */
+  /* Wo ein Popover steht, hängt an seinem Knopf. In der linken Icon-Leiste
+     steht ein Popover «links» neben ihr, oben bündig mit dem Knopf (der
+     Behälter ist der des Gastgebers, darum wird gemessen); liegt die Leiste
+     quer (schmal), gilt das CSS. Steht der Knopf beim Gastgeber in der
+     Kopfzeile (Auswahl, Filter), geht «links» oben auf der Bühne auf, links
+     bündig mit dem Knopf, «Alle Filter» nach CSS — schmal fest unter dem
+     Kopf, weil die Bühne dort mit der Seite rollt. */
   function popAusrichten(meta) {
-    refs.pop.style.top = '';
-    refs.pop.style.maxHeight = '';
-    var knopf = meta.links ? refs[meta.knopf] : null;
-    if (!knopf || !refs.rail || getComputedStyle(refs.rail).flexDirection === 'row') { return; }
+    var s = refs.pop.style;
+    ['position', 'top', 'left', 'right', 'bottom', 'maxHeight'].forEach(function (k) { s[k] = ''; });
+    var knopf = refs[meta.knopf] || (meta === POPS.alle && refs.filterKnoepfe ? refs.filterKnoepfe[0] : null);
+    if (!knopf || !refs.buehne) { return; }
     var eltern = refs.pop.offsetParent || refs.pop.parentNode;
-    if (!eltern) { return; }
+    if (!refs.buehne.contains(knopf)) {
+      if (global.matchMedia && global.matchMedia('(max-width: 699.98px)').matches) {
+        var kopf = knopf.closest('header') || knopf;
+        var unter = Math.round(kopf.getBoundingClientRect().bottom + 6);
+        s.position = 'fixed';
+        s.top = unter + 'px';
+        s.left = s.right = '.5rem';
+        s.bottom = 'auto';
+        s.maxHeight = 'calc(100vh - ' + (unter + 72) + 'px)';
+        return;
+      }
+      if (!meta.links || !eltern) { return; }
+      var er = eltern.getBoundingClientRect();
+      var links = Math.round(knopf.getBoundingClientRect().left - er.left);
+      s.top = '.5rem';
+      s.left = Math.max(8, Math.min(links, er.width - refs.pop.offsetWidth - 8)) + 'px';
+      return;
+    }
+    if (!meta.links || !eltern || !refs.rail || getComputedStyle(refs.rail).flexDirection === 'row') { return; }
     var oben = Math.round(knopf.getBoundingClientRect().top - eltern.getBoundingClientRect().top);
-    refs.pop.style.top = oben + 'px';
-    refs.pop.style.maxHeight = 'calc(100% - ' + oben + 'px - .75rem)';
+    s.top = oben + 'px';
+    s.maxHeight = 'calc(100% - ' + oben + 'px - .75rem)';
   }
 
   /* --- Bausteine der Auswahl (Alle Filter und die drei Umfang-Popover) ------ */
@@ -711,11 +736,15 @@
 
   /* --- Icon-Leisten --------------------------------------------------------- */
 
+  /* Linke Icon-Leiste: Umfang, Elemente, Verbindungen. Mit
+     `auswahlBeimGastgeber` liegt sie nicht auf der Fläche, sondern quer in
+     der Leiste unter der Kopfzeile (auswahlLeiste()); die Knöpfe tragen dort
+     ihren Namen. */
   function railBauen() {
     refs.railUmfang = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Auswahl nach Phasen, Szenarien, Modulen' });
     refs.railTypen = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Elemente ein- und ausblenden' });
     refs.railRel = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Verbindungen ein- und ausblenden' });
-    refs.rail = h('div', { class: 'grail' }, [
+    refs.rail = h('div', { class: wirt.auswahlBeimGastgeber ? 'gauswahl' : 'grail' }, [
       refs.railUmfang,
       h('div', { class: 'grail__trenner', 'aria-hidden': 'true' }),
       refs.railTypen,
@@ -738,6 +767,11 @@
     return refs.railRechts;
   }
 
+  /* Name neben dem Zeichen — nur quer in der Leiste des Gastgebers. */
+  function knopfName(text) {
+    return wirt.auswahlBeimGastgeber ? h('span', { class: 'gauswahl__name', text: text }) : null;
+  }
+
   function railAktualisieren(zahlen) {
     refs.zahlen = zahlen;
     railUmfangZeichnen();
@@ -755,6 +789,7 @@
         } }
       }, [
         h('span', { class: 'gswatch gswatch--' + m.key, 'aria-hidden': 'true' }, HT.ui.katSymbol(m.key, 13)),
+        knopfName(m.label),
         h('span', { class: 'grail__zahl', text: String(zahlen[m.key]) })
       ]);
       refs.railTypen.appendChild(knopf);
@@ -772,7 +807,7 @@
           zustand.relationen[r.key] = !zustand.relationen[r.key];
           geaendert();
         } }
-      }, h('span', { class: 'glinie glinie--' + r.stil, 'aria-hidden': 'true' })));
+      }, [h('span', { class: 'glinie glinie--' + r.stil, 'aria-hidden': 'true' }), knopfName(RELATION_KURZ[r.key])]));
     });
   }
 
@@ -866,7 +901,8 @@
     refs.leer.hidden = true;
 
     werkzeugeBauen();
-    var kinder = [refs.flaeche, railBauen(), railRechtsBauen(), refs.leer, refs.tooltip, refs.status];
+    var rail = railBauen();
+    var kinder = [refs.flaeche, wirt.auswahlBeimGastgeber ? null : rail, railRechtsBauen(), refs.leer, refs.tooltip, refs.status];
     /* Der Popover liegt beim Gastgeber, damit «Alle Filter» auch über der
        Abbildung erscheint, wenn der Graph verborgen ist. */
     if (wirt.popEltern) { wirt.popEltern.appendChild(refs.pop); } else { kinder.push(refs.pop); }
@@ -876,7 +912,7 @@
 
     zeichner = HT.graphZeichnen.erstellen(refs.flaeche, {
       freihalten: function () {
-        return [refs.rail, refs.railRechts].concat(wirt.freihalten ? wirt.freihalten() : []);
+        return [wirt.auswahlBeimGastgeber ? null : refs.rail, refs.railRechts].concat(wirt.freihalten ? wirt.freihalten() : []);
       },
       beiKlick: knotenKlick,
       /* Taste F: wie das Filter-Icon der Karte. */
@@ -1064,7 +1100,13 @@
 
   function graphZeichnen(einpassen) {
     tooltipVerbergen();
-    if (!sichtbar()) { zeichnungFaellig = true; return; }
+    if (!sichtbar()) {
+      zeichnungFaellig = true;
+      /* Beim Gastgeber bleibt die Auswahl sichtbar, auch wenn der Graph
+         verborgen ist («nur Abbildung») — sie wird trotzdem nachgeführt. */
+      if (wirt.auswahlBeimGastgeber) { railAktualisieren(HT.graph.teilgraph(modellZustand()).zahlen); }
+      return;
+    }
     zeichnungFaellig = false;
     var tg = HT.graph.teilgraph(modellZustand());
     railAktualisieren(tg.zahlen);
@@ -1140,7 +1182,7 @@
         title: d.label + (eingeschraenkt ? ' (eingeschränkt)' : '') + ' — Auswahl öffnen',
         'aria-label': 'Auswahl nach ' + d.label,
         on: { click: function () { tooltipVerbergen(); popOeffnen(d.key); } }
-      }, [HT.ui.katSymbol(d.ikone, 18), h('span', { class: 'grail__punkt', 'aria-hidden': 'true' })]);
+      }, [HT.ui.katSymbol(d.ikone, 18), knopfName(d.label), h('span', { class: 'grail__punkt', 'aria-hidden': 'true' })]);
       refs[d.knopf] = knopf;
       refs.railUmfang.appendChild(knopf);
     });
@@ -1271,7 +1313,7 @@
   }
 
   /** Die Graph-Sicht in einen Behälter setzen.
-      optionen: { params, popEltern, filterBeimGastgeber, sichtbar(), freihalten(), beiAuswahl(eintrag), beiZustand() }
+      optionen: { params, popEltern, filterBeimGastgeber, auswahlBeimGastgeber, sichtbar(), freihalten(), beiAuswahl(eintrag), beiZustand() }
       Liefert die Steuerung, über die der Gastgeber Umfang, Auswahl und
       Sichtbarkeit anspricht. */
   function einbetten(behaelter, optionen) {
@@ -1310,6 +1352,7 @@
       fokusId: function () { return zustand.fokusId; },
       urlTeile: urlTeile,
       filterKnopf: filterKnopf,
+      auswahlLeiste: function () { return wirt.auswahlBeimGastgeber ? refs.rail : null; },
       filterOeffnen: function () { popOeffnen('alle'); },
       popSchliessen: popSchliessen,
       auswaehlen: auswaehlen,
