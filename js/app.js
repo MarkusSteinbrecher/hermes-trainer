@@ -28,16 +28,17 @@
   };
   var ersterAufruf = true;
 
-  /* --- Suche in der Kopfzeile --------------------------------------------- */
+  /* --- Suche und Plätze der Ansichten in der Kopfzeile -------------------- */
 
-  /* Rechts neben der Marke: eine kleine Pille «Suchen», die beim Anklicken
-     breit wird. Sie findet Ergebnisse, Aufgaben, Rollen, Module, Phasen und
-     Szenarien. Ist der Überblick offen, wendet er den Treffer selbst an
-     (Umfang, Einfärbung, Fokus); sonst führt der Treffer in den Überblick. */
+  /* Links an der Hauptnavigation: eine kleine Pille «Suchen», die beim
+     Anklicken nach links breit wird. Sie findet Ergebnisse, Aufgaben, Rollen,
+     Module, Phasen und Szenarien. Ist der Überblick offen, wendet er den
+     Treffer selbst an (Umfang, Einfärbung, Fokus); sonst führt der Treffer in
+     den Überblick. Rechts daneben liegt der Platz für das Werkzeug einer
+     Ansicht. */
   function sucheBauen() {
-    var inner = document.querySelector('.topbar__inner');
-    var marke = document.querySelector('.marke');
-    if (!inner || !marke || !HT.ui.suchpille) { return; }
+    var huelle = document.querySelector('[data-kopf="suche"]');
+    if (!huelle || !HT.ui.suchpille) { return; }
     var pille = HT.ui.suchpille({
       platzhalter: 'Suchen',
       label: 'Element, Modul, Phase oder Szenario suchen',
@@ -52,8 +53,20 @@
         global.location.hash = '#/ueberblick?id=' + encodeURIComponent(e.id);
       }
     });
-    var huelle = h('div', { class: 'kopf-suche' }, [pille]);
-    inner.insertBefore(huelle, marke.nextSibling);
+    huelle.appendChild(pille);
+    huelle.appendChild(h('div', { class: 'kopf-werkzeug', dataset: { kopf: 'werkzeug' }, hidden: true }));
+  }
+
+  /* Eine Ansicht kann rechts neben die Suche ein Werkzeug stellen (der
+     Überblick seinen Filter) und unter die Kopfzeile eine zweite Leiste, die
+     mit ihr oben klebt (das Handbuch seine Kapitel). zeichnen() leert beide
+     vor jedem Aufbau; leer sind sie verborgen. */
+  function kopfPlatz(name, inhalt) {
+    var platz = document.querySelector('[data-kopf="' + name + '"]');
+    if (!platz) { return; }
+    HT.ui.leeren(platz);
+    if (inhalt) { platz.appendChild(inhalt); }
+    platz.hidden = !inhalt;
   }
 
   /* --- Navigation --------------------------------------------------------- */
@@ -154,6 +167,8 @@
     document.body.dataset.route = route.name;
     /* Eine Ansicht mit mehreren Teilen (Trainer) trägt den Teil selbst ein. */
     delete document.body.dataset.teil;
+    kopfPlatz('werkzeug', null);
+    kopfPlatz('unterleiste', null);
 
     try {
       view.render(behaelter, route.params);
@@ -236,6 +251,8 @@
   HT.app = {
     datenWarnung: datenWarnung,
     zeichnen: zeichnen,
+    kopfWerkzeug: function (el) { kopfPlatz('werkzeug', el); },
+    unterleiste: function (el) { kopfPlatz('unterleiste', el); },
     routen: ROUTEN
   };
 

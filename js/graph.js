@@ -667,7 +667,9 @@
        sichtbar; hier bleibt er für Screenreader als Live-Bereich. */
     refs.status = h('p', { class: 'graph-status nur-sr', role: 'status', 'aria-live': 'polite' });
 
-    refs.knopfAlle = werkzeugKnopf('graph-werkzeug--filter', 'Alle Filter: Phasen, Szenarien, Module, Elemente',
+    /* Stellt der Gastgeber den Filter selbst aus (filterKnopf), fehlt er in
+       der Leiste — er steht nur einmal. */
+    refs.knopfAlle = wirt.filterBeimGastgeber ? null : werkzeugKnopf('graph-werkzeug--filter', 'Alle Filter: Phasen, Szenarien, Module, Elemente',
       IKONE_FILTER, function () { popOeffnen('alle'); });
     refs.knopfSuche = werkzeugKnopf('graph-werkzeug--suche', 'Element suchen',
       ['M10.6 3.6a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z', 'M15.6 15.6 20.4 20.4'],
@@ -688,9 +690,9 @@
     ]);
   }
 
-  /* Ein weiterer Knopf für «Alle Filter» — der Gastgeber stellt ihn in seine
-     eigene Leiste (Abbildung), er zeigt denselben Zustand wie der in der
-     Icon-Leiste. */
+  /* Ein Knopf für «Alle Filter», den der Gastgeber selbst ausstellt — der
+     Überblick in der Kopfzeile neben der Suche. Er zeigt denselben Zustand
+     wie der in der Icon-Leiste, die ihn mit `filterBeimGastgeber` weglässt. */
   function filterKnopf() {
     var knopf = werkzeugKnopf('graph-werkzeug--filter', 'Alle Filter: Phasen, Szenarien, Module',
       IKONE_FILTER, function () { popOeffnen('alle'); });
@@ -1269,7 +1271,7 @@
   }
 
   /** Die Graph-Sicht in einen Behälter setzen.
-      optionen: { params, popEltern, sichtbar(), freihalten(), beiAuswahl(eintrag), beiZustand() }
+      optionen: { params, popEltern, filterBeimGastgeber, sichtbar(), freihalten(), beiAuswahl(eintrag), beiZustand() }
       Liefert die Steuerung, über die der Gastgeber Umfang, Auswahl und
       Sichtbarkeit anspricht. */
   function einbetten(behaelter, optionen) {

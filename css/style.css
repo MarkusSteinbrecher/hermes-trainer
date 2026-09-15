@@ -244,15 +244,33 @@ main:focus { outline: none; }
 .kofi:hover { background: var(--flaeche-2); }
 .kofi img { width: 24px; height: auto; display: block; }
 
-/* Suche in der Kopfzeile: eine kleine Pille «Suchen» rechts neben der
-   Marke, die beim Anklicken breit wird; die Treffer liegen darunter. */
-.kopf-suche { display: flex; align-items: center; padding: 0 4px; }
-.kopf-suche .gleiste-suche { width: 7.25rem; transition: width .2s ease; }
+/* Mitte der Kopfzeile: die Hauptnavigation, links an ihr die Suche. Ab
+   700 px drei Spalten, die äusseren gleich breit — die Navigation bleibt in
+   der Mitte stehen, wie breit die Suche auch wird. */
+.kopf-mitte { display: flex; flex: 1 1 auto; min-width: 0; }
+
+/* Suche: eine kleine Pille «Suchen», die beim Anklicken nach links breit
+   wird; die Treffer liegen darunter. Rechts daneben das Werkzeug der offenen
+   Ansicht (HT.app.kopfWerkzeug) — im Überblick der Filter, rund wie die Pille. */
+.kopf-suche { display: flex; align-items: center; justify-content: flex-end; gap: 4px; min-width: 0; padding: 0 4px; }
+.kopf-suche .gleiste-suche { flex: 0 1 auto; min-width: 0; width: 7.25rem; transition: width .2s ease; }
 .kopf-suche .gleiste-suche:focus-within { width: 22rem; }
 .kopf-suche .gleiste-suche__feld { height: 30px; min-height: 30px; font-size: 13px; padding-right: 10px; }
 .kopf-suche .gleiste-suche__treffer { min-width: 20rem; }
+.kopf-werkzeug { display: flex; align-items: center; }
+.kopf-werkzeug .graph-werkzeug { width: 30px; height: 30px; border-radius: 999px; }
+.kopf-werkzeug .graph-werkzeug:hover { color: var(--text); background: var(--flaeche-2); }
+.kopf-werkzeug .graph-werkzeug.ist-aktiv { color: var(--akzent); }
+.kopf-werkzeug .graph-werkzeug[aria-expanded="true"] { color: var(--akzent-text); background: var(--akzent-schwach); border-radius: 999px; }
+/* Schmal ist die Kopfzeile knapp: Marke, GitHub und Ko-fi rücken enger, damit
+   im Überblick Suche und Filter Platz haben. Die Suche ist ein Kreis, der beim
+   Tippen nach links über die Marke breit wird; die Symbole rechts bleiben. */
 @media (max-width: 699.98px) {
-  .kopf-suche .gleiste-suche { width: 34px; }
+  .marke { gap: 8px; padding: 10px 8px 10px 12px; }
+  .github { padding: 0 6px 0 8px; }
+  .kofi { padding: 0 12px 0 6px; }
+  .kopf-suche { flex: 1 1 auto; gap: 2px; padding: 0 2px; }
+  .kopf-suche .gleiste-suche { flex: 0 0 auto; width: 34px; }
   .kopf-suche .gleiste-suche__feld { padding-left: 32px; }
   .kopf-suche .gleiste-suche__feld::placeholder { color: transparent; }
   .kopf-suche .gleiste-suche:focus-within { width: min(22rem, 70vw); }
@@ -261,7 +279,6 @@ main:focus { outline: none; }
 
 .nav-top {
   display: none;
-  flex: 1 1 auto;
   justify-content: center;
 }
 .nav-top__liste {
@@ -288,6 +305,79 @@ main:focus { outline: none; }
   font-weight: 700;
   box-shadow: inset 0 -4px 0 var(--akzent);
 }
+
+/* --- Zweite Leiste unter der Kopfzeile ------------------------------------ */
+/* Liegt im Kopf und klebt mit ihm oben; eine Ansicht füllt sie
+   (HT.app.unterleiste) — das Handbuch mit seinen Kapiteln. Die Zeile steht in
+   der Spalte des Inhalts und rollt, wenn sie nicht passt; rechts ein
+   Info-Icon mit einer Karte darunter. */
+.unterleiste { border-top: 1px solid var(--rand); }
+.unterleiste__inner {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  max-width: var(--maxbreite);
+  min-height: 40px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.unterleiste__nav { display: flex; flex: 1 1 auto; min-width: 0; }
+.unterleiste__liste {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 0 0 -8px;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.unterleiste__liste::-webkit-scrollbar { display: none; }
+.unterleiste__liste > li { display: flex; flex: 0 0 auto; }
+.unterleiste__link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  /* Knapp gesetzt, damit alle elf Kapitel bei 1470 px in eine Zeile passen. */
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-leise);
+}
+.unterleiste__link:hover { color: var(--text); background: var(--flaeche-2); }
+.unterleiste__link[aria-current="page"] { color: var(--text); font-weight: 700; box-shadow: inset 0 -3px 0 var(--akzent); }
+.unterleiste__nr { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--akzent-text); }
+.unterleiste__link[aria-current="page"] .unterleiste__nr { color: inherit; }
+.unterleiste__hilfe { position: relative; display: flex; flex: 0 0 auto; }
+.unterleiste__info {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-leise);
+  cursor: pointer;
+}
+.unterleiste__info:hover { color: var(--text); background: var(--flaeche-2); }
+.unterleiste__info[aria-expanded="true"] { color: var(--akzent-text); background: var(--akzent-schwach); }
+/* Die Karte hinter dem Info-Icon: ein Popover wie «Alle Filter» (css/graph.css),
+   rechts bündig mit dem Icon — auch schmal, wo .gpop sonst unten liegt. */
+.gpop.gpop--kopf {
+  top: calc(100% + 6px);
+  right: 0;
+  bottom: auto;
+  left: auto;
+  width: min(26rem, calc(100vw - 32px));
+  max-height: calc(100vh - 140px);
+}
+.gpop--kopf p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--text-weich); text-wrap: pretty; }
+.gpop--kopf .hb-verweis { margin: 0; }
 
 /* --- Bottom-Navigation (schmal) ------------------------------------------ */
 .nav-bottom {
@@ -1002,6 +1092,8 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
   body { padding-bottom: 0; }
   .nav-bottom { display: none; }
   .nav-top { display: flex; }
+  .kopf-mitte { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .unterleiste__inner { padding-inline: 32px; }
   .view { padding: 26px 32px 48px; }
   .kopf h1 { font-size: 31px; }
   .fusszeile { padding-inline: 32px; }
@@ -1222,11 +1314,8 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .hb-vorlage__text b { font-size: 14px; font-weight: 700; }
 .hb-vorlage__meta { font-size: 11.5px; color: var(--text-leise); }
 
-/* --- Handbuch: Kapitel-Chips, Kapitelkopf, Elemente ---------------------- */
+/* --- Handbuch: Kapitelkopf, Elemente ------------------------------------- */
 .pm-block { margin-bottom: 8px; }
-.hb-kapitel { margin-bottom: 18px; }
-.hb-kapitel__nr { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--akzent-text); }
-.chip[aria-pressed="true"] .hb-kapitel__nr { color: inherit; }
 .hb-kapitelkopf { margin: 0 0 6px; }
 .hb-kapitelkopf__titel { margin: 2px 0 6px; font-size: 26px; font-weight: 800; letter-spacing: -.015em; line-height: 1.1; }
 /* Inhaltsverzeichnis des Kapitels: Knöpfe wie Links, Abschnitte eingerückt. */
@@ -1250,10 +1339,15 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 
 /* --- Handbuch: Kapitelseite ---------------------------------------------- */
 .hb-kapitelkopf .hb-verweis { margin-top: 2px; }
-/* Das Handbuch: Kopf, Chips und Blatt in einer zentrierten Spalte, die etwas
-   breiter ist als die breiteste Abbildung des Referenzhandbuchs (1196 px
-   plus Rahmen); keine Zeilenlängen-Grenzen für Text und Karten. */
-body[data-route="handbuch"] .view { max-width: 1380px; }
+/* Das Handbuch: das Blatt in einer zentrierten Spalte, die etwas breiter ist
+   als die breiteste Abbildung des Referenzhandbuchs (1196 px plus Rahmen);
+   die Kapitelleiste unter der Kopfzeile steht in derselben Spalte. Keine
+   Zeilenlängen-Grenzen für Text und Karten. */
+body[data-route="handbuch"] .view,
+body[data-route="handbuch"] .unterleiste__inner { max-width: 1380px; }
+/* Mit der Kapitelleiste ist der klebende Kopf rund 90 px hoch: Sprungziele
+   (Inhaltsverzeichnis, Direktlinks) bleiben darunter frei. */
+body[data-route="handbuch"] .view [id] { scroll-margin-top: 104px; }
 /* Das Blatt: Kapitelkopf und Text auf weissem Grund, wie eine Seite. */
 .hb-blatt {
   background: var(--weiss);
@@ -1263,7 +1357,6 @@ body[data-route="handbuch"] .view { max-width: 1380px; }
 @media (max-width: 899.98px) {
   .hb-blatt { padding: 18px 16px 28px; }
 }
-body[data-route="handbuch"] .kopf p,
 body[data-route="handbuch"] .hb-p,
 body[data-route="handbuch"] .hb-liste,
 body[data-route="handbuch"] .eintrag__def,

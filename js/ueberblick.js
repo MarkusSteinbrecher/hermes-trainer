@@ -10,8 +10,8 @@
    jedem Element immer dieselben Abschnitte in derselben Reihenfolge zeigt;
    der Graph zeigt das oben festgehaltene Element mit seinen Beziehungen.
    Dazwischen eine ziehbare Trennlinie. Der Filter (Phasen, Szenarien,
-   Module) ist der des Graphen und gilt für beide Sichten; die Suche steht in
-   der Kopfzeile der Anwendung.
+   Module) ist der des Graphen und gilt für beide Sichten; sein Knopf steht
+   in der Kopfzeile der Anwendung rechts neben der Suche.
 
    Zwei Modi:
    – Erkunden — Zeigen füllt die Inhaltsseite, Klick hält den Eintrag fest.
@@ -817,12 +817,8 @@
     refs.knopfLegende = ikonKnopf('Zeichen der Abbildung', IKONE_LEGENDE, legendeSchalten,
       { 'aria-expanded': 'false', 'aria-controls': 'ub-abblegende' });
 
-    /* Der Filterknopf kommt vom Graphen, der erst danach eingebettet wird —
-       er wird in abbildungSeiteBauen() nachgereicht. */
-    refs.steuerungKachel = h('div', { class: 'ub-schweber ub-schweber--steuerung' }, [refs.knopfPanel]);
-
     return [
-      refs.steuerungKachel,
+      h('div', { class: 'ub-schweber ub-schweber--steuerung' }, [refs.knopfPanel]),
       h('div', { class: 'ub-schweber ub-schweber--legende' }, [refs.knopfLegende]),
       h('div', { class: 'ub-schweber ub-schweber--zoom', role: 'group', 'aria-label': 'Zoom' }, [
         werkzeugKnopf('−', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom / ZOOM_SCHRITT); },
@@ -1508,6 +1504,7 @@
     graph = HT.graphSicht.einbetten(bereichGraph, {
       params: graphParams,
       popEltern: refs.sichten,
+      filterBeimGastgeber: true,
       sichtbar: function () { return zustand.graphOffen && !!refs.werkbank && document.body.contains(refs.werkbank); },
       beiAuswahl: function (e) {
         /* Der Graph hat ein Element gewählt (oder die Auswahl aufgehoben):
@@ -1531,8 +1528,9 @@
       }
     });
 
-    refs.knopfFilter = graph.filterKnopf();
-    refs.steuerungKachel.insertBefore(refs.knopfFilter, refs.steuerungKachel.firstChild);
+    /* Der Filter gilt für Abbildung und Graph; sein einziger Knopf steht in
+       der Kopfzeile rechts neben der Suche. */
+    HT.app.kopfWerkzeug(graph.filterKnopf());
 
     refs.sichten.appendChild(bereichAbb);
     refs.sichten.appendChild(teilung);
