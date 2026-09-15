@@ -308,35 +308,47 @@ main:focus { outline: none; }
 
 /* --- Zweite Leiste unter der Kopfzeile ------------------------------------ */
 /* Liegt im Kopf und klebt mit ihm oben; eine Ansicht füllt sie
-   (HT.app.unterleiste): Handbuch mit Kapiteln, Trainer mit Übungsformen,
-   Überblick mit der Auswahl des Graphen. Die Zeile steht in
-   der Spalte des Inhalts und rollt, wenn sie nicht passt; rechts ein
-   Info-Icon mit einer Karte darunter. */
+   (HT.app.unterleiste): Handbuch mit Kapiteln, Trainer mit Übungsformen und
+   der Wahl des Zuordnens, Überblick mit der Auswahl des Graphen. Der Inhalt
+   steht in der Mitte der Seite und rollt, wenn er nicht passt; rechts ein
+   Info-Icon mit einer Karte darunter, links ein gleich breiter Platzhalter,
+   damit die Mitte wirklich mittig steht. Die Leiste läuft über die ganze
+   Breite — begrenzt auf die Inhaltsspalte liefen Kapitel und Wahl über. */
 .unterleiste { border-top: 1px solid var(--rand); }
 .unterleiste__inner {
   display: flex;
   align-items: stretch;
   gap: 8px;
-  max-width: var(--maxbreite);
   min-height: 40px;
   margin: 0 auto;
   padding: 0 16px;
 }
-.unterleiste__nav { display: flex; flex: 1 1 auto; min-width: 0; }
-.unterleiste__liste {
+.unterleiste__inner--info::before { content: ""; flex: 0 0 36px; }
+/* Auto-Ränder zentrieren, solange alles passt; läuft die Zeile über, fallen
+   sie auf 0, und sie rollt vom Anfang an (justify-content: center schnitte
+   den Anfang ab). */
+.unterleiste__mitte {
   position: relative;
   display: flex;
+  align-items: stretch;
   flex: 1 1 auto;
   min-width: 0;
-  margin: 0 0 0 -8px;
-  padding: 0;
-  list-style: none;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
 }
-.unterleiste__liste::-webkit-scrollbar { display: none; }
+.unterleiste__mitte::-webkit-scrollbar { display: none; }
+.unterleiste__mitte > :first-child { margin-left: auto; }
+.unterleiste__mitte > :last-child { margin-right: auto; }
+.unterleiste__nav { display: flex; flex: 0 0 auto; }
+.unterleiste__liste {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 .unterleiste__liste > li { display: flex; flex: 0 0 auto; }
+.unterleiste__trenner { flex: 0 0 1px; margin: 11px 8px; background: var(--rand); }
 .unterleiste__link {
   display: flex;
   align-items: center;
@@ -355,17 +367,9 @@ main:focus { outline: none; }
 .unterleiste__nr { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--akzent-text); }
 .unterleiste__link[aria-current="page"] .unterleiste__nr { color: inherit; }
 .unterleiste__link svg { width: 14px; height: 14px; flex: 0 0 auto; }
-/* Eigener Inhalt statt Links (die Auswahl des Überblicks): rollt ebenso. */
-.unterleiste__inhalt {
-  display: flex;
-  flex: 1 1 auto;
-  min-width: 0;
-  margin-left: -8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-}
-.unterleiste__inhalt::-webkit-scrollbar { display: none; }
+/* Eigener Inhalt neben oder statt der Links (die Auswahl des Überblicks, die
+   Wahl des Zuordnens); gerollt wird die ganze Mitte. */
+.unterleiste__inhalt { display: flex; align-items: stretch; flex: 0 0 auto; }
 .unterleiste__hilfe { position: relative; display: flex; flex: 0 0 auto; }
 .unterleiste__info {
   display: grid;
@@ -1353,11 +1357,9 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 /* --- Handbuch: Kapitelseite ---------------------------------------------- */
 .hb-kapitelkopf .hb-verweis { margin-top: 2px; }
 /* Das Handbuch: das Blatt in einer zentrierten Spalte, die etwas breiter ist
-   als die breiteste Abbildung des Referenzhandbuchs (1196 px plus Rahmen);
-   die Kapitelleiste unter der Kopfzeile steht in derselben Spalte. Keine
-   Zeilenlängen-Grenzen für Text und Karten. */
-body[data-route="handbuch"] .view,
-body[data-route="handbuch"] .unterleiste__inner { max-width: 1380px; }
+   als die breiteste Abbildung des Referenzhandbuchs (1196 px plus Rahmen).
+   Keine Zeilenlängen-Grenzen für Text und Karten. */
+body[data-route="handbuch"] .view { max-width: 1380px; }
 /* Mit der Kapitelleiste ist der klebende Kopf rund 90 px hoch: Sprungziele
    (Inhaltsverzeichnis, Direktlinks) bleiben darunter frei. */
 body[data-route="handbuch"] .view [id] { scroll-margin-top: 104px; }

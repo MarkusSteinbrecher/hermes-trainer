@@ -12,9 +12,8 @@
    die Trainer-Seite mit Leiste und Teilen bleibt in der Inhaltsbreite. */
 body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding: 18px 20px 40px; }
 
-/* Die Leiste unter der Kopfzeile (Zuordnen · Lernkarten · Quiz) folgt der
-   Breite: in der Übung über die ganze Breite wie die Übung selbst. */
-body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { max-width: none; padding-inline: 20px; }
+/* Die Leiste unter der Kopfzeile hat in der Übung dieselben Ränder wie die Übung. */
+body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inline: 20px; }
 
 .tr-mikro {
   margin: 0 0 6px;
@@ -26,53 +25,53 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { max-width: 
 }
 .tr-mikro--gruppe { margin: 26px 0 10px; padding-top: 14px; border-top: 1px solid var(--rand); }
 
-/* --- Schalter «Leere Kästen» (Übersicht und Übung) -------------------------- */
+/* --- Wahl in der Leiste unter der Kopfzeile (Übersicht und Übung) ----------- */
 
-.tr-arten { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+/* Vorgehensweise (Radioknöpfe) und «Leere Kästen» (Schalter) sehen aus wie
+   die Links der Leiste: Versalien, leise; gewählt mit dem roten Strich unten. */
+.tr-arten { display: flex; align-items: stretch; flex: 0 0 auto; }
 .tr-arten__titel {
+  align-self: center;
   margin-right: 4px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: .14em;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--text-leise);
+  white-space: nowrap;
+  color: var(--text-leise-hell);
 }
 .tr-art {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 32px;
-  padding: 0 10px 0 6px;
-  border: 1px solid var(--rand);
-  background: var(--weiss);
-  color: var(--text);
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--text-leise);
   font: inherit;
-  font-size: 13px;
+  font-size: 11.5px;
   font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  white-space: nowrap;
   cursor: pointer;
 }
-.tr-art:hover { border-color: var(--text); }
-.tr-art[aria-pressed="true"] { border-color: var(--text); box-shadow: inset 0 -3px 0 var(--akzent); }
-.tr-art[aria-pressed="false"] { color: var(--text-leise); }
+.tr-art:hover { color: var(--text); background: var(--flaeche-2); }
+.tr-art:focus-visible { outline-offset: -2px; }
+.tr-art[aria-pressed="true"] { color: var(--text); font-weight: 700; box-shadow: inset 0 -3px 0 var(--akzent); }
 .tr-art[aria-pressed="false"] .gswatch { filter: grayscale(1); opacity: .5; }
-.tr-art .gswatch { width: 20px; height: 20px; }
-
-/* Steuerzeile: links die Vorgehensweise (Radioknöpfe), daneben die leeren
-   Kästen; bei wenig Platz bricht sie um. */
-.tr-steuerung { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; }
-.tr-vorgehen__wahl { position: relative; padding-left: 8px; }
+.tr-art .gswatch { width: 18px; height: 18px; }
+.tr-vorgehen__wahl { position: relative; }
 .tr-vorgehen__eingabe { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
 .tr-vorgehen__ikone { display: grid; place-items: center; color: var(--text-leise); }
-.tr-vorgehen__wahl:not(.ist-gewaehlt) { color: var(--text-leise); }
 .tr-vorgehen__wahl.ist-gewaehlt,
-.tr-vorgehen__wahl:has(.tr-vorgehen__eingabe:checked) { border-color: var(--text); box-shadow: inset 0 -3px 0 var(--akzent); }
+.tr-vorgehen__wahl:has(.tr-vorgehen__eingabe:checked) { color: var(--text); font-weight: 700; box-shadow: inset 0 -3px 0 var(--akzent); }
 .tr-vorgehen__wahl.ist-gewaehlt .tr-vorgehen__ikone { color: var(--akzent); }
-.tr-vorgehen__wahl:has(.tr-vorgehen__eingabe:focus-visible) { outline: 2px solid var(--fokus); outline-offset: 1px; }
+.tr-vorgehen__wahl:has(.tr-vorgehen__eingabe:focus-visible) { outline: 2px solid var(--fokus); outline-offset: -2px; }
 
 /* --- Übersicht ------------------------------------------------------------- */
 
 .tr-hub { max-width: var(--maxbreite); margin: 0 auto; }
-.tr-hub .tr-steuerung { margin-top: 4px; }
 .tr-karten {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -106,25 +105,24 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { max-width: 
 .tr-uebung {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-areas: "kopf kopf" "buehne seite";
+  grid-template-areas: "buehne seite";
   gap: 14px 20px;
   align-items: start;
 }
 @media (max-width: 899.98px) {
-  .tr-uebung { grid-template-columns: minmax(0, 1fr); grid-template-areas: "kopf" "buehne" "seite"; }
+  .tr-uebung { grid-template-columns: minmax(0, 1fr); grid-template-areas: "buehne" "seite"; }
   /* Bühne und Pool teilen sich den Schirm: die Bühne bleibt kürzer, damit
      der Weg Element → Kasten ohne langes Scrollen geht. */
   .tr-buehne { max-height: 58vh; }
 }
 
-.tr-kopf { grid-area: kopf; display: flex; flex-direction: column; gap: 6px; }
-.tr-zurueck { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-leise); text-decoration: none; }
-.tr-zurueck:hover { color: var(--akzent-text); }
-.tr-kopf__zeile { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-.tr-kicker { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--akzent-text); }
-.tr-titel { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -.022em; line-height: 1.1; }
-.tr-zaehler { font-size: 13px; color: var(--text-weich); }
-.tr-beste { font-size: 12px; font-weight: 700; color: var(--text-leise); }
+/* Titel der Übung in der Leiste unter der Kopfzeile: Art, Name, Zähler und
+   beste Runde auf einer Zeile. */
+.tr-leistentitel { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; padding: 0 8px; white-space: nowrap; }
+.tr-kicker { font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--akzent-text); }
+.tr-titel { margin: 0; font-size: 15px; font-weight: 800; letter-spacing: -.01em; line-height: 1; }
+.tr-zaehler { font-size: 12px; color: var(--text-weich); font-variant-numeric: tabular-nums; }
+.tr-beste { font-size: 11.5px; font-weight: 700; color: var(--text-leise); }
 
 /* --- Bühne ----------------------------------------------------------------- */
 

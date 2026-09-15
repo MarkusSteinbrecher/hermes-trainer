@@ -94,7 +94,6 @@
     gehalten: false,          // durch Klick festgehalten
     nurAbb: false,            // Inhaltsseite eingeklappt («Breit»)
     panel: false,             // Steuerung offen
-    legende: false,           // Zeichen der Abbildung eingeblendet
     inhaltBreite: INHALT_STANDARD,
     runde: null,              // { aufgaben, i, phase, falschesFeld }
     punkte: 0,
@@ -121,7 +120,6 @@
     HT.store.schreib(SPEICHER, {
       fehler: zustand.fehler,
       besteSerie: zustand.besteSerie,
-      legende: zustand.legende,
       abbildungOffen: zustand.abbildungOffen,
       graphOffen: zustand.graphOffen
     });
@@ -132,7 +130,6 @@
     if (!g || typeof g !== 'object') { return; }
     if (g.fehler && typeof g.fehler === 'object') { zustand.fehler = g.fehler; }
     if (typeof g.besteSerie === 'number' && g.besteSerie >= 0) { zustand.besteSerie = g.besteSerie; }
-    if (typeof g.legende === 'boolean') { zustand.legende = g.legende; }
     if (typeof g.abbildungOffen === 'boolean') { zustand.abbildungOffen = g.abbildungOffen; }
     if (typeof g.graphOffen === 'boolean') { zustand.graphOffen = g.graphOffen; }
     /* Beide zu gab es mit den Kopfzeilen; die Pille kennt es nicht. */
@@ -663,12 +660,10 @@
 
   /* Auf der Bühne liegen nur noch Icons: oben rechts öffnet ein Schieberegler
      die Steuerung (Modus, Rolle, Darstellung, Inhaltsseite einklappen), unten
-     links blendet ein Info-Zeichen die Legende der Abbildung ein und aus, unten
-     rechts sitzt der Zoom wie auf einer Karte. Die Icons sind dieselben wie in
-     der Leiste des Graphen. */
+     rechts sitzt der Zoom wie auf einer Karte. Die Zeichen der Abbildung
+     stehen in der Karte hinter dem Info-Icon der Leiste (infoInhalt). */
 
   var IKONE_STEUERUNG = ['M4 7h10M18 7h2M4 17h4M12 17h8', 'M16 4.6a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8Z', 'M10 14.6a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8Z'];
-  var IKONE_LEGENDE = ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.6h.01'];
 
   function ikonKnopf(beschriftung, pfade, aufruf, attrs) {
     var a = { type: 'button', 'class': 'ub-ikonknopf', title: beschriftung, 'aria-label': beschriftung };
@@ -697,8 +692,6 @@
   function werkzeugAktualisieren() {
     if (!refs.knopfPanel) { return; }
     refs.knopfPanel.setAttribute('aria-expanded', zustand.panel ? 'true' : 'false');
-    refs.knopfLegende.setAttribute('aria-expanded', zustand.legende ? 'true' : 'false');
-    if (refs.abblegende) { refs.abblegende.hidden = !zustand.legende; }
     refs.werkbank.dataset.breit = zustand.nurAbb ? 'true' : 'false';
     refs.werkbank.dataset.modus = zustand.modus;
     bereicheAnwenden();
@@ -775,12 +768,6 @@
     graphFolgen(e, true);
   }
 
-  function legendeSchalten() {
-    zustand.legende = !zustand.legende;
-    werkzeugAktualisieren();
-    speichern();
-  }
-
   function breitSetzen(nurAbb) {
     if (zustand.nurAbb === nurAbb) { return; }
     zustand.nurAbb = nurAbb;
@@ -816,12 +803,9 @@
 
     refs.knopfPanel = ikonKnopf('Steuerung', IKONE_STEUERUNG, function () { panelSchalten(); },
       { 'aria-expanded': 'false', 'aria-haspopup': 'dialog' });
-    refs.knopfLegende = ikonKnopf('Zeichen der Abbildung', IKONE_LEGENDE, legendeSchalten,
-      { 'aria-expanded': 'false', 'aria-controls': 'ub-abblegende' });
 
     return [
       h('div', { class: 'ub-schweber ub-schweber--steuerung' }, [refs.knopfPanel]),
-      h('div', { class: 'ub-schweber ub-schweber--legende' }, [refs.knopfLegende]),
       h('div', { class: 'ub-schweber ub-schweber--zoom', role: 'group', 'aria-label': 'Zoom' }, [
         werkzeugKnopf('−', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom / ZOOM_SCHRITT); },
           { 'aria-label': 'Verkleinern' }),
@@ -1452,14 +1436,18 @@
     return svg;
   }
 
-  /* Die Legende ist eine kleine Karte über dem Info-Icon unten links; sie
-     bleibt eingeblendet, bis das Icon sie wieder schliesst (gespeichert). */
+  function abbLegendeListe() {
+    return h('ul', { class: 'ub-abblegende__liste' }, ABB_LEGENDE.map(function (l) {
+      return h('li', {}, [zeichen(l.form), h('span', { text: l.text })]);
+    }));
+  }
+
+  /* Am Schirm stehen die Zeichen in der Karte hinter dem Info-Icon der Leiste
+     (infoInhalt); diese Fassung erscheint nur im Druck, unter der Abbildung. */
   function abbLegendeBauen() {
-    refs.abblegende = h('div', { class: 'ub-abblegende', id: 'ub-abblegende', hidden: true }, [
+    refs.abblegende = h('div', { class: 'ub-abblegende', hidden: true }, [
       h('span', { class: 'ub-abblegende__titel', text: 'Zeichen der Abbildung' }),
-      h('ul', { class: 'ub-abblegende__liste' }, ABB_LEGENDE.map(function (l) {
-        return h('li', {}, [zeichen(l.form), h('span', { text: l.text })]);
-      }))
+      abbLegendeListe()
     ]);
     return refs.abblegende;
   }
@@ -1481,6 +1469,8 @@
       h('p', { text: 'Oben das Gesamtbild der Methode — Abbildung 1 des Referenzhandbuchs als Originalgrafik —, darunter der Graph mit Rollen, Aufgaben, Ergebnissen und ihren Verbindungen. Zeigen auf einen Kasten der Abbildung füllt die Inhaltsseite rechts; ein Klick, auch auf einen Knoten im Graphen, hält das Element dort fest.' }),
       h('p', { text: 'In der Leiste wählen Phasen, Szenarien und Module aus, was Abbildung und Graph zeigen; Elemente und Verbindungen gelten nur für den Graphen. Alles zusammen steht hinter dem Filter-Icon neben der Suche.' }),
       h('p', { text: 'Die Abbildung ist die Originalgrafik von hermes.admin.ch, die Texte der Inhaltsseite stammen aus dem Referenzhandbuch. Jede Verbindung im Graphen entspricht einem Querverweis der offiziellen Dokumentation; ergänzt wird nichts.' }),
+      h('h3', { class: 'ub-abblegende__titel', text: 'Zeichen der Abbildung' }),
+      abbLegendeListe(),
       h('p', { class: 'hb-verweis' }, links)
     ];
   }
@@ -1502,7 +1492,7 @@
     refs.sichten = h('div', { class: 'ub-sichten graph-wirt' });
     refs.bereiche = {};
 
-    /* Oben die Hülle mit Icons, Legende und Steuerung (die Bühne darin
+    /* Oben die Hülle mit Icons, Steuerung und der Legende für den Druck (die Bühne darin
        scrollt — läge das Schwebende in der Bühne, scrollte es mit). */
     refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle' },
       [refs.buehne].concat(schweberBauen(), [abbLegendeBauen(), refs.panelHuelle]));

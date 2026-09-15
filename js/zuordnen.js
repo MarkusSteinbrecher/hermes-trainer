@@ -15,6 +15,8 @@
 
    Welche Elementarten leer sind, wählen drei Schalter (Rollen, Aufgaben,
    Ergebnisse); die übrigen stehen ausgefüllt als Anhaltspunkte im Bild.
+   Schalter und Vorgehensweise stehen in der Leiste unter der Kopfzeile
+   (Übersicht und Übung), in der Übung dazu ihr Titel mit dem Zähler.
 
    Geprüft wird die Zuordnung, nicht die Reihenfolge: Blöcke im selben Feld
    (Phase und Modul) mit gleich vielen Ergebniskästen sind vertauschbar, und
@@ -1108,26 +1110,33 @@
     return leiste;
   }
 
-  /* Radioknöpfe «Vorgehensweise: Klassisch · Agil» mit Icon, in der Form der
-     Schalter daneben; der Kreis selbst ist nicht zu sehen, bleibt aber für
-     Tastatur und Screenreader da. beiWahl(key) baut für die andere
-     Vorgehensweise auf. */
+  /* Radioknöpfe «Klassisch · Agil» mit Icon, in der Form der Schalter
+     daneben; der Kreis selbst ist nicht zu sehen, bleibt aber für Tastatur
+     und Screenreader da. beiWahl(key) baut für die andere Vorgehensweise auf. */
   var wahlNummer = 0;
   function vorgehenWahl(aktiv, beiWahl) {
     var name = 'tr-vorgehen-' + (++wahlNummer);
-    return h('div', { class: 'tr-arten tr-vorgehen', role: 'radiogroup', 'aria-label': 'Vorgehensweise' }, [
-      h('span', { class: 'tr-arten__titel', text: 'Vorgehensweise' })
-    ].concat(VORGEHENSWEISEN.map(function (v) {
+    return h('div', { class: 'tr-arten tr-vorgehen', role: 'radiogroup', 'aria-label': 'Vorgehensweise' }, VORGEHENSWEISEN.map(function (v) {
       var eingabe = h('input', {
         type: 'radio', class: 'tr-vorgehen__eingabe', name: name, value: v.key, checked: v.key === aktiv,
         on: { change: function () { if (eingabe.checked && v.key !== aktiv) { beiWahl(v.key); } } }
       });
       return h('label', { class: 'tr-art tr-vorgehen__wahl' + (v.key === aktiv ? ' ist-gewaehlt' : ''), title: v.label + 'e Vorgehensweise' }, [
         eingabe,
-        h('span', { class: 'tr-vorgehen__ikone' }, HT.ui.symbol(v.pfade, 18)),
+        h('span', { class: 'tr-vorgehen__ikone' }, HT.ui.symbol(v.pfade, 16)),
         h('span', { text: v.label })
       ]);
-    })));
+    }));
+  }
+
+  /* Die Wahl in der Leiste unter der Kopfzeile: Vorgehensweise und leere
+     Kästen, durch einen Haarstrich getrennt. */
+  function einstellungen(vorgehen, beiWahl, beiAenderung) {
+    return [
+      vorgehenWahl(vorgehen, beiWahl),
+      h('span', { class: 'unterleiste__trenner', 'aria-hidden': 'true' }),
+      artenLeiste(beiAenderung)
+    ];
   }
 
   function besteZeigen() {
@@ -1184,7 +1193,7 @@
     return { el: el, aktualisieren: aktualisieren };
   }
 
-  function hubRendern(behaelter, vorgehen) {
+  function hubRendern(behaelter, vorgehen, leiste) {
     var alle = uebungen(vorgehen);
     var karten = [];
     /* Andere Vorgehensweise: die Übersicht an Ort und Stelle neu, die Adresse
@@ -1194,8 +1203,8 @@
       speichern();
       global.history.replaceState(null, '', hubAdresse(key));
       HT.ui.leeren(behaelter);
-      hubRendern(behaelter, key);
-      var gewaehlt = behaelter.querySelector('.tr-vorgehen__eingabe:checked');
+      hubRendern(behaelter, key, leiste);
+      var gewaehlt = document.querySelector('.unterleiste .tr-vorgehen__eingabe:checked');
       if (gewaehlt) { gewaehlt.focus(); }
     }
     function gruppe(art) {
@@ -1206,6 +1215,8 @@
       }));
     }
 
+    /* Vorgehensweise und leere Kästen stehen in der Leiste unter der Kopfzeile. */
+    leiste(einstellungen(vorgehen, wechseln, function () { karten.forEach(function (k) { k.aktualisieren(); }); }));
     behaelter.appendChild(h('section', { class: 'tr-hub' }, [
       h('div', { class: 'kopf kopf--teil' }, [
         h('h2', { text: 'Zuordnen' }),
@@ -1213,10 +1224,6 @@
           + 'Je Aufgabe eine Zeile: links die verantwortliche Rolle, rechts die Ergebnisse, die sie erzeugt. Die Kästen sind leer, '
           + 'die Elemente liegen daneben bereit und wollen an ihren Platz; es zählt die Zuordnung, nicht die Reihenfolge. '
           + 'Am Ende zeigt die Prüfung, was richtig, falsch oder offen geblieben ist.' })
-      ]),
-      h('div', { class: 'tr-steuerung' }, [
-        vorgehenWahl(vorgehen, wechseln),
-        artenLeiste(function () { karten.forEach(function (k) { k.aktualisieren(); }); })
       ]),
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Phasen' }),
       gruppe('phase'),
@@ -1238,7 +1245,7 @@
     return i === -1 ? null : alle[(i + 1) % alle.length];
   }
 
-  function uebungRendern(behaelter, def) {
+  function uebungRendern(behaelter, def, leiste) {
     uebungStarten(def, null);
     zoom = 1;
 
@@ -1281,27 +1288,27 @@
       zoomAnwenden();
     }
 
-    var seite = h('section', { class: 'tr-uebung', 'data-art': def.art }, [
-      h('div', { class: 'tr-kopf' }, [
-        h('a', { class: 'tr-zurueck', href: hubAdresse(def.vorgehen), text: '← Alle Übungen' }),
-        h('div', { class: 'tr-kopf__zeile' }, [
-          h('span', { class: 'tr-kicker', text: def.art === 'phase' ? 'Phase' : def.art === 'modul' ? 'Modul' : 'Alles' }),
-          h('h1', { class: 'tr-titel', text: def.name }),
-          refs.zaehler,
-          refs.beste
-        ])
+    /* Titel und Zähler stehen in der Leiste unter der Kopfzeile, nach den
+       Übungsformen und vor der Wahl; «Zuordnen» dort führt zurück zu allen
+       Übungen. */
+    leiste([
+      h('div', { class: 'tr-leistentitel' }, [
+        h('span', { class: 'tr-kicker', text: def.art === 'phase' ? 'Phase' : def.art === 'modul' ? 'Modul' : 'Alles' }),
+        h('h1', { class: 'tr-titel', text: def.name }),
+        refs.zaehler,
+        refs.beste
       ]),
+      h('span', { class: 'unterleiste__trenner', 'aria-hidden': 'true' })
+    ].concat(einstellungen(def.vorgehen, function (key) {
+      var ziel = gegenstueck(def, key);
+      zustand.vorgehen = key;
+      speichern();
+      global.location.hash = ziel ? ziel.adresse : hubAdresse(key);
+    }, neuAufbauen)));
+
+    var seite = h('section', { class: 'tr-uebung', 'data-art': def.art }, [
       h('div', { class: 'tr-buehne-huelle' }, [refs.buehne, zoomLeiste]),
       h('aside', { class: 'tr-seite', 'aria-label': 'Elemente und Auswertung' }, [
-        h('div', { class: 'tr-steuerung' }, [
-          vorgehenWahl(def.vorgehen, function (key) {
-            var ziel = gegenstueck(def, key);
-            zustand.vorgehen = key;
-            speichern();
-            global.location.hash = ziel ? ziel.adresse : hubAdresse(key);
-          }),
-          artenLeiste(neuAufbauen)
-        ]),
         h('div', { class: 'btn-reihe tr-knoepfe' }, [refs.knopfPruefen, refs.knopfReset, refs.knopfFortsetzen, refs.knopfNochmals, knopfNaechste]),
         refs.ergebnis,
         refs.suche,
@@ -1329,11 +1336,12 @@
 
   /* Ohne phase/modul/alles: die Übersicht der Übungen (unter der Leiste des
      Trainers); mit: die Übung selbst als eigene Seite in voller Breite. */
-  function zuordnenRendern(behaelter, params) {
+  function zuordnenRendern(behaelter, params, leiste) {
     if (!zustand.initialisiert) { wiederherstellen(); zustand.initialisiert = true; }
     refs = {};
     uebung = null;
     params = params || {};
+    leiste = leiste || function () {};
 
     /* Die Adresse sagt die Vorgehensweise; ohne Angabe ist eine Übung
        klassisch (alte Links) und die Übersicht die zuletzt gewählte. */
@@ -1341,7 +1349,7 @@
     if (vorgehen !== zustand.vorgehen) { zustand.vorgehen = vorgehen; speichern(); }
 
     if (!istUebung(params)) {
-      hubRendern(behaelter, vorgehen);
+      hubRendern(behaelter, vorgehen, leiste);
       return;
     }
     var def = uebungFinden(params, vorgehen);
@@ -1357,7 +1365,7 @@
     vorbereiten().then(function () {
       if (!document.body.contains(laden)) { return; }
       behaelter.removeChild(laden);
-      uebungRendern(behaelter, def);
+      uebungRendern(behaelter, def, leiste);
     });
   }
 
@@ -1373,7 +1381,7 @@
     label: 'Zuordnen',
     pfade: ['M4 5h7v6H4Z', 'M13 13h7v6h-7Z', 'M13 5h7v6h-7Z', 'M4 13h7v6H4Z', 'M6 16l1.6 1.6L10 14.8'],
     render: zuordnenRendern,
-    /* Eigene Seiten in voller Breite — der Trainer zeigt dort weder Kopf noch Leiste. */
+    /* Eigene Seiten in voller Breite — Titel und Wahl stehen dort in der Leiste. */
     istUebung: istUebung,
     titel: titel
   };

@@ -148,14 +148,14 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-schweber, .ub-sichten .grail { border-radius: 6px; }
 /* Die Leisten des Graphen rücken unter der Linie hervor. */
 .ub-sichten .grail { top: calc(.75rem + var(--ub-oben-frei, 0px)); }
-/* Die Leiste unter der Kopfzeile trägt hier die Auswahl des Graphen und läuft
-   über die ganze Breite der Werkbank. */
-body[data-route="ueberblick"] .unterleiste__inner { max-width: none; padding-inline: 12px; }
+/* Die Leiste unter der Kopfzeile trägt hier die Auswahl des Graphen, mit den
+   Rändern der Werkbank. */
+body[data-route="ueberblick"] .unterleiste__inner { padding-inline: 12px; }
 
 /* --- Schwebende Bedienelemente auf der Bühne ----------------------------- */
 
-/* Auf der weissen Bühne liegen nur Icons: Steuerung oben rechts, Legende
-   unten links, Zoom unten rechts. Sie stehen auf dem Grundton mit Haarlinie —
+/* Auf der weissen Bühne liegen nur Icons: Steuerung oben rechts, Zoom unten
+   rechts. Sie stehen auf dem Grundton mit Haarlinie —
    flach, keine erhobene Fläche; die einzige bleibt die Steuerung. */
 
 .ub-buehne-huelle {
@@ -175,7 +175,6 @@ body[data-route="ueberblick"] .unterleiste__inner { max-width: none; padding-inl
   border: 1px solid var(--ub-linie);
 }
 .ub-schweber--steuerung { top: 12px; right: 12px; padding: 2px; }
-.ub-schweber--legende { bottom: calc(12px + var(--ub-unten-frei, 0px)); left: 12px; padding: 2px; }
 .ub-schweber--zoom { bottom: calc(12px + var(--ub-unten-frei, 0px)); right: 12px; }
 
 .ub-ikonknopf {
@@ -505,24 +504,19 @@ body[data-route="ueberblick"] .unterleiste__inner { max-width: none; padding-inl
 .ub-buehne.ist-am-ziehen { cursor: grabbing; }
 .ub-buehne.ist-am-ziehen * { cursor: grabbing; }
 
-/* Legende der Zeichen, aus denen die Originalgrafik besteht — eine kleine
-   Karte über dem Info-Icon unten links, per Icon ein- und ausblendbar. */
+/* Legende der Zeichen, aus denen die Originalgrafik besteht — am Schirm in
+   der Karte hinter dem Info-Icon der Leiste, im Druck unter der Abbildung
+   (.ub-abblegende, sonst verborgen). */
 .ub-abblegende {
-  position: absolute;
-  left: 12px;
-  bottom: calc(52px + var(--ub-unten-frei, 0px));
-  z-index: 6;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: max-content;
-  max-width: calc(100% - 24px);
   padding: 12px 16px 14px;
-  background: var(--ub-grund);
-  border: 1px solid var(--ub-linie);
   font-size: 12px;
   color: var(--ub-tinte-weich);
 }
+.gpop--kopf .ub-abblegende__titel { display: block; margin: 6px 0 0; }
+.gpop--kopf .ub-abblegende__liste { font-size: 13px; color: var(--text-weich); }
 .ub-abblegende__titel {
   font-size: 10.5px;
   font-weight: 700;

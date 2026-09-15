@@ -126,16 +126,17 @@
     return h('div', { class: 'unterleiste__hilfe' }, [knopf, karte]);
   }
 
-  /* Die Leiste einer Ansicht: links Links (Kapitel, Übungsformen; der aktive
-     mit aria-current) oder eigener Inhalt (die Auswahl des Überblicks),
-     rechts das Info-Icon. opt: { label, links: [{ href, text, nr, pfade,
-     aktiv }], inhalt, info: { titel, inhalt(), bereit } }. Rollt die
-     Linkzeile (schmal), steht der aktive Link in der Mitte. */
+  /* Die Leiste einer Ansicht: Links (Kapitel, Übungsformen; der aktive mit
+     aria-current) und/oder eigener Inhalt (die Auswahl des Überblicks, die
+     Wahl des Zuordnens), beides zusammen in der Mitte; rechts das Info-Icon.
+     opt: { label, links: [{ href, text, nr, pfade, aktiv }], inhalt,
+     inhaltLabel, info: { titel, inhalt(), bereit } }. Passt die Mitte nicht
+     (schmal), rollt sie, und der aktive Link steht in ihrer Mitte. */
   function unterleisteSetzen(opt) {
     if (!opt) { kopfPlatz('unterleiste', null); return; }
-    var kinder = [];
+    var mitte = [];
     if (opt.links) {
-      kinder.push(h('nav', { class: 'unterleiste__nav', 'aria-label': opt.label || null },
+      mitte.push(h('nav', { class: 'unterleiste__nav', 'aria-label': opt.label || null },
         h('ul', { class: 'unterleiste__liste' }, opt.links.map(function (l) {
           return h('li', {}, h('a', { class: 'unterleiste__link', href: l.href, 'aria-current': l.aktiv ? 'page' : null }, [
             l.pfade ? HT.ui.symbol(l.pfade, 14) : null,
@@ -145,16 +146,18 @@
         }))));
     }
     if (opt.inhalt) {
-      kinder.push(h('div', { class: 'unterleiste__inhalt', role: 'group', 'aria-label': opt.label || null }, opt.inhalt));
+      if (mitte.length) { mitte.push(h('span', { class: 'unterleiste__trenner', 'aria-hidden': 'true' })); }
+      mitte.push(h('div', { class: 'unterleiste__inhalt', role: 'group', 'aria-label': opt.inhaltLabel || opt.label || null }, opt.inhalt));
     }
+    var kinder = [h('div', { class: 'unterleiste__mitte' }, mitte)];
     if (opt.info) { kinder.push(infoBauen(opt.info)); }
-    var leiste = h('div', { class: 'unterleiste__inner' }, kinder);
+    var leiste = h('div', { class: 'unterleiste__inner' + (opt.info ? ' unterleiste__inner--info' : '') }, kinder);
     kopfPlatz('unterleiste', leiste);
 
-    var liste = leiste.querySelector('.unterleiste__liste');
+    var rolle = leiste.querySelector('.unterleiste__mitte');
     var aktiv = leiste.querySelector('[aria-current="page"]');
-    if (liste && aktiv && liste.scrollWidth > liste.clientWidth) {
-      liste.scrollLeft = aktiv.offsetLeft - (liste.clientWidth - aktiv.offsetWidth) / 2;
+    if (aktiv && rolle.scrollWidth > rolle.clientWidth) {
+      rolle.scrollLeft = aktiv.offsetLeft - (rolle.clientWidth - aktiv.offsetWidth) / 2;
     }
   }
 

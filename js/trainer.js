@@ -4,7 +4,8 @@
    Kopfzeile (HT.app.unterleiste): «Zuordnen» (js/zuordnen.js), «Lernkarten»
    (js/lernkarten.js) und «Quiz» (js/quiz.js). Die Teile melden sich unter
    HT.trainerTeile an; ein Teil ist { id, label, pfade, render(behaelter,
-   params) } und zeichnet sich in den Behälter unter der Leiste. Ein Teil mit
+   params, leiste) } und zeichnet sich in den Behälter unter der Leiste;
+   leiste(zusatz) stellt eigene Elemente neben die Übungsformen. Ein Teil mit
    eigenen Seiten in voller Breite (die Übungen des Zuordnens) bringt dazu
    istUebung(params) und titel(params) mit. Weitere Teile (etwa
    Prüfungsfragen anderer Herkunft) kommen dazu, indem sie sich anmelden und
@@ -65,11 +66,15 @@
   }
 
   /* Die Übungsformen als Links in der Leiste unter der Kopfzeile — auch auf
-     den Seiten einer Übung, dort mit dem Teil, dem sie gehört. */
-  function leisteSetzen(aktiv) {
+     den Seiten einer Übung, dort mit dem Teil, dem sie gehört. Daneben kann
+     der Teil eigene Elemente stellen (zusatz: das Zuordnen seine Wahl, in
+     der Übung dazu Titel und Zähler). */
+  function leisteSetzen(aktiv, zusatz) {
     HT.app.unterleiste({
       label: 'Übungsform',
       links: teile().map(function (t) { return { href: teilAdresse(t), pfade: t.pfade, text: t.label, aktiv: t === aktiv }; }),
+      inhalt: zusatz && zusatz.length ? zusatz : null,
+      inhaltLabel: 'Einstellungen der Übung',
       info: { inhalt: infoInhalt }
     });
   }
@@ -77,13 +82,16 @@
   function render(behaelter, params) {
     params = params || {};
     var eigen = seitenTeil(params);
-    leisteSetzen(eigen || teilFinden(params.teil));
+    var aktiv = eigen || teilFinden(params.teil);
+    leisteSetzen(aktiv);
+    /* Dritter Parameter von render: damit ergänzt ein Teil die Leiste. */
+    function leiste(zusatz) { leisteSetzen(aktiv, zusatz); }
     var warnung = HT.app.datenWarnung();
     if (warnung) { behaelter.appendChild(warnung); }
 
     if (eigen) {
       document.body.dataset.teil = 'uebung';
-      eigen.render(behaelter, params);
+      eigen.render(behaelter, params, leiste);
       return;
     }
 
@@ -94,7 +102,7 @@
     behaelter.appendChild(h('h1', { class: 'nur-sr', text: 'Trainer' }));
     var teilBehaelter = h('div', { class: 'tr-teil', 'data-teil': teil.id });
     behaelter.appendChild(teilBehaelter);
-    teil.render(teilBehaelter, params);
+    teil.render(teilBehaelter, params, leiste);
   }
 
   function titel(params) {
