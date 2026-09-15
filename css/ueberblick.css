@@ -65,9 +65,9 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   background: var(--ub-grund);
 }
 
-/* Rahmen der Bühne: oben die Abbildung, unten der Graph, jeder Bereich mit
-   Kopfzeile zum Zu- und Aufklappen; offen teilen sie sich die Höhe. Die
-   Popover des Graphen liegen im Rahmen. */
+/* Rahmen der Bühne: oben die Abbildung, unten der Graph, dazwischen die Linie
+   mit der Pille für die Aufteilung; offen teilen sich die Bereiche die Höhe.
+   Die Popover des Graphen liegen im Rahmen. */
 .ub-sichten {
   position: relative;
   display: flex;
@@ -81,53 +81,73 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   min-height: 0;
   min-width: 0;
 }
-.ub-bereich[data-offen="zu"] { flex: 0 0 auto; }
-.ub-bereich[data-offen="zu"] > :not(.ub-bereich__kopf) { display: none; }
-.ub-bereich--graph { border-top: 1px solid var(--ub-linie); }
-.ub-bereich__kopf {
+.ub-bereich[data-offen="zu"] { display: none; }
+
+/* Die Linie zwischen den Bereichen: links die Pille (nur Abbildung, halb,
+   nur Graph), rechts die Chips der Auswahl. Die Zeile hat keinen
+   eigenen Grund und liegt über der Grenze — beide Bereiche laufen sichtbar unter
+   ihr weiter. Ist nur ein Bereich offen, liegt sie innen an seinem Rand. Was dort
+   in den Bereichen schwebt, rückt um --ub-oben-frei bzw. --ub-unten-frei weg. */
+.ub-sichten { --ub-teilung-hoehe: 40px; }
+.ub-sichten[data-teilung="halb"] { --ub-unten-frei: 20px; --ub-oben-frei: 20px; }
+.ub-sichten[data-teilung="oben"] { --ub-unten-frei: 40px; }
+.ub-sichten[data-teilung="unten"] { --ub-oben-frei: 40px; }
+.ub-teilung {
+  position: relative;
+  z-index: 5;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   flex: 0 0 auto;
-  min-height: 34px;
-  padding: 0 12px 0 0;
-  background: var(--ub-flaeche);
-  border-bottom: 1px solid var(--ub-linie);
+  box-sizing: border-box;
+  min-height: var(--ub-teilung-hoehe);
+  margin: calc(var(--ub-teilung-hoehe) / -2) 0;
+  padding: 3px 12px;
+  /* Nur Pille und Chips nehmen Zeiger an; Klicks, Ziehen und Rad auf dem
+     Inhalt unter der Zeile gehen durch. */
+  pointer-events: none;
 }
-.ub-bereich[data-offen="zu"] .ub-bereich__kopf { border-bottom: 0; }
-.ub-bereich__knopf {
-  display: flex;
+.ub-teilung__pille, .ub-teilung__chips { pointer-events: auto; }
+.ub-sichten[data-teilung="oben"] .ub-teilung { margin: calc(var(--ub-teilung-hoehe) * -1) 0 0; }
+.ub-sichten[data-teilung="unten"] .ub-teilung { margin: 0 0 calc(var(--ub-teilung-hoehe) * -1); }
+.ub-teilung::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1px solid var(--ub-linie);
+}
+.ub-teilung__pille {
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  flex: 0 0 auto;
-  padding: 8px 16px;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ub-leise);
+  gap: 2px;
+  padding: 2px 5px;
+  background: var(--ub-grund);
+  border: 1px solid var(--ub-linie);
+  border-radius: 999px;
 }
-.ub-bereich__knopf:hover { color: var(--ub-tinte); }
-/* Dreieck statt Zeichensatz-Pfeil: dreht sich beim Zuklappen. */
-.ub-bereich__pfeil {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid currentColor;
-  transition: transform .12s ease;
+.ub-teilung__pille .ub-ikonknopf,
+.ub-teilung__pille .ub-ikonknopf[aria-pressed="true"] { border-radius: 999px; }
+.ub-teilung__chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px 12px;
+  min-width: 0;
+  margin-left: auto;
 }
-.ub-bereich[data-offen="zu"] .ub-bereich__pfeil { transform: rotate(-90deg); }
-/* Die Chips der Auswahl stehen rechts in der Kopfzeile der Abbildung. */
-.ub-auswahlchips { margin-left: auto; justify-content: flex-end; min-width: 0; }
+.ub-teilung__chips:not(:has(> :not([hidden]))) { display: none; }
+/* Die Chips der Auswahl stehen rechts auf der Linie. */
+.ub-auswahlchips { justify-content: flex-end; min-width: 0; }
 .ub-auswahlchips[hidden] { display: none; }
 .ub-ikonknopf[aria-pressed="true"] { color: var(--ub-akzent); background: var(--ub-akzent-hauch); border-radius: 4px; }
 /* Leicht abgerundete Kacheln für die schwebenden Icons. */
 .ub-schweber, .ub-sichten .grail { border-radius: 6px; }
+/* Die Leisten des Graphen rücken unter der Linie hervor. */
+.ub-sichten .grail { top: calc(.75rem + var(--ub-oben-frei, 0px)); }
 /* Der Filterknopf des Graphen neben der Steuerung, im Mass der Icons hier. */
 .ub-schweber .graph-werkzeug { width: 28px; height: 28px; color: var(--ub-leise); }
 .ub-schweber .graph-werkzeug:hover { color: var(--ub-tinte); }
@@ -157,8 +177,8 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   border: 1px solid var(--ub-linie);
 }
 .ub-schweber--steuerung { top: 12px; right: 12px; padding: 2px; }
-.ub-schweber--legende { bottom: 12px; left: 12px; padding: 2px; }
-.ub-schweber--zoom { bottom: 12px; right: 12px; }
+.ub-schweber--legende { bottom: calc(12px + var(--ub-unten-frei, 0px)); left: 12px; padding: 2px; }
+.ub-schweber--zoom { bottom: calc(12px + var(--ub-unten-frei, 0px)); right: 12px; }
 
 .ub-ikonknopf {
   display: grid;
@@ -462,7 +482,7 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
   /* Unten Platz für Legende- und Zoom-Icon, damit sie die letzte Reihe der
      Abbildung in der Ausgangslage nicht verdecken; oben steht nur ein Icon
      rechts, wo die Grafik leer ist. */
-  padding: 16px 16px 56px;
+  padding: 16px 16px calc(56px + var(--ub-unten-frei, 0px));
 }
 .ub-buehne__laden {
   margin: 0;
@@ -492,7 +512,7 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-abblegende {
   position: absolute;
   left: 12px;
-  bottom: 52px;
+  bottom: calc(52px + var(--ub-unten-frei, 0px));
   z-index: 6;
   display: flex;
   flex-direction: column;
@@ -775,8 +795,10 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   /* Höhe nach der Abbildung, gedeckelt — sonst steht unter der auf die Breite
      gepassten Grafik eine grosse weisse Fläche. */
   .ub-buehne { max-height: 72vh; min-height: 200px; }
+  /* Ohne feste Höhe teilt sich nichts: jeder Bereich so hoch wie sein Inhalt
+     (mit flex-basis 0 klappten beide auf 0 zusammen und lagen übereinander). */
+  .ub-bereich { flex: none; }
   .ub-bereich--graph[data-offen="auf"] .graph-buehne { min-height: 60vh; }
-  .ub-bereich__knopf { padding-left: 12px; }
   /* «Inhaltsseite einklappen» gibt es gestapelt nicht — es gibt keine
      Spalte, die sich einklappen liesse. */
   .ub-panel__nurbreit, .ub-panel__block--nurbreit { display: none; }
@@ -791,7 +813,7 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
 /* --- Druck ---------------------------------------------------------------- */
 
 @media print {
-  .ub-schweber, .ub-panel-huelle, .ub-trenner, .ub-prompt { display: none !important; }
+  .ub-schweber, .ub-panel-huelle, .ub-trenner, .ub-prompt, .ub-teilung { display: none !important; }
   .ub-abblegende { display: flex !important; position: static; flex-direction: row; flex-wrap: wrap; gap: 5px 20px; max-width: none; border: 0; border-top: 1px solid var(--ub-linie); }
   .ub-abblegende__liste { flex-direction: row; flex-wrap: wrap; gap: 5px 20px; }
   body[data-route="ueberblick"] { height: auto; overflow: visible; display: block; }

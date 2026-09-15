@@ -5,8 +5,8 @@
    HERMES-Module und der wesentlichen Ergebnisse entlang der Phasen»)
    unverändert als Originalgrafik von hermes.admin.ch mit einer unsichtbaren
    Trefferschicht darüber, unten der Graph der Methodenelemente
-   (js/graph.js, über HT.graphSicht eingebettet); jeder Bereich lässt sich
-   über seine Kopfzeile zu- und aufklappen. Rechts eine Inhaltsseite, die zu
+   (js/graph.js, über HT.graphSicht eingebettet); die Linie dazwischen trägt
+   eine Pille: nur Abbildung, beide zur Hälfte, nur Graph. Rechts eine Inhaltsseite, die zu
    jedem Element immer dieselben Abschnitte in derselben Reihenfolge zeigt;
    der Graph zeigt das oben festgehaltene Element mit seinen Beziehungen.
    Dazwischen eine ziehbare Trennlinie. Der Filter (Phasen, Szenarien,
@@ -112,8 +112,8 @@
   /* --- Zustand sichern ----------------------------------------------------- */
 
   /* Gespeichert wird, was über eine Runde hinaus zählt: die Fehlerbilanz, die
-     beste Serie und der Zuschnitt des unteren Bereichs — ein zugeklappter
-     Graph soll zugeklappt bleiben. Punkte und laufende Serie gehören zur
+     beste Serie und die Aufteilung der Bühne — wer nur den Graphen will,
+     findet ihn beim nächsten Mal wieder so vor. Punkte und laufende Serie gehören zur
      Runde, die Spaltenbreite stellt sich bei jedem Aufruf neu ein. */
   function speichern() {
     HT.store.schreib(SPEICHER, {
@@ -133,6 +133,8 @@
     if (typeof g.legende === 'boolean') { zustand.legende = g.legende; }
     if (typeof g.abbildungOffen === 'boolean') { zustand.abbildungOffen = g.abbildungOffen; }
     if (typeof g.graphOffen === 'boolean') { zustand.graphOffen = g.graphOffen; }
+    /* Beide zu gab es mit den Kopfzeilen; die Pille kennt es nicht. */
+    if (!zustand.abbildungOffen && !zustand.graphOffen) { zustand.abbildungOffen = true; zustand.graphOffen = true; }
   }
 
   /* Die Adresse trägt Sicht, Umfang und Auswahl — als Deep-Link teilbar. */
@@ -430,8 +432,8 @@
     refs.buehne.scrollTop += (r.top + r.height / 2) - (b.top + b.height / 2);
   }
 
-  /* Chips oben links neben dem Sichtwechsel: gewählte Phasen und Module,
-     die eingefärbte Rolle — jeder mit × zum Entfernen. */
+  /* Chips rechts auf der Linie zwischen den Bereichen: gewählte Phasen und
+     Module, die eingefärbte Rolle — jeder mit × zum Entfernen. */
   function chipBauen(kat, name, titel, beiKlick) {
     return h('button', {
       type: 'button', class: 'gfokus gfokus--umfang', title: titel, 'aria-label': titel,
@@ -443,7 +445,7 @@
     ]);
   }
 
-  /* Chip rechts in der Kopfzeile des Graphen: das dort gewählte Element
+  /* Chip daneben auf der Linie: das im Graphen gewählte Element
      (Aufgabe, Ergebnis, Rolle) mit × zum Aufheben — Module und Phasen stehen
      als Umfang oben. */
   function graphChipsZeichnen() {
@@ -702,16 +704,28 @@
 
   /* --- Zwei Bereiche der Bühne: Abbildung oben, Graph unten ---------------- */
 
-  /* Jeder Bereich hat eine Kopfzeile mit Dreieck, die ihn zu- und aufklappt;
-     offen teilen sie sich die Höhe, zugeklappt bleibt nur die Kopfzeile. */
-  var BEREICHE = {
-    abbildung: { feld: 'abbildungOffen', label: 'Abbildung' },
-    graph:     { feld: 'graphOffen',     label: 'Graph' }
-  };
+  /* Zwischen den Bereichen liegt eine Linie mit einer Pille aus drei Icons:
+     nur die Abbildung, beide zur Hälfte, nur der Graph. Offen teilen sich die
+     Bereiche die Höhe; ist nur einer offen, liegt die Linie an seinem Rand und
+     bleibt so erreichbar. Das Icon zeigt, wo die Linie dann steht. */
+  var RAHMEN = 'M4 4h16v16H4Z';
+  var TEILUNGEN = [
+    { art: 'oben',  label: 'Nur Abbildung',                  abbildung: true,  graph: false, pfade: [RAHMEN, 'M4 17h16'] },
+    { art: 'halb',  label: 'Abbildung und Graph je zur Hälfte', abbildung: true, graph: true, pfade: [RAHMEN, 'M4 12h16'] },
+    { art: 'unten', label: 'Nur Graph',                      abbildung: false, graph: true,  pfade: [RAHMEN, 'M4 7h16'] }
+  ];
 
-  function bereichSchalten(name) {
-    var feld = BEREICHE[name].feld;
-    zustand[feld] = !zustand[feld];
+  function teilungAktuell() {
+    if (zustand.abbildungOffen && !zustand.graphOffen) { return 'oben'; }
+    if (!zustand.abbildungOffen && zustand.graphOffen) { return 'unten'; }
+    return 'halb';
+  }
+
+  function teilungSetzen(art) {
+    var t = TEILUNGEN.filter(function (x) { return x.art === art; })[0];
+    if (!t || art === teilungAktuell()) { return; }
+    zustand.abbildungOffen = t.abbildung;
+    zustand.graphOffen = t.graph;
     zustand.panel = false;
     panelZeichnen();
     if (graph) { graph.popSchliessen(); }
@@ -726,26 +740,26 @@
   }
 
   function bereicheAnwenden() {
-    if (!refs.bereiche) { return; }
-    Object.keys(BEREICHE).forEach(function (name) {
-      var offen = !!zustand[BEREICHE[name].feld];
-      var b = refs.bereiche[name];
-      b.dataset.offen = offen ? 'auf' : 'zu';
-      b.knopf.setAttribute('aria-expanded', String(offen));
-      b.knopf.title = offen ? BEREICHE[name].label + ' zuklappen' : BEREICHE[name].label + ' aufklappen';
+    if (!refs.bereiche || !refs.bereiche.abbildung || !refs.bereiche.graph || !refs.teilungKnoepfe) { return; }
+    refs.bereiche.abbildung.dataset.offen = zustand.abbildungOffen ? 'auf' : 'zu';
+    refs.bereiche.graph.dataset.offen = zustand.graphOffen ? 'auf' : 'zu';
+    var aktuell = teilungAktuell();
+    if (refs.sichten) { refs.sichten.dataset.teilung = aktuell; }
+    refs.teilungKnoepfe.forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.art === aktuell ? 'true' : 'false');
     });
   }
 
-  function bereichKopf(name, rechts) {
-    var knopf = h('button', {
-      type: 'button', class: 'ub-bereich__knopf', 'aria-expanded': 'true',
-      on: { click: function () { bereichSchalten(name); } }
-    }, [
-      h('span', { class: 'ub-bereich__pfeil', 'aria-hidden': 'true' }),
-      h('span', { text: BEREICHE[name].label })
+  /* Die Linie: links die Pille, rechts `chips`. */
+  function teilungBauen(chips) {
+    refs.teilungKnoepfe = TEILUNGEN.map(function (t) {
+      return ikonKnopf(t.label, t.pfade, function () { teilungSetzen(t.art); },
+        { 'aria-pressed': 'false', 'data-art': t.art });
+    });
+    return h('div', { class: 'ub-teilung' }, [
+      h('div', { class: 'ub-teilung__pille', role: 'group', 'aria-label': 'Aufteilung von Abbildung und Graph' }, refs.teilungKnoepfe),
+      chips
     ]);
-    var kopf = h('div', { class: 'ub-bereich__kopf' }, [knopf, rechts || null]);
-    return { kopf: kopf, knopf: knopf };
   }
 
   /* Der Knopf «Im Graph» der Inhaltsseite: den Graphen aufklappen, falls
@@ -755,7 +769,7 @@
     if (!graph) { return; }
     zustand.gehalten = true;
     aktivSetzen(e);
-    if (!zustand.graphOffen) { bereichSchalten('graph'); }
+    if (!zustand.graphOffen) { teilungSetzen('halb'); }
     graphFolgen(e, true);
   }
 
@@ -1473,26 +1487,23 @@
     refs.sichten = h('div', { class: 'ub-sichten graph-wirt' });
     refs.bereiche = {};
 
-    /* Oben: Kopfzeile mit den Chips der Auswahl, die Hülle mit Icons,
-       Legende und Steuerung (die Bühne darin scrollt — läge das Schwebende
-       in der Bühne, scrollte es mit). */
-    refs.suchChips = h('div', { class: 'gumfang ub-auswahlchips', role: 'group', 'aria-label': 'Auswahl' });
-    refs.suchChips.hidden = true;
-    var kopfAbb = bereichKopf('abbildung', refs.suchChips);
+    /* Oben die Hülle mit Icons, Legende und Steuerung (die Bühne darin
+       scrollt — läge das Schwebende in der Bühne, scrollte es mit). */
     refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle' },
       [refs.buehne].concat(schweberBauen(), [abbLegendeBauen(), refs.panelHuelle]));
-    var bereichAbb = h('section', { class: 'ub-bereich ub-bereich--abbildung', 'aria-label': 'Abbildung' },
-      [kopfAbb.kopf, refs.buehneHuelle]);
-    bereichAbb.knopf = kopfAbb.knopf;
+    var bereichAbb = h('section', { class: 'ub-bereich ub-bereich--abbildung', 'aria-label': 'Abbildung' }, [refs.buehneHuelle]);
     refs.bereiche.abbildung = bereichAbb;
 
-    /* Unten: Kopfzeile mit dem Chip des gewählten Elements (wie oben die
-       Chips des Umfangs — gleiches «×» für beide Bereiche), darunter der Graph. */
+    /* Dazwischen die Linie mit der Pille; rechts darauf die Chips des Umfangs
+       und der Chip des im Graphen gewählten Elements — gleiches «×» für beide. */
+    refs.suchChips = h('div', { class: 'gumfang ub-auswahlchips', role: 'group', 'aria-label': 'Auswahl' });
+    refs.suchChips.hidden = true;
     refs.graphChips = h('div', { class: 'gumfang ub-auswahlchips', role: 'group', 'aria-label': 'Auswahl im Graph' });
     refs.graphChips.hidden = true;
-    var kopfGraph = bereichKopf('graph', refs.graphChips);
-    var bereichGraph = h('section', { class: 'ub-bereich ub-bereich--graph', 'aria-label': 'Graph' }, [kopfGraph.kopf]);
-    bereichGraph.knopf = kopfGraph.knopf;
+    var teilung = teilungBauen(h('div', { class: 'ub-teilung__chips' }, [refs.suchChips, refs.graphChips]));
+
+    /* Unten der Graph. */
+    var bereichGraph = h('section', { class: 'ub-bereich ub-bereich--graph', 'aria-label': 'Graph' });
     refs.bereiche.graph = bereichGraph;
     graph = HT.graphSicht.einbetten(bereichGraph, {
       params: graphParams,
@@ -1524,6 +1535,7 @@
     refs.steuerungKachel.insertBefore(refs.knopfFilter, refs.steuerungKachel.firstChild);
 
     refs.sichten.appendChild(bereichAbb);
+    refs.sichten.appendChild(teilung);
     refs.sichten.appendChild(bereichGraph);
     bereicheAnwenden();
 

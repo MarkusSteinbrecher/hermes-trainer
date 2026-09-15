@@ -1,6 +1,9 @@
 /* meinHERMES — Teil «Lernkarten» des Trainers (#/trainer?teil=lernkarten).
-   Karte drehen, selbst einschätzen; «Nochmals» kehrt im Stapel zurück.
-   Fortschritt liegt im localStorage und ist zurücksetzbar. */
+   Karten für Aufgaben und Ergebnisse: vorne der Begriff oder die Definition,
+   hinten die Beziehungen — verantwortliche Rolle, die Ergebnisse der Aufgabe
+   bzw. die Aufgaben, aus denen das Ergebnis entsteht, das Modul — und die
+   Definition. Karte drehen, selbst einschätzen; «Nochmals» kehrt im Stapel
+   zurück. Fortschritt liegt im localStorage und ist zurücksetzbar. */
 (function (global) {
   'use strict';
 
@@ -8,22 +11,32 @@
   HT.trainerTeile = HT.trainerTeile || {};
 
   var h = HT.ui.h;
+  var KATEGORIEN = ['aufgabe', 'ergebnis'];
+  var VERSION = 2;         // 1 (ohne Angabe): Begriff ↔ Definition für alle Kategorien — «Gewusst» galt nur der Definition
+
+  /* Was die Vorderseite abfragt; die Rückseite zeigt nur Zeilen mit Werten. */
+  var GESUCHT = {
+    aufgabe: ['Verantwortlich', 'Ergebnisse', 'Modul'],
+    ergebnis: ['Verantwortlich', 'Aufgaben', 'Modul']
+  };
 
   var zustand = {
     initialisiert: false,
-    richtung: 'bd',        // 'bd' = Begriff → Definition, 'db' = Definition → Begriff
-    filter: [],            // leer = alle Kategorien
+    richtung: 'bd',        // 'bd' = vorne Begriff, 'db' = vorne Definition
+    filter: [],            // leer = Aufgaben und Ergebnisse
     fortschritt: {},       // id -> 'gewusst' | 'nochmals'
     stapel: [],            // offene Karten-IDs der laufenden Runde
     gedreht: false
   };
 
   var refs = {};
+  var entstehtAus = null;  // Ergebnis-Begriff -> [Aufgaben-Begriffe]
 
   /* --- Persistenz --------------------------------------------------------- */
 
   function speichern() {
     HT.store.schreib('lernkarten', {
+      version: VERSION,
       richtung: zustand.richtung,
       filter: zustand.filter,
       fortschritt: zustand.fortschritt
@@ -35,20 +48,59 @@
     if (g && typeof g === 'object') {
       zustand.richtung = (g.richtung === 'db') ? 'db' : 'bd';
       zustand.filter = Array.isArray(g.filter)
-        ? g.filter.filter(function (k) { return !!HT.daten.kategorieMeta(k); })
+        ? g.filter.filter(function (k) { return KATEGORIEN.indexOf(k) !== -1; })
         : [];
-      zustand.fortschritt = (g.fortschritt && typeof g.fortschritt === 'object') ? g.fortschritt : {};
+      zustand.fortschritt = (g.version === VERSION && g.fortschritt && typeof g.fortschritt === 'object')
+        ? g.fortschritt
+        : {};
     }
+  }
+
+  /* --- Beziehungen -------------------------------------------------------- */
+
+  function rollenVon(e) {
+    return e.verantwortlich
+      ? e.verantwortlich.split(',').map(function (r) { return r.trim(); }).filter(function (r) { return !!r; })
+      : [];
+  }
+
+  function aufgabenZu(ergebnis) {
+    if (!entstehtAus) {
+      entstehtAus = {};
+      HT.daten.eintraegeDerKategorie('aufgabe').forEach(function (a) {
+        a.ergebnisse.forEach(function (name) {
+          (entstehtAus[name] = entstehtAus[name] || []).push(a.begriff);
+        });
+      });
+    }
+    return entstehtAus[ergebnis.begriff] || [];
+  }
+
+  /** Zeilen der Lösung: [{ label, kategorie, werte }], nur solche mit Werten. */
+  function bezuege(e) {
+    var zeilen = [{ label: 'Verantwortlich', kategorie: 'rolle', werte: rollenVon(e) }];
+    if (e.kategorie === 'aufgabe') {
+      zeilen.push({ label: e.ergebnisse.length === 1 ? 'Ergebnis' : 'Ergebnisse', kategorie: 'ergebnis', werte: e.ergebnisse });
+    } else {
+      zeilen.push({ label: 'Entsteht aus', kategorie: 'aufgabe', werte: aufgabenZu(e) });
+    }
+    zeilen.push({ label: e.module.length === 1 ? 'Modul' : 'Module', kategorie: 'modul', werte: e.module });
+    return zeilen.filter(function (z) { return z.werte.length > 0; });
   }
 
   /* --- Stapel ------------------------------------------------------------- */
 
-  function auswahl() {
-    var alle = HT.daten.alleEintraege().filter(function (e) {
-      return !!e.definition;           // ohne Definition ist keine Karte möglich
+  /* Ohne Definition oder ohne Beziehungen keine Karte — das trifft die
+     Sammeleinträge «Checklisten» und «Meilensteine». */
+  function kartenDerKategorie(kat) {
+    return HT.daten.eintraegeDerKategorie(kat).filter(function (e) {
+      return !!e.definition && bezuege(e).length > 0;
     });
-    if (!zustand.filter.length) { return alle; }
-    return alle.filter(function (e) { return zustand.filter.indexOf(e.kategorie) !== -1; });
+  }
+
+  function auswahl() {
+    var kats = zustand.filter.length ? zustand.filter : KATEGORIEN;
+    return kats.reduce(function (alle, k) { return alle.concat(kartenDerKategorie(k)); }, []);
   }
 
   function stapelAufbauen(auchGewusste) {
@@ -73,6 +125,7 @@
 
   function seiteVorne(e) {
     var istBegriff = zustand.richtung === 'bd';
+    var gesucht = (istBegriff ? [] : ['Begriff']).concat(GESUCHT[e.kategorie]);
     return h('div', {
       class: 'flip__seite flip__seite--vorne',
       role: 'button',
@@ -80,35 +133,41 @@
       'aria-hidden': 'false',
       'aria-label': 'Karte umdrehen und Lösung anzeigen'
     }, [
-      h('div', { class: 'flip__rolle', text: istBegriff ? 'Begriff' : 'Definition' }),
+      h('div', { class: 'flip__rolle' }, [
+        h('span', { text: istBegriff ? 'Begriff' : 'Definition' }),
+        ' · ',
+        HT.ui.badge(e.kategorie)
+      ]),
       h('div', {
         class: 'flip__inhalt' + (istBegriff ? '' : ' flip__inhalt--klein'),
         /* Beim Abfragen der Definition darf der gesuchte Begriff nicht darin stehen. */
         text: istBegriff ? e.begriff : HT.ui.ohneBegriff(e.definition, e.begriff)
       }),
+      h('div', { class: 'flip__gesucht', text: 'Gesucht: ' + gesucht.join(' · ') }),
       h('div', { class: 'flip__tipp', text: 'Tippen oder Leertaste — Karte umdrehen' })
     ]);
   }
 
   function seiteHinten(e) {
-    var istBegriff = zustand.richtung === 'bd';
     var kinder = [
       h('div', { class: 'flip__rolle' }, [
-        h('span', { text: istBegriff ? 'Definition' : 'Begriff' }),
+        h('span', { text: 'Lösung' }),
         ' · ',
         HT.ui.badge(e.kategorie)
       ]),
-      h('div', {
-        class: 'flip__inhalt' + (istBegriff ? ' flip__inhalt--klein' : ''),
-        text: istBegriff ? e.definition : e.begriff
-      })
+      h('div', { class: 'flip__inhalt', text: e.begriff }),
+      h('dl', { class: 'lk-bezuege' }, bezuege(e).map(function (z) {
+        return h('div', { class: 'lk-bezug' }, [
+          h('dt', { text: z.label }),
+          h('dd', {}, [
+            h('ul', { class: 'lk-werte' }, z.werte.map(function (w) {
+              return h('li', {}, [HT.ui.katSymbol(z.kategorie, 14), h('span', { text: w })]);
+            }))
+          ])
+        ]);
+      })),
+      h('div', { class: 'flip__inhalt flip__inhalt--klein', text: e.definition })
     ];
-
-    if (istBegriff) {
-      kinder.push(h('div', { class: 'flip__begriff', text: e.begriff }));
-    } else {
-      kinder.push(h('div', { class: 'flip__inhalt flip__inhalt--klein', text: e.definition }));
-    }
 
     var quelle = HT.ui.quellenLink(e.quelle);
     if (quelle) {
@@ -129,7 +188,7 @@
       bereich.appendChild(HT.ui.leerZustand(
         'Keine Karten im gewählten Umfang',
         HT.daten.alleEintraege().length
-          ? 'Für die gewählten Kategorien gibt es keine Einträge mit Definition. Filter anpassen.'
+          ? 'Für die gewählten Kategorien gibt es keine Karten. Filter anpassen.'
           : 'Die Datendateien in data/ sind derzeit leer. Sobald Einträge erfasst sind, entstehen daraus Lernkarten.'
       ));
       return bereich;
@@ -265,10 +324,10 @@
     var btn = h('button', { type: 'button', class: 'btn btn--klein' });
 
     function beschriften() {
-      var text = zustand.richtung === 'bd' ? 'Begriff → Definition' : 'Definition → Begriff';
+      var text = zustand.richtung === 'bd' ? 'Vorne: Begriff' : 'Vorne: Definition';
       btn.textContent = text;
-      btn.setAttribute('aria-label', 'Abfragerichtung umschalten, aktuell ' + text);
-      btn.setAttribute('title', 'Abfragerichtung umschalten');
+      btn.setAttribute('aria-label', 'Vorderseite umschalten, aktuell ' + text);
+      btn.setAttribute('title', 'Vorderseite umschalten: Begriff oder Definition');
     }
 
     btn.addEventListener('click', function () {
@@ -320,10 +379,10 @@
     }
 
     chip('', 'Alle', null);
-    HT.daten.kategorien().forEach(function (kat) {
-      var anzahl = HT.daten.eintraegeDerKategorie(kat.key).length;
+    KATEGORIEN.forEach(function (key) {
+      var anzahl = kartenDerKategorie(key).length;
       if (!anzahl) { return; }
-      chip(kat.key, kat.label, anzahl);
+      chip(key, HT.daten.kategorieMeta(key).label, anzahl);
     });
 
     markieren();
@@ -337,14 +396,15 @@
       wiederherstellen();
       zustand.initialisiert = true;
     }
-    if (params && params.kat && HT.daten.kategorieMeta(params.kat)) {
+    if (params && params.kat && KATEGORIEN.indexOf(params.kat) !== -1) {
       zustand.filter = [params.kat];
     }
     stapelAufbauen(false);
 
     behaelter.appendChild(h('div', { class: 'kopf kopf--teil' }, [
       h('h2', { text: 'Lernkarten' }),
-      h('p', { text: 'Karte umdrehen, selbst einschätzen. Was «Nochmals» erhält, kehrt im Stapel zurück.' })
+      h('p', { text: 'Aufgaben und Ergebnisse: Wer ist verantwortlich, was entsteht woraus, in welchem Modul? '
+        + 'Karte umdrehen, selbst einschätzen. Was «Nochmals» erhält, kehrt im Stapel zurück.' })
     ]));
 
     behaelter.appendChild(h('div', { class: 'lk-leiste' }, [

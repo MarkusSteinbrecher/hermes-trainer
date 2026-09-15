@@ -720,7 +720,7 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   border: 1px solid var(--rand-stark);
   padding: 18px 20px;
   min-height: 11rem;
-  max-height: 46vh;
+  max-height: 70vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -740,7 +740,6 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .flip__inhalt { font-size: 22px; font-weight: 800; letter-spacing: -.015em; line-height: 1.2; overflow-wrap: break-word; text-wrap: pretty; }
 .flip__seite--vorne .flip__inhalt { margin-block: auto; }
 .flip__inhalt--klein { font-size: 15px; font-weight: 400; letter-spacing: 0; line-height: 1.55; color: var(--text-weich); }
-.flip__begriff { font-size: 14px; font-weight: 700; color: var(--text); }
 .flip__hinweis {
   margin-top: auto;
   font-size: 13px;
@@ -749,6 +748,26 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   padding-top: 8px;
 }
 .flip__tipp { margin-top: auto; font-size: 12px; color: var(--text-leise); }
+.flip__gesucht { margin-top: auto; font-size: 13px; color: var(--text-weich); }
+.flip__gesucht + .flip__tipp { margin-top: 0; }
+
+/* Rückseite: je Beziehung eine Zeile, Name links, Werte rechts. */
+.lk-bezuege { margin: 2px 0 4px; }
+.lk-bezug {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 4px 12px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-top: 1px solid var(--rand);
+}
+.lk-bezug:last-child { border-bottom: 1px solid var(--rand); }
+.lk-bezug dt { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
+.lk-bezug dd { margin: 0; }
+.lk-werte { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.lk-werte li { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--text); }
+.lk-werte svg { flex: 0 0 auto; color: var(--text-leise); }
+@media (max-width: 480px) { .lk-bezug { grid-template-columns: 1fr; } }
 
 .lk-aktionen { display: flex; gap: 8px; }
 .lk-aktionen .btn { flex: 1 1 0; }
