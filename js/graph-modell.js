@@ -309,12 +309,20 @@
     return VORGEHEN[vorgehen] || VORGEHEN.klassisch;
   }
 
+  /** Phasen eines Elements in diesen Modulen zusammen (HT.daten.phasenImModul). */
+  function phasenInModulen(eintrag, module) {
+    var aus = [];
+    module.forEach(function (m) {
+      HT.daten.phasenImModul(eintrag, m).forEach(function (p) { if (aus.indexOf(p) === -1) { aus.push(p); } });
+    });
+    return aus;
+  }
+
   /** Gehört eine Aufgabe oder ein Ergebnis zum gewählten Umfang? */
   function imUmfang(eintrag, umfang) {
     /* Rollen tragen weder Phasen noch Module — sie hängen an ihren Aufgaben. */
     if (eintrag.kategorie === 'rolle') { return true; }
     var ePhasen = eintrag.phasen || [];
-    var eModule = eintrag.module || [];
     /* Sammeleinträge ohne Phasenangabe («Checklisten», «Meilensteine») lassen sich
        nicht im Ablauf verorten und bleiben dem Lexikon vorbehalten. */
     if (!ePhasen.length) { return false; }
@@ -322,18 +330,26 @@
     if (!schneidet(ePhasen, vp)) { return false; }
     var phasen = umfang.phasen.length ? umfang.phasen : vp;
     if (!schneidet(ePhasen, phasen)) { return false; }
-    if (umfang.module.length && !schneidet(eModule, umfang.module)) { return false; }
+    /* Im Modul zählen nur die Phasen, die das Element dort hat — sonst stünde
+       «Prototyping durchführen» im Modul Projektgrundlagen auch im Konzept. */
+    if (umfang.module.length && !schneidet(phasenInModulen(eintrag, umfang.module), phasen)) { return false; }
     return true;
   }
 
   /** Erzeugt die Aufgabe das Ergebnis in einer dieser Phasen? Die Modultabellen
       des Handbuchs kreuzen die Phasen je Paar an (aufgabe.ergebnisPhasen) —
       «Projekt steuern» erzeugt den QS- und Risikobericht nicht im Abschluss,
-      obwohl beide dort vorkommen. Ohne Angabe gilt der Schnitt der Phasen beider. */
-  function erzeugtInPhasen(aufgabe, ergebnis, phasen) {
+      obwohl beide dort vorkommen. Ohne Angabe gilt der Schnitt der Phasen beider.
+      Mit Modulen zählen nur die Phasen, in denen die Aufgabe in einem davon
+      steht (HT.daten.phasenImModul). */
+  function erzeugtInPhasen(aufgabe, ergebnis, phasen, module) {
     var liste = aufgabe.ergebnisPhasen && aufgabe.ergebnisPhasen[ergebnis.begriff];
     if (!liste) {
       liste = (aufgabe.phasen || []).filter(function (p) { return (ergebnis.phasen || []).indexOf(p) !== -1; });
+    }
+    if (module && module.length) {
+      var imModul = phasenInModulen(aufgabe, module);
+      liste = liste.filter(function (p) { return imModul.indexOf(p) !== -1; });
     }
     return schneidet(liste, phasen);
   }
@@ -361,11 +377,10 @@
       if (!schneidet(e.phasen, vp)) { return; }
       if (art === 'phase') {
         if (e.phasen.indexOf(name) === -1) { return; }
-        if (umfang.module.length && !schneidet(e.module, umfang.module)) { return; }
+        if (umfang.module.length && phasenInModulen(e, umfang.module).indexOf(name) === -1) { return; }
       } else {
-        if (e.module.indexOf(name) === -1) { return; }
         var phasen = umfang.phasen.length ? umfang.phasen : vp;
-        if (!schneidet(e.phasen, phasen)) { return; }
+        if (!schneidet(HT.daten.phasenImModul(e, name), phasen)) { return; }
       }
       n++;
     });
@@ -424,27 +439,55 @@
     });
 
     /* 2. Aufgaben nach der gewählten Achse gruppieren und sortieren.
-          Eine Aufgabe steht in der ersten Gruppe, zu der sie gehört. */
-    var gruppeVon = {};
-    aufgabenAlle.forEach(function (k) {
-      var werte = zustand.gruppierung === 'phase' ? k.eintrag.phasen : k.eintrag.module;
-      var g = '';
+          Eine Aufgabe steht in der ersten Gruppe, zu der sie gehört — eine
+          Phase zählt nur, wenn die Aufgabe sie in einem gewählten Modul hat,
+          ein Modul nur mit einer Phase im Umfang (HT.daten.phasenImModul). */
+    var modulAuswahl = u.module.length ? u.module : null;
+    function phasenVon(e) { return modulAuswahl ? phasenInModulen(e, modulAuswahl) : e.phasen; }
+    function gruppeFinden(e) {
       for (var i = 0; i < gruppenNamen.length; i++) {
-        if (werte.indexOf(gruppenNamen[i]) !== -1) { g = gruppenNamen[i]; break; }
+        var g = gruppenNamen[i];
+        var drin = zustand.gruppierung === 'phase'
+          ? phasenVon(e).indexOf(g) !== -1
+          : schneidet(HT.daten.phasenImModul(e, g), phasenImUmfang);
+        if (drin) { return g; }
       }
-      gruppeVon[k.id] = g;
-    });
-    var mo = modulOrdnung();
-    function modulRang(k) {
-      var mm = k.eintrag.module.length ? k.eintrag.module[0] : '';
-      return mo.hasOwnProperty(mm) ? mo[mm] : 999;
+      return '';
     }
+    /* Das Modul, in dem ein Element in dieser Phase steht: das erste seiner
+       (gewählten) Module, das die Phase trägt. */
+    function modulInPhase(e, phase) {
+      var liste = e.module.filter(function (mm) { return !modulAuswahl || modulAuswahl.indexOf(mm) !== -1; });
+      for (var i = 0; i < liste.length; i++) {
+        if (HT.daten.phasenImModul(e, liste[i]).indexOf(phase) !== -1) { return liste[i]; }
+      }
+      return liste.length ? liste[0] : '';
+    }
+    var gruppeVon = {};
+    aufgabenAlle.forEach(function (k) { gruppeVon[k.id] = gruppeFinden(k.eintrag); });
     /* In Phasenbahnen stehen die Aufgaben nach Modul gebündelt (Reihenfolge
        der Abbildung 1); der Zeichner setzt über jede Gruppe einen
        Modul-Zwischentitel. In Modulbahnen ist die Bahn selbst das Modul. */
     var nachModul = zustand.gruppierung === 'phase';
     var untergruppeVon = {};
-    aufgabenAlle.forEach(function (k) { untergruppeVon[k.id] = k.eintrag.module.length ? k.eintrag.module[0] : ''; });
+    aufgabenAlle.forEach(function (k) {
+      untergruppeVon[k.id] = nachModul ? modulInPhase(k.eintrag, gruppeVon[k.id]) : gruppeVon[k.id];
+    });
+    var mo = modulOrdnung();
+    function rangVon(mm) { return mo.hasOwnProperty(mm) ? mo[mm] : 999; }
+    /* Rang des Moduls, unter dem die Aufgabe in der Bahn steht; modulRang ist
+       der ihres ersten Moduls (Gleichstand der Ergebnisse). */
+    function unterRang(k) { return rangVon(untergruppeVon[k.id] || ''); }
+    function modulRang(k) { return rangVon(k.eintrag.module.length ? k.eintrag.module[0] : ''); }
+    /* Die Phasen, die in der Bahn zählen: die des Moduls, in dem das Element
+       dort steht — «Prototyping durchführen» beginnt im Modul Produkt im
+       Konzept, nicht in der Initialisierung. */
+    function bahnPhasen(e, gruppe, unter) {
+      var modul = nachModul ? unter : gruppe;
+      return modul ? HT.daten.phasenImModul(e, modul) : phasenVon(e);
+    }
+    var phasenA = {};
+    aufgabenAlle.forEach(function (k) { phasenA[k.id] = bahnPhasen(k.eintrag, gruppeVon[k.id], untergruppeVon[k.id]); });
 
     /* Stelle in der Abbildung, gesucht im Feld aus Bahn und Modul-Unterbahn
        (Phasenansicht) bzw. aus frühester Phase und Modulbahn (Modulansicht). */
@@ -452,7 +495,7 @@
     aufgabenAlle.forEach(function (k) {
       stelleA[k.id] = nachModul
         ? aufgabeStelle(k, gruppeVon[k.id], untergruppeVon[k.id])
-        : aufgabeStelle(k, fruehestePhase(k.eintrag.phasen, vp), gruppeVon[k.id]);
+        : aufgabeStelle(k, fruehestePhase(phasenA[k.id], vp), gruppeVon[k.id]);
     });
 
     /* Innerhalb der Bahn nach Modul, dann nach der frühesten Phase, dann in
@@ -463,17 +506,17 @@
       var gb = gruppenNamen.indexOf(gruppeVon[b.id]);
       if (ga !== gb) { return ga - gb; }
       if (nachModul) {
-        var ma = modulRang(a), mb = modulRang(b);
+        var ma = unterRang(a), mb = unterRang(b);
         if (ma !== mb) { return ma - mb; }
       }
-      var pa = phasenRang(a.eintrag.phasen, vp);
-      var pb = phasenRang(b.eintrag.phasen, vp);
+      var pa = phasenRang(phasenA[a.id], vp);
+      var pb = phasenRang(phasenA[b.id], vp);
       if (pa !== pb) { return pa - pb; }
       var s = stellenVergleich(stelleA[a.id], stelleA[b.id]);
       if (s) { return s; }
       if (stelleA[a.id] === null) {
         if (a.entscheid !== b.entscheid) { return a.entscheid ? 1 : -1; }
-        var la = letzterPhasenRang(a.eintrag.phasen, vp), lb = letzterPhasenRang(b.eintrag.phasen, vp);
+        var la = letzterPhasenRang(phasenA[a.id], vp), lb = letzterPhasenRang(phasenA[b.id], vp);
         if (la !== lb) { return la - lb; }
       }
       return a.begriff.localeCompare(b.begriff, 'de');
@@ -484,13 +527,13 @@
        Abbildung offen lässt: Aufgaben an derselben Stelle («Ausschreibung
        erarbeiten» vor «durchführen») und Entscheide ohne Kasten im Feld. */
     function abschnittVon(k) {
-      return gruppeVon[k.id] + '|' + (nachModul ? modulRang(k) : '') + '|' + phasenRang(k.eintrag.phasen, vp);
+      return gruppeVon[k.id] + '|' + (nachModul ? unterRang(k) : '') + '|' + phasenRang(phasenA[k.id], vp);
     }
     var geordnet = [];
     for (var ai = 0, aj; ai < aufgabenAlle.length; ai = aj) {
       for (aj = ai + 1; aj < aufgabenAlle.length && abschnittVon(aufgabenAlle[aj]) === abschnittVon(aufgabenAlle[ai]); aj++) { /* weiter */ }
       geordnet = geordnet.concat(nachGrundlagen(aufgabenAlle.slice(ai, aj),
-        nachModul ? gruppeVon[aufgabenAlle[ai].id] : fruehestePhase(aufgabenAlle[ai].eintrag.phasen, vp)));
+        nachModul ? gruppeVon[aufgabenAlle[ai].id] : fruehestePhase(phasenA[aufgabenAlle[ai].id], vp)));
     }
     aufgabenAlle = geordnet;
 
@@ -503,7 +546,7 @@
       aufgaben.forEach(function (k, i) {
         k.eintrag.ergebnisse.forEach(function (name) {
           var e = HT.daten.eintragMitBegriff(name, 'ergebnis');
-          if (e && rang[e.id] === undefined && erzeugtInPhasen(k.eintrag, e, phasenImUmfang)) { rang[e.id] = i; quelleVon[e.id] = k.id; }
+          if (e && rang[e.id] === undefined && erzeugtInPhasen(k.eintrag, e, phasenImUmfang, u.module)) { rang[e.id] = i; quelleVon[e.id] = k.id; }
         });
       });
     }
@@ -514,27 +557,23 @@
     var gruppeVonErgebnis = {};
     ergebnisseAlle.forEach(function (k) {
       var g = quelleVon[k.id] ? (gruppeVon[quelleVon[k.id]] || '') : '';
-      if (!g) {
-        var werte = zustand.gruppierung === 'phase' ? k.eintrag.phasen : k.eintrag.module;
-        for (var i = 0; i < gruppenNamen.length; i++) {
-          if (werte.indexOf(gruppenNamen[i]) !== -1) { g = gruppenNamen[i]; break; }
-        }
-      }
-      gruppeVonErgebnis[k.id] = g;
+      gruppeVonErgebnis[k.id] = g || gruppeFinden(k.eintrag);
     });
     /* Ergebnisse folgen der Phase ihrer erzeugenden Aufgabe (sonst der
        eigenen), dann der Reihenfolge der Aufgaben — so bleiben die
        Kanten «erzeugt» gebündelt und die frühesten Phasen stehen oben.
-       Ihr Modul-Zwischentitel ist das Modul der erzeugenden Aufgabe (in den
-       Daten liegt jedes erzeugte Ergebnis in deren Modul), sonst das eigene. */
-    function ergebnisPhasenRang(k) {
-      var q = quelleVon[k.id] ? m.knoten[quelleVon[k.id]] : null;
-      return phasenRang(q ? q.eintrag.phasen : k.eintrag.phasen, vp);
-    }
+       Ihr Modul-Zwischentitel ist das Modul, in dem die erzeugende Aufgabe
+       steht (in den Daten liegt jedes erzeugte Ergebnis dort), sonst das
+       eigene Modul mit der Phase der Bahn. */
     function ergebnisModul(k) {
-      var q = quelleVon[k.id] ? m.knoten[quelleVon[k.id]] : null;
-      var liste = q ? q.eintrag.module : k.eintrag.module;
-      return liste.length ? liste[0] : '';
+      if (quelleVon[k.id]) { return untergruppeVon[quelleVon[k.id]]; }
+      return nachModul ? modulInPhase(k.eintrag, gruppeVonErgebnis[k.id]) : gruppeVonErgebnis[k.id];
+    }
+    function ergebnisPhasen(k) {
+      return quelleVon[k.id] ? phasenA[quelleVon[k.id]] : bahnPhasen(k.eintrag, gruppeVonErgebnis[k.id], untergruppeVon[k.id]);
+    }
+    function ergebnisPhasenRang(k) {
+      return phasenRang(ergebnisPhasen(k), vp);
     }
     function ergebnisModulRang(k) {
       var mm = ergebnisModul(k);
@@ -547,7 +586,7 @@
     var stelleE = {};
     ergebnisseAlle.forEach(function (k) {
       var q = quelleVon[k.id] ? m.knoten[quelleVon[k.id]] : null;
-      var phase = nachModul ? gruppeVonErgebnis[k.id] : fruehestePhase(q ? q.eintrag.phasen : k.eintrag.phasen, vp);
+      var phase = nachModul ? gruppeVonErgebnis[k.id] : fruehestePhase(ergebnisPhasen(k), vp);
       var s = abbStelle(k.id, phase, nachModul ? untergruppeVon[k.id] : gruppeVonErgebnis[k.id]);
       if (s === null && q && stelleA[q.id] !== null && stelleA[q.id] !== undefined) { s = stelleA[q.id] + 0.1; }
       stelleE[k.id] = s;
@@ -611,7 +650,7 @@
     });
     var kanten = m.kanten.filter(function (kante) {
       if (!rel[kante.rel] || !sichtbar[kante.von] || !sichtbar[kante.nach]) { return false; }
-      return kante.rel !== 'erzeugt' || erzeugtInPhasen(m.knoten[kante.von].eintrag, m.knoten[kante.nach].eintrag, phasenImUmfang);
+      return kante.rel !== 'erzeugt' || erzeugtInPhasen(m.knoten[kante.von].eintrag, m.knoten[kante.nach].eintrag, phasenImUmfang, u.module);
     });
 
     if (zustand.isolierteAusblenden) {

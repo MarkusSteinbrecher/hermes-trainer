@@ -70,10 +70,12 @@
     };
   }
 
+  /* Im Feld steht ein Eintrag, der die Phase in einem der Module hat — nicht
+     bloss irgendeine Phase und irgendein Modul: «Prototyping durchführen»
+     steht in Projektgrundlagen nur in der Initialisierung. */
   function imFeld(e, phaseName, modulNamen) {
-    if (!enthaelt(e.phasen, phaseName)) { return false; }
     for (var i = 0; i < modulNamen.length; i++) {
-      if (enthaelt(e.module, modulNamen[i])) { return true; }
+      if (enthaelt(HT.daten.phasenImModul(e, modulNamen[i]), phaseName)) { return true; }
     }
     return false;
   }
@@ -142,7 +144,7 @@
   /* Zeigt bei mehreren Modulen, in welchem der Eintrag steht. */
   function modulMarke(e, feld) {
     if (feld.namen.length < 2) { return null; }
-    var eigene = feld.namen.filter(function (m) { return enthaelt(e.module, m); });
+    var eigene = feld.namen.filter(function (m) { return imFeld(e, feld.phase.begriff, [m]); });
     if (!eigene.length) { return null; }
     return marke(eigene.join(' · '), 'feld-marke--modul');
   }
@@ -207,12 +209,12 @@
 
   /* Welche Aufgabe dieses Felds erzeugt welches Ergebnis? (aufgabe.ergebnisse,
      nur wenn die Modultabelle das Paar in der Phase des Felds ankreuzt) */
-  function erzeugerKarte(aufgaben, phase) {
+  function erzeugerKarte(aufgaben, phase, modulNamen) {
     var karte = {};
     aufgaben.forEach(function (a) {
       (a.ergebnisse || []).forEach(function (name) {
         var e = HT.daten.eintragMitBegriff(name, 'ergebnis');
-        if (e && !HT.graph.erzeugtInPhasen(a, e, [phase])) { return; }
+        if (e && !HT.graph.erzeugtInPhasen(a, e, [phase], modulNamen)) { return; }
         var key = HT.daten.normalisieren(name);
         if (!karte[key]) { karte[key] = []; }
         if (karte[key].indexOf(a.begriff) === -1) { karte[key].push(a.begriff); }
@@ -480,7 +482,7 @@
     }
 
     if (ergebnisse.length) {
-      var erzeuger = erzeugerKarte(aufgaben, feld.phase.begriff);
+      var erzeuger = erzeugerKarte(aufgaben, feld.phase.begriff, feld.namen);
       var texte = meilensteinTexte(feld.phase);
       behaelter.appendChild(h('section', { class: 'feld-abschnitt' }, [
         h('h2', { text: 'Ergebnisse (' + ergebnisse.length + ')' }),

@@ -2539,6 +2539,21 @@
       "Produkt",
       "IT-System"
     ],
+    "modulPhasen": {
+      "Projektgrundlagen": [
+        "Initialisierung"
+      ],
+      "Produkt": [
+        "Konzept",
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "IT-System": [
+        "Konzept",
+        "Realisierung",
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Entwickler",
     "beteiligt": [
       "Entwickler",

@@ -23,7 +23,7 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-14b';
+  var DATEN_VERSION = '2026-09-15a';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
@@ -188,7 +188,8 @@
       module: alsArray(roh.module),
       szenarien: alsArray(roh.szenarien),
       ergebnisse: alsArray(roh.ergebnisse),
-      ergebnisPhasen: phasenJeErgebnis(roh.ergebnisPhasen),
+      ergebnisPhasen: phasenJeName(roh.ergebnisPhasen),
+      modulPhasen: phasenJeName(roh.modulPhasen),
       grundlagen: alsArray(roh.grundlagen),
       meilensteine: meilensteine,
       quelle: quelle,
@@ -206,9 +207,10 @@
     return e;
   }
 
-  /* Aufgaben: Phasen je erzeugtem Ergebnis ({ Ergebnis: [Phasen] }), aus den
-     Modultabellen des Handbuchs (tools/ergebnis-phasen.py). */
-  function phasenJeErgebnis(roh) {
+  /* { Name: [Phasen] } aus den Modultabellen des Handbuchs
+     (tools/ergebnis-phasen.py): bei Aufgaben je erzeugtem Ergebnis
+     (ergebnisPhasen), bei Aufgaben und Ergebnissen je Modul (modulPhasen). */
+  function phasenJeName(roh) {
     var aus = {};
     if (roh && typeof roh === 'object' && !Array.isArray(roh)) {
       Object.keys(roh).forEach(function (name) { aus[name] = alsArray(roh[name]); });
@@ -521,6 +523,24 @@
     });
   }
 
+  /** Phasen, in denen eine Aufgabe oder ein Ergebnis in einem Modul vorkommt.
+      Die Modultabellen kreuzen die Phasen je Modul an; «modulPhasen» steht
+      nur, wo nicht jede Phase des Eintrags in jedem seiner Module gilt —
+      «Prototyping durchführen» läuft in Projektgrundlagen nur in der
+      Initialisierung, in Produkt und IT-System in Konzept, Realisierung und
+      Umsetzung. Ohne Angabe gelten alle Phasen in jedem Modul des Eintrags;
+      ein fremdes Modul hat keine. */
+  function phasenImModul(eintrag, modul) {
+    if (!eintrag) { return []; }
+    var ziel = normalisieren(modul);
+    var jeModul = eintrag.modulPhasen || {};
+    for (var name in jeModul) {
+      if (Object.prototype.hasOwnProperty.call(jeModul, name) && normalisieren(name) === ziel) { return jeModul[name]; }
+    }
+    var drin = (eintrag.module || []).some(function (m) { return normalisieren(m) === ziel; });
+    return drin ? (eintrag.phasen || []) : [];
+  }
+
   function alphabetisch(liste) {
     return liste.slice().sort(function (a, b) {
       return a.begriff.localeCompare(b.begriff, 'de');
@@ -553,6 +573,7 @@
     vorgehensweisen: vorgehensweisen,
     phasenOhneVorgehensweise: phasenOhneVorgehensweise,
     phasenSortiert: phasenSortiert,
+    phasenImModul: phasenImModul,
     phasenKurz: PHASEN_KURZ,
     alphabetisch: alphabetisch,
     quizfragen: quizfragen,

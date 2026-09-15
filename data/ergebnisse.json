@@ -13,6 +13,17 @@
       "Einführungsorganisation",
       "IT-Migration"
     ],
+    "modulPhasen": {
+      "Einführungsorganisation": [
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "IT-Migration": [
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Projektleiter",
     "beteiligt": [
       "Projektleiter",
@@ -127,6 +138,18 @@
       "Beschaffung",
       "Projektführung"
     ],
+    "modulPhasen": {
+      "Beschaffung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Projektführung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Projektleiter",
     "beteiligt": [
       "Projektleiter",
@@ -865,6 +888,23 @@
       "Produkt",
       "Projektführung"
     ],
+    "modulPhasen": {
+      "IT-Migration": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "IT-System": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Produkt": [
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Projektführung": [
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Projektleiter, Entwickler",
     "beteiligt": [
       "Projektleiter",
@@ -999,6 +1039,18 @@
       "Beschaffung",
       "Projektführung"
     ],
+    "modulPhasen": {
+      "Beschaffung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Projektführung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Projektleiter, Anwendervertreter",
     "beteiligt": [
       "Projektleiter",
@@ -1195,6 +1247,32 @@
       "Produkt",
       "Projektgrundlagen"
     ],
+    "modulPhasen": {
+      "Einführungsorganisation": [
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "ISDS": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "IT-Migration": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "IT-System": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Produkt": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Projektgrundlagen": [
+        "Initialisierung"
+      ]
+    },
     "verantwortlich": "Projektleiter",
     "beteiligt": [
       "Projektleiter",
@@ -1227,6 +1305,24 @@
       "Einführungsorganisation",
       "Projektsteuerung"
     ],
+    "modulPhasen": {
+      "Beschaffung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Einführungsorganisation": [
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Projektsteuerung": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ]
+    },
     "verantwortlich": "Auftraggeber",
     "beteiligt": [
       "Auftraggeber",
@@ -1257,6 +1353,22 @@
       "Produkt",
       "Projektführung"
     ],
+    "modulPhasen": {
+      "IT-System": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Produkt": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Projektführung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Projektleiter, Anwendervertreter",
     "beteiligt": [
       "Projektleiter",
@@ -2075,6 +2187,21 @@
       "Projektführung",
       "Projektsteuerung"
     ],
+    "modulPhasen": {
+      "Projektführung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Projektsteuerung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Auftraggeber, Projektleiter",
     "beteiligt": [
       "Auftraggeber",
@@ -2130,6 +2257,20 @@
       "Einführungsorganisation",
       "Projektführung"
     ],
+    "modulPhasen": {
+      "Einführungsorganisation": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Projektführung": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ]
+    },
     "verantwortlich": "Projektleiter, Anwendervertreter",
     "beteiligt": [
       "Projektleiter",
@@ -2160,6 +2301,17 @@
       "Projektführung",
       "Projektsteuerung"
     ],
+    "modulPhasen": {
+      "Projektführung": [
+        "Abschluss"
+      ],
+      "Projektsteuerung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Auftraggeber, Projektleiter",
     "beteiligt": [
       "Auftraggeber",
@@ -2220,6 +2372,19 @@
       "Projektführung",
       "Tests"
     ],
+    "modulPhasen": {
+      "Projektführung": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Tests": [
+        "Abschluss"
+      ]
+    },
     "verantwortlich": "Projektleiter, Testverantwortlicher",
     "beteiligt": [
       "Projektleiter",
@@ -2251,6 +2416,21 @@
       "Produkt",
       "Projektgrundlagen"
     ],
+    "modulPhasen": {
+      "IT-System": [
+        "Konzept",
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Produkt": [
+        "Konzept",
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Projektgrundlagen": [
+        "Initialisierung"
+      ]
+    },
     "verantwortlich": "Entwickler",
     "beteiligt": [
       "Entwickler",
@@ -2280,6 +2460,21 @@
       "Produkt",
       "Projektgrundlagen"
     ],
+    "modulPhasen": {
+      "IT-System": [
+        "Konzept",
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Produkt": [
+        "Konzept",
+        "Realisierung",
+        "Umsetzung"
+      ],
+      "Projektgrundlagen": [
+        "Initialisierung"
+      ]
+    },
     "verantwortlich": "Entwickler",
     "beteiligt": [
       "Entwickler",
@@ -2572,6 +2767,34 @@
       "Produkt",
       "Projektführung"
     ],
+    "modulPhasen": {
+      "IT-System": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Organisation": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Produkt": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ],
+      "Projektführung": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ]
+    },
     "verantwortlich": "Projektleiter, Anwendervertreter",
     "beteiligt": [
       "Projektleiter",
@@ -2602,6 +2825,19 @@
       "Projektführung",
       "Projektgrundlagen"
     ],
+    "modulPhasen": {
+      "Projektführung": [
+        "Initialisierung",
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung",
+        "Abschluss"
+      ],
+      "Projektgrundlagen": [
+        "Initialisierung"
+      ]
+    },
     "verantwortlich": "Projektleiter",
     "beteiligt": [
       "Projektleiter",
@@ -2873,6 +3109,18 @@
       "Beschaffung",
       "Projektführung"
     ],
+    "modulPhasen": {
+      "Beschaffung": [
+        "Konzept",
+        "Umsetzung"
+      ],
+      "Projektführung": [
+        "Konzept",
+        "Realisierung",
+        "Einführung",
+        "Umsetzung"
+      ]
+    },
     "verantwortlich": "Projektleiter",
     "beteiligt": [
       "Projektleiter",
