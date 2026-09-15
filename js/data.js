@@ -23,7 +23,7 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-14a';
+  var DATEN_VERSION = '2026-09-14b';
 
   var KAT_NACH_KEY = {};
   KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
@@ -189,6 +189,7 @@
       szenarien: alsArray(roh.szenarien),
       ergebnisse: alsArray(roh.ergebnisse),
       ergebnisPhasen: phasenJeErgebnis(roh.ergebnisPhasen),
+      grundlagen: alsArray(roh.grundlagen),
       meilensteine: meilensteine,
       quelle: quelle,
       reihenfolge: index

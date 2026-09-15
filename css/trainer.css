@@ -64,10 +64,22 @@ body[data-route="trainer"][data-teil="uebung"] .view { max-width: none; padding:
 .tr-art[aria-pressed="false"] .gswatch { filter: grayscale(1); opacity: .5; }
 .tr-art .gswatch { width: 20px; height: 20px; }
 
+/* Steuerzeile: links die Vorgehensweise (Radioknöpfe), daneben die leeren
+   Kästen; bei wenig Platz bricht sie um. */
+.tr-steuerung { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; }
+.tr-vorgehen__wahl { position: relative; padding-left: 8px; }
+.tr-vorgehen__eingabe { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.tr-vorgehen__ikone { display: grid; place-items: center; color: var(--text-leise); }
+.tr-vorgehen__wahl:not(.ist-gewaehlt) { color: var(--text-leise); }
+.tr-vorgehen__wahl.ist-gewaehlt,
+.tr-vorgehen__wahl:has(.tr-vorgehen__eingabe:checked) { border-color: var(--text); box-shadow: inset 0 -3px 0 var(--akzent); }
+.tr-vorgehen__wahl.ist-gewaehlt .tr-vorgehen__ikone { color: var(--akzent); }
+.tr-vorgehen__wahl:has(.tr-vorgehen__eingabe:focus-visible) { outline: 2px solid var(--fokus); outline-offset: 1px; }
+
 /* --- Übersicht ------------------------------------------------------------- */
 
 .tr-hub { max-width: var(--maxbreite); margin: 0 auto; }
-.tr-hub .tr-arten { margin-top: 4px; }
+.tr-hub .tr-steuerung { margin-top: 4px; }
 .tr-karten {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));

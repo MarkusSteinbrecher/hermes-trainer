@@ -1,8 +1,8 @@
 /* meinHERMES — Trainer, Teil «Zuordnen»: Rollen, Aufgaben und Ergebnisse
    einander zuordnen.
 
-   Jede Übung ist ein Ausschnitt der klassischen Vorgehensweise, nach Phasen
-   gegliedert: eine Phase (eine Bahn, darin die Module als Unterbahnen), ein
+   Jede Übung ist ein Ausschnitt der klassischen oder der agilen
+   Vorgehensweise (Radioknöpfe vor «Leere Kästen»), nach Phasen gegliedert: eine Phase (eine Bahn, darin die Module als Unterbahnen), ein
    Modul (die Phasen als Bahnen) oder das Gesamtbild. Auswahl und Reihenfolge
    kommen aus js/graph-modell.js, die Knotenformen aus js/graph-zeichnen.js.
    Linien gibt es keine: je Aufgabe ein Block — links die verantwortliche
@@ -23,7 +23,9 @@
    meisten Treffer ergibt; ausgefüllte Kästen müssen dazu passen.
 
    Adressen: #/trainer?phase=<Phase>, #/trainer?modul=<Modul>,
-   #/trainer?alles=1 — je eine eigene Seite in voller Breite. */
+   #/trainer?alles=1 — je eine eigene Seite in voller Breite; agil mit
+   &vorgehen=agil (ohne Angabe klassisch). Die Übersicht #/trainer zeigt die
+   zuletzt gewählte Vorgehensweise, #/trainer?vorgehen=agil ausdrücklich. */
 (function (global) {
   'use strict';
 
@@ -34,7 +36,15 @@
   var SVG_NS = 'http://www.w3.org/2000/svg';
   var SPEICHER = 'trainer';
   var VERSION = 3;          // 2: Graph mit Linien, jede Rolle einmal (bis 2026-09-14); 1: Abbildung 1 — andere Kästen, Quoten nicht vergleichbar
-  var VORGEHEN = 'klassisch';
+  /* Die Vorgehensweisen zur Wahl, Icons im 24er-Raster wie HT.ui.katSymbol:
+     klassisch ein Wasserfall (Phasen nacheinander), agil ein Kreispfeil
+     (Iteration). */
+  var VORGEHENSWEISEN = [
+    { key: 'klassisch', label: 'Klassisch', adjektiv: 'klassischen',
+      pfade: ['M3.5 3.8h6v4.4h-6Z', 'M9 10h6v4.4H9Z', 'M14.5 16.2h6v4.4h-6Z', 'M6.5 8.2v4H9', 'M12 14.4v4h2.5'] },
+    { key: 'agil', label: 'Agil', adjektiv: 'agilen',
+      pfade: ['M20.5 12a8.5 8.5 0 1 1-8.5-8.5c2.4 0 4.6 1 6.2 2.6l2.3 2.3', 'M20.5 3.6v4.8h-4.8'] }
+  ];
   var RELATIONEN = { verantwortlich: true, beteiligt: false, erzeugt: true, ergebnisrolle: false };
   var ARTEN = ['rolle', 'aufgabe', 'ergebnis'];
   var EINZELN = { rolle: true };  // im Pool je Kasten ein eigener Knopf statt eines Stapels mit Zahl
@@ -60,11 +70,11 @@
   var SUCHE_AB = 12;        // ab so vielen Elementen bekommt der Pool ein Suchfeld
   var ROLLZONE = 48;        // Randzone der Bühne, in der ein Zug sie mitrollt (px)
 
-  var zustand = { beste: {}, leer: { rolle: true, aufgabe: true, ergebnis: true }, initialisiert: false };
+  var zustand = { beste: {}, leer: { rolle: true, aufgabe: true, ergebnis: true }, vorgehen: 'klassisch', initialisiert: false };
   var refs = {};
   var uebung = null;        // laufende Übung, siehe uebungStarten()
   var zoom = 1;
-  var liste = null;         // die Übungen, einmal je Sitzung
+  var listen = {};          // die Übungen je Vorgehensweise, einmal je Sitzung
   var vorbereitung = null;  // Versprechen: Schrift geladen, Reihenfolge der Abbildung 1 gesetzt
 
   function svgEl(tag, attrs) {
@@ -88,16 +98,25 @@
     return istMeilenstein(e) ? 'Meilenstein' : HT.graph.KAT[e.kategorie].singular;
   }
 
+  /* Eintrag aus VORGEHENSWEISEN; null für einen unbekannten Schlüssel. */
+  function vorgehenVon(key) {
+    for (var i = 0; i < VORGEHENSWEISEN.length; i++) {
+      if (VORGEHENSWEISEN[i].key === key) { return VORGEHENSWEISEN[i]; }
+    }
+    return null;
+  }
+
   /* --- Gespeichert: beste Quote je Übung und leere Arten, welche Arten leer sind */
 
   function speichern() {
-    HT.store.schreib(SPEICHER, { version: VERSION, beste: zustand.beste, leer: zustand.leer });
+    HT.store.schreib(SPEICHER, { version: VERSION, beste: zustand.beste, leer: zustand.leer, vorgehen: zustand.vorgehen });
   }
 
   function wiederherstellen() {
     var g = HT.store.lies(SPEICHER, null);
     if (!g || typeof g !== 'object' || g.version !== VERSION) { return; }
     if (g.beste && typeof g.beste === 'object') { zustand.beste = g.beste; }
+    if (vorgehenVon(g.vorgehen)) { zustand.vorgehen = g.vorgehen; }
     if (g.leer && typeof g.leer === 'object') {
       var leer = {};
       ARTEN.forEach(function (art) { leer[art] = g.leer[art] !== false; });
@@ -109,7 +128,8 @@
     return ARTEN.filter(function (art) { return zustand.leer[art]; });
   }
 
-  /* Die beste Runde gilt je Übung und Auswahl der leeren Arten («phase:Konzept|rae»). */
+  /* Die beste Runde gilt je Übung und Auswahl der leeren Arten («phase:Konzept|rae»,
+     agil «agil:phase:Umsetzung|rae»). */
   function bestSchluessel(def) {
     return def.id + '|' + leereArten().map(function (art) { return art.charAt(0); }).join('');
   }
@@ -140,8 +160,9 @@
   function bloeckeVon(def) {
     if (def.art === 'phase') { return bloeckeImUmfang(def.umfang, true); }
     var bloecke = [];
-    HT.graph.phasenDerVorgehensweise(VORGEHEN).forEach(function (phase) {
-      var umfang = { vorgehen: VORGEHEN, phasen: [phase], module: def.umfang.module };
+    var vorgehen = def.umfang.vorgehen;
+    HT.graph.phasenDerVorgehensweise(vorgehen).forEach(function (phase) {
+      var umfang = { vorgehen: vorgehen, phasen: [phase], module: def.umfang.module };
       bloecke = bloecke.concat(bloeckeImUmfang(umfang, def.art !== 'modul'));
     });
     return bloecke;
@@ -173,29 +194,38 @@
     });
   }
 
-  function uebungen() {
-    if (liste) { return liste; }
-    liste = [];
-    HT.graph.phasenDerVorgehensweise(VORGEHEN).forEach(function (name) {
+  /* Die Übungen einer Vorgehensweise: ihre Phasen, die Module und das
+     Gesamtbild — ohne die, in denen dort keine Aufgabe steht. Klassisch
+     behalten Ids und Adressen ihre alte Form (beste Runden bleiben gültig),
+     agil tragen sie die Vorsilbe «agil:» bzw. &vorgehen=agil. */
+  function uebungen(vorgehen) {
+    if (listen[vorgehen]) { return listen[vorgehen]; }
+    var vorsilbe = vorgehen === 'klassisch' ? '' : vorgehen + ':';
+    var zusatz = vorgehen === 'klassisch' ? '' : '&vorgehen=' + vorgehen;
+    var liste = [];
+    HT.graph.phasenDerVorgehensweise(vorgehen).forEach(function (name) {
       liste.push({
-        id: 'phase:' + name, art: 'phase', name: name, titel: 'Phase ' + name,
+        id: vorsilbe + 'phase:' + name, art: 'phase', name: name, titel: 'Phase ' + name,
         eintrag: HT.daten.eintragMitBegriff(name, 'phase'),
-        adresse: '#/trainer?phase=' + encodeURIComponent(name),
-        umfang: { vorgehen: VORGEHEN, phasen: [name], module: [] }
+        adresse: '#/trainer?phase=' + encodeURIComponent(name) + zusatz,
+        vorgehen: vorgehen,
+        umfang: { vorgehen: vorgehen, phasen: [name], module: [] }
       });
     });
     HT.daten.eintraegeDerKategorie('modul').forEach(function (m) {
       liste.push({
-        id: 'modul:' + m.begriff, art: 'modul', name: m.begriff, titel: 'Modul ' + m.begriff,
+        id: vorsilbe + 'modul:' + m.begriff, art: 'modul', name: m.begriff, titel: 'Modul ' + m.begriff,
         eintrag: m,
-        adresse: '#/trainer?modul=' + encodeURIComponent(m.begriff),
-        umfang: { vorgehen: VORGEHEN, phasen: [], module: [m.begriff] }
+        adresse: '#/trainer?modul=' + encodeURIComponent(m.begriff) + zusatz,
+        vorgehen: vorgehen,
+        umfang: { vorgehen: vorgehen, phasen: [], module: [m.begriff] }
       });
     });
     liste.push({
-      id: 'alles', art: 'alles', name: 'Gesamtbild', titel: 'Gesamtbild', eintrag: null,
-      adresse: '#/trainer?alles=1',
-      umfang: { vorgehen: VORGEHEN, phasen: [], module: [] }
+      id: vorsilbe + 'alles', art: 'alles', name: 'Gesamtbild', titel: 'Gesamtbild', eintrag: null,
+      adresse: '#/trainer?alles=1' + zusatz,
+      vorgehen: vorgehen,
+      umfang: { vorgehen: vorgehen, phasen: [], module: [] }
     });
     liste.forEach(function (def) {
       var bloecke = bloeckeVon(def);
@@ -205,8 +235,23 @@
         ergebnis: bloecke.reduce(function (summe, b) { return summe + b.ergebnisse.length; }, 0)
       };
     });
-    liste = liste.filter(function (def) { return def.zahlen.aufgabe > 0; });
-    return liste;
+    listen[vorgehen] = liste.filter(function (def) { return def.zahlen.aufgabe > 0; });
+    return listen[vorgehen];
+  }
+
+  function hubAdresse(vorgehen) {
+    return vorgehen === 'klassisch' ? '#/trainer' : '#/trainer?vorgehen=' + vorgehen;
+  }
+
+  /* Dieselbe Übung in der anderen Vorgehensweise: Modul und Gesamtbild
+     gleichen Namens; eine Phase, die es dort nicht gibt, wird zu Umsetzung
+     (agil) bzw. Konzept (klassisch). null, wenn die Übung dort fehlt. */
+  function gegenstueck(def, vorgehen) {
+    var name = def.name;
+    if (def.art === 'phase' && HT.graph.phasenDerVorgehensweise(vorgehen).indexOf(name) === -1) {
+      name = vorgehen === 'agil' ? 'Umsetzung' : 'Konzept';
+    }
+    return uebungen(vorgehen).filter(function (u) { return u.art === def.art && u.name === name; })[0] || null;
   }
 
   function leereAnzahl(def) {
@@ -217,9 +262,9 @@
     return !!(params && (params.phase || params.modul || params.alles));
   }
 
-  function uebungFinden(params) {
+  function uebungFinden(params, vorgehen) {
     var n = HT.daten.normalisieren;
-    var treffer = uebungen().filter(function (u) {
+    var treffer = uebungen(vorgehen).filter(function (u) {
       if (params.alles) { return u.art === 'alles'; }
       if (params.phase) { return u.art === 'phase' && n(u.name) === n(params.phase); }
       return u.art === 'modul' && n(u.name) === n(params.modul);
@@ -229,7 +274,8 @@
 
   /* Vor dem ersten Bild: die Schrift muss geladen sein, sonst misst der Graph
      die Knotenbreiten mit der Ersatzschrift; und die Reihenfolge der Aufgaben
-     und Ergebnisse kommt wie im Graph aus der Abbildung 1. Fehlt die Grafik,
+     und Ergebnisse kommt wie im Graph aus der Abbildung 1 (dazu die Grundlagen
+     der Aufgaben, siehe HT.graph.teilgraph). Fehlt die Grafik,
      gilt die Ordnung nach Phase und Name — geübt wird trotzdem. */
   function vorbereiten() {
     if (vorbereitung) { return vorbereitung; }
@@ -1062,6 +1108,28 @@
     return leiste;
   }
 
+  /* Radioknöpfe «Vorgehensweise: Klassisch · Agil» mit Icon, in der Form der
+     Schalter daneben; der Kreis selbst ist nicht zu sehen, bleibt aber für
+     Tastatur und Screenreader da. beiWahl(key) baut für die andere
+     Vorgehensweise auf. */
+  var wahlNummer = 0;
+  function vorgehenWahl(aktiv, beiWahl) {
+    var name = 'tr-vorgehen-' + (++wahlNummer);
+    return h('div', { class: 'tr-arten tr-vorgehen', role: 'radiogroup', 'aria-label': 'Vorgehensweise' }, [
+      h('span', { class: 'tr-arten__titel', text: 'Vorgehensweise' })
+    ].concat(VORGEHENSWEISEN.map(function (v) {
+      var eingabe = h('input', {
+        type: 'radio', class: 'tr-vorgehen__eingabe', name: name, value: v.key, checked: v.key === aktiv,
+        on: { change: function () { if (eingabe.checked && v.key !== aktiv) { beiWahl(v.key); } } }
+      });
+      return h('label', { class: 'tr-art tr-vorgehen__wahl' + (v.key === aktiv ? ' ist-gewaehlt' : ''), title: v.label + 'e Vorgehensweise' }, [
+        eingabe,
+        h('span', { class: 'tr-vorgehen__ikone' }, HT.ui.symbol(v.pfade, 18)),
+        h('span', { text: v.label })
+      ]);
+    })));
+  }
+
   function besteZeigen() {
     if (!refs.beste || !uebung) { return; }
     var b = besteVon(uebung.def);
@@ -1116,9 +1184,20 @@
     return { el: el, aktualisieren: aktualisieren };
   }
 
-  function hubRendern(behaelter) {
-    var alle = uebungen();
+  function hubRendern(behaelter, vorgehen) {
+    var alle = uebungen(vorgehen);
     var karten = [];
+    /* Andere Vorgehensweise: die Übersicht an Ort und Stelle neu, die Adresse
+       nachgeführt, ohne dass der Router die Seite neu aufbaut. */
+    function wechseln(key) {
+      zustand.vorgehen = key;
+      speichern();
+      global.history.replaceState(null, '', hubAdresse(key));
+      HT.ui.leeren(behaelter);
+      hubRendern(behaelter, key);
+      var gewaehlt = behaelter.querySelector('.tr-vorgehen__eingabe:checked');
+      if (gewaehlt) { gewaehlt.focus(); }
+    }
     function gruppe(art) {
       return h('div', { class: 'tr-karten' }, alle.filter(function (u) { return u.art === art; }).map(function (def) {
         var k = karte(def);
@@ -1130,12 +1209,15 @@
     behaelter.appendChild(h('section', { class: 'tr-hub' }, [
       h('div', { class: 'kopf kopf--teil' }, [
         h('h2', { text: 'Zuordnen' }),
-        h('p', { text: 'Rollen, Aufgaben und Ergebnisse der klassischen Vorgehensweise — je Phase, je Modul oder alles auf einmal. '
+        h('p', { text: 'Rollen, Aufgaben und Ergebnisse der ' + vorgehenVon(vorgehen).adjektiv + ' Vorgehensweise — je Phase, je Modul oder alles auf einmal. '
           + 'Je Aufgabe eine Zeile: links die verantwortliche Rolle, rechts die Ergebnisse, die sie erzeugt. Die Kästen sind leer, '
           + 'die Elemente liegen daneben bereit und wollen an ihren Platz; es zählt die Zuordnung, nicht die Reihenfolge. '
           + 'Am Ende zeigt die Prüfung, was richtig, falsch oder offen geblieben ist.' })
       ]),
-      artenLeiste(function () { karten.forEach(function (k) { k.aktualisieren(); }); }),
+      h('div', { class: 'tr-steuerung' }, [
+        vorgehenWahl(vorgehen, wechseln),
+        artenLeiste(function () { karten.forEach(function (k) { k.aktualisieren(); }); })
+      ]),
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Phasen' }),
       gruppe('phase'),
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Module' }),
@@ -1151,7 +1233,7 @@
   }
 
   function naechste(def) {
-    var alle = uebungen();
+    var alle = uebungen(def.vorgehen);
     var i = alle.indexOf(def);
     return i === -1 ? null : alle[(i + 1) % alle.length];
   }
@@ -1201,7 +1283,7 @@
 
     var seite = h('section', { class: 'tr-uebung', 'data-art': def.art }, [
       h('div', { class: 'tr-kopf' }, [
-        h('a', { class: 'tr-zurueck', href: '#/trainer', text: '← Alle Übungen' }),
+        h('a', { class: 'tr-zurueck', href: hubAdresse(def.vorgehen), text: '← Alle Übungen' }),
         h('div', { class: 'tr-kopf__zeile' }, [
           h('span', { class: 'tr-kicker', text: def.art === 'phase' ? 'Phase' : def.art === 'modul' ? 'Modul' : 'Alles' }),
           h('h1', { class: 'tr-titel', text: def.name }),
@@ -1211,7 +1293,15 @@
       ]),
       h('div', { class: 'tr-buehne-huelle' }, [refs.buehne, zoomLeiste]),
       h('aside', { class: 'tr-seite', 'aria-label': 'Elemente und Auswertung' }, [
-        artenLeiste(neuAufbauen),
+        h('div', { class: 'tr-steuerung' }, [
+          vorgehenWahl(def.vorgehen, function (key) {
+            var ziel = gegenstueck(def, key);
+            zustand.vorgehen = key;
+            speichern();
+            global.location.hash = ziel ? ziel.adresse : hubAdresse(key);
+          }),
+          artenLeiste(neuAufbauen)
+        ]),
         h('div', { class: 'btn-reihe tr-knoepfe' }, [refs.knopfPruefen, refs.knopfReset, refs.knopfFortsetzen, refs.knopfNochmals, knopfNaechste]),
         refs.ergebnis,
         refs.suche,
@@ -1245,15 +1335,20 @@
     uebung = null;
     params = params || {};
 
+    /* Die Adresse sagt die Vorgehensweise; ohne Angabe ist eine Übung
+       klassisch (alte Links) und die Übersicht die zuletzt gewählte. */
+    var vorgehen = vorgehenVon(params.vorgehen) ? params.vorgehen : istUebung(params) ? 'klassisch' : zustand.vorgehen;
+    if (vorgehen !== zustand.vorgehen) { zustand.vorgehen = vorgehen; speichern(); }
+
     if (!istUebung(params)) {
-      hubRendern(behaelter);
+      hubRendern(behaelter, vorgehen);
       return;
     }
-    var def = uebungFinden(params);
+    var def = uebungFinden(params, vorgehen);
     if (!def) {
       behaelter.appendChild(HT.ui.leerZustand('Diese Übung gibt es nicht',
-        'Der Link zeigt auf eine Phase oder ein Modul, das in der klassischen Vorgehensweise nicht vorkommt.',
-        h('a', { class: 'btn btn--klein', href: '#/trainer', text: 'Alle Übungen' })));
+        'Der Link zeigt auf eine Phase oder ein Modul, das in der ' + vorgehenVon(vorgehen).adjektiv + ' Vorgehensweise nicht vorkommt.',
+        h('a', { class: 'btn btn--klein', href: hubAdresse(vorgehen), text: 'Alle Übungen' })));
       return;
     }
 
@@ -1267,9 +1362,10 @@
   }
 
   function titel(params) {
-    if (params && params.phase) { return 'Trainer · Phase ' + params.phase; }
-    if (params && params.modul) { return 'Trainer · Modul ' + params.modul; }
-    return 'Trainer · Gesamtbild';
+    var zusatz = params && params.vorgehen === 'agil' ? ' (agil)' : '';
+    if (params && params.phase) { return 'Trainer · Phase ' + params.phase + zusatz; }
+    if (params && params.modul) { return 'Trainer · Modul ' + params.modul + zusatz; }
+    return 'Trainer · Gesamtbild' + zusatz;
   }
 
   HT.trainerTeile.zuordnen = {

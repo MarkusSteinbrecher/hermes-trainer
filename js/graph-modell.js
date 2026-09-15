@@ -123,6 +123,51 @@
     return a - b;
   }
 
+  /* --- Reihenfolge aus den Grundlagen --------------------------------------- */
+
+  /* Wie stark baut Aufgabe b auf Aufgabe a auf: 0 gar nicht, 1 über ein
+     Ergebnis, 2 über einen Meilenstein — jeweils nur, was a in der Phase
+     erzeugt (aufgabe.grundlagen, Handbuch «Grundlagen»). Ein Ergebnis, das
+     a selbst als Grundlage braucht, schreibt a nur fort; daraus folgt keine
+     Reihenfolge — sonst stünde jede Querschnittsaufgabe, die den
+     Projektmanagementplan nachführt, vor allen, die ihn lesen. */
+  function bautAuf(b, a, phase) {
+    var stufe = 0;
+    b.eintrag.grundlagen.forEach(function (name) {
+      if (a.eintrag.ergebnisse.indexOf(name) === -1) { return; }
+      var e = HT.daten.eintragMitBegriff(name, 'ergebnis');
+      if (!e || !erzeugtInPhasen(a.eintrag, e, [phase])) { return; }
+      var meilenstein = e.typ === 'Meilenstein';
+      if (!meilenstein && a.eintrag.grundlagen.indexOf(name) !== -1) { return; }
+      stufe = Math.max(stufe, meilenstein ? 2 : 1);
+    });
+    return stufe;
+  }
+
+  /** Aufgaben eines Abschnitts (gleiche Bahn, Modul und früheste Phase) so
+      ordnen, dass jede nach den Aufgaben kommt, auf denen sie aufbaut: diese
+      rücken vor sie, alles andere bleibt in der bisherigen Folge. Bauen zwei
+      aufeinander auf, gilt die stärkere Richtung — «Ausschreibung
+      durchführen» braucht den Meilenstein Ausschreibung, also steht der
+      Entscheid davor. Kreise in den Grundlagen brechen an der Stelle ab,
+      an der sie sich schliessen. */
+  function nachGrundlagen(teil, phase) {
+    if (teil.length < 2) { return teil; }
+    var gesetzt = {}, laufend = {}, aus = [];
+    function setzen(b) {
+      if (gesetzt[b.id] || laufend[b.id]) { return; }
+      laufend[b.id] = true;
+      teil.forEach(function (a) {
+        if (a !== b && bautAuf(b, a, phase) > bautAuf(a, b, phase)) { setzen(a); }
+      });
+      laufend[b.id] = false;
+      gesetzt[b.id] = true;
+      aus.push(b);
+    }
+    teil.forEach(setzen);
+    return aus;
+  }
+
   /* Handbuch Kap. 3.2.1: zwingend in jedem Projekt. */
   var ZWINGENDE_MODULE = ['Projektsteuerung', 'Projektführung', 'Projektgrundlagen', 'Einführungsorganisation'];
 
@@ -433,6 +478,21 @@
       }
       return a.begriff.localeCompare(b.begriff, 'de');
     });
+
+    /* Dann kommt jede Aufgabe nach denen, auf denen sie aufbaut — je
+       Abschnitt aus Bahn, Modul und frühester Phase. Das ordnet, was die
+       Abbildung offen lässt: Aufgaben an derselben Stelle («Ausschreibung
+       erarbeiten» vor «durchführen») und Entscheide ohne Kasten im Feld. */
+    function abschnittVon(k) {
+      return gruppeVon[k.id] + '|' + (nachModul ? modulRang(k) : '') + '|' + phasenRang(k.eintrag.phasen, vp);
+    }
+    var geordnet = [];
+    for (var ai = 0, aj; ai < aufgabenAlle.length; ai = aj) {
+      for (aj = ai + 1; aj < aufgabenAlle.length && abschnittVon(aufgabenAlle[aj]) === abschnittVon(aufgabenAlle[ai]); aj++) { /* weiter */ }
+      geordnet = geordnet.concat(nachGrundlagen(aufgabenAlle.slice(ai, aj),
+        nachModul ? gruppeVon[aufgabenAlle[ai].id] : fruehestePhase(aufgabenAlle[ai].eintrag.phasen, vp)));
+    }
+    aufgabenAlle = geordnet;
 
     var aufgaben = kat.aufgabe ? aufgabenAlle : [];
 
