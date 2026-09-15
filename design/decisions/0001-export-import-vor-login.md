@@ -68,6 +68,14 @@ Die Angaben zu den Anbietern stammen aus der Beratung am 2026-09-15 und sind nic
 - **Texte:** Die Über-Seite erklärt Export und Import; die Datei bleibt beim Nutzer.
 - **Testen:** Export im Sponsor-Chrome, Import in einem Privatfenster. Den Speicher des Sponsors vorher sichern und nachher wiederherstellen, weil Browsertests dort Zustand hinterlassen.
 
+### Umsetzung (2026-09-15)
+
+- Gebaut wie oben, aber **nur «Ersetzen»**. Was die Datei nicht enthält, fällt beim Ersetzen weg. «Zusammenführen» bliebe nicht schlank, weil die Daten keine Zeitstempel tragen: Markierungen sind `{ id, ort, zitat }` ohne `geaendert`, Lernkarten nur `id → 'gewusst' | 'nochmals'`, die Quiz-Statistik drei Zähler ohne Kennung je Lauf. Der Server-Abgleich braucht diese Felder zuerst.
+- Die Zuordnung steht als Tabelle `SCHLUESSEL` in `js/store.js`, mit Art und Formprüfung je Schlüssel. `notizen` zählt als Lernstand, weil `js/markieren.js` es noch übernimmt.
+- `ueberblick-drill` bleibt Ansichtszustand, obwohl er Fehlerbilanz und beste Serie des Abfragemodus enthält. Er trägt auch `abbildungOffen` und `graphOffen`, und übernommene zugeklappte Bereiche sähen wie ein Fehler aus.
+- Eine Datei ohne Lernstand weist der Import ab, statt den Stand zu leeren.
+- Die Löschfunktion nutzt `HT.store.alle()` und erfasst jetzt alle Schlüssel.
+
 ### Später: Login mit Abgleich
 
 - `localStorage` bleibt die Grundlage: die Seite funktioniert ohne Konto und offline. Nach dem Login lädt eine Schicht in `HT.store` Änderungen verzögert hoch und führt beim ersten Login mit den Regeln oben zusammen.

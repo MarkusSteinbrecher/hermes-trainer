@@ -11,7 +11,126 @@
     return h('a', { href: url, target: '_blank', rel: 'noopener' }, text + ' ↗');
   }
 
-  function renderUeber(behaelter) {
+  /* --- Gespeicherte Daten: Export, Import, Löschen ------------------------- */
+
+  var MAX_IMPORT = 5 * 1024 * 1024;       // mehr fasst localStorage ohnehin nicht
+
+  function zweistellig(n) { return (n < 10 ? '0' : '') + n; }
+
+  function exportieren() {
+    var d = new Date();
+    var name = 'meinHERMES-' + d.getFullYear() + '-' + zweistellig(d.getMonth() + 1) + '-' + zweistellig(d.getDate()) + '.json';
+    var text = JSON.stringify(HT.store.exportieren(), null, 2);
+    var url = global.URL.createObjectURL(new global.Blob([text], { type: 'application/json' }));
+    var a = h('a', { href: url, download: name, hidden: true });
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    global.setTimeout(function () { global.URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function knopf(text, klasse, aktion, aus) {
+    return h('button', {
+      type: 'button', class: 'btn btn--klein' + (klasse ? ' ' + klasse : ''), text: text, disabled: !!aus,
+      on: { click: aktion }
+    });
+  }
+
+  function datenBereich(importiert) {
+    var aus = !HT.store.verfuegbar;
+    var vorschau = h('div', { class: 'import', hidden: true, 'aria-live': 'polite' });
+    var auswahl = h('input', { type: 'file', accept: '.json,application/json', hidden: true });
+
+    function schliessen() {
+      HT.ui.leeren(vorschau);
+      vorschau.hidden = true;
+    }
+
+    function zeigen(kinder) {
+      HT.ui.leeren(vorschau);
+      kinder.forEach(function (k) { if (k) { vorschau.appendChild(k); } });
+      vorschau.hidden = false;
+    }
+
+    function meldung(text, fehler) {
+      zeigen([
+        h('p', { class: 'import__meldung' + (fehler ? ' import__meldung--fehler' : ''), text: text }),
+        h('div', { class: 'btn-reihe' }, [knopf('Schliessen', '', schliessen)])
+      ]);
+    }
+
+    function vorschauZeigen(pruefung) {
+      if (!pruefung.ok) { meldung(pruefung.fehler, true); return; }
+      var n = pruefung.uebergangen;
+      zeigen([
+        h('p', { class: 'import__meldung' }, [
+          h('b', { text: 'Exportiert' + (pruefung.exportiert
+            ? ' am ' + pruefung.exportiert.toLocaleString('de-CH', { dateStyle: 'medium', timeStyle: 'short' })
+            : '') }),
+          ': ' + (pruefung.mengen.length ? pruefung.mengen.join(' · ') : 'nur Einstellungen') + '.'
+        ]),
+        n ? h('p', { class: 'trefferzahl', text: n === 1
+          ? 'Einen Eintrag kennt diese Fassung der Seite nicht; er wird übergangen.'
+          : n + ' Einträge kennt diese Fassung der Seite nicht; sie werden übergangen.' }) : null,
+        h('p', { text: '«Ersetzen» überschreibt Lernstand, Markierungen und Einstellungen in diesem Browser mit dem Stand der Datei. '
+          + 'Filter und offene Bereiche bleiben, wie sie sind.' }),
+        h('div', { class: 'btn-reihe' }, [
+          knopf('Ersetzen', 'btn--primaer', function () {
+            if (!HT.store.importErsetzen(pruefung.daten)) {
+              meldung('Der Import ist fehlgeschlagen, der bisherige Stand bleibt. Vermutlich ist der Speicher des Browsers voll.', true);
+              return;
+            }
+            global.history.replaceState(null, '', global.location.hash.split('?')[0] + '?importiert=1');
+            global.location.reload();
+          }),
+          knopf('Abbrechen', '', schliessen)
+        ])
+      ]);
+    }
+
+    auswahl.addEventListener('change', function () {
+      var datei = auswahl.files && auswahl.files[0];
+      auswahl.value = '';                   // dieselbe Datei nochmals wählbar
+      if (!datei) { return; }
+      if (datei.size > MAX_IMPORT) { meldung('Die Datei ist zu gross für einen Export von meinHERMES.', true); return; }
+      var leser = new global.FileReader();
+      leser.onload = function () { vorschauZeigen(HT.store.importPruefen(String(leser.result))); };
+      leser.onerror = function () { meldung('Die Datei liess sich nicht lesen.', true); };
+      leser.readAsText(datei);
+    });
+
+    if (importiert) { meldung('Import abgeschlossen: in diesem Browser gilt jetzt der Stand aus der Datei.'); }
+
+    return h('div', { class: 'hinweisbox' }, [
+      h('p', { text: 'Lernfortschritt, Markierungen, Filtereinstellungen und Quiz-Statistik liegen ausschliesslich lokal im Speicher dieses Browsers '
+        + '(localStorage). Es werden keine Daten an einen Server übermittelt, es gibt keine Konten, kein Tracking und keine Cookies von Dritten. '
+        + 'Wer den Browserspeicher leert, beginnt wieder bei null.' }),
+      h('p', { text: 'Für ein anderes Gerät oder als Sicherung: «Exportieren» legt Lernstand, Markierungen und Einstellungen als Datei ab, '
+        + '«Importieren» liest sie in einem anderen Browser wieder ein und ersetzt dort den bisherigen Stand. '
+        + 'Die Datei entsteht auf dem eigenen Gerät und wird nirgends hin übermittelt.' }),
+      h('p', {
+        class: 'trefferzahl',
+        text: HT.store.verfuegbar
+          ? 'Status: lokale Speicherung ist in diesem Browser verfügbar.'
+          : 'Status: dieser Browser erlaubt keine lokale Speicherung — der Fortschritt gilt nur für die laufende Sitzung.'
+      }),
+      h('div', { class: 'btn-reihe' }, [
+        knopf('Exportieren', '', exportieren, aus),
+        knopf('Importieren …', '', function () { auswahl.click(); }, aus),
+        knopf('Alle lokal gespeicherten Daten löschen', '', function () {
+          if (!global.confirm('Lernfortschritt, Markierungen, Filter und Quiz-Statistik wirklich löschen?')) { return; }
+          HT.store.loescheAlle();
+          global.location.reload();
+        })
+      ]),
+      auswahl,
+      vorschau
+    ]);
+  }
+
+  function renderUeber(behaelter, params) {
+    var importiert = !!(params && params.importiert);
+    var daten = datenBereich(importiert);
     var prosa = h('div', { class: 'prosa' }, [
       h('div', { class: 'kopf' }, [
         h('h1', { text: 'Über meinHERMES' })
@@ -60,29 +179,7 @@
       ]),
 
       h('h2', { text: 'Gespeicherte Daten' }),
-      h('div', { class: 'hinweisbox' }, [
-        h('p', { text: 'Lernfortschritt, Filtereinstellungen, Detailtiefe und Quiz-Statistik liegen ausschliesslich lokal im Speicher dieses Browsers '
-          + '(localStorage). Es werden keine Daten an einen Server übermittelt, es gibt keine Konten, kein Tracking und keine Cookies von Dritten. '
-          + 'Wer den Browserspeicher leert oder ein anderes Gerät verwendet, beginnt wieder bei null.' }),
-        h('p', {
-          class: 'trefferzahl',
-          text: HT.store.verfuegbar
-            ? 'Status: lokale Speicherung ist in diesem Browser verfügbar.'
-            : 'Status: dieser Browser erlaubt keine lokale Speicherung — der Fortschritt gilt nur für die laufende Sitzung.'
-        }),
-        h('button', {
-          type: 'button', class: 'btn btn--klein', text: 'Alle lokal gespeicherten Daten löschen',
-          on: { click: function () {
-            if (!global.confirm('Lernfortschritt, Filter und Quiz-Statistik wirklich löschen?')) { return; }
-            HT.store.loesche('handbuch');
-            HT.store.loesche('graph');
-            HT.store.loesche('lernkarten');
-            HT.store.loesche('quiz-konfig');
-            HT.store.loesche('quiz-statistik');
-            global.location.reload();
-          } }
-        })
-      ]),
+      daten,
 
       h('h2', { text: 'Hinweise zur Nutzung' }),
       h('ul', {}, [
@@ -99,6 +196,11 @@
     ]);
 
     behaelter.appendChild(prosa);
+    if (importiert) {
+      /* Meldung nur einmal: beim nächsten Neuladen ohne Parameter. */
+      global.history.replaceState(null, '', global.location.hash.split('?')[0]);
+      daten.scrollIntoView({ block: 'center' });
+    }
   }
 
   HT.views.ueber = { titel: 'Über', render: renderUeber };
