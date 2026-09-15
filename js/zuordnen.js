@@ -6,12 +6,13 @@
    Modul (die Phasen als Bahnen) oder das Gesamtbild. Auswahl und Reihenfolge
    kommen aus js/graph-modell.js, die Knotenformen aus js/graph-zeichnen.js.
    Linien gibt es keine: je Aufgabe ein Block — links die verantwortliche
-   Rolle, rechts untereinander die Ergebnisse, die sie erzeugt. In Modulübung
-   und Gesamtbild steht eine Aufgabe in jeder ihrer Phasen, jeweils mit den
-   Ergebnissen dieser Phase. Eine Rolle steht so vor jeder ihrer Aufgaben, ein
-   Ergebnis bei jeder Aufgabe, die es erzeugt. Im Pool hat jede Zeile ihren
-   eigenen Rollenknopf; eine Aufgabe mehrerer Phasen und ein Ergebnis
-   mehrerer Aufgaben liegen dort einmal, mit der Zahl ihrer Kästen.
+   Rolle, rechts untereinander die Ergebnisse, die sie erzeugt. Eine Aufgabe
+   steht in jeder ihrer Phasen und darin unter jedem Modul, das sie dort hat
+   (wie in der Abbildung 1), jeweils mit den Ergebnissen dieses Felds. Eine
+   Rolle steht so vor jeder ihrer Aufgaben, ein Ergebnis bei jeder Aufgabe,
+   die es erzeugt. Im Pool hat jede Zeile ihren eigenen Rollenknopf; eine
+   Aufgabe mehrerer Phasen oder Module und ein Ergebnis mehrerer Aufgaben
+   liegen dort einmal, mit der Zahl ihrer Kästen.
 
    Welche Elementarten leer sind, wählen drei Schalter (Rollen, Aufgaben,
    Ergebnisse); die übrigen stehen ausgefüllt als Anhaltspunkte im Bild.
@@ -154,25 +155,32 @@
     });
   }
 
-  /* Die Blöcke einer Übung. Die Phasenübung ist ein Umfang; Modulübung und
-     Gesamtbild setzen sich aus den Umfängen ihrer Phasen zusammen — so steht
-     eine Aufgabe in jeder ihrer Phasen, jeweils mit den Ergebnissen dieser
-     Phase, statt nur in der frühesten mit allen. Unterbahn ist das Modul,
-     nicht in der Modulübung: dort ist das Modul die Übung selbst. */
+  /* Die Blöcke einer Übung, zusammengesetzt aus Umfängen von je einer Phase
+     und einem Modul — Phase für Phase, darin in der Reihenfolge der Module.
+     So steht eine Aufgabe in jeder ihrer Phasen und, wie in der Abbildung 1,
+     unter jedem Modul, das sie dort hat, jeweils mit den Ergebnissen dieses
+     Felds («Lösungsanforderungen erarbeiten» im Konzept unter Produkt und
+     unter IT-System). Unterbahn ist das Modul, nicht in der Modulübung: dort
+     ist das Modul die Übung selbst. */
   function bloeckeVon(def) {
-    if (def.art === 'phase') { return bloeckeImUmfang(def.umfang, true); }
-    var bloecke = [];
     var vorgehen = def.umfang.vorgehen;
-    HT.graph.phasenDerVorgehensweise(vorgehen).forEach(function (phase) {
-      var umfang = { vorgehen: vorgehen, phasen: [phase], module: def.umfang.module };
-      bloecke = bloecke.concat(bloeckeImUmfang(umfang, def.art !== 'modul'));
+    var phasen = def.art === 'phase' ? def.umfang.phasen : HT.graph.phasenDerVorgehensweise(vorgehen);
+    var module = def.art === 'modul' ? def.umfang.module
+      : HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
+    var bloecke = [];
+    phasen.forEach(function (phase) {
+      module.forEach(function (modul) {
+        var umfang = { vorgehen: vorgehen, phasen: [phase], module: [modul] };
+        bloecke = bloecke.concat(bloeckeImUmfang(umfang, def.art === 'modul' ? '' : modul));
+      });
     });
     return bloecke;
   }
 
   /* Je Aufgabe im Umfang ihre verantwortliche Rolle und die Ergebnisse, die
-     sie im Umfang erzeugt, in der Reihenfolge des Graphen; Bahn ist die Phase. */
-  function bloeckeImUmfang(umfang, mitModul) {
+     sie im Umfang erzeugt, in der Reihenfolge des Graphen; Bahn ist die Phase,
+     Unterbahn das übergebene Modul (leer: keine). */
+  function bloeckeImUmfang(umfang, unter) {
     var tg = teilgraphVon(umfang);
     var aufgaben = null, knoten = {}, rang = {};
     tg.spalten.forEach(function (sp) {
@@ -191,7 +199,7 @@
         rolle: rolleVon[a.id] || null,
         ergebnisse: (ergebnisseVon[a.id] || []).sort(function (x, y) { return rang[x.id] - rang[y.id]; }),
         bahn: aufgaben.gruppeVon[a.id] || '',
-        unter: mitModul && aufgaben.untergruppeVon ? aufgaben.untergruppeVon[a.id] || '' : ''
+        unter: unter
       };
     });
   }
