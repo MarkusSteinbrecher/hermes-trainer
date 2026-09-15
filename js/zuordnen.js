@@ -1215,28 +1215,35 @@
       }));
     }
 
-    /* Vorgehensweise und leere Kästen stehen in der Leiste unter der Kopfzeile. */
-    leiste(einstellungen(vorgehen, wechseln, function () { karten.forEach(function (k) { k.aktualisieren(); }); }));
+    /* Vorgehensweise und leere Kästen stehen in der Leiste unter der
+       Kopfzeile, Anleitung und Grundlage in der Karte ihres Info-Icons. */
+    leiste(einstellungen(vorgehen, wechseln, function () { karten.forEach(function (k) { k.aktualisieren(); }); }),
+      function () { return anleitung(vorgehen); });
     behaelter.appendChild(h('section', { class: 'tr-hub' }, [
-      h('div', { class: 'kopf kopf--teil' }, [
-        h('h2', { text: 'Zuordnen' }),
-        h('p', { text: 'Rollen, Aufgaben und Ergebnisse der ' + vorgehenVon(vorgehen).adjektiv + ' Vorgehensweise — je Phase, je Modul oder alles auf einmal. '
-          + 'Je Aufgabe eine Zeile: links die verantwortliche Rolle, rechts die Ergebnisse, die sie erzeugt. Die Kästen sind leer, '
-          + 'die Elemente liegen daneben bereit und wollen an ihren Platz; es zählt die Zuordnung, nicht die Reihenfolge. '
-          + 'Am Ende zeigt die Prüfung, was richtig, falsch oder offen geblieben ist.' })
-      ]),
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Phasen' }),
       gruppe('phase'),
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Module' }),
       gruppe('modul'),
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Alles auf einmal' }),
-      gruppe('alles'),
-      h('p', { class: 'tr-quelle' }, [
+      gruppe('alles')
+    ]));
+  }
+
+  /* Was das Zuordnen ist und worauf es beruht — vorn in der Karte hinter dem
+     Info-Icon der Leiste, in Übersicht und Übung. */
+  function anleitung(vorgehen) {
+    return [
+      h('h3', { class: 'gpop__abschnitt', text: 'Zuordnen' }),
+      h('p', { text: 'Rollen, Aufgaben und Ergebnisse der ' + vorgehenVon(vorgehen).adjektiv + ' Vorgehensweise — je Phase, je Modul oder alles auf einmal. '
+        + 'Je Aufgabe eine Zeile: links die verantwortliche Rolle, rechts die Ergebnisse, die sie erzeugt. Die Kästen sind leer, '
+        + 'die Elemente liegen daneben bereit und wollen an ihren Platz; es zählt die Zuordnung, nicht die Reihenfolge. '
+        + 'Am Ende zeigt die Prüfung, was richtig, falsch oder offen geblieben ist.' }),
+      h('p', {}, [
         'Grundlage: der Graph im ',
         h('a', { href: '#/ueberblick', text: 'Überblick' }),
         ' — Rollen, Aufgaben und Ergebnisse mit den Querverweisen der offiziellen Dokumentation (verantwortliche Rolle je Aufgabe, Ergebnisse je Aufgabe).'
       ])
-    ]));
+    ];
   }
 
   function naechste(def) {
@@ -1304,7 +1311,7 @@
       zustand.vorgehen = key;
       speichern();
       global.location.hash = ziel ? ziel.adresse : hubAdresse(key);
-    }, neuAufbauen)));
+    }, neuAufbauen)), function () { return anleitung(def.vorgehen); });
 
     var seite = h('section', { class: 'tr-uebung', 'data-art': def.art }, [
       h('div', { class: 'tr-buehne-huelle' }, [refs.buehne, zoomLeiste]),

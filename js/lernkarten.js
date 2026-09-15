@@ -391,7 +391,7 @@
 
   /* --- Render ------------------------------------------------------------- */
 
-  function render(behaelter, params) {
+  function render(behaelter, params, leiste) {
     if (!zustand.initialisiert) {
       wiederherstellen();
       zustand.initialisiert = true;
@@ -401,11 +401,16 @@
     }
     stapelAufbauen(false);
 
-    behaelter.appendChild(h('div', { class: 'kopf kopf--teil' }, [
-      h('h2', { text: 'Lernkarten' }),
-      h('p', { text: 'Aufgaben und Ergebnisse: Wer ist verantwortlich, was entsteht woraus, in welchem Modul? '
-        + 'Karte umdrehen, selbst einschätzen. Was «Nochmals» erhält, kehrt im Stapel zurück.' })
-    ]));
+    /* Was die Lernkarten sind, steht vorn in der Karte hinter dem Info-Icon der Leiste. */
+    if (leiste) {
+      leiste(null, function () {
+        return [
+          h('h3', { class: 'gpop__abschnitt', text: 'Lernkarten' }),
+          h('p', { text: 'Aufgaben und Ergebnisse: Wer ist verantwortlich, was entsteht woraus, in welchem Modul? '
+            + 'Karte umdrehen, selbst einschätzen. Was «Nochmals» erhält, kehrt im Stapel zurück.' })
+        ];
+      });
+    }
 
     behaelter.appendChild(h('div', { class: 'lk-leiste' }, [
       richtungsKnopf(),

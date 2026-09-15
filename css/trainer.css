@@ -24,6 +24,8 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inl
   color: var(--text-leise);
 }
 .tr-mikro--gruppe { margin: 26px 0 10px; padding-top: 14px; border-top: 1px solid var(--rand); }
+/* Ohne Vorspann beginnt die Übersicht mit der ersten Gruppe — ohne Linie darüber. */
+.tr-hub > .tr-mikro--gruppe:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 
 /* --- Wahl in der Leiste unter der Kopfzeile (Übersicht und Übung) ----------- */
 
@@ -95,7 +97,6 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inl
 .tr-karte__meta { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--text-leise); }
 .tr-karte__beste { font-weight: 700; color: var(--text-weich); }
 .tr-karte--voll .tr-karte__beste { color: var(--gut); }
-.tr-quelle { margin: 30px 0 0; font-size: 12.5px; color: var(--text-leise); }
 
 /* --- Übung: Gerüst ---------------------------------------------------------- */
 

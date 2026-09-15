@@ -5,7 +5,8 @@
    (js/lernkarten.js) und «Quiz» (js/quiz.js). Die Teile melden sich unter
    HT.trainerTeile an; ein Teil ist { id, label, pfade, render(behaelter,
    params, leiste) } und zeichnet sich in den Behälter unter der Leiste;
-   leiste(zusatz) stellt eigene Elemente neben die Übungsformen. Ein Teil mit
+   leiste(zusatz, info) stellt eigene Elemente neben die Übungsformen und
+   eine Erklärung vorn in die Karte des Info-Icons. Ein Teil mit
    eigenen Seiten in voller Breite (die Übungen des Zuordnens) bringt dazu
    istUebung(params) und titel(params) mit. Weitere Teile (etwa
    Prüfungsfragen anderer Herkunft) kommen dazu, indem sie sich anmelden und
@@ -52,9 +53,11 @@
   }
 
   /* Was der Trainer ist und woher die Übungen kommen — die Karte hinter dem
-     Info-Icon der Leiste. */
-  function infoInhalt() {
-    return [
+     Info-Icon der Leiste. Davor steht, was der Teil über sich sagt
+     (teilInfo(), etwa Anleitung und Grundlage des Zuordnens). */
+  function infoInhalt(teilInfo) {
+    var teil = teilInfo ? teilInfo() : [];
+    return teil.concat(teil.length ? [h('h3', { class: 'gpop__abschnitt', text: 'Trainer' })] : [], [
       h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse einander zuordnen, Lernkarten umdrehen und selbst einschätzen, Prüfungsfragen beantworten.' }),
       h('p', { text: 'Zuordnen und Lernkarten entstehen aus den Querverweisen der offiziellen Dokumentation. Die kuratierten Quizfragen sind eigene, am Referenzhandbuch geprüfte Texte mit Belegzitat; weitere Fragen entstehen maschinell aus den erfassten Daten.' }),
       h('p', { text: 'Der Lernstand bleibt in diesem Browser; auf der Seite «Über» lässt er sich exportieren und wieder einlesen.' }),
@@ -62,20 +65,21 @@
         h('a', { class: 'hb-online', href: '#/ueber', text: 'Lernstand sichern →' }),
         h('a', { class: 'hb-online', href: 'https://www.hermes.admin.ch/de/projektmanagement.html', target: '_blank', rel: 'noopener', text: 'HERMES online ↗' })
       ])
-    ];
+    ]);
   }
 
   /* Die Übungsformen als Links in der Leiste unter der Kopfzeile — auch auf
      den Seiten einer Übung, dort mit dem Teil, dem sie gehört. Daneben kann
      der Teil eigene Elemente stellen (zusatz: das Zuordnen seine Wahl, in
-     der Übung dazu Titel und Zähler). */
-  function leisteSetzen(aktiv, zusatz) {
+     der Übung dazu Titel und Zähler) und seine Erklärung vorn in die Karte
+     des Info-Icons (info: Funktion, die Absätze liefert). */
+  function leisteSetzen(aktiv, zusatz, info) {
     HT.app.unterleiste({
       label: 'Übungsform',
       links: teile().map(function (t) { return { href: teilAdresse(t), pfade: t.pfade, text: t.label, aktiv: t === aktiv }; }),
       inhalt: zusatz && zusatz.length ? zusatz : null,
       inhaltLabel: 'Einstellungen der Übung',
-      info: { inhalt: infoInhalt }
+      info: { inhalt: function () { return infoInhalt(info); } }
     });
   }
 
@@ -85,7 +89,7 @@
     var aktiv = eigen || teilFinden(params.teil);
     leisteSetzen(aktiv);
     /* Dritter Parameter von render: damit ergänzt ein Teil die Leiste. */
-    function leiste(zusatz) { leisteSetzen(aktiv, zusatz); }
+    function leiste(zusatz, info) { leisteSetzen(aktiv, zusatz, info); }
     var warnung = HT.app.datenWarnung();
     if (warnung) { behaelter.appendChild(warnung); }
 

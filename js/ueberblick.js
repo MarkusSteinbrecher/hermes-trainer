@@ -1469,7 +1469,7 @@
       h('p', { text: 'Oben das Gesamtbild der Methode — Abbildung 1 des Referenzhandbuchs als Originalgrafik —, darunter der Graph mit Rollen, Aufgaben, Ergebnissen und ihren Verbindungen. Zeigen auf einen Kasten der Abbildung füllt die Inhaltsseite rechts; ein Klick, auch auf einen Knoten im Graphen, hält das Element dort fest.' }),
       h('p', { text: 'In der Leiste wählen Phasen, Szenarien und Module aus, was Abbildung und Graph zeigen; Elemente und Verbindungen gelten nur für den Graphen. Alles zusammen steht hinter dem Filter-Icon neben der Suche.' }),
       h('p', { text: 'Die Abbildung ist die Originalgrafik von hermes.admin.ch, die Texte der Inhaltsseite stammen aus dem Referenzhandbuch. Jede Verbindung im Graphen entspricht einem Querverweis der offiziellen Dokumentation; ergänzt wird nichts.' }),
-      h('h3', { class: 'ub-abblegende__titel', text: 'Zeichen der Abbildung' }),
+      h('h3', { class: 'gpop__abschnitt', text: 'Zeichen der Abbildung' }),
       abbLegendeListe(),
       h('p', { class: 'hb-verweis' }, links)
     ];

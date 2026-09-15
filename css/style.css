@@ -395,6 +395,9 @@ main:focus { outline: none; }
 }
 .gpop--kopf p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--text-weich); text-wrap: pretty; }
 .gpop--kopf .hb-verweis { margin: 0; }
+/* Zwischentitel in der Karte: der Teil einer Seite, die Zeichen der Abbildung. */
+.gpop--kopf .gpop__abschnitt { margin: 4px 0 0; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-leise-hell); }
+.gpop--kopf .gpop__abschnitt:first-child { margin-top: 0; }
 
 /* --- Bottom-Navigation (schmal) ------------------------------------------ */
 .nav-bottom {
@@ -450,8 +453,6 @@ main:focus { outline: none; }
 .kopf { margin-bottom: 22px; }
 .kopf h1 { font-size: 26px; letter-spacing: -.022em; margin: 0 0 8px; }
 /* Kopf eines Teils unter einer Seite mit Leiste (Trainer): eine Stufe kleiner. */
-.kopf--teil { margin-bottom: 18px; }
-.kopf--teil h2 { font-size: 21px; letter-spacing: -.018em; margin: 0 0 6px; }
 .kopf p {
   color: var(--text-weich);
   margin: 0;

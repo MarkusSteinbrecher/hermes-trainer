@@ -395,11 +395,6 @@
   function konfigAnsicht(behaelter) {
     var st = statistik();
 
-    behaelter.appendChild(h('div', { class: 'kopf kopf--teil' }, [
-      h('h2', { text: 'Quiz' }),
-      h('p', { text: 'Vier Antworten, eine ist richtig. Rückmeldung samt Quellenlink kommt sofort.' })
-    ]));
-
     if (hinweis) {
       behaelter.appendChild(h('div', { class: 'datenwarnung', role: 'status', text: hinweis }));
       hinweis = '';
@@ -681,7 +676,16 @@
     frageAnsicht(refs.behaelter);
   }
 
-  function render(behaelter, params) {
+  function render(behaelter, params, leiste) {
+    /* Was das Quiz ist, steht vorn in der Karte hinter dem Info-Icon der Leiste. */
+    if (leiste) {
+      leiste(null, function () {
+        return [
+          h('h3', { class: 'gpop__abschnitt', text: 'Quiz' }),
+          h('p', { text: 'Vier Antworten, eine ist richtig. Rückmeldung samt Quellenlink kommt sofort.' })
+        ];
+      });
+    }
     if (!konfig.geladen) {
       konfigLaden();
       konfig.geladen = true;
