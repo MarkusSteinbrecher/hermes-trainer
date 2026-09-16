@@ -835,8 +835,7 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   gap: 8px;
 }
 .flip__seite--hinten { transform: rotateY(180deg); }
-.flip__seite--vorne { cursor: pointer; }
-.flip__seite--vorne:hover { border-color: var(--text); }
+.flip__seite--vorne:focus-visible { outline-offset: -3px; }
 .flip__seite[aria-hidden="true"] { pointer-events: none; }
 .flip__rolle {
   font-size: 11px;
@@ -846,7 +845,6 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   color: var(--text-leise);
 }
 .flip__inhalt { font-size: 22px; font-weight: 800; letter-spacing: -.015em; line-height: 1.2; overflow-wrap: break-word; text-wrap: pretty; }
-.flip__seite--vorne .flip__inhalt { margin-block: auto; }
 .flip__inhalt--klein { font-size: 15px; font-weight: 400; letter-spacing: 0; line-height: 1.55; color: var(--text-weich); }
 .flip__hinweis {
   margin-top: auto;
@@ -855,9 +853,87 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   border-top: 1px solid var(--rand);
   padding-top: 8px;
 }
-.flip__tipp { margin-top: auto; font-size: 12px; color: var(--text-leise); }
-.flip__gesucht { margin-top: auto; font-size: 13px; color: var(--text-weich); }
-.flip__gesucht + .flip__tipp { margin-top: 0; }
+
+/* Vorderseite: je Bezug eine Abfragezeile mit Dropdown. Die Zeilen liegen
+   unter dem Begriff und sehen aus wie die Bezugszeilen der Lösung — dasselbe
+   Raster, damit die Karte beim Drehen nicht springt. */
+.lk-auftrag {
+  margin: 8px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+.lk-fragen { display: block; }
+.lk-frage {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr) 1.25rem;
+  gap: 4px 12px;
+  align-items: center;
+  padding: 7px 0;
+  border-top: 1px solid var(--rand);
+}
+.lk-frage:last-child { border-bottom: 1px solid var(--rand); }
+.lk-frage__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+.lk-frage__label svg { flex: 0 0 auto; }
+.lk-frage__wahl {
+  width: 100%;
+  min-width: 0;
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 1px solid var(--rand-stark);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.lk-frage__wahl:disabled { opacity: 1; cursor: default; }
+.lk-frage__zeichen { font-size: 15px; font-weight: 800; text-align: center; }
+.lk-frage[data-stand="richtig"] .lk-frage__wahl { border-color: var(--gut); background: var(--gut-bg); color: var(--gut); }
+.lk-frage[data-stand="richtig"] .lk-frage__zeichen { color: var(--gut); }
+.lk-frage[data-stand="falsch"] .lk-frage__wahl { border-color: var(--schlecht); background: var(--schlecht-bg); color: var(--schlecht); }
+.lk-frage[data-stand="falsch"] .lk-frage__zeichen { color: var(--schlecht); }
+@media (max-width: 480px) {
+  .lk-frage { grid-template-columns: minmax(0, 1fr) 1.25rem; }
+  .lk-frage__label { grid-column: 1 / -1; }
+}
+
+/* Das Zeichen einer geprüften Wahl — auf der Lösung vor der Bezeichnung. */
+.lk-zeichen { margin-right: 5px; font-weight: 800; }
+.lk-zeichen--gut { color: var(--gut); }
+.lk-zeichen--schlecht { color: var(--schlecht); }
+
+.lk-gewaehlt { margin: -2px 0 2px; font-size: 13px; color: var(--schlecht); text-decoration: line-through; }
+.lk-stand {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+  font-variant-numeric: tabular-nums;
+}
+.lk-drehen {
+  width: 100%;
+  min-height: 40px;
+  justify-content: center;
+  margin-bottom: 8px;
+  border: 1px solid var(--rand-stark);
+  background: var(--bg);
+  color: var(--text);
+}
+.lk-drehen:hover { border-color: var(--text); }
 
 /* Rückseite: je Beziehung eine Zeile, Name links, Werte rechts. */
 .lk-bezuege { margin: 2px 0 4px; }
@@ -875,6 +951,12 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-werte { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
 .lk-werte li { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--text); }
 .lk-werte svg { flex: 0 0 auto; color: var(--text-leise); }
+/* Die eigene Wahl in der Lösung: die getroffene unterstrichen, die falsche
+   durchgestrichen hinter den richtigen. */
+.lk-werte li.ist-gewaehlt { color: var(--gut); text-decoration: underline; text-underline-offset: 3px; }
+.lk-werte li.ist-gewaehlt svg { color: var(--gut); }
+.lk-werte li.ist-falsch { color: var(--schlecht); text-decoration: line-through; }
+.lk-werte li.ist-falsch svg { color: var(--schlecht); }
 @media (max-width: 480px) { .lk-bezug { grid-template-columns: 1fr; } }
 
 .lk-aktionen { display: flex; gap: 8px; }

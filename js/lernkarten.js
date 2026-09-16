@@ -1,9 +1,13 @@
 /* meinHERMES — Teil «Lernkarten» des Trainers (#/trainer?teil=lernkarten).
-   Karten für Aufgaben und Ergebnisse: vorne der Begriff oder die Definition,
-   hinten die Beziehungen — verantwortliche Rolle, die Ergebnisse der Aufgabe
-   bzw. die Aufgaben, aus denen das Ergebnis entsteht, das Modul — und die
-   Definition. Karte drehen, selbst einschätzen; «Nochmals» kehrt im Stapel
-   zurück. Fortschritt liegt im localStorage und ist zurücksetzbar. */
+   Karten für Aufgaben und Ergebnisse. Worum es geht, ist der Zusammenhang
+   von Phase, Modul, Aufgabe, Ergebnis und Rolle: vorn steht der Begriff
+   (oder die Definition) und darunter je Bezug ein Dropdown — Phase, Modul,
+   verantwortliche Rolle und das Gegenstück (die Ergebnisse einer Aufgabe
+   bzw. die Aufgaben, aus denen ein Ergebnis entsteht). Jede Wahl wird
+   sofort geprüft; ist die letzte beantwortet, dreht sich die Karte zur
+   Lösung. Ohne Wahl geht es auch: Karte drehen und selbst einschätzen.
+   «Nochmals» kehrt im Stapel zurück. Fortschritt liegt im localStorage und
+   ist zurücksetzbar. */
 (function (global) {
   'use strict';
 
@@ -12,13 +16,14 @@
 
   var h = HT.ui.h;
   var KATEGORIEN = ['aufgabe', 'ergebnis'];
-  var VERSION = 2;         // 1 (ohne Angabe): Begriff ↔ Definition für alle Kategorien — «Gewusst» galt nur der Definition
+  /* 1 (ohne Angabe): Begriff ↔ Definition für alle Kategorien — «Gewusst» galt nur der Definition
+     2: Bezüge auf der Rückseite (Rolle, Ergebnisse/Aufgaben, Modul)
+     3: Bezüge als Dropdown auf der Vorderseite, dazu die Phase */
+  var VERSION = 3;
 
-  /* Was die Vorderseite abfragt; die Rückseite zeigt nur Zeilen mit Werten. */
-  var GESUCHT = {
-    aufgabe: ['Verantwortlich', 'Ergebnisse', 'Modul'],
-    ergebnis: ['Verantwortlich', 'Aufgaben', 'Modul']
-  };
+  /* Wie lange die Rückmeldung der letzten Wahl stehen bleibt, bevor sich
+     die Karte von selbst dreht (ms). */
+  var DREH_VERZUG = 550;
 
   var zustand = {
     initialisiert: false,
@@ -26,11 +31,13 @@
     filter: [],            // leer = Aufgaben und Ergebnisse
     fortschritt: {},       // id -> 'gewusst' | 'nochmals'
     stapel: [],            // offene Karten-IDs der laufenden Runde
-    gedreht: false
+    gedreht: false,
+    antworten: {}          // Bezug-Schlüssel -> { wert, richtig } der laufenden Karte
   };
 
   var refs = {};
   var entstehtAus = null;  // Ergebnis-Begriff -> [Aufgaben-Begriffe]
+  var pool = null;         // Kategorie -> Werteliste der Dropdowns
 
   /* --- Persistenz --------------------------------------------------------- */
 
@@ -76,22 +83,70 @@
     return entstehtAus[ergebnis.begriff] || [];
   }
 
-  /** Zeilen der Lösung: [{ label, kategorie, werte }], nur solche mit Werten. */
+  /**
+   * Die Bezüge einer Karte in der Reihenfolge der Methode: Phase, Modul,
+   * verantwortliche Rolle, dann das Gegenstück. Nur Zeilen mit Werten —
+   * das lässt die Sammeleinträge «Checklisten» und «Meilensteine» aussen vor.
+   * [{ key, label, kategorie, werte }]
+   */
   function bezuege(e) {
-    var zeilen = [{ label: 'Verantwortlich', kategorie: 'rolle', werte: rollenVon(e) }];
+    var zeilen = [
+      { key: 'phase', label: e.phasen.length === 1 ? 'Phase' : 'Phasen', kategorie: 'phase', werte: HT.daten.phasenSortiert(e.phasen) },
+      { key: 'modul', label: e.module.length === 1 ? 'Modul' : 'Module', kategorie: 'modul', werte: e.module },
+      { key: 'rolle', label: 'Verantwortlich', kategorie: 'rolle', werte: rollenVon(e) }
+    ];
     if (e.kategorie === 'aufgabe') {
-      zeilen.push({ label: e.ergebnisse.length === 1 ? 'Ergebnis' : 'Ergebnisse', kategorie: 'ergebnis', werte: e.ergebnisse });
+      zeilen.push({ key: 'ergebnis', label: e.ergebnisse.length === 1 ? 'Ergebnis' : 'Ergebnisse', kategorie: 'ergebnis', werte: e.ergebnisse });
     } else {
-      zeilen.push({ label: 'Entsteht aus', kategorie: 'aufgabe', werte: aufgabenZu(e) });
+      zeilen.push({ key: 'aufgabe', label: 'Entsteht aus', kategorie: 'aufgabe', werte: aufgabenZu(e) });
     }
-    zeilen.push({ label: e.module.length === 1 ? 'Modul' : 'Module', kategorie: 'modul', werte: e.module });
     return zeilen.filter(function (z) { return z.werte.length > 0; });
+  }
+
+  /** Was die Vorderseite abfragt: bei «Definition vorn» zuerst der Begriff selbst. */
+  function fragen(e) {
+    var vorweg = zustand.richtung === 'db'
+      ? [{ key: 'begriff', label: 'Begriff', kategorie: e.kategorie, werte: [e.begriff] }]
+      : [];
+    return vorweg.concat(bezuege(e));
+  }
+
+  /**
+   * Die Auswahl eines Dropdowns: alle Werte, die auf irgendeiner Karte
+   * richtig sein können — nicht alle Einträge der Kategorie. So ist jede
+   * Option eine mögliche Antwort (bei den Rollen etwa nur die neun, die
+   * überhaupt verantwortlich zeichnen).
+   */
+  function poolVon(kategorie) {
+    if (!pool) {
+      pool = {};
+      var gesehen = {};
+      var merken = function (kat, werte) {
+        if (!pool[kat]) { pool[kat] = []; gesehen[kat] = {}; }
+        werte.forEach(function (w) {
+          if (gesehen[kat][w]) { return; }
+          gesehen[kat][w] = true;
+          pool[kat].push(w);
+        });
+      };
+      KATEGORIEN.forEach(function (kat) {
+        kartenDerKategorie(kat).forEach(function (e) {
+          merken(kat, [e.begriff]);
+          bezuege(e).forEach(function (z) { merken(z.kategorie, z.werte); });
+        });
+      });
+      Object.keys(pool).forEach(function (kat) {
+        pool[kat] = kat === 'phase'
+          ? HT.daten.phasenSortiert(pool[kat])
+          : pool[kat].sort(function (a, b) { return a.localeCompare(b, 'de'); });
+      });
+    }
+    return pool[kategorie] || [];
   }
 
   /* --- Stapel ------------------------------------------------------------- */
 
-  /* Ohne Definition oder ohne Beziehungen keine Karte — das trifft die
-     Sammeleinträge «Checklisten» und «Meilensteine». */
+  /* Ohne Definition oder ohne Bezüge keine Karte. */
   function kartenDerKategorie(kat) {
     return HT.daten.eintraegeDerKategorie(kat).filter(function (e) {
       return !!e.definition && bezuege(e).length > 0;
@@ -103,13 +158,18 @@
     return kats.reduce(function (alle, k) { return alle.concat(kartenDerKategorie(k)); }, []);
   }
 
+  function neueKarte() {
+    zustand.gedreht = false;
+    zustand.antworten = {};
+  }
+
   function stapelAufbauen(auchGewusste) {
     var karten = auswahl();
     var ids = karten
       .filter(function (e) { return auchGewusste || zustand.fortschritt[e.id] !== 'gewusst'; })
       .map(function (e) { return e.id; });
     zustand.stapel = HT.ui.mischen(ids);
-    zustand.gedreht = false;
+    neueKarte();
   }
 
   function zaehlen() {
@@ -121,63 +181,159 @@
     return { gesamt: karten.length, gewusst: gewusst, offen: zustand.stapel.length };
   }
 
+  /** Stand der laufenden Karte über alle Dropdowns. */
+  function auswertung(e) {
+    var alle = fragen(e);
+    var beantwortet = 0;
+    var richtig = 0;
+    alle.forEach(function (z) {
+      var a = zustand.antworten[z.key];
+      if (!a) { return; }
+      beantwortet++;
+      if (a.richtig) { richtig++; }
+    });
+    return {
+      gesamt: alle.length,
+      beantwortet: beantwortet,
+      richtig: richtig,
+      fertig: beantwortet === alle.length
+    };
+  }
+
   /* --- Kartenaufbau ------------------------------------------------------- */
 
-  function seiteVorne(e) {
-    var istBegriff = zustand.richtung === 'bd';
-    var gesucht = (istBegriff ? [] : ['Begriff']).concat(GESUCHT[e.kategorie]);
-    return h('div', {
-      class: 'flip__seite flip__seite--vorne',
-      role: 'button',
-      tabindex: '0',
-      'aria-hidden': 'false',
-      'aria-label': 'Karte umdrehen und Lösung anzeigen'
-    }, [
-      h('div', { class: 'flip__rolle' }, [
-        h('span', { text: istBegriff ? 'Begriff' : 'Definition' }),
-        ' · ',
-        HT.ui.badge(e.kategorie)
+  function zeichenFuer(richtig) {
+    return h('span', {
+      class: 'lk-zeichen lk-zeichen--' + (richtig ? 'gut' : 'schlecht'),
+      role: 'img',
+      'aria-label': richtig ? 'richtig' : 'falsch',
+      text: richtig ? '✓' : '✗'
+    });
+  }
+
+  /** Eine Abfragezeile der Vorderseite: Bezeichnung, Dropdown, Zeichen. */
+  function frageZeile(z, beiAntwort) {
+    var zeichen = h('span', { class: 'lk-frage__zeichen', 'aria-hidden': 'true' });
+    var wahl = h('select', { class: 'lk-frage__wahl' }, [
+      h('option', { value: '', text: '– wählen –' })
+    ].concat(poolVon(z.kategorie).map(function (w) {
+      return h('option', { value: w, text: w });
+    })));
+
+    var zeile = h('label', { class: 'lk-frage', dataset: { stand: 'offen' } }, [
+      h('span', { class: 'lk-frage__label' }, [
+        HT.ui.katSymbol(z.kategorie, 14),
+        h('span', { text: z.label })
       ]),
-      h('div', {
-        class: 'flip__inhalt' + (istBegriff ? '' : ' flip__inhalt--klein'),
-        /* Beim Abfragen der Definition darf der gesuchte Begriff nicht darin stehen. */
-        text: istBegriff ? e.begriff : HT.ui.ohneBegriff(e.definition, e.begriff)
-      }),
-      h('div', { class: 'flip__gesucht', text: 'Gesucht: ' + gesucht.join(' · ') }),
-      h('div', { class: 'flip__tipp', text: 'Tippen oder Leertaste — Karte umdrehen' })
+      wahl,
+      zeichen
+    ]);
+
+    wahl.addEventListener('change', function () {
+      var wert = wahl.value;
+      if (!wert || zustand.antworten[z.key]) { return; }
+      var richtig = z.werte.indexOf(wert) !== -1;
+      zustand.antworten[z.key] = { wert: wert, richtig: richtig };
+      wahl.disabled = true;
+      zeile.dataset.stand = richtig ? 'richtig' : 'falsch';
+      zeichen.textContent = richtig ? '✓' : '✗';
+      beiAntwort();
+    });
+
+    return { el: zeile, wahl: wahl };
+  }
+
+  function seiteVorne(e, beiAntwort) {
+    var istBegriff = zustand.richtung === 'bd';
+    var waehler = [];
+
+    var kopf = h('div', { class: 'flip__rolle' }, [
+      h('span', { text: istBegriff ? 'Begriff' : 'Definition' }),
+      ' · ',
+      HT.ui.badge(e.kategorie)
+    ]);
+
+    var inhalt = h('div', {
+      class: 'flip__inhalt' + (istBegriff ? '' : ' flip__inhalt--klein'),
+      /* Beim Abfragen der Definition darf der gesuchte Begriff nicht darin stehen. */
+      text: istBegriff ? e.begriff : HT.ui.ohneBegriff(e.definition, e.begriff)
+    });
+
+    var liste = h('div', { class: 'lk-fragen' }, fragen(e).map(function (z) {
+      var zeile = frageZeile(z, beiAntwort);
+      waehler.push(zeile.wahl);
+      return zeile.el;
+    }));
+
+    var seite = h('div', {
+      class: 'flip__seite flip__seite--vorne',
+      tabindex: '-1',
+      'aria-hidden': 'false'
+    }, [kopf, inhalt, h('p', { class: 'lk-auftrag', text: 'Zuordnen — jede Wahl wird sofort geprüft:' }), liste]);
+
+    return { el: seite, waehler: waehler };
+  }
+
+  /** Eine Bezugszeile der Lösung: alle richtigen Werte, dazu die eigene Wahl. */
+  function loesungZeile(z) {
+    var a = zustand.antworten[z.key];
+    var werte = z.werte.map(function (w) {
+      return h('li', { class: (a && a.richtig && a.wert === w) ? 'ist-gewaehlt' : null }, [
+        HT.ui.katSymbol(z.kategorie, 14),
+        h('span', { text: w })
+      ]);
+    });
+    if (a && !a.richtig) {
+      werte.push(h('li', { class: 'ist-falsch' }, [
+        HT.ui.katSymbol(z.kategorie, 14),
+        h('span', { text: a.wert })
+      ]));
+    }
+    return h('div', { class: 'lk-bezug' }, [
+      h('dt', {}, [a ? zeichenFuer(a.richtig) : null, h('span', { text: z.label })]),
+      h('dd', {}, [h('ul', { class: 'lk-werte' }, werte)])
     ]);
   }
 
-  function seiteHinten(e) {
-    var kinder = [
-      h('div', { class: 'flip__rolle' }, [
-        h('span', { text: 'Lösung' }),
-        ' · ',
-        HT.ui.badge(e.kategorie)
-      ]),
-      h('div', { class: 'flip__inhalt', text: e.begriff }),
-      h('dl', { class: 'lk-bezuege' }, bezuege(e).map(function (z) {
-        return h('div', { class: 'lk-bezug' }, [
-          h('dt', { text: z.label }),
-          h('dd', {}, [
-            h('ul', { class: 'lk-werte' }, z.werte.map(function (w) {
-              return h('li', {}, [HT.ui.katSymbol(z.kategorie, 14), h('span', { text: w })]);
-            }))
-          ])
-        ]);
-      })),
-      h('div', { class: 'flip__inhalt flip__inhalt--klein', text: e.definition })
-    ];
+  /** Inhalt der Rückseite; er entsteht erst beim Drehen, mit den Zeichen der eigenen Wahl. */
+  function hintenFuellen(el, e) {
+    var st = auswertung(e);
+    var begriffAntwort = zustand.antworten.begriff;
+
+    /* Wer die Karte vor der letzten Wahl dreht, soll die offenen Zuordnungen
+       nicht als Fehler gezählt sehen. */
+    var bilanz = !st.beantwortet
+      ? h('span', { text: 'ohne Zuordnung' })
+      : h('span', {
+        class: st.richtig === st.beantwortet ? 'tag-gut' : 'tag-schlecht',
+        text: st.fertig
+          ? st.richtig + ' von ' + st.gesamt + ' richtig'
+          : st.richtig + ' von ' + st.beantwortet + ' richtig, ' + (st.gesamt - st.beantwortet) + ' offen'
+      });
+
+    el.appendChild(h('div', { class: 'flip__rolle' }, [
+      h('span', { text: 'Lösung' }),
+      ' · ',
+      bilanz,
+      ' · ',
+      HT.ui.badge(e.kategorie)
+    ]));
+
+    el.appendChild(h('div', { class: 'flip__inhalt' }, [
+      begriffAntwort ? zeichenFuer(begriffAntwort.richtig) : null,
+      h('span', { text: e.begriff })
+    ]));
+    if (begriffAntwort && !begriffAntwort.richtig) {
+      el.appendChild(h('p', { class: 'lk-gewaehlt', text: 'Gewählt: ' + begriffAntwort.wert }));
+    }
+
+    el.appendChild(h('dl', { class: 'lk-bezuege' }, bezuege(e).map(loesungZeile)));
+    el.appendChild(h('div', { class: 'flip__inhalt flip__inhalt--klein', text: e.definition }));
 
     var quelle = HT.ui.quellenLink(e.quelle);
     if (quelle) {
-      kinder.push(h('div', { class: 'flip__hinweis' }, quelle));
+      el.appendChild(h('div', { class: 'flip__hinweis' }, quelle));
     }
-
-    return h('div', {
-      class: 'flip__seite flip__seite--hinten',
-      'aria-hidden': 'true'
-    }, kinder);
   }
 
   function kartenBereichAufbauen() {
@@ -218,10 +374,14 @@
       return kartenBereichAufbauen();
     }
 
-    var vorne = seiteVorne(e);
-    var hinten = seiteHinten(e);
-    var flip = h('div', { class: 'flip' }, [vorne, hinten]);
+    var stand = h('p', { class: 'lk-stand', role: 'status' });
+    var vorne = seiteVorne(e, function () { antwortGezaehlt(); });
+    var hinten = h('div', { class: 'flip__seite flip__seite--hinten', 'aria-hidden': 'true' });
+    var flip = h('div', { class: 'flip' }, [vorne.el, hinten]);
 
+    var drehKnopf = h('button', {
+      type: 'button', class: 'btn lk-drehen', text: 'Lösung zeigen'
+    });
     var gewusstBtn = h('button', {
       type: 'button', class: 'btn btn--gut', text: 'Gewusst', disabled: true
     });
@@ -229,30 +389,55 @@
       type: 'button', class: 'btn btn--schlecht', text: 'Nochmals', disabled: true
     });
 
+    function standSetzen() {
+      var s = auswertung(e);
+      if (!s.beantwortet) {
+        stand.textContent = s.gesamt + ' ' + (s.gesamt === 1 ? 'Zuordnung' : 'Zuordnungen') + ' offen';
+      } else if (!s.fertig) {
+        stand.textContent = s.beantwortet + ' von ' + s.gesamt + ' zugeordnet, ' + s.richtig + ' richtig';
+      } else {
+        stand.textContent = s.richtig === s.gesamt
+          ? 'Alle ' + s.gesamt + ' Zuordnungen richtig'
+          : s.richtig + ' von ' + s.gesamt + ' richtig';
+      }
+    }
+
     function drehen() {
       if (zustand.gedreht) { return; }
       zustand.gedreht = true;
+      hintenFuellen(hinten, e);
       flip.classList.add('ist-gedreht');
-      vorne.setAttribute('aria-hidden', 'true');
-      vorne.setAttribute('tabindex', '-1');
+      vorne.el.setAttribute('aria-hidden', 'true');
       hinten.setAttribute('aria-hidden', 'false');
+      /* Hinter der Rückseite darf nichts mehr zu bedienen sein; wie viel
+         richtig war, sagt jetzt der Kopf der Lösung. */
+      vorne.waehler.forEach(function (w) { w.disabled = true; });
+      stand.hidden = true;
+      drehKnopf.hidden = true;
       gewusstBtn.disabled = false;
       nochmalsBtn.disabled = false;
-      gewusstBtn.focus();
+      var s = auswertung(e);
+      (s.beantwortet && s.richtig < s.gesamt ? nochmalsBtn : gewusstBtn).focus();
     }
 
-    vorne.addEventListener('click', drehen);
-    vorne.addEventListener('keydown', function (ev) {
-      if (ev.key === ' ' || ev.key === 'Enter' || ev.key === 'Spacebar') {
-        ev.preventDefault();
-        drehen();
-      }
-    });
+    /* Ist die letzte Zuordnung getroffen, dreht sich die Karte von selbst —
+       kurz danach, damit das Zeichen der letzten Wahl noch zu sehen ist. */
+    function antwortGezaehlt() {
+      standSetzen();
+      if (!auswertung(e).fertig || zustand.gedreht) { return; }
+      global.setTimeout(function () {
+        if (zustand.stapel[0] === e.id) { drehen(); }
+      }, DREH_VERZUG);
+    }
 
+    drehKnopf.addEventListener('click', drehen);
     gewusstBtn.addEventListener('click', function () { bewerten('gewusst'); });
     nochmalsBtn.addEventListener('click', function () { bewerten('nochmals'); });
 
+    standSetzen();
     bereich.appendChild(h('div', { class: 'flip-wrap' }, flip));
+    bereich.appendChild(stand);
+    bereich.appendChild(drehKnopf);
     bereich.appendChild(h('div', { class: 'lk-aktionen' }, [nochmalsBtn, gewusstBtn]));
     bereich.appendChild(h('p', {
       class: 'trefferzahl',
@@ -268,7 +453,7 @@
     zustand.fortschritt[id] = wert;
     zustand.stapel.shift();
     if (wert === 'nochmals') { zustand.stapel.push(id); }
-    zustand.gedreht = false;
+    neueKarte();
     speichern();
     neuZeichnen(true);
   }
@@ -313,6 +498,8 @@
     HT.ui.leeren(refs.fortschritt).appendChild(fortschrittAufbauen());
     HT.ui.leeren(refs.spiel).appendChild(kartenBereichAufbauen());
     if (fokusKarte) {
+      /* Die Karte selbst, nicht das erste Dropdown: ein versehentlicher
+         Tastendruck soll keine Zuordnung setzen. */
       var vorne = refs.spiel.querySelector('.flip__seite--vorne');
       if (vorne) { vorne.focus(); }
     }
@@ -332,7 +519,7 @@
 
     btn.addEventListener('click', function () {
       zustand.richtung = zustand.richtung === 'bd' ? 'db' : 'bd';
-      zustand.gedreht = false;
+      neueKarte();
       beschriften();
       speichern();
       neuZeichnen(true);
@@ -406,8 +593,11 @@
       leiste(null, function () {
         return [
           h('h3', { class: 'gpop__abschnitt', text: 'Lernkarten' }),
-          h('p', { text: 'Aufgaben und Ergebnisse: Wer ist verantwortlich, was entsteht woraus, in welchem Modul? '
-            + 'Karte umdrehen, selbst einschätzen. Was «Nochmals» erhält, kehrt im Stapel zurück.' })
+          h('p', { text: 'Aufgaben und Ergebnisse und ihr Zusammenhang: In welcher Phase, in welchem Modul, wer ist '
+            + 'verantwortlich, was entsteht woraus? Je Bezug ein Dropdown auf der Vorderseite — jede Wahl wird sofort '
+            + 'geprüft, nach der letzten dreht sich die Karte zur Lösung.' }),
+          h('p', { text: 'Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
+            + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' })
         ];
       });
     }
