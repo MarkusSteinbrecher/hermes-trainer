@@ -185,7 +185,7 @@
       h('ul', {}, [
         h('li', { text: 'Im Graph: Klick auf einen Knoten zeigt Details und hebt die Nachbarn hervor, Doppelklick stellt ihn in den Fokus; Ziehen verschiebt, Mausrad oder zwei Finger zoomen. Grosse Gruppen sind auf zwölf Einträge gekappt («+ n weitere anzeigen»).' }),
         h('li', { text: 'Die Suche in der Kopfzeile findet jedes Element; im Überblick steht rechts daneben der Filter für Abbildung und Graph. Die Leiste unter der Kopfzeile wählt im Handbuch das Kapitel und im Überblick, was Abbildung und Graph zeigen.' }),
-        h('li', { text: 'Im Trainer wählt die Leiste unter der Kopfzeile die Übungsform. Bei den Lernkarten lässt sich die Vorderseite umschalten: Begriff oder Definition — bei «Definition» wird der Begriff selbst mit abgefragt.' }),
+        h('li', { text: 'Im Trainer wählt die Leiste unter der Kopfzeile die Übungsform. Bei den Lernkarten wählt man oben rechts auf der Karte, was vorne steht: Begriff oder Definition — bei «Definition» wird der Begriff selbst mit abgefragt.' }),
         h('li', { text: 'Im Quiz stehen kuratierte Prüfungsfragen und automatisch aus den Elementkarten erzeugte Fragen zur Wahl. Zu jeder kuratierten Frage wird nach der Antwort das Belegzitat mit Kapitel und Seite des Referenzhandbuchs angezeigt.' }),
         h('li', { text: 'Generierte Fragen entstehen maschinell aus den erfassten Daten. Bei Zweifeln gilt der verlinkte Originaltext.' })
       ]),

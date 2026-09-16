@@ -130,9 +130,9 @@
   }
 
   /* Grundbegriffe haben keine Bezüge (Phase, Modul usw. werden bei ihnen nicht
-     abgefragt, auch wo die Daten welche nennen). Sie folgen dem Umschalter:
-     «Vorne: Begriff» zeigt den Begriff, gedreht wird zur Definition, ohne
-     Auswahl; «Vorne: Definition» fragt allein den Begriff ab. */
+     abgefragt, auch wo die Daten welche nennen). Sie folgen der Wahl oben auf
+     der Karte: «Vorne: Begriff» zeigt den Begriff, gedreht wird zur
+     Definition, ohne Auswahl; «Vorne: Definition» fragt allein den Begriff ab. */
   function istGrundbegriff(e) {
     return e.kategorie === 'grundbegriff';
   }
@@ -513,10 +513,9 @@
     var istBegriff = !begriffGesucht();
     var sperren = [];
 
-    var kopf = h('div', { class: 'flip__rolle' }, [
-      h('span', { text: istBegriff ? 'Begriff' : 'Definition' }),
-      ' · ',
-      HT.ui.badge(e.kategorie)
+    var kopf = h('div', { class: 'flip__rolle lk-kopf' }, [
+      HT.ui.badge(e.kategorie),
+      seitenWahl()
     ]);
 
     var inhalt = h('div', {
@@ -784,17 +783,15 @@
 
   /* --- Fortschrittsanzeige ------------------------------------------------ */
 
+  /** Rechts in der Zeile der Kategorien: gewusst, Balken, Anteil und «Zurücksetzen». */
   function fortschrittAufbauen() {
     var st = zaehlen();
     var anteil = HT.ui.prozent(st.gewusst, st.gesamt);
     var fuellung = h('div', { class: 'fortschritt__fuellung' });
     fuellung.style.width = anteil + '%';
 
-    return h('div', { class: 'fortschritt' }, [
-      h('div', { class: 'fortschritt__zeile' }, [
-        h('span', { text: 'Gewusst ' + st.gewusst + ' / ' + st.gesamt }),
-        h('span', { text: anteil + ' %' })
-      ]),
+    return h('div', { class: 'lk-fortschritt' }, [
+      h('span', { text: 'Gewusst ' + st.gewusst + ' / ' + st.gesamt }),
       h('div', {
         class: 'fortschritt__balken',
         role: 'progressbar',
@@ -802,7 +799,13 @@
         'aria-valuemax': '100',
         'aria-valuenow': String(anteil),
         'aria-label': 'Anteil gewusster Karten'
-      }, fuellung)
+      }, fuellung),
+      h('span', { text: anteil + ' %' }),
+      h('button', {
+        type: 'button', class: 'chip', text: 'Zurücksetzen',
+        'aria-label': 'Lernfortschritt zurücksetzen',
+        on: { click: zuruecksetzen }
+      })
     ]);
   }
 
@@ -818,28 +821,38 @@
     }
   }
 
-  /* --- Steuerleiste ------------------------------------------------------- */
+  /* --- Wahl der Vorderseite und Kategorien --------------------------------- */
 
-  function richtungsKnopf() {
-    var btn = h('button', { type: 'button', class: 'btn btn--klein' });
+  /**
+   * Oben auf der Karte: was vorne steht, Begriff oder Definition. Beide
+   * Möglichkeiten sind zu sehen, die gewählte ist markiert — der frühere
+   * einzelne Knopf nannte den Zustand und schaltete beim Klick um, wer
+   * «Vorne: Begriff» anklickte, bekam die Definition.
+   */
+  function seitenWahl() {
+    var optionen = [['bd', 'Begriff'], ['db', 'Definition']];
+    return h('div', { class: 'lk-seitenwahl', role: 'group', 'aria-label': 'Vorderseite der Karten' }, [
+      h('span', { class: 'lk-seitenwahl__titel', 'aria-hidden': 'true', text: 'Vorne' }),
+      h('ul', { class: 'chips' }, optionen.map(function (o) {
+        return h('li', {}, h('button', {
+          type: 'button', class: 'chip', text: o[1],
+          'aria-pressed': zustand.richtung === o[0] ? 'true' : 'false',
+          title: o[0] === 'bd' ? 'Vorne den Begriff zeigen' : 'Vorne die Definition zeigen, der Begriff wird abgefragt',
+          on: { click: function () { richtungSetzen(o[0]); } }
+        }));
+      }))
+    ]);
+  }
 
-    function beschriften() {
-      var text = zustand.richtung === 'bd' ? 'Vorne: Begriff' : 'Vorne: Definition';
-      btn.textContent = text;
-      btn.setAttribute('aria-label', 'Vorderseite umschalten, aktuell ' + text);
-      btn.setAttribute('title', 'Vorderseite umschalten: Begriff oder Definition');
-    }
-
-    btn.addEventListener('click', function () {
-      zustand.richtung = zustand.richtung === 'bd' ? 'db' : 'bd';
-      neueKarte();
-      beschriften();
-      speichern();
-      neuZeichnen(true);
-    });
-
-    beschriften();
-    return btn;
+  function richtungSetzen(richtung) {
+    if (zustand.richtung === richtung) { return; }
+    zustand.richtung = richtung;
+    neueKarte();
+    speichern();
+    neuZeichnen(false);
+    /* Der Fokus bleibt auf der Wahl — jetzt in der neu gezeichneten Karte. */
+    var aktiv = refs.spiel.querySelector('.lk-seitenwahl [aria-pressed="true"]');
+    if (aktiv) { aktiv.focus(); }
   }
 
   function chipsAufbauen() {
@@ -914,6 +927,8 @@
           h('p', { text: 'Jede Wahl wird sofort geprüft; die erste falsche beendet die Zeile, die Lösung zeigt dann, '
             + 'was gefehlt hat. Sind alle Zeilen fertig, dreht sich die Karte. In langen Listen (Aufgaben, Ergebnisse) '
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
+          h('p', { text: 'Oben rechts auf der Karte wählt man, was vorne steht: der Begriff oder die Definition — dann ist '
+            + 'der Begriff selbst mit gesucht. Rechts neben den Kategorien stehen der Fortschritt und «Zurücksetzen».' }),
           h('p', { text: 'Grundbegriffe haben eigene Karten ohne Phase, Modul und die übrigen Zeilen: Mit «Vorne: Begriff» steht '
             + 'der Begriff da, und die Rückseite zeigt die Definition. Mit «Vorne: Definition» wählt man, welcher '
             + 'Begriff gemeint ist.' }),
@@ -925,20 +940,12 @@
       });
     }
 
-    behaelter.appendChild(h('div', { class: 'lk-leiste' }, [
-      richtungsKnopf(),
-      h('button', {
-        type: 'button', class: 'btn btn--klein', text: 'Zurücksetzen',
-        'aria-label': 'Lernfortschritt zurücksetzen',
-        on: { click: zuruecksetzen }
-      })
-    ]));
+    /* Über der Karte nur eine Zeile: links die Kategorien, rechts der
+       Fortschritt. Was vorne steht, wählt man oben auf der Karte. */
+    refs.fortschritt = h('div', { class: 'lk-zeile__rechts' });
+    behaelter.appendChild(h('div', { class: 'lk-zeile' }, [chipsAufbauen(), refs.fortschritt]));
 
-    behaelter.appendChild(chipsAufbauen());
-
-    refs.fortschritt = h('div', {});
     refs.spiel = h('div', {});
-    behaelter.appendChild(refs.fortschritt);
     behaelter.appendChild(refs.spiel);
 
     if (!HT.store.verfuegbar) {

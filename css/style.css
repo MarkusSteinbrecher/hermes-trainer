@@ -789,26 +789,43 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .mehr-laden { margin-top: 16px; }
 
 /* --- Lernkarten ----------------------------------------------------------- */
-.lk-leiste {
+/* Über der Karte eine Zeile: links die Kategorien, rechts der Fortschritt
+   samt «Zurücksetzen». Die Haarlinie trägt die Zeile, nicht die Chips. */
+.lk-zeile {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px 18px;
-  margin-bottom: 12px;
+  gap: 2px 20px;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rand);
 }
-.fortschritt { margin: 4px 0 18px; }
-.fortschritt__zeile {
+.lk-zeile > .chips { flex: 0 1 auto; min-width: 0; margin-block: 0; padding-bottom: 0; border-bottom: 0; }
+.lk-zeile__rechts { margin-left: auto; }
+.lk-fortschritt {
   display: flex;
-  justify-content: space-between;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--text-leise);
-  margin-bottom: 6px;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
+.lk-fortschritt .fortschritt__balken { width: 72px; }
+@media (max-width: 699.98px) {
+  /* Schmal rollen die Kategorien in ihrer eigenen Zeile, der Fortschritt steht darunter. */
+  .lk-zeile > .chips { flex-basis: 100%; }
+}
+
+/* Kopf der Vorderseite: links die Kategorie, rechts die Wahl, was vorne
+   steht — beide Möglichkeiten sichtbar, die gewählte unterstrichen. */
+.lk-kopf { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; }
+.lk-seitenwahl { display: flex; align-items: center; gap: 6px; }
+.lk-seitenwahl .chips { flex-wrap: nowrap; margin: 0; padding: 0; border: 0; }
+.lk-seitenwahl .chip { height: 26px; }
 .fortschritt__balken {
   height: 5px;
   background: var(--flaeche-2);
