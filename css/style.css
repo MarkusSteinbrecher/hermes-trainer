@@ -711,7 +711,11 @@ main:focus { outline: none; }
   margin: 0 0 12px;
   font-variant-numeric: tabular-nums;
 }
-.eintraege { display: grid; gap: 0; list-style: none; margin: 0; padding: 0; }
+/* Die Spalte darf schmaler werden als ihr breitester Inhalt (minmax(0, …)):
+   sonst richtet sich die Karte nach einer Handbuchtabelle darin, und schmal
+   standen die Rollenkarten 829 px breit im 320-px-Blatt, rechts
+   abgeschnitten. So rollt nur die Tabelle in ihrem Rahmen (.hb-tabelle-wrap). */
+.eintraege { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; list-style: none; margin: 0; padding: 0; }
 
 /* Ein Eintrag ist ein Abschnitt zwischen Haarlinien — kein Kasten, keine
    Farbkante. Die Kategorie steht als Marke in der Titelzeile. */
@@ -1351,7 +1355,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
   .kopf h1 { font-size: 31px; }
   .fusszeile { padding-inline: 32px; }
 
-  .eintraege { grid-template-columns: 1fr; }
+  .eintraege { grid-template-columns: minmax(0, 1fr); }
   .btn-reihe > .btn--primaer, .btn-reihe > .btn--gut, .btn-reihe > .btn--schlecht { flex: 0 1 auto; }
 
   .chips--streifen {
@@ -1510,7 +1514,10 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .hb-liste li { margin-bottom: 3px; }
 .hb-liste .hb-liste { margin: 3px 0; }
 .hb-li-titel { display: block; font-weight: 700; color: var(--text); }
-.hb-tabelle-wrap { overflow-x: auto; margin: 6px 0 14px; -webkit-overflow-scrolling: touch; }
+/* position: relative, damit die unsichtbaren Screenreader-Texte der
+   ✓-Zellen (.nur-sr, absolut) im rollenden Rahmen bleiben — sonst hängen sie
+   an der Seite und machen sie schmal breiter als den Schirm. */
+.hb-tabelle-wrap { position: relative; overflow-x: auto; margin: 6px 0 14px; -webkit-overflow-scrolling: touch; }
 .hb-tabelle {
   border-collapse: collapse;
   width: 100%;
