@@ -32,11 +32,15 @@
      die Karte von selbst dreht (ms). */
   var DREH_VERZUG = 550;
 
+  /* Wie viele Versuche je Karte unten als Punkte stehen. */
+  var VERLAUF_LAENGE = 5;
+
   var zustand = {
     initialisiert: false,
     richtung: 'bd',        // 'bd' = vorne Begriff, 'db' = vorne Definition
     filter: [],            // leer = Aufgaben, Ergebnisse und Grundbegriffe
     fortschritt: {},       // id -> 'gewusst' | 'nochmals'
+    verlauf: {},           // id -> ['gewusst' | 'nochmals', …], die letzten Versuche, neuester zuletzt
     stapel: [],            // offene Karten-IDs der laufenden Runde
     gedreht: false,
     antworten: {}          // Bezug-Schlüssel -> { wert, richtig } der laufenden Karte
@@ -53,7 +57,8 @@
       version: VERSION,
       richtung: zustand.richtung,
       filter: zustand.filter,
-      fortschritt: zustand.fortschritt
+      fortschritt: zustand.fortschritt,
+      verlauf: zustand.verlauf
     });
   }
 
@@ -67,7 +72,21 @@
       zustand.fortschritt = (g.version === VERSION && g.fortschritt && typeof g.fortschritt === 'object')
         ? g.fortschritt
         : {};
+      zustand.verlauf = (g.version === VERSION && g.verlauf && typeof g.verlauf === 'object')
+        ? g.verlauf
+        : {};
     }
+  }
+
+  /** Die letzten Versuche einer Karte, ältester zuerst. Karten, die vor dem
+      Verlauf eingeschätzt wurden, haben nur ihre letzte Einschätzung. */
+  function verlaufVon(id) {
+    var v = zustand.verlauf[id];
+    if (Array.isArray(v)) {
+      return v.filter(function (w) { return w === 'gewusst' || w === 'nochmals'; }).slice(-VERLAUF_LAENGE);
+    }
+    var letzte = zustand.fortschritt[id];
+    return (letzte === 'gewusst' || letzte === 'nochmals') ? [letzte] : [];
   }
 
   /* --- Beziehungen -------------------------------------------------------- */
@@ -489,10 +508,27 @@
     return { el: zeile, sperren: kombi.sperren };
   }
 
+  /** Rechts neben den Verweisen die letzten fünf Versuche als Punkte:
+      «Gewusst» grün, «Nochmals» rot, ältester links; noch freie Plätze als
+      leere Ringe rechts davon. */
+  function verlaufAnzeige(e) {
+    var v = verlaufVon(e.id);
+    var text = v.length
+      ? (v.length === 1 ? 'Letzter Versuch: ' : 'Letzte ' + v.length + ' Versuche, ältester zuerst: ')
+        + v.map(function (w) { return w === 'gewusst' ? 'gewusst' : 'nochmals'; }).join(', ')
+      : 'Noch kein Versuch mit dieser Karte';
+    var punkte = [];
+    for (var i = 0; i < VERLAUF_LAENGE; i++) {
+      punkte.push(h('span', { class: 'lk-verlauf__punkt' + (v[i] ? ' lk-verlauf__punkt--' + v[i] : '') }));
+    }
+    return h('span', { class: 'lk-verlauf', role: 'img', title: text, 'aria-label': text }, punkte);
+  }
+
   /** Am Fuss beider Seiten die drei Wege weiter: das Element im Überblick, im
-      Handbuch und auf der offiziellen Seite. Solange der Begriff gesucht ist
-      (Vorderseite «Definition»), nennen die Tooltips ihn nicht. Grundbegriffe
-      stehen weder im Überblick noch im Handbuch — bei ihnen nur HERMES online. */
+      Handbuch und auf der offiziellen Seite, rechts davon der Verlauf. Solange
+      der Begriff gesucht ist (Vorderseite «Definition»), nennen die Tooltips
+      ihn nicht. Grundbegriffe stehen weder im Überblick noch im Handbuch — bei
+      ihnen nur HERMES online. */
   function verweise(e, mitBegriff) {
     var name = mitBegriff ? e.begriff : 'Das Element';
     var offiziell = HT.ui.quellenLink(e.quelle, 'lk-verweis lk-verweis--akzent');
@@ -501,7 +537,7 @@
       offiziell.setAttribute('aria-label', 'HERMES online (öffnet in neuem Tab)');
     }
     if (istGrundbegriff(e)) {
-      return h('div', { class: 'flip__hinweis lk-verweise' }, [offiziell]);
+      return h('div', { class: 'flip__hinweis lk-verweise' }, [offiziell, verlaufAnzeige(e)]);
     }
     return h('div', { class: 'flip__hinweis lk-verweise' }, [
       h('a', {
@@ -512,7 +548,8 @@
         class: 'lk-verweis', href: '#/handbuch?id=' + encodeURIComponent(e.id),
         text: 'Im Handbuch', title: name + ' im Handbuch zeigen'
       }),
-      offiziell
+      offiziell,
+      verlaufAnzeige(e)
     ]);
   }
 
@@ -776,6 +813,7 @@
   function bewerten(wert) {
     var id = zustand.stapel[0];
     if (!id) { return; }
+    zustand.verlauf[id] = verlaufVon(id).concat([wert]).slice(-VERLAUF_LAENGE);
     zustand.fortschritt[id] = wert;
     zustand.stapel.shift();
     if (wert === 'nochmals') { zustand.stapel.push(id); }
@@ -790,6 +828,7 @@
       return;
     }
     zustand.fortschritt = {};
+    zustand.verlauf = {};
     stapelAufbauen(true);
     speichern();
     neuZeichnen(true);
@@ -965,7 +1004,8 @@
           h('p', { text: 'Oben rechts auf der Karte wählt man, was vorne steht: der Begriff oder die Definition — dann ist '
             + 'der Begriff selbst mit gesucht. Rechts neben den Kategorien steht der Fortschritt: gewusst (grün), '
             + 'nicht gewusst (zuletzt «Nochmals», rot), je mit Anteil, und die Zahl aller Karten der Auswahl; der Anteil rechts '
-            + 'zählt gewusste und nicht gewusste Karten zusammen. Dahinter das Icon zum Zurücksetzen.' }),
+            + 'zählt gewusste und nicht gewusste Karten zusammen. Dahinter das Icon zum Zurücksetzen. Unten rechts auf der Karte '
+            + 'stehen die letzten fünf Versuche mit ihr als Punkte: grün «Gewusst», rot «Nochmals», der älteste links.' }),
           h('p', { text: 'Grundbegriffe haben eigene Karten ohne Phase, Modul und die übrigen Zeilen: Steht oben «Begriff», '
             + 'ist der Begriff zu sehen, und die Rückseite zeigt die Definition. Steht oben «Definition», wählt man, welcher '
             + 'Begriff gemeint ist.' }),

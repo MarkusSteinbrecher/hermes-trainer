@@ -1090,6 +1090,12 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 }
 .lk-verweis--akzent { border-bottom-color: var(--akzent-schwach-2); color: var(--akzent-text); }
 .lk-verweis:hover { color: var(--akzent); border-bottom-color: var(--akzent); }
+/* Die letzten fünf Versuche der Karte, rechts in der Zeile der Verweise:
+   gefüllt in den Farben des Fortschritts, freie Plätze als Ring. */
+.lk-verlauf { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; align-self: center; }
+.lk-verlauf__punkt { width: 9px; height: 9px; border: 1.5px solid var(--rand-stark); border-radius: 50%; }
+.lk-verlauf__punkt--gewusst { background: var(--gut); border-color: var(--gut); }
+.lk-verlauf__punkt--nochmals { background: var(--akzent); border-color: var(--akzent); }
 
 /* Das Zeichen einer geprüften Wahl — auf der Lösung vor der Bezeichnung. */
 .lk-zeichen { margin-right: 5px; font-weight: 800; }

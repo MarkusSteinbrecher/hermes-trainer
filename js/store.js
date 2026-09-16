@@ -115,7 +115,10 @@
     notizen: { art: 'lernstand', form: mitEintraegen },   // alt, js/markieren.js übernimmt es
     lernkarten: {
       art: 'lernstand',
-      form: function (w) { return istObjekt(w) && (w.fortschritt === undefined || istObjekt(w.fortschritt)); },
+      form: function (w) {
+        return istObjekt(w) && (w.fortschritt === undefined || istObjekt(w.fortschritt))
+          && (w.verlauf === undefined || istObjekt(w.verlauf));
+      },
       menge: function (w) {
         return zahlwort(w.fortschritt ? Object.keys(w.fortschritt).length : 0, 'Lernkarte eingeschätzt', 'Lernkarten eingeschätzt');
       }
