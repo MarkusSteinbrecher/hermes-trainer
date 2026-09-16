@@ -10,8 +10,9 @@
    erste falsche beendet die Zeile; sind alle Zeilen fertig, dreht sich die
    Karte zur Lösung. Die Werte kommen aus einem Kombinationsfeld, bei langen
    Listen (Aufgaben, Ergebnisse) mit Suche. Ohne Wahl geht es auch: Karte drehen und selbst einschätzen.
-   Dazu die Grundbegriffe (data/grundbegriffe.json, nur hier geladen): ihre
-   Karte zeigt immer die Definition und fragt allein den Begriff ab.
+   Dazu die Grundbegriffe (data/grundbegriffe.json, nur hier geladen): mit
+   dem Begriff vorn eine Karte zum Drehen, mit der Definition vorn eine Wahl
+   allein für den Begriff.
    «Nochmals» kehrt im Stapel zurück. Fortschritt liegt im localStorage und
    ist zurücksetzbar. */
 (function (global) {
@@ -129,20 +130,21 @@
   }
 
   /* Grundbegriffe haben keine Bezüge (Phase, Modul usw. werden bei ihnen nicht
-     abgefragt, auch wo die Daten welche nennen): ihre Karte zeigt immer die
-     Definition und fragt nur den Begriff. */
+     abgefragt, auch wo die Daten welche nennen). Sie folgen dem Umschalter:
+     «Vorne: Begriff» zeigt den Begriff, gedreht wird zur Definition, ohne
+     Auswahl; «Vorne: Definition» fragt allein den Begriff ab. */
   function istGrundbegriff(e) {
     return e.kategorie === 'grundbegriff';
   }
 
-  /** Steht vorn die Definition? Bei «Vorne: Definition» und bei Grundbegriffen. */
-  function begriffGesucht(e) {
-    return zustand.richtung === 'db' || istGrundbegriff(e);
+  /** Steht vorn die Definition (und ist damit der Begriff gesucht)? */
+  function begriffGesucht() {
+    return zustand.richtung === 'db';
   }
 
   /** Was die Vorderseite abfragt: ist der Begriff gesucht, zuerst er selbst. */
   function fragen(e) {
-    var vorweg = begriffGesucht(e)
+    var vorweg = begriffGesucht()
       ? [{ key: 'begriff', label: 'Begriff', kategorie: e.kategorie, werte: [e.begriff] }]
       : [];
     return vorweg.concat(bezuege(e));
@@ -508,7 +510,7 @@
   }
 
   function seiteVorne(e, beiAntwort) {
-    var istBegriff = !begriffGesucht(e);
+    var istBegriff = !begriffGesucht();
     var sperren = [];
 
     var kopf = h('div', { class: 'flip__rolle' }, [
@@ -535,9 +537,12 @@
       'aria-hidden': 'false'
     }, [kopf, inhalt, h('p', {
       class: 'lk-auftrag',
-      text: istGrundbegriff(e)
-        ? 'Welcher Begriff ist gemeint? Die Wahl wird sofort geprüft:'
-        : 'Zuordnen — gesucht sind alle Werte je Zeile, jede Wahl wird sofort geprüft:'
+      /* Ein Grundbegriff mit Begriff vorn hat nichts zu wählen: umdrehen und selbst einschätzen. */
+      text: !istGrundbegriff(e)
+        ? 'Zuordnen — gesucht sind alle Werte je Zeile, jede Wahl wird sofort geprüft:'
+        : istBegriff
+          ? 'Was bedeutet der Begriff? Karte drehen und selbst einschätzen.'
+          : 'Welcher Begriff ist gemeint? Die Wahl wird sofort geprüft:'
     }), liste, verweise(e, istBegriff)]);
 
     return { el: seite, sperren: sperren };
@@ -578,10 +583,13 @@
     var begriffAntwort = zustand.antworten.begriff;
 
     /* Wer die Karte vor der letzten Wahl dreht, soll die offenen Zuordnungen
-       nicht als Fehler gezählt sehen. */
-    var bilanz = !st.beantwortet
-      ? h('span', { text: 'ohne Zuordnung' })
-      : h('span', {
+       nicht als Fehler gezählt sehen. Ohne Frage (Grundbegriff, Begriff vorn)
+       gibt es keine Bilanz. */
+    var bilanz = null;
+    if (st.gesamt && !st.beantwortet) {
+      bilanz = h('span', { text: 'ohne Zuordnung' });
+    } else if (st.gesamt) {
+      bilanz = h('span', {
         class: st.richtig === st.beantwortet ? 'tag-gut' : 'tag-schlecht',
         /* Eine Karte mit einer einzigen Frage (Grundbegriffe) braucht kein «1 von 1». */
         text: st.gesamt === 1
@@ -590,12 +598,13 @@
             ? st.richtig + ' von ' + st.gesamt + ' richtig'
             : st.richtig + ' von ' + st.beantwortet + ' richtig, ' + (st.gesamt - st.beantwortet) + ' offen'
       });
+    }
 
     el.appendChild(h('div', { class: 'flip__rolle' }, [
       h('span', { text: 'Lösung' }),
       ' · ',
       bilanz,
-      ' · ',
+      bilanz ? ' · ' : null,
       HT.ui.badge(e.kategorie)
     ]));
 
@@ -673,7 +682,10 @@
 
     function standSetzen() {
       var s = auswertung(e);
-      if (!s.beantwortet) {
+      stand.hidden = !s.gesamt;
+      if (!s.gesamt) {
+        stand.textContent = '';
+      } else if (!s.beantwortet) {
         stand.textContent = s.gesamt + ' ' + (s.gesamt === 1 ? 'Zuordnung' : 'Zuordnungen') + ' offen';
       } else if (!s.fertig) {
         stand.textContent = s.beantwortet + ' von ' + s.gesamt + ' zugeordnet, ' + s.richtig + ' richtig';
@@ -902,9 +914,9 @@
           h('p', { text: 'Jede Wahl wird sofort geprüft; die erste falsche beendet die Zeile, die Lösung zeigt dann, '
             + 'was gefehlt hat. Sind alle Zeilen fertig, dreht sich die Karte. In langen Listen (Aufgaben, Ergebnisse) '
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
-          h('p', { text: 'Grundbegriffe haben eigene Karten: Sie zeigen immer die Definition und fragen nur, welcher '
-            + 'Begriff gemeint ist — ohne Phase, Modul und die übrigen Zeilen. Der Umschalter «Vorne: Begriff/Definition» '
-            + 'gilt nur für Aufgaben und Ergebnisse.' }),
+          h('p', { text: 'Grundbegriffe haben eigene Karten ohne Phase, Modul und die übrigen Zeilen: Mit «Vorne: Begriff» steht '
+            + 'der Begriff da, und die Rückseite zeigt die Definition. Mit «Vorne: Definition» wählt man, welcher '
+            + 'Begriff gemeint ist.' }),
           h('p', { text: 'Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),
           h('p', { text: 'Am Fuss der Karte führen drei Verweise weiter, vorn wie hinten: das Element im Überblick, im Handbuch und auf '
