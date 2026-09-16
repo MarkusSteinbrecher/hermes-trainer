@@ -231,6 +231,22 @@
     return wurzel;
   }
 
+  /* Sprung zu einem Teil oder Eintrag: sofort, nicht weich. Weich rollt
+     Chrome mit begrenztem Tempo über oft Zehntausende Pixel, und jede
+     Berührung von Trackpad oder Rad bricht das ab — der Eintrag blieb dann
+     am unteren Rand stehen. Lädt die Schrift erst danach, verschiebt sich
+     der Text; dann einmal nachrücken, solange niemand gerollt hat. */
+  function springen(ziel) {
+    try { ziel.scrollIntoView({ block: 'start', behavior: 'instant' }); } catch (e) { ziel.scrollIntoView(); }
+    if (!document.fonts || document.fonts.status === 'loaded') { return; }
+    var y = global.pageYOffset;
+    document.fonts.ready.then(function () {
+      if (global.pageYOffset === y && document.body.contains(ziel)) {
+        try { ziel.scrollIntoView({ block: 'start', behavior: 'instant' }); } catch (e) { ziel.scrollIntoView(); }
+      }
+    });
+  }
+
   /* Inhaltsverzeichnis des Kapitels: Ebene 2 und 3 (auch Sammelkarten wie
      4.4.2 Checklisten), bei
      mehreren Ebene-1-Teilen (Vorwort, Impressum, Prolog) auch diese — als
@@ -250,7 +266,7 @@
           type: 'button', class: 'hb-inhalt__knopf',
           on: { click: function () {
             var ziel = document.getElementById(x.ziel);
-            if (ziel) { try { ziel.scrollIntoView({ block: 'start' }); } catch (e) { ziel.scrollIntoView(); } }
+            if (ziel) { springen(ziel); }
           } }
         }, [x.nummer ? h('span', { class: 'hb-nr', text: x.nummer + ' ' }) : null, x.titel]));
       }))
@@ -731,7 +747,7 @@
           ziel = inhalt.querySelector('#hb-' + cssId(gewuenscht)) || inhalt.querySelector('#teil-' + cssId(gewuenscht));
         }
         if (ziel) {
-          try { ziel.scrollIntoView({ block: 'start' }); } catch (e) { ziel.scrollIntoView(); }
+          springen(ziel);
         } else {
           try { global.scrollTo(0, 0); } catch (e2) { /* egal */ }
         }
