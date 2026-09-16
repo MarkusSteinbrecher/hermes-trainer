@@ -334,3 +334,68 @@ body.tr-zieht, body.tr-zieht * { cursor: grabbing; }
   .tr-zoom, .tr-knoepfe, .tr-arten { display: none; }
   .tr-buehne { max-height: none; overflow: visible; border: 0; }
 }
+
+/* --- Fortschritt ------------------------------------------------------------ */
+
+/* Die Methode als Raster: Phasen als Spalten, Module als Zeilen, in jedem
+   Feld ein Balken aus vier Anteilen. Farben nur für den Stand — verstanden
+   grün, auf dem Weg gedämpft, zuletzt falsch rot, offen grau. */
+.fs-seite {
+  --fs-voll: var(--gut);
+  --fs-weg: color-mix(in srgb, var(--gut) 38%, var(--bg));
+  --fs-falsch: var(--akzent);
+  --fs-offen: var(--rand);
+  max-width: var(--maxbreite);
+  margin: 0 auto;
+}
+.fs-seite .feldgruppe { margin-bottom: 10px; }
+.fs-seite .chips { margin-bottom: 8px; }
+.fs-stand { margin: 0 0 8px; font-size: 13px; color: var(--text-leise); }
+.fs-stand b { font-size: 19px; font-weight: 800; letter-spacing: -.02em; color: var(--text); }
+
+/* Schmal rollt das Raster zur Seite; auf dem Schirm steht es ganz da. */
+.fs-tafel { overflow-x: auto; }
+.fs-raster { width: 100%; min-width: 620px; border-collapse: collapse; }
+.fs-raster th, .fs-raster td { padding: 3px 10px 3px 0; text-align: left; vertical-align: middle; border-bottom: 1px solid var(--rand-fein); }
+.fs-raster th:last-child, .fs-raster td:last-child { padding-right: 0; }
+.fs-raster thead th { padding-bottom: 7px; border-bottom: 1px solid var(--rand); }
+.fs-raster tfoot th, .fs-raster tfoot td { padding-top: 8px; border-top: 1px solid var(--rand); border-bottom: 0; }
+
+.fs-ecke, .fs-kopf {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+  white-space: nowrap;
+}
+.fs-zeile { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; }
+.fs-zeile--summe { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-leise); }
+.fs-kopf__link, .fs-zeile__link { color: inherit; text-decoration: none; }
+.fs-kopf__link:hover, .fs-zeile__link:hover, .fs-kopf__link:focus-visible, .fs-zeile__link:focus-visible { color: var(--akzent); text-decoration: underline; }
+
+.fs-zelle { width: 13%; }
+.fs-feld { display: flex; align-items: center; gap: 7px; }
+.fs-balken { flex: 1 1 auto; display: flex; height: 8px; border-radius: var(--radius-xs); overflow: hidden; background: var(--fs-offen); }
+.fs-marke { width: 12px; height: 12px; border-radius: var(--radius-xs); }
+.fs-teil { display: block; height: 100%; }
+.fs-teil--voll { background: var(--fs-voll); }
+.fs-teil--weg { background: var(--fs-weg); }
+.fs-teil--falsch { background: var(--fs-falsch); }
+.fs-teil--offen { background: var(--fs-offen); }
+.fs-zahl { flex: 0 0 auto; min-width: 36px; text-align: right; font-size: 11px; color: var(--text-leise); font-variant-numeric: tabular-nums; }
+.fs-zelle--leer { color: var(--text-leise-hell); }
+.fs-zelle--voll .fs-zahl { color: var(--gut); font-weight: 700; }
+.fs-zelle--falsch .fs-zahl { color: var(--akzent-text); }
+.fs-summe .fs-zahl { font-weight: 700; color: var(--text); }
+
+/* Legende und Knopf auf einer Zeile: die Übersicht soll ohne Rollen auf den
+   Schirm passen. */
+.fs-fuss { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 18px; margin-top: 10px; }
+.fs-legende { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; font-size: 12px; color: var(--text-leise); }
+.fs-legende li { display: flex; align-items: center; gap: 6px; }
+.fs-hinweis { margin: 0; font-size: 12px; color: var(--text-leise-hell); }
+
+@media print {
+  .fs-tafel { overflow: visible; }
+}

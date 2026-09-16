@@ -252,6 +252,34 @@
     return listen[vorgehen];
   }
 
+  /* Alle Felder einer Vorgehensweise für die Fortschritts-Übersicht
+     (js/fortschritt.js): je Phase und Modul die Elemente, die dort zu setzen
+     sind — jedes einmal, auch wenn es in mehreren Zeilen des Feldes steht
+     («Projektmanagementplan» steht im Konzept fünfmal, gefragt ist er
+     einmal). Grundlage ist das Gesamtbild, also dieselben Blöcke wie in den
+     Übungen. */
+  function felderVon(vorgehen) {
+    var alles = uebungen(vorgehen).filter(function (u) { return u.art === 'alles'; })[0];
+    if (!alles) { return []; }
+    var felder = [], index = {};
+    bloeckeVon(alles).forEach(function (b) {
+      var s = b.bahn + '|' + b.unter;
+      var feld = index[s];
+      if (!feld) {
+        feld = index[s] = { phase: b.bahn, modul: b.unter, elemente: [] };
+        felder.push(feld);
+      }
+      function merke(k) {
+        if (!k || feld.elemente.some(function (e) { return e.id === k.id; })) { return; }
+        feld.elemente.push({ id: k.id, kategorie: k.kategorie, begriff: k.begriff });
+      }
+      merke(b.rolle);
+      merke(b.aufgabe);
+      b.ergebnisse.forEach(merke);
+    });
+    return felder;
+  }
+
   function hubAdresse(vorgehen) {
     return vorgehen === 'klassisch' ? '#/trainer' : '#/trainer?vorgehen=' + vorgehen;
   }
@@ -625,6 +653,28 @@
     uebung.ziele.forEach(function (z) { if (z.status === 'richtig') { richtig++; } });
     uebung.geprueft = { richtig: richtig, gesamt: uebung.ziele.length };
     uebung.gewaehlt = null;
+
+    /* Fortschritt je Feld (Phase und Modul) und Element: richtig, solange
+       kein Kasten dieses Elements im Feld falsch belegt ist; leere Kästen
+       zählen nicht — was man nicht versucht hat, ist weder gekonnt noch
+       falsch. In der Modulübung tragen die Blöcke keine Unterbahn, dort ist
+       das Modul die Übung selbst. */
+    if (HT.fortschritt) {
+      var meldungen = {}, liste = [];
+      uebung.ziele.forEach(function (z) {
+        if (!z.loesung || z.status === 'leer') { return; }
+        var b = bloecke[z.n.block];
+        var modul = b.unter || (uebung.def.art === 'modul' ? uebung.def.name : '');
+        if (!b.bahn || !modul) { return; }
+        var s = b.bahn + '|' + modul + '|' + z.loesung.id;
+        if (!meldungen[s]) {
+          meldungen[s] = { phase: b.bahn, modul: modul, id: z.loesung.id, richtig: true };
+          liste.push(meldungen[s]);
+        }
+        if (z.status !== 'richtig') { meldungen[s].richtig = false; }
+      });
+      HT.fortschritt.melden(liste);
+    }
 
     var alt = besteVon(uebung.def);
     if (!alt || richtig > alt.richtig) {
@@ -1407,6 +1457,26 @@
     if (params && params.modul) { return 'Trainer · Modul ' + params.modul + zusatz; }
     return 'Trainer · Gesamtbild' + zusatz;
   }
+
+  /* Was die Fortschritts-Übersicht (js/fortschritt.js) vom Zuordnen braucht:
+     die Felder, die Übungen (für die Links) und die gemeinsame Wahl der
+     Vorgehensweise — beide Seiten zeigen dieselbe. */
+  HT.zuordnen = {
+    felder: felderVon,
+    uebungen: uebungen,
+    vorgehenVon: vorgehenVon,
+    vorgehenGruppe: vorgehenGruppe,
+    vorgehenStand: function () {
+      if (!zustand.initialisiert) { wiederherstellen(); zustand.initialisiert = true; }
+      return zustand.vorgehen;
+    },
+    vorgehenMerken: function (key) {
+      if (!vorgehenVon(key)) { return; }
+      HT.zuordnen.vorgehenStand();
+      zustand.vorgehen = key;
+      speichern();
+    }
+  };
 
   HT.trainerTeile.zuordnen = {
     id: 'zuordnen',

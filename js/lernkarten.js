@@ -420,11 +420,24 @@
       (s.beantwortet && s.richtig < s.gesamt ? nochmalsBtn : gewusstBtn).focus();
     }
 
+    /* Fortschritt (js/fortschritt.js): Hat die Karte Phase und Modul richtig
+       zugeordnet und steht das Element in diesem Feld wirklich, zählt das
+       Feld eine richtige Antwort. Falsche Wahlen melden nichts — eine Karte
+       sagt nicht, in welchem Feld es gehakt hat. */
+    function fortschrittMelden() {
+      if (!HT.fortschritt) { return; }
+      var p = zustand.antworten.phase, m = zustand.antworten.modul;
+      if (!p || !p.richtig || !m || !m.richtig) { return; }
+      if (HT.daten.phasenImModul(e, m.wert).indexOf(p.wert) === -1) { return; }
+      HT.fortschritt.melden([{ phase: p.wert, modul: m.wert, id: e.id, richtig: true }]);
+    }
+
     /* Ist die letzte Zuordnung getroffen, dreht sich die Karte von selbst —
        kurz danach, damit das Zeichen der letzten Wahl noch zu sehen ist. */
     function antwortGezaehlt() {
       standSetzen();
       if (!auswertung(e).fertig || zustand.gedreht) { return; }
+      fortschrittMelden();
       global.setTimeout(function () {
         if (zustand.stapel[0] === e.id) { drehen(); }
       }, DREH_VERZUG);

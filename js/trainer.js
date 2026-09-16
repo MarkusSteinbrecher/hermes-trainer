@@ -2,7 +2,8 @@
 
    Der Trainer hat mehrere Teile, umgeschaltet über die Leiste unter der
    Kopfzeile (HT.app.unterleiste): «Zuordnen» (js/zuordnen.js), «Lernkarten»
-   (js/lernkarten.js) und «Quiz» (js/quiz.js). Die Teile melden sich unter
+   (js/lernkarten.js), «Quiz» (js/quiz.js) und «Fortschritt»
+   (js/fortschritt.js, was davon schon sitzt). Die Teile melden sich unter
    HT.trainerTeile an; ein Teil ist { id, label, pfade, render(behaelter,
    params, leiste) } und zeichnet sich in den Behälter unter der Leiste;
    leiste(zusatz, info) stellt eigene Elemente neben die Übungsformen und
@@ -25,7 +26,7 @@
   var h = HT.ui.h;
 
   /* Reihenfolge der Leiste; der erste Teil ist der ohne ?teil=. */
-  var TEILE = ['zuordnen', 'lernkarten', 'quiz'];
+  var TEILE = ['zuordnen', 'lernkarten', 'quiz', 'fortschritt'];
 
   function teile() {
     return TEILE.map(function (id) { return HT.trainerTeile[id]; }).filter(Boolean);
@@ -58,7 +59,7 @@
   function infoInhalt(teilInfo) {
     var teil = teilInfo ? teilInfo() : [];
     return teil.concat(teil.length ? [h('h3', { class: 'gpop__abschnitt', text: 'Trainer' })] : [], [
-      h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse einander zuordnen, Lernkarten umdrehen und selbst einschätzen, Prüfungsfragen beantworten.' }),
+      h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse einander zuordnen, Lernkarten umdrehen und selbst einschätzen, Prüfungsfragen beantworten. Der Fortschritt zeigt nach Phase und Modul, was davon schon sitzt.' }),
       h('p', { text: 'Zuordnen und Lernkarten entstehen aus den Querverweisen der offiziellen Dokumentation. Die kuratierten Quizfragen sind eigene, am Referenzhandbuch geprüfte Texte mit Belegzitat; weitere Fragen entstehen maschinell aus den erfassten Daten.' }),
       h('p', { text: 'Der Lernstand bleibt in diesem Browser; auf der Seite «Über» lässt er sich exportieren und wieder einlesen.' }),
       h('p', { class: 'hb-verweis' }, [
@@ -75,7 +76,7 @@
      des Info-Icons (info: Funktion, die Absätze liefert). */
   function leisteSetzen(aktiv, zusatz, info) {
     HT.app.unterleiste({
-      label: 'Übungsform',
+      label: 'Trainer',
       links: teile().map(function (t) { return { href: teilAdresse(t), pfade: t.pfade, text: t.label, aktiv: t === aktiv }; }),
       inhalt: zusatz && zusatz.length ? zusatz : null,
       inhaltLabel: 'Einstellungen der Übung',

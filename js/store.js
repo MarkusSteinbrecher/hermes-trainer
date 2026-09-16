@@ -102,6 +102,11 @@
       form: function (w) { return istObjekt(w) && istObjekt(w.beste); },
       menge: function (w) { return zahlwort(Object.keys(w.beste).length, 'beste Runde', 'beste Runden'); }
     },
+    fortschritt: {
+      art: 'lernstand',
+      form: function (w) { return istObjekt(w) && istObjekt(w.stand); },
+      menge: function (w) { return zahlwort(Object.keys(w.stand).length, 'gezählte Zuordnung', 'gezählte Zuordnungen'); }
+    },
     markierungen: {
       art: 'lernstand',
       form: mitEintraegen,
