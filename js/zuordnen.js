@@ -16,8 +16,9 @@
 
    Welche Elementarten leer sind, wählen drei Schalter (Rollen, Aufgaben,
    Ergebnisse); die übrigen stehen ausgefüllt als Anhaltspunkte im Bild.
-   Schalter und Vorgehensweise stehen in der Leiste unter der Kopfzeile
-   (Übersicht und Übung), in der Übung dazu ihr Titel mit dem Zähler.
+   Sie stehen in der Leiste der Übung, wo man sie am Bild sieht, zusammen mit
+   Vorgehensweise, Titel und Zähler; die Übersicht hat dort nur die
+   Vorgehensweise und zählt die Kästen mit der zuletzt gewählten Wahl.
 
    Geprüft wird die Zuordnung, nicht die Reihenfolge: Blöcke im selben Feld
    (Phase und Modul) mit gleich vielen Ergebniskästen sind vertauschbar, und
@@ -1137,8 +1138,9 @@
     }));
   }
 
-  /* Die Wahl in der Leiste unter der Kopfzeile: Vorgehensweise und leere
-     Kästen, durch einen Haarstrich getrennt. */
+  /* Die Wahl in der Leiste der Übung: Vorgehensweise und leere Kästen, durch
+     einen Haarstrich getrennt. Die Übersicht zeigt dort nur die
+     Vorgehensweise (vorgehenWahl). */
   function einstellungen(vorgehen, beiWahl, beiAenderung) {
     return [
       vorgehenWahl(vorgehen, beiWahl),
@@ -1181,29 +1183,22 @@
   /* --- Seiten -------------------------------------------------------------- */
 
   function karte(def) {
-    var anzahl = h('span');
-    var beste = h('span', { class: 'tr-karte__beste' });
-    var el = h('a', { class: 'tr-karte', href: def.adresse }, [
+    var b = besteVon(def);
+    var voll = !!b && b.richtig === b.gesamt;
+    return h('a', { class: 'tr-karte' + (voll ? ' tr-karte--voll' : ''), href: def.adresse }, [
       h('span', { class: 'tr-karte__kopf' }, [
         def.eintrag ? HT.ui.katSymbol(def.eintrag.kategorie, 16) : HT.ui.symbol(['M3.5 4.5h17v15h-17Z', 'M3.5 9h17', 'M9 9v10.5', 'M14.5 9v10.5'], 16),
         h('span', { class: 'tr-karte__titel', text: def.name })
       ]),
-      h('span', { class: 'tr-karte__meta' }, [anzahl, beste])
+      h('span', { class: 'tr-karte__meta' }, [
+        h('span', { text: leereAnzahl(def) + ' Kästen' }),
+        h('span', { class: 'tr-karte__beste', text: b ? (voll ? '✓ ' : '') + 'Beste ' + b.richtig + '/' + b.gesamt : '' })
+      ])
     ]);
-    function aktualisieren() {
-      var b = besteVon(def);
-      var voll = !!b && b.richtig === b.gesamt;
-      el.classList.toggle('tr-karte--voll', voll);
-      anzahl.textContent = leereAnzahl(def) + ' Kästen';
-      beste.textContent = b ? (voll ? '✓ ' : '') + 'Beste ' + b.richtig + '/' + b.gesamt : '';
-    }
-    aktualisieren();
-    return { el: el, aktualisieren: aktualisieren };
   }
 
   function hubRendern(behaelter, vorgehen, leiste) {
     var alle = uebungen(vorgehen);
-    var karten = [];
     /* Andere Vorgehensweise: die Übersicht an Ort und Stelle neu, die Adresse
        nachgeführt, ohne dass der Router die Seite neu aufbaut. */
     function wechseln(key) {
@@ -1217,16 +1212,14 @@
     }
     function gruppe(art) {
       return h('div', { class: 'tr-karten' }, alle.filter(function (u) { return u.art === art; }).map(function (def) {
-        var k = karte(def);
-        karten.push(k);
-        return k.el;
+        return karte(def);
       }));
     }
 
-    /* Vorgehensweise und leere Kästen stehen in der Leiste unter der
-       Kopfzeile, Anleitung und Grundlage in der Karte ihres Info-Icons. */
-    leiste(einstellungen(vorgehen, wechseln, function () { karten.forEach(function (k) { k.aktualisieren(); }); }),
-      function () { return anleitung(vorgehen); });
+    /* In der Leiste steht nur die Vorgehensweise: hier wählt man eine Übung,
+       die leeren Kästen wählt man in ihr. Anleitung und Grundlage stehen in
+       der Karte des Info-Icons. */
+    leiste([vorgehenWahl(vorgehen, wechseln)], function () { return anleitung(vorgehen); });
     behaelter.appendChild(h('section', { class: 'tr-hub' }, [
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Phasen' }),
       gruppe('phase'),
@@ -1245,6 +1238,7 @@
       h('p', { text: 'Rollen, Aufgaben und Ergebnisse der ' + vorgehenVon(vorgehen).adjektiv + ' Vorgehensweise — je Phase, je Modul oder alles auf einmal. '
         + 'Je Aufgabe eine Zeile: links die verantwortliche Rolle, rechts die Ergebnisse, die sie erzeugt. Die Kästen sind leer, '
         + 'die Elemente liegen daneben bereit und wollen an ihren Platz; es zählt die Zuordnung, nicht die Reihenfolge. '
+        + 'Welche Arten leer bleiben — Rollen, Aufgaben, Ergebnisse —, sagt die Leiste in der Übung; die übrigen stehen ausgefüllt da. '
         + 'Am Ende zeigt die Prüfung, was richtig, falsch oder offen geblieben ist.' }),
       h('p', {}, [
         'Grundlage: der Graph im ',
