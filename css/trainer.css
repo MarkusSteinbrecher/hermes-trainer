@@ -24,13 +24,17 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inl
   color: var(--text-leise);
 }
 .tr-mikro--gruppe { margin: 26px 0 10px; padding-top: 14px; border-top: 1px solid var(--rand); }
-/* Ohne Vorspann beginnt die Übersicht mit der ersten Gruppe — ohne Linie darüber. */
-.tr-hub > .tr-mikro--gruppe:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+/* Die erste Gruppe der Übersicht steht ohne Linie darüber — auch unter der
+   Wahl der Vorgehensweise, die vor ihr steht. */
+.tr-hub > h2.tr-mikro--gruppe:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
 
-/* --- Wahl in der Leiste unter der Kopfzeile (Übersicht und Übung) ----------- */
+/* --- Wahl der Vorgehensweise und der leeren Kästen -------------------------- */
 
-/* Vorgehensweise (Radioknöpfe) und «Leere Kästen» (Schalter) sehen aus wie
-   die Links der Leiste: Versalien, leise; gewählt mit dem roten Strich unten. */
+/* In der Leiste der Übung sehen Vorgehensweise (Radioknöpfe) und «Leere
+   Kästen» (Schalter) aus wie die Links der Leiste: Versalien, leise; gewählt
+   mit dem roten Strich unten. Auf der Übersicht steht die Vorgehensweise auf
+   der Seite und braucht kein eigenes Kleid: dort tut es die Chip-Zeile unter
+   einem Titel, wie bei den Einstellungen des Quiz. */
 .tr-arten { display: flex; align-items: stretch; flex: 0 0 auto; }
 .tr-arten__titel {
   align-self: center;

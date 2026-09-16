@@ -17,8 +17,10 @@
    Welche Elementarten leer sind, wählen drei Schalter (Rollen, Aufgaben,
    Ergebnisse); die übrigen stehen ausgefüllt als Anhaltspunkte im Bild.
    Sie stehen in der Leiste der Übung, wo man sie am Bild sieht, zusammen mit
-   Vorgehensweise, Titel und Zähler; die Übersicht hat dort nur die
-   Vorgehensweise und zählt die Kästen mit der zuletzt gewählten Wahl.
+   Vorgehensweise, Titel und Zähler. Die Übersicht hat in der Leiste nichts
+   eigenes — dort wäre die Navigation je Übungsform anders lang —, ihre Wahl
+   der Vorgehensweise steht oben auf der Seite; die Kästen zählt sie mit der
+   zuletzt gewählten Einstellung.
 
    Geprüft wird die Zuordnung, nicht die Reihenfolge: Blöcke im selben Feld
    (Phase und Modul) mit gleich vielen Ergebniskästen sind vertauschbar, und
@@ -1138,9 +1140,28 @@
     }));
   }
 
+  /* Dieselbe Wahl auf der Übersicht, aber auf der Seite statt in der Leiste
+     (die soll beim Wechsel der Übungsform stehen bleiben) — in der Form der
+     Einstellungen des Quiz: Titel darüber, die Optionen als Chips auf einer
+     Linie. */
+  function vorgehenGruppe(aktiv, beiWahl) {
+    var liste = h('ul', { class: 'chips', 'aria-label': 'Vorgehensweise' });
+    VORGEHENSWEISEN.forEach(function (v) {
+      var knopf = h('button', {
+        type: 'button', class: 'chip', 'aria-pressed': v.key === aktiv ? 'true' : 'false',
+        title: v.label + 'e Vorgehensweise'
+      }, [HT.ui.symbol(v.pfade, 14), h('span', { text: v.label })]);
+      knopf.addEventListener('click', function () { if (v.key !== aktiv) { beiWahl(v.key); } });
+      liste.appendChild(h('li', {}, knopf));
+    });
+    return h('div', { class: 'feldgruppe' }, [
+      h('p', { class: 'feldgruppe__titel', text: 'Vorgehensweise' }),
+      liste
+    ]);
+  }
+
   /* Die Wahl in der Leiste der Übung: Vorgehensweise und leere Kästen, durch
-     einen Haarstrich getrennt. Die Übersicht zeigt dort nur die
-     Vorgehensweise (vorgehenWahl). */
+     einen Haarstrich getrennt. */
   function einstellungen(vorgehen, beiWahl, beiAenderung) {
     return [
       vorgehenWahl(vorgehen, beiWahl),
@@ -1207,7 +1228,7 @@
       global.history.replaceState(null, '', hubAdresse(key));
       HT.ui.leeren(behaelter);
       hubRendern(behaelter, key, leiste);
-      var gewaehlt = document.querySelector('.unterleiste .tr-vorgehen__eingabe:checked');
+      var gewaehlt = behaelter.querySelector('.chip[aria-pressed="true"]');
       if (gewaehlt) { gewaehlt.focus(); }
     }
     function gruppe(art) {
@@ -1216,11 +1237,13 @@
       }));
     }
 
-    /* In der Leiste steht nur die Vorgehensweise: hier wählt man eine Übung,
-       die leeren Kästen wählt man in ihr. Anleitung und Grundlage stehen in
-       der Karte des Info-Icons. */
-    leiste([vorgehenWahl(vorgehen, wechseln)], function () { return anleitung(vorgehen); });
+    /* Die Leiste trägt nur die Übungsformen, damit sie beim Wechsel zwischen
+       Zuordnen, Lernkarten und Quiz stehen bleibt; die Wahl der
+       Vorgehensweise steht oben auf der Seite, die leeren Kästen in der
+       Übung. Anleitung und Grundlage stehen in der Karte des Info-Icons. */
+    leiste(null, function () { return anleitung(vorgehen); });
     behaelter.appendChild(h('section', { class: 'tr-hub' }, [
+      vorgehenGruppe(vorgehen, wechseln),
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Phasen' }),
       gruppe('phase'),
       h('h2', { class: 'tr-mikro tr-mikro--gruppe', text: 'Module' }),
