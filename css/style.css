@@ -881,12 +881,29 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   cursor: pointer;
 }
 .lk-zuruecksetzen:hover { color: var(--text); background: var(--flaeche-2); }
+/* Umschalter Karte/Liste ganz rechts, durch einen Strich vom Fortschritt
+   getrennt; gewählt wie ein Chip: dunkel und rot unterstrichen. */
+.lk-ansicht { display: flex; align-items: center; gap: 2px; padding-left: 8px; border-left: 1px solid var(--rand); }
+.lk-ansicht__knopf {
+  display: grid; place-items: center;
+  width: 30px; height: 30px; padding: 0;
+  border: 0; background: transparent; color: var(--text-leise);
+  cursor: pointer;
+}
+.lk-ansicht__knopf:hover { color: var(--text); }
+.lk-ansicht__knopf[aria-pressed="true"] { color: var(--text); box-shadow: inset 0 -3px 0 var(--akzent); }
+.lk-ansicht__knopf:focus-visible { outline-offset: -2px; }
 @media (max-width: 699.98px) {
   /* Schmal rollen die Kategorien in ihrer eigenen Zeile, der Fortschritt steht darunter —
      die Zahlen, wenn nötig, über Balken, Anteil und Icon. */
   .lk-zeile > .chips { flex-basis: 100%; }
   .lk-zeile__rechts { max-width: 100%; }
   .lk-fortschritt { flex-wrap: wrap; row-gap: 2px; }
+  /* Mit kürzerem Balken und ohne Trennstrich passt der Umschalter Karte/Liste
+     meist noch in die Zeile; sonst steht er rechts darunter. */
+  .lk-fortschritt { gap: 8px; }
+  .lk-fortschritt .fortschritt__balken { width: 40px; }
+  .lk-ansicht { margin-left: auto; padding-left: 0; border-left: 0; }
 }
 
 /* Kopfzeile beider Seiten: links der Begriff und dahinter seine Kategorie,
@@ -1096,6 +1113,44 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-verlauf__punkt { width: 9px; height: 9px; border: 1.5px solid var(--rand-stark); border-radius: 50%; }
 .lk-verlauf__punkt--gewusst { background: var(--gut); border-color: var(--gut); }
 .lk-verlauf__punkt--nochmals { background: var(--akzent); border-color: var(--akzent); }
+
+/* Liste aller Karten: je Kategorie ein Titel an der Haarlinie, darunter die
+   Karten in Spalten (oben nach unten, dann die nächste), rechts je Zeile der
+   Verlauf wie auf der Karte. */
+.lk-liste__gruppe + .lk-liste__gruppe { margin-top: 24px; }
+.lk-liste__titel {
+  margin: 0 0 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rand);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+.lk-liste__karten { margin: 0; padding: 0; list-style: none; columns: 20rem; column-gap: 28px; }
+.lk-liste__karten > li { break-inside: avoid; }
+.lk-liste__karte {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.lk-liste__karte:hover { background: var(--flaeche-2); }
+.lk-liste__karte:focus-visible { outline-offset: -2px; }
+.lk-liste__karte svg { flex: 0 0 auto; }
+.lk-liste__begriff { min-width: 0; overflow-wrap: break-word; }
+.lk-liste__karte .lk-verlauf { flex: 0 0 auto; padding-left: 8px; }
 
 /* Das Zeichen einer geprüften Wahl — auf der Lösung vor der Bezeichnung. */
 .lk-zeichen { margin-right: 5px; font-weight: 800; }
