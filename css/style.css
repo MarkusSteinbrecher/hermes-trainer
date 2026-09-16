@@ -872,9 +872,9 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   padding-top: 8px;
 }
 
-/* Vorderseite: je Bezug eine Abfragezeile mit Dropdown. Die Zeilen stehen
-   mit Luft untereinander statt an Haarlinien geklebt; die Auswahl selbst ist
-   die Box (gerundet, eigenes Zeichen statt des Chrome-Pfeils). */
+/* Vorderseite: je Bezug eine Abfragezeile mit Kombinationsfeld. Die Zeilen
+   stehen mit Luft untereinander statt an Haarlinien geklebt; gewählte Werte
+   liegen als Chips über dem Feld, rechts steht der Stand der Zeile. */
 .lk-auftrag {
   margin: 10px 0 0;
   font-size: 11px;
@@ -888,8 +888,20 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   display: grid;
   grid-template-columns: 10.5rem minmax(0, 26rem) 1fr;
   gap: 4px 14px;
-  align-items: center;
+  align-items: start;
 }
+.lk-frage__label { padding-top: 10px; }
+.lk-frage__feld { min-width: 0; }
+.lk-frage__stand {
+  padding-top: 11px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-leise);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.lk-frage[data-stand="richtig"] .lk-frage__stand { color: var(--gut); }
+.lk-frage[data-stand="falsch"] .lk-frage__stand { color: var(--schlecht); }
 .lk-frage__label {
   display: inline-flex;
   align-items: center;
@@ -901,7 +913,26 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   color: var(--text-leise);
 }
 .lk-frage__label svg { flex: 0 0 auto; }
-.lk-frage__wahl {
+/* Die gewählten Werte einer Zeile, mit ihrem Zeichen. */
+.lk-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+.lk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border: 1px solid var(--rand);
+  border-radius: var(--radius-s);
+  font-size: 13px;
+  font-weight: 600;
+}
+.lk-chip--gut { border-color: var(--gut); background: var(--gut-bg); color: var(--gut); }
+.lk-chip--schlecht { border-color: var(--schlecht); background: var(--schlecht-bg); color: var(--schlecht); }
+
+/* Kombinationsfeld: Feld mit Liste darunter. Die Liste steht im Fluss statt
+   darüber — die Karte rollt (max-height 70vh) und würde ein schwebendes
+   Feld unten abschneiden. */
+.lk-kombi { position: relative; }
+.lk-kombi__feld {
   width: 100%;
   min-width: 0;
   min-height: 38px;
@@ -911,23 +942,40 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   background: var(--weiss) var(--pfeil-ab) no-repeat right 12px center;
   background-size: 15px 15px;
   color: var(--text);
+  font: inherit;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
   text-overflow: ellipsis;
 }
-.lk-frage__wahl:hover { border-color: var(--text-leise); }
-.lk-frage__wahl:disabled { opacity: 1; cursor: default; background-image: none; padding-right: 12px; }
-.lk-frage__zeichen { font-size: 15px; font-weight: 800; }
-.lk-frage[data-stand="richtig"] .lk-frage__wahl { border-color: var(--gut); background-color: var(--gut-bg); color: var(--gut); }
-.lk-frage[data-stand="richtig"] .lk-frage__zeichen { color: var(--gut); }
-.lk-frage[data-stand="falsch"] .lk-frage__wahl { border-color: var(--schlecht); background-color: var(--schlecht-bg); color: var(--schlecht); }
-.lk-frage[data-stand="falsch"] .lk-frage__zeichen { color: var(--schlecht); }
+.lk-kombi__feld::placeholder { color: var(--text-leise); font-weight: 500; }
+.lk-kombi__feld:hover { border-color: var(--text-leise); }
+.lk-kombi__feld:disabled { display: none; }
+.lk-kombi__liste {
+  margin: 4px 0 0;
+  padding: 4px;
+  max-height: 13rem;
+  overflow-y: auto;
+  list-style: none;
+  border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
+  background: var(--weiss);
+}
+.lk-kombi__option {
+  padding: 7px 10px;
+  border-radius: var(--radius-xs);
+  font-size: 14px;
+  cursor: pointer;
+}
+.lk-kombi__option:hover, .lk-kombi__option.ist-aktiv { background: var(--flaeche-2); }
+.lk-kombi__leer { padding: 7px 10px; font-size: 13px; color: var(--text-leise); }
+.lk-frage[data-stand="richtig"] .lk-chips { margin-bottom: 0; }
+.lk-frage[data-stand="falsch"] .lk-chips { margin-bottom: 0; }
 @media (max-width: 480px) {
-  .lk-frage { grid-template-columns: minmax(0, 1fr) 1.25rem; gap: 6px 10px; }
-  .lk-frage__label { grid-column: 1 / -1; }
+  .lk-frage { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 10px; }
+  .lk-frage__label { grid-column: 1; padding-top: 0; }
+  .lk-frage__stand { padding-top: 0; }
+  .lk-frage__feld { grid-column: 1 / -1; }
 }
 
 /* Das Zeichen einer geprüften Wahl — auf der Lösung vor der Bezeichnung. */

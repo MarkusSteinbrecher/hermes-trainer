@@ -1,11 +1,15 @@
 /* meinHERMES — Teil «Lernkarten» des Trainers (#/trainer?teil=lernkarten).
    Karten für Aufgaben und Ergebnisse. Worum es geht, ist der Zusammenhang
    von Phase, Modul, Aufgabe, Ergebnis und Rolle: vorn steht der Begriff
-   (oder die Definition) und darunter je Bezug ein Dropdown — Phase, Modul,
+   (oder die Definition) und darunter je Bezug ein Feld — Phase, Modul,
    verantwortliche Rolle und das Gegenstück (die Ergebnisse einer Aufgabe
-   bzw. die Aufgaben, aus denen ein Ergebnis entsteht). Jede Wahl wird
-   sofort geprüft; ist die letzte beantwortet, dreht sich die Karte zur
-   Lösung. Ohne Wahl geht es auch: Karte drehen und selbst einschätzen.
+   bzw. die Aufgaben, aus denen ein Ergebnis entsteht). Gesucht sind je
+   Zeile alle Werte, die dort richtig sind (49 der 71 Aufgaben erzeugen
+   mehrere Ergebnisse, die meisten Elemente stehen in mehreren Phasen); die
+   Zeile zählt mit («2 von 4 gefunden»). Jede Wahl wird sofort geprüft, die
+   erste falsche beendet die Zeile; sind alle Zeilen fertig, dreht sich die
+   Karte zur Lösung. Die Werte kommen aus einem Kombinationsfeld, bei langen
+   Listen (Aufgaben, Ergebnisse) mit Suche. Ohne Wahl geht es auch: Karte drehen und selbst einschätzen.
    «Nochmals» kehrt im Stapel zurück. Fortschritt liegt im localStorage und
    ist zurücksetzbar. */
 (function (global) {
@@ -181,14 +185,14 @@
     return { gesamt: karten.length, gewusst: gewusst, offen: zustand.stapel.length };
   }
 
-  /** Stand der laufenden Karte über alle Dropdowns. */
+  /** Stand der laufenden Karte über alle Zeilen; angefangene zählen nicht. */
   function auswertung(e) {
     var alle = fragen(e);
     var beantwortet = 0;
     var richtig = 0;
     alle.forEach(function (z) {
       var a = zustand.antworten[z.key];
-      if (!a) { return; }
+      if (!a || !a.fertig) { return; }
       beantwortet++;
       if (a.richtig) { richtig++; }
     });
@@ -211,41 +215,197 @@
     });
   }
 
-  /** Eine Abfragezeile der Vorderseite: Bezeichnung, Dropdown, Zeichen. */
-  function frageZeile(z, beiAntwort) {
-    var zeichen = h('span', { class: 'lk-frage__zeichen', 'aria-hidden': 'true' });
-    var wahl = h('select', { class: 'lk-frage__wahl' }, [
-      h('option', { value: '', text: '– wählen –' })
-    ].concat(poolVon(z.kategorie).map(function (w) {
-      return h('option', { value: w, text: w });
-    })));
+  /* Ab so vielen Optionen bekommt das Kombinationsfeld ein Suchfeld: Phasen
+     (6), Module (12) und die neun verantwortlichen Rollen sucht man nicht,
+     Aufgaben (71) und Ergebnisse (110) schon. */
+  var SUCHE_AB = 14;
+  var kombiNummer = 0;
+  var offeneListe = null;      // nur eine Liste steht offen
 
-    var zeile = h('label', { class: 'lk-frage', dataset: { stand: 'offen' } }, [
+  function passt(wert, suche) {
+    if (!suche) { return true; }
+    return HT.daten.normalisieren(wert).indexOf(HT.daten.normalisieren(suche)) !== -1;
+  }
+
+  /**
+   * Kombinationsfeld: Liste zum Aufklappen, bei langen Listen mit Suche.
+   * Mehrfachauswahl — was gewählt ist, verschwindet aus der Liste; die Zeile
+   * selbst entscheidet, was die Wahl bedeutet (opt.beiWahl).
+   * opt: { label, vergeben: [Werte], beiWahl(wert) }
+   */
+  function kombiFeld(optionen, opt) {
+    var id = 'lk-liste-' + (++kombiNummer);
+    var mitSuche = optionen.length >= SUCHE_AB;
+    var feld = h('input', {
+      type: 'text', class: 'lk-kombi__feld',
+      role: 'combobox', 'aria-expanded': 'false', 'aria-controls': id,
+      'aria-autocomplete': mitSuche ? 'list' : 'none', 'aria-label': opt.label,
+      autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false',
+      placeholder: mitSuche ? 'suchen oder wählen …' : 'wählen …'
+    });
+    if (!mitSuche) { feld.readOnly = true; }
+    var liste = h('ul', { class: 'lk-kombi__liste', id: id, role: 'listbox', 'aria-label': opt.label, hidden: true });
+    var el = h('div', { class: 'lk-kombi' }, [feld, liste]);
+    var offen = false, aktiv = -1, sichtbar = [], vergeben = {};
+    (opt.vergeben || []).forEach(function (w) { vergeben[w] = true; });
+
+    function zeichnen() {
+      HT.ui.leeren(liste);
+      sichtbar = optionen.filter(function (w) { return !vergeben[w] && passt(w, mitSuche ? feld.value : ''); });
+      if (aktiv >= sichtbar.length) { aktiv = sichtbar.length - 1; }
+      if (!sichtbar.length) {
+        liste.appendChild(h('li', { class: 'lk-kombi__leer', text: 'Nichts gefunden' }));
+        feld.removeAttribute('aria-activedescendant');
+        return;
+      }
+      sichtbar.forEach(function (w, i) {
+        var o = h('li', {
+          class: 'lk-kombi__option' + (i === aktiv ? ' ist-aktiv' : ''),
+          role: 'option', id: id + '-o' + i, 'aria-selected': i === aktiv ? 'true' : 'false', text: w
+        });
+        /* mousedown statt click: sonst nimmt der Fokuswechsel die Liste weg,
+           bevor die Wahl ankommt. */
+        o.addEventListener('mousedown', function (ev) { ev.preventDefault(); waehlen(w); });
+        liste.appendChild(o);
+      });
+      if (aktiv >= 0) {
+        feld.setAttribute('aria-activedescendant', id + '-o' + aktiv);
+        var el2 = liste.children[aktiv];
+        if (el2 && el2.scrollIntoView) { el2.scrollIntoView({ block: 'nearest' }); }
+      } else {
+        feld.removeAttribute('aria-activedescendant');
+      }
+    }
+
+    function oeffnen() {
+      if (offen || feld.disabled) { return; }
+      if (offeneListe && offeneListe !== schliessen) { offeneListe(); }
+      offeneListe = schliessen;
+      offen = true;
+      aktiv = -1;
+      liste.hidden = false;
+      feld.setAttribute('aria-expanded', 'true');
+      zeichnen();
+    }
+
+    function schliessen() {
+      if (!offen) { return; }
+      offen = false;
+      liste.hidden = true;
+      feld.setAttribute('aria-expanded', 'false');
+      feld.removeAttribute('aria-activedescendant');
+      if (offeneListe === schliessen) { offeneListe = null; }
+    }
+
+    function waehlen(w) {
+      vergeben[w] = true;
+      feld.value = '';
+      opt.beiWahl(w);
+      if (!feld.disabled) { zeichnen(); feld.focus(); }
+    }
+
+    function bewegen(schritt) {
+      if (!offen) { oeffnen(); return; }
+      if (!sichtbar.length) { return; }
+      aktiv = (aktiv + schritt + sichtbar.length + 1) % (sichtbar.length + 1);
+      if (aktiv === sichtbar.length) { aktiv = schritt > 0 ? 0 : sichtbar.length - 1; }
+      zeichnen();
+    }
+
+    feld.addEventListener('focus', oeffnen);
+    feld.addEventListener('mousedown', function () { if (offen) { schliessen(); } else { oeffnen(); } });
+    feld.addEventListener('input', function () { aktiv = -1; if (!offen) { oeffnen(); } else { zeichnen(); } });
+    feld.addEventListener('blur', schliessen);
+    feld.addEventListener('keydown', function (ev) {
+      if (ev.key === 'ArrowDown') { ev.preventDefault(); bewegen(1); }
+      else if (ev.key === 'ArrowUp') { ev.preventDefault(); bewegen(-1); }
+      else if (ev.key === 'Escape') { if (offen) { ev.stopPropagation(); schliessen(); } }
+      else if (ev.key === 'Enter') {
+        ev.preventDefault();
+        if (aktiv >= 0 && sichtbar[aktiv]) { waehlen(sichtbar[aktiv]); }
+        else if (sichtbar.length === 1) { waehlen(sichtbar[0]); }
+      }
+    });
+
+    return {
+      el: el,
+      sperren: function () {
+        schliessen();
+        feld.disabled = true;
+        feld.value = '';
+        el.classList.add('ist-gesperrt');
+      }
+    };
+  }
+
+  /**
+   * Eine Abfragezeile der Vorderseite: Bezeichnung, die schon gewählten
+   * Werte, das Kombinationsfeld und der Stand. Gesucht sind alle Werte der
+   * Zeile; jede Wahl wird sofort geprüft, die erste falsche beendet sie.
+   */
+  function frageZeile(z, beiAntwort) {
+    var a = zustand.antworten[z.key];
+    if (!a || !Array.isArray(a.gewaehlt)) {
+      a = zustand.antworten[z.key] = { gewaehlt: [], fertig: false, richtig: false };
+    }
+    var mehrere = z.werte.length > 1;
+    var chips = h('div', { class: 'lk-chips', hidden: true });
+    var stand = h('span', { class: 'lk-frage__stand' });
+    var kombi = kombiFeld(poolVon(z.kategorie), {
+      label: z.label,
+      vergeben: a.gewaehlt.map(function (g) { return g.wert; }),
+      beiWahl: function (w) { waehlen(w); }
+    });
+
+    var zeile = h('div', { class: 'lk-frage', role: 'group', 'aria-label': z.label, dataset: { stand: 'offen' } }, [
       h('span', { class: 'lk-frage__label' }, [
         HT.ui.katSymbol(z.kategorie, 14),
         h('span', { text: z.label })
       ]),
-      wahl,
-      zeichen
+      h('div', { class: 'lk-frage__feld' }, [chips, kombi.el]),
+      stand
     ]);
 
-    wahl.addEventListener('change', function () {
-      var wert = wahl.value;
-      if (!wert || zustand.antworten[z.key]) { return; }
-      var richtig = z.werte.indexOf(wert) !== -1;
-      zustand.antworten[z.key] = { wert: wert, richtig: richtig };
-      wahl.disabled = true;
-      zeile.dataset.stand = richtig ? 'richtig' : 'falsch';
-      zeichen.textContent = richtig ? '✓' : '✗';
-      beiAntwort();
-    });
+    function gefunden() {
+      return a.gewaehlt.filter(function (g) { return g.richtig; }).length;
+    }
 
-    return { el: zeile, wahl: wahl };
+    function zeichnen() {
+      HT.ui.leeren(chips);
+      a.gewaehlt.forEach(function (g) {
+        chips.appendChild(h('span', { class: 'lk-chip lk-chip--' + (g.richtig ? 'gut' : 'schlecht') }, [
+          h('span', { 'aria-hidden': 'true', text: g.richtig ? '✓' : '✗' }),
+          h('span', { text: g.wert })
+        ]));
+      });
+      chips.hidden = !a.gewaehlt.length;
+      if (a.fertig) {
+        stand.textContent = (a.richtig ? '✓ ' : '✗ ') + gefunden() + ' von ' + z.werte.length;
+      } else {
+        stand.textContent = mehrere ? gefunden() + ' von ' + z.werte.length + ' gefunden' : '';
+      }
+      zeile.dataset.stand = a.fertig ? (a.richtig ? 'richtig' : 'falsch') : (a.gewaehlt.length ? 'begonnen' : 'offen');
+    }
+
+    function waehlen(w) {
+      if (a.fertig) { return; }
+      var richtig = z.werte.indexOf(w) !== -1;
+      a.gewaehlt.push({ wert: w, richtig: richtig });
+      if (!richtig) { a.fertig = true; a.richtig = false; }
+      else if (gefunden() >= z.werte.length) { a.fertig = true; a.richtig = true; }
+      if (a.fertig) { kombi.sperren(); }
+      zeichnen();
+      beiAntwort();
+    }
+
+    if (a.fertig) { kombi.sperren(); }
+    zeichnen();
+    return { el: zeile, sperren: kombi.sperren };
   }
 
   function seiteVorne(e, beiAntwort) {
     var istBegriff = zustand.richtung === 'bd';
-    var waehler = [];
+    var sperren = [];
 
     var kopf = h('div', { class: 'flip__rolle' }, [
       h('span', { text: istBegriff ? 'Begriff' : 'Definition' }),
@@ -261,7 +421,7 @@
 
     var liste = h('div', { class: 'lk-fragen' }, fragen(e).map(function (z) {
       var zeile = frageZeile(z, beiAntwort);
-      waehler.push(zeile.wahl);
+      sperren.push(zeile.sperren);
       return zeile.el;
     }));
 
@@ -269,28 +429,36 @@
       class: 'flip__seite flip__seite--vorne',
       tabindex: '-1',
       'aria-hidden': 'false'
-    }, [kopf, inhalt, h('p', { class: 'lk-auftrag', text: 'Zuordnen — jede Wahl wird sofort geprüft:' }), liste]);
+    }, [kopf, inhalt, h('p', { class: 'lk-auftrag', text: 'Zuordnen — gesucht sind alle Werte je Zeile, jede Wahl wird sofort geprüft:' }), liste]);
 
-    return { el: seite, waehler: waehler };
+    return { el: seite, sperren: sperren };
   }
 
-  /** Eine Bezugszeile der Lösung: alle richtigen Werte, dazu die eigene Wahl. */
+  /** Eine Bezugszeile der Lösung: alle gesuchten Werte — was man selbst
+      gefunden hat, ist markiert —, dahinter die falsche Wahl, an der die
+      Zeile endete. */
   function loesungZeile(z) {
     var a = zustand.antworten[z.key];
+    var gefunden = {}, falsche = [];
+    if (a) {
+      a.gewaehlt.forEach(function (g) {
+        if (g.richtig) { gefunden[g.wert] = true; } else { falsche.push(g.wert); }
+      });
+    }
     var werte = z.werte.map(function (w) {
-      return h('li', { class: (a && a.richtig && a.wert === w) ? 'ist-gewaehlt' : null }, [
+      return h('li', { class: gefunden[w] ? 'ist-gewaehlt' : null }, [
         HT.ui.katSymbol(z.kategorie, 14),
         h('span', { text: w })
       ]);
     });
-    if (a && !a.richtig) {
+    falsche.forEach(function (w) {
       werte.push(h('li', { class: 'ist-falsch' }, [
         HT.ui.katSymbol(z.kategorie, 14),
-        h('span', { text: a.wert })
+        h('span', { text: w })
       ]));
-    }
+    });
     return h('div', { class: 'lk-bezug' }, [
-      h('dt', {}, [a ? zeichenFuer(a.richtig) : null, h('span', { text: z.label })]),
+      h('dt', {}, [a && a.fertig ? zeichenFuer(a.richtig) : null, h('span', { text: z.label })]),
       h('dd', {}, [h('ul', { class: 'lk-werte' }, werte)])
     ]);
   }
@@ -320,11 +488,14 @@
     ]));
 
     el.appendChild(h('div', { class: 'flip__inhalt' }, [
-      begriffAntwort ? zeichenFuer(begriffAntwort.richtig) : null,
+      begriffAntwort && begriffAntwort.fertig ? zeichenFuer(begriffAntwort.richtig) : null,
       h('span', { text: e.begriff })
     ]));
-    if (begriffAntwort && !begriffAntwort.richtig) {
-      el.appendChild(h('p', { class: 'lk-gewaehlt', text: 'Gewählt: ' + begriffAntwort.wert }));
+    if (begriffAntwort && begriffAntwort.fertig && !begriffAntwort.richtig) {
+      el.appendChild(h('p', {
+        class: 'lk-gewaehlt',
+        text: 'Gewählt: ' + begriffAntwort.gewaehlt.map(function (g) { return g.wert; }).join(', ')
+      }));
     }
 
     el.appendChild(h('dl', { class: 'lk-bezuege' }, bezuege(e).map(loesungZeile)));
@@ -411,7 +582,7 @@
       hinten.setAttribute('aria-hidden', 'false');
       /* Hinter der Rückseite darf nichts mehr zu bedienen sein; wie viel
          richtig war, sagt jetzt der Kopf der Lösung. */
-      vorne.waehler.forEach(function (w) { w.disabled = true; });
+      vorne.sperren.forEach(function (sperre) { sperre(); });
       stand.hidden = true;
       drehKnopf.hidden = true;
       gewusstBtn.disabled = false;
@@ -428,8 +599,18 @@
       if (!HT.fortschritt) { return; }
       var p = zustand.antworten.phase, m = zustand.antworten.modul;
       if (!p || !p.richtig || !m || !m.richtig) { return; }
-      if (HT.daten.phasenImModul(e, m.wert).indexOf(p.wert) === -1) { return; }
-      HT.fortschritt.melden([{ phase: p.wert, modul: m.wert, id: e.id, richtig: true }]);
+      /* Beide Zeilen sind vollständig richtig — also zählt jedes Feld, das
+         aus einer genannten Phase und einem genannten Modul besteht. */
+      var liste = [];
+      m.gewaehlt.forEach(function (gm) {
+        var phasen = HT.daten.phasenImModul(e, gm.wert);
+        p.gewaehlt.forEach(function (gp) {
+          if (phasen.indexOf(gp.wert) !== -1) {
+            liste.push({ phase: gp.wert, modul: gm.wert, id: e.id, richtig: true });
+          }
+        });
+      });
+      HT.fortschritt.melden(liste);
     }
 
     /* Ist die letzte Zuordnung getroffen, dreht sich die Karte von selbst —
@@ -607,8 +788,12 @@
         return [
           h('h3', { class: 'gpop__abschnitt', text: 'Lernkarten' }),
           h('p', { text: 'Aufgaben und Ergebnisse und ihr Zusammenhang: In welcher Phase, in welchem Modul, wer ist '
-            + 'verantwortlich, was entsteht woraus? Je Bezug ein Dropdown auf der Vorderseite — jede Wahl wird sofort '
-            + 'geprüft, nach der letzten dreht sich die Karte zur Lösung.' }),
+            + 'verantwortlich, was entsteht woraus? Je Bezug eine Zeile auf der Vorderseite, und gesucht sind alle '
+            + 'Werte, die dort richtig sind — die meisten Elemente stehen in mehreren Phasen, die meisten Aufgaben '
+            + 'erzeugen mehrere Ergebnisse. Die Zeile zählt mit («2 von 4 gefunden»).' }),
+          h('p', { text: 'Jede Wahl wird sofort geprüft; die erste falsche beendet die Zeile, die Lösung zeigt dann, '
+            + 'was gefehlt hat. Sind alle Zeilen fertig, dreht sich die Karte. In langen Listen (Aufgaben, Ergebnisse) '
+            + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
           h('p', { text: 'Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' })
         ];
