@@ -867,9 +867,14 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   .lk-zeile > .chips { flex-basis: 100%; }
 }
 
-/* Kopf der Vorderseite: links die Kategorie, rechts die Wahl, was vorne
-   steht — beide Möglichkeiten sichtbar, die gewählte unterstrichen. */
-.lk-kopf { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; }
+/* Kopfzeile beider Seiten: links der Begriff und dahinter seine Kategorie,
+   rechts vorn die Wahl, was vorne steht (beide Möglichkeiten sichtbar, die
+   gewählte unterstrichen), hinten die Bilanz. */
+.lk-kopf { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.lk-kopf__begriff { min-width: 0; }
+/* Die Wahl (hinten die Bilanz) steht rechts — bricht ein langer Begriff die
+   Zeile um, teilt sie sich die zweite Zeile mit der Kategorie. */
+.lk-kopf > :last-child { margin-left: auto; }
 .lk-seitenwahl { display: flex; align-items: center; gap: 6px; }
 .lk-seitenwahl .chips { flex-wrap: nowrap; margin: 0; padding: 0; border: 0; }
 .lk-seitenwahl .chip { height: 26px; }
@@ -1077,11 +1082,17 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   color: var(--text-leise);
   font-variant-numeric: tabular-nums;
 }
-/* Unter der Karte eine Zeile: links der Stand, rechts die Knöpfe — klein und
-   nur so breit wie ihr Text. */
-.lk-aktionen { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+/* Unter der Karte eine Zeile: links der Stand, die Knöpfe in der Mitte unter
+   der Karte — klein und nur so breit wie ihr Text. Drei Spalten, die äusseren
+   gleich breit, damit die Mitte wirklich mittig steht; schmal steht der
+   Stand über den Knöpfen. */
+.lk-aktionen { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px 16px; }
 .lk-aktionen .lk-stand { margin: 0; }
-.lk-aktionen__knoepfe { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.lk-aktionen__knoepfe { grid-column: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+@media (max-width: 559.98px) {
+  .lk-aktionen { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .lk-aktionen__knoepfe { grid-column: 1; }
+}
 .lk-knopf { min-height: 30px; padding: 0 12px; justify-content: center; border-radius: var(--radius-s); }
 .lk-drehen { border: 1px solid var(--rand-stark); background: var(--bg); color: var(--text); }
 .lk-drehen:hover { border-color: var(--text); }

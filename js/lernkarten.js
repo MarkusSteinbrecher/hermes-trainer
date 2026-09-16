@@ -513,15 +513,19 @@
     var istBegriff = !begriffGesucht();
     var sperren = [];
 
-    var kopf = h('div', { class: 'flip__rolle lk-kopf' }, [
+    /* Oben eine Zeile: links der Begriff mit seiner Kategorie, rechts die
+       Wahl, was vorne steht. Ist der Begriff gesucht, steht dort nur die
+       Kategorie, und die Definition folgt darunter — ohne den gesuchten
+       Begriff. */
+    var kopf = h('div', { class: 'lk-kopf' }, [
+      istBegriff ? h('div', { class: 'flip__inhalt lk-kopf__begriff', text: e.begriff }) : null,
       HT.ui.badge(e.kategorie),
       seitenWahl()
     ]);
 
-    var inhalt = h('div', {
-      class: 'flip__inhalt' + (istBegriff ? '' : ' flip__inhalt--klein'),
-      /* Beim Abfragen der Definition darf der gesuchte Begriff nicht darin stehen. */
-      text: istBegriff ? e.begriff : HT.ui.ohneBegriff(e.definition, e.begriff)
+    var inhalt = istBegriff ? null : h('div', {
+      class: 'flip__inhalt flip__inhalt--klein',
+      text: HT.ui.ohneBegriff(e.definition, e.begriff)
     });
 
     var liste = h('div', { class: 'lk-fragen' }, fragen(e).map(function (z) {
@@ -534,15 +538,15 @@
       class: 'flip__seite flip__seite--vorne',
       tabindex: '-1',
       'aria-hidden': 'false'
-    }, [kopf, inhalt, h('p', {
+    }, [kopf, inhalt, istGrundbegriff(e) ? h('p', {
       class: 'lk-auftrag',
-      /* Ein Grundbegriff mit Begriff vorn hat nichts zu wählen: umdrehen und selbst einschätzen. */
-      text: !istGrundbegriff(e)
-        ? 'Zuordnen — gesucht sind alle Werte je Zeile, jede Wahl wird sofort geprüft:'
-        : istBegriff
-          ? 'Was bedeutet der Begriff? Karte drehen und selbst einschätzen.'
-          : 'Welcher Begriff ist gemeint? Die Wahl wird sofort geprüft:'
-    }), liste, verweise(e, istBegriff)]);
+      /* Die Zuordnungszeilen erklären sich selbst (die Regel steht in der
+         Info-Karte der Leiste); ein Grundbegriff mit Begriff vorn hat nichts
+         zu wählen: umdrehen und selbst einschätzen. */
+      text: istBegriff
+        ? 'Was bedeutet der Begriff? Karte drehen und selbst einschätzen.'
+        : 'Welcher Begriff ist gemeint? Die Wahl wird sofort geprüft:'
+    }) : null, liste, verweise(e, istBegriff)]);
 
     return { el: seite, sperren: sperren };
   }
@@ -599,17 +603,15 @@
       });
     }
 
-    el.appendChild(h('div', { class: 'flip__rolle' }, [
-      h('span', { text: 'Lösung' }),
-      ' · ',
-      bilanz,
-      bilanz ? ' · ' : null,
-      HT.ui.badge(e.kategorie)
-    ]));
-
-    el.appendChild(h('div', { class: 'flip__inhalt' }, [
-      begriffAntwort && begriffAntwort.fertig ? zeichenFuer(begriffAntwort.richtig) : null,
-      h('span', { text: e.begriff })
+    /* Dieselbe Kopfzeile wie vorn: links Begriff und Kategorie, rechts
+       statt der Wahl die Bilanz. */
+    el.appendChild(h('div', { class: 'lk-kopf' }, [
+      h('div', { class: 'flip__inhalt lk-kopf__begriff' }, [
+        begriffAntwort && begriffAntwort.fertig ? zeichenFuer(begriffAntwort.richtig) : null,
+        h('span', { text: e.begriff })
+      ]),
+      HT.ui.badge(e.kategorie),
+      h('div', { class: 'flip__rolle' }, [h('span', { text: 'Lösung' }), bilanz ? ' · ' : null, bilanz])
     ]));
     if (begriffAntwort && begriffAntwort.fertig && !begriffAntwort.richtig) {
       el.appendChild(h('p', {
@@ -670,7 +672,7 @@
     var flip = h('div', { class: 'flip' }, [vorne.el, hinten]);
 
     var drehKnopf = h('button', {
-      type: 'button', class: 'btn lk-knopf lk-drehen', text: 'Lösung zeigen'
+      type: 'button', class: 'btn lk-knopf lk-drehen', text: 'Lösung', title: 'Karte drehen und die Lösung zeigen'
     });
     var gewusstBtn = h('button', {
       type: 'button', class: 'btn btn--gut lk-knopf', text: 'Gewusst', disabled: true
@@ -754,7 +756,7 @@
 
     standSetzen();
     bereich.appendChild(h('div', { class: 'flip-wrap' }, flip));
-    /* Unter der Karte eine Zeile: links der Stand, rechts kleine Knöpfe. */
+    /* Unter der Karte eine Zeile: links der Stand, in der Mitte kleine Knöpfe. */
     bereich.appendChild(h('div', { class: 'lk-aktionen' }, [
       stand,
       h('div', { class: 'lk-aktionen__knoepfe' }, [drehKnopf, nochmalsBtn, gewusstBtn])
@@ -935,7 +937,7 @@
           h('p', { text: 'Grundbegriffe haben eigene Karten ohne Phase, Modul und die übrigen Zeilen: Steht oben «Begriff», '
             + 'ist der Begriff zu sehen, und die Rückseite zeigt die Definition. Steht oben «Definition», wählt man, welcher '
             + 'Begriff gemeint ist.' }),
-          h('p', { text: 'Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
+          h('p', { text: 'Ohne Wahl geht es auch: Karte mit «Lösung» unter der Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),
           h('p', { text: 'Am Fuss der Karte führen drei Verweise weiter, vorn wie hinten: das Element im Überblick, im Handbuch und auf '
             + 'der offiziellen Seite (bei Grundbegriffen nur diese).' })
