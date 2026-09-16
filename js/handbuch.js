@@ -9,7 +9,9 @@
    Faktenzeile, Link auf HERMES online und ins PDF (siehe js/karte.js).
    Die Kapitel stehen in einer zweiten Leiste unter der Kopfzeile
    (HT.app.unterleiste), rechts darin ein Info-Icon zu Zweck und Quelle der
-   Seite. Gesucht wird in der Kopfzeile; die Seite hat kein Suchfeld. */
+   Seite. Gesucht wird in der Kopfzeile: hier im Text des ganzen Handbuchs,
+   mit Trefferzahl und Sprung von Treffer zu Treffer (Abschnitt «Suche im
+   Handbuch»). */
 (function (global) {
   'use strict';
 
@@ -117,6 +119,7 @@
       h('p', { text: 'Das Referenzhandbuch Projektmanagement von HERMES als Text — Kapitel für Kapitel in seiner Gliederung, mit den Nummern und Seitenzahlen des PDF. Phasen, Szenarien, Module, Ergebnisse, Aufgaben und Rollen stehen als Karten an ihrer Stelle.' }),
       h('p', { text: 'Quelle ist das offizielle PDF von hermes.admin.ch' + (q.ausgabe ? ' (' + q.ausgabe + ')' : '')
         + '. Der Text ist daraus maschinell gelesen und 1:1 übernommen, ohne Verzeichnisse und Index; jede Seitenzahl öffnet die Seite im PDF. Massgebend ist die offizielle Fassung.' }),
+      h('p', { text: 'Die Suche oben durchsucht hier den Text aller Kapitel, ohne Rücksicht auf Gross- und Kleinschreibung und Akzente. Der Zähler nennt die Treffer im ganzen Handbuch, die Leiste die Zahl je Kapitel; Enter springt zum nächsten Treffer, Umschalt+Enter zum vorherigen, auch ins nächste Kapitel. ⌘F bzw. Strg+F öffnet die Suche, Escape leert sie.' }),
       h('p', { class: 'hb-verweis' }, links)
     ];
   }
@@ -254,6 +257,400 @@
     ]);
   }
 
+  /* --- Suche im Handbuch -------------------------------------------------- */
+
+  /* Die Suche der Kopfzeile sucht hier im Text wie Word: sie zählt die
+     Treffer im ganzen Handbuch («3/42»), hebt sie im Kapitel hervor, und
+     Enter, Umschalt+Enter oder die Pfeile springen von Treffer zu Treffer —
+     über Kapitelgrenzen hinweg. Die Zahl je Kapitel steht klein an seinem
+     Link in der Leiste.
+     Gesucht wird im Text, den die Seite zeigt: Titel mit Nummer, Absätze,
+     Listen, Tabellen, Bildunterschriften, die Titel der Karten — nicht in
+     Seitenzahlen, Verweisen, Faktenzeilen und Marken. Die anderen Kapitel
+     werden dafür einmal mit denselben Funktionen ungesehen aufgebaut
+     (kapitelKoerper), damit ihre Zahl genau zu dem passt, was nach dem
+     Sprung dort steht. Gross/klein und Akzente zählen nicht («qualitat»
+     findet «Qualität»). Hervorgehoben wird mit der CSS Custom Highlight API —
+     ohne den Text anzufassen, in dem js/markieren.js seine Markierungen
+     legt. */
+
+  var AUSGENOMMEN = '.hb-seite, .hb-seitenmarke, .hb-verweis, .eintrag__fuss, .badge, .fakten, .nur-sr, [aria-hidden="true"], [hidden]';
+  var BLOCK = 'p, li, td, th, caption, figcaption, h1, h2, h3, h4, h5, h6';
+  var FALTUNG = {
+    'ä': 'a', 'à': 'a', 'á': 'a', 'â': 'a', 'ö': 'o', 'ô': 'o', 'ó': 'o', 'ü': 'u', 'ù': 'u', 'ú': 'u', 'û': 'u',
+    'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e', 'î': 'i', 'ï': 'i', 'ç': 'c',
+    '‐': '-', '‑': '-', '–': '-', '—': '-', '’': "'", '‘': "'"
+  };
+  var FALT_MUSTER = /[\säàáâöôóüùúûéèêëîïç‐‑–—’‘]/g;
+
+  /* Klein, ohne Akzente, jeder Leerraum ein Leerzeichen — Zeichen für
+     Zeichen, damit Positionen im gefalteten Text die im Original sind. */
+  function falten(text) {
+    var klein = text.toLowerCase();
+    if (klein.length !== text.length) {
+      klein = '';
+      for (var i = 0; i < text.length; i++) {
+        var k = text.charAt(i).toLowerCase();
+        klein += k.length === 1 ? k : text.charAt(i);
+      }
+    }
+    return klein.replace(FALT_MUSTER, function (c) { return FALTUNG[c] || ' '; });
+  }
+
+  /* Der durchsuchbare Text unter wurzel als Blöcke (Absatz, Listenpunkt,
+     Zelle, Titel): ein Treffer läuft über Links und Markierungen hinweg,
+     aber nicht von einem Absatz in den nächsten. */
+  function textModell(wurzel) {
+    var bloecke = [];
+    var gang = document.createTreeWalker(wurzel, global.NodeFilter.SHOW_TEXT, null, false);
+    var n, block = null, blockEl = null;
+    while ((n = gang.nextNode())) {
+      var el = n.parentNode;
+      if (!n.data || !el || el.closest(AUSGENOMMEN)) { continue; }
+      var be = el.closest(BLOCK);
+      if (!be || !wurzel.contains(be)) { be = wurzel; }
+      if (be !== blockEl) { block = { text: '', stellen: [] }; bloecke.push(block); blockEl = be; }
+      block.stellen.push({ knoten: n, start: block.text.length });
+      block.text += falten(n.data);
+    }
+    return bloecke;
+  }
+
+  /* Fundstellen als [block, start] in Dokumentreihenfolge, ohne Überlappung. */
+  function fundstellen(texte, abfrage) {
+    var liste = [];
+    texte.forEach(function (t, b) {
+      var i = t.indexOf(abfrage);
+      while (i !== -1) { liste.push([b, i]); i = t.indexOf(abfrage, i + abfrage.length); }
+    });
+    return liste;
+  }
+
+  function stelleImText(block, pos, ende) {
+    var s = block.stellen;
+    for (var i = s.length - 1; i >= 0; i--) {
+      if (ende ? s[i].start < pos : s[i].start <= pos) { return { knoten: s[i].knoten, offset: pos - s[i].start }; }
+    }
+    return null;
+  }
+
+  function bereich(modell, fund, laenge) {
+    var block = modell[fund[0]];
+    var a = stelleImText(block, fund[1], false), b = stelleImText(block, fund[1] + laenge, true);
+    if (!a || !b) { return null; }
+    var r = document.createRange();
+    r.setStart(a.knoten, a.offset);
+    r.setEnd(b.knoten, b.offset);
+    return r;
+  }
+
+  var suche = {
+    api: null,          // Verbindung zur Suchpille (HT.app.suchmodus)
+    abfrage: '',        // gefaltet; leer = keine Suche
+    zahlen: null,       // Kapitel-Id -> Trefferzahl, null solange gezählt wird
+    version: 0,         // verwirft Antworten auf überholte Abfragen
+    bereit: Promise.resolve(),
+    live: null,         // { meta, wurzel, modell, funde, bereiche, beobachter }
+    aktuell: -1,        // Index in live.funde
+    ziel: null          // { kapitel, letzter } — Sprung in ein anderes Kapitel
+  };
+  var texteCache = {};  // Kapitel-Id -> Promise der gefalteten Blocktexte
+
+  function kapitelTexte(meta) {
+    if (!texteCache[meta.id]) {
+      texteCache[meta.id] = HT.daten.rhbKapitel(meta.id).then(function (kap) {
+        if (!kap) { return []; }
+        return textModell(kapitelKoerper(kap, meta)).map(function (b) { return b.text; });
+      });
+    }
+    return texteCache[meta.id];
+  }
+
+  function hervorhebungMoeglich() {
+    return !!(global.CSS && global.CSS.highlights && typeof global.Highlight === 'function');
+  }
+
+  function malen() {
+    if (!hervorhebungMoeglich()) { return; }
+    var live = suche.live;
+    var bereiche = live && suche.abfrage ? live.bereiche.filter(Boolean) : [];
+    if (!bereiche.length) {
+      global.CSS.highlights.delete('hb-treffer');
+      global.CSS.highlights.delete('hb-treffer-aktuell');
+      return;
+    }
+    var alle = new global.Highlight();
+    bereiche.forEach(function (x) { alle.add(x); });
+    global.CSS.highlights.set('hb-treffer', alle);
+    var r = suche.aktuell >= 0 ? live.bereiche[suche.aktuell] : null;
+    if (r) {
+      var aktuell = new global.Highlight(r);
+      aktuell.priority = 1;
+      global.CSS.highlights.set('hb-treffer-aktuell', aktuell);
+    } else {
+      global.CSS.highlights.delete('hb-treffer-aktuell');
+    }
+  }
+
+  function gesamt() {
+    if (!suche.zahlen) { return 0; }
+    return KAPITEL.reduce(function (s, k) { return s + (suche.zahlen[k.id] || 0); }, 0);
+  }
+
+  function standMelden() {
+    if (!suche.api) { return; }
+    if (!suche.abfrage) { suche.api.stand(null); return; }
+    if (!suche.zahlen) { suche.api.stand({ laedt: true }); return; }
+    var nr = 0;
+    if (suche.live && suche.aktuell >= 0) {
+      for (var i = 0; i < KAPITEL.length && KAPITEL[i] !== suche.live.meta; i++) { nr += suche.zahlen[KAPITEL[i].id] || 0; }
+      nr += suche.aktuell + 1;
+    }
+    suche.api.stand({ aktuell: nr, gesamt: gesamt() });
+  }
+
+  /* Die Zahl je Kapitel klein an seinem Link in der Leiste. */
+  function leisteZahlen() {
+    var links = document.querySelectorAll('[data-kopf="unterleiste"] .unterleiste__link');
+    for (var i = 0; i < links.length; i++) {
+      var alt = links[i].querySelector('.unterleiste__treffer');
+      if (alt) { alt.parentNode.removeChild(alt); }
+      var k = KAPITEL[i];
+      var n = k && suche.abfrage && suche.zahlen ? suche.zahlen[k.id] || 0 : 0;
+      if (n) {
+        links[i].appendChild(h('span', { class: 'unterleiste__treffer', title: n + ' Treffer in diesem Kapitel', text: String(n) }));
+      }
+    }
+  }
+
+  /* Treffer im gezeigten Kapitel neu bestimmen — nach einer neuen Abfrage
+     und immer, wenn sich dort DOM-Knoten ändern (Markierungen). Die
+     Positionen im Text bleiben dabei gleich, also auch der aktuelle Treffer. */
+  function liveBerechnen() {
+    var live = suche.live;
+    if (!live) { return; }
+    live.modell = textModell(live.wurzel);
+    live.funde = suche.abfrage ? fundstellen(live.modell.map(function (b) { return b.text; }), suche.abfrage) : [];
+    live.bereiche = live.funde.map(function (f) { return bereich(live.modell, f, suche.abfrage.length); });
+    if (suche.aktuell >= live.funde.length) { suche.aktuell = -1; }
+    if (suche.zahlen) { suche.zahlen[live.meta.id] = live.funde.length; }
+  }
+
+  function kopfUnterkante() {
+    var kopf = document.querySelector('.topbar');
+    return kopf ? kopf.getBoundingClientRect().bottom : 0;
+  }
+
+  function sichtUnterkante() {
+    var unten = document.querySelector('.nav-bottom');
+    var r = unten && global.getComputedStyle(unten).display !== 'none' ? unten.getBoundingClientRect() : null;
+    return r && r.height ? r.top : global.innerHeight;
+  }
+
+  /* Den aktuellen Treffer in die Mitte der Sicht holen, wenn er nicht schon
+     sichtbar ist — auch in einer seitlich rollenden Tabelle. */
+  function zeigen() {
+    var r = suche.live && suche.aktuell >= 0 ? suche.live.bereiche[suche.aktuell] : null;
+    if (!r) { return; }
+    var start = r.startContainer.parentElement;
+    var rollt = start && start.closest('.hb-tabelle-wrap');
+    var rect = r.getBoundingClientRect();
+    if (rollt) {
+      var w = rollt.getBoundingClientRect();
+      if (rect.left < w.left || rect.right > w.right) {
+        rollt.scrollLeft += rect.left - w.left - (w.width - rect.width) / 2;
+        rect = r.getBoundingClientRect();
+      }
+    }
+    var oben = kopfUnterkante(), unten = sichtUnterkante();
+    if (rect.top >= oben + 12 && rect.bottom <= unten - 12) { return; }
+    /* Sofort, nicht weich (html rollt sonst smooth): Treffer liegen oft
+       Bildschirme auseinander. */
+    global.scrollTo({ top: global.pageYOffset + rect.top - (oben + (unten - oben) / 2) + rect.height / 2, behavior: 'instant' });
+  }
+
+  function waehlen(index) {
+    suche.aktuell = index;
+    malen();
+    standMelden();
+    zeigen();
+  }
+
+  /* Der erste Treffer ab einer Stelle: dem aktuellen Treffer, sonst der
+     Oberkante der Sicht. -1, wenn danach im Kapitel keiner mehr kommt. */
+  function ersterAb(vorher) {
+    var live = suche.live;
+    if (!live || !live.funde.length) { return -1; }
+    var i;
+    if (vorher) {
+      for (i = 0; i < live.funde.length; i++) {
+        var f = live.funde[i];
+        if (f[0] > vorher[0] || (f[0] === vorher[0] && f[1] >= vorher[1])) { return i; }
+      }
+      return -1;
+    }
+    var oben = kopfUnterkante();
+    for (i = 0; i < live.bereiche.length; i++) {
+      var r = live.bereiche[i];
+      if (r && r.getBoundingClientRect().bottom > oben) { return i; }
+    }
+    return -1;
+  }
+
+  function letzterVor() {
+    var live = suche.live;
+    if (!live) { return -1; }
+    var oben = kopfUnterkante();
+    for (var i = live.bereiche.length - 1; i >= 0; i--) {
+      var r = live.bereiche[i];
+      if (r && r.getBoundingClientRect().top < oben) { return i; }
+    }
+    return -1;
+  }
+
+  /* Zum nächsten Kapitel mit Treffern — ringsum; ist es dasselbe, springt
+     die Suche an seinen Anfang bzw. sein Ende. */
+  function kapitelWechsel(richtung) {
+    var meta = suche.live ? suche.live.meta : kapitelMeta(zustand.kapitel);
+    var start = KAPITEL.indexOf(meta);
+    for (var s = 1; s <= KAPITEL.length; s++) {
+      var k = KAPITEL[((start + richtung * s) % KAPITEL.length + KAPITEL.length) % KAPITEL.length];
+      if (!(suche.zahlen[k.id] > 0)) { continue; }
+      if (suche.live && k === suche.live.meta) {
+        waehlen(richtung > 0 ? 0 : suche.live.funde.length - 1);
+        return;
+      }
+      suche.ziel = { kapitel: k.id, letzter: richtung < 0 };
+      global.location.hash = kapitelAdresse(k.id);
+      return;
+    }
+  }
+
+  function schrittJetzt(richtung) {
+    if (!suche.abfrage || !suche.zahlen || !gesamt()) { return; }
+    var live = suche.live;
+    if (!live) { return; }                                   // Kapitel lädt noch
+    var neu;
+    if (suche.aktuell >= 0) {
+      neu = suche.aktuell + richtung;
+      if (neu >= live.funde.length) { neu = -1; }
+    } else {
+      neu = richtung > 0 ? ersterAb(null) : letzterVor();
+    }
+    if (neu >= 0) { waehlen(neu); } else { kapitelWechsel(richtung); }
+  }
+
+  function eingabe(text, weiter) {
+    var abfrage = falten(text).replace(/ +/g, ' ').trim();
+    if (abfrage.length < 2) { abfrage = ''; }
+    if (abfrage === suche.abfrage) {
+      if (weiter) { suche.bereit.then(function () { schrittJetzt(1); }); }
+      return;
+    }
+    var vorher = suche.live && suche.aktuell >= 0 ? suche.live.funde[suche.aktuell] : null;
+    var version = ++suche.version;
+    suche.abfrage = abfrage;
+    suche.zahlen = null;
+    suche.aktuell = -1;
+    suche.ziel = null;
+    if (!abfrage) {
+      suche.zahlen = null;
+      if (suche.live) { liveBerechnen(); }
+      malen();
+      standMelden();
+      leisteZahlen();
+      return;
+    }
+    standMelden();
+    suche.bereit = Promise.all(KAPITEL.map(kapitelTexte)).then(function (alle) {
+      if (version !== suche.version) { return; }
+      var zahlen = {};
+      KAPITEL.forEach(function (k, i) { zahlen[k.id] = fundstellen(alle[i], abfrage).length; });
+      suche.zahlen = zahlen;
+      liveBerechnen();
+      /* Wie Word beim Tippen: der erste Treffer ab der Lesestelle im
+         gezeigten Kapitel. In ein anderes Kapitel springt erst Enter. */
+      var i = ersterAb(vorher);
+      if (i < 0 && suche.live && suche.live.funde.length && !weiter) { i = 0; }
+      leisteZahlen();
+      if (i >= 0) { waehlen(i); } else { malen(); standMelden(); if (weiter) { kapitelWechsel(1); } }
+    });
+  }
+
+  var MODUS = {
+    name: 'handbuch',
+    platzhalter: 'Im Handbuch suchen',
+    label: 'Im Text des Handbuchs suchen — Enter springt zum nächsten Treffer',
+    eingabe: eingabe,
+    /* Wer ins Feld klickt, will suchen: die Kapiteltexte schon laden. */
+    vorbereiten: function () { KAPITEL.forEach(kapitelTexte); },
+    schritt: function (richtung) { suche.bereit.then(function () { schrittJetzt(richtung); }); },
+    beenden: function () {
+      suche.version++;
+      suche.abfrage = '';
+      suche.zahlen = null;
+      suche.aktuell = -1;
+      suche.ziel = null;
+      suche.api = null;
+      liveLoesen();
+      malen();
+    }
+  };
+
+  function liveLoesen() {
+    if (suche.live && suche.live.beobachter) { suche.live.beobachter.disconnect(); }
+    suche.live = null;
+    suche.aktuell = -1;
+  }
+
+  /* Ein Kapitel ist aufgebaut: seine Treffer bestimmen, bei einem Sprung
+     hierher den Zieltreffer wählen. Rückgabe true, wenn die Suche die
+     Scrollposition bestimmt. */
+  function sucheImKapitel(meta, wurzel) {
+    liveLoesen();
+    var live = suche.live = { meta: meta, wurzel: wurzel, modell: [], funde: [], bereiche: [], beobachter: null };
+    if (global.MutationObserver) {
+      var timer = null;
+      live.beobachter = new global.MutationObserver(function () {
+        if (timer) { clearTimeout(timer); }
+        timer = setTimeout(function () {
+          if (suche.live !== live || !suche.abfrage) { return; }
+          liveBerechnen();
+          malen();
+        }, 80);
+      });
+      live.beobachter.observe(wurzel, { childList: true, subtree: true, characterData: true });
+    }
+    if (!suche.abfrage) { malen(); return false; }
+    var ziel = suche.ziel;
+    suche.ziel = null;
+    liveBerechnen();
+    leisteZahlen();
+    if (ziel && ziel.kapitel === meta.id && live.funde.length) {
+      waehlen(ziel.letzter ? live.funde.length - 1 : 0);
+      return true;
+    }
+    malen();
+    standMelden();
+    return false;
+  }
+
+  /* ⌘F / Strg+F öffnet im Handbuch diese Suche statt der des Browsers, die
+     nur das gezeigte Kapitel kennt; ⌘G / F3 springen weiter. */
+  document.addEventListener('keydown', function (ev) {
+    if (!suche.api || document.body.dataset.route !== 'handbuch') { return; }
+    var taste = String(ev.key || '').toLowerCase();
+    var mod = (ev.metaKey || ev.ctrlKey) && !ev.altKey;
+    if (mod && taste === 'f' && !ev.shiftKey) {
+      ev.preventDefault();
+      suche.api.fokus();
+    } else if ((mod && taste === 'g') || ev.key === 'F3') {
+      if (!suche.abfrage) { return; }
+      ev.preventDefault();
+      MODUS.schritt(ev.shiftKey ? -1 : 1);
+    }
+  });
+
   /* --- Kapitelseite ------------------------------------------------------- */
 
   function renderKapitel(behaelter, meta, params, zielId) {
@@ -269,6 +666,9 @@
       links: KAPITEL.map(function (k) { return { href: kapitelAdresse(k.id), nr: k.nummer, text: k.titel, aktiv: k === meta }; }),
       info: { inhalt: infoInhalt, bereit: HT.daten.rhbIndex().then(function (idx) { if (idx && idx.quelle) { quelle = idx.quelle; } }) }
     });
+    leisteZahlen();
+    liveLoesen();
+    malen();
     var warnung = HT.app.datenWarnung();
     if (warnung) { behaelter.appendChild(warnung); }
 
@@ -304,7 +704,8 @@
 
       var toc = inhaltsverzeichnis(kap, idx);
       if (toc) { inhalt.appendChild(toc); }
-      inhalt.appendChild(kapitelKoerper(kap, meta));
+      var koerper = kapitelKoerper(kap, meta);
+      inhalt.appendChild(koerper);
 
       /* Blättern */
       function blaetterText(k, pfeil) {
@@ -320,6 +721,8 @@
          Inhalt die Position wieder. */
       var gewuenscht = params && params.teil ? String(params.teil) : null;
       global.setTimeout(function () {
+        if (!document.body.contains(koerper)) { return; }
+        if (sucheImKapitel(meta, koerper)) { return; }   // die Suche zeigt ihren Treffer
         var ziel = null;
         if (zielId) {
           ziel = inhalt.querySelector('#eintrag-' + cssId(zielId));
@@ -360,6 +763,7 @@
     if (!meta) { meta = kapitelMeta(zustand.kapitel) || KAPITEL[1]; }
     zustand.kapitel = meta.id;
     speichern();
+    suche.api = HT.app.suchmodus(MODUS);
     renderKapitel(behaelter, meta, params, zielId);
   }
 

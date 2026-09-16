@@ -582,10 +582,18 @@
   /* --- Suchpille ----------------------------------------------------------- */
 
   /* Rundes Suchfeld mit Lupe und Trefferliste als Ausklappmenü — in der
-     Leiste des Graphen und über der Abbildung des Überblicks. opt.treffer(text)
-     liefert die Einträge, opt.beiWahl(eintrag) bekommt den gewählten. Enter
-     nimmt den ersten Treffer, Escape leert das Feld, ein Klick daneben
-     schliesst die Liste. */
+     Kopfzeile. opt.treffer(text) liefert die Einträge, opt.beiWahl(eintrag)
+     bekommt den gewählten. Enter nimmt den ersten Treffer, Escape leert das
+     Feld, ein Klick daneben schliesst die Liste.
+     Eine Ansicht kann die Pille in einen Fundstellen-Modus schalten wie die
+     Suche in Word (el.modusSetzen(modus), das Handbuch): statt der Liste
+     stehen rechts im Feld der Zähler «3/42» und zwei Pfeile. modus: { name,
+     platzhalter, label, eingabe(text, weiter), schritt(richtung), beenden(),
+     vorbereiten() } — vorbereiten (freiwillig) beim Fokus, eingabe beim Tippen verzögert (mit weiter = true, wenn Enter die
+     Verzögerung abkürzt), schritt(+1/-1) bei Enter, Umschalt+Enter und den
+     Pfeilen, beenden, wenn die Ansicht den Modus wieder abgibt. Zurück kommt
+     { stand(s), fokus() }; stand({ aktuell, gesamt, laedt }) setzt den
+     Zähler, stand(null) blendet ihn aus. */
   function suchpille(opt) {
     var feld = h('input', {
       type: 'search', class: 'suche__feld gleiste-suche__feld',
@@ -597,10 +605,64 @@
     liste.hidden = true;
     var lupe = h('span', { class: 'gleiste-suche__ikone', 'aria-hidden': 'true' },
       symbol(['M10.6 3.6a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z', 'M15.6 15.6 20.4 20.4'], 16));
-    var el = h('div', { class: 'gleiste-suche' }, [lupe, feld, liste]);
+
+    var modus = null;
+    var zahl = h('span', { class: 'gleiste-suche__zahl', 'aria-hidden': 'true' });
+    var ansage = h('span', { class: 'nur-sr', role: 'status' });
+    var zurueck = h('button', {
+      type: 'button', class: 'gleiste-suche__schritt', title: 'Vorheriger Treffer (Umschalt+Enter)', 'aria-label': 'Vorheriger Treffer',
+      on: { click: function () { if (modus) { modus.schritt(-1); } } }
+    }, symbol(['M6 15l6-6 6 6'], 16));
+    var vor = h('button', {
+      type: 'button', class: 'gleiste-suche__schritt', title: 'Nächster Treffer (Enter)', 'aria-label': 'Nächster Treffer',
+      on: { click: function () { if (modus) { modus.schritt(1); } } }
+    }, symbol(['M6 9l6 6 6-6'], 16));
+    var fund = h('span', { class: 'gleiste-suche__fund', hidden: true }, [zahl, ansage, zurueck, vor]);
+    /* Die Pfeile nehmen dem Feld den Fokus nicht — so bleibt die Pille offen. */
+    fund.addEventListener('mousedown', function (ev) { ev.preventDefault(); });
+
+    var el = h('div', { class: 'gleiste-suche' }, [lupe, feld, fund, liste]);
     var timer = null;
 
+    function stand(s) {
+      fund.hidden = !s;
+      el.classList.toggle('ist-suchend', !!s);
+      if (!s) {
+        feld.style.paddingRight = '';
+        ansage.textContent = '';
+        return;
+      }
+      var text, sagen;
+      if (s.laedt) { text = '…'; sagen = 'Suche läuft'; }
+      else if (!s.gesamt) { text = '0'; sagen = 'Keine Treffer'; }
+      else if (s.aktuell) { text = s.aktuell + '/' + s.gesamt; sagen = 'Treffer ' + s.aktuell + ' von ' + s.gesamt; }
+      else { text = s.gesamt + ' Treffer'; sagen = s.gesamt + ' Treffer'; }
+      zahl.textContent = text;
+      zahl.classList.toggle('ist-leer', !s.laedt && !s.gesamt);
+      ansage.textContent = sagen;
+      zurueck.disabled = vor.disabled = !s.gesamt;
+      feld.style.paddingRight = (fund.offsetWidth + 10) + 'px';
+    }
+
+    el.modusSetzen = function (m) {
+      if (modus && m && modus.name === m.name) { modus = m; return api; }
+      if (timer) { clearTimeout(timer); timer = null; }
+      if (modus && modus.beenden) { modus.beenden(); }
+      modus = m || null;
+      feld.value = '';
+      liste.hidden = true;
+      stand(null);
+      feld.placeholder = (modus && modus.platzhalter) || opt.platzhalter || 'Suchen …';
+      feld.setAttribute('aria-label', (modus && modus.label) || opt.label || opt.platzhalter || 'Suchen');
+      return modus ? api : null;
+    };
+    var api = {
+      stand: stand,
+      fokus: function () { feld.focus(); feld.select(); }
+    };
+
     function zeichnen() {
+      if (modus) { return; }
       var text = feld.value.trim();
       leeren(liste);
       if (text.length < 2) { liste.hidden = true; return; }
@@ -627,20 +689,36 @@
       liste.hidden = false;
     }
 
+    function eingeben(weiter) {
+      timer = null;
+      if (modus) { modus.eingabe(feld.value.trim(), !!weiter); }
+    }
+
     feld.addEventListener('input', function () {
       if (timer) { clearTimeout(timer); }
-      timer = setTimeout(zeichnen, 120);
+      timer = modus ? setTimeout(eingeben, 250) : setTimeout(zeichnen, 120);
     });
-    feld.addEventListener('focus', function () { if (feld.value.trim().length >= 2) { zeichnen(); } });
+    feld.addEventListener('focus', function () {
+      if (modus) { if (modus.vorbereiten) { modus.vorbereiten(); } return; }
+      if (feld.value.trim().length >= 2) { zeichnen(); }
+    });
     feld.addEventListener('keydown', function (ev) {
       if (ev.key === 'Enter') {
         ev.preventDefault();
+        if (modus) {
+          /* Noch nicht gesucht (Tippen eben erst): die Suche sofort, sie
+             springt selbst zum ersten Treffer. */
+          if (timer) { clearTimeout(timer); eingeben(true); } else { modus.schritt(ev.shiftKey ? -1 : 1); }
+          return;
+        }
         var erster = liste.querySelector('button');
         if (erster) { erster.click(); }
       } else if (ev.key === 'Escape') {
         ev.stopPropagation();
+        if (timer) { clearTimeout(timer); timer = null; }
         feld.value = '';
         liste.hidden = true;
+        if (modus) { modus.eingabe('', false); }
       }
     });
     function daneben(ev) {

@@ -268,6 +268,33 @@ main:focus { outline: none; }
 .kopf-suche .gleiste-suche:focus-within { width: 22rem; }
 .kopf-suche .gleiste-suche__feld { height: 30px; min-height: 30px; font-size: 13px; padding-right: 10px; }
 .kopf-suche .gleiste-suche__treffer { min-width: 20rem; }
+/* Fundstellen-Modus (Handbuch): rechts im Feld der Zähler «3/42» und zwei
+   Pfeile; solange gesucht wird, bleibt die Pille breit. */
+.kopf-suche .gleiste-suche.ist-suchend { width: 22rem; }
+.gleiste-suche__fund {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center;
+}
+.gleiste-suche__fund[hidden] { display: none; }
+.gleiste-suche__zahl {
+  padding: 0 4px 0 2px;
+  font-size: 12px; font-weight: 600;
+  color: var(--text-leise);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.gleiste-suche__zahl.ist-leer { color: var(--akzent-text); }
+.gleiste-suche__schritt {
+  display: grid; place-items: center;
+  width: 24px; height: 24px; padding: 0;
+  border: 0; border-radius: 999px;
+  background: transparent; color: var(--text-leise);
+  cursor: pointer;
+}
+.gleiste-suche__schritt svg { width: 16px; height: 16px; }
+.gleiste-suche__schritt:hover:not(:disabled) { color: var(--text); background: var(--rand-fein); }
+.gleiste-suche__schritt:disabled { opacity: .35; cursor: default; }
+.gleiste-suche.ist-suchend .gleiste-suche__feld::-webkit-search-cancel-button { display: none; }
 .kopf-werkzeug { display: flex; align-items: center; }
 .kopf-werkzeug .graph-werkzeug { width: 30px; height: 30px; border-radius: 999px; }
 .kopf-werkzeug .graph-werkzeug:hover { color: var(--text); background: var(--flaeche-2); }
@@ -284,7 +311,8 @@ main:focus { outline: none; }
   .kopf-suche .gleiste-suche { flex: 0 0 auto; width: 34px; }
   .kopf-suche .gleiste-suche__feld { padding-left: 32px; }
   .kopf-suche .gleiste-suche__feld::placeholder { color: transparent; }
-  .kopf-suche .gleiste-suche:focus-within { width: min(22rem, 70vw); }
+  .kopf-suche .gleiste-suche:focus-within,
+  .kopf-suche .gleiste-suche.ist-suchend { width: min(22rem, 70vw); }
   .kopf-suche .gleiste-suche:focus-within .gleiste-suche__feld::placeholder { color: var(--text-leise-hell); }
 }
 
@@ -378,6 +406,21 @@ main:focus { outline: none; }
 .unterleiste__nr { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--akzent-text); }
 .unterleiste__link[aria-current="page"] .unterleiste__nr { color: inherit; }
 .unterleiste__link svg { width: 14px; height: 14px; flex: 0 0 auto; }
+/* Trefferzahl der Handbuchsuche je Kapitel: klein über dem Ende des
+   Links, wie eine Marke am Reiter — ohne ihn breiter zu machen, die elf
+   Kapitel füllen die Leiste. */
+.unterleiste__link { position: relative; }
+.unterleiste__treffer {
+  position: absolute; top: 1px; right: 1px;
+  padding: 0 3.5px;
+  border-radius: 999px;
+  background: var(--akzent);
+  color: var(--akzent-auf);
+  font-size: 9px; font-weight: 700; letter-spacing: 0;
+  line-height: 12px;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
 /* Eigener Inhalt neben oder statt der Links (die Auswahl des Überblicks, die
    Wahl des Zuordnens); gerollt wird die ganze Mitte. */
 .unterleiste__inhalt { display: flex; align-items: stretch; flex: 0 0 auto; }
@@ -1532,6 +1575,10 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .hb-kapitelkopf { margin: 0 0 6px; }
 .hb-kapitelkopf__titel { margin: 2px 0 6px; font-size: 26px; font-weight: 800; letter-spacing: -.015em; line-height: 1.1; }
 /* Inhaltsverzeichnis des Kapitels: Knöpfe wie Links, Abschnitte eingerückt. */
+/* Treffer der Handbuchsuche (CSS Custom Highlight API, js/handbuch.js):
+   alle hell im Akzent, der aktuelle voll — Gelb gehört den Markierungen. */
+::highlight(hb-treffer) { background-color: #ffc4b8; color: #201e1d; }
+::highlight(hb-treffer-aktuell) { background-color: #ec3013; color: #ffffff; }
 .hb-inhalt { margin: 4px 0 18px; padding: 10px 0 12px; border-top: 1px solid var(--rand); border-bottom: 1px solid var(--rand); }
 .hb-inhalt__liste { list-style: none; margin: 4px 0 0; padding: 0; columns: 2; column-gap: 28px; }
 .hb-inhalt__eintrag { break-inside: avoid; }

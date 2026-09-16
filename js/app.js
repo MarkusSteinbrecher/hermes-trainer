@@ -36,10 +36,13 @@
      Treffer selbst an (Umfang, Einfärbung, Fokus); sonst führt der Treffer in
      den Überblick. Rechts daneben liegt der Platz für das Werkzeug einer
      Ansicht. */
+  var pille = null;
+  var suchmodusGesetzt = false;
+
   function sucheBauen() {
     var huelle = document.querySelector('[data-kopf="suche"]');
     if (!huelle || !HT.ui.suchpille) { return; }
-    var pille = HT.ui.suchpille({
+    pille = HT.ui.suchpille({
       platzhalter: 'Suchen',
       label: 'Element, Modul, Phase oder Szenario suchen',
       treffer: function (text) {
@@ -55,6 +58,15 @@
     });
     huelle.appendChild(pille);
     huelle.appendChild(h('div', { class: 'kopf-werkzeug', dataset: { kopf: 'werkzeug' }, hidden: true }));
+  }
+
+  /* Eine Ansicht kann die Suche beim Aufbau für sich nehmen — das Handbuch
+     sucht im eigenen Text wie Word (HT.ui.suchpille, modusSetzen). Gilt nur
+     für den Aufbau, in dem sie es sagt: wer den Modus nicht erneut setzt,
+     bekommt die gewöhnliche Suche zurück. */
+  function suchmodus(modus) {
+    suchmodusGesetzt = true;
+    return pille ? pille.modusSetzen(modus) : null;
   }
 
   /* Eine Ansicht kann rechts neben die Suche ein Werkzeug stellen (der
@@ -261,6 +273,7 @@
     delete document.body.dataset.teil;
     kopfPlatz('werkzeug', null);
     kopfPlatz('unterleiste', null);
+    suchmodusGesetzt = false;
 
     try {
       view.render(behaelter, route.params);
@@ -271,6 +284,7 @@
       ));
       if (global.console && global.console.error) { global.console.error(fehler); }
     }
+    if (!suchmodusGesetzt && pille) { pille.modusSetzen(null); }
 
     /* Seiten, die je Parameter eine eigene Seite sind (Feld der Abbildung),
        stellen den Titel als Funktion bereit; `nav` sagt, welcher Menüpunkt
@@ -279,7 +293,10 @@
     document.title = titel + ' · meinHERMES';
     navMarkieren(view.nav || route.name);
 
-    if (!ersterAufruf && !route.params.id) {
+    /* Wer in der Kopfzeile sucht, bleibt im Feld — auch wenn der nächste
+       Treffer in einem anderen Kapitel liegt. */
+    var inSuche = document.activeElement && document.activeElement.closest && document.activeElement.closest('[data-kopf="suche"]');
+    if (!ersterAufruf && !route.params.id && !inSuche) {
       var haupt = document.getElementById('hauptinhalt');
       try {
         global.scrollTo(0, 0);
@@ -344,6 +361,7 @@
     datenWarnung: datenWarnung,
     zeichnen: zeichnen,
     kopfWerkzeug: function (el) { kopfPlatz('werkzeug', el); },
+    suchmodus: suchmodus,
     unterleiste: unterleisteSetzen,
     routen: ROUTEN
   };
