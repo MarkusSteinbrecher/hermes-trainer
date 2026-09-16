@@ -929,9 +929,9 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-chip--gut { border-color: var(--gut); background: var(--gut-bg); color: var(--gut); }
 .lk-chip--schlecht { border-color: var(--schlecht); background: var(--schlecht-bg); color: var(--schlecht); }
 
-/* Kombinationsfeld: Feld mit Liste darunter. Die Liste steht im Fluss statt
-   darüber — die Karte rollt (max-height 70vh) und würde ein schwebendes
-   Feld unten abschneiden. */
+/* Kombinationsfeld: Feld mit Liste. Offen schwebt die Liste (position: fixed,
+   am body) und wird von js/lernkarten.js unter das Feld gerechnet — im Fluss
+   zöge sie die Karte auseinander, die bei max-height 70vh rollt. */
 .lk-kombi { position: relative; }
 .lk-kombi__feld {
   width: 100%;
@@ -953,14 +953,18 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-kombi__feld:hover { border-color: var(--text-leise); }
 .lk-kombi__feld:disabled { display: none; }
 .lk-kombi__liste {
-  margin: 4px 0 0;
+  position: fixed;
+  z-index: 70;
+  margin: 0;
   padding: 4px;
-  max-height: 13rem;
+  max-height: 15rem;
   overflow-y: auto;
+  overscroll-behavior: contain;
   list-style: none;
   border: 1px solid var(--rand-stark);
   border-radius: var(--radius-s);
   background: var(--weiss);
+  box-shadow: var(--schatten-stark);
 }
 .lk-kombi__option {
   padding: 7px 10px;

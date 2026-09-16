@@ -249,6 +249,28 @@
     var offen = false, aktiv = -1, sichtbar = [], vergeben = {};
     (opt.vergeben || []).forEach(function (w) { vergeben[w] = true; });
 
+    /* Die offene Liste schwebt (position: fixed) und hängt am body: in der
+       Karte stünde sie im Fluss und würde sie auseinanderziehen — die Karte
+       rollt bei max-height 70vh und schnitte die Liste ab. Geschlossen kehrt
+       sie in die Hülle zurück, damit ein Neuaufbau sie mitnimmt. */
+    function positionieren() {
+      var r = feld.getBoundingClientRect();
+      var unten = global.innerHeight - r.bottom - 10;
+      var oben = r.top - 10;
+      var nachOben = unten < 170 && oben > unten;
+      var hoehe = Math.max(110, Math.min(240, nachOben ? oben : unten));
+      liste.style.left = Math.round(r.left) + 'px';
+      liste.style.width = Math.round(r.width) + 'px';
+      liste.style.maxHeight = Math.round(hoehe) + 'px';
+      if (nachOben) {
+        liste.style.top = 'auto';
+        liste.style.bottom = Math.round(global.innerHeight - r.top + 4) + 'px';
+      } else {
+        liste.style.bottom = 'auto';
+        liste.style.top = Math.round(r.bottom + 4) + 'px';
+      }
+    }
+
     function zeichnen() {
       HT.ui.leeren(liste);
       sichtbar = optionen.filter(function (w) { return !vergeben[w] && passt(w, mitSuche ? feld.value : ''); });
@@ -283,15 +305,23 @@
       offeneListe = schliessen;
       offen = true;
       aktiv = -1;
+      document.body.appendChild(liste);
       liste.hidden = false;
       feld.setAttribute('aria-expanded', 'true');
       zeichnen();
+      positionieren();
+      /* true: auch das Rollen der Karte selbst führt die Liste nach. */
+      global.addEventListener('scroll', positionieren, true);
+      global.addEventListener('resize', positionieren);
     }
 
     function schliessen() {
       if (!offen) { return; }
       offen = false;
       liste.hidden = true;
+      el.appendChild(liste);
+      global.removeEventListener('scroll', positionieren, true);
+      global.removeEventListener('resize', positionieren);
       feld.setAttribute('aria-expanded', 'false');
       feld.removeAttribute('aria-activedescendant');
       if (offeneListe === schliessen) { offeneListe = null; }
@@ -301,7 +331,7 @@
       vergeben[w] = true;
       feld.value = '';
       opt.beiWahl(w);
-      if (!feld.disabled) { zeichnen(); feld.focus(); }
+      if (!feld.disabled) { zeichnen(); positionieren(); feld.focus(); }
     }
 
     function bewegen(schritt) {
