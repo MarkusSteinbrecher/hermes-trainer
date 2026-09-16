@@ -798,26 +798,33 @@
   /* --- Fortschrittsanzeige ------------------------------------------------ */
 
   /** Rechts in der Zeile der Kategorien: gewusst und nicht gewusst (zuletzt
-      «Nochmals»), der Balken aus beiden Anteilen, der Anteil gewusster Karten
-      und «Zurücksetzen». Farben wie im Fortschritt des Trainers: gewusst
-      grün, nicht gewusst rot, noch nicht eingeschätzt grau. */
+      «Nochmals»), je mit Anteil und ohne Wort — die Farbe sagt, welche Zahl
+      welche ist (Tooltip nennt sie) —, der Balken aus beiden Anteilen, rechts
+      der Anteil eingeschätzter Karten (gewusst und nicht gewusst) und
+      «Zurücksetzen». Farben wie im Fortschritt des Trainers: gewusst grün,
+      nicht gewusst rot, noch nicht eingeschätzt grau. */
   function fortschrittAufbauen() {
     var st = zaehlen();
-    var anteil = HT.ui.prozent(st.gewusst, st.gesamt);
+    var anteil = HT.ui.prozent(st.gewusst + st.nichtGewusst, st.gesamt);
     var teilGewusst = h('div', { class: 'lk-balken__teil lk-balken__teil--gewusst' });
     var teilNicht = h('div', { class: 'lk-balken__teil lk-balken__teil--nicht' });
     teilGewusst.style.width = (st.gesamt ? st.gewusst / st.gesamt * 100 : 0) + '%';
     teilNicht.style.width = (st.gesamt ? st.nichtGewusst / st.gesamt * 100 : 0) + '%';
 
-    function zahl(n, klasse) {
-      return h('b', { class: 'lk-zahl' + (n ? ' ' + klasse : ''), text: String(n) });
+    function zahl(n, klasse, name) {
+      var text = n + ' ' + name + ' (' + HT.ui.prozent(n, st.gesamt) + ' %)';
+      /* Immer gefärbt, auch bei 0: ohne Wort unterscheidet nur die Farbe die beiden. */
+      return h('span', { class: 'lk-zahl ' + klasse, title: text, 'aria-label': text }, [
+        h('b', { text: String(n) }),
+        h('span', { class: 'lk-zahl__anteil', text: HT.ui.prozent(n, st.gesamt) + ' %' })
+      ]);
     }
 
     return h('div', { class: 'lk-fortschritt' }, [
       h('span', { class: 'lk-fortschritt__zahlen' }, [
-        h('span', {}, ['Gewusst ', zahl(st.gewusst, 'lk-zahl--gewusst')]),
+        zahl(st.gewusst, 'lk-zahl--gewusst', 'gewusst'),
         h('span', { class: 'lk-fortschritt__trenner', 'aria-hidden': 'true', text: '·' }),
-        h('span', {}, ['Nicht gewusst ', zahl(st.nichtGewusst, 'lk-zahl--nicht')]),
+        zahl(st.nichtGewusst, 'lk-zahl--nicht', 'nicht gewusst'),
         h('span', { class: 'lk-fortschritt__trenner', 'aria-hidden': 'true', text: '·' }),
         h('span', { text: 'von ' + st.gesamt })
       ]),
@@ -827,7 +834,7 @@
         'aria-label': st.gewusst + ' gewusst, ' + st.nichtGewusst + ' nicht gewusst, '
           + (st.gesamt - st.gewusst - st.nichtGewusst) + ' noch nicht eingeschätzt'
       }, [teilGewusst, teilNicht]),
-      h('span', { title: 'Anteil gewusster Karten', text: anteil + ' %' }),
+      h('span', { title: 'Anteil eingeschätzter Karten (gewusst und nicht gewusst)', text: anteil + ' %' }),
       /* Als Icon: mit beiden Zahlen passt die Zeile sonst bei 1470 px nicht
          mehr neben die Kategorien. */
       h('button', {
@@ -957,7 +964,8 @@
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
           h('p', { text: 'Oben rechts auf der Karte wählt man, was vorne steht: der Begriff oder die Definition — dann ist '
             + 'der Begriff selbst mit gesucht. Rechts neben den Kategorien steht der Fortschritt: gewusst (grün), '
-            + 'nicht gewusst (zuletzt «Nochmals», rot) und die Zahl aller Karten der Auswahl, dahinter das Icon zum Zurücksetzen.' }),
+            + 'nicht gewusst (zuletzt «Nochmals», rot), je mit Anteil, und die Zahl aller Karten der Auswahl; der Anteil rechts '
+            + 'zählt gewusste und nicht gewusste Karten zusammen. Dahinter das Icon zum Zurücksetzen.' }),
           h('p', { text: 'Grundbegriffe haben eigene Karten ohne Phase, Modul und die übrigen Zeilen: Steht oben «Begriff», '
             + 'ist der Begriff zu sehen, und die Rückseite zeigt die Definition. Steht oben «Definition», wählt man, welcher '
             + 'Begriff gemeint ist.' }),

@@ -863,7 +863,9 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 }
 .lk-fortschritt__zahlen { display: flex; align-items: baseline; gap: 6px; }
 .lk-fortschritt__trenner { color: var(--rand-stark); }
-.lk-zahl { font-weight: 700; color: var(--text); }
+.lk-zahl { display: inline-flex; align-items: baseline; gap: 4px; font-weight: 700; color: var(--text); }
+/* Der Anteil neben der Zahl, in ihrer Farbe, aber leichter. */
+.lk-zahl__anteil { font-weight: 500; opacity: .75; }
 .lk-zahl--gewusst { color: var(--gut); }
 .lk-zahl--nicht { color: var(--akzent-text); }
 .lk-fortschritt .fortschritt__balken { width: 72px; }
