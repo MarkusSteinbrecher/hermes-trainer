@@ -12,6 +12,7 @@ Verbindlicher Kontrakt zwischen Inhalt und Frontend. Alle Inhalte liegen als JSO
 | `data/aufgaben.json` | `aufgabe` | Alle Aufgaben |
 | `data/ergebnisse.json` | `ergebnis` | Alle Ergebnisse |
 | `data/rollen.json` | `rolle` | Alle Rollen |
+| `data/grundbegriffe.json` | `grundbegriff` | Nur für die Lernkarten: 39 Grundbegriffe des Methodenverständnisses (Ergebnisorientierung, Meilenstein, Entscheidungspunkt, Sizing, Tailoring usw.), kuratiert aus den Übersichtsseiten von hermes.admin.ch mit `quelle` je Eintrag. Geladen, aber nicht in `alleEintraege()` und `eintragMitId` — Suche, Handbuch, Überblick, Graph und Quiz kennen sie nicht; Zugriff über `eintraegeDerKategorie('grundbegriff')`. Genutzt werden `begriff`, `definition` und `quelle` |
 | `data/quizfragen.json` | — | Kuratierte Prüfungsfragen (eigenes Schema, siehe unten) |
 | `data/handbuch/*.json` | — | Importierte Handbuchtexte von hermes.admin.ch (generiert von `tools/handbuch-import.py`, nicht von Hand pflegen) |
 | `data/handbuch/rhb/*.json` | — | Das Referenzhandbuch (PDF) als Text, ein Kapitel je Datei (generiert von `tools/rhb-import.py`, nicht von Hand pflegen) |
@@ -100,7 +101,7 @@ Blöcke wie oben, jeder mit `seite` (die PDF-Seite, auf der der Block beginnt �
 
 ## Graph (abgeleitet, keine eigene Datei)
 
-`js/graph-modell.js` baut zur Laufzeit einen Graphen aus den Einträgen. Knoten sind **nur** Aufgaben, Ergebnisse und Rollen — sie beschreiben zusammen den Ablauf: wer tut was, und was entsteht dabei. Phasen, Module und Szenarien sind keine Knoten, sondern der **Umfang**: sie wählen aus, welche Aufgaben und Ergebnisse gezeigt werden (Grundbegriffe gibt es seit 2026-09-11 nicht mehr; die 27 kuratierten Quizfragen dazu tragen keine `kategorie` und stehen immer im Pool). Jede Kante ist auf ein Feld eines Eintrags zurückführbar; es werden keine Beziehungen ergänzt:
+`js/graph-modell.js` baut zur Laufzeit einen Graphen aus den Einträgen. Knoten sind **nur** Aufgaben, Ergebnisse und Rollen — sie beschreiben zusammen den Ablauf: wer tut was, und was entsteht dabei. Phasen, Module und Szenarien sind keine Knoten, sondern der **Umfang**: sie wählen aus, welche Aufgaben und Ergebnisse gezeigt werden (Grundbegriffe waren am 2026-09-11 entfernt worden und stehen seit 2026-09-16 wieder in `data/grundbegriffe.json`, aber nur für die Lernkarten; die 27 kuratierten Quizfragen dazu tragen keine `kategorie` und stehen immer im Pool). Jede Kante ist auf ein Feld eines Eintrags zurückführbar; es werden keine Beziehungen ergänzt:
 
 | Beziehung | Quelle (Feld) | Richtung |
 |---|---|---|

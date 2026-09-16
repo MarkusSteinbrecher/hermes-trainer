@@ -22,6 +22,12 @@
   var hinweis = '';                // Meldung für die Konfigurationsansicht
   var refs = {};
 
+  /** Filterbar sind die Kategorien des Datenbestands, nicht die Grundbegriffe,
+      die nur die Lernkarten kennen. */
+  function istKategorie(key) {
+    return HT.daten.kategorien().some(function (kat) { return kat.key === key; });
+  }
+
   /* --- Persistenz --------------------------------------------------------- */
 
   function konfigSpeichern() {
@@ -38,7 +44,7 @@
       if ([10, 20, 50].indexOf(g.anzahl) !== -1) { konfig.anzahl = g.anzahl; }
       if (['gemischt', 'kuratiert', 'generiert'].indexOf(g.herkunft) !== -1) { konfig.herkunft = g.herkunft; }
       konfig.filter = Array.isArray(g.filter)
-        ? g.filter.filter(function (k) { return !!HT.daten.kategorieMeta(k); })
+        ? g.filter.filter(istKategorie)
         : [];
     }
   }
@@ -690,7 +696,7 @@
       konfigLaden();
       konfig.geladen = true;
     }
-    if (params && params.kat && HT.daten.kategorieMeta(params.kat)) {
+    if (params && params.kat && istKategorie(params.kat)) {
       konfig.filter = [params.kat];
     }
     lauf = null;

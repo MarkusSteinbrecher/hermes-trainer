@@ -10,6 +10,8 @@
    erste falsche beendet die Zeile; sind alle Zeilen fertig, dreht sich die
    Karte zur Lösung. Die Werte kommen aus einem Kombinationsfeld, bei langen
    Listen (Aufgaben, Ergebnisse) mit Suche. Ohne Wahl geht es auch: Karte drehen und selbst einschätzen.
+   Dazu die Grundbegriffe (data/grundbegriffe.json, nur hier geladen): ihre
+   Karte zeigt immer die Definition und fragt allein den Begriff ab.
    «Nochmals» kehrt im Stapel zurück. Fortschritt liegt im localStorage und
    ist zurücksetzbar. */
 (function (global) {
@@ -19,7 +21,7 @@
   HT.trainerTeile = HT.trainerTeile || {};
 
   var h = HT.ui.h;
-  var KATEGORIEN = ['aufgabe', 'ergebnis'];
+  var KATEGORIEN = ['aufgabe', 'ergebnis', 'grundbegriff'];
   /* 1 (ohne Angabe): Begriff ↔ Definition für alle Kategorien — «Gewusst» galt nur der Definition
      2: Bezüge auf der Rückseite (Rolle, Ergebnisse/Aufgaben, Modul)
      3: Bezüge als Dropdown auf der Vorderseite, dazu die Phase */
@@ -32,7 +34,7 @@
   var zustand = {
     initialisiert: false,
     richtung: 'bd',        // 'bd' = vorne Begriff, 'db' = vorne Definition
-    filter: [],            // leer = Aufgaben und Ergebnisse
+    filter: [],            // leer = Aufgaben, Ergebnisse und Grundbegriffe
     fortschritt: {},       // id -> 'gewusst' | 'nochmals'
     stapel: [],            // offene Karten-IDs der laufenden Runde
     gedreht: false,
@@ -112,6 +114,7 @@
    * alle richtigen Werte, pflicht (ohne Angabe: werte) die gesuchten.
    */
   function bezuege(e) {
+    if (istGrundbegriff(e)) { return []; }
     var zeilen = [
       phasenZeile(e),
       { key: 'modul', label: e.module.length === 1 ? 'Modul' : 'Module', kategorie: 'modul', werte: e.module },
@@ -125,9 +128,21 @@
     return zeilen.filter(function (z) { return z.werte.length > 0; });
   }
 
-  /** Was die Vorderseite abfragt: bei «Definition vorn» zuerst der Begriff selbst. */
+  /* Grundbegriffe haben keine Bezüge (Phase, Modul usw. werden bei ihnen nicht
+     abgefragt, auch wo die Daten welche nennen): ihre Karte zeigt immer die
+     Definition und fragt nur den Begriff. */
+  function istGrundbegriff(e) {
+    return e.kategorie === 'grundbegriff';
+  }
+
+  /** Steht vorn die Definition? Bei «Vorne: Definition» und bei Grundbegriffen. */
+  function begriffGesucht(e) {
+    return zustand.richtung === 'db' || istGrundbegriff(e);
+  }
+
+  /** Was die Vorderseite abfragt: ist der Begriff gesucht, zuerst er selbst. */
   function fragen(e) {
-    var vorweg = zustand.richtung === 'db'
+    var vorweg = begriffGesucht(e)
       ? [{ key: 'begriff', label: 'Begriff', kategorie: e.kategorie, werte: [e.begriff] }]
       : [];
     return vorweg.concat(bezuege(e));
@@ -168,11 +183,18 @@
 
   /* --- Stapel ------------------------------------------------------------- */
 
-  /* Ohne Definition oder ohne Bezüge keine Karte. */
+  /* Ohne Definition keine Karte, bei Aufgaben und Ergebnissen auch nicht ohne Bezüge. */
   function kartenDerKategorie(kat) {
     return HT.daten.eintraegeDerKategorie(kat).filter(function (e) {
-      return !!e.definition && bezuege(e).length > 0;
+      return !!e.definition && (istGrundbegriff(e) || bezuege(e).length > 0);
     });
+  }
+
+  /* Grundbegriffe stehen nicht unter HT.daten.eintragMitId (nur die Lernkarten kennen sie). */
+  function eintragFuer(id) {
+    return HT.daten.eintragMitId(id)
+      || HT.daten.eintraegeDerKategorie('grundbegriff').filter(function (e) { return e.id === id; })[0]
+      || null;
   }
 
   function auswahl() {
@@ -460,13 +482,17 @@
 
   /** Am Fuss beider Seiten die drei Wege weiter: das Element im Überblick, im
       Handbuch und auf der offiziellen Seite. Solange der Begriff gesucht ist
-      (Vorderseite «Definition»), nennen die Tooltips ihn nicht. */
+      (Vorderseite «Definition»), nennen die Tooltips ihn nicht. Grundbegriffe
+      stehen weder im Überblick noch im Handbuch — bei ihnen nur HERMES online. */
   function verweise(e, mitBegriff) {
     var name = mitBegriff ? e.begriff : 'Das Element';
     var offiziell = HT.ui.quellenLink(e.quelle, 'lk-verweis lk-verweis--akzent');
     if (offiziell && !mitBegriff) {
       offiziell.setAttribute('title', 'HERMES online');
       offiziell.setAttribute('aria-label', 'HERMES online (öffnet in neuem Tab)');
+    }
+    if (istGrundbegriff(e)) {
+      return h('div', { class: 'flip__hinweis lk-verweise' }, [offiziell]);
     }
     return h('div', { class: 'flip__hinweis lk-verweise' }, [
       h('a', {
@@ -482,7 +508,7 @@
   }
 
   function seiteVorne(e, beiAntwort) {
-    var istBegriff = zustand.richtung === 'bd';
+    var istBegriff = !begriffGesucht(e);
     var sperren = [];
 
     var kopf = h('div', { class: 'flip__rolle' }, [
@@ -507,8 +533,12 @@
       class: 'flip__seite flip__seite--vorne',
       tabindex: '-1',
       'aria-hidden': 'false'
-    }, [kopf, inhalt, h('p', { class: 'lk-auftrag', text: 'Zuordnen — gesucht sind alle Werte je Zeile, jede Wahl wird sofort geprüft:' }), liste,
-      verweise(e, istBegriff)]);
+    }, [kopf, inhalt, h('p', {
+      class: 'lk-auftrag',
+      text: istGrundbegriff(e)
+        ? 'Welcher Begriff ist gemeint? Die Wahl wird sofort geprüft:'
+        : 'Zuordnen — gesucht sind alle Werte je Zeile, jede Wahl wird sofort geprüft:'
+    }), liste, verweise(e, istBegriff)]);
 
     return { el: seite, sperren: sperren };
   }
@@ -553,9 +583,12 @@
       ? h('span', { text: 'ohne Zuordnung' })
       : h('span', {
         class: st.richtig === st.beantwortet ? 'tag-gut' : 'tag-schlecht',
-        text: st.fertig
-          ? st.richtig + ' von ' + st.gesamt + ' richtig'
-          : st.richtig + ' von ' + st.beantwortet + ' richtig, ' + (st.gesamt - st.beantwortet) + ' offen'
+        /* Eine Karte mit einer einzigen Frage (Grundbegriffe) braucht kein «1 von 1». */
+        text: st.gesamt === 1
+          ? (st.richtig ? 'richtig' : 'falsch')
+          : st.fertig
+            ? st.richtig + ' von ' + st.gesamt + ' richtig'
+            : st.richtig + ' von ' + st.beantwortet + ' richtig, ' + (st.gesamt - st.beantwortet) + ' offen'
       });
 
     el.appendChild(h('div', { class: 'flip__rolle' }, [
@@ -577,7 +610,9 @@
       }));
     }
 
-    el.appendChild(h('dl', { class: 'lk-bezuege' }, bezuege(e).map(loesungZeile)));
+    if (bezuege(e).length) {
+      el.appendChild(h('dl', { class: 'lk-bezuege' }, bezuege(e).map(loesungZeile)));
+    }
     el.appendChild(h('div', { class: 'flip__inhalt flip__inhalt--klein', text: e.definition }));
 
     el.appendChild(verweise(e, true));
@@ -615,7 +650,7 @@
       return bereich;
     }
 
-    var e = HT.daten.eintragMitId(zustand.stapel[0]);
+    var e = eintragFuer(zustand.stapel[0]);
     if (!e) {                              // Datenlage hat sich geändert
       zustand.stapel.shift();
       return kartenBereichAufbauen();
@@ -867,10 +902,13 @@
           h('p', { text: 'Jede Wahl wird sofort geprüft; die erste falsche beendet die Zeile, die Lösung zeigt dann, '
             + 'was gefehlt hat. Sind alle Zeilen fertig, dreht sich die Karte. In langen Listen (Aufgaben, Ergebnisse) '
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
+          h('p', { text: 'Grundbegriffe haben eigene Karten: Sie zeigen immer die Definition und fragen nur, welcher '
+            + 'Begriff gemeint ist — ohne Phase, Modul und die übrigen Zeilen. Der Umschalter «Vorne: Begriff/Definition» '
+            + 'gilt nur für Aufgaben und Ergebnisse.' }),
           h('p', { text: 'Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),
           h('p', { text: 'Am Fuss der Karte führen drei Verweise weiter, vorn wie hinten: das Element im Überblick, im Handbuch und auf '
-            + 'der offiziellen Seite.' })
+            + 'der offiziellen Seite (bei Grundbegriffen nur diese).' })
         ];
       });
     }

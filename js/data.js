@@ -23,10 +23,19 @@
   /* Bei jeder Inhaltsänderung erhöhen: hängt an alle Datenabrufe eine
      Versionsangabe, damit Browser keine veralteten JSON-Dateien aus dem
      Cache verwenden. */
-  var DATEN_VERSION = '2026-09-15a';
+  var DATEN_VERSION = '2026-09-16a';
+
+  /* Nur für die Lernkarten: die Grundbegriffe (kuratiert aus den
+     Übersichtsseiten von hermes.admin.ch, im Referenzhandbuch kein eigener
+     Teil). Sie stehen nicht in alleEintraege() und nicht unter eintragMitId —
+     Suche, Handbuch, Überblick, Graph und Quiz kennen sie nicht —, sondern
+     nur unter eintraegeDerKategorie('grundbegriff'). */
+  var LERN_KATEGORIEN = [
+    { key: 'grundbegriff', datei: 'grundbegriffe', label: 'Grundbegriffe', singular: 'Grundbegriff', kapitel: null }
+  ];
 
   var KAT_NACH_KEY = {};
-  KATEGORIEN.forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
+  KATEGORIEN.concat(LERN_KATEGORIEN).forEach(function (k) { KAT_NACH_KEY[k.key] = k; });
 
   /* HERMES 2022 kennt sechs Phasen, verteilt auf zwei Vorgehensweisen:
      klassisch fünf, agil drei. Initialisierung und Abschluss sind beiden
@@ -287,7 +296,7 @@
   function laden() {
     if (zustand.geladen) { return Promise.resolve(zustand); }
 
-    var aufgaben = KATEGORIEN.map(function (kat) { return ladeDatei(kat.datei); });
+    var aufgaben = KATEGORIEN.concat(LERN_KATEGORIEN).map(function (kat) { return ladeDatei(kat.datei); });
     aufgaben.push(ladeDatei(QUIZ_DATEI));
 
     return Promise.all(aufgaben).then(function (ergebnisse) {
@@ -311,6 +320,12 @@
       });
 
       zustand.eintraege = alle;
+
+      LERN_KATEGORIEN.forEach(function (kat, i) {
+        zustand.nachKategorie[kat.key] = (ergebnisse[KATEGORIEN.length + i] || [])
+          .map(function (roh, idx) { return normEintrag(roh, kat.key, idx); })
+          .filter(function (e) { return !!e; });
+      });
 
       var rohFragen = ergebnisse[ergebnisse.length - 1] || [];
       zustand.quizfragen = rohFragen
