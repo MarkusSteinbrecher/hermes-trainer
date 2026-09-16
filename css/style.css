@@ -902,6 +902,7 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 }
 .lk-frage[data-stand="richtig"] .lk-frage__stand { color: var(--gut); }
 .lk-frage[data-stand="falsch"] .lk-frage__stand { color: var(--schlecht); }
+.lk-frage__stand .lk-zeichen { font-size: 14px; }
 .lk-frage__label {
   display: inline-flex;
   align-items: center;
@@ -977,6 +978,21 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   .lk-frage__stand { padding-top: 0; }
   .lk-frage__feld { grid-column: 1 / -1; }
 }
+
+/* Fuss der Lösung: die drei Wege weiter, im Kleid der Verweise des Überblicks. */
+.lk-verweise { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; }
+.lk-verweis {
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--rand);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text);
+}
+.lk-verweis--akzent { border-bottom-color: var(--akzent-schwach-2); color: var(--akzent-text); }
+.lk-verweis:hover { color: var(--akzent); border-bottom-color: var(--akzent); }
 
 /* Das Zeichen einer geprüften Wahl — auf der Lösung vor der Bezeichnung. */
 .lk-zeichen { margin-right: 5px; font-weight: 800; }

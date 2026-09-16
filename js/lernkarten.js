@@ -379,10 +379,14 @@
         ]));
       });
       chips.hidden = !a.gewaehlt.length;
+      /* Bei einem einzigen gesuchten Wert sagt das Zeichen alles — «1 von 1»
+         wäre nur Lärm. */
+      HT.ui.leeren(stand);
       if (a.fertig) {
-        stand.textContent = (a.richtig ? '✓ ' : '✗ ') + gefunden() + ' von ' + z.werte.length;
-      } else {
-        stand.textContent = mehrere ? gefunden() + ' von ' + z.werte.length + ' gefunden' : '';
+        stand.appendChild(zeichenFuer(a.richtig));
+        if (mehrere) { stand.appendChild(h('span', { text: gefunden() + ' von ' + z.werte.length })); }
+      } else if (mehrere) {
+        stand.appendChild(h('span', { text: gefunden() + ' von ' + z.werte.length + ' gefunden' }));
       }
       zeile.dataset.stand = a.fertig ? (a.richtig ? 'richtig' : 'falsch') : (a.gewaehlt.length ? 'begonnen' : 'offen');
     }
@@ -501,10 +505,19 @@
     el.appendChild(h('dl', { class: 'lk-bezuege' }, bezuege(e).map(loesungZeile)));
     el.appendChild(h('div', { class: 'flip__inhalt flip__inhalt--klein', text: e.definition }));
 
-    var quelle = HT.ui.quellenLink(e.quelle);
-    if (quelle) {
-      el.appendChild(h('div', { class: 'flip__hinweis' }, quelle));
-    }
+    /* Am Fuss der Lösung die drei Wege weiter: das Element im Überblick, im
+       Handbuch und auf der offiziellen Seite. */
+    el.appendChild(h('div', { class: 'flip__hinweis lk-verweise' }, [
+      h('a', {
+        class: 'lk-verweis', href: '#/ueberblick?id=' + encodeURIComponent(e.id),
+        text: 'Im Überblick', title: e.begriff + ' im Überblick zeigen'
+      }),
+      h('a', {
+        class: 'lk-verweis', href: '#/handbuch?id=' + encodeURIComponent(e.id),
+        text: 'Im Handbuch', title: e.begriff + ' im Handbuch zeigen'
+      }),
+      HT.ui.quellenLink(e.quelle, 'lk-verweis lk-verweis--akzent')
+    ]));
   }
 
   function kartenBereichAufbauen() {
@@ -633,10 +646,6 @@
     bereich.appendChild(stand);
     bereich.appendChild(drehKnopf);
     bereich.appendChild(h('div', { class: 'lk-aktionen' }, [nochmalsBtn, gewusstBtn]));
-    bereich.appendChild(h('p', {
-      class: 'trefferzahl',
-      text: 'Noch ' + zustand.stapel.length + ' ' + (zustand.stapel.length === 1 ? 'Karte' : 'Karten') + ' im Stapel'
-    }));
 
     return bereich;
   }
@@ -795,7 +804,9 @@
             + 'was gefehlt hat. Sind alle Zeilen fertig, dreht sich die Karte. In langen Listen (Aufgaben, Ergebnisse) '
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
           h('p', { text: 'Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
-            + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' })
+            + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),
+          h('p', { text: 'Am Fuss der Lösung führen drei Verweise weiter: das Element im Überblick, im Handbuch und auf '
+            + 'der offiziellen Seite.' })
         ];
       });
     }
