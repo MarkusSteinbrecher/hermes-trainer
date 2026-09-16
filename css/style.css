@@ -861,10 +861,30 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+.lk-fortschritt__zahlen { display: flex; align-items: baseline; gap: 6px; }
+.lk-fortschritt__trenner { color: var(--rand-stark); }
+.lk-zahl { font-weight: 700; color: var(--text); }
+.lk-zahl--gewusst { color: var(--gut); }
+.lk-zahl--nicht { color: var(--akzent-text); }
 .lk-fortschritt .fortschritt__balken { width: 72px; }
+.lk-balken { display: flex; }
+.lk-balken__teil { height: 100%; flex: 0 0 auto; transition: width .3s ease; }
+.lk-balken__teil--gewusst { background: var(--gut); }
+.lk-balken__teil--nicht { background: var(--akzent); }
+.lk-zuruecksetzen {
+  display: grid; place-items: center;
+  width: 28px; height: 28px; padding: 0;
+  border: 0; border-radius: 999px;
+  background: transparent; color: var(--text-leise);
+  cursor: pointer;
+}
+.lk-zuruecksetzen:hover { color: var(--text); background: var(--flaeche-2); }
 @media (max-width: 699.98px) {
-  /* Schmal rollen die Kategorien in ihrer eigenen Zeile, der Fortschritt steht darunter. */
+  /* Schmal rollen die Kategorien in ihrer eigenen Zeile, der Fortschritt steht darunter —
+     die Zahlen, wenn nötig, über Balken, Anteil und Icon. */
   .lk-zeile > .chips { flex-basis: 100%; }
+  .lk-zeile__rechts { max-width: 100%; }
+  .lk-fortschritt { flex-wrap: wrap; row-gap: 2px; }
 }
 
 /* Kopfzeile beider Seiten: links der Begriff und dahinter seine Kategorie,
