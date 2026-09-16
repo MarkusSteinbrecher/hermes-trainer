@@ -1030,17 +1030,16 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   color: var(--text-leise);
   font-variant-numeric: tabular-nums;
 }
-.lk-drehen {
-  width: 100%;
-  min-height: 40px;
-  justify-content: center;
-  margin-bottom: 8px;
-  border: 1px solid var(--rand-stark);
-  border-radius: var(--radius-s);
-  background: var(--bg);
-  color: var(--text);
-}
+/* Unter der Karte eine Zeile: links der Stand, rechts die Knöpfe — klein und
+   nur so breit wie ihr Text. */
+.lk-aktionen { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.lk-aktionen .lk-stand { margin: 0; }
+.lk-aktionen__knoepfe { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.lk-knopf { min-height: 30px; padding: 0 12px; justify-content: center; border-radius: var(--radius-s); }
+.lk-drehen { border: 1px solid var(--rand-stark); background: var(--bg); color: var(--text); }
 .lk-drehen:hover { border-color: var(--text); }
+/* Die Lösung bekommt nach dem Drehen den Fokus, zeigt aber keinen Ring. */
+.flip__seite--hinten:focus { outline: none; }
 
 /* Rückseite: je Beziehung eine Zeile, Name links, Werte rechts. */
 .lk-bezuege { display: grid; gap: 2px; margin: 2px 0 4px; }
@@ -1066,8 +1065,6 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-werte li.ist-falsch svg { color: var(--schlecht); }
 @media (max-width: 480px) { .lk-bezug { grid-template-columns: 1fr; } }
 
-.lk-aktionen { display: flex; gap: 10px; }
-.lk-aktionen .btn { flex: 1 1 0; }
 
 .abschluss { text-align: left; padding: 18px 0 20px; margin-bottom: 18px; }
 .abschluss__zahl { font-size: 42px; font-weight: 800; letter-spacing: -.022em; line-height: 1.05; }

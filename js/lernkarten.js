@@ -131,8 +131,8 @@
 
   /* Grundbegriffe haben keine Bezüge (Phase, Modul usw. werden bei ihnen nicht
      abgefragt, auch wo die Daten welche nennen). Sie folgen der Wahl oben auf
-     der Karte: «Vorne: Begriff» zeigt den Begriff, gedreht wird zur
-     Definition, ohne Auswahl; «Vorne: Definition» fragt allein den Begriff ab. */
+     der Karte: «Begriff» zeigt den Begriff, gedreht wird zur
+     Definition, ohne Auswahl; «Definition» fragt allein den Begriff ab. */
   function istGrundbegriff(e) {
     return e.kategorie === 'grundbegriff';
   }
@@ -666,17 +666,17 @@
 
     var stand = h('p', { class: 'lk-stand', role: 'status' });
     var vorne = seiteVorne(e, function () { antwortGezaehlt(); });
-    var hinten = h('div', { class: 'flip__seite flip__seite--hinten', 'aria-hidden': 'true' });
+    var hinten = h('div', { class: 'flip__seite flip__seite--hinten', tabindex: '-1', 'aria-hidden': 'true' });
     var flip = h('div', { class: 'flip' }, [vorne.el, hinten]);
 
     var drehKnopf = h('button', {
-      type: 'button', class: 'btn lk-drehen', text: 'Lösung zeigen'
+      type: 'button', class: 'btn lk-knopf lk-drehen', text: 'Lösung zeigen'
     });
     var gewusstBtn = h('button', {
-      type: 'button', class: 'btn btn--gut', text: 'Gewusst', disabled: true
+      type: 'button', class: 'btn btn--gut lk-knopf', text: 'Gewusst', disabled: true
     });
     var nochmalsBtn = h('button', {
-      type: 'button', class: 'btn btn--schlecht', text: 'Nochmals', disabled: true
+      type: 'button', class: 'btn btn--schlecht lk-knopf', text: 'Nochmals', disabled: true
     });
 
     function standSetzen() {
@@ -709,8 +709,10 @@
       drehKnopf.hidden = true;
       gewusstBtn.disabled = false;
       nochmalsBtn.disabled = false;
-      var s = auswertung(e);
-      (s.beantwortet && s.richtig < s.gesamt ? nochmalsBtn : gewusstBtn).focus();
+      /* Der Fokus geht auf die Lösung, nicht auf «Gewusst» oder «Nochmals»:
+         nach einer Wahl im Feld zeigte Chrome dort den roten Fokusring, als
+         wäre der Knopf schon gewählt. Mit Tab erreicht man beide Knöpfe. */
+      hinten.focus({ preventScroll: true });
     }
 
     /* Fortschritt (js/fortschritt.js): Hat die Karte Phase und Modul richtig
@@ -752,9 +754,11 @@
 
     standSetzen();
     bereich.appendChild(h('div', { class: 'flip-wrap' }, flip));
-    bereich.appendChild(stand);
-    bereich.appendChild(drehKnopf);
-    bereich.appendChild(h('div', { class: 'lk-aktionen' }, [nochmalsBtn, gewusstBtn]));
+    /* Unter der Karte eine Zeile: links der Stand, rechts kleine Knöpfe. */
+    bereich.appendChild(h('div', { class: 'lk-aktionen' }, [
+      stand,
+      h('div', { class: 'lk-aktionen__knoepfe' }, [drehKnopf, nochmalsBtn, gewusstBtn])
+    ]));
 
     return bereich;
   }
@@ -832,7 +836,6 @@
   function seitenWahl() {
     var optionen = [['bd', 'Begriff'], ['db', 'Definition']];
     return h('div', { class: 'lk-seitenwahl', role: 'group', 'aria-label': 'Vorderseite der Karten' }, [
-      h('span', { class: 'lk-seitenwahl__titel', 'aria-hidden': 'true', text: 'Vorne' }),
       h('ul', { class: 'chips' }, optionen.map(function (o) {
         return h('li', {}, h('button', {
           type: 'button', class: 'chip', text: o[1],
@@ -929,8 +932,8 @@
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
           h('p', { text: 'Oben rechts auf der Karte wählt man, was vorne steht: der Begriff oder die Definition — dann ist '
             + 'der Begriff selbst mit gesucht. Rechts neben den Kategorien stehen der Fortschritt und «Zurücksetzen».' }),
-          h('p', { text: 'Grundbegriffe haben eigene Karten ohne Phase, Modul und die übrigen Zeilen: Mit «Vorne: Begriff» steht '
-            + 'der Begriff da, und die Rückseite zeigt die Definition. Mit «Vorne: Definition» wählt man, welcher '
+          h('p', { text: 'Grundbegriffe haben eigene Karten ohne Phase, Modul und die übrigen Zeilen: Steht oben «Begriff», '
+            + 'ist der Begriff zu sehen, und die Rückseite zeigt die Definition. Steht oben «Definition», wählt man, welcher '
             + 'Begriff gemeint ist.' }),
           h('p', { text: 'Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),
