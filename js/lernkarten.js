@@ -437,6 +437,29 @@
     return { el: zeile, sperren: kombi.sperren };
   }
 
+  /** Am Fuss beider Seiten die drei Wege weiter: das Element im Überblick, im
+      Handbuch und auf der offiziellen Seite. Solange der Begriff gesucht ist
+      (Vorderseite «Definition»), nennen die Tooltips ihn nicht. */
+  function verweise(e, mitBegriff) {
+    var name = mitBegriff ? e.begriff : 'Das Element';
+    var offiziell = HT.ui.quellenLink(e.quelle, 'lk-verweis lk-verweis--akzent');
+    if (offiziell && !mitBegriff) {
+      offiziell.setAttribute('title', 'HERMES online');
+      offiziell.setAttribute('aria-label', 'HERMES online (öffnet in neuem Tab)');
+    }
+    return h('div', { class: 'flip__hinweis lk-verweise' }, [
+      h('a', {
+        class: 'lk-verweis', href: '#/ueberblick?id=' + encodeURIComponent(e.id),
+        text: 'Im Überblick', title: name + ' im Überblick zeigen'
+      }),
+      h('a', {
+        class: 'lk-verweis', href: '#/handbuch?id=' + encodeURIComponent(e.id),
+        text: 'Im Handbuch', title: name + ' im Handbuch zeigen'
+      }),
+      offiziell
+    ]);
+  }
+
   function seiteVorne(e, beiAntwort) {
     var istBegriff = zustand.richtung === 'bd';
     var sperren = [];
@@ -463,7 +486,8 @@
       class: 'flip__seite flip__seite--vorne',
       tabindex: '-1',
       'aria-hidden': 'false'
-    }, [kopf, inhalt, h('p', { class: 'lk-auftrag', text: 'Zuordnen — gesucht sind alle Werte je Zeile, jede Wahl wird sofort geprüft:' }), liste]);
+    }, [kopf, inhalt, h('p', { class: 'lk-auftrag', text: 'Zuordnen — gesucht sind alle Werte je Zeile, jede Wahl wird sofort geprüft:' }), liste,
+      verweise(e, istBegriff)]);
 
     return { el: seite, sperren: sperren };
   }
@@ -535,19 +559,7 @@
     el.appendChild(h('dl', { class: 'lk-bezuege' }, bezuege(e).map(loesungZeile)));
     el.appendChild(h('div', { class: 'flip__inhalt flip__inhalt--klein', text: e.definition }));
 
-    /* Am Fuss der Lösung die drei Wege weiter: das Element im Überblick, im
-       Handbuch und auf der offiziellen Seite. */
-    el.appendChild(h('div', { class: 'flip__hinweis lk-verweise' }, [
-      h('a', {
-        class: 'lk-verweis', href: '#/ueberblick?id=' + encodeURIComponent(e.id),
-        text: 'Im Überblick', title: e.begriff + ' im Überblick zeigen'
-      }),
-      h('a', {
-        class: 'lk-verweis', href: '#/handbuch?id=' + encodeURIComponent(e.id),
-        text: 'Im Handbuch', title: e.begriff + ' im Handbuch zeigen'
-      }),
-      HT.ui.quellenLink(e.quelle, 'lk-verweis lk-verweis--akzent')
-    ]));
+    el.appendChild(verweise(e, true));
   }
 
   function kartenBereichAufbauen() {
@@ -835,7 +847,7 @@
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
           h('p', { text: 'Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),
-          h('p', { text: 'Am Fuss der Lösung führen drei Verweise weiter: das Element im Überblick, im Handbuch und auf '
+          h('p', { text: 'Am Fuss der Karte führen drei Verweise weiter, vorn wie hinten: das Element im Überblick, im Handbuch und auf '
             + 'der offiziellen Seite.' })
         ];
       });

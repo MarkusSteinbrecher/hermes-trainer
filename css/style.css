@@ -983,7 +983,7 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   .lk-frage__feld { grid-column: 1 / -1; }
 }
 
-/* Fuss der Lösung: die drei Wege weiter, im Kleid der Verweise des Überblicks. */
+/* Fuss beider Kartenseiten: die drei Wege weiter, im Kleid der Verweise des Überblicks. */
 .lk-verweise { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; }
 .lk-verweis {
   padding-bottom: 2px;
