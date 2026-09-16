@@ -23,6 +23,7 @@ mark.mk-mark:hover, mark.mk-mark:focus-visible { outline: 2px solid var(--akzent
   padding: 4px;
   background: var(--weiss);
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
   box-shadow: var(--schatten-stark);
 }
 .mk-blase[hidden] { display: none; }

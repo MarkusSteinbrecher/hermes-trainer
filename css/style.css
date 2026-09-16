@@ -2,8 +2,10 @@
    meinHERMES — Stylesheet
    Mobile-first. Ein Farbschema (Light) für die ganze Anwendung — das
    Modernist-System aus design/: flach, architektonisch, fast einfarbig Rot
-   auf warmem hellem Grund, kein Rundungsradius, Struktur aus Linien statt
-   aus Kästen, Archivo (Google Fonts) für alles.
+   auf warmem hellem Grund, Struktur aus Linien statt aus Kästen, Archivo
+   (Google Fonts) für alles. Seit 2026-09-16 sind Flächen und Bedienelemente
+   leicht gerundet (--radius, --radius-s, --radius-xs) — der Entwurf kannte
+   keinen Radius, der Sponsor wollte die Härte heraus.
    Keine Laufzeitbibliotheken.
    ========================================================================== */
 
@@ -47,8 +49,18 @@
 
   --fokus: #ec3013;
 
-  --radius: 0;
-  --radius-s: 0;
+  /* Gerundete Ecken, seit 2026-09-16 auf Wunsch des Sponsors: Flächen
+     (Karten, Popover, Panels, Bühnen) --radius, Bedienelemente (Knöpfe,
+     Felder, Auswahlen) --radius-s, kleine Marken --radius-xs. Der
+     Modernist-Entwurf kannte keinen Radius; Linien bleiben das Gerüst, die
+     Rundung nimmt den Flächen nur die Härte. */
+  --radius: 10px;
+  --radius-s: 6px;
+  --radius-xs: 4px;
+  /* Eigenes Zeichen für <select>: der Pfeil des Browsers passt weder zur
+     Schrift noch zur gerundeten Box. Als Token, damit alle Auswahlen der
+     Seite dasselbe tragen. */
+  --pfeil-ab: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23605d5d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m6 9.5 6 6 6-6%27/%3E%3C/svg%3E");
   --schatten: none;
   --schatten-stark: 0 12px 32px rgba(45, 43, 43, .22);
 
@@ -129,7 +141,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 :focus-visible {
   outline: 2px solid var(--fokus);
   outline-offset: 2px;
-  border-radius: 0;
 }
 main:focus { outline: none; }
 
@@ -512,6 +523,7 @@ main:focus { outline: none; }
   justify-content: center;
   background: var(--akzent);
   border: 2px solid var(--akzent);
+  border-radius: var(--radius-s);
   color: var(--akzent-auf);
 }
 .btn--primaer:hover { background: var(--akzent-hover); border-color: var(--akzent-hover); color: var(--akzent-auf); }
@@ -520,6 +532,7 @@ main:focus { outline: none; }
   padding: 0 14px;
   justify-content: center;
   border: 1px solid currentColor;
+  border-radius: var(--radius-s);
 }
 .btn--gut { color: var(--gut); background: var(--gut-bg); }
 .btn--schlecht { color: var(--schlecht); background: var(--schlecht-bg); }
@@ -601,6 +614,7 @@ main:focus { outline: none; }
   min-height: 40px;
   padding: 8px 40px 8px 12px;
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
   background: var(--bg);
   color: var(--text);
   font-size: 14px;
@@ -629,6 +643,7 @@ main:focus { outline: none; }
   align-items: center;
   gap: 5px;
   padding: 2px 7px 2px 5px;
+  border-radius: var(--radius-xs);
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: .08em;
@@ -742,11 +757,12 @@ main:focus { outline: none; }
   margin-bottom: 4px;
 }
 .detail__text { margin: 0; white-space: pre-wrap; color: var(--text-weich); font-size: 14.5px; line-height: 1.55; max-width: 60ch; text-wrap: pretty; }
-.werteliste { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.werteliste { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
 .wert {
   display: inline-block;
   padding: 2px 8px;
   border: 1px solid var(--rand);
+  border-radius: var(--radius-xs);
   font-size: 13px;
 }
 a.wert, .wert a { color: var(--text); }
@@ -794,8 +810,9 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   font-variant-numeric: tabular-nums;
 }
 .fortschritt__balken {
-  height: 4px;
+  height: 5px;
   background: var(--flaeche-2);
+  border-radius: 999px;
   overflow: hidden;
 }
 .fortschritt__fuellung {
@@ -805,7 +822,7 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   transition: width .3s ease;
 }
 
-.flip-wrap { perspective: 1400px; margin-bottom: 14px; }
+.flip-wrap { perspective: 1400px; margin-bottom: 16px; }
 .flip {
   display: grid;
   transform-style: preserve-3d;
@@ -826,13 +843,14 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   backface-visibility: hidden;
   background: var(--bg);
   border: 1px solid var(--rand-stark);
-  padding: 18px 20px;
+  border-radius: var(--radius);
+  padding: 20px 22px;
   min-height: 11rem;
   max-height: 70vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 .flip__seite--hinten { transform: rotateY(180deg); }
 .flip__seite--vorne:focus-visible { outline-offset: -3px; }
@@ -854,27 +872,24 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   padding-top: 8px;
 }
 
-/* Vorderseite: je Bezug eine Abfragezeile mit Dropdown. Die Zeilen liegen
-   unter dem Begriff und sehen aus wie die Bezugszeilen der Lösung — dasselbe
-   Raster, damit die Karte beim Drehen nicht springt. */
+/* Vorderseite: je Bezug eine Abfragezeile mit Dropdown. Die Zeilen stehen
+   mit Luft untereinander statt an Haarlinien geklebt; die Auswahl selbst ist
+   die Box (gerundet, eigenes Zeichen statt des Chrome-Pfeils). */
 .lk-auftrag {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--text-leise);
 }
-.lk-fragen { display: block; }
+.lk-fragen { display: grid; gap: 10px; }
 .lk-frage {
   display: grid;
-  grid-template-columns: 8.5rem minmax(0, 1fr) 1.25rem;
-  gap: 4px 12px;
+  grid-template-columns: 10.5rem minmax(0, 26rem) 1fr;
+  gap: 4px 14px;
   align-items: center;
-  padding: 7px 0;
-  border-top: 1px solid var(--rand);
 }
-.lk-frage:last-child { border-bottom: 1px solid var(--rand); }
 .lk-frage__label {
   display: inline-flex;
   align-items: center;
@@ -889,23 +904,29 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-frage__wahl {
   width: 100%;
   min-width: 0;
-  min-height: 34px;
-  padding: 4px 8px;
+  min-height: 38px;
+  padding: 6px 34px 6px 12px;
   border: 1px solid var(--rand-stark);
-  background: var(--bg);
+  border-radius: var(--radius-s);
+  background: var(--weiss) var(--pfeil-ab) no-repeat right 12px center;
+  background-size: 15px 15px;
   color: var(--text);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  text-overflow: ellipsis;
 }
-.lk-frage__wahl:disabled { opacity: 1; cursor: default; }
-.lk-frage__zeichen { font-size: 15px; font-weight: 800; text-align: center; }
-.lk-frage[data-stand="richtig"] .lk-frage__wahl { border-color: var(--gut); background: var(--gut-bg); color: var(--gut); }
+.lk-frage__wahl:hover { border-color: var(--text-leise); }
+.lk-frage__wahl:disabled { opacity: 1; cursor: default; background-image: none; padding-right: 12px; }
+.lk-frage__zeichen { font-size: 15px; font-weight: 800; }
+.lk-frage[data-stand="richtig"] .lk-frage__wahl { border-color: var(--gut); background-color: var(--gut-bg); color: var(--gut); }
 .lk-frage[data-stand="richtig"] .lk-frage__zeichen { color: var(--gut); }
-.lk-frage[data-stand="falsch"] .lk-frage__wahl { border-color: var(--schlecht); background: var(--schlecht-bg); color: var(--schlecht); }
+.lk-frage[data-stand="falsch"] .lk-frage__wahl { border-color: var(--schlecht); background-color: var(--schlecht-bg); color: var(--schlecht); }
 .lk-frage[data-stand="falsch"] .lk-frage__zeichen { color: var(--schlecht); }
 @media (max-width: 480px) {
-  .lk-frage { grid-template-columns: minmax(0, 1fr) 1.25rem; }
+  .lk-frage { grid-template-columns: minmax(0, 1fr) 1.25rem; gap: 6px 10px; }
   .lk-frage__label { grid-column: 1 / -1; }
 }
 
@@ -930,25 +951,26 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   justify-content: center;
   margin-bottom: 8px;
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
   background: var(--bg);
   color: var(--text);
 }
 .lk-drehen:hover { border-color: var(--text); }
 
 /* Rückseite: je Beziehung eine Zeile, Name links, Werte rechts. */
-.lk-bezuege { margin: 2px 0 4px; }
+.lk-bezuege { display: grid; gap: 2px; margin: 2px 0 4px; }
 .lk-bezug {
   display: grid;
-  grid-template-columns: 8.5rem 1fr;
-  gap: 4px 12px;
+  grid-template-columns: 10.5rem 1fr;
+  gap: 4px 14px;
   align-items: baseline;
-  padding: 8px 0;
+  padding: 9px 0;
   border-top: 1px solid var(--rand);
 }
 .lk-bezug:last-child { border-bottom: 1px solid var(--rand); }
 .lk-bezug dt { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
 .lk-bezug dd { margin: 0; }
-.lk-werte { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.lk-werte { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .lk-werte li { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--text); }
 .lk-werte svg { flex: 0 0 auto; color: var(--text-leise); }
 /* Die eigene Wahl in der Lösung: die getroffene unterstrichen, die falsche
@@ -959,7 +981,7 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-werte li.ist-falsch svg { color: var(--schlecht); }
 @media (max-width: 480px) { .lk-bezug { grid-template-columns: 1fr; } }
 
-.lk-aktionen { display: flex; gap: 8px; }
+.lk-aktionen { display: flex; gap: 10px; }
 .lk-aktionen .btn { flex: 1 1 0; }
 
 .abschluss { text-align: left; padding: 18px 0 20px; margin-bottom: 18px; }
@@ -979,7 +1001,7 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 fieldset.feldgruppe { border: 0; padding: 0; margin-inline: 0; }
 .feldgruppe > .trefferzahl { margin: 8px 0 0; }
 
-.antwort-liste { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 6px; }
+.antwort-liste { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 8px; }
 .antwort {
   display: flex;
   align-items: flex-start;
@@ -988,6 +1010,7 @@ fieldset.feldgruppe { border: 0; padding: 0; margin-inline: 0; }
   min-height: var(--tap);
   padding: 10px 12px;
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
   background: var(--bg);
   color: var(--text);
   text-align: left;
@@ -1004,6 +1027,7 @@ fieldset.feldgruppe { border: 0; padding: 0; margin-inline: 0; }
   place-items: center;
   width: 24px; height: 24px;
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-xs);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: .06em;
@@ -1018,6 +1042,7 @@ fieldset.feldgruppe { border: 0; padding: 0; margin-inline: 0; }
   padding: 14px 16px;
   margin-bottom: 18px;
   border: 1px solid var(--rand);
+  border-radius: var(--radius);
   background: var(--flaeche-2);
 }
 .rueckmeldung--gut { border-color: var(--gut); background: var(--gut-bg); }
@@ -1059,6 +1084,7 @@ fieldset.feldgruppe { border: 0; padding: 0; margin-inline: 0; }
   line-height: 1.55;
   margin-top: 10px;
   padding: 10px 14px;
+  border-radius: var(--radius-s);
   background: var(--akzent-schwach);
 }
 
@@ -1169,7 +1195,8 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 .prosa li { margin-bottom: 6px; }
 .hinweisbox {
   background: var(--akzent-schwach);
-  padding: 14px 16px;
+  border-radius: var(--radius);
+  padding: 16px 18px;
   margin: 18px 0;
 }
 .hinweisbox h2, .hinweisbox h3 { border: 0; padding-top: 0; margin-top: 0; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--akzent-text); }
@@ -1181,6 +1208,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 /* --- Fehlerhinweis Daten -------------------------------------------------- */
 .datenwarnung {
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
   padding: 10px 14px;
   margin-bottom: 18px;
   font-size: 13.5px;
@@ -1278,6 +1306,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
   place-items: center;
   width: 18px; height: 18px;
   border: 1px solid var(--rand);
+  border-radius: var(--radius-xs);
   background: transparent;
   color: var(--text-leise-hell);
   font-size: 10px;
@@ -1381,6 +1410,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
   height: auto;
   background: #fff;
   border: 1px solid var(--rand);
+  border-radius: var(--radius);
   padding: 6px;
 }
 .hb-abb--ohne img { max-height: 70px; width: auto; }
@@ -1394,6 +1424,7 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
   padding: 10px 12px;
   margin: 6px 0 14px;
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
   color: var(--text);
   text-decoration: none;
 }
@@ -1450,6 +1481,7 @@ body[data-route="handbuch"] .view [id] { scroll-margin-top: 104px; }
 .hb-blatt {
   background: var(--weiss);
   border: 1px solid var(--rand);
+  border-radius: var(--radius);
   padding: 28px 44px 40px;
 }
 @media (max-width: 899.98px) {
@@ -1494,6 +1526,7 @@ a.hb-seite:hover { color: var(--akzent); border-bottom-color: var(--akzent); }
 .beleg {
   margin: 8px 0;
   padding: 10px 14px;
+  border-radius: var(--radius-s);
   background: var(--akzent-schwach);
   font-size: 14px;
   color: var(--text);

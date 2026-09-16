@@ -4,8 +4,9 @@
    sichtigkeit über alle Paare); Kategorie zusätzlich über Knotenform und
    Icon codiert, nie nur über Farbe. Die Kategoriefarben sind eine
    Datencodierung und bleiben — alles andere (Leiste, Popover, Detailfeld)
-   folgt dem Modernist-System aus css/style.css: kein Radius, Linien statt
-   Kästen, Text-Knöpfe in Versalien, Rot als einziger Akzent.
+   folgt dem Modernist-System aus css/style.css: Linien statt Kästen,
+   Text-Knöpfe in Versalien, Rot als einziger Akzent, Flächen und
+   Bedienelemente leicht gerundet (--radius, --radius-s).
    ========================================================================== */
 
 :root {
@@ -110,7 +111,7 @@
   min-height: 36px;
   padding: 0 10px;
   border: 1px solid var(--rand-stark);
-  border-radius: 0;
+  border-radius: var(--radius-s);
   background: var(--bg);
   color: var(--text);
   font-size: 14px;
@@ -179,11 +180,14 @@
 .gs-feld--zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
 .gs-feld__label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-leise); }
 .gs-select {
-  min-height: 32px;
-  padding: 0 8px;
+  min-height: 34px;
+  padding: 0 30px 0 10px;
   border: 1px solid var(--rand-stark);
-  border-radius: 0;
-  background: var(--bg);
+  border-radius: var(--radius-s);
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--bg) var(--pfeil-ab) no-repeat right 9px center;
+  background-size: 14px 14px;
   color: var(--text);
   font-size: 13.5px;
   max-width: 100%;
@@ -412,6 +416,7 @@
   padding: .55rem .7rem;
   background: var(--bg);
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius-s);
   box-shadow: var(--schatten-stark);
   font-size: 13px;
 }
@@ -606,6 +611,7 @@
   margin-left: 8px;
   padding: 0 6px 0 8px;
   border: 1px solid var(--akzent);
+  border-radius: var(--radius-s);
   background: var(--akzent-schwach);
   color: var(--akzent-text);
   font-family: inherit;
@@ -648,6 +654,7 @@
   padding: 4px;
   background: var(--graph-bg);
   border: 1px solid var(--rand);
+  border-radius: var(--radius);
 }
 .grail__gruppe { display: flex; flex-direction: column; gap: .1rem; }
 .grail__trenner { height: 1px; background: var(--rand); margin: 4px 6px; }
@@ -744,6 +751,7 @@
   -webkit-overflow-scrolling: touch;
   background: var(--bg);
   border: 1px solid var(--rand-stark);
+  border-radius: var(--radius);
   box-shadow: var(--schatten-stark);
 }
 .gpop[hidden] { display: none; }

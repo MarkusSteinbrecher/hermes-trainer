@@ -1,8 +1,8 @@
 /* ==========================================================================
    meinHERMES — Trainer (Dach und Teil «Zuordnen»)
 
-   Derselbe Modernist-Entwurf wie der Überblick: flach, kein Radius, Struktur
-   aus Linien, Rot nur als Akzent. Das Bild einer Übung zeichnet die Knoten
+   Derselbe Modernist-Entwurf wie der Überblick: flach, Struktur aus Linien,
+   Rot nur als Akzent, Flächen leicht gerundet (--radius). Das Bild einer Übung zeichnet die Knoten
    und Bahnen des Graphen (Klassen aus css/graph.css), ohne Verbindungslinien;
    hier stehen die Zustände der Kästen (leer, belegt, geprüft), der Pool und
    das Gerüst der Seite.
@@ -77,7 +77,7 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inl
 .tr-karten {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 10px;
+  gap: 12px;
 }
 .tr-karte {
   display: flex;
@@ -85,6 +85,7 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inl
   gap: 8px;
   padding: 12px 14px;
   border: 1px solid var(--rand);
+  border-radius: var(--radius);
   background: var(--weiss);
   color: var(--text);
   text-decoration: none;
@@ -135,6 +136,7 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inl
   padding: 14px 14px 52px;
   background: var(--graph-bg);
   border: 1px solid var(--rand);
+  border-radius: var(--radius);
 }
 
 .tr-zoom {
@@ -147,6 +149,7 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inl
   padding: 2px;
   background: var(--bg);
   border: 1px solid var(--rand);
+  border-radius: var(--radius-s);
 }
 .tr-zoom__knopf, .tr-zoom__passend {
   min-height: 26px;
@@ -222,7 +225,7 @@ body[data-route="trainer"][data-teil="uebung"] .unterleiste__inner { padding-inl
 
 /* Pool: je leere Art eine Spalte, nebeneinander. Rechts und über jedem
    Element Luft für die Marke mit der Zahl. */
-.tr-pool { display: flex; gap: 8px; align-items: flex-start; }
+.tr-pool { display: flex; gap: 10px; align-items: flex-start; }
 .tr-pool__spalte { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 7px; padding: 0 6px 8px 2px; }
 /* Rollennamen sind kurz: ihre Spalte nur so breit wie der längste, den Rest
    teilen Aufgaben und Ergebnisse — Aufgaben haben die längsten Namen. */
@@ -315,7 +318,7 @@ body.tr-zieht, body.tr-zieht * { cursor: grabbing; }
 }
 .tr-geist .tr-knotenbild { display: block; }
 
-.tr-ergebnis { padding: 12px 14px; border: 1px solid var(--rand); background: var(--weiss); outline: none; }
+.tr-ergebnis { padding: 12px 14px; border: 1px solid var(--rand); border-radius: var(--radius); background: var(--weiss); outline: none; }
 .tr-ergebnis__zahl { margin: 0 0 10px; font-size: 15px; }
 .tr-ergebnis__zahl b { font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
 .tr-ergebnis .tr-mikro { margin-top: 12px; }
