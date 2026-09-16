@@ -31,7 +31,7 @@ import urllib.request
 from html.parser import HTMLParser
 
 BASIS = 'https://www.hermes.admin.ch'
-UA = 'Mozilla/5.0 (HERMES-Trainer Import; +https://github.com/MarkusSteinbrecher/hermes-trainer)'
+UA = 'Mozilla/5.0 (HERMES-Trainer Import; +https://github.com/MarkusSteinbrecher/meinHERMES)'
 
 KAPITEL = [
     # id, Titel, Seiten (Pfad relativ zu /de/projektmanagement/), PDF-Kapitelpräfixe

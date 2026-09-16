@@ -2,11 +2,11 @@
 
 **Lernhilfe für die HERMES-2022-Prüfung — kostenlos im Browser, ohne Anmeldung.**
 
-→ **[meinHERMES öffnen](https://markussteinbrecher.github.io/hermes-trainer/)**
+→ **[meinHERMES öffnen](https://markussteinbrecher.github.io/meinHERMES/)**
 
 meinHERMES hilft, die Methode HERMES 2022 der Schweizer Bundesverwaltung zu verstehen und die Begriffe für die Prüfung sicher zu beherrschen: Wer tut was, und was entsteht dabei? Jeder Begriff ist mit der offiziellen Dokumentation auf hermes.admin.ch verknüpft — inklusive Kapitel und Seite im Referenzhandbuch.
 
-Die Anwendung ist eine **Beta-Version**. Rückmeldungen und Fehlerberichte sind willkommen: [Issue eröffnen](https://github.com/MarkusSteinbrecher/hermes-trainer/issues).
+Die Anwendung ist eine **Beta-Version**. Rückmeldungen und Fehlerberichte sind willkommen: [Issue eröffnen](https://github.com/MarkusSteinbrecher/meinHERMES/issues).
 
 ## Was drin ist
 
