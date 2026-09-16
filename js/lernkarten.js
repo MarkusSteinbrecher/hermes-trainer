@@ -87,15 +87,33 @@
     return entstehtAus[ergebnis.begriff] || [];
   }
 
+  /* Die agile Phase muss nicht genannt werden, wenn das Element daneben noch
+     in anderen Phasen steht; die Lösung zeigt sie trotzdem. Steht es nur in
+     der Umsetzung (die Release-Karten), bleibt sie gesucht. */
+  var FREIWILLIGE_PHASE = 'Umsetzung';
+
+  function phasenZeile(e) {
+    var werte = HT.daten.phasenSortiert(e.phasen);
+    var pflicht = werte.length > 1
+      ? werte.filter(function (p) { return p !== FREIWILLIGE_PHASE; })
+      : werte;
+    return {
+      key: 'phase', kategorie: 'phase', werte: werte, pflicht: pflicht,
+      label: pflicht.length === 1 ? 'Phase' : 'Phasen',
+      labelLoesung: werte.length === 1 ? 'Phase' : 'Phasen'
+    };
+  }
+
   /**
    * Die Bezüge einer Karte in der Reihenfolge der Methode: Phase, Modul,
    * verantwortliche Rolle, dann das Gegenstück. Nur Zeilen mit Werten —
    * das lässt die Sammeleinträge «Checklisten» und «Meilensteine» aussen vor.
-   * [{ key, label, kategorie, werte }]
+   * [{ key, label, kategorie, werte, pflicht?, labelLoesung? }] — werte sind
+   * alle richtigen Werte, pflicht (ohne Angabe: werte) die gesuchten.
    */
   function bezuege(e) {
     var zeilen = [
-      { key: 'phase', label: e.phasen.length === 1 ? 'Phase' : 'Phasen', kategorie: 'phase', werte: HT.daten.phasenSortiert(e.phasen) },
+      phasenZeile(e),
       { key: 'modul', label: e.module.length === 1 ? 'Modul' : 'Module', kategorie: 'modul', werte: e.module },
       { key: 'rolle', label: 'Verantwortlich', kategorie: 'rolle', werte: rollenVon(e) }
     ];
@@ -371,14 +389,17 @@
   /**
    * Eine Abfragezeile der Vorderseite: Bezeichnung, die schon gewählten
    * Werte, das Kombinationsfeld und der Stand. Gesucht sind alle Werte der
-   * Zeile; jede Wahl wird sofort geprüft, die erste falsche beendet sie.
+   * Zeile (z.pflicht); jede Wahl wird sofort geprüft, die erste falsche
+   * beendet sie. Ein freiwilliger Wert (Umsetzung) zählt als richtig, aber
+   * nicht zum Gefundenen.
    */
   function frageZeile(z, beiAntwort) {
     var a = zustand.antworten[z.key];
     if (!a || !Array.isArray(a.gewaehlt)) {
       a = zustand.antworten[z.key] = { gewaehlt: [], fertig: false, richtig: false };
     }
-    var mehrere = z.werte.length > 1;
+    var pflicht = z.pflicht || z.werte;
+    var mehrere = pflicht.length > 1;
     var chips = h('div', { class: 'lk-chips', hidden: true });
     var stand = h('span', { class: 'lk-frage__stand' });
     var kombi = kombiFeld(poolVon(z.kategorie), {
@@ -397,7 +418,7 @@
     ]);
 
     function gefunden() {
-      return a.gewaehlt.filter(function (g) { return g.richtig; }).length;
+      return a.gewaehlt.filter(function (g) { return g.richtig && pflicht.indexOf(g.wert) !== -1; }).length;
     }
 
     function zeichnen() {
@@ -414,9 +435,9 @@
       HT.ui.leeren(stand);
       if (a.fertig) {
         stand.appendChild(zeichenFuer(a.richtig));
-        if (mehrere) { stand.appendChild(h('span', { text: gefunden() + ' von ' + z.werte.length })); }
+        if (mehrere) { stand.appendChild(h('span', { text: gefunden() + ' von ' + pflicht.length })); }
       } else if (mehrere) {
-        stand.appendChild(h('span', { text: gefunden() + ' von ' + z.werte.length + ' gefunden' }));
+        stand.appendChild(h('span', { text: gefunden() + ' von ' + pflicht.length + ' gefunden' }));
       }
       zeile.dataset.stand = a.fertig ? (a.richtig ? 'richtig' : 'falsch') : (a.gewaehlt.length ? 'begonnen' : 'offen');
     }
@@ -426,7 +447,7 @@
       var richtig = z.werte.indexOf(w) !== -1;
       a.gewaehlt.push({ wert: w, richtig: richtig });
       if (!richtig) { a.fertig = true; a.richtig = false; }
-      else if (gefunden() >= z.werte.length) { a.fertig = true; a.richtig = true; }
+      else if (gefunden() >= pflicht.length) { a.fertig = true; a.richtig = true; }
       if (a.fertig) { kombi.sperren(); }
       zeichnen();
       beiAntwort();
@@ -516,7 +537,7 @@
       ]));
     });
     return h('div', { class: 'lk-bezug' }, [
-      h('dt', {}, [a && a.fertig ? zeichenFuer(a.richtig) : null, h('span', { text: z.label })]),
+      h('dt', {}, [a && a.fertig ? zeichenFuer(a.richtig) : null, h('span', { text: z.labelLoesung || z.label })]),
       h('dd', {}, [h('ul', { class: 'lk-werte' }, werte)])
     ]);
   }
@@ -841,7 +862,8 @@
           h('p', { text: 'Aufgaben und Ergebnisse und ihr Zusammenhang: In welcher Phase, in welchem Modul, wer ist '
             + 'verantwortlich, was entsteht woraus? Je Bezug eine Zeile auf der Vorderseite, und gesucht sind alle '
             + 'Werte, die dort richtig sind — die meisten Elemente stehen in mehreren Phasen, die meisten Aufgaben '
-            + 'erzeugen mehrere Ergebnisse. Die Zeile zählt mit («2 von 4 gefunden»).' }),
+            + 'erzeugen mehrere Ergebnisse. Die Zeile zählt mit («2 von 4 gefunden»). Die agile Phase Umsetzung '
+            + 'muss nicht genannt werden, wenn das Element auch in anderen Phasen steht; die Lösung zeigt sie trotzdem.' }),
           h('p', { text: 'Jede Wahl wird sofort geprüft; die erste falsche beendet die Zeile, die Lösung zeigt dann, '
             + 'was gefehlt hat. Sind alle Zeilen fertig, dreht sich die Karte. In langen Listen (Aufgaben, Ergebnisse) '
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
