@@ -1017,6 +1017,8 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 }
 .lk-chip--gut { border-color: var(--gut); background: var(--gut-bg); color: var(--gut); }
 .lk-chip--schlecht { border-color: var(--schlecht); background: var(--schlecht-bg); color: var(--schlecht); }
+/* Die agile Umsetzung neben anderen Phasen: richtig, aber nicht gesucht. */
+.lk-chip--freiwillig { border-color: var(--rand); background: var(--flaeche); color: var(--text-leise-hell); }
 
 /* Kombinationsfeld: Feld mit Liste. Offen schwebt die Liste (position: fixed,
    am body) und wird von js/lernkarten.js unter das Feld gerechnet — im Fluss
@@ -1141,6 +1143,10 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-werte li.ist-gewaehlt svg { color: var(--gut); }
 .lk-werte li.ist-falsch { color: var(--schlecht); text-decoration: line-through; }
 .lk-werte li.ist-falsch svg { color: var(--schlecht); }
+/* Die agile Umsetzung neben anderen Phasen ist nicht gesucht: leicht grau,
+   auch wenn man sie gewählt hat (dann grau unterstrichen). */
+.lk-werte li.ist-freiwillig,
+.lk-werte li.ist-freiwillig svg { color: var(--text-leise-hell); }
 @media (max-width: 480px) { .lk-bezug { grid-template-columns: 1fr; } }
 
 

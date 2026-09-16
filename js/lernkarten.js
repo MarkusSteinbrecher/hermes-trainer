@@ -91,9 +91,14 @@
   }
 
   /* Die agile Phase muss nicht genannt werden, wenn das Element daneben noch
-     in anderen Phasen steht; die Lösung zeigt sie trotzdem. Steht es nur in
-     der Umsetzung (die Release-Karten), bleibt sie gesucht. */
+     in anderen Phasen steht; die Lösung zeigt sie trotzdem, leicht grau (wie
+     ihr Chip, falls gewählt). Steht es nur in der Umsetzung (die
+     Release-Karten), bleibt sie gesucht und sieht aus wie jede Phase. */
   var FREIWILLIGE_PHASE = 'Umsetzung';
+
+  function istFreiwillig(z, wert) {
+    return !!z.pflicht && z.pflicht.indexOf(wert) === -1;
+  }
 
   function phasenZeile(e) {
     var werte = HT.daten.phasenSortiert(e.phasen);
@@ -449,7 +454,8 @@
     function zeichnen() {
       HT.ui.leeren(chips);
       a.gewaehlt.forEach(function (g) {
-        chips.appendChild(h('span', { class: 'lk-chip lk-chip--' + (g.richtig ? 'gut' : 'schlecht') }, [
+        var art = !g.richtig ? 'schlecht' : istFreiwillig(z, g.wert) ? 'freiwillig' : 'gut';
+        chips.appendChild(h('span', { class: 'lk-chip lk-chip--' + art }, [
           h('span', { 'aria-hidden': 'true', text: g.richtig ? '✓' : '✗' }),
           h('span', { text: g.wert })
         ]));
@@ -564,7 +570,8 @@
       });
     }
     var werte = z.werte.map(function (w) {
-      return h('li', { class: gefunden[w] ? 'ist-gewaehlt' : null }, [
+      var klassen = [gefunden[w] ? 'ist-gewaehlt' : '', istFreiwillig(z, w) ? 'ist-freiwillig' : ''].join(' ').trim();
+      return h('li', { class: klassen || null }, [
         HT.ui.katSymbol(z.kategorie, 14),
         h('span', { text: w })
       ]);
@@ -944,7 +951,7 @@
             + 'verantwortlich, was entsteht woraus? Je Bezug eine Zeile auf der Vorderseite, und gesucht sind alle '
             + 'Werte, die dort richtig sind — die meisten Elemente stehen in mehreren Phasen, die meisten Aufgaben '
             + 'erzeugen mehrere Ergebnisse. Die Zeile zählt mit («2 von 4 gefunden»). Die agile Phase Umsetzung '
-            + 'muss nicht genannt werden, wenn das Element auch in anderen Phasen steht; die Lösung zeigt sie trotzdem.' }),
+            + 'muss nicht genannt werden, wenn das Element auch in anderen Phasen steht; die Lösung zeigt sie trotzdem, leicht grau.' }),
           h('p', { text: 'Jede Wahl wird sofort geprüft; die erste falsche beendet die Zeile, die Lösung zeigt dann, '
             + 'was gefehlt hat. Sind alle Zeilen fertig, dreht sich die Karte. In langen Listen (Aufgaben, Ergebnisse) '
             + 'sucht man durch Tippen, kurze Listen klappen einfach auf.' }),
