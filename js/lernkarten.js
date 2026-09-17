@@ -2,8 +2,8 @@
    Karten für Aufgaben und Ergebnisse. Worum es geht, ist der Zusammenhang
    von Phase, Modul, Aufgabe, Ergebnis und Rolle: vorn steht der Begriff
    (oder die Definition) und darunter je Bezug ein Feld — Phase, Modul,
-   verantwortliche Rolle und das Gegenstück (die Ergebnisse einer Aufgabe
-   bzw. die Aufgaben, aus denen ein Ergebnis entsteht). Gesucht sind je
+   das Gegenstück (die Ergebnisse einer Aufgabe bzw. die Aufgaben, aus denen
+   ein Ergebnis entsteht) und zuunterst die verantwortliche Rolle. Gesucht sind je
    Zeile alle Werte, die dort richtig sind (49 der 71 Aufgaben erzeugen
    mehrere Ergebnisse, die meisten Elemente stehen in mehreren Phasen); die
    Zeile zählt mit («2 von 4 gefunden»). Jede Wahl wird sofort geprüft, die
@@ -142,8 +142,8 @@
   }
 
   /**
-   * Die Bezüge einer Karte in der Reihenfolge der Methode: Phase, Modul,
-   * verantwortliche Rolle, dann das Gegenstück. Nur Zeilen mit Werten —
+   * Die Bezüge einer Karte: Phase, Modul, das Gegenstück, zuunterst die
+   * verantwortliche Rolle (Sponsor, 2026-09-17). Nur Zeilen mit Werten —
    * das lässt die Sammeleinträge «Checklisten» und «Meilensteine» aussen vor.
    * [{ key, label, kategorie, werte, pflicht?, labelLoesung? }] — werte sind
    * alle richtigen Werte, pflicht (ohne Angabe: werte) die gesuchten.
@@ -152,14 +152,14 @@
     if (istGrundbegriff(e)) { return []; }
     var zeilen = [
       phasenZeile(e),
-      { key: 'modul', label: e.module.length === 1 ? 'Modul' : 'Module', kategorie: 'modul', werte: e.module },
-      { key: 'rolle', label: 'Verantwortlich', kategorie: 'rolle', werte: rollenVon(e) }
+      { key: 'modul', label: e.module.length === 1 ? 'Modul' : 'Module', kategorie: 'modul', werte: e.module }
     ];
     if (e.kategorie === 'aufgabe') {
       zeilen.push({ key: 'ergebnis', label: e.ergebnisse.length === 1 ? 'Ergebnis' : 'Ergebnisse', kategorie: 'ergebnis', werte: e.ergebnisse });
     } else {
       zeilen.push({ key: 'aufgabe', label: 'Entsteht aus', kategorie: 'aufgabe', werte: aufgabenZu(e) });
     }
+    zeilen.push({ key: 'rolle', label: 'Verantwortlich', kategorie: 'rolle', werte: rollenVon(e) });
     return zeilen.filter(function (z) { return z.werte.length > 0; });
   }
 
@@ -1175,8 +1175,8 @@
       leiste(null, function () {
         return [
           h('h3', { class: 'gpop__abschnitt', text: 'Lernkarten' }),
-          h('p', { text: 'Aufgaben und Ergebnisse und ihr Zusammenhang: In welcher Phase, in welchem Modul, wer ist '
-            + 'verantwortlich, was entsteht woraus? Je Bezug eine Zeile auf der Vorderseite, und gesucht sind alle '
+          h('p', { text: 'Aufgaben und Ergebnisse und ihr Zusammenhang: In welcher Phase, in welchem Modul, was entsteht '
+            + 'woraus, wer ist verantwortlich? Je Bezug eine Zeile auf der Vorderseite, und gesucht sind alle '
             + 'Werte, die dort richtig sind — die meisten Elemente stehen in mehreren Phasen, die meisten Aufgaben '
             + 'erzeugen mehrere Ergebnisse. Die Zeile zählt mit («2 von 4 gefunden»). Die agile Phase Umsetzung '
             + 'muss nicht genannt werden, wenn das Element auch in anderen Phasen steht; die Lösung zeigt sie trotzdem, leicht grau.' }),
