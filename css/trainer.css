@@ -353,8 +353,11 @@ body.tr-zieht, body.tr-zieht * { cursor: grabbing; }
 .fs-stand { margin: 0 0 8px; font-size: 13px; color: var(--text-leise); }
 .fs-stand b { font-size: 19px; font-weight: 800; letter-spacing: -.02em; color: var(--text); }
 
-/* Schmal rollt das Raster zur Seite; auf dem Schirm steht es ganz da. */
-.fs-tafel { overflow-x: auto; }
+/* Schmal rollt das Raster zur Seite; auf dem Schirm steht es ganz da.
+   position: relative hält die unsichtbaren Screenreader-Texte (.nur-sr,
+   absolut) im rollenden Rahmen — sonst machen sie die Seite schmal breiter
+   als den Schirm (wie bei .hb-tabelle-wrap). */
+.fs-tafel { position: relative; overflow-x: auto; }
 .fs-raster { width: 100%; min-width: 620px; border-collapse: collapse; }
 .fs-raster th, .fs-raster td { padding: 3px 10px 3px 0; text-align: left; vertical-align: middle; border-bottom: 1px solid var(--rand-fein); }
 .fs-raster th:last-child, .fs-raster td:last-child { padding-right: 0; }

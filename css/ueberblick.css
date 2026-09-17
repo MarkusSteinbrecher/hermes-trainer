@@ -148,6 +148,12 @@ body[data-route="ueberblick"] .view { max-width: none; margin: 0; padding: 0; }
 .ub-schweber, .ub-sichten .grail { border-radius: 6px; }
 /* Die Leisten des Graphen rücken unter der Linie hervor. */
 .ub-sichten .grail { top: calc(.75rem + var(--ub-oben-frei, 0px)); }
+/* Schmal liegen die Werkzeuge unten (css/graph.css); ohne top: auto zog die
+   Regel darüber die Leiste über die ganze Höhe, und ihr Grund deckte den
+   Graphen zu. */
+@media (max-width: 699px) {
+  .ub-sichten .grail--rechts { top: auto; }
+}
 /* Die Leiste unter der Kopfzeile trägt hier die Auswahl des Graphen, mit den
    Rändern der Werkbank. */
 body[data-route="ueberblick"] .unterleiste__inner { padding-inline: 12px; }

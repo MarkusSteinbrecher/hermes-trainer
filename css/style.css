@@ -1150,6 +1150,12 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-aktionen__links { grid-column: 1; justify-self: start; display: flex; }
 .lk-aktionen__knoepfe { grid-column: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .lk-aktionen__rechts { grid-column: 3; justify-self: end; display: flex; gap: 2px; }
+@media (max-width: 699.98px) {
+  /* Auf dem Telefon rollt die Seite, nicht die Karte: gedeckelt brach die
+     Definition hinten mitten im Satz ab und rollte ohne sichtbaren Balken in
+     der Karte, während zugleich die Seite rollte. */
+  .flip__seite { max-height: none; overflow-y: visible; }
+}
 @media (max-width: 559.98px) {
   /* Schmal reicht die Breite nicht für beides: die Knöpfe oben, darunter
      ‹ links und Liste mit › rechts. */
