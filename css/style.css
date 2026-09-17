@@ -1558,6 +1558,36 @@ html:has(.willkommen[open]) { overflow: hidden; }
   color: var(--text-leise);
 }
 
+/* --- Telefon: feste Breite ------------------------------------------------ */
+/* Auf dem Telefon soll sich keine Seite seitlich schieben lassen (Sponsor,
+   2026-09-17). In Chrome war bei 320–699 px keine Seite breiter als der
+   Schirm; auf dem Gerät kommen drei Wege dazu:
+   1. iOS (WebKit, also auch Chrome auf dem iPhone) zoomt beim Antippen eines
+      Felds mit weniger als 16 px Schrift hinein und bleibt dort. Weil alle
+      Ansichten dasselbe Dokument sind, lässt sich danach jede Seite seitlich
+      schieben. Unsere Felder haben 13–14 px — auf iOS daher 16 px.
+   2. Ragt etwas über den Rand, wird die Seite breiter; body { overflow-x:
+      hidden } allein hält Touch-Browser nicht vom Schieben ab. Schmal
+      schneidet body ab (clip bildet keinen Rollbehälter, die Kopfzeile
+      klebt weiter); dafür muss html den Überlauf selbst tragen, sonst
+      ginge er an den Viewport über.
+   3. Seitliches Überrollen (Gummiband) der ganzen Seite. */
+@supports (-webkit-touch-callout: none) {
+  input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 16px !important; }
+}
+@media (max-width: 699.98px) {
+  html, body { overscroll-behavior-x: none; }
+  @supports (overflow: clip) {
+    html { overflow-x: hidden; }
+    body { overflow-x: clip; }
+  }
+}
+/* Sehr schmal (320 px) ragte «Alle lokal gespeicherten Daten löschen» 18 px
+   über den Rand: Knöpfe einer Reihe dürfen dort umbrechen. */
+@media (max-width: 379.98px) {
+  .btn-reihe > .btn { max-width: 100%; white-space: normal; }
+}
+
 /* --- Breite Viewports ----------------------------------------------------- */
 @media (min-width: 700px) {
   body { padding-bottom: 0; }
