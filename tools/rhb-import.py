@@ -160,14 +160,19 @@ class Zeile(object):
                 return round(s['size'], 1)
         return round(self.spans[0]['size'], 1)
 
+    def schriftspans(self):
+        """Spans mit Text, ohne Symbolschriften (ein Pfeil davor macht einen
+        fetten Zwischentitel nicht zum gewöhnlichen Absatz)."""
+        return [s for s in self.spans if s['text'].strip() and not symboltabelle(s['font'])]
+
     @property
     def fett(self):
-        sp = [s for s in self.spans if s['text'].strip()]
+        sp = self.schriftspans()
         return bool(sp) and all('Bold' in s['font'] for s in sp)
 
     @property
     def kursiv(self):
-        sp = [s for s in self.spans if s['text'].strip()]
+        sp = self.schriftspans()
         return bool(sp) and all('Italic' in s['font'] for s in sp)
 
     @property
@@ -188,13 +193,36 @@ class Zeile(object):
         return self.x0 < 73
 
 
+# Symbolschriften: PyMuPDF liefert ihre Zeichencodes als Latin-1. In
+# Kapitel 7.4.1 stehen vor den fett-kursiven Zwischentiteln Pfeile aus
+# «Dingbats» (Code 0xAE), die sonst als «®» erschienen.
+SYMBOLSCHRIFTEN = {
+    'Dingbats': {'\u00ae': '\u27a4'},   # ® -> ➤
+}
+
+
+def symboltabelle(font):
+    for name, tabelle in SYMBOLSCHRIFTEN.items():
+        if name in font:
+            return tabelle
+    return None
+
+
+def symbole_uebersetzen(spans):
+    for s in spans:
+        tabelle = symboltabelle(s['font'])
+        if tabelle:
+            s['text'] = ''.join(tabelle.get(c, c) for c in s['text'])
+    return spans
+
+
 def zeilen_lesen(fitz, seite):
     roh = []
     for block in seite.get_text('dict')['blocks']:
         if block['type'] != 0:
             continue
         for l in block['lines']:
-            spans = [s for s in l['spans'] if s['text']]
+            spans = symbole_uebersetzen([s for s in l['spans'] if s['text']])
             if not spans or not ''.join(s['text'] for s in spans).strip():
                 continue
             x0, y0, x1, y1 = l['bbox']

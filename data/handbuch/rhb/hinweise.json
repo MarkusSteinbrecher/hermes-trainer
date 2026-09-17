@@ -229,8 +229,9 @@
 "seite": 199
 },
 {
-"t": "p",
-"text": "® Erstellung der Lösung",
+"t": "h",
+"text": "➤ Erstellung der Lösung",
+"art": "kursiv",
 "seite": 199
 },
 {
@@ -249,8 +250,9 @@
 "seite": 199
 },
 {
-"t": "p",
-"text": "® Nutzung der Lösung",
+"t": "h",
+"text": "➤ Nutzung der Lösung",
+"art": "kursiv",
 "seite": 200
 },
 {
@@ -503,8 +505,9 @@
 "seite": 203
 },
 {
-"t": "p",
-"text": "® Prüfungsgegenstand",
+"t": "h",
+"text": "➤ Prüfungsgegenstand",
+"art": "kursiv",
 "seite": 203
 },
 {
@@ -518,8 +521,9 @@
 "seite": 203
 },
 {
-"t": "p",
-"text": "® Funktionsfähige Projektsteuerung und -führung",
+"t": "h",
+"text": "➤ Funktionsfähige Projektsteuerung und -führung",
+"art": "kursiv",
 "seite": 203
 },
 {
@@ -564,8 +568,9 @@
 "seite": 203
 },
 {
-"t": "p",
-"text": "® Berücksichtigung der Stakeholderinteressen",
+"t": "h",
+"text": "➤ Berücksichtigung der Stakeholderinteressen",
+"art": "kursiv",
 "seite": 204
 },
 {
@@ -592,8 +597,9 @@
 "seite": 204
 },
 {
-"t": "p",
-"text": "® Zusammenarbeit von Projektorganisation und Stammorganisation",
+"t": "h",
+"text": "➤ Zusammenarbeit von Projektorganisation und Stammorganisation",
+"art": "kursiv",
 "seite": 204
 },
 {
@@ -629,8 +635,9 @@
 "seite": 204
 },
 {
-"t": "p",
-"text": "® Abstimmung der gesetzten Ziele mit Vorgaben der Stammorganisation",
+"t": "h",
+"text": "➤ Abstimmung der gesetzten Ziele mit Vorgaben der Stammorganisation",
+"art": "kursiv",
 "seite": 205
 },
 {
@@ -643,8 +650,9 @@
 "seite": 205
 },
 {
-"t": "p",
-"text": "® Transparenz in der Projektkommunikation",
+"t": "h",
+"text": "➤ Transparenz in der Projektkommunikation",
+"art": "kursiv",
 "seite": 205
 },
 {
@@ -660,8 +668,9 @@
 "seite": 205
 },
 {
-"t": "p",
-"text": "® Nachvollziehbarkeit des Projektverlaufs",
+"t": "h",
+"text": "➤ Nachvollziehbarkeit des Projektverlaufs",
+"art": "kursiv",
 "seite": 205
 },
 {
@@ -697,8 +706,9 @@
 "seite": 205
 },
 {
-"t": "p",
-"text": "® Angemessener Umgang mit Risiken",
+"t": "h",
+"text": "➤ Angemessener Umgang mit Risiken",
+"art": "kursiv",
 "seite": 205
 },
 {
@@ -723,8 +733,9 @@
 "seite": 205
 },
 {
-"t": "p",
-"text": "® Effizienter und nachhaltiger Ressourceneinsatz",
+"t": "h",
+"text": "➤ Effizienter und nachhaltiger Ressourceneinsatz",
+"art": "kursiv",
 "seite": 206
 },
 {
