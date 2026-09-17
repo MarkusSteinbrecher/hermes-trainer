@@ -11,8 +11,8 @@
    Karte zur Lösung. Die Werte kommen aus einem Kombinationsfeld, bei langen
    Listen (Aufgaben, Ergebnisse) mit Suche. Ohne Wahl geht es auch: Karte drehen und selbst einschätzen.
    Dazu die Grundbegriffe (data/grundbegriffe.json, nur hier geladen): mit
-   dem Begriff vorn eine Karte zum Drehen, mit der Definition vorn eine Wahl
-   allein für den Begriff.
+   dem Begriff vorn eine Karte zum Drehen (auch per Klick auf die Karte), mit
+   der Definition vorn eine Wahl allein für den Begriff.
    «Nochmals» kehrt im Stapel zurück. Fortschritt liegt im localStorage und
    ist zurücksetzbar.
    Unter der Karte blättern ‹ und › zurück und weiter: ‹ zeigt die zuvor
@@ -598,7 +598,7 @@
          Info-Karte der Leiste); ein Grundbegriff mit Begriff vorn hat nichts
          zu wählen: umdrehen und selbst einschätzen. */
       text: istBegriff
-        ? 'Was bedeutet der Begriff? Karte drehen und selbst einschätzen.'
+        ? 'Was bedeutet der Begriff? Karte anklicken und selbst einschätzen.'
         : 'Welcher Begriff ist gemeint? Die Wahl wird sofort geprüft:'
     }) : null, liste, verweise(e, istBegriff)]);
 
@@ -728,7 +728,10 @@
 
     var vorne = seiteVorne(e, function () { antwortGezaehlt(); });
     var hinten = h('div', { class: 'flip__seite flip__seite--hinten', tabindex: '-1', 'aria-hidden': 'true' });
-    var flip = h('div', { class: 'flip' }, [vorne.el, hinten]);
+    /* Ohne Wahl auf der Vorderseite (Grundbegriff, Begriff vorn) dreht auch
+       ein Klick auf die Karte. */
+    var ohneWahl = !fragen(e).length;
+    var flip = h('div', { class: 'flip' + (ohneWahl ? ' flip--klickbar' : '') }, [vorne.el, hinten]);
 
     var drehKnopf = h('button', {
       type: 'button', class: 'btn lk-knopf lk-drehen', text: 'Lösung', title: 'Karte drehen und die Lösung zeigen'
@@ -795,6 +798,15 @@
     }
 
     drehKnopf.addEventListener('click', drehen);
+    if (ohneWahl) {
+      vorne.el.addEventListener('click', function (ev) {
+        /* Verweise und die Wahl Begriff · Definition tun, was sie sonst tun;
+           wer Text markiert, will nicht drehen. */
+        if (ev.target.closest('a, button')) { return; }
+        if (String(global.getSelection ? global.getSelection() : '')) { return; }
+        drehen();
+      });
+    }
     gewusstBtn.addEventListener('click', function () { bewerten('gewusst'); });
     nochmalsBtn.addEventListener('click', function () { bewerten('nochmals'); });
 
@@ -1147,7 +1159,7 @@
             + 'zählt gewusste und nicht gewusste Karten zusammen. Dahinter das Icon zum Zurücksetzen. Unten rechts auf der Karte '
             + 'stehen die letzten fünf Versuche mit ihr als Punkte: grün «Gewusst», rot «Nochmals», der älteste links.' }),
           h('p', { text: 'Grundbegriffe haben eigene Karten ohne Phase, Modul und die übrigen Zeilen: Steht oben «Begriff», '
-            + 'ist der Begriff zu sehen, und die Rückseite zeigt die Definition. Steht oben «Definition», wählt man, welcher '
+            + 'ist der Begriff zu sehen, und ein Klick auf die Karte zeigt die Definition. Steht oben «Definition», wählt man, welcher '
             + 'Begriff gemeint ist.' }),
           h('p', { text: 'Ohne Wahl geht es auch: Karte mit «Lösung» unter der Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),

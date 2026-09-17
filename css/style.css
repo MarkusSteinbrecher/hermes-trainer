@@ -918,7 +918,6 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   display: grid;
   transform-style: preserve-3d;
   transition: transform .45s cubic-bezier(.2, .7, .3, 1);
-  cursor: pointer;
   border: 0;
   padding: 0;
   background: none;
@@ -928,6 +927,8 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   color: inherit;
 }
 .flip.ist-gedreht { transform: rotateY(180deg); }
+/* Nur eine Karte ohne Wahl dreht auf Klick (Grundbegriff, Begriff vorn). */
+.flip--klickbar .flip__seite--vorne { cursor: pointer; }
 .flip__seite {
   grid-area: 1 / 1;
   -webkit-backface-visibility: hidden;
