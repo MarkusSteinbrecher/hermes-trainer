@@ -257,6 +257,20 @@
     geaendert();
   }
 
+  /** Den ganzen Umfang auf einmal setzen (die Schritte des Überblicks); ein
+      Fokus fällt dabei weg, die Auswahl bleibt. */
+  function umfangSetzen(u) {
+    zustand.fokusId = null;
+    umfangVorFokus = null;
+    zustand.umfang = {
+      vorgehen: HT.graph.VORGEHEN[u.vorgehen] ? u.vorgehen : 'klassisch',
+      phasen: (u.phasen || []).slice(),
+      module: (u.module || []).slice()
+    };
+    popSchliessen();
+    geaendert();
+  }
+
   /* --- Popover -------------------------------------------------------------- */
 
   var popFokusNoetig = false;
@@ -334,6 +348,20 @@
 
   function popInhalt(kinder) {
     return h('div', { class: 'gpop__inhalt' }, kinder);
+  }
+
+  /** Ein Popover des Gastgebers mit Aussehen, Ort und Schliessen der eigenen:
+      def = { titel, inhalt() → Kinder, knopf: Element, links, mittel }. */
+  function popAnmelden(key, def) {
+    var knopfRef = 'knopfWirt_' + key;
+    refs[knopfRef] = def.knopf;
+    POPS[key] = {
+      titel: def.titel,
+      inhalt: function () { return popInhalt(def.inhalt()); },
+      knopf: knopfRef,
+      links: !!def.links,
+      mittel: !!def.mittel
+    };
   }
 
   /* Wo ein Popover steht, hängt an seinem Knopf. In der linken Icon-Leiste
@@ -741,12 +769,16 @@
      der Leiste unter der Kopfzeile (auswahlLeiste()); die Knöpfe tragen dort
      ihren Namen. */
   function railBauen() {
-    refs.railUmfang = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Auswahl nach Phasen, Szenarien, Modulen' });
+    /* Mit `ohneUmfangLeiste` wählt der Gastgeber den Umfang selbst (die
+       Schritte des Überblicks); Phasen, Szenarien und Module bleiben in
+       «Alle Filter». */
+    refs.railUmfang = wirt.ohneUmfangLeiste ? null
+      : h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Auswahl nach Phasen, Szenarien, Modulen' });
     refs.railTypen = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Elemente ein- und ausblenden' });
     refs.railRel = h('div', { class: 'grail__gruppe', role: 'group', 'aria-label': 'Verbindungen ein- und ausblenden' });
     refs.rail = h('div', { class: wirt.auswahlBeimGastgeber ? 'gauswahl' : 'grail' }, [
       refs.railUmfang,
-      h('div', { class: 'grail__trenner', 'aria-hidden': 'true' }),
+      refs.railUmfang ? h('div', { class: 'grail__trenner', 'aria-hidden': 'true' }) : null,
       refs.railTypen,
       h('div', { class: 'grail__trenner', 'aria-hidden': 'true' }),
       refs.railRel
@@ -1313,7 +1345,7 @@
   }
 
   /** Die Graph-Sicht in einen Behälter setzen.
-      optionen: { params, popEltern, filterBeimGastgeber, auswahlBeimGastgeber, sichtbar(), freihalten(), beiAuswahl(eintrag), beiZustand() }
+      optionen: { params, popEltern, filterBeimGastgeber, auswahlBeimGastgeber, ohneUmfangLeiste, sichtbar(), freihalten(), beiAuswahl(eintrag), beiZustand() }
       Liefert die Steuerung, über die der Gastgeber Umfang, Auswahl und
       Sichtbarkeit anspricht. */
   function einbetten(behaelter, optionen) {
@@ -1360,6 +1392,10 @@
       zeigen: zeigen,
       suchtreffer: suchtrefferAnwenden,
       listeSchalten: listeSchalten,
+      umfangSetzen: umfangSetzen,
+      popAnmelden: popAnmelden,
+      popUmschalten: popOeffnen,
+      popNeu: popZeichnen,
       zuruecksetzen: alleZuruecksetzen,
       /* Nach dem Einblenden: Nachholen, was verborgen nicht gezeichnet wurde,
          sonst neu einpassen — die Fläche hatte verborgen keine Grösse. */

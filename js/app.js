@@ -23,6 +23,9 @@
      `params` bringt seine Parameter mit (bestehende wie ?kat= bleiben). */
   var ALIASE = {
     uebersicht: 'handbuch', methode: 'handbuch', lexikon: 'handbuch',
+    /* Die Feldseite (#/feld?phase=…&modul=…) ist seit 2026-09-17 ein Schritt
+       des Überblicks: dieselben Parameter setzen dort den Umfang. */
+    feld: { name: 'ueberblick', params: { ansicht: 'phasen' } },
     lernkarten: { name: 'trainer', params: { teil: 'lernkarten' } },
     quiz: { name: 'trainer', params: { teil: 'quiz' } }
   };

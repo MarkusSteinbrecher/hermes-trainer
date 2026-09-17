@@ -118,17 +118,8 @@ In einer Bahn stehen die Aufgaben nach Modul, frühester Phase und der Stelle ih
 
 Querverweise werden über den exakten Begriff aufgelöst (`eintragMitBegriff`); nicht auflösbare Werte erzeugen keine Kante. Abgeleitete Kennzeichen: Entscheidungsaufgabe (`begriff` beginnt mit «Entscheid »), Ergebnistyp und «minimal gefordert» aus den Feldern `typ`/`minimalGefordert`.
 
-## Feld: eine Phase in einem Modul (abgeleitet, keine eigene Datei)
+## Blöcke und Schritte (abgeleitet, keine eigene Datei)
 
-`js/feld.js` schneidet die Einträge auf ein Feld der Abbildung 1 zu — eine Phase (Zeile) in einem Modul (Spalte). Die Adresse nennt beide: `#/feld?phase=<Phase>&modul=<Modul>[,<Modul>…]`; mehrere Module sind zulässig, weil die Abbildung Projektsteuerung und Projektführung zu einer Spalte zusammenfasst. Namen werden über `eintragMitBegriff` aufgelöst; ein unbekannter Name macht das Feld ungültig.
+`HT.graph.bloecke(umfang, mitUnter)` (`js/graph-modell.js`) zerlegt einen Umfang in Blöcke — je Aufgabe ihre verantwortliche Rolle und die Ergebnisse, die sie im Feld erzeugt. Zusammengesetzt wird er aus Feldern von je einer Phase (Zeile der Abbildung 1) und einem Modul (Spalte): Phase für Phase (leer: alle der Vorgehensweise), darin Modul für Modul in der Reihenfolge von `data/module.json` (leer: alle). Eine Aufgabe steht so in jeder ihrer Phasen unter jedem Modul, das sie dort hat (`HT.daten.phasenImModul`), jeweils mit den Ergebnissen dieses Felds; Rolle und Ergebnisse kommen aus den Kanten «verantwortlich» und «erzeugt» des Teilgraphen, die Reihenfolge aus dem Graphen. Dieselben Blöcke übt das Zuordnen des Trainers und zeigt das nachgebaute Bild des Überblicks.
 
-| Inhalt | Regel |
-|---|---|
-| Ergebnisse | das Ergebnis hat die Phase in einem der Module (`HT.daten.phasenImModul`: `modulPhasen`, ohne Angabe `phasen` in jedem Modul aus `module`). Reihenfolge: Meilenstein, Dokument, Zustand, Checkliste, darin alphabetisch |
-| Aufgaben | ebenso: die Aufgabe hat die Phase in einem der Module |
-| «Entsteht aus» | Aufgaben **dieses Felds**, deren `ergebnisse` das Ergebnis nennen und die es laut `ergebnisPhasen` in der Phase des Felds erzeugen — nicht alle erzeugenden Aufgaben |
-| Meilensteintext | `phase.meilensteine[].beschreibung`, wenn der Name übereinstimmt; sonst die Kurzfassung des Ergebnisses |
-| Rollen | aus `verantwortlich` (kommagetrennt) und `beteiligt` der Aufgaben und Ergebnisse des Felds; «beteiligt an» lässt weg, was die Rolle im selben Feld ohnehin verantwortet |
-| Nachbarfelder | dieselbe Rechnung für die übrigen Phasen bzw. Module; leere Felder erscheinen nicht (das eigene bleibt als Anker stehen) |
-
-Das Kennzeichen «minimal gefordert» wird wie auf der Lexikonkarte nur bei `typ: "Dokument"` angezeigt (Tabelle 16); die 18 Checklisten tragen das Feld ebenfalls, sind aber über ihren Typ schon erkennbar. Vergleiche laufen über `HT.daten.normalisieren`, nicht über Zeichenkettengleichheit.
+`HT.methodenbild.schritte(vorgehen)` (`js/methodenbild.js`) teilt eine Vorgehensweise in Schritte: das Gesamtbild (leerer Umfang), Initialisierung und Abschluss als je ein Schritt mit allen Modulen, jede übrige Phase je Modul; Projektsteuerung und Projektführung bilden einen Schritt, weil die Abbildung sie in einer Spalte zeigt. Schritte ohne Aufgabe fallen weg — klassisch sind es 30 nach dem Gesamtbild, agil 12. Ein Schritt ist ein Umfang `{ vorgehen, phasen, module }`; welcher gilt, folgt aus dem Filter (Mengengleichheit von Phasen und Modulen). Die frühere Feldseite `#/feld?phase=<Phase>&modul=<Modul>[,<Modul>…]` führt seit 2026-09-17 mit denselben Parametern in den Überblick.

@@ -51,7 +51,6 @@
     { key: 'agil', label: 'Agil', adjektiv: 'agilen',
       pfade: ['M20.5 12a8.5 8.5 0 1 1-8.5-8.5c2.4 0 4.6 1 6.2 2.6l2.3 2.3', 'M20.5 3.6v4.8h-4.8'] }
   ];
-  var RELATIONEN = { verantwortlich: true, beteiligt: false, erzeugt: true, ergebnisrolle: false };
   var ARTEN = ['rolle', 'aufgabe', 'ergebnis'];
   var EINZELN = { rolle: true };  // im Pool je Kasten ein eigener Knopf statt eines Stapels mit Zahl
   var ZIEL_ZUSTAENDE = ['tr-ziel--offen', 'tr-ziel--bereit', 'tr-ziel--belegt', 'tr-ziel--richtig', 'tr-ziel--falsch', 'tr-ziel--leer'];
@@ -149,62 +148,11 @@
 
   /* --- Übungen -------------------------------------------------------------- */
 
-  function teilgraphVon(umfang) {
-    return HT.graph.teilgraph({
-      umfang: umfang,
-      kategorien: { rolle: true, aufgabe: true, ergebnis: true },
-      relationen: RELATIONEN,
-      gruppierung: 'phase'
-    });
-  }
-
-  /* Die Blöcke einer Übung, zusammengesetzt aus Umfängen von je einer Phase
-     und einem Modul — Phase für Phase, darin in der Reihenfolge der Module.
-     So steht eine Aufgabe in jeder ihrer Phasen und, wie in der Abbildung 1,
-     unter jedem Modul, das sie dort hat, jeweils mit den Ergebnissen dieses
-     Felds («Lösungsanforderungen erarbeiten» im Konzept unter Produkt und
-     unter IT-System). Unterbahn ist das Modul, nicht in der Modulübung: dort
-     ist das Modul die Übung selbst. */
+  /* Die Blöcke einer Übung (HT.graph.bloecke, dieselben wie im nachgebauten
+     Bild des Überblicks). Unterbahn ist das Modul, nicht in der Modulübung:
+     dort ist das Modul die Übung selbst. */
   function bloeckeVon(def) {
-    var vorgehen = def.umfang.vorgehen;
-    var phasen = def.art === 'phase' ? def.umfang.phasen : HT.graph.phasenDerVorgehensweise(vorgehen);
-    var module = def.art === 'modul' ? def.umfang.module
-      : HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
-    var bloecke = [];
-    phasen.forEach(function (phase) {
-      module.forEach(function (modul) {
-        var umfang = { vorgehen: vorgehen, phasen: [phase], module: [modul] };
-        bloecke = bloecke.concat(bloeckeImUmfang(umfang, def.art === 'modul' ? '' : modul));
-      });
-    });
-    return bloecke;
-  }
-
-  /* Je Aufgabe im Umfang ihre verantwortliche Rolle und die Ergebnisse, die
-     sie im Umfang erzeugt, in der Reihenfolge des Graphen; Bahn ist die Phase,
-     Unterbahn das übergebene Modul (leer: keine). */
-  function bloeckeImUmfang(umfang, unter) {
-    var tg = teilgraphVon(umfang);
-    var aufgaben = null, knoten = {}, rang = {};
-    tg.spalten.forEach(function (sp) {
-      if (sp.kategorie === 'aufgabe') { aufgaben = sp; }
-      sp.knoten.forEach(function (k, i) { knoten[k.id] = k; rang[k.id] = i; });
-    });
-    if (!aufgaben) { return []; }
-    var rolleVon = {}, ergebnisseVon = {};
-    tg.kanten.forEach(function (ka) {
-      if (ka.rel === 'verantwortlich' && !rolleVon[ka.nach]) { rolleVon[ka.nach] = knoten[ka.von]; }
-      if (ka.rel === 'erzeugt') { (ergebnisseVon[ka.von] = ergebnisseVon[ka.von] || []).push(knoten[ka.nach]); }
-    });
-    return aufgaben.knoten.map(function (a) {
-      return {
-        aufgabe: a,
-        rolle: rolleVon[a.id] || null,
-        ergebnisse: (ergebnisseVon[a.id] || []).sort(function (x, y) { return rang[x.id] - rang[y.id]; }),
-        bahn: aufgaben.gruppeVon[a.id] || '',
-        unter: unter
-      };
-    });
+    return HT.graph.bloecke(def.umfang, def.art !== 'modul');
   }
 
   /* Die Übungen einer Vorgehensweise: ihre Phasen, die Module und das

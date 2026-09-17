@@ -510,6 +510,159 @@ body[data-route="ueberblick"] .unterleiste__inner { padding-inline: 12px; }
 .ub-buehne.ist-am-ziehen { cursor: grabbing; }
 .ub-buehne.ist-am-ziehen * { cursor: grabbing; }
 
+/* --- Schritte vorn in der Leiste -------------------------------------------- */
+
+/* ‹ Titel › im Kleid der Auswahl daneben. Der Titel ist fest breit, damit die
+   Pfeile beim Durchklicken unter dem Zeiger bleiben; zu lange Namen enden
+   mit «…», der ganze steht im Tooltip. */
+.ub-schritte { display: flex; align-items: stretch; flex: 0 0 auto; }
+.ub-schritte__pfeil {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.ub-schritte__pfeil:hover:not(:disabled) { background: var(--flaeche-2); }
+.ub-schritte__pfeil:disabled { color: var(--rand-stark); cursor: default; }
+.ub-schritte__pfeil:focus-visible, .ub-schritte__titel:focus-visible { outline-offset: -2px; }
+.ub-schritte__titel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 24rem;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ub-schritte__titel:hover { background: var(--flaeche-2); }
+.ub-schritte__titel[aria-expanded="true"] { color: var(--akzent-text); background: var(--akzent-schwach); }
+.ub-schritte__name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+.ub-schritte__zahl { font-weight: 500; letter-spacing: 0; color: var(--text-leise-hell); font-variant-numeric: tabular-nums; }
+.ub-schritte__zahl:empty { display: none; }
+.ub-schritte__titel svg { flex: 0 0 auto; color: var(--text-leise); }
+
+/* --- Nachgebautes Bild (js/methodenbild.js) ----------------------------------- */
+
+/* Mit gewähltem Umfang tritt das Bild an die Stelle der Originalabbildung;
+   Zoom gibt es dort keinen, «Details» nur dort. */
+.ub-buehne-huelle[data-bild="nachbau"] .ub-buehne,
+.ub-buehne-huelle[data-bild="nachbau"] .ub-schweber--zoom,
+.ub-buehne-huelle[data-bild="original"] .ub-bild,
+.ub-buehne-huelle[data-bild="original"] .ub-schweber__nachbau { display: none; }
+.ub-schweber__nachbau { display: flex; align-items: center; }
+.ub-schweber--steuerung .ub-schweber__knopf { padding: 0 8px; }
+.ub-schweber__knopf[aria-pressed="true"] { color: var(--ub-tinte); box-shadow: inset 0 -3px 0 var(--ub-akzent); }
+.ub-bild {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  padding: 0 20px calc(32px + var(--ub-unten-frei, 0px));
+}
+@media (min-width: 700px) {
+  .ub-bild { flex: 1 1 auto; min-height: 0; }
+}
+
+/* Drei Spalten wie im Zuordnen: Rolle · Aufgabe · Ergebnisse. Die Titel der
+   Spalten kleben oben; rechts bleibt Platz für Details und Steuerung. */
+.mb {
+  --mb-spalten: minmax(9rem, .7fr) minmax(12rem, 1fr) minmax(13rem, 1.15fr);
+  min-width: 34rem;
+}
+.mb-spalten {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: var(--mb-spalten);
+  gap: 0 18px;
+  padding: 18px 150px 8px 0;
+  background: #fff;
+  border-bottom: 1px solid var(--rand);
+}
+.mb-spalten__titel { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.mb-spalten__titel--rolle { color: var(--gk-rolle-fg); }
+.mb-spalten__titel--aufgabe { color: var(--gk-aufgabe-fg); }
+.mb-spalten__titel--ergebnis { color: var(--gk-ergebnis-fg); }
+.mb-phase__titel {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 22px 0 0;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+.mb-phase__titel svg { color: var(--gk-phase); }
+.mb-modul__titel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rand);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gk-modul-fg);
+}
+.mb-modul__titel svg { color: var(--gk-modul); }
+.mb-block {
+  display: grid;
+  grid-template-columns: var(--mb-spalten);
+  gap: 6px 18px;
+  align-items: start;
+  padding: 10px 0;
+}
+.mb-block + .mb-block { border-top: 1px solid var(--rand-fein); }
+.mb-zelle { display: grid; gap: 6px; justify-items: start; min-width: 0; }
+.mb-ergebnis { display: grid; gap: 3px; justify-items: start; min-width: 0; }
+
+/* Ein Element in der Form des Graphen: Aufgabe und Ergebnis im Kasten ihrer
+   Farbe, Rolle und Meilenstein ohne Kasten. */
+.mb-knoten {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  max-width: 100%;
+  padding: 5px 10px 5px 6px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+}
+.mb-knoten .gswatch { width: 18px; height: 18px; }
+.mb-knoten__name { min-width: 0; overflow-wrap: break-word; }
+.mb-knoten--aufgabe { background: var(--gk-aufgabe-bg); border-color: var(--gk-aufgabe); color: var(--gk-aufgabe-fg); }
+.mb-knoten--ergebnis { background: var(--gk-ergebnis-bg); border-color: var(--gk-ergebnis); color: var(--gk-ergebnis-fg); }
+.mb-knoten--rolle { color: var(--gk-rolle-fg); }
+.mb-knoten--meilenstein { color: var(--gk-ergebnis-fg); }
+/* Zeigen hebt alle Stellen desselben Elements hervor, das festgehaltene trägt den Akzent. */
+.mb-knoten.ist-gleich { box-shadow: 0 0 0 2px var(--rand-stark); }
+.mb-knoten.ist-gewaehlt { box-shadow: 0 0 0 2px var(--akzent); }
+.mb-knoten:focus-visible { outline-offset: 2px; }
+.mb-beteiligt, .mb-kurz { margin: 0; padding-left: 7px; font-size: 12.5px; line-height: 1.45; text-wrap: pretty; }
+.mb-beteiligt { font-weight: 600; color: var(--gk-rolle-fg); }
+.mb-kurz { max-width: 36em; color: var(--text-weich); }
+
 /* Legende der Zeichen, aus denen die Originalgrafik besteht — am Schirm in
    der Karte hinter dem Info-Icon der Leiste, im Druck unter der Abbildung
    (.ub-abblegende, sonst verborgen). */
@@ -792,7 +945,16 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   .ub-trenner { display: none; }
   /* Höhe nach der Abbildung, gedeckelt — sonst steht unter der auf die Breite
      gepassten Grafik eine grosse weisse Fläche. */
-  .ub-buehne { max-height: 72vh; min-height: 200px; }
+  .ub-buehne, .ub-bild { max-height: 72vh; min-height: 200px; }
+  /* Schmal rollt die Leiste; ‹ Titel › soll dort trotzdem ganz zu sehen sein. */
+  .ub-schritte__titel { width: 13rem; }
+  /* Das Bild untereinander: Rolle, Aufgabe, darunter eingerückt die Ergebnisse. */
+  .ub-bild { padding: 0 16px 24px; }
+  .mb { --mb-spalten: minmax(0, 1fr); min-width: 0; }
+  .mb-spalten { display: none; }
+  .mb-block { gap: 4px; }
+  .mb-zelle--ergebnisse { padding-left: 22px; }
+  .mb-phase:first-of-type .mb-phase__titel, .mb > .mb-phase:first-of-type .mb-modul:first-child .mb-modul__titel { margin-top: 12px; }
   /* Ohne feste Höhe teilt sich nichts: jeder Bereich so hoch wie sein Inhalt
      (mit flex-basis 0 klappten beide auf 0 zusammen und lagen übereinander). */
   .ub-bereich { flex: none; }

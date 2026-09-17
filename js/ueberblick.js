@@ -15,6 +15,15 @@
    Phasen, Szenarien, Modulen, Elementen und Verbindungen in der Leiste
    darunter.
 
+   Schritte durch die Methode (js/methodenbild.js): vorn in der Leiste
+   «‹ Konzept · Produkt 5/30 ▾ ›» statt Phasen, Szenarien und Module — die
+   Pfeile setzen den Umfang auf den vorigen bzw. nächsten Schritt, der Titel
+   öffnet alle Schritte als Popover. Ist ein Umfang gewählt, zeigt der obere
+   Bereich statt der Originalabbildung das nachgebaute Bild dieses Umfangs
+   (Rolle · Aufgabe · Ergebnisse, «Details» blendet Beteiligte und
+   Kurzdefinitionen ein); das Gesamtbild und der Abfragemodus bleiben beim
+   Original.
+
    Zwei Modi:
    – Erkunden — Zeigen füllt die Inhaltsseite, Klick hält den Eintrag fest.
      Über die Steuerung lässt sich eine Rolle einfärben oder alles ausblassen,
@@ -86,6 +95,7 @@
     modus: 'erkunden',        // 'erkunden' | 'abfragen'
     abbildungOffen: true,     // oberer Bereich der Bühne (Abbildung) aufgeklappt
     graphOffen: true,         // unterer Bereich der Bühne (Graph) aufgeklappt
+    details: false,           // nachgebautes Bild: Beteiligte und Kurzdefinitionen zeigen
     rolle: '',                // eingefärbte Rolle (Begriff) oder ''
     nurMinimal: false,        // alles ausblassen, was nicht minimal gefordert ist
     zoom: 1,
@@ -121,7 +131,8 @@
       fehler: zustand.fehler,
       besteSerie: zustand.besteSerie,
       abbildungOffen: zustand.abbildungOffen,
-      graphOffen: zustand.graphOffen
+      graphOffen: zustand.graphOffen,
+      details: zustand.details
     });
   }
 
@@ -132,6 +143,7 @@
     if (typeof g.besteSerie === 'number' && g.besteSerie >= 0) { zustand.besteSerie = g.besteSerie; }
     if (typeof g.abbildungOffen === 'boolean') { zustand.abbildungOffen = g.abbildungOffen; }
     if (typeof g.graphOffen === 'boolean') { zustand.graphOffen = g.graphOffen; }
+    if (typeof g.details === 'boolean') { zustand.details = g.details; }
     /* Beide zu gab es mit den Kopfzeilen; die Pille kennt es nicht. */
     if (!zustand.abbildungOffen && !zustand.graphOffen) { zustand.abbildungOffen = true; zustand.graphOffen = true; }
   }
@@ -315,6 +327,7 @@
       /* Verdeckte Kästen dürfen ihren Namen nicht im Tooltip verraten. */
       f.titel.textContent = verdeckt ? 'Verdeckter Ergebniskasten' : f.name;
     });
+    bildMarkieren();
   }
 
   /* Szenario-Filter: ein Feld gehört dazu, wenn eines seiner Elemente in
@@ -399,6 +412,179 @@
     werkzeugAktualisieren();
     suchChipsZeichnen();
     urlSetzen();
+  }
+
+  /* --- Nachgebautes Bild und Schritte (js/methodenbild.js) ------------------- */
+
+  /* Ist ein Umfang gewählt, zeigt der obere Bereich das nachgebaute Bild
+     statt der Originalabbildung — ausser im Abfragemodus, der auf der
+     Originalgrafik spielt. Neu gebaut wird nur, wenn sich Umfang oder
+     «Details» ändern; sonst wird nur markiert. */
+  var bildUmfang = null, bildDetails = null;
+
+  function nachbauZeigen() {
+    return zustand.modus === 'erkunden' && !!graph && graph.umfangAktiv();
+  }
+
+  function bildZeichnen() {
+    if (!refs.bild || !refs.buehneHuelle || !graph) { return; }
+    var nachbau = nachbauZeigen();
+    var vorher = refs.buehneHuelle.dataset.bild;
+    refs.buehneHuelle.dataset.bild = nachbau ? 'nachbau' : 'original';
+    if (refs.knopfDetails) { refs.knopfDetails.setAttribute('aria-pressed', zustand.details ? 'true' : 'false'); }
+    if (!nachbau) {
+      bildUmfang = null;
+      HT.ui.leeren(refs.bild);
+      /* Verborgen hatte die Bühne keine Breite zum Einpassen. */
+      if (vorher === 'nachbau') { zoomPassendSpaeter(40); }
+      return;
+    }
+    var u = graph.umfang();
+    var schluessel = JSON.stringify([u.vorgehen, u.phasen, u.module]);
+    if (schluessel !== bildUmfang || zustand.details !== bildDetails) {
+      var oben = schluessel === bildUmfang ? refs.bild.scrollTop : 0;
+      HT.ui.leeren(refs.bild).appendChild(HT.methodenbild.bauen(u, {
+        details: zustand.details,
+        beiZeigen: bildGezeigt,
+        beiKlick: bildGeklickt
+      }));
+      refs.bild.scrollTop = oben;
+      bildUmfang = schluessel;
+      bildDetails = zustand.details;
+    }
+    bildMarkieren();
+  }
+
+  function bildMarkieren() {
+    if (!refs.bild || !refs.bild.firstChild) { return; }
+    HT.methodenbild.markieren(refs.bild.firstChild, zustand.gehalten && zustand.aktiv ? zustand.aktiv.id : null);
+  }
+
+  function bildGezeigt(e) {
+    if (zustand.modus === 'erkunden' && !zustand.gehalten) { aktivSetzen(e); }
+  }
+
+  /* Klick im Bild: wie auf einen Kasten der Abbildung festhalten bzw. lösen.
+     Der Graph wählt das Element nur aus, statt es in den Fokus zu nehmen —
+     der Fokus leerte den Umfang, und mit ihm verschwände der Schritt. */
+  function bildGeklickt(e) {
+    var gleich = zustand.aktiv && zustand.aktiv.id === e.id;
+    zustand.gehalten = !(gleich && zustand.gehalten);
+    aktivSetzen(e);
+    malen();
+    if (graph) { graph.auswaehlen(zustand.gehalten ? e.id : null); }
+    if (zustand.gehalten) { inhaltInSichtBringen(); }
+  }
+
+  function detailsSetzen(an) {
+    zustand.details = an;
+    speichern();
+    bildZeichnen();
+  }
+
+  var IKONE_PFEIL_LINKS = ['M15 5l-7 7 7 7'];
+  var IKONE_PFEIL_RECHTS = ['M9 5l7 7-7 7'];
+  /* Welche Vorgehensweise der Popover der Schritte zeigt; null = die des Umfangs. */
+  var popVorgehen = null;
+
+  /* Vorn in der Leiste: ‹ Titel des Schritts mit Nummer ▾ ›. Der Titel hat
+     eine feste Breite, damit die Pfeile beim Durchklicken stehen bleiben. */
+  function schritteBauen() {
+    refs.schrittZurueck = h('button', {
+      type: 'button', class: 'ub-schritte__pfeil', on: { click: function () { schrittGehen(-1); } }
+    }, HT.ui.symbol(IKONE_PFEIL_LINKS, 18));
+    refs.schrittName = h('span', { class: 'ub-schritte__name' });
+    refs.schrittZahl = h('span', { class: 'ub-schritte__zahl' });
+    refs.schrittTitel = h('button', {
+      type: 'button', class: 'ub-schritte__titel', 'aria-haspopup': 'dialog', 'aria-expanded': 'false',
+      on: { click: function () {
+        if (!graph) { return; }
+        popVorgehen = null;
+        graph.popUmschalten('schritte');
+      } }
+    }, [refs.schrittName, refs.schrittZahl, HT.ui.symbol(['M7 10l5 5 5-5'], 14)]);
+    refs.schrittWeiter = h('button', {
+      type: 'button', class: 'ub-schritte__pfeil', on: { click: function () { schrittGehen(1); } }
+    }, HT.ui.symbol(IKONE_PFEIL_RECHTS, 18));
+    return h('div', { class: 'ub-schritte', role: 'group', 'aria-label': 'Schritte durch die Methode' },
+      [refs.schrittZurueck, refs.schrittTitel, refs.schrittWeiter]);
+  }
+
+  function pfeilSetzen(knopf, ziel, text) {
+    knopf.disabled = !ziel;
+    var t = ziel ? text + ': ' + ziel.titel : text;
+    knopf.title = t;
+    knopf.setAttribute('aria-label', t);
+  }
+
+  function schritteAktualisieren() {
+    if (!refs.schrittTitel || !graph) { return; }
+    var u = graph.umfang();
+    var n = HT.methodenbild.nachbarn(u);
+    var name = n.schritt ? n.schritt.titel : HT.methodenbild.titelVon(u);
+    refs.schrittName.textContent = name;
+    refs.schrittZahl.textContent = n.schritt && n.schritt.index ? n.schritt.index + '/' + n.anzahl : '';
+    refs.schrittTitel.title = name + (u.vorgehen === 'agil' ? ' (agil)' : '') + ' — alle Schritte zeigen';
+    pfeilSetzen(refs.schrittZurueck, n.vorige, 'Voriger Schritt');
+    pfeilSetzen(refs.schrittWeiter, n.naechste, 'Nächster Schritt');
+  }
+
+  function schrittGehen(richtung) {
+    if (!graph) { return; }
+    var n = HT.methodenbild.nachbarn(graph.umfang());
+    var ziel = richtung < 0 ? n.vorige : n.naechste;
+    if (ziel) { graph.umfangSetzen(ziel.umfang); }
+  }
+
+  /* Der Popover der Schritte: oben die Vorgehensweise, darunter alle
+     Schritte in ihrer Folge — Phasen mit Seiten je Modul als Abschnitt —,
+     je mit der Zahl der Aufgaben. Aufbau wie die Szenarien in «Alle Filter». */
+  function schritteInhalt() {
+    var u = graph.umfang();
+    var vorgehen = popVorgehen || u.vorgehen;
+    var aktuell = HT.methodenbild.schrittVon(u);
+
+    var segment = h('div', { class: 'segment segment--klein', role: 'group', 'aria-label': 'Vorgehensweise' },
+      [['klassisch', 'Klassisch'], ['agil', 'Agil']].map(function (o) {
+        return h('button', {
+          type: 'button', class: 'segment__knopf', text: o[1], 'data-fokus': 'vorgehen:' + o[0],
+          'aria-pressed': o[0] === vorgehen ? 'true' : 'false',
+          on: { click: function () { popVorgehen = o[0]; graph.popNeu(); } }
+        });
+      }));
+
+    function eintrag(s, label) {
+      var an = aktuell === s;
+      return h('button', {
+        type: 'button', class: 'gaf__szenario', 'aria-pressed': an ? 'true' : 'false', 'data-fokus': 'schritt:' + vorgehen + ':' + s.index,
+        on: { click: function () { popVorgehen = null; graph.umfangSetzen(s.umfang); } }
+      }, [
+        h('span', { class: 'gaf__szenario-haken', 'aria-hidden': 'true', text: an ? '●' : '○' }),
+        h('span', { class: 'gaf__szenario-titel', text: label }),
+        s.aufgaben ? h('span', { class: 'gs-schalter__extra', title: s.aufgaben + ' Aufgaben', text: String(s.aufgaben) }) : null
+      ]);
+    }
+
+    /* Gesamtbild und ganze Phasen stehen lose, die Phasen mit Seiten je Modul
+       als Abschnitt mit Titel. */
+    var abschnitte = [], offen = null;
+    HT.methodenbild.schritte(vorgehen).forEach(function (s) {
+      var gruppe = s.art === 'feld' ? s.phase : '';
+      if (!offen || offen.gruppe !== gruppe) {
+        offen = { gruppe: gruppe, liste: h('div', { class: 'gs-liste', role: 'group', 'aria-label': gruppe || 'Schritte' }) };
+        abschnitte.push(offen);
+      }
+      offen.liste.appendChild(eintrag(s, s.art === 'feld' ? s.name : s.titel));
+    });
+
+    return [
+      h('section', { class: 'gaf' }, [h('div', { class: 'gaf__kopf' }, [h('h3', { class: 'gaf__titel', text: 'Vorgehensweise' })]), segment])
+    ].concat(abschnitte.map(function (a) {
+      return h('section', { class: 'gaf ub-schritte__abschnitt' }, [
+        a.gruppe ? h('div', { class: 'gaf__kopf' }, [h('h3', { class: 'gaf__titel', text: a.gruppe })]) : null,
+        a.liste
+      ]);
+    }));
   }
 
   /* --- Suche (Kopfzeile der Anwendung) --------------------------------------- */
@@ -793,6 +979,7 @@
       malen();
     }
     werkzeugAktualisieren();
+    bildZeichnen();
   }
 
   function schweberBauen() {
@@ -803,9 +990,15 @@
 
     refs.knopfPanel = ikonKnopf('Steuerung', IKONE_STEUERUNG, function () { panelSchalten(); },
       { 'aria-expanded': 'false', 'aria-haspopup': 'dialog' });
+    /* «Details» gilt nur für das nachgebaute Bild und steht nur dort. */
+    refs.knopfDetails = werkzeugKnopf('Details', 'ub-schweber__knopf', function () { detailsSetzen(!zustand.details); },
+      { 'aria-pressed': zustand.details ? 'true' : 'false', title: 'Beteiligte Rollen und Kurzdefinitionen im Bild zeigen' });
 
     return [
-      h('div', { class: 'ub-schweber ub-schweber--steuerung' }, [refs.knopfPanel]),
+      h('div', { class: 'ub-schweber ub-schweber--steuerung' }, [
+        h('span', { class: 'ub-schweber__nachbau' }, [refs.knopfDetails, werkzeugTrenner()]),
+        refs.knopfPanel
+      ]),
       h('div', { class: 'ub-schweber ub-schweber--zoom', role: 'group', 'aria-label': 'Zoom' }, [
         werkzeugKnopf('−', 'ub-zoom__knopf', function () { zoomSetzen(zustand.zoom / ZOOM_SCHRITT); },
           { 'aria-label': 'Verkleinern' }),
@@ -1467,7 +1660,9 @@
     links.push(h('a', { class: 'hb-online', href: QUELLE_ALLGEMEIN, target: '_blank', rel: 'noopener', text: 'HERMES online ↗' }));
     return [
       h('p', { text: 'Oben das Gesamtbild der Methode — Abbildung 1 des Referenzhandbuchs als Originalgrafik —, darunter der Graph mit Rollen, Aufgaben, Ergebnissen und ihren Verbindungen. Zeigen auf einen Kasten der Abbildung füllt die Inhaltsseite rechts; ein Klick, auch auf einen Knoten im Graphen, hält das Element dort fest.' }),
-      h('p', { text: 'In der Leiste wählen Phasen, Szenarien und Module aus, was Abbildung und Graph zeigen; Elemente und Verbindungen gelten nur für den Graphen. Alles zusammen steht hinter dem Filter-Icon neben der Suche.' }),
+      h('p', { text: 'Vorn in der Leiste gehen ‹ und › die Methode Schritt für Schritt durch: nach dem Gesamtbild die Initialisierung, dann Konzept, Realisierung und Einführung je Modul (Projektsteuerung und Projektführung zusammen, wie in der Abbildung), zuletzt der Abschluss; agil steht an Stelle der drei Phasen die Umsetzung. Ein Klick auf den Titel zeigt alle Schritte, klassisch und agil.' }),
+      h('p', { text: 'Auf einem Schritt steht oben statt der Originalgrafik das nachgebaute Bild: je Aufgabe links die verantwortliche Rolle, rechts die Ergebnisse, die sie dort erzeugt — wie im Zuordnen des Trainers, aber ausgefüllt. «Details» blendet die beteiligten Rollen und die Kurzdefinitionen ein. Zeigen und Klicken wirken wie in der Abbildung; der Abfragemodus spielt immer auf der Originalgrafik.' }),
+      h('p', { text: 'Rechts neben den Schritten blenden Elemente und Verbindungen im Graphen ein und aus. Phasen, Szenarien und Module frei kombinieren lässt das Filter-Icon neben der Suche; auch eine solche Auswahl zeigt oben das nachgebaute Bild.' }),
       h('p', { text: 'Die Abbildung ist die Originalgrafik von hermes.admin.ch, die Texte der Inhaltsseite stammen aus dem Referenzhandbuch. Jede Verbindung im Graphen entspricht einem Querverweis der offiziellen Dokumentation; ergänzt wird nichts.' }),
       h('h3', { class: 'gpop__abschnitt', text: 'Zeichen der Abbildung' }),
       abbLegendeListe(),
@@ -1494,8 +1689,11 @@
 
     /* Oben die Hülle mit Icons, Steuerung und der Legende für den Druck (die Bühne darin
        scrollt — läge das Schwebende in der Bühne, scrollte es mit). */
-    refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle' },
-      [refs.buehne].concat(schweberBauen(), [abbLegendeBauen(), refs.panelHuelle]));
+    refs.bild = h('div', { class: 'ub-bild' });
+    bildUmfang = null;
+    bildDetails = null;
+    refs.buehneHuelle = h('div', { class: 'ub-buehne-huelle', dataset: { bild: 'original' } },
+      [refs.buehne, refs.bild].concat(schweberBauen(), [abbLegendeBauen(), refs.panelHuelle]));
     var bereichAbb = h('section', { class: 'ub-bereich ub-bereich--abbildung', 'aria-label': 'Abbildung' }, [refs.buehneHuelle]);
     refs.bereiche.abbildung = bereichAbb;
 
@@ -1515,6 +1713,7 @@
       popEltern: refs.sichten,
       filterBeimGastgeber: true,
       auswahlBeimGastgeber: true,
+      ohneUmfangLeiste: true,
       sichtbar: function () { return zustand.graphOffen && !!refs.werkbank && document.body.contains(refs.werkbank); },
       beiAuswahl: function (e) {
         /* Der Graph hat ein Element gewählt (oder die Auswahl aufgehoben):
@@ -1530,6 +1729,8 @@
       },
       beiZustand: function () {
         umfangAbgleichen();
+        bildZeichnen();
+        schritteAktualisieren();
         malen();
         werkzeugAktualisieren();
         suchChipsZeichnen();
@@ -1541,13 +1742,18 @@
     /* Der Filter gilt für Abbildung und Graph; sein einziger Knopf steht in
        der Kopfzeile rechts neben der Suche. */
     HT.app.kopfWerkzeug(graph.filterKnopf());
-    /* Die Auswahl des Graphen steht quer in der Leiste unter der Kopfzeile,
-       rechts daneben das Info-Icon zur Seite. */
+    /* In der Leiste unter der Kopfzeile vorn die Schritte, dahinter quer die
+       Auswahl des Graphen (Elemente, Verbindungen), rechts das Info-Icon zur
+       Seite. Phasen, Szenarien und Module stehen in «Alle Filter». */
     HT.app.unterleiste({
-      label: 'Auswahl für Abbildung und Graph',
-      inhalt: graph.auswahlLeiste(),
+      label: 'Schritte und Auswahl für Abbildung und Graph',
+      inhalt: [schritteBauen(), h('span', { class: 'unterleiste__trenner', 'aria-hidden': 'true' }), graph.auswahlLeiste()],
       info: { inhalt: infoInhalt, bereit: HT.daten.rhbIndex().then(function (idx) { if (idx && idx.quelle) { rhbQuelle = idx.quelle; } }) }
     });
+    graph.popAnmelden('schritte', {
+      titel: 'Schritte durch die Methode', inhalt: schritteInhalt, knopf: refs.schrittTitel, links: true, mittel: true
+    });
+    schritteAktualisieren();
 
     refs.sichten.appendChild(bereichAbb);
     refs.sichten.appendChild(teilung);
@@ -1642,14 +1848,6 @@
     refs = { felder: [] };
     graph = null;
     params = params || {};
-
-    /* Ältere Links auf ein Feld der Abbildung: die Feldseite ist eine eigene
-       Route geworden. */
-    if (params.phase && params.modul && !params.sicht && !params.ansicht) {
-      global.location.hash = '#/feld?phase=' + encodeURIComponent(params.phase)
-        + '&modul=' + encodeURIComponent(params.modul);
-      return;
-    }
 
     /* Alte Links: ?sicht=graph — den Graphen jedenfalls aufklappen. */
     if (params.sicht === 'graph') { zustand.graphOffen = true; }

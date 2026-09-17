@@ -745,6 +745,69 @@
     }
   }
 
+  /* --- Blöcke: je Aufgabe ihre Rolle und ihre Ergebnisse ---------------------- */
+
+  /* Das Zuordnen des Trainers und das nachgebaute Bild des Überblicks zeigen
+     dieselben Blöcke: je Aufgabe links die verantwortliche Rolle, rechts die
+     Ergebnisse, die sie im Feld erzeugt. */
+  var BLOCK_RELATIONEN = { verantwortlich: true, beteiligt: false, erzeugt: true, ergebnisrolle: false };
+
+  /* Je Aufgabe im Umfang ihre verantwortliche Rolle und die Ergebnisse, die
+     sie im Umfang erzeugt, in der Reihenfolge des Graphen; Bahn ist die Phase,
+     Unterbahn das übergebene Modul (leer: keine). */
+  function bloeckeImFeld(umfang, unter) {
+    var tg = teilgraph({
+      umfang: umfang,
+      kategorien: { rolle: true, aufgabe: true, ergebnis: true },
+      relationen: BLOCK_RELATIONEN,
+      gruppierung: 'phase'
+    });
+    var aufgaben = null, knotenNach = {}, rang = {};
+    tg.spalten.forEach(function (sp) {
+      if (sp.kategorie === 'aufgabe') { aufgaben = sp; }
+      sp.knoten.forEach(function (k, i) { knotenNach[k.id] = k; rang[k.id] = i; });
+    });
+    if (!aufgaben) { return []; }
+    var rolleVon = {}, ergebnisseVon = {};
+    tg.kanten.forEach(function (ka) {
+      if (ka.rel === 'verantwortlich' && !rolleVon[ka.nach]) { rolleVon[ka.nach] = knotenNach[ka.von]; }
+      if (ka.rel === 'erzeugt') { (ergebnisseVon[ka.von] = ergebnisseVon[ka.von] || []).push(knotenNach[ka.nach]); }
+    });
+    return aufgaben.knoten.map(function (a) {
+      return {
+        aufgabe: a,
+        rolle: rolleVon[a.id] || null,
+        ergebnisse: (ergebnisseVon[a.id] || []).sort(function (x, y) { return rang[x.id] - rang[y.id]; }),
+        bahn: aufgaben.gruppeVon[a.id] || '',
+        unter: unter
+      };
+    });
+  }
+
+  /**
+   * Die Blöcke eines Umfangs, zusammengesetzt aus Feldern von je einer Phase
+   * und einem Modul — Phase für Phase (leer: alle der Vorgehensweise), darin
+   * Modul für Modul in der Reihenfolge der Daten (leer: alle). So steht eine
+   * Aufgabe in jeder ihrer Phasen und, wie in der Abbildung 1, unter jedem
+   * Modul, das sie dort hat, jeweils mit den Ergebnissen dieses Felds
+   * («Lösungsanforderungen erarbeiten» im Konzept unter Produkt und unter
+   * IT-System). mitUnter: das Modul als Unterbahn (sonst leer).
+   */
+  function bloecke(umfang, mitUnter) {
+    var vp = phasenDerVorgehensweise(umfang.vorgehen);
+    var phasen = umfang.phasen.length ? vp.filter(function (p) { return umfang.phasen.indexOf(p) !== -1; }) : vp;
+    var alleModule = HT.daten.eintraegeDerKategorie('modul').map(function (m) { return m.begriff; });
+    var module = umfang.module.length ? alleModule.filter(function (m) { return umfang.module.indexOf(m) !== -1; }) : alleModule;
+    var aus = [];
+    phasen.forEach(function (phase) {
+      module.forEach(function (modul) {
+        var feld = { vorgehen: umfang.vorgehen, phasen: [phase], module: [modul] };
+        aus = aus.concat(bloeckeImFeld(feld, mitUnter ? modul : ''));
+      });
+    });
+    return aus;
+  }
+
   /* --- Suche --------------------------------------------------------------- */
 
   function suchen(text, max) {
@@ -776,6 +839,7 @@
     szenarioModule: szenarioModule,
     beitrag: beitrag,
     teilgraph: teilgraph,
+    bloecke: bloecke,
     abbildungLagenSetzen: abbildungLagenSetzen,
     einstieg: einstieg,
     suchen: suchen
