@@ -304,16 +304,33 @@ main:focus { outline: none; }
    im Überblick Suche und Filter Platz haben. Die Suche ist ein Kreis, der beim
    Tippen nach links über die Marke breit wird; die Symbole rechts bleiben. */
 @media (max-width: 699.98px) {
-  .marke { gap: 8px; padding: 10px 8px 10px 12px; }
-  .github { padding: 0 6px 0 8px; }
-  .kofi { padding: 0 12px 0 6px; }
-  .kopf-suche { flex: 1 1 auto; gap: 2px; padding: 0 2px; }
+  /* Die Suchpille hält 14 px Abstand zum Zeichen rechts von ihr (GitHub bzw.
+     im Überblick der Filter, zu dem es 8 px sind); vorher waren es 10 bzw.
+     2 px. Den Platz geben Marke und Beta-Pille her. */
+  .marke { gap: 6px; padding: 10px 4px 10px 12px; }
+  .marke__beta { padding: 0 6px; letter-spacing: .08em; }
+  .github { padding: 0 5px 0 6px; }
+  .kofi { padding: 0 12px 0 5px; }
+  .kopf-suche { flex: 1 1 auto; gap: 8px; padding: 0 8px 0 2px; }
   .kopf-suche .gleiste-suche { flex: 0 0 auto; width: 34px; }
-  .kopf-suche .gleiste-suche__feld { padding-left: 32px; }
+  /* Zugeklappt ein Kreis von 34 px: mit 10 px Innenabstand rechts war das
+     Feld 44 px breit, ragte über seine Hülle und berührte das Zeichen
+     rechts davon. Die Lupe steht in seiner Mitte. */
+  .kopf-suche .gleiste-suche__feld { padding-left: 32px; padding-right: 0; }
+  .kopf-suche .gleiste-suche__ikone { left: 9px; }
+  .kopf-suche .gleiste-suche:focus-within .gleiste-suche__feld,
+  .kopf-suche .gleiste-suche.ist-suchend .gleiste-suche__feld { padding-right: 10px; }
   .kopf-suche .gleiste-suche__feld::placeholder { color: transparent; }
   .kopf-suche .gleiste-suche:focus-within,
   .kopf-suche .gleiste-suche.ist-suchend { width: min(22rem, 70vw); }
   .kopf-suche .gleiste-suche:focus-within .gleiste-suche__feld::placeholder { color: var(--text-leise-hell); }
+}
+/* Unter 380 px (360-px-Telefone) reicht das nicht: im Überblick lag die Pille
+   sonst über «Beta». Die Marke wird etwas kleiner. */
+@media (max-width: 379.98px) {
+  .marke { gap: 5px; }
+  .marke__logo, .marke__logo svg { width: 22px; height: 22px; }
+  .marke__text { font-size: 14.5px; }
 }
 
 .nav-top {
