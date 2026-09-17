@@ -10,7 +10,7 @@
    eine Erklärung vorn in die Karte des Info-Icons. Ein Teil mit
    eigenen Seiten in voller Breite (die Übungen des Zuordnens) bringt dazu
    istUebung(params) und titel(params) mit. Weitere Teile (etwa
-   Prüfungsfragen anderer Herkunft) kommen dazu, indem sie sich anmelden und
+   Quizfragen anderer Herkunft) kommen dazu, indem sie sich anmelden und
    in TEILE eingetragen werden.
 
    Adressen: #/trainer (Zuordnen), #/trainer?teil=lernkarten,
@@ -59,8 +59,8 @@
   function infoInhalt(teilInfo) {
     var teil = teilInfo ? teilInfo() : [];
     return teil.concat(teil.length ? [h('h3', { class: 'gpop__abschnitt', text: 'Trainer' })] : [], [
-      h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse einander zuordnen, Lernkarten umdrehen und selbst einschätzen, Prüfungsfragen beantworten. Der Fortschritt zeigt nach Phase und Modul, was davon schon sitzt.' }),
-      h('p', { text: 'Zuordnen und Lernkarten entstehen aus den Querverweisen der offiziellen Dokumentation. Die kuratierten Quizfragen sind eigene, am Referenzhandbuch geprüfte Texte mit Belegzitat; weitere Fragen entstehen maschinell aus den erfassten Daten.' }),
+      h('p', { text: 'Üben für die Prüfung auf drei Arten: Rollen, Aufgaben und Ergebnisse einander zuordnen, Lernkarten umdrehen und selbst einschätzen, Quizfragen beantworten. Der Fortschritt zeigt nach Phase und Modul, was davon schon sitzt.' }),
+      h('p', { text: 'Zuordnen und Lernkarten entstehen aus den Querverweisen der offiziellen Dokumentation. Die kuratierten Quizfragen sind eigene Texte mit Belegzitat aus dem Referenzhandbuch, weitere Fragen entstehen maschinell aus den erfassten Daten; sie sind nicht geprüft und haben keinerlei Bezug zur offiziellen Prüfung.' }),
       h('p', { text: 'Der Lernstand bleibt in diesem Browser; auf der Seite «Über» lässt er sich exportieren und wieder einlesen.' }),
       h('p', { class: 'hb-verweis' }, [
         h('a', { class: 'hb-online', href: '#/ueber', text: 'Lernstand sichern →' }),

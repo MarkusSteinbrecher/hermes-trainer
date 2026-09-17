@@ -1,6 +1,9 @@
 /* meinHERMES — Teil «Quiz» des Trainers (#/trainer?teil=quiz).
    Multiple Choice mit vier Antworten, sofortiger Rückmeldung und Auswertung.
-   Fragen stammen aus data/quizfragen.json und aus generierten Fragen zu den Elementen. */
+   Fragen stammen aus data/quizfragen.json und aus generierten Fragen zu den Elementen.
+   Oben auf der Einstellungsseite steht, dass die Fragen nicht geprüft sind und
+   keinen Bezug zur offiziellen Prüfung haben; darum heissen sie auch nicht
+   «Prüfungsfragen», sondern kuratierte bzw. generierte Fragen. */
 (function (global) {
   'use strict';
 
@@ -324,7 +327,7 @@
     if (!fragen.length) {
       lauf = null;
       hinweis = konfig.herkunft === 'kuratiert'
-        ? 'Für diese Auswahl gibt es keine Prüfungsfragen. Quelle auf «Gemischt» oder «Nur generierte Fragen» umstellen.'
+        ? 'Für diese Auswahl gibt es keine kuratierten Fragen. Quelle auf «Gemischt» oder «Nur generierte Fragen» umstellen.'
         : 'Für diese Auswahl lassen sich keine Fragen bilden — eine Kategorie braucht mindestens vier Einträge, '
           + 'damit plausible falsche Antworten entstehen. Bitte weitere Kategorien zulassen.';
       zeichnen();
@@ -401,6 +404,14 @@
   function konfigAnsicht(behaelter) {
     var st = statistik();
 
+    behaelter.appendChild(h('div', { class: 'hinweisbox quiz-hinweis', role: 'note' }, [
+      h('p', {}, [
+        h('b', { text: 'Hinweis: ' }),
+        'Die Quizfragen sind nicht geprüft und haben keinerlei Bezug zur offiziellen HERMES-Prüfung. '
+          + 'Massgebend ist allein die offizielle Dokumentation.'
+      ])
+    ]));
+
     if (hinweis) {
       behaelter.appendChild(h('div', { class: 'datenwarnung', role: 'status', text: hinweis }));
       hinweis = '';
@@ -430,14 +441,14 @@
 
     behaelter.appendChild(schalterGruppe('Fragenquelle', [
       { wert: 'gemischt', label: 'Gemischt' },
-      { wert: 'kuratiert', label: 'Nur Prüfungsfragen' },
+      { wert: 'kuratiert', label: 'Nur kuratierte Fragen' },
       { wert: 'generiert', label: 'Nur generierte Fragen' }
     ], function (w) { return konfig.herkunft === w; },
       function (w) { konfig.herkunft = w; }));
 
     behaelter.appendChild(h('p', {
       class: 'trefferzahl',
-      text: 'Im Bestand: ' + HT.daten.quizfragen().length + ' kuratierte Prüfungsfragen mit Belegstelle im Referenzhandbuch'
+      text: 'Im Bestand: ' + HT.daten.quizfragen().length + ' kuratierte Fragen mit Belegstelle im Referenzhandbuch'
         + ' · Generierte Fragen entstehen automatisch aus ' + HT.daten.alleEintraege().length + ' Einträgen.'
     }));
 
@@ -535,7 +546,7 @@
 
     behaelter.appendChild(h('div', { class: 'quiz-kopf' }, [
       h('span', { text: 'Frage ' + (lauf.index + 1) + ' von ' + lauf.fragen.length }),
-      h('span', { text: f.herkunft === 'kuratiert' ? 'Prüfungsfrage' : 'Generierte Frage' })
+      h('span', { text: f.herkunft === 'kuratiert' ? 'Kuratierte Frage' : 'Generierte Frage' })
     ]));
 
     var anteil = HT.ui.prozent(lauf.index, lauf.fragen.length);

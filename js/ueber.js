@@ -165,7 +165,7 @@
         extern('https://www.hermes.admin.ch/_Resources/Persistent/c/7/1/6/c7166cbb014fffc5a7ebb4697ba59ef63edb0de3/HERMES-Projektmanagement.pdf', 'Referenzhandbuch Projektmanagement, Ausgabe 2022, 3. Auflage vom 9. März 2026 (PDF)'),
         ' wieder; die Abbildungen und die Handbuchtexte der Karten im Überblick stammen von ',
         extern('https://www.hermes.admin.ch/de/projektmanagement.html', 'HERMES online'),
-        ', der für die Zertifizierung massgeblichen Quelle. Kurzfassungen und Quizfragen sind eigene, am Wortlaut geprüfte Texte. '
+        ', der für die Zertifizierung massgeblichen Quelle. Kurzfassungen sind eigene, am Wortlaut geprüfte Texte; die Quizfragen sind nicht geprüft und haben keinerlei Bezug zur offiziellen Prüfung. '
           + 'Die Urheberrechte liegen bei der Schweizerischen Eidgenossenschaft; die Wiedergabe dient ausschliesslich dem Lernen.'
       ]),
 
