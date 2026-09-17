@@ -89,6 +89,7 @@
   var IKONE_INFO = ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z', 'M12 11v5.5', 'M12 7.6h.01'];
   var info = null;            // Knopf und Karte der Leiste, die gerade steht
   var infoGebunden = false;
+  var randBeobachter = null;  // misst die Mitte der Leiste, die gerade steht
 
   function infoOffen() {
     return !!info && !info.karte.hidden && document.body.contains(info.karte);
@@ -153,10 +154,15 @@
     if (opt.links) {
       mitte.push(h('nav', { class: 'unterleiste__nav', 'aria-label': opt.label || null },
         h('ul', { class: 'unterleiste__liste' }, opt.links.map(function (l) {
-          return h('li', {}, h('a', { class: 'unterleiste__link', href: l.href, 'aria-current': l.aktiv ? 'page' : null }, [
+          /* Links mit Icon (die Teile des Trainers) zeigen schmal nur das
+             Icon, solange sie nicht gewählt sind. */
+          return h('li', {}, h('a', {
+            class: 'unterleiste__link' + (l.pfade ? ' unterleiste__link--ikone' : ''),
+            href: l.href, 'aria-current': l.aktiv ? 'page' : null
+          }, [
             l.pfade ? HT.ui.symbol(l.pfade, 14) : null,
             l.nr ? h('span', { class: 'unterleiste__nr', text: l.nr }) : null,
-            h('span', { text: l.text })
+            h('span', { class: 'unterleiste__text', text: l.text })
           ]));
         }))));
     }
@@ -174,6 +180,25 @@
     if (aktiv && rolle.scrollWidth > rolle.clientWidth) {
       rolle.scrollLeft = aktiv.offsetLeft - (rolle.clientWidth - aktiv.offsetWidth) / 2;
     }
+
+    /* Rollt die Mitte, läuft sie dort weich aus, wo noch etwas folgt
+       (data-mehr: links, rechts, beide) — sonst sähe man schmal nicht, dass
+       Kapitel oder Einstellungen der Übung neben dem Rand liegen. Neu
+       gemessen beim Rollen und wenn sich eine Breite ändert (Fenster,
+       Schrift, Zähler der Übung). */
+    function randSetzen() {
+      var links = rolle.scrollLeft > 1;
+      var rechts = rolle.scrollLeft + rolle.clientWidth < rolle.scrollWidth - 1;
+      rolle.dataset.mehr = links ? (rechts ? 'beide' : 'links') : (rechts ? 'rechts' : '');
+    }
+    rolle.addEventListener('scroll', randSetzen, { passive: true });
+    if (randBeobachter) { randBeobachter.disconnect(); }
+    if (global.ResizeObserver) {
+      randBeobachter = new global.ResizeObserver(randSetzen);
+      randBeobachter.observe(rolle);
+      Array.prototype.forEach.call(rolle.children, function (k) { randBeobachter.observe(k); });
+    }
+    randSetzen();
   }
 
   /* --- Navigation --------------------------------------------------------- */

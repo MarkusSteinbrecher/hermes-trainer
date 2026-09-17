@@ -367,7 +367,7 @@
   /* --- Darstellung: Konfiguration ---------------------------------------- */
 
   function schalterGruppe(titel, optionen, istAktiv, beiWahl) {
-    var liste = h('ul', { class: 'chips' });
+    var liste = h('ul', { class: 'chips chips--umbruch' });
     var knoepfe = [];
 
     function markieren() {
@@ -442,7 +442,7 @@
     }));
 
     /* Kategorienfilter */
-    var katListe = h('ul', { class: 'chips chips--streifen', 'aria-label': 'Kategorien filtern' });
+    var katListe = h('ul', { class: 'chips chips--umbruch', 'aria-label': 'Kategorien filtern' });
     var katKnoepfe = [];
 
     function katMarkieren() {

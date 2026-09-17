@@ -379,6 +379,20 @@ main:focus { outline: none; }
 .unterleiste__mitte::-webkit-scrollbar { display: none; }
 .unterleiste__mitte > :first-child { margin-left: auto; }
 .unterleiste__mitte > :last-child { margin-right: auto; }
+/* Wo noch etwas folgt, läuft der Rand weich aus (data-mehr aus
+   HT.app.unterleiste). */
+.unterleiste__mitte[data-mehr="rechts"] {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+}
+.unterleiste__mitte[data-mehr="links"] {
+  -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to left, #000 calc(100% - 28px), transparent);
+}
+.unterleiste__mitte[data-mehr="beide"] {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+}
 .unterleiste__nav { display: flex; flex: 0 0 auto; }
 .unterleiste__liste {
   display: flex;
@@ -406,6 +420,19 @@ main:focus { outline: none; }
 .unterleiste__nr { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--akzent-text); }
 .unterleiste__link[aria-current="page"] .unterleiste__nr { color: inherit; }
 .unterleiste__link svg { width: 14px; height: 14px; flex: 0 0 auto; }
+/* Schmal passen die vier Teile des Trainers mit Namen nicht in die Zeile
+   (406 px bei 270 frei): nicht gewählte zeigen nur ihr Icon, der Name
+   bleibt für Screenreader. */
+@media (max-width: 699.98px) {
+  .unterleiste__link--ikone:not([aria-current="page"]) { padding-inline: 10px; }
+  .unterleiste__link--ikone:not([aria-current="page"]) .unterleiste__text {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+  }
+}
 /* Trefferzahl der Handbuchsuche je Kapitel: klein über dem Ende des
    Links, wie eine Marke am Reiter — ohne ihn breiter zu machen, die elf
    Kapitel füllen die Leiste. */
@@ -637,18 +664,20 @@ main:focus { outline: none; }
 .chip__zahl { font-weight: 500; color: var(--text-leise-hell); font-variant-numeric: tabular-nums; letter-spacing: 0; }
 .chip svg { width: 14px; height: 14px; flex: 0 0 auto; }
 
-/* Auf schmalen Screens einzeilig scrollbar, damit der Lerninhalt oben bleibt. */
-.chips--streifen {
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  margin-inline: -16px;
-  padding-inline: 16px;
+/* Kategorien, die schmal umbrechen (vorher rollten sie einzeilig und
+   versteckten «Grundbegriffe» neben dem Rand). Jede Zeile beginnt ohne
+   Strich: jeder Chip hat seinen Strich davor, die Liste steht um dessen
+   Breite (9 px) weiter links, und clip-path schneidet diesen Streifen ab —
+   dort liegen genau die Striche am Zeilenanfang. */
+.chips--umbruch { margin-left: -9px; clip-path: inset(-8px -8px -8px 9px); }
+.chips--umbruch > li::before {
+  content: '';
+  width: 1px;
+  height: 16px;
+  margin: 0 4px;
+  background: var(--rand);
 }
-.chips--streifen::-webkit-scrollbar { display: none; }
-.chips--streifen > li { flex: 0 0 auto; }
+.chips--umbruch .chip:focus-visible { outline-offset: -2px; }
 
 /* --- Suchfeld ------------------------------------------------------------- */
 .suche { position: relative; margin-bottom: 14px; }
@@ -882,9 +911,10 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 }
 .lk-zuruecksetzen:hover { color: var(--text); background: var(--flaeche-2); }
 @media (max-width: 699.98px) {
-  /* Schmal rollen die Kategorien in ihrer eigenen Zeile, der Fortschritt steht darunter —
-     die Zahlen, wenn nötig, über Balken, Anteil und Icon. */
-  .lk-zeile > .chips { flex-basis: 100%; }
+  /* Schmal brechen die Kategorien in ihren eigenen Zeilen um, der Fortschritt steht darunter —
+     die Zahlen, wenn nötig, über Balken, Anteil und Icon. Die 9 px gleichen den
+     abgeschnittenen Strich am Zeilenanfang aus (.chips--umbruch). */
+  .lk-zeile > .chips { flex-basis: calc(100% + 9px); }
   .lk-zeile__rechts { max-width: 100%; }
   .lk-fortschritt { flex-wrap: wrap; row-gap: 2px; }
 }
@@ -1455,13 +1485,6 @@ a.pm-phase:hover .pm-phase__name { color: var(--akzent); }
 
   .eintraege { grid-template-columns: minmax(0, 1fr); }
   .btn-reihe > .btn--primaer, .btn-reihe > .btn--gut, .btn-reihe > .btn--schlecht { flex: 0 1 auto; }
-
-  .chips--streifen {
-    flex-wrap: wrap;
-    overflow: visible;
-    margin-inline: 0;
-    padding-inline: 0;
-  }
 }
 
 /* Phasenmodell nebeneinander — erst ab 900 px, sonst wird es bei fünf Phasen

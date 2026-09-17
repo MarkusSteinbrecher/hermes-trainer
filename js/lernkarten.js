@@ -1082,7 +1082,7 @@
   }
 
   function chipsAufbauen() {
-    var liste = h('ul', { class: 'chips chips--streifen', 'aria-label': 'Kategorien filtern' });
+    var liste = h('ul', { class: 'chips chips--umbruch', 'aria-label': 'Kategorien filtern' });
     var knoepfe = [];
 
     function markieren() {

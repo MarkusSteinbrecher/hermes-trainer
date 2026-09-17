@@ -954,6 +954,10 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
   .ub-buehne, .ub-bild { max-height: 72vh; min-height: 200px; }
   /* Schmal rollt die Leiste; ‹ Titel › soll dort trotzdem ganz zu sehen sein. */
   .ub-schritte__titel { width: 13rem; }
+  /* Die Leiste rollt hier schmal immer (rechts liegt die Auswahl des Graphen),
+     zentriert wird nichts: der Platzhalter links gäbe ‹ Titel › nur weniger
+     Platz — mit ihm lag › im weichen Rand (bei 360 px sogar abgeschnitten). */
+  body[data-route="ueberblick"] .unterleiste__inner--info::before { display: none; }
   /* Das Bild untereinander: Rolle, Aufgabe, darunter eingerückt die Ergebnisse. */
   .ub-bild { padding: 0 16px 24px; }
   .mb { --mb-spalten: minmax(0, 1fr); min-width: 0; }
