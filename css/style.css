@@ -1185,6 +1185,24 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
      Definition hinten mitten im Satz ab und rollte ohne sichtbaren Balken in
      der Karte, während zugleich die Seite rollte. */
   .flip__seite { max-height: none; overflow-y: visible; }
+  /* Die Knöpfe unter der Karte kleben über der unteren Navigation (49 px) —
+     vorher lagen sie bei längeren Karten darunter, und vor jeder Einschätzung
+     musste man erst nach unten rollen. Der Strich trennt sie von der Karte,
+     die unter ihnen weiterrollt. */
+  .lk-aktionen {
+    position: sticky;
+    bottom: calc(49px + env(safe-area-inset-bottom, 0px));
+    z-index: 4;
+    margin-inline: -16px;
+    padding: 6px 16px;
+    border-top: 1px solid var(--rand);
+    background: var(--bg);
+  }
+  /* Die Verweise am Fuss der Karte sind 22 px hoch; zum Antippen reicht ihre
+     Fläche unsichtbar 6 px über den Rand hinaus (unten 8 px ab der
+     Innenkante, der Strich darunter ist 2 px breit) — 34 px hoch. */
+  .lk-verweis { position: relative; }
+  .lk-verweis::after { content: ''; position: absolute; inset: -6px -6px -8px; }
 }
 @media (max-width: 559.98px) {
   /* Schmal reicht die Breite nicht für beides: die Knöpfe oben, darunter

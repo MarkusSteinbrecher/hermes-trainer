@@ -1479,9 +1479,14 @@
   function leerseite() {
     return h('div', { class: 'ub-leerseite' }, [
       h('h2', { class: 'ub-leerseite__titel', text: 'Noch nichts ausgewählt' }),
-      h('p', { class: 'ub-leerseite__text', text:
-        'Zeigen auf einen Ergebniskasten, einen Modulkopf oder einen Phasenbalken füllt '
-        + 'diese Seite. Ein Klick hält den Eintrag fest, die Trennlinie links lässt sich ziehen.' }),
+      /* Schmal (gestapelt, meist ohne Maus) gilt der zweite Satz. */
+      h('p', { class: 'ub-leerseite__text' }, [
+        h('span', { class: 'ub-leerseite__breit', text:
+          'Zeigen auf einen Ergebniskasten, einen Modulkopf oder einen Phasenbalken füllt '
+          + 'diese Seite. Ein Klick hält den Eintrag fest, die Trennlinie links lässt sich ziehen.' }),
+        h('span', { class: 'ub-leerseite__schmal', text:
+          'Antippen eines Ergebniskastens, eines Modulkopfs oder eines Phasenbalkens zeigt den Eintrag hier.' })
+      ]),
       h('h3', { class: 'ub-mikro ub-mikro--legende', text: 'Die Elemente der Methode' }),
       h('ul', { class: 'ub-legende' }, LEGENDE.map(function (l) {
         return h('li', {}, [ikone(l.kat, 20, 'ub-ikone--legende'), h('span', { text: l.text })]);
@@ -1659,7 +1664,7 @@
     }
     links.push(h('a', { class: 'hb-online', href: QUELLE_ALLGEMEIN, target: '_blank', rel: 'noopener', text: 'HERMES online ↗' }));
     return [
-      h('p', { text: 'Oben das Gesamtbild der Methode — Abbildung 1 des Referenzhandbuchs als Originalgrafik —, darunter der Graph mit Rollen, Aufgaben, Ergebnissen und ihren Verbindungen. Zeigen auf einen Kasten der Abbildung füllt die Inhaltsseite rechts; ein Klick, auch auf einen Knoten im Graphen, hält das Element dort fest.' }),
+      h('p', { text: 'Oben das Gesamtbild der Methode — Abbildung 1 des Referenzhandbuchs als Originalgrafik —, darunter der Graph mit Rollen, Aufgaben, Ergebnissen und ihren Verbindungen. Zeigen auf einen Kasten der Abbildung füllt die Inhaltsseite rechts (auf dem Telefon steht sie unter dem Graphen, dort genügt Antippen); ein Klick, auch auf einen Knoten im Graphen, hält das Element dort fest.' }),
       h('p', { text: 'Vorn in der Leiste gehen ‹ und › die Methode Schritt für Schritt durch: nach dem Gesamtbild die Initialisierung, dann Konzept, Realisierung und Einführung je Modul (Projektsteuerung und Projektführung zusammen, wie in der Abbildung), zuletzt der Abschluss; agil steht an Stelle der drei Phasen die Umsetzung. Ein Klick auf den Titel zeigt alle Schritte, klassisch und agil.' }),
       h('p', { text: 'Auf einem Schritt steht oben statt der Originalgrafik das nachgebaute Bild: je Aufgabe links die verantwortliche Rolle, rechts die Ergebnisse, die sie dort erzeugt — wie im Zuordnen des Trainers, aber ausgefüllt. «Details» blendet die beteiligten Rollen und die Kurzdefinitionen ein. Zeigen und Klicken wirken wie in der Abbildung; der Abfragemodus spielt immer auf der Originalgrafik.' }),
       h('p', { text: 'Rechts neben den Schritten blenden Elemente und Verbindungen im Graphen ein und aus. Phasen, Szenarien und Module frei kombinieren lässt das Filter-Icon neben der Suche; auch eine solche Auswahl zeigt oben das nachgebaute Bild.' }),

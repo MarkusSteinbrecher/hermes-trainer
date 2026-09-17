@@ -923,6 +923,7 @@ body[data-route="ueberblick"] .datenwarnung {
   color: var(--ub-tinte-weich);
   text-wrap: pretty;
 }
+.ub-leerseite__schmal { display: none; }
 .ub-legende { list-style: none; margin: 0; padding: 0; }
 .ub-legende li {
   display: flex;
@@ -973,6 +974,19 @@ body[data-route="ueberblick"] .kat-ikone { flex: 0 0 auto; }
      Spalte, die sich einklappen liesse. */
   .ub-panel__nurbreit, .ub-panel__block--nurbreit { display: none; }
   .ub-kopf, .ub-abschnitt, .ub-leerseite { padding-left: 16px; padding-right: 16px; }
+  /* Kein Zeigen, keine Trennlinie: der Hinweis der leeren Inhaltsseite spricht
+     vom Antippen. */
+  .ub-leerseite__breit { display: none; }
+  .ub-leerseite__schmal { display: inline; }
+  /* Die Linie zwischen Bild und Graph hat eine eigene Zeile, statt über
+     beiden Bereichen zu liegen: die Chips der Auswahl brechen hier in bis zu
+     drei Zeilen um und deckten sonst das Ende des Bildes zu. Ausweichen muss
+     ihr dann nichts mehr, und der Strich entfällt: er lief zwischen Pille und
+     umgebrochenen Chips durch, der graue Streifen trennt die Bereiche schon. */
+  .ub-sichten .ub-teilung,
+  .ub-sichten[data-teilung] .ub-teilung { margin: 0; flex-wrap: wrap; }
+  .ub-teilung::before { display: none; }
+  .ub-sichten[data-teilung] { --ub-oben-frei: 0px; --ub-unten-frei: 0px; }
   .ub-verweise { padding: 18px 16px 24px; }
   .ub-inhalt { border-top: 1px solid var(--ub-linie); }
   .ub-kopf__titel { font-size: 26px; }
