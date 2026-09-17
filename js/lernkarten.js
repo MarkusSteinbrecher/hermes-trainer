@@ -19,7 +19,8 @@
    gezeigte Karte wieder, › überspringt die Karte ohne Einschätzung. Das Icon
    daneben zeigt statt der Karte die Liste aller Karten: nach Kategorie, darin
    alphabetisch, je mit dem Verlauf; ein Klick legt die Karte zuoberst auf den
-   Stapel und zeigt sie. */
+   Stapel und zeigt sie. Jede Karte trägt eine feste Nummer — auf beiden
+   Seiten und in der Liste —, damit man sie dort wiederfindet. */
 (function (global) {
   'use strict';
 
@@ -230,6 +231,34 @@
     return HT.daten.eintragMitId(id)
       || HT.daten.eintraegeDerKategorie('grundbegriff').filter(function (e) { return e.id === id; })[0]
       || null;
+  }
+
+  /* Feste Nummer je Karte, gezählt in der Reihenfolge der Liste über alle
+     Kategorien — Aufgaben, Ergebnisse, Grundbegriffe, darin alphabetisch —,
+     unabhängig von Filter, Stapel und Vorderseite. */
+  var nummern = null;      // id -> Nummer
+
+  function kartenAlphabetisch(kat) {
+    return kartenDerKategorie(kat).sort(function (a, b) {
+      return a.begriff.localeCompare(b.begriff, 'de');
+    });
+  }
+
+  function nummerVon(id) {
+    if (!nummern) {
+      nummern = {};
+      var n = 0;
+      KATEGORIEN.forEach(function (kat) {
+        kartenAlphabetisch(kat).forEach(function (e) { nummern[e.id] = ++n; });
+      });
+    }
+    return nummern[id] || null;
+  }
+
+  /** «Nr. 57» im Kopf der Karte, neben der Kategorie. */
+  function nummerMarke(e) {
+    var nr = nummerVon(e.id);
+    return nr ? h('span', { class: 'lk-nr', text: 'Nr. ' + nr }) : null;
   }
 
   function auswahl() {
@@ -567,13 +596,14 @@
     var istBegriff = !begriffGesucht();
     var sperren = [];
 
-    /* Oben eine Zeile: links der Begriff mit seiner Kategorie, rechts die
+    /* Oben eine Zeile: links der Begriff mit Kategorie und Nummer, rechts die
        Wahl, was vorne steht. Ist der Begriff gesucht, steht dort nur die
        Kategorie, und die Definition folgt darunter — ohne den gesuchten
        Begriff. */
     var kopf = h('div', { class: 'lk-kopf' }, [
       istBegriff ? h('div', { class: 'flip__inhalt lk-kopf__begriff', text: e.begriff }) : null,
       HT.ui.badge(e.kategorie),
+      nummerMarke(e),
       seitenWahl()
     ]);
 
@@ -666,6 +696,7 @@
         h('span', { text: e.begriff })
       ]),
       HT.ui.badge(e.kategorie),
+      nummerMarke(e),
       h('div', { class: 'flip__rolle' }, [h('span', { text: 'Lösung' }), bilanz ? ' · ' : null, bilanz])
     ]));
     if (begriffAntwort && begriffAntwort.fertig && !begriffAntwort.richtig) {
@@ -831,15 +862,13 @@
   /* --- Liste aller Karten ------------------------------------------------- */
 
   /** Alle Karten der gewählten Kategorien, je Kategorie eine Gruppe in der
-      Reihenfolge der Chips, darin alphabetisch. Eine Zeile zeigt Symbol,
-      Begriff und die Punkte des Verlaufs; ein Klick übt die Karte. */
+      Reihenfolge der Chips, darin alphabetisch. Eine Zeile zeigt Nummer,
+      Symbol, Begriff und die Punkte des Verlaufs; ein Klick übt die Karte. */
   function listeAufbauen() {
     var gruppen = KATEGORIEN.filter(function (kat) {
       return !zustand.filter.length || zustand.filter.indexOf(kat) !== -1;
     }).map(function (kat) {
-      var karten = kartenDerKategorie(kat).sort(function (a, b) {
-        return a.begriff.localeCompare(b.begriff, 'de');
-      });
+      var karten = kartenAlphabetisch(kat);
       if (!karten.length) { return null; }
       return h('section', { class: 'lk-liste__gruppe' }, [
         h('h2', { class: 'lk-liste__titel', text: HT.daten.kategorieMeta(kat).label + ' · ' + karten.length }),
@@ -848,6 +877,7 @@
             type: 'button', class: 'lk-liste__karte',
             on: { click: function () { karteUeben(e.id); } }
           }, [
+            h('span', { class: 'lk-liste__nr', text: String(nummerVon(e.id)) }),
             HT.ui.katSymbol(e.kategorie, 15),
             h('span', { class: 'lk-liste__begriff', text: e.begriff }),
             verlaufAnzeige(e)
@@ -1168,7 +1198,8 @@
           h('p', { text: 'Unter der Karte blättert man mit ‹ und ›: ‹ zeigt die zuvor gezeigte Karte wieder, auch eine schon '
             + 'eingeschätzte; › überspringt die Karte ohne Einschätzung, sie kommt ans Ende des Stapels (eine gewusste fällt heraus). '
             + 'Das Icon daneben zeigt alle Karten der gewählten Kategorien als Liste, nach Kategorie und alphabetisch, je mit den '
-            + 'Punkten der letzten Versuche. Ein Klick auf eine Karte zeigt sie zum Üben — auch eine, die schon als gewusst gilt —, '
+            + 'Punkten der letzten Versuche. Die Nummer oben auf der Karte («Nr. 57») steht dort vorn in der Zeile und bleibt '
+            + 'gleich, welche Kategorien auch gewählt sind. Ein Klick auf eine Karte zeigt sie zum Üben — auch eine, die schon als gewusst gilt —, '
             + '«Zur Karte» oben führt ohne Wahl zurück.' })
         ];
       });

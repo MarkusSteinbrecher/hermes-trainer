@@ -944,6 +944,8 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 /* Die Wahl (hinten die Bilanz) steht rechts — bricht ein langer Begriff die
    Zeile um, teilt sie sich die zweite Zeile mit der Kategorie. */
 .lk-kopf > :last-child { margin-left: auto; }
+/* Feste Nummer der Karte, leise neben der Kategorie (dieselbe wie in der Liste). */
+.lk-nr { font-size: 12px; font-weight: 600; color: var(--text-leise); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .lk-seitenwahl { display: flex; align-items: center; gap: 6px; }
 .lk-seitenwahl .chips { flex-wrap: nowrap; margin: 0; padding: 0; border: 0; }
 .lk-seitenwahl .chip { height: 26px; }
@@ -1181,6 +1183,8 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-liste__karte:focus-visible { outline-offset: -2px; }
 .lk-liste__karte svg { flex: 0 0 auto; }
 .lk-liste__begriff { min-width: 0; overflow-wrap: break-word; }
+/* Die Nummer vorn in der Zeile, rechtsbündig, damit die Symbole untereinander stehen. */
+.lk-liste__nr { flex: 0 0 3ch; text-align: right; font-size: 12px; font-weight: 600; color: var(--text-leise); font-variant-numeric: tabular-nums; }
 .lk-liste__karte .lk-verlauf { flex: 0 0 auto; padding-left: 8px; }
 
 /* Das Zeichen einer geprüften Wahl — auf der Lösung vor der Bezeichnung. */
