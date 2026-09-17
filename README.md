@@ -6,7 +6,7 @@
 
 meinHERMES hilft, die Methode HERMES 2022 der Schweizer Bundesverwaltung zu verstehen und die Begriffe für die Prüfung sicher zu beherrschen: Wer tut was, und was entsteht dabei? Jeder Begriff ist mit der offiziellen Dokumentation auf hermes.admin.ch verknüpft — inklusive Kapitel und Seite im Referenzhandbuch.
 
-Die Anwendung ist eine **Beta-Version**. Rückmeldungen und Fehlerberichte sind willkommen: [Issue eröffnen](https://github.com/MarkusSteinbrecher/meinHERMES/issues).
+Die Anwendung ist eine **Beta-Version**; die Benützung erfolgt auf eigene Gefahr. Rückmeldungen und Fehlerberichte sind willkommen: [Issue eröffnen](https://github.com/MarkusSteinbrecher/meinHERMES/issues).
 
 ## Was drin ist
 

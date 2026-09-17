@@ -135,7 +135,8 @@
     'quiz-konfig': { art: 'einstellung', form: istObjekt },
     graph: { art: 'ansicht', form: istObjekt },
     handbuch: { art: 'ansicht', form: istObjekt },
-    'ueberblick-drill': { art: 'ansicht', form: istObjekt }
+    'ueberblick-drill': { art: 'ansicht', form: istObjekt },
+    willkommen: { art: 'ansicht', form: istObjekt }        // «Nicht mehr anzeigen» (js/ueber.js)
   };
 
   function ersetzbar(schluessel) {

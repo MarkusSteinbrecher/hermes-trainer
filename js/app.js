@@ -371,6 +371,8 @@
         }
       }
       zeichnen();
+      /* Neue Besucher sehen die Über-Seite einmal als Hinweis (Beta, eigene Gefahr). */
+      HT.views.ueber.willkommen(routeLesen().name);
     }).catch(function (fehler) {
       var behaelter = document.getElementById('view');
       if (!behaelter) { return; }

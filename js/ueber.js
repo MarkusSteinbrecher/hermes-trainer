@@ -101,13 +101,8 @@
 
     if (importiert) { meldung('Import abgeschlossen: in diesem Browser gilt jetzt der Stand aus der Datei.'); }
 
-    return h('div', { class: 'hinweisbox' }, [
-      h('p', { text: 'Lernfortschritt, Markierungen, Filtereinstellungen und Quiz-Statistik liegen ausschliesslich lokal im Speicher dieses Browsers '
-        + '(localStorage). Es werden keine Daten an einen Server übermittelt, es gibt keine Konten, kein Tracking und keine Cookies von Dritten. '
-        + 'Wer den Browserspeicher leert, beginnt wieder bei null.' }),
-      h('p', { text: 'Für ein anderes Gerät oder als Sicherung: «Exportieren» legt Lernstand, Markierungen und Einstellungen als Datei ab, '
-        + '«Importieren» liest sie in einem anderen Browser wieder ein und ersetzt dort den bisherigen Stand. '
-        + 'Die Datei entsteht auf dem eigenen Gerät und wird nirgends hin übermittelt.' }),
+    return h('div', { class: 'daten' }, [
+      h('p', { text: DATEN_SATZ + ' «Exportieren» sichert sie als Datei, «Importieren» übernimmt die Datei in einem anderen Browser und ersetzt dort den bisherigen Stand.' }),
       h('p', {
         class: 'trefferzahl',
         text: HT.store.verfuegbar
@@ -128,72 +123,72 @@
     ]);
   }
 
+  /* --- Inhalt: Seite und Willkommenshinweis ------------------------------- */
+
+  var ISSUES = 'https://github.com/MarkusSteinbrecher/meinHERMES/issues';
+  var DATEN_SATZ = 'Lernstand, Markierungen und Einstellungen bleiben in diesem Browser: kein Konto, keine Übertragung an einen Server, kein Tracking.';
+
+  function punkt(name, text) {
+    return h('li', {}, [h('b', { text: name + ': ' }), text]);
+  }
+
+  /* Dieselben Abschnitte auf der Seite und im Hinweis für neue Besucher;
+     `daten` ist der Abschnitt «Gespeicherte Daten» — auf der Seite mit
+     Export und Import, im Hinweis nur ein Satz mit Verweis hierher. */
+  function abschnitte(daten) {
+    return [
+      h('div', { class: 'hinweisbox' }, [
+        h('h2', { text: 'Beta-Version' }),
+        h('p', {}, [
+          'meinHERMES ist noch in Entwicklung: Inhalte können Fehler enthalten, Funktionen sich ändern. ',
+          h('b', { text: 'Die Benützung erfolgt auf eigene Gefahr.' }),
+          ' Für Richtigkeit und Vollständigkeit wird keine Gewähr übernommen; massgebend für die Prüfung ist allein die offizielle HERMES-Dokumentation.'
+        ]),
+        h('p', {}, ['Fehler gefunden? ', extern(ISSUES, 'Auf GitHub melden')])
+      ]),
+
+      h('p', { text: 'meinHERMES ist eine private, inoffizielle Lernhilfe für die HERMES-2022-Prüfung, ohne Verbindung zur Bundesverwaltung oder zum HERMES-Fachausschuss. '
+        + 'Jeder Eintrag, jede Lernkarte und jede Quizfrage verweist auf ihre Stelle im Referenzhandbuch und auf HERMES online.' }),
+
+      h('h2', { text: 'Aufbau' }),
+      h('ul', {}, [
+        punkt('Überblick', 'die Methode als Abbildung und als Graph — Rollen, Aufgaben und Ergebnisse mit ihren Zusammenhängen, je Phase und Modul.'),
+        punkt('Trainer', 'Zuordnen, Lernkarten und Quiz; der Fortschritt zeigt, was schon sitzt.'),
+        punkt('Handbuch', 'das Referenzhandbuch als Text, mit Kapitelnummern, Seitenzahlen und Volltextsuche.'),
+        punkt('Markieren', 'Text im Überblick und im Handbuch auswählen und gelb hervorheben.')
+      ]),
+      h('p', { text: 'Wie eine Seite funktioniert, erklärt das Info-Icon rechts in ihrer Leiste.' }),
+
+      h('h2', { text: 'Quelle' }),
+      h('p', {}, [
+        'HERMES ist die Projektmanagementmethode der Schweizerischen Bundesverwaltung und ein offener Standard (eCH-0054). Das Handbuch gibt das ',
+        extern('https://www.hermes.admin.ch/_Resources/Persistent/c/7/1/6/c7166cbb014fffc5a7ebb4697ba59ef63edb0de3/HERMES-Projektmanagement.pdf', 'Referenzhandbuch Projektmanagement, Ausgabe 2022, 3. Auflage vom 9. März 2026 (PDF)'),
+        ' wieder; die Abbildungen und die Handbuchtexte der Karten im Überblick stammen von ',
+        extern('https://www.hermes.admin.ch/de/projektmanagement.html', 'HERMES online'),
+        ', der für die Zertifizierung massgeblichen Quelle. Kurzfassungen und Quizfragen sind eigene, am Wortlaut geprüfte Texte. '
+          + 'Die Urheberrechte liegen bei der Schweizerischen Eidgenossenschaft; die Wiedergabe dient ausschliesslich dem Lernen.'
+      ]),
+
+      h('h2', { text: 'Gespeicherte Daten' }),
+      daten,
+
+      h('h2', { text: 'Unterstützen' }),
+      h('p', {}, [
+        'meinHERMES ist kostenlos und ohne Werbung. Wer die Seite nützlich findet, kann die Arbeit daran auf ',
+        extern('https://ko-fi.com/rrradio', 'Ko-fi'),
+        ' mit einem Kaffee unterstützen.'
+      ])
+    ];
+  }
+
   function renderUeber(behaelter, params) {
     var importiert = !!(params && params.importiert);
     var daten = datenBereich(importiert);
     var prosa = h('div', { class: 'prosa' }, [
       h('div', { class: 'kopf' }, [
         h('h1', { text: 'Über meinHERMES' })
-      ]),
-
-      h('p', { text: 'meinHERMES ist eine private, inoffizielle Lernhilfe zur Vorbereitung auf die HERMES-2022-Prüfung. '
-        + 'Die Seite zeigt die Methodenelemente als Graph mit ihren Zusammenhängen und zeigt das Referenzhandbuch in seiner Gliederung — '
-        + 'und verweist bei jedem Eintrag, jeder Lernkarte und jeder Quizfrage auf die Belegstelle im Referenzhandbuch und auf HERMES online.' }),
-
-      h('h2', { text: 'Aufbau' }),
-      h('ul', {}, [
-        h('li', {}, [h('b', { text: 'Graph: ' }), 'die Methodenelemente und ihre Zusammenhänge: als Struktur (Szenarien, Module, Aufgaben, Ergebnisse, Rollen in Spalten), im Fokus (ein Element mit allen Verbindungen) und entlang der Phasen. Jede Verbindung entspricht einem Querverweis der offiziellen Dokumentation; Kategorien, Beziehungen und Filter lassen sich ein- und ausblenden.']),
-        h('li', {}, [h('b', { text: 'Trainer: ' }), 'drei Übungsformen unter einem Dach. Zuordnen: Rollen, Aufgaben und Ergebnisse der klassischen oder der agilen Vorgehensweise — je Phase, je Modul oder alles —, je Aufgabe eine Zeile mit der verantwortlichen Rolle links und den erzeugten Ergebnissen rechts, alles in leeren Kästen; die Elemente liegen daneben bereit und werden an ihren Platz gezogen, die Prüfung bewertet die Zuordnung (nicht die Reihenfolge) und zeigt richtig, falsch und offen. Lernkarten: zu jeder Aufgabe und jedem Ergebnis der Zusammenhang — Phase, Modul, verantwortliche Rolle und die erzeugten Ergebnisse bzw. die Aufgaben, aus denen es entsteht. Je Bezug eine Zeile auf der Vorderseite, und gesucht sind alle Werte, die dort richtig sind (die meisten Elemente stehen in mehreren Phasen, die meisten Aufgaben erzeugen mehrere Ergebnisse) — ausser der agilen Phase Umsetzung neben anderen Phasen, die zeigt erst die Lösung, leicht grau; gewählt wird in einem Kombinationsfeld, in langen Listen mit Suche. Jede Wahl wird sofort geprüft, die erste falsche beendet die Zeile; die Rückseite zeigt die Lösung samt eigener Wahl und die Definition. Dazu die Grundbegriffe: mit dem Begriff vorn zum Umdrehen (ein Klick auf die Karte zeigt die Lösung), mit der Definition vorn wählt man allein den Begriff. Ohne Wahl geht es auch: Karte drehen und selbst einschätzen. Quiz: kuratierte Prüfungsfragen mit Belegzitat aus dem Handbuch sowie automatisch aus den Elementkarten erzeugte Fragen. Fortschritt: die Methode als Raster wie in der Übersicht — Phasen als Spalten, Module als Zeilen —, in jedem Feld der Stand seiner Rollen, Aufgaben und Ergebnisse; gezählt wird beim Prüfen im Zuordnen und bei den Lernkarten, nach dreimal richtig gilt ein Element als verstanden. Der Lernstand bleibt lokal im Browser.']),
-        h('li', {}, [h('b', { text: 'Handbuch: ' }), 'das Referenzhandbuch Projektmanagement (PDF) 1:1 als Text, Kapitel für Kapitel in seiner Gliederung (Vorwort, Methodenüberblick, Methodenelemente, Phasen, Szenarien, Module, Ergebnisse, Aufgaben, Rollen, Hinweise zur Anwendung, Vokabular) mit den Kapitelnummern und Seitenzahlen des PDF; die Elemente stehen als Karten an ihrer Stelle im Text, jede mit Link auf HERMES online und auf die Seite im PDF. Nicht übernommen sind Inhalts-, Tabellen- und Abbildungsverzeichnis sowie der Index.']),
-        h('li', {}, [h('b', { text: 'Markieren: ' }), 'Wörter und Sätze im Überblick und im Handbuch auswählen und gelb hervorheben; ein Klick auf die Markierung nimmt sie wieder weg. Alles bleibt in diesem Browser.'])
-      ]),
-
-      h('h2', { text: 'Quelle der Inhalte' }),
-      h('p', {}, [
-        'HERMES ist die Projektmanagementmethode der Schweizerischen Bundesverwaltung und ein offener Standard (eCH-0054). ',
-        'Die Seite «Handbuch» gibt das ',
-        extern('https://www.hermes.admin.ch/_Resources/Persistent/c/7/1/6/c7166cbb014fffc5a7ebb4697ba59ef63edb0de3/HERMES-Projektmanagement.pdf', 'Referenzhandbuch Projektmanagement, Ausgabe 2022, 3. Auflage vom 9. März 2026 (PDF)'),
-        ' als Text wieder — mit seinen Kapitelnummern und Seitenzahlen; die Abbildungen stammen von ',
-        extern('https://www.hermes.admin.ch/de/projektmanagement.html', 'HERMES online'),
-        ' (gemäss Impressum die führende, für die Zertifizierung massgebliche Quelle), von dort kommen auch die Handbuchtexte der Karten im Überblick. Kurzfassungen und Quizfragen sind eigene, an diesem Wortlaut geprüfte Texte.'
-      ]),
-      h('p', { text: 'Die Urheberrechte an der HERMES-Dokumentation liegen bei der Schweizerischen Eidgenossenschaft (Bundeskanzlei, Digitale Transformation und IKT-Lenkung). '
-        + 'Die Wiedergabe dient ausschliesslich dem Lernen; massgebend bleibt in jedem Fall die offizielle Dokumentation.' }),
-
-      h('h2', { text: 'Unterstützen' }),
-      h('p', {}, [
-        'meinHERMES ist kostenlos und ohne Werbung. Wer die Seite nützlich findet, kann die Arbeit daran mit einem Kaffee unterstützen: ',
-        extern('https://ko-fi.com/rrradio', 'Ko-fi'),
-        '.'
-      ]),
-      h('ul', {}, [
-        h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/methodenueberblick.html', 'Methodenüberblick')),
-        h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/phasen.html', 'Phasen')),
-        h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/szenarien.html', 'Szenarien')),
-        h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/module.html', 'Module')),
-        h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/ergebnisse.html', 'Ergebnisse')),
-        h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/aufgaben.html', 'Aufgaben')),
-        h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/rollen.html', 'Rollen')),
-        h('li', {}, extern('https://www.hermes.admin.ch/de/projektmanagement/hinweise-zur-anwendung.html', 'Hinweise zur Anwendung')),
-        h('li', {}, extern('https://www.hermes.admin.ch/de/downloads.html', 'Downloads — Referenzhandbuch und weitere Unterlagen als PDF'))
-      ]),
-
-      h('h2', { text: 'Gespeicherte Daten' }),
-      daten,
-
-      h('h2', { text: 'Hinweise zur Nutzung' }),
-      h('ul', {}, [
-        h('li', { text: 'Im Graph: Klick auf einen Knoten zeigt Details und hebt die Nachbarn hervor, Doppelklick stellt ihn in den Fokus; Ziehen verschiebt, Mausrad oder zwei Finger zoomen. Grosse Gruppen sind auf zwölf Einträge gekappt («+ n weitere anzeigen»).' }),
-        h('li', { text: 'Die Suche in der Kopfzeile findet jedes Element; im Überblick steht rechts daneben der Filter für Abbildung und Graph. Im Handbuch sucht sie im Text aller Kapitel: der Zähler nennt die Treffer, Enter springt zum nächsten, Umschalt+Enter zum vorherigen, ⌘F bzw. Strg+F öffnet sie. Die Leiste unter der Kopfzeile wählt im Handbuch das Kapitel; im Überblick gehen dort ‹ und › die Methode Schritt für Schritt durch (Initialisierung, dann Konzept, Realisierung und Einführung je Modul, zuletzt der Abschluss), und oben steht dann das nachgebaute Bild mit Rolle, Aufgabe und Ergebnissen — «Details» zeigt dazu die Beteiligten und die Kurzdefinitionen.' }),
-        h('li', { text: 'Im Trainer wählt die Leiste unter der Kopfzeile die Übungsform. Bei den Lernkarten wählt man oben rechts auf der Karte, was vorne steht: Begriff oder Definition — bei «Definition» wird der Begriff selbst mit abgefragt. Unter der Karte blättern ‹ und › zurück und weiter; das Icon daneben zeigt die Liste aller Karten, ein Klick darin zeigt die Karte zum Üben.' }),
-        h('li', { text: 'Im Quiz stehen kuratierte Prüfungsfragen und automatisch aus den Elementkarten erzeugte Fragen zur Wahl. Zu jeder kuratierten Frage wird nach der Antwort das Belegzitat mit Kapitel und Seite des Referenzhandbuchs angezeigt.' }),
-        h('li', { text: 'Generierte Fragen entstehen maschinell aus den erfassten Daten. Bei Zweifeln gilt der verlinkte Originaltext.' })
-      ]),
-
-      h('h2', { text: 'Gewährleistung' }),
-      h('p', { text: 'Diese Lernhilfe steht in keiner Verbindung zur Schweizerischen Bundesverwaltung oder zum HERMES-Fachausschuss. '
-        + 'Für Richtigkeit und Vollständigkeit der wiedergegebenen Inhalte wird keine Gewähr übernommen; prüfungsrelevant ist die offizielle Dokumentation.' })
-    ]);
+      ])
+    ].concat(abschnitte(daten)));
 
     behaelter.appendChild(prosa);
     if (importiert) {
@@ -203,5 +198,55 @@
     }
   }
 
-  HT.views.ueber = { titel: 'Über', render: renderUeber };
+  /* --- Hinweis für neue Besucher ------------------------------------------- */
+
+  /* Beim ersten Laden jeder Seite ausser «Über» selbst: dieselben Abschnitte
+     als modaler Dialog, bis beim Schliessen «Nicht mehr anzeigen» angehakt
+     ist (hermes-trainer:willkommen). Ohne Haken kommt er beim nächsten Laden
+     wieder. */
+  function willkommen(route) {
+    if (route === 'ueber' || !global.HTMLDialogElement) { return; }
+    if (HT.store.lies('willkommen', {}).ausgeblendet) { return; }
+
+    var haken = h('input', { type: 'checkbox', class: 'willkommen__eingabe' });
+    var inhalt = h('div', { class: 'willkommen__inhalt prosa', tabindex: '-1', autofocus: true }, abschnitte(
+      h('p', {}, [DATEN_SATZ + ' Sichern und auf ein anderes Gerät übertragen lassen sie sich unter ', h('a', { href: '#/ueber', text: 'Über' }), '.'])
+    ));
+    var dialog = h('dialog', { class: 'willkommen', 'aria-labelledby': 'willkommen-titel' }, [
+      h('div', { class: 'willkommen__kopf' }, [
+        h('h1', { id: 'willkommen-titel', text: 'Willkommen bei meinHERMES' }),
+        h('button', { type: 'button', class: 'graph-schliessen', 'aria-label': 'Schliessen', text: '✕', on: { click: function () { dialog.close(); } } })
+      ]),
+      inhalt,
+      h('div', { class: 'willkommen__fuss' }, [
+        HT.store.verfuegbar ? h('label', { class: 'willkommen__haken' }, [haken, 'Nicht mehr anzeigen']) : h('span'),
+        h('button', { type: 'button', class: 'btn btn--primaer', text: 'Verstanden', on: { click: function () { dialog.close(); } } })
+      ])
+    ]);
+
+    function draussen(ev) {
+      var r = dialog.getBoundingClientRect();
+      return ev.target === dialog && (ev.clientX < r.left || ev.clientX > r.right || ev.clientY < r.top || ev.clientY > r.bottom);
+    }
+    /* Klick daneben schliesst — nur wenn er dort auch begann, sonst schlösse
+       ein Markieren, das neben dem Dialog endet. Ein Link in die Seite
+       (Über) schliesst ebenfalls. */
+    var vonDraussen = false;
+    dialog.addEventListener('pointerdown', function (ev) { vonDraussen = draussen(ev); });
+    dialog.addEventListener('click', function (ev) {
+      if ((vonDraussen && draussen(ev)) || ev.target.closest('a[href^="#"]')) { dialog.close(); }
+    });
+    /* Tasten gehören dem Dialog: Esc höbe sonst auch den Fokus im Graphen
+       dahinter auf, ⌘F öffnete die Suche des Handbuchs. */
+    dialog.addEventListener('keydown', function (ev) { ev.stopPropagation(); });
+    dialog.addEventListener('close', function () {
+      if (haken.checked) { HT.store.schreib('willkommen', { ausgeblendet: true }); }
+      dialog.remove();
+    });
+
+    document.body.appendChild(dialog);
+    dialog.showModal();
+  }
+
+  HT.views.ueber = { titel: 'Über', render: renderUeber, willkommen: willkommen };
 }(window));
