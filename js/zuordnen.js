@@ -10,9 +10,9 @@
    steht in jeder ihrer Phasen und darin unter jedem Modul, das sie dort hat
    (wie in der Abbildung 1), jeweils mit den Ergebnissen dieses Felds. Eine
    Rolle steht so vor jeder ihrer Aufgaben, ein Ergebnis bei jeder Aufgabe,
-   die es erzeugt. Im Pool hat jede Zeile ihren eigenen Rollenknopf; eine
-   Aufgabe mehrerer Phasen oder Module und ein Ergebnis mehrerer Aufgaben
-   liegen dort einmal, mit der Zahl ihrer Kästen.
+   die es erzeugt. Im Pool liegt jedes Element einmal, mit der Zahl seiner
+   Kästen — eine Rolle mehrerer Aufgaben, eine Aufgabe mehrerer Phasen oder
+   Module, ein Ergebnis mehrerer Aufgaben.
 
    Welche Elementarten leer sind, wählen drei Schalter (Rollen, Aufgaben,
    Ergebnisse); die übrigen stehen ausgefüllt als Anhaltspunkte im Bild.
@@ -52,7 +52,6 @@
       pfade: ['M20.5 12a8.5 8.5 0 1 1-8.5-8.5c2.4 0 4.6 1 6.2 2.6l2.3 2.3', 'M20.5 3.6v4.8h-4.8'] }
   ];
   var ARTEN = ['rolle', 'aufgabe', 'ergebnis'];
-  var EINZELN = { rolle: true };  // im Pool je Kasten ein eigener Knopf statt eines Stapels mit Zahl
   var ZIEL_ZUSTAENDE = ['tr-ziel--offen', 'tr-ziel--bereit', 'tr-ziel--belegt', 'tr-ziel--richtig', 'tr-ziel--falsch', 'tr-ziel--leer'];
 
   /* Bild, in Layout-Einheiten (px bei 100 %) */
@@ -367,9 +366,9 @@
   /* uebung = { def, bloecke, layout,
                 ziele: [{ n: Kasten, chip, status, loesung, gruppe, inhalt, rahmen, titel }],
                 gegeben: [Kasten], chips: [{ id, kategorie, begriff, eintrag, entscheid, w, ziel }],
-                gewaehlt: { id, kategorie, begriff, chip } | null, geprueft: false | { richtig, gesamt }, suche }
+                gewaehlt: { id, kategorie, begriff } | null, geprueft: false | { richtig, gesamt }, suche }
      Je leerer Kasten ein Chip; Chips desselben Elements sind gleichwertig.
-     Im Pool liegen sie als Knöpfe aus stapelVon (Rollen einzeln).
+     Im Pool liegen sie als Stapel aus stapelVon, je Element ein Knopf mit Zahl.
      vorher: { Schlüssel des Kastens: Id des gelegten Elements } — beim
      Umschalten der leeren Arten bleibt liegen, was noch einen Kasten hat. */
   function uebungStarten(def, vorher) {
@@ -415,18 +414,16 @@
     return null;
   }
 
-  /* Freie Chips als Knöpfe für den Pool, nach Art und Name. Rollen einzeln
-     (s.chip) — jede Zeile braucht ihren eigenen Rollenknopf, auch wenn eine
-     Rolle mehrere Aufgaben verantwortet; Aufgaben mehrerer Phasen und
-     Ergebnisse gleichen Namens als ein Stapel mit Zahl. */
+  /* Freie Chips als Knöpfe für den Pool, nach Art und Name: je Element ein
+     Stapel mit der Zahl seiner Kästen — eine Rolle mehrerer Aufgaben genauso
+     wie eine Aufgabe mehrerer Phasen oder ein Ergebnis gleichen Namens. */
   function stapelVon(chips) {
     var nachId = {}, stapel = [];
     chips.forEach(function (c) {
-      var einzeln = !!EINZELN[c.kategorie];
-      var s = einzeln ? null : nachId[c.id];
+      var s = nachId[c.id];
       if (!s) {
-        s = { id: c.id, kategorie: c.kategorie, begriff: c.begriff, eintrag: c.eintrag, entscheid: c.entscheid, anzahl: 0, chip: einzeln ? c : null };
-        if (!einzeln) { nachId[c.id] = s; }
+        s = { id: c.id, kategorie: c.kategorie, begriff: c.begriff, eintrag: c.eintrag, entscheid: c.entscheid, anzahl: 0 };
+        nachId[c.id] = s;
         stapel.push(s);
       }
       s.anzahl++;
@@ -450,8 +447,8 @@
   /* Ein Element passt nur in einen Kasten seiner Art. Liegt im Zielkasten
      schon eines, tauschen die beiden — kommt das neue aus dem Pool, geht das
      alte dorthin zurück. Aus der Auswahl gelegt, bleibt ein Stapel gewählt,
-     solange noch eines davon im Pool liegt (ein Ergebnis mehrerer Aufgaben);
-     ein einzelner Knopf (Rolle) ist danach verbraucht. */
+     solange noch eines davon im Pool liegt (eine Rolle mehrerer Aufgaben,
+     ein Ergebnis mehrerer Aufgaben); der letzte Knopf ist danach verbraucht. */
   function setzen(chip, ziel, ausWahl) {
     if (uebung.geprueft || chip.kategorie !== ziel.n.kategorie) { return; }
     if (ziel.chip !== chip) {
@@ -465,7 +462,7 @@
       ziel.chip = chip;
       chip.ziel = ziel;
     }
-    if (!ausWahl || uebung.gewaehlt.chip || !freierChip(chip.id)) { uebung.gewaehlt = null; }
+    if (!ausWahl || !freierChip(chip.id)) { uebung.gewaehlt = null; }
     zeichnen();
   }
 
@@ -480,23 +477,23 @@
     if (uebung.geprueft) { return; }
     if (uebung.gewaehlt) {
       var g = uebung.gewaehlt;
-      var c = g.chip && !g.chip.ziel ? g.chip : freierChip(g.id);
+      var c = freierChip(g.id);
       if (c && c.kategorie === ziel.n.kategorie) { setzen(c, ziel, true); }
     } else if (ziel.chip) {
       loesen(ziel);
     }
   }
 
-  /* Ein einzelner Knopf ist nur selbst gewählt, ein Stapel über sein Element. */
+  /* Ein Stapel ist über sein Element gewählt. */
   function istGewaehlt(stapel, gewaehlt) {
-    return !!gewaehlt && (stapel.chip ? gewaehlt.chip === stapel.chip : gewaehlt.id === stapel.id);
+    return !!gewaehlt && gewaehlt.id === stapel.id;
   }
 
   function stapelGeklickt(stapel) {
     if (uebung.geprueft) { return; }
     uebung.gewaehlt = istGewaehlt(stapel, uebung.gewaehlt)
       ? null
-      : { id: stapel.id, kategorie: stapel.kategorie, begriff: stapel.begriff, chip: stapel.chip };
+      : { id: stapel.id, kategorie: stapel.kategorie, begriff: stapel.begriff };
     zeichnen();
   }
 
@@ -925,7 +922,7 @@
     el.addEventListener('click', function () { if (!gezogen) { stapelGeklickt(s); } gezogen = false; });
     el.addEventListener('pointerdown', function (ev) {
       if (ev.button !== 0 || ev.pointerType === 'touch' || uebung.geprueft) { return; }
-      var chip = s.chip && !s.chip.ziel ? s.chip : freierChip(s.id);
+      var chip = freierChip(s.id);
       if (!chip) { return; }
       /* Der Geist hat die Grösse des Kastens im Bild; der Zeiger fasst ihn am Zeichen. */
       var m = bildMass();
