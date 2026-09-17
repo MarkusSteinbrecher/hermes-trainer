@@ -881,29 +881,12 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
   cursor: pointer;
 }
 .lk-zuruecksetzen:hover { color: var(--text); background: var(--flaeche-2); }
-/* Umschalter Karte/Liste ganz rechts, durch einen Strich vom Fortschritt
-   getrennt; gewählt wie ein Chip: dunkel und rot unterstrichen. */
-.lk-ansicht { display: flex; align-items: center; gap: 2px; padding-left: 8px; border-left: 1px solid var(--rand); }
-.lk-ansicht__knopf {
-  display: grid; place-items: center;
-  width: 30px; height: 30px; padding: 0;
-  border: 0; background: transparent; color: var(--text-leise);
-  cursor: pointer;
-}
-.lk-ansicht__knopf:hover { color: var(--text); }
-.lk-ansicht__knopf[aria-pressed="true"] { color: var(--text); box-shadow: inset 0 -3px 0 var(--akzent); }
-.lk-ansicht__knopf:focus-visible { outline-offset: -2px; }
 @media (max-width: 699.98px) {
   /* Schmal rollen die Kategorien in ihrer eigenen Zeile, der Fortschritt steht darunter —
      die Zahlen, wenn nötig, über Balken, Anteil und Icon. */
   .lk-zeile > .chips { flex-basis: 100%; }
   .lk-zeile__rechts { max-width: 100%; }
   .lk-fortschritt { flex-wrap: wrap; row-gap: 2px; }
-  /* Mit kürzerem Balken und ohne Trennstrich passt der Umschalter Karte/Liste
-     meist noch in die Zeile; sonst steht er rechts darunter. */
-  .lk-fortschritt { gap: 8px; }
-  .lk-fortschritt .fortschritt__balken { width: 40px; }
-  .lk-ansicht { margin-left: auto; padding-left: 0; border-left: 0; }
 }
 
 /* Kopfzeile beider Seiten: links der Begriff und dahinter seine Kategorie,
@@ -1158,26 +1141,34 @@ a.wert:hover, .wert a:hover { color: var(--akzent); border-color: var(--text); }
 .lk-zeichen--schlecht { color: var(--schlecht); }
 
 .lk-gewaehlt { margin: -2px 0 2px; font-size: 13px; color: var(--schlecht); text-decoration: line-through; }
-.lk-stand {
-  margin: 0 0 10px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--text-leise);
-  font-variant-numeric: tabular-nums;
-}
-/* Unter der Karte eine Zeile: links der Stand, die Knöpfe in der Mitte unter
-   der Karte — klein und nur so breit wie ihr Text. Drei Spalten, die äusseren
-   gleich breit, damit die Mitte wirklich mittig steht; schmal steht der
-   Stand über den Knöpfen. */
-.lk-aktionen { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px 16px; }
-.lk-aktionen .lk-stand { margin: 0; }
+/* Unter der Karte eine Zeile: ‹ unter der linken Kartenkante, die Knöpfe in
+   der Mitte — klein und nur so breit wie ihr Text —, rechts Liste und ›.
+   Drei Spalten, die äusseren gleich breit, damit die Mitte wirklich mittig
+   steht. */
+.lk-aktionen { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px; }
+.lk-aktionen__links { grid-column: 1; justify-self: start; display: flex; }
 .lk-aktionen__knoepfe { grid-column: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.lk-aktionen__rechts { grid-column: 3; justify-self: end; display: flex; gap: 2px; }
 @media (max-width: 559.98px) {
-  .lk-aktionen { grid-template-columns: minmax(0, 1fr); justify-items: center; }
-  .lk-aktionen__knoepfe { grid-column: 1; }
+  /* Schmal reicht die Breite nicht für beides: die Knöpfe oben, darunter
+     ‹ links und Liste mit › rechts. */
+  .lk-aktionen { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px 8px; }
+  .lk-aktionen__knoepfe { grid-column: 1 / -1; grid-row: 1; }
+  .lk-aktionen__links { grid-column: 1; grid-row: 2; }
+  .lk-aktionen__rechts { grid-column: 2; grid-row: 2; }
 }
+/* Blättern und Liste als Icons ohne Rahmen, wie «Zurücksetzen» über der Karte. */
+.lk-ikon {
+  display: grid; place-items: center;
+  width: 34px; height: 34px; padding: 0;
+  border: 0; border-radius: var(--radius-s);
+  background: transparent; color: var(--text);
+  cursor: pointer;
+}
+.lk-ikon:hover:not(:disabled) { background: var(--flaeche-2); }
+.lk-ikon:disabled { color: var(--rand-stark); cursor: default; }
+/* In der Liste der Weg zurück zur Karte. */
+.lk-zur-karte { display: inline-block; margin-bottom: 18px; padding: 0 0 2px; background: none; border-width: 0 0 2px; font-family: inherit; cursor: pointer; }
 .lk-knopf { min-height: 30px; padding: 0 12px; justify-content: center; border-radius: var(--radius-s); }
 .lk-drehen { border: 1px solid var(--rand-stark); background: var(--bg); color: var(--text); }
 .lk-drehen:hover { border-color: var(--text); }

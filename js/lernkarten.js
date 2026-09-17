@@ -15,9 +15,11 @@
    allein für den Begriff.
    «Nochmals» kehrt im Stapel zurück. Fortschritt liegt im localStorage und
    ist zurücksetzbar.
-   Statt der Karte lässt sich die Liste aller Karten zeigen (Umschalter rechts
-   über der Karte): nach Kategorie, darin alphabetisch, je mit dem Verlauf; ein
-   Klick legt die Karte zuoberst auf den Stapel und zeigt sie. */
+   Unter der Karte blättern ‹ und › zurück und weiter: ‹ zeigt die zuvor
+   gezeigte Karte wieder, › überspringt die Karte ohne Einschätzung. Das Icon
+   daneben zeigt statt der Karte die Liste aller Karten: nach Kategorie, darin
+   alphabetisch, je mit dem Verlauf; ein Klick legt die Karte zuoberst auf den
+   Stapel und zeigt sie. */
 (function (global) {
   'use strict';
 
@@ -46,6 +48,7 @@
     fortschritt: {},       // id -> 'gewusst' | 'nochmals'
     verlauf: {},           // id -> ['gewusst' | 'nochmals', …], die letzten Versuche, neuester zuletzt
     stapel: [],            // offene Karten-IDs der laufenden Runde
+    zurueck: [],           // zuvor gezeigte Karten-IDs, die zuletzt gezeigte zuletzt (für ‹)
     gedreht: false,
     antworten: {}          // Bezug-Schlüssel -> { wert, richtig } der laufenden Karte
   };
@@ -245,6 +248,7 @@
       .filter(function (e) { return auchGewusste || zustand.fortschritt[e.id] !== 'gewusst'; })
       .map(function (e) { return e.id; });
     zustand.stapel = HT.ui.mischen(ids);
+    zustand.zurueck = [];
     neueKarte();
   }
 
@@ -708,6 +712,11 @@
           })
         ])
       ]));
+      /* Auch ohne Karte: zurück zur zuletzt gezeigten und zur Liste. */
+      bereich.appendChild(h('div', { class: 'lk-aktionen' }, [
+        h('div', { class: 'lk-aktionen__links' }, [zurueckKnopf()]),
+        h('div', { class: 'lk-aktionen__rechts' }, [listeKnopf(), weiterKnopf()])
+      ]));
       return bereich;
     }
 
@@ -717,7 +726,6 @@
       return kartenBereichAufbauen();
     }
 
-    var stand = h('p', { class: 'lk-stand', role: 'status' });
     var vorne = seiteVorne(e, function () { antwortGezaehlt(); });
     var hinten = h('div', { class: 'flip__seite flip__seite--hinten', tabindex: '-1', 'aria-hidden': 'true' });
     var flip = h('div', { class: 'flip' }, [vorne.el, hinten]);
@@ -732,22 +740,6 @@
       type: 'button', class: 'btn btn--schlecht lk-knopf', text: 'Nochmals', disabled: true
     });
 
-    function standSetzen() {
-      var s = auswertung(e);
-      stand.hidden = !s.gesamt;
-      if (!s.gesamt) {
-        stand.textContent = '';
-      } else if (!s.beantwortet) {
-        stand.textContent = s.gesamt + ' ' + (s.gesamt === 1 ? 'Zuordnung' : 'Zuordnungen') + ' offen';
-      } else if (!s.fertig) {
-        stand.textContent = s.beantwortet + ' von ' + s.gesamt + ' zugeordnet, ' + s.richtig + ' richtig';
-      } else {
-        stand.textContent = s.richtig === s.gesamt
-          ? 'Alle ' + s.gesamt + ' Zuordnungen richtig'
-          : s.richtig + ' von ' + s.gesamt + ' richtig';
-      }
-    }
-
     function drehen() {
       if (zustand.gedreht) { return; }
       zustand.gedreht = true;
@@ -758,7 +750,6 @@
       /* Hinter der Rückseite darf nichts mehr zu bedienen sein; wie viel
          richtig war, sagt jetzt der Kopf der Lösung. */
       vorne.sperren.forEach(function (sperre) { sperre(); });
-      stand.hidden = true;
       drehKnopf.hidden = true;
       gewusstBtn.disabled = false;
       nochmalsBtn.disabled = false;
@@ -793,12 +784,12 @@
     /* Ist die letzte Zuordnung getroffen, dreht sich die Karte von selbst —
        kurz danach, damit das Zeichen der letzten Wahl noch zu sehen ist. */
     function antwortGezaehlt() {
-      standSetzen();
       if (!auswertung(e).fertig || zustand.gedreht) { return; }
       fortschrittMelden();
       global.setTimeout(function () {
-        /* Nicht mehr zu sehen (Wechsel zur Liste, andere Kategorie): nicht
-           drehen — sonst gälte die neu gezeichnete Karte als gedreht. */
+        /* Nicht mehr zu sehen (geblättert, Wechsel zur Liste, andere
+           Kategorie): nicht drehen — sonst gälte die neu gezeichnete Karte
+           als gedreht. */
         if (flip.isConnected && zustand.stapel[0] === e.id) { drehen(); }
       }, DREH_VERZUG);
     }
@@ -807,7 +798,6 @@
     gewusstBtn.addEventListener('click', function () { bewerten('gewusst'); });
     nochmalsBtn.addEventListener('click', function () { bewerten('nochmals'); });
 
-    standSetzen();
     /* Zurück aus der Liste: eine schon gedrehte Karte steht wieder gedreht da
        (noch ausserhalb des Dokuments, also ohne Drehbewegung). */
     if (zustand.gedreht) {
@@ -815,10 +805,12 @@
       drehen();
     }
     bereich.appendChild(h('div', { class: 'flip-wrap' }, flip));
-    /* Unter der Karte eine Zeile: links der Stand, in der Mitte kleine Knöpfe. */
+    /* Unter der Karte eine Zeile: ‹ unter der linken Kartenkante, in der
+       Mitte kleine Knöpfe, rechts die Liste und ›. */
     bereich.appendChild(h('div', { class: 'lk-aktionen' }, [
-      stand,
-      h('div', { class: 'lk-aktionen__knoepfe' }, [drehKnopf, nochmalsBtn, gewusstBtn])
+      h('div', { class: 'lk-aktionen__links' }, [zurueckKnopf()]),
+      h('div', { class: 'lk-aktionen__knoepfe' }, [drehKnopf, nochmalsBtn, gewusstBtn]),
+      h('div', { class: 'lk-aktionen__rechts' }, [listeKnopf(), weiterKnopf()])
     ]));
 
     return bereich;
@@ -852,28 +844,32 @@
       ]);
     }).filter(Boolean);
 
+    /* Über der Liste der Weg zurück, im Kleid der Verweise am Fuss der Karte. */
+    var zurKarte = h('button', {
+      type: 'button', class: 'lk-verweis lk-zur-karte', text: '‹ Zur Karte',
+      on: { click: function () { ansichtSetzen('karte'); } }
+    });
     if (!gruppen.length) {
-      return HT.ui.leerZustand(
+      gruppen = [HT.ui.leerZustand(
         'Keine Karten im gewählten Umfang',
         HT.daten.alleEintraege().length
           ? 'Für die gewählten Kategorien gibt es keine Karten. Filter anpassen.'
           : 'Die Datendateien in data/ sind derzeit leer. Sobald Einträge erfasst sind, entstehen daraus Lernkarten.'
-      );
+      )];
     }
-    return h('div', { class: 'lk-liste' }, gruppen);
+    return h('div', { class: 'lk-liste' }, [zurKarte].concat(gruppen));
   }
 
   /** Aus der Liste: die Karte zuoberst auf den Stapel legen (auch eine
-      gewusste) und zeigen. Ist sie schon die laufende, bleiben ihre Antworten. */
+      gewusste) und zeigen. Ist sie schon die laufende, bleiben ihre Antworten;
+      sonst führt ‹ zurück zu der, die vorher dran war. */
   function karteUeben(id) {
     if (zustand.stapel[0] !== id) {
+      merken(zustand.stapel[0]);
       zustand.stapel = [id].concat(zustand.stapel.filter(function (s) { return s !== id; }));
       neueKarte();
     }
-    zustand.ansicht = 'karte';
-    speichern();
-    neuZeichnen(true);
-    global.scrollTo({ top: 0, behavior: 'instant' });
+    ansichtSetzen('karte');
   }
 
   function bewerten(wert) {
@@ -883,9 +879,74 @@
     zustand.fortschritt[id] = wert;
     zustand.stapel.shift();
     if (wert === 'nochmals') { zustand.stapel.push(id); }
+    merken(id);
     neueKarte();
     speichern();
     neuZeichnen(true);
+  }
+
+  /* --- Blättern ----------------------------------------------------------- */
+
+  /* So viele gezeigte Karten merkt sich ‹ höchstens. */
+  var ZURUECK_LAENGE = 100;
+
+  /** Eine Karte verlässt die Anzeige: für ‹ merken. */
+  function merken(id) {
+    if (!id) { return; }
+    zustand.zurueck.push(id);
+    if (zustand.zurueck.length > ZURUECK_LAENGE) { zustand.zurueck.shift(); }
+  }
+
+  /** Die Karte, zu der ‹ führt: die zuletzt gezeigte, die nicht gerade offen
+      ist («Nochmals» auf der letzten Karte zeigt dieselbe wieder). */
+  function vorigeKarte() {
+    for (var i = zustand.zurueck.length - 1; i >= 0; i--) {
+      if (zustand.zurueck[i] !== zustand.stapel[0]) { return { id: zustand.zurueck[i], index: i }; }
+    }
+    return null;
+  }
+
+  /** ‹ legt die zuvor gezeigte Karte zuoberst auf den Stapel — auch eine, die
+      inzwischen als gewusst gilt; die offene bleibt gleich dahinter liegen. */
+  function zurueckBlaettern() {
+    var vorige = vorigeKarte();
+    if (!vorige) { return; }
+    zustand.zurueck = zustand.zurueck.slice(0, vorige.index);
+    zustand.stapel = [vorige.id].concat(zustand.stapel.filter(function (s) { return s !== vorige.id; }));
+    neueKarte();
+    neuZeichnen(true);
+  }
+
+  /** › überspringt die Karte ohne Einschätzung: sie kommt ans Ende des
+      Stapels, eine schon gewusste fällt heraus (wie beim Mischen). */
+  function weiterBlaettern() {
+    if (zustand.stapel.length < 2) { return; }
+    var id = zustand.stapel.shift();
+    if (zustand.fortschritt[id] !== 'gewusst') { zustand.stapel.push(id); }
+    merken(id);
+    neueKarte();
+    neuZeichnen(true);
+  }
+
+  var PFADE_LISTE = ['M9 6h11', 'M9 12h11', 'M9 18h11', 'M4.5 6h.01', 'M4.5 12h.01', 'M4.5 18h.01'];
+
+  function ikonKnopf(klasse, label, pfade, beiKlick, gesperrt) {
+    return h('button', {
+      type: 'button', class: 'lk-ikon ' + klasse, title: label, 'aria-label': label,
+      disabled: !!gesperrt, on: { click: beiKlick }
+    }, HT.ui.symbol(pfade, 20));
+  }
+
+  function zurueckKnopf() {
+    return ikonKnopf('lk-ikon--zurueck', 'Zurück zur vorigen Karte', ['M15 5l-7 7 7 7'], zurueckBlaettern, !vorigeKarte());
+  }
+
+  function weiterKnopf() {
+    return ikonKnopf('lk-ikon--weiter', 'Weiter zur nächsten Karte', ['M9 5l7 7-7 7'], weiterBlaettern, zustand.stapel.length < 2);
+  }
+
+  function listeKnopf() {
+    return ikonKnopf('lk-ikon--liste', 'Alle Karten als Liste', PFADE_LISTE, function () { ansichtSetzen('liste'); });
   }
 
   function zuruecksetzen() {
@@ -946,35 +1007,21 @@
         type: 'button', class: 'lk-zuruecksetzen',
         title: 'Lernfortschritt zurücksetzen', 'aria-label': 'Lernfortschritt zurücksetzen',
         on: { click: zuruecksetzen }
-      }, HT.ui.symbol(['M4.5 12a7.5 7.5 0 1 0 2.2-5.3', 'M4.5 4.2v4.3h4.3'], 16)),
-      ansichtWahl()
+      }, HT.ui.symbol(['M4.5 12a7.5 7.5 0 1 0 2.2-5.3', 'M4.5 4.2v4.3h4.3'], 16))
     ]);
   }
 
-  /** Ganz rechts in der Zeile: eine Karte oder die Liste aller Karten, als
-      zwei Icons im Stil der Chips (das gewählte unterstrichen). */
-  function ansichtWahl() {
-    var optionen = [
-      ['karte', 'Karte', 'Eine Karte zum Üben', ['M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z']],
-      ['liste', 'Liste', 'Alle Karten als Liste', ['M9 6h11', 'M9 12h11', 'M9 18h11', 'M4.5 6h.01', 'M4.5 12h.01', 'M4.5 18h.01']]
-    ];
-    return h('div', { class: 'lk-ansicht', role: 'group', 'aria-label': 'Ansicht' }, optionen.map(function (o) {
-      return h('button', {
-        type: 'button', class: 'lk-ansicht__knopf', title: o[2], 'aria-label': o[1],
-        'aria-pressed': zustand.ansicht === o[0] ? 'true' : 'false',
-        on: { click: function () { ansichtSetzen(o[0]); } }
-      }, HT.ui.symbol(o[3], 18));
-    }));
-  }
-
+  /** Karte oder Liste zeigen; die Seite beginnt dann wieder oben. In der
+      Liste steht der Fokus auf «Zur Karte», zurück auf der Karte. */
   function ansichtSetzen(ansicht) {
-    if (zustand.ansicht === ansicht) { return; }
     zustand.ansicht = ansicht;
     speichern();
-    neuZeichnen(false);
-    /* Der Fokus bleibt auf dem Umschalter — jetzt im neu gezeichneten Fortschritt. */
-    var aktiv = refs.fortschritt.querySelector('.lk-ansicht__knopf[aria-pressed="true"]');
-    if (aktiv) { aktiv.focus(); }
+    neuZeichnen(ansicht === 'karte');
+    if (ansicht === 'liste') {
+      var zurKarte = refs.spiel.querySelector('.lk-zur-karte');
+      if (zurKarte) { zurKarte.focus({ preventScroll: true }); }
+    }
+    global.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   function neuZeichnen(fokusKarte) {
@@ -1106,16 +1153,18 @@
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),
           h('p', { text: 'Am Fuss der Karte führen drei Verweise weiter, vorn wie hinten: das Element im Überblick, im Handbuch und auf '
             + 'der offiziellen Seite (bei Grundbegriffen nur diese).' }),
-          h('p', { text: 'Ganz rechts über der Karte schaltet man zwischen Karte und Liste um. Die Liste zeigt alle Karten der gewählten '
-            + 'Kategorien, nach Kategorie und alphabetisch, je mit den Punkten der letzten Versuche. Ein Klick auf eine Karte legt sie '
-            + 'zuoberst auf den Stapel und zeigt sie zum Üben — auch eine, die schon als gewusst gilt.' })
+          h('p', { text: 'Unter der Karte blättert man mit ‹ und ›: ‹ zeigt die zuvor gezeigte Karte wieder, auch eine schon '
+            + 'eingeschätzte; › überspringt die Karte ohne Einschätzung, sie kommt ans Ende des Stapels (eine gewusste fällt heraus). '
+            + 'Das Icon daneben zeigt alle Karten der gewählten Kategorien als Liste, nach Kategorie und alphabetisch, je mit den '
+            + 'Punkten der letzten Versuche. Ein Klick auf eine Karte zeigt sie zum Üben — auch eine, die schon als gewusst gilt —, '
+            + '«Zur Karte» oben führt ohne Wahl zurück.' })
         ];
       });
     }
 
     /* Über der Karte nur eine Zeile: links die Kategorien, rechts der
-       Fortschritt und der Umschalter Karte/Liste. Was vorne steht, wählt man
-       oben auf der Karte. */
+       Fortschritt. Was vorne steht, wählt man oben auf der Karte, Blättern
+       und Liste stehen unter ihr. */
     refs.fortschritt = h('div', { class: 'lk-zeile__rechts' });
     behaelter.appendChild(h('div', { class: 'lk-zeile' }, [chipsAufbauen(), refs.fortschritt]));
 
