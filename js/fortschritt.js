@@ -246,8 +246,25 @@
         'Ein Klick auf eine Phase oder ein Modul öffnet seine Übung im ',
         h('a', { href: '#/trainer', text: 'Zuordnen' }),
         '.'
+      ]),
+      h('p', {}, [
+        '«Fortschritt zurücksetzen» unten leert beides: die Zähler dieser Tafel und die Einschätzung aller ',
+        h('a', { href: '#/trainer?teil=lernkarten', text: 'Lernkarten' }),
+        ' (gewusst/nicht gewusst) samt ihren Verlaufspunkten. Nur die Karten leert das Icon auf der Lernkartenseite.'
       ])
     ];
+  }
+
+  function zahlwort(n, ein, viele) {
+    return n + ' ' + (n === 1 ? ein : viele);
+  }
+
+  /** Rückfrage vor dem Zurücksetzen: sie nennt beides mit Zahlen. */
+  function ruecksetzFrage(gezaehlt, karten) {
+    var teile = [];
+    if (gezaehlt) { teile.push(zahlwort(gezaehlt, 'gezählte Zuordnung', 'gezählte Zuordnungen') + ' auf der Tafel'); }
+    if (karten) { teile.push('die Einschätzung von ' + zahlwort(karten, 'Lernkarte', 'Lernkarten') + ' samt ihren Verlaufspunkten'); }
+    return 'Fortschritt wirklich zurücksetzen? Gelöscht werden: ' + teile.join(' und ') + '.';
   }
 
   function adresse(vorgehen) {
@@ -277,6 +294,11 @@
 
     var r = raster(vorgehen);
     var g = r.gesamt;
+    /* Der Knopf unten löscht beides — die Zähler der Tafel und die
+       Einschätzung der Karten (Sponsor, 2026-09-18: für ihn ist das ein
+       Lernstand, nicht zwei). Die Rückfrage sagt darum, was weggeht. */
+    var gezaehlt = Object.keys(stand()).length;
+    var karten = HT.lernkarten ? HT.lernkarten.eingeschaetzt() : 0;
     behaelter.appendChild(h('section', { class: 'fs-seite' }, [
       HT.zuordnen.vorgehenGruppe(vorgehen, wechseln),
       h('p', { class: 'fs-stand', role: 'status' }, [
@@ -288,13 +310,15 @@
       h('div', { class: 'fs-tafel' }, r.el),
       h('div', { class: 'fs-fuss' }, [
         legende(),
-        Object.keys(stand()).length
+        gezaehlt || karten
           ? h('button', {
               type: 'button', class: 'btn btn--klein', text: 'Fortschritt zurücksetzen',
+              title: 'Zähler der Tafel und Einschätzung der Lernkarten löschen',
               on: {
                 click: function () {
-                  if (!global.confirm('Fortschritt wirklich zurücksetzen? Die Zähler aller Felder gehen verloren.')) { return; }
+                  if (!global.confirm(ruecksetzFrage(gezaehlt, karten))) { return; }
                   zuruecksetzen();
+                  if (karten && HT.lernkarten) { HT.lernkarten.leeren(); }
                   HT.ui.leeren(behaelter);
                   aufbauen(behaelter, vorgehen, leiste);
                 }

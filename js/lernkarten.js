@@ -992,17 +992,44 @@
     return ikonKnopf('lk-ikon--liste', 'Alle Karten als Liste', PFADE_LISTE, function () { ansichtSetzen('liste'); });
   }
 
+  /** Einschätzung und Verlauf aller Karten löschen, ohne Rückfrage. */
+  function einschaetzungenLoeschen() {
+    zustand.fortschritt = {};
+    zustand.verlauf = {};
+    stapelAufbauen(true);
+    speichern();
+  }
+
   function zuruecksetzen() {
     var etwasVorhanden = Object.keys(zustand.fortschritt).length > 0;
     if (etwasVorhanden && !global.confirm('Lernfortschritt wirklich zurücksetzen? Alle Einschätzungen gehen verloren.')) {
       return;
     }
-    zustand.fortschritt = {};
-    zustand.verlauf = {};
-    stapelAufbauen(true);
-    speichern();
+    einschaetzungenLoeschen();
     neuZeichnen(true);
   }
+
+  /* Was die Fortschrittseite (js/fortschritt.js) braucht: ihr «Fortschritt
+     zurücksetzen» leert beides — die Zähler der Tafel und die Einschätzung
+     der Karten —, denn für den Sponsor ist beides ein Lernstand (2026-09-18).
+     Sie kann offen sein, bevor die Lernkarten je gezeichnet wurden; darum
+     lesen beide Funktionen notfalls selbst aus dem Speicher. */
+  HT.lernkarten = {
+    eingeschaetzt: function () {
+      if (zustand.initialisiert) { return Object.keys(zustand.fortschritt).length; }
+      var g = HT.store.lies('lernkarten', null);
+      return (g && g.version === VERSION && g.fortschritt && typeof g.fortschritt === 'object')
+        ? Object.keys(g.fortschritt).length
+        : 0;
+    },
+    leeren: function () {
+      if (!zustand.initialisiert) { wiederherstellen(); zustand.initialisiert = true; }
+      einschaetzungenLoeschen();
+      /* Die Karten stehen gerade woanders im Dokument nicht; nur eine noch
+         hängende Ansicht wird nachgeführt. */
+      if (refs.spiel && refs.spiel.isConnected) { neuZeichnen(false); }
+    }
+  };
 
   /* --- Fortschrittsanzeige ------------------------------------------------ */
 
