@@ -9,8 +9,10 @@
    nächsten richtigen Antwort als «zuletzt falsch».
 
    Die Meldungen kommen aus den Übungen: js/zuordnen.js meldet beim Prüfen
-   jeden Kasten mit seinem Feld, js/lernkarten.js eine Karte, die Phase und
-   Modul richtig zugeordnet hat. Gespeichert unter «hermes-trainer:fortschritt»
+   jeden Kasten mit seinem Feld — aber nur, was seit der letzten Prüfung neu
+   drin liegt; js/lernkarten.js meldet die Einschätzung einer Karte
+   («Gewusst» bei richtiger Zuordnung zählt, «Nochmals» macht die Felder des
+   Elements rot). Gespeichert unter «hermes-trainer:fortschritt»
    als { version, stand: { "Phase|Modul|Element-Id": { n, falsch } } }. */
 (function (global) {
   'use strict';
@@ -235,9 +237,11 @@
         + 'ein Ergebnis, das im Feld unter mehreren Aufgaben steht, ist eine Frage. Nach ' + ZIEL + '× richtig gilt es als verstanden.' }),
       h('p', { text: 'Eine falsche Antwort löscht nichts: der Zähler bleibt stehen, das Feld ist bis zur nächsten '
         + 'richtigen Antwort rot. Was man gar nicht versucht hat, bleibt offen.' }),
-      h('p', { text: 'Gezählt wird beim Prüfen im Zuordnen (jeder Kasten mit seiner Phase und seinem Modul) und bei '
-        + 'den Lernkarten (eine Karte, die Phase und Modul richtig zuordnet). Wer im Zuordnen eine Art ausgefüllt '
-        + 'stehen lässt, übt sie nicht — ihre Kästen bleiben hier offen.' }),
+      h('p', { text: 'Gezählt wird beim Prüfen im Zuordnen: jeder Kasten mit seiner Phase und seinem Modul, aber nur, '
+        + 'was seit der letzten Prüfung neu drin liegt — ein zweites «Prüfen» ohne neue Zuordnung bringt nichts. '
+        + 'Wer eine Art ausgefüllt stehen lässt, übt sie nicht; ihre Kästen bleiben hier offen.' }),
+      h('p', { text: 'Bei den Lernkarten zählt die Einschätzung: «Gewusst» zählt, wenn die Karte auch Phase und Modul '
+        + 'richtig zugeordnet hat; «Nochmals» macht die Felder des Elements rot. Das Quiz zählt hier nicht mit.' }),
       h('p', {}, [
         'Ein Klick auf eine Phase oder ein Modul öffnet seine Übung im ',
         h('a', { href: '#/trainer', text: 'Zuordnen' }),

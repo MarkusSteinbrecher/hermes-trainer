@@ -793,33 +793,10 @@
       hinten.focus({ preventScroll: true });
     }
 
-    /* Fortschritt (js/fortschritt.js): Hat die Karte Phase und Modul richtig
-       zugeordnet und steht das Element in diesem Feld wirklich, zählt das
-       Feld eine richtige Antwort. Falsche Wahlen melden nichts — eine Karte
-       sagt nicht, in welchem Feld es gehakt hat. */
-    function fortschrittMelden() {
-      if (!HT.fortschritt) { return; }
-      var p = zustand.antworten.phase, m = zustand.antworten.modul;
-      if (!p || !p.richtig || !m || !m.richtig) { return; }
-      /* Beide Zeilen sind vollständig richtig — also zählt jedes Feld, das
-         aus einer genannten Phase und einem genannten Modul besteht. */
-      var liste = [];
-      m.gewaehlt.forEach(function (gm) {
-        var phasen = HT.daten.phasenImModul(e, gm.wert);
-        p.gewaehlt.forEach(function (gp) {
-          if (phasen.indexOf(gp.wert) !== -1) {
-            liste.push({ phase: gp.wert, modul: gm.wert, id: e.id, richtig: true });
-          }
-        });
-      });
-      HT.fortschritt.melden(liste);
-    }
-
     /* Ist die letzte Zuordnung getroffen, dreht sich die Karte von selbst —
        kurz danach, damit das Zeichen der letzten Wahl noch zu sehen ist. */
     function antwortGezaehlt() {
       if (!auswertung(e).fertig || zustand.gedreht) { return; }
-      fortschrittMelden();
       global.setTimeout(function () {
         /* Nicht mehr zu sehen (geblättert, Wechsel zur Liste, andere
            Kategorie): nicht drehen — sonst gälte die neu gezeichnete Karte
@@ -914,9 +891,33 @@
     ansichtSetzen('karte');
   }
 
+  /* Fortschritt (js/fortschritt.js): Eine Karte meldet einmal, bei der
+     Einschätzung, und zwar für alle Felder (Phase und Modul), in denen das
+     Element wirklich steht.
+
+     «Nochmals» färbt sie als «zuletzt falsch» — was man nicht wusste, soll
+     auf der Tafel nicht grün stehen. «Gewusst» zählt nur, wenn die Karte
+     Phase und Modul auch richtig zugeordnet hat: wer bloss umdreht und
+     «Gewusst» drückt, hat für die Tafel nichts gezeigt. Karten ohne Bezüge
+     (Grundbegriffe) melden nichts, sie haben kein Feld. */
+  function fortschrittMelden(e, wert) {
+    if (!HT.fortschritt || !e) { return; }
+    var p = zustand.antworten.phase, m = zustand.antworten.modul;
+    var richtig = wert === 'gewusst' && !!(p && p.richtig && m && m.richtig);
+    if (!richtig && wert !== 'nochmals') { return; }
+    var liste = [];
+    (e.module || []).forEach(function (modul) {
+      HT.daten.phasenImModul(e, modul).forEach(function (phase) {
+        liste.push({ phase: phase, modul: modul, id: e.id, richtig: richtig });
+      });
+    });
+    HT.fortschritt.melden(liste);
+  }
+
   function bewerten(wert) {
     var id = zustand.stapel[0];
     if (!id) { return; }
+    fortschrittMelden(eintragFuer(id), wert);
     zustand.verlauf[id] = verlaufVon(id).concat([wert]).slice(-VERLAUF_LAENGE);
     zustand.fortschritt[id] = wert;
     zustand.stapel.shift();
@@ -1193,6 +1194,12 @@
             + 'Begriff gemeint ist.' }),
           h('p', { text: 'Ohne Wahl geht es auch: Karte mit «Lösung» unter der Karte drehen und selbst einschätzen. Was «Nochmals» erhält, kehrt im '
             + 'Stapel zurück. Zur Auswahl stehen nur Werte, die auf irgendeiner Karte richtig sind.' }),
+          h('p', {}, [
+            'Die Einschätzung zählt auch im ',
+            h('a', { href: '#/trainer?teil=fortschritt', text: 'Fortschritt' }),
+            ': «Gewusst» zählt für die Felder des Elements, wenn die Karte Phase und Modul auch richtig zugeordnet hat; '
+              + '«Nochmals» färbt diese Felder rot.'
+          ]),
           h('p', { text: 'Am Fuss der Karte führen drei Verweise weiter, vorn wie hinten: das Element im Überblick, im Handbuch und auf '
             + 'der offiziellen Seite (bei Grundbegriffen nur diese).' }),
           h('p', { text: 'Unter der Karte blättert man mit ‹ und ›: ‹ zeigt die zuvor gezeigte Karte wieder, auch eine schon '

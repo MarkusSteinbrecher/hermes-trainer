@@ -378,7 +378,7 @@
     var ziele = [], gegeben = [], chips = [];
     layout.kaesten.forEach(function (n) {
       if (!zustand.leer[n.kategorie]) { gegeben.push(n); return; }
-      ziele.push({ n: n, chip: null, status: '', loesung: null });
+      ziele.push({ n: n, chip: null, status: '', loesung: null, gezaehlt: null });
       chips.push({ id: n.id, kategorie: n.kategorie, begriff: n.begriff, eintrag: n.eintrag, entscheid: n.entscheid, w: n.w, ziel: null });
     });
 
@@ -603,11 +603,19 @@
        kein Kasten dieses Elements im Feld falsch belegt ist; leere Kästen
        zählen nicht — was man nicht versucht hat, ist weder gekonnt noch
        falsch. In der Modulübung tragen die Blöcke keine Unterbahn, dort ist
-       das Modul die Übung selbst. */
+       das Modul die Übung selbst.
+
+       Jeder Kasten zählt nur, solange das, was drin liegt, seit der letzten
+       Prüfung neu ist (`gezaehlt`): «Prüfen · Weiter · Prüfen» schrieb sonst
+       dieselbe Lage jedes Mal wieder gut, und nach drei Klicks galt als
+       verstanden, was einmal richtig dalag. Wer einen Kasten neu belegt,
+       meldet ihn wieder; «Nochmals» beginnt von vorn. */
     if (HT.fortschritt) {
       var meldungen = {}, liste = [];
       uebung.ziele.forEach(function (z) {
         if (!z.loesung || z.status === 'leer') { return; }
+        if (z.gezaehlt === z.chip.id) { return; }
+        z.gezaehlt = z.chip.id;
         var b = bloecke[z.n.block];
         var modul = b.unter || (uebung.def.art === 'modul' ? uebung.def.name : '');
         if (!b.bahn || !modul) { return; }
@@ -646,7 +654,7 @@
   /* Zurück auf Anfang — an den bestehenden Objekten, denn die Ziele tragen
      die Verweise auf ihre SVG-Elemente. */
   function zuruecksetzen() {
-    uebung.ziele.forEach(function (z) { z.chip = null; z.status = ''; z.loesung = null; });
+    uebung.ziele.forEach(function (z) { z.chip = null; z.status = ''; z.loesung = null; z.gezaehlt = null; });
     uebung.chips.forEach(function (c) { c.ziel = null; });
     uebung.gewaehlt = null;
     uebung.geprueft = false;
